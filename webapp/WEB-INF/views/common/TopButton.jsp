@@ -1,6 +1,6 @@
-<!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -26,31 +26,16 @@
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
   <!-- -->
+  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../../../resources/css/common_css/TopButton.css">
     <link rel="stylesheet" href="../../../resources/css/common_css/Style.css">
-    <link rel="stylesheet" href="../../../resources/css/common_css/ErrorPage.css">
+    <script type="text/javascript" async="" src="../../../resources/js/common_js/TopButton.js"></script>
 </head>
 
-<body class="errorpage">
-    <div class="wrapper">
-        <div class="error">
-
-            <div class="errorimg">
-                <img class="img" src="_blank" />
-                <h1 class="sign">오류 <span class="signspan">Error</span> </h1>
-            </div>
-
-            <div class="sorry">
-                <p class="kor">
-                    요청하신 페이지를 처리 중에 오류가 발생했습니다. <br />
-                    서비스 이용에 불편을 드려 죄송합니다. <br /> 
-                    입력하신 내용이 정확한지 확인 후 다시 시도해 주시기 바랍니다.
-                </p>
-                <p class="eng">
-                    We have encountered a system error while processing your request. <br />
-                    We apologize for the incovenlence. Please check input and try again.
-                </p>
-            </div>
-        </div>
+<body class="top">
+    <div class="quickbtn" id="quickbtn">
+        <a href="_blank"><img class="icon" src="_blank"/></a>
     </div>
 </body>
 

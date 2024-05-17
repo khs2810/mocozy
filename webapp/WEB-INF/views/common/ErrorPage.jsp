@@ -1,6 +1,6 @@
-<!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -27,14 +27,31 @@
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
   <!-- -->
     <link rel="stylesheet" href="../../../resources/css/common_css/Style.css">
-    <link rel="stylesheet" href="../../../resources/css/search_css/SearchError.css">
+    <link rel="stylesheet" href="../../../resources/css/common_css/ErrorPage.css">
 </head>
 
-<body class="searcherror">
-        <p class="title">
-            <span class="span">안녕</span>
-            에 대한 <br/> 검색결과가 없습니다.
-        </p>
+<body class="errorpage">
+    <div class="wrapper">
+        <div class="error">
+
+            <div class="errorimg">
+                <img class="img" src="_blank" />
+                <h1 class="sign">오류 <span class="signspan">Error</span> </h1>
+            </div>
+
+            <div class="sorry">
+                <p class="kor">
+                    요청하신 페이지를 처리 중에 오류가 발생했습니다. <br />
+                    서비스 이용에 불편을 드려 죄송합니다. <br /> 
+                    입력하신 내용이 정확한지 확인 후 다시 시도해 주시기 바랍니다.
+                </p>
+                <p class="eng">
+                    We have encountered a system error while processing your request. <br />
+                    We apologize for the incovenlence. Please check input and try again.
+                </p>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>

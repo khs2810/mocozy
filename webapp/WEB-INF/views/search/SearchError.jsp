@@ -1,6 +1,6 @@
-<!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 
@@ -26,17 +26,15 @@
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
   <!-- -->
-  
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-    <link rel="stylesheet" href="../../../resources/css/common_css/TopButton.css">
     <link rel="stylesheet" href="../../../resources/css/common_css/Style.css">
-    <script type="text/javascript" async="" src="../../../resources/js/common_js/TopButton.js"></script>
+    <link rel="stylesheet" href="../../../resources/css/search_css/SearchError.css">
 </head>
 
-<body class="top">
-    <div class="quickbtn" id="quickbtn">
-        <a href="_blank"><img class="icon" src="_blank"/></a>
-    </div>
+<body class="searcherror">
+        <p class="title">
+            <span class="span">안녕</span>
+            에 대한 <br/> 검색결과가 없습니다.
+        </p>
 </body>
 
 </html>
