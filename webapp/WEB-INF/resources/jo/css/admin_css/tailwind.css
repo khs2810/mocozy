@@ -1,10 +1,10 @@
 .admin{
-menubar-hoverableheader-fixedmenubar-pin
+menubar-hoverable header-fixed menubar-pin
 }
 
 /*dashboard*/
 .admin.dashboard{
-dashboard_loaderse-pre-con
+dashboard_loader se-pre-con
 }
 
 .dashboard.pageloader{
@@ -47,16 +47,16 @@ headerbar-left
 }
 
 .admin.leftbar.menutoggle{
-btnbtn-icon-togglemenubar-toggle"data-toggle="menubar"
+btnbtn-icon-toggle menubar-toggle"data-toggle="menubar"
 
 }
 
 .admin.leftbar.btnicon{
-width="16"height="16"viewBox="001816"fill="none"xmlns="_blank"
+width="16" height="16" viewBox="001816" fill="none" xmlns="_blank"
 }
 
 .admin.leftbar.sitename{
-data-toggle="tooltip"data-placement="bottom"
+data-toggle="tooltip" data-placement="bottom"
 }
 
 .admin.rightbar{
@@ -64,11 +64,11 @@ headerbar-right
 }
 
 .admin.rightbar.headernav{
-header-navheader-nav-options
+header-nav header-nav-options
 }
 
 .admin.rightbar.claybutton{
-aclay-buttonwhite__exit-btn
+aclay-button white__exit-btn
 }
 
 .admin.rightbar.claybutton2{
@@ -84,7 +84,7 @@ alert__wrap
 }
 
 .admin.main-dashboard.alertjoin{
-alert__banner-case2first:tw-mt-[24px]tw-pr-[31px]md:tw-pr-[62px]tw-flex-wrap
+alert__banner-case2 first:tw-mt-[24px]tw-pr-[31px]md:tw-pr-[62px]tw-flex-wrap
 }
 
 .admin.alertjoin.middleitems{
@@ -102,15 +102,15 @@ tw-text-left
 }
 
 .admin.alertjoin.btnclose{
-btn-closebtn-closetw-absolutetw-right-0md:tw-right-[16px]tw-pr-[5px]
+btn-close btn-close tw-absolute tw-right-0md:tw-right-[16px]tw-pr-[5px]
 }
 
 .admin.btnclose.btwnone{
-buttontypebuttononclickSADMIN_MENU_ALERT.closeBannerAlert(&#39;join&#39;)
+button type button onclick SADMIN_MENU_ALERT.closeBannerAlert(&#39;join&#39;)
 }
 
 .admin.btnclose.btl{
-btw-order-nonebg-transparentborder-none
+btw-order-none bg-transparent border-none
 }
 
 /*clearfix*/
@@ -119,7 +119,7 @@ area_wrap
 }
 
 .admin.clearfix.section-body{
-section-bodyfloat_l
+section-body float_l
 }
 
 .admin.clearfix.dashboard-section{
@@ -127,7 +127,7 @@ dashboard_section_header
 }
 
 .admin.dashboard-section.clearimg{
-width24height24viewBox002424fillnone
+width 24 height 24 viewBox 002424 fillnone
 }
 
 .admin.clearfix.dashboard-card{
@@ -139,7 +139,7 @@ fold
 }
 
 .admin.fold.foldimage{
-svgwidth16height16viewBox001616fillnone
+width 16 height 16 viewBox 001616 fill none
 }
 
 .admin.clearfix.tooltip{
@@ -147,7 +147,7 @@ fold_tooltip
 }
 
 .admin.tooltip.toolimage{
-svgwidth12height6viewBox00126fillnone
+width 12 height 6 viewBox 00126 fillnone
 }
 
 .admin.clearfix.dashboard-tutorial{
@@ -167,7 +167,7 @@ dashboard_tutorial_card
 }
 
 .admin.container.tutorial-growth{
-dashboard_tutorial_card_tutorial_growth
+dashboard_tutorial_card tutorial_growth
 }
 
 /*중복됨*/
@@ -180,12 +180,12 @@ check_bar_background
 }
 
 .admin.cbr{
-check_bar_check_barstylewidth:0%;
+check_bar_check_bar width:0%;
 border-radius:3px;
 }
 
 .admin.checkbar-text{
-check_bar_text_check_bar_text0/4개완료
+check_bar_text_check_bar_text
 }
 
 .admin.tlist{
@@ -203,7 +203,7 @@ check_icon
 /**/
 
 .admin.container.todolist{
-rowtodo-listtoday
+rowtodo-list today
 }
 
 .admin.todolist.titem{
@@ -219,11 +219,11 @@ card_headline-bottom
 }
 
 .admin.card-head.header-badge{
-text-defat-brightheader-badgebadge-dangerclay-badge0
+text-defat-bright header-badge badge-danger clay-badge0
 }
 
 .admin.todolist.cardbody{
-card-bodyborder-toptoday-table
+card-body border-top today-table
 }
 
 .admin.cardbody.tlist{
@@ -239,11 +239,11 @@ text-danger0
 }
 
 .admin.dashboard-section{
-dashboard_section_headerdashboard_stats_header
+dashboard_section_header dashboard_stats_header
 }
 
 .admin.dashboard-section.dimg{
-svgwidth24height24viewBox002424fillnone
+width 24 height 24 viewBox 002424 fill none
 }
 
 .admin.dashboard-banner{
@@ -263,32 +263,32 @@ dashboard_stats_banner_right
 }
 
 .admin.rightbanner.rbanner{
-imgsrc_blankheight100%alt서드파티통계배너
+height 100%
 }
 
 .admin.rightbanner.bbutton{
-buttontypebuttonstats_banner_hidemo_hide
+button type button stats_banner_hide mo_hide
 }
 
 .admin.rightbanner.rimg{
-svgwidth14height14viewBox001414fillnone
+width 14 height 14 viewBox 001414 fill none
 }
 
 .admin.bannerhide.hideimg{
-buttontypebuttonstats_banner_hidepc_hide
+button type button stats_banner_hide pc_hide
 }
 
 .admin.bannerhide.hideimg{
-svgwidth10height10viewBox001414fillnonexmlns_blank
+width 10 height 10 viewBox 001414 fill none xmlns_blank
 }
 
 /*dashboard-stats*/
 .admin.dashboard-stats{
-flex-boxdashboard_stats
+flex-box dashboard_stats
 }
 
 .admin.dashboard-stats.visitor-list{
-ma-itemcol-md-6col-sm-12col-xs-12stat-visitor-list
+ma-item col-md-6 col-sm-12 col-xs-12 stat-visitor-list
 }
 
 .admin.dashboard-stats.card{
@@ -300,39 +300,42 @@ card_head
 }
 
 .admin.card-head.card-anchor{
-ahref_blankdashboard_card_anchor
+ahref_blank dashboard_card_anchor
 }
 
 .admin.card.card-body{
-card-bodyborder-top
+card-body border-top
 }
 
 .admin.card-body.float{
-float_rtext-12text-rightforce-paddingno-padding
+float_r text-12 text-right force-padding no-padding
 }
 
 .admin.card-body.span{
-stylemargin-right:15px;
+margin-right:15px;
 }
 
 .admin.card-body.fa{
-ifafa-circlestylecolor:rgb(179,227,255);/i>
+fafa-circle color:rgb(179,227,255)
 }
 
 .admin.card-body.fafa{
-ifafa-circlestylecolor:rgb(25,109,255);/i>방문자
+color:rgb(25,109,255)
 }
 
-.admin.dashboard-stats.holder{}
+.admin.dashboard-stats.holder{
+
+}
 
 /*HOLDER*/
 .admin.holder.stats-chart{
-canvasidstats_chartwidth328height164stylewidth:328px;
-height:164px;
+stats_chart 
+width:328px; height:164px;
 }
 
 .admin.holder.chart-tooltip{
-chartjs_tooltip_chartjs_tooltipstyleopacity:0;
+chartjs_tooltip_chartjs_tooltip
+opacity:0;
 left:123px;
 top:180.417px;
 font-family:&quot;
@@ -351,7 +354,7 @@ chartjs-tooltip-section
 }
 
 .admin.holder.tooltip-key{
-chartjs-tooltip-keystylebackground-color:rgb(25,109,255);
+chartjs-tooltip-keystyle background-color:rgb(25,109,255);
 }
 
 .admin.holder.tooltip-value{
@@ -359,12 +362,13 @@ chartjs-tooltip-value8
 }
 
 .admin.holder.chart-tooltip-key{
-chartjs-tooltip-keystylebackground-color:rgb(179,227,255);
+chartjs-tooltip-key 
+background-color:rgb(179,227,255);
 }
 
 /*ANALYTICS-LIST*/
 .admin.analytics-list{
-ma-itemcol-md-6col-sm-12col-xs-12stat-analytics-list
+ma-item col-md-6 col-sm-12 col-xs-12 stat-analytics-list
 }
 
 .admin.analytics-list.card{
@@ -376,93 +380,33 @@ card_head
 }
 
 .admin.card-head.card-anchor{
-ahref_blankdashboard_card_anchor
+ahref_blank dashboard_card_anchor
 }
 
 .admin.analytics-list.card-body{
-card-bodyno-paddingborder-top
+card-body no-padding border-top
 }
 
 .admin.analytics-list.summary-table{
-tabletableno-marginsummary-table
+tabletable no-margin summary-table
 }
 
 .admin.analytics-list.th{
-thtext-13text-centeropacity-50일자/th>
+text-13 text-center opacity-50
 }
 
 .admin.analytics-list.button{
-ahrefjavascript:;
-text-grayrolebuttondata-togglepopoverdata-placementautotitledata-htmltruedata-content&lt;
-tablestyle&#39;
+text-gray
 width:100%;
 line-height:1.4;
 vertical-align:top&#39;
-&#39;
-tabletable-normaltable-sm-paddingno-margin&#39;
-&gt;
-&lt;
-tr&gt;
-&lt;
-thstyle&#39;
+tabletable-normal table-sm-padding no-margin
 width:25%&#39;
-&#39;
-no-border-top&#39;
-&gt;
-집계시점&lt;/th&gt;
-&lt;
-td&#39;
-no-border-top&#39;
-&gt;
-주문일기준결제완료된주문&lt;/td&gt;
-&lt;/tr&gt;
-&lt;
-tr&gt;
-&lt;
-th&gt;
-차감기준&lt;/th&gt;
-&lt;
-td&gt;
-취소,
-반품완료시결제금액에서환불금액만큼차감&lt;
-/td&gt;
-&lt;/tr&gt;
-&lt;
-tr&gt;
-&lt;
-th&gt;
-환불적용&lt;/th&gt;
-&lt;
-td&gt;
-취소,
-반품/환불시주문일자기준으로처리&lt;/td&gt;
-&lt;/tr&gt;
-&lt;
-tr&gt;
-&lt;
-th&gt;
-할인금액&lt;/th&gt;
-&lt;
-td&gt;
-적립금,
-쿠폰등은매출금액에서제외.실결제금액에만반영.&lt;/td&gt;
-&lt;/tr&gt;
-&lt;
-tr&gt;
-&lt;
-th&gt;
-부분취소&lt;/th&gt;
-&lt;
-td&gt;
-부분취소주문은정확히집계되지않음(개선예정).&lt;/td&gt;
-&lt;
-/tr&gt;
-&lt;/table&gt;
-data-original-title매출액계산기준
+no-border-top
 }
 
 .admin.analytics-list.question{
-ibtmbt-question-circle
+btmbt-question-circle
 }
 
 .admin.analytics-list.today{
@@ -471,19 +415,19 @@ today
 
 /*TODAY*/
 .admin.today.text-left{
-tdtext-left2024-05-16/td>
+text-left
 }
 
 .admin.today.text-right{
-tdtext-right0/td>
+text-right
 }
 
 .admin.today.text-right-border{
-tdtext-leftno-border최근7일합계/td>
+text-leftno-border
 }
 
 .admin.today.text-left-border{
-tdtext-leftno-border최근7일합계/td>
+text-left no-border
 }
 
 .admin.section-header{
@@ -491,15 +435,15 @@ dashboard_section_header
 }
 
 .admin.section-header.secimg{
-svgwidth24height25viewBox002425fillnonexmlns_blank
+width24 height25 viewBox 002425fill
 }
 
 .admin.row-section{
-flex-boxdashboard_section_rowdashboard_contents_row
+flex-box dashboard_section_row dashboard_contents_row
 }
 
 .admin.row-section.shopping-review{
-ma-itemcol-md-6col-sm-6col-xs-12answers-listshopping-review
+ma-item col-md-6 col-sm-6 col-xs-12 answers-listshopping-review
 }
 
 .admin.row-section.flex-card{
@@ -511,11 +455,11 @@ card_head
 }
 
 .admin.row-section.card-anchor{
-ahref_blankdashboard_card_anchor
+ahref_blank dashboard_card_anchor
 }
 
 .admin.row-section.card-body{
-card-bodyborder-topno-data-card-body
+card-body border-top no-data-card-body
 }
 
 .admin.card-body.list-preview{
@@ -532,7 +476,7 @@ no-data-container
 
 /*SHOPPING-QNA*/
 .admin.shopping-qna{
-ma-itemcol-md-6col-sm-6col-xs-12answers-listshopping-qna
+ma-item col-md-6 col-sm-6col-xs-12answers-listshopping-qna
 }
 
 .admin.shopping-qna.flex-card{

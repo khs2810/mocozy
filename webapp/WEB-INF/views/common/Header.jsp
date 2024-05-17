@@ -5,6 +5,7 @@
 <html lang="ko">
 
 <head>
+  <head>
   <!-- 공용 -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -26,6 +27,11 @@
   <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
   <!-- -->
+
+  <link rel="stylesheet" href="../../../resources/css/common_css/Style.css">
+  <link rel="stylesheet" href="../../../resources/css/common_css/Header.css">
+  <script type="text/javascript" async="" src="../../../resources/js/common_js/Header.js"></script>
+</head>
 
   <link rel="stylesheet" href="../../../resources/css/common_css/Style.css">
   <link rel="stylesheet" href="../../../resources/css/common_css/Header.css">
