@@ -1,10 +1,11 @@
-<!-- <%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> -->
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
+  <head>
   <!-- 공용 -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -32,44 +33,96 @@
   <script type="text/javascript" async="" src="../../../resources/js/common_js/Header.js"></script>
 </head>
 
+  <link rel="stylesheet" href="../../../resources/css/common_css/Style.css">
+  <link rel="stylesheet" href="../../../resources/css/common_css/Header.css">
+  <script type="text/javascript" async="" src="../../../resources/js/common_js/Header.js"></script>
+</head>
+
 <body class="header">
   <!-- 로그인 토글 -->
-  <div class="LoginToggle" id="LoginToggle">
+<!--  <c:choose>-->
+<!--    <c:when test="${empty loginUser}">-->
+<div class="LoginToggle" id="LoginToggle">
 
     <a class="Togglelink" id="Togglelink" href="_blank">
-      <img class="Toggleimg" src="_blank" alt="모임 작성하기" />
-      <div class="Toggle">모임 작성하기</div>
+        <img class="Toggleimg" src="_blank" alt="모임 작성하기"/>
+        <div class="Toggle">모임 작성하기</div>
     </a>
 
     <div class="Toggleborder"></div>
 
     <a class="Togglelink" id="Togglelink" href="_blank">
-      <img src="_blank" class="Toggleimg" alt="마이페이지" />
-      <div class="Toggle">마이페이지</div>
+        <img src="_blank" class="Toggleimg" alt="마이페이지"/>
+        <div class="Toggle">마이페이지</div>
     </a>
 
     <a class="Togglelink" id="Togglelink" href="_blank">
-      <img src="_blank" class="Toggleimg" alt="로그아웃" />
-      <div class="Toggle">로그아웃</div>
+        <img src="_blank" class="Toggleimg" alt="로그아웃"/>
+        <div class="Toggle">로그아웃</div>
     </a>
 
     <a class="Togglelink" id="Togglelink" href="_blank">
-      <img src="_blank" class="Toggleimg" alt="찜 목록" />
-      <div class="Toggle">찜 목록</div>
+        <img src="_blank" class="Toggleimg" alt="찜 목록"/>
+        <div class="Toggle">찜 목록</div>
     </a>
 
     <div class="Toggleborder"></div>
 
     <a class="Togglelink" id="Togglelink" href="_blank">
-      <img src="_blank" class="Toggleimg" alt="공지사항" />
-      <div class="Toggle">공지사항</div>
+        <img src="_blank" class="Toggleimg" alt="공지사항"/>
+        <div class="Toggle">공지사항</div>
     </a>
 
     <a class="Togglelink" id="Togglelink" href="_blank">
-      <img src="_blank" class="Toggleimg" alt="관리자 1:1 채팅" />
-      <div class="Toggle">관리자 1:1 채팅</div>
+        <img src="_blank" class="Toggleimg" alt="관리자 1:1 채팅"/>
+        <div class="Toggle">관리자 1:1 채팅</div>
     </a>
-  </div>
+</div>
+<!--  </c:when>-->
+<!--  <c:otherwise>-->
+<!--  <c:choose>-->
+<!--  <c:when test="${loginUser.authority == 'N'}">-->
+<!-- 관리자 토글 -->
+<!--  <div class="LoginToggle" id="LoginToggle">-->
+
+<!--    <a class="Togglelink" id="Togglelink" href="_blank">-->
+<!--      <img class="Toggleimg" src="_blank" alt="모임 작성하기" />-->
+<!--      <div class="Toggle">공지사항 작성하기</div>-->
+<!--    </a>-->
+
+<!--    <div class="Toggleborder"></div>-->
+
+<!--    <a class="Togglelink" id="Togglelink" href="_blank">-->
+<!--      <img src="_blank" class="Toggleimg" alt="마이페이지" />-->
+<!--      <div class="Toggle">관리자페이지</div>-->
+<!--    </a>-->
+
+<!--    <a class="Togglelink" id="Togglelink" href="_blank">-->
+<!--      <img src="_blank" class="Toggleimg" alt="로그아웃" />-->
+<!--      <div class="Toggle">로그아웃</div>-->
+<!--    </a>-->
+
+<!--    <a class="Togglelink" id="Togglelink" href="_blank">-->
+<!--      <img src="_blank" class="Toggleimg" alt="찜 목록" />-->
+<!--      <div class="Toggle">찜 목록</div>-->
+<!--    </a>-->
+
+<!--    <div class="Toggleborder"></div>-->
+
+<!--    <a class="Togglelink" id="Togglelink" href="_blank">-->
+<!--      <img src="_blank" class="Toggleimg" alt="공지사항" />-->
+<!--      <div class="Toggle">공지사항</div>-->
+<!--    </a>-->
+
+<!--    <a class="Togglelink" id="Togglelink" href="_blank">-->
+<!--      <img src="_blank" class="Toggleimg" alt="관리자 1:1 채팅" />-->
+<!--      <div class="Toggle">1:1 채팅</div>-->
+<!--    </a>-->
+<!--  </div>-->
+<!--  </c:otherwise>-->
+<!--  </c:choose>-->
+<!--  </c:otherwise>-->
+<!--  </c:choose>-->
 
   <!-- 헤더 -->
   <div class="bar">
