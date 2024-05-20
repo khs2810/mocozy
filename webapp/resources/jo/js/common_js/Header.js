@@ -1,5 +1,5 @@
 /* 메뉴 토글*/
-var menuButton = document.querySelector('#catebutton');
+var menuButton = document.querySelector('#cateButton');
 var menuItems = document.querySelector('#cateToggle');
 
 /* 메뉴 버튼 클릭시 카테고리 토글*/
@@ -18,6 +18,7 @@ var LoginButton = document.querySelector('#userName');
 var LoginItems = document.querySelector('#LoginToggle');
 
 LoginButton.addEventListener('click', function() {
+console.log("1");
   var display = LoginItems.style.display;
   if (display === 'none') {
     LoginItems.style.display = 'block';
