@@ -7,6 +7,6 @@
 <title>mocozy</title>
 </head>
 <body>
-	지상 최대 프로젝트 '모코쥐' 다용
+	<jsp:forward page="WEB-INF/views/mainPage/mainPage.jsp" %>
 </body>
 </html>
