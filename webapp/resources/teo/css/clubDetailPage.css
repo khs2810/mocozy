@@ -1,0 +1,512 @@
+*{
+    box-sizing: none;
+    margin: 0;
+    padding: 0;
+}
+
+input:focus {outline:none;}
+textarea:focus {outline:none;}
+button{
+    cursor: pointer;
+}
+button:hover {
+    transform: scale(0.97);
+}
+#wrap_main{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#wrap_club {
+    width: 900px;
+    position: relative;
+    background-color: #F3F3F3;
+}
+
+#club_main_img {
+    /* border: solid black 1px; */
+    height: 290px;
+}
+#club_main_img > img {
+    width: 100%;
+    height: 100%;
+    object-fit:cover;
+}
+
+.club_title{
+    width: 850px;
+    height: 140px;
+    /* border: solid black 1px; */
+    display: flex;
+    justify-content: space-around;
+    align-items: end;
+    border-radius: 24px;
+    position: absolute;
+    left: 25px;
+    top: 250px;
+    background-color: white;
+    z-index: 1;
+    padding-bottom: 20px;
+}
+
+.club_modify_btn{
+    width: 175px;
+}
+
+.club_modify_btn>button {
+    width: 70px;
+    height: 30px;
+    margin-left: 10px;
+    background-color: #F0E3CE;
+    border-radius: 10px;
+    font-size: 15px;
+    border: none;
+}
+
+.club_profile_img{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+.club_profile_img > img{
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.club_title_profile{
+    position: absolute;
+    left: 415px;
+    top: 215px;
+    z-index: 2;
+}
+
+.club_title_info{
+    margin-top: 130px;
+    margin-bottom: 20px;
+}
+
+.club_detail_info {
+    height: 400px;
+    border: solid black 1px;
+}
+
+.club_member_info{
+    border-radius: 24px;
+    /* border: solid black 1px; */
+    width: 850px;
+    background-color: white;
+    margin: 25px 25px;
+    padding: 20px 0;
+    
+}
+
+.club_members{
+    display: inline-flex;
+    align-items:center;
+    margin-top: 15px;
+}
+.club_member_info>div {
+    margin-left: 50px
+}
+
+.color_red {
+    color: red;
+}
+
+.club_member_info > div > p {
+    font-size: 20px;
+    margin: 0;
+}
+
+.club_member_intro {
+    width: 600px;
+    
+}
+
+.club_more_member{
+    border: solid rgb(148, 148, 148) 1px;
+    width: 300px;
+    height: 50px;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+    cursor: pointer;
+    margin-left: 100px;
+}
+
+.club_member_div{
+    margin-left: 10px;
+}
+
+.club_caution{
+    margin-left: 75px;
+}
+
+.club_caution > div > span { 
+    font-size: 20px;
+}
+
+.club_caution p {
+    margin-top: 14px;
+}
+
+.club_type {
+    position: absolute;
+    left: 50px;
+    top: 260px;
+    z-index: 1;
+    font-size: 20px;
+    background-color: #70C9A0;
+    width: 100px;
+    height: 40px;
+    border-radius: 15px;
+    color: white;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.club_picked {
+    position: absolute;
+    right: 50px;
+    top: 256px;
+    z-index: 1;
+    font-size: 25px;
+}
+
+.club_picked > i {
+    cursor: pointer;
+}
+
+.club_address {
+    width: 600px;
+    height: 75px;
+    background-color: white;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 30px;
+    margin-top: 30px;
+}
+
+.club_warning {
+    width: 500px;
+    margin-left: 15px;
+}
+.club_address_center{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.club_btns {
+    display: flex;
+    justify-content: space-around;
+    width: 900px;
+    margin: 30px 0;
+}
+
+.club_btns button{
+    width: 300px;
+    height: 60px;
+    border-radius: 15px;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.background_color_brown {
+    background-color: #F0E3CE;
+}
+
+.background_color_green {
+    background-color: #70C9A0;
+}
+
+#head_text {
+    width: 900px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#head_text > h1 {
+    width: 500px;
+}
+#head_text > div {
+    width: 80px;   
+}
+#head_text > div > img{
+    width: 130px;
+    margin-left: 20px;
+} 
+
+.pre_participate_content {
+    display: flex;
+    justify-content: space-between;
+}
+
+#main_text {
+    width: 900px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pre_participate_content_left{
+    width: 420px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-right: 30px;
+}
+
+.pre_participate_content_left ul{
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    padding-top: 30px;
+}
+
+.pre_participate_content_right{
+    width: 420px;
+    height: 300px;
+    padding-left: 30px;
+}
+
+.pre_participate_content_right > img {
+    width: 420px;
+    height: 310px;
+}
+
+#checkbox_pre_participate {
+    
+    padding: 15px 40px;
+    border-radius: 12px;
+    cursor: pointer;
+    margin: 60px 0 40px 0;
+    
+}
+
+.checkbox_pre_participate{
+    background-color: #e7e7e7;
+    border: solid white 1px;
+}
+
+.host_question_head {
+    width: 700px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.host_question_head img {
+    width: 160px;
+}
+
+.host_question_q {
+    width: 700px;
+    display: flex;
+    justify-content: space-between;
+    margin: 50px 0 50px 0;
+}
+
+.host_question_question{
+    width: 600px;
+    height: 90px;
+    background-color: #e7e7e7;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+}
+
+.host_question_question>p {
+    padding-left: 30px;
+    line-height: 30px;
+}
+
+.host_question_content{
+    width: 700px;
+    height: 250px;
+    border: solid rgb(133, 133, 133) 1px;
+    border-radius: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.host_question_caution{
+    width: 700px;
+    height: 60px;
+    background-color: #e7e7e7;
+    border-radius: 15px;
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.host_question_caution div {
+    display: flex;
+    align-items: center;
+}
+
+.host_question_caution_content{
+    width: 500px;
+    padding-left: 10px;
+    font-size: 14px;
+}
+
+#payment_main_text {
+    width: 750px;
+    position: relative;
+}
+
+.payment_top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 60px;
+}
+
+.main_img_div > img {
+    width: 300px;
+    height: 300px;
+    border-radius: 30px;
+}
+
+#club_detail_info_payment {
+    display: flex;
+    align-items: center;
+}
+
+#club_detail_info_payment > div {
+    background-color: #e7e7e7;
+    color: green;
+    padding: 1px 6px;
+    border-radius: 10px;
+    margin-right: 5px;
+}
+
+.payment_top p{
+    margin-top: 18px;
+}
+
+.payment_price_info{
+    display: flex;
+    justify-content: space-between;
+}
+
+.payment_top h3{
+    margin-bottom: 5px;
+}
+
+.payment_bottom{
+    display: flex;
+    justify-content: space-between;
+    margin: 30px 0 60px 0;
+}
+
+.payment_type_radio{
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    font-size: 20px;
+    font-weight: bold;
+    padding-left: 90px;
+}
+
+.payment_bottom li {
+    font-size: 14px;
+}
+
+.payment_bottom h4 {
+    margin-bottom: 5px;
+}
+
+.payment_type_radio div input, label{
+    cursor: pointer;
+}
+
+#ticket_img {
+    position: absolute;
+    width: 100px;
+    right: 10px;
+    top: 360px;
+}
+
+.color_white {
+    color: white
+}
+
+.font_weight_bold {
+    font-weight: bold;
+}
+
+.host_question_content textarea{
+    width: 90%;
+    height: 75%;
+    resize: none;
+    border: none;
+    font-size: 15px;
+}
+
+.counting_words {
+    display: flex;
+    justify-content: start;
+}
+
+.host_question_content {
+    position: relative;
+}
+.counting_words {
+    position: absolute;
+    right: 10px;
+    top: -25px;
+}
+
+.club_member_info > h3 {
+    margin-left: 30px;
+}
+
+.text_white {
+    color: white;
+}
+
+.clicked_confirm_btn {
+    border: solid #70C9A0 1px;
+    color: #70C9A0;
+    background-color: white;
+    font-weight: bold;
+}
+
+.club_next_btn{
+    background-color: #e7e7e7;
+    color: black;
+    pointer-events: none;
+}
+
+.payment_table{
+    width: 300px;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.payment_table table td {
+    padding: 0 5px;
+}
