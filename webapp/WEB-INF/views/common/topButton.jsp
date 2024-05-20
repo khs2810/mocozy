@@ -41,11 +41,11 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/jo/css/common_css/TopButton.css">
+	href="${pageContext.request.contextPath}/resources/jo/css/common_css/topButton.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/jo/css/common_css/Style.css">
+	href="${pageContext.request.contextPath}/resources/jo/css/common_css/style.css">
 <script type="text/javascript" async=""
-	src="${pageContext.request.contextPath}/resources/jo/js/common_js/TopButton.js"></script>
+	src="${pageContext.request.contextPath}/resources/jo/js/common_js/topButton.js"></script>
 </head>
 
 <body>
