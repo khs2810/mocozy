@@ -70,49 +70,49 @@
 .banner .item1 {
   width: 1250px;
   height: 370px;
-  background-image: url("../../../resources/upfile/mainPage_img/banner01.png");
+  background-image: url("../../../resources/jo/upfile/mainPage_img/banner01.png");
 }
 
 .banner .item2 {
   width: 1250px;
   height: 370px;
-  background-image: url("../../../resources/upfile/mainPage_img/banner01.png");
+  background-image: url("../../../resources/jo/upfile/mainPage_img/banner01.png");
 }
 
 .banner .item3 {
   width: 1250px;
   height: 370px;
-  background-image: url("../../../resources/upfile/mainPage_img/banner01.png");
+  background-image: url("../../../resources/jo/upfile/mainPage_img/banner01.png");
 }
 
 .banner .item4 {
   width: 1250px;
   height: 370px;
-  background-image: url("../../../resources/upfile/mainPage_img/banner01.png");
+  background-image: url("../../../resources/jo/upfile/mainPage_img/banner01.png");
 }
 
 .banner .item5 {
   width: 1250px;
   height: 370px;
-  background-image: url("../../../resources/upfile/mainPage_img/banner01.png");
+  background-image: url("../../../resources/jo/upfile/mainPage_img/banner01.png");
 }
 
 .banner .item6 {
   width: 1250px;
   height: 370px;
-  background-image: url("../../../resources/upfile/mainPage_img/banner01.png");
+  background-image: url("../../../resources/jo/upfile/mainPage_img/banner01.png");
 }
 
 .banner .item7 {
   width: 1250px;
   height: 370px;
-  background-image: url("../../../resources/upfile/mainPage_img/banner01.png");
+  background-image: url("../../../resources/jo/upfile/mainPage_img/banner01.png");
 }
 
 .banner .item8 {
   width: 1250px;
   height: 370px;
-  background-image: url("../../../resources/upfile/mainPage_img/banner01.png");
+  background-image: url("../../../resources/jo/upfile/mainPage_img/banner01.png");
 }
 
 @media (max-width: 706px) {
@@ -120,49 +120,49 @@
   .banner .item1 {
     min-width: 705px;
     min-height: 500px;
-    background-image: url("../../../resources/upfile/mainPage_img/mobile01.png")
+    background-image: url("../../../resources/jo/upfile/mainPage_img/mobile01.png")
   }
 
   .banner .item2 {
     min-width: 705px;
     min-height: 500px;
-    background-image: url("../../../resources/upfile/mainPage_img/mobile01.png")
+    background-image: url("../../../resources/jo/upfile/mainPage_img/mobile01.png")
   }
 
   .banner .item3 {
     min-width: 705px;
     min-height: 500px;
-    background-image: url("../../../resources/upfile/mainPage_img/mobile01.png")
+    background-image: url("../../../resources/jo/upfile/mainPage_img/mobile01.png")
   }
 
   .banner .item4 {
     min-width: 705px;
     min-height: 500px;
-    background-image: url("../../../resources/upfile/mainPage_img/mobile01.png")
+    background-image: url("../../../resources/jo/upfile/mainPage_img/mobile01.png")
   }
 
   .banner .item5 {
     min-width: 705px;
     min-height: 500px;
-    background-image: url("../../../resources/upfile/mainPage_img/mobile01.png")
+    background-image: url("../../../resources/jo/upfile/mainPage_img/mobile01.png")
   }
 
   .banner .item6 {
     min-width: 705px;
     min-height: 500px;
-    background-image: url("../../../resources/upfile/mainPage_img/mobile01.png")
+    background-image: url("../../../resources/jo/upfile/mainPage_img/mobile01.png")
   }
 
   .banner .item7 {
     min-width: 705px;
     min-height: 500px;
-    background-image: url("../../../resources/upfile/mainPage_img/mobile01.png")
+    background-image: url("../../../resources/jo/upfile/mainPage_img/mobile01.png")
   }
 
   .banner .item8 {
     min-width: 705px;
     min-height: 500px;
-    background-image: url("../../../resources/upfile/mainPage_img/mobile01.png")
+    background-image: url("../../../resources/jo/upfile/mainPage_img/mobile01.png")
   }
 }
 /* */

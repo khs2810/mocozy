@@ -7,6 +7,6 @@
 <title>mocozy</title>
 </head>
 <body>
-	<jsp:forward page="WEB-INF/views/mainPage/mainPage.jsp" %>
+	<jsp:forward page="WEB-INF/views/mainPage/MainPage.jsp"/>
 </body>
 </html>

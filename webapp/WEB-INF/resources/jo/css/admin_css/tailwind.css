@@ -134,107 +134,107 @@ dashboard_section_header
 width 24 height 24 viewBox 002424 fill none
 }
 
- .admin .clearfix .dashboard-card{
+.admin .clearfix .dashboard-card{
 tw-relative
 }
 
- .admin .dashboard-card .fold{
+.admin .dashboard-card .fold{
 fold
 }
 
- .admin .fold .foldimage{
-width16height16viewBox001616fillnone
+.admin .fold .foldimage{
+width 16 height 16 viewBox 001616 fillnone
 }
 
- .admin .clearfix .tooltip{
+.admin .clearfix .tooltip{
 fold_tooltip
 }
 
- .admin .tooltip .toolimage{
-width12height6viewBox00126fillnone
+.admin .tooltip .toolimage{
+width 12 height 6 viewBox 00126 fillnone
 }
 
- .admin .clearfix .dashboard-tutorial{
+.admin .clearfix .dashboard-tutorial{
 dashboard_tutorial_dashboard_tutorial
 }
 
- .admin .dashboard-tutorial .container{
+.admin .dashboard-tutorial .container{
 dashboard_tutorial_container
 }
 
- .admin .container .tutorial-card{
+.admin .container .tutorial-card{
 dashboard_tutorial_card
 }
 
- .admin .container .dashboard-tutorial-card{
+.admin .container .dashboard-tutorial-card{
 dashboard_tutorial_card
 }
 
- .admin .container .tutorial-growth{
-dashboard_tutorial_cardtutorial_growth
+.admin .container .tutorial-growth{
+dashboard_tutorial_card tutorial_growth
 }
 
 /*중복됨*/
- .admin .checkbar{
+.admin .checkbar{
 check_bar_wrap
 }
 
- .admin .check-background{
+.admin .check-background{
 check_bar_background
 }
 
- .admin .cbr{
-check_bar_check_barwidth:0%;
+.admin .cbr{
+check_bar_check_bar width:0%;
 border-radius:3px;
 }
 
- .admin .checkbar-text{
+.admin .checkbar-text{
 check_bar_text_check_bar_text
 }
 
- .admin .tlist{
+.admin .tlist{
 tt-list
 }
 
- .admin .clist{
+.admin .clist{
 check-list_check_list
 }
 
- .admin .check-icon{
+.admin .check-icon{
 check_icon
 }
 
 /**/
 
- .admin .container .todolist{
-rowtodo-listtoday
+.admin .container .todolist{
+row todo-list today
 }
 
- .admin .todolist .titem{
+.admin .todolist .titem{
 ma-item
 }
 
- .admin .todolist .card{
+.admin .todolist .card{
 card
 }
 
- .admin .todolist .card-head{
+.admin .todolist .card-head{
 card_headline-bottom
 }
 
- .admin .card-head .header-badge{
-text-defat-brightheader-badgebadge-dangerclay-badge0
+.admin .card-head .header-badge{
+text-defat-bright header-badge badge-danger clay-badge0
 }
 
- .admin .todolist .cardbody{
-card-bodyborder-toptoday-table
+.admin .todolist .cardbody{
+card-body border-top today-table
 }
 
- .admin .cardbody .tlist{
+.admin .cardbody .tlist{
 tt-list
 }
 
- .admin .cardbody .inline-blocked{
+.admin .cardbody .inline-blocked{
 inline-blocked
 }
 
@@ -242,48 +242,48 @@ inline-blocked
 text-danger0
 }
 
- .admin .dashboard-section{
-dashboard_section_headerdashboard_stats_header
+.admin .dashboard-section{
+dashboard_section_header dashboard_stats_header
 }
 
- .admin .dashboard-section .dimg{
-width24height24viewBox002424fillnone
+.admin .dashboard-section .dimg{
+width 24 height 24 viewBox 002424 fillnone
 }
 
- .admin .dashboard-banner{
+.admin .dashboard-banner{
 dashboard_stats_banner_container
 }
 
- .admin .dashboard-banner .stats-banner{
+.admin .dashboard-banner .stats-banner{
 dashboard_stats_banner
 }
 
- .admin .dashboard-banner .leftbanner{
+.admin .dashboard-banner .leftbanner{
 dashboard_stats_banner_left
 }
 
- .admin .dashboard-banner .rightbanner{
+.admin .dashboard-banner .rightbanner{
 dashboard_stats_banner_right
 }
 
- .admin .rightbanner .rbanner{
-height100%
+.admin .rightbanner .rbanner{
+height 100%
 }
 
- .admin .rightbanner .bbutton{
-buttontypebuttonstats_banner_hidemo_hide
+.admin .rightbanner .bbutton{
+button type button stats_banner_hide mo_hide
 }
 
- .admin .rightbanner .rimg{
-width14height14viewBox001414fillnone
+.admin .rightbanner .rimg{
+width 14 height 14 viewBox 001414 fillnone
 }
 
- .admin .bannerhide .hideimg{
-buttontypebuttonstats_banner_hidepc_hide
+.admin .bannerhide .hideimg{
+button type button stats_banner_hide pc_hide
 }
 
- .admin .bannerhide .hideimg{
-width10height10viewBox001414fillnonexmlns_blank
+.admin .bannerhide .hideimg{
+width 10 height 10 viewBox 001414 fill none xmlns_blank
 }
 
 /*dashboard-stats*/
@@ -292,10 +292,10 @@ flex-boxdashboard_stats
 }
 
  .admin .dashboard-stats .visitor-list{
-ma-itemcol-md-6col-sm-12col-xs-12stat-visitor-list
+ma-item col-md-6 col-sm-12 col-xs-12 stat-visitor-list
 }
 
- .admin .dashboard-stats .card{
+.admin .dashboard-stats .card{
 card
 }
 
@@ -303,47 +303,47 @@ card
 card_head
 }
 
- .admin .card-head .card-anchor{
-ahref_blankdashboard_card_anchor
+.admin .card-head .card-anchor{
+ahref_blank dashboard_card_anchor
 }
 
- .admin .card .card-body{
-card-bodyborder-top
+.admin .card .card-body{
+card-body border-top
 }
 
- .admin .card-body .float{
-float_rtext-12text-rightforce-paddingno-padding
+.admin .card-body .float{
+float_r text-12 text-right force-padding no-padding
 }
 
- .admin .card-body .span{
+.admin .card-body .span{
 margin-right:15px;
 }
 
- .admin .card-body .fa{
-fafa-circlecolor:rgb(179,227,255)
+.admin .card-body .fa{
+fafa-circle color:rgb(179,227,255)
 }
 
- .admin .card-body .fafa{
+.admin .card-body .fafa{
 color:rgb(25,109,255)
 }
 
- .admin .dashboard-stats .holder{
-
+.admin .dashboard-stats .holder{
+holder
 }
 
 /*HOLDER*/
 .admin .holder .stats-chart{
 stats_chart
-width:328px;height:164px;
+width:328px; height:164px;
 }
 
- .admin .holder .chart-tooltip{
+.admin .holder .chart-tooltip{
 chartjs_tooltip_chartjs_tooltip
 opacity:0;
 left:123px;
 top:180 .417px;
 font-family:&quot;
-HelveticaNeue&quot;
+Helvetica Neue&quot;
 Helvetica,
 Arial,
 sans-serif;
@@ -353,146 +353,146 @@ position:absolute;
 background:rgb(255,255,255);
 }
 
- .admin .holder .chart-tooltip-section{
+.admin .holder .chart-tooltip-section{
 chartjs-tooltip-section
 }
 
- .admin .holder .tooltip-key{
-chartjs-tooltip-keystylebackground-color:rgb(25,109,255);
+.admin .holder .tooltip-key{
+chartjs-tooltip-key style background-color:rgb(25,109,255);
 }
 
- .admin .holder .tooltip-value{
+.admin .holder .tooltip-value{
 chartjs-tooltip-value8
 }
 
- .admin .holder .chart-tooltip-key{
+.admin .holder .chart-tooltip-key{
 chartjs-tooltip-key
 background-color:rgb(179,227,255);
 }
 
 /*ANALYTICS-LIST*/
- .admin .analytics-list{
-ma-itemcol-md-6col-sm-12col-xs-12stat-analytics-list
+.admin .analytics-list{
+ma-item col-md-6 col-sm-12 col-xs-12 stat-analytics-list
 }
 
- .admin .analytics-list .card{
+.admin .analytics-list .card{
 card
 }
 
- .admin .card .card-head{
+.admin .card .card-head{
 card_head
 }
 
- .admin .card-head .card-anchor{
-ahref_blankdashboard_card_anchor
+.admin .card-head .card-anchor{
+dashboard_card_anchor
 }
 
- .admin .analytics-list .card-body{
-card-bodyno-paddingborder-top
+.admin .analytics-list .card-body{
+no-padding border-top
 }
 
- .admin .analytics-list .summary-table{
-tabletableno-marginsummary-table
+.admin .analytics-list .summary-table{
+no-margin summary-table
 }
 
- .admin .analytics-list .th{
-text-13text-centeropacity-50
+.admin .analytics-list .th{
+text-13 text-center opacity-50
 }
 
- .admin .analytics-list .button{
+.admin .analytics-list .button{
 text-gray
 width:100%;
 line-height:1 .4;
 vertical-align:top&#39;
-tabletable-normaltable-sm-paddingno-margin
+tabletable-normal table-sm-padding no-margin
 width:25%&#39;
 no-border-top
 }
 
- .admin .analytics-list .question{
+.admin .analytics-list .question{
 btmbt-question-circle
 }
 
- .admin .analytics-list .today{
+.admin .analytics-list .today{
 today
 }
 
 /*TODAY*/
- .admin .today .text-left{
+.admin .today .text-left{
 text-left
 }
 
- .admin .today .text-right{
+.admin .today .text-right{
 text-right
 }
 
- .admin .today .text-right-border{
-text-leftno-border
+.admin .today .text-right-border{
+text-left no-border
 }
 
- .admin .today .text-left-border{
-text-leftno-border
+.admin .today .text-left-border{
+text-left no-border
 }
 
- .admin .section-header{
+.admin .section-header{
 dashboard_section_header
 }
 
- .admin .section-header .secimg{
-width24height25viewBox002425fill
+.admin .section-header .secimg{
+width 24 height 25 viewBox 002425 fill
 }
 
- .admin .row-section{
-flex-boxdashboard_section_rowdashboard_contents_row
+.admin .row-section{
+flex-box dashboard_section_row dashboard_contents_row
 }
 
- .admin .row-section .shopping-review{
-ma-itemcol-md-6col-sm-6col-xs-12answers-listshopping-review
+.admin .row-section .shopping-review{
+ma-item col-md-6 col-sm-6 col-xs-12 answers-list shopping-review
 }
 
- .admin .row-section .flex-card{
-cardflex-card
+.admin .row-section .flex-card{
+card flex-card
 }
 
- .admin .row-section .card-head{
+.admin .row-section .card-head{
 card_head
 }
 
 .admin .row-section .card-anchor{
-ahref_blankdashboard_card_anchor
+dashboard_card_anchor
 }
 
- .admin .row-section .card-body{
-card-bodyborder-topno-data-card-body
+.admin .row-section .card-body{
+card-body border-top no-data-card-body
 }
 
- .admin .card-body .list-preview{
+.admin .card-body .list-preview{
 listlist-preview
 }
 
- .admin .card-body .tile{
+.admin .card-body .tile{
 litile
 }
 
- .admin .card-body .no-data{
+.admin .card-body .no-data{
 no-data-container
 }
 
 /*SHOPPING-QNA*/
- .admin .shopping-qna{
-ma-itemcol-md-6col-sm-6col-xs-12answers-listshopping-qna
+.admin .shopping-qna{
+ma-item col-md-6 col-sm-6 col-xs-12 answers-list shopping-qna
 }
 
- .admin .shopping-qna .flex-card{
-cardflex-card
+.admin .shopping-qna .flex-card{
+card flex-card
 }
 
- .admin .shopping-qna .card-head{
+.admin .shopping-qna .card-head{
 card_head
 }
 
- .admin .card-head .card-anchor{
-ahref_blankdashboard_card_anchor
+.admin .card-head .card-anchor{
+dashboard_card_anchor
 }
 
  .admin .shopping-qna .card-body{
