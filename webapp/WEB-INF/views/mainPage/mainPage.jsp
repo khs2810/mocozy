@@ -121,6 +121,7 @@
 				</div>
 			</div>
 		</div>
+		<%@ include file="../mainPage/subBanner.jsp"%>
 	</div>
 	<%@ include file="../common/footer.jsp"%>
 </body>

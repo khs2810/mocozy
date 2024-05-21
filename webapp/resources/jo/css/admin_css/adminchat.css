@@ -1,0 +1,59 @@
+.modal-header, .modal-body{
+    border: none;
+}
+
+.container .modal-header{
+    display: flex;
+    position: relative;
+    justify-content: space-between;
+    align-items: center;
+    padding: 30px;
+}
+
+.container .modal-title {
+    position: absolute;
+    font-size: 25px;
+    font-weight: 700;
+    color: #000;
+    left: 30px;
+}
+
+.container .close {
+    position: absolute;
+    right: 20px;
+}
+
+.container .modal-body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 800px;
+}
+
+.modal-body .modal-img {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 800px;
+    height: auto;
+}
+
+.modal-body .modal-img > img {
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+}
+
+.modal-body .modal-img > p {
+    color: black;
+    font-weight: 400;
+    font-size: 15px;
+    margin-top: 15px;
+}
+
+.modal-body .modal-img > span {
+    color: rgb(156, 156, 156);
+    font-weight: 400;
+    font-size: 13px;
+}
