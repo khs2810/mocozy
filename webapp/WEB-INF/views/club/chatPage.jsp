@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jun/css/chatPage.css">
 </head>
 <body>
-	<%@ include file="../common/Header.jsp"%>
+	<%@ include file="../common/header.jsp"%>
     <div id="contentBox">
         <div class="chatLists">
             <h2 class="title">내 채팅함</h2>
