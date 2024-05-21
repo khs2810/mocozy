@@ -39,9 +39,9 @@
 <!-- -->
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/jo/css/common_css/Style.css">
+	href="${pageContext.request.contextPath}/resources/jo/css/common_css/style.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/jo/css/mainPage_css/CateButton.css">
+	href="${pageContext.request.contextPath}/resources/jo/css/mainPage_css/cateButton.css">
 </head>
 
 <body>

@@ -38,27 +38,20 @@
 	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <!-- -->
 
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/jo/css/common_css/Style.css">
+	href="${pageContext.request.contextPath}/resources/jo/css/common_css/topButton.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/jo/css/mainPage_css/Banner.css">
+	href="${pageContext.request.contextPath}/resources/jo/css/common_css/style.css">
 <script type="text/javascript" async=""
-	src="${pageContext.request.contextPath}/resources/jo/js/mainPage_js/Banner.js"></script>
+	src="${pageContext.request.contextPath}/resources/jo/js/common_js/topButton.js"></script>
 </head>
 
 <body>
-	<div class="banner">
-		<div class="slide" id="slide">
-			<div class="item1" id="item"></div>
-			<div class="item2" id="item"></div>
-			<div class="item3" id="item"></div>
-			<div class="item4" id="item"></div>
-			<div class="item5" id="item"></div>
-			<div class="item6" id="item"></div>
-			<div class="item7" id="item"></div>
-			<div class="item8" id="item"></div>
-			<div class="prev" id="prev"></div>
-			<div class="next" id="next"></div>
+	<div class="top">
+		<div class="quickbtn" id="quickbtn">
+			<a href="_blank"><img class="icon" src="_blank" /></a>
 		</div>
 	</div>
 </body>

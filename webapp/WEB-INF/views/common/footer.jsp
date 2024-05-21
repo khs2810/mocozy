@@ -39,37 +39,55 @@
 <!-- -->
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/jo/css/common_css/Style.css">
+	href="${pageContext.request.contextPath}/resources/jo/css/common_css/style.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/jo/css/common_css/ErrorPage.css">
+	href="${pageContext.request.contextPath}/resources/jo/css/common_css/footer.css">
 </head>
 
 <body>
-	<div class="errorpage">
-		<div class="wrapper">
-			<div class="error">
+	<div class="footer">
 
-				<div class="errorimg">
-					<img class="img" src="_blank" />
-					<h1 class="sign">
-						오류 <span class="signspan">Error</span>
-					</h1>
+		<div class="wrapper">
+
+			<div class="grid">
+				<div class="introduce">
+					<div class="inbox">
+						<div class="service">
+							<div class="slist">
+								<p class="policy">mo-cozy</p>
+								<a href="_blank">공지사항</a> <a href="_blank">이벤트</a>
+							</div>
+
+							<div class="slist">
+								<p class="policy">서비스정책</p>
+								<a href="_blank">이용약관</a> <a href="_blank">개인정보 처리방침</a> <a
+									href="_blank">환불규정</a> <a href="_blank">FAQ</a>
+							</div>
+
+						</div>
+					</div>
 				</div>
 
-				<div class="sorry">
-					<p class="kor">
-						요청하신 페이지를 처리 중에 오류가 발생했습니다. <br /> 서비스 이용에 불편을 드려 죄송합니다. <br />
-						입력하신 내용이 정확한지 확인 후 다시 시도해 주시기 바랍니다.
-					</p>
-					<p class="eng">
-						We have encountered a system error while processing your request.
-						<br /> We apologize for the incovenlence. Please check input and
-						try again.
-					</p>
+				<div class="company">
+					<p>상호 : (주)mo-cozy | 조장 : 임병준
+					<p>주소 : 강남지원 1관 : 서울특별시 강남구 테헤란로 14길 6 남도빌딩 3F</p>
+					<p>고객센터 : (T: 1544-9970 / F: 02-562-2378)</p>
+					<p>(주)mo-cozy는 실제 서비스를 지원하지 않습니다. 상품정보 및 거래 등의 관한 의무와 책임을 지지
+						않습니다.</p>
+					<ul class="sns">
+						<li class="snsimg"><a href="_blank"><img src="_blank"
+								alt="facebook" /></a></li>
+						<li class="snsimg"><a href="_blank"><img src="_blank"
+								alt="instagram" /></a></li>
+						<li class="snsimg"><a href="_blank"><img src="_blank"
+								alt="youtube" /></a></li>
+						<li class="snsimg"><a href="_blank"><img src="_blank"
+								alt="naver" /></a></li>
+					</ul>
+					<p>Copyright ⓒ 2023 mo-cozy Inc. All rights reserved.</p>
 				</div>
 			</div>
 		</div>
 	</div>
 </body>
-
 </html>

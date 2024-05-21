@@ -9,15 +9,15 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/jo/css/common_css/Style.css">
+	href="${pageContext.request.contextPath}/resources/jo/css/common_css/style.css">
 <link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/jo/css/mainPage_css/MainPage.css">
+	href="${pageContext.request.contextPath}/resources/jo/css/mainPage_css/mainPage.css">
 </head>
 
-<%@ include file="../common/Header.jsp"%>
+<%@ include file="../common/header.jsp"%>
 <body>
 	<div class="main">
-		<%@ include file="../mainPage/Banner.jsp"%>
+		<%@ include file="../mainPage/banner.jsp"%>
 		<div class="screen">
 			<div class="box">
 				<div class="screenheader">
@@ -122,7 +122,8 @@
 			</div>
 		</div>
 	</div>
-	<%@ include file="../common/Footer.jsp"%>
+	<%@ include file="../common/footer.jsp"%>
 </body>
+	<%@ include file="../common/topButton.jsp"%>
 
 </html>
