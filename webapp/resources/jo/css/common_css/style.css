@@ -35,3 +35,9 @@ li {
 input:focus {
     outline: none;
 }
+
+a:hover,
+a:focus {
+	color: inherit;
+	text-decoration: none;
+}
