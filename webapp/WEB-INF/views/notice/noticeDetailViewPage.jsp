@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/teo/css/clubDetailPage.css">
 </head>
 <body>
-	<%@ include file="../common/Header.jsp"%>
+	<%@ include file="../common/header.jsp"%>
     <div id="wrapper_notice">
         <h1>[공지] 5.5.0 버전 업데이트 안내</h1>
         <p> 2024.05.02</p>

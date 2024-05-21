@@ -25,7 +25,7 @@
     
 </head>
 <body>
-	<%@ include file="../common/Header.jsp"%>
+	<%@ include file="../common/header.jsp"%>
     <div id="wrapper_notice">
         <div id="wapper_notice_enroll">
             <div>
