@@ -28,7 +28,7 @@
 				<div class="display">
 					<div class="contentcard">
 						<div class="socialing">
-							<a class="cardlink" href="detail.cl"> <img class="img"
+							<a class="cardlink" href="detail.cl?cno=1"> <img class="img"
 								srcset="_blank 1x, _blank 2x" />
 
 								<div class="info">

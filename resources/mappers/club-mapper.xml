@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- namespace: 해당 mapper파일의 고유한 별칭 -->
+<mapper namespace="clubMapper"> 
+	<resultMap type="Club" id="clubResult">
+		<result column="CLUB_NO" property="clubNo"/>
+		<result column="USER_NO" property="userNo"/>
+		<result column="CLUB_TITLE" property="clubTitle"/>
+		<result column="CLUB_TYPE" property="clubType"/>
+		<result column="CLUB_CONTENT" property="clubContent"/>
+		<result column="CATEGORY_NO" property="categoryNo"/>
+		<result column="ADDRESS" property="address"/>
+		<result column="ADDRESS_DETAIL" property="addressDetail"/>
+		<result column="EVENT_DATE" property="eventDate"/>
+		<result column="COST" property="cost"/>
+		<result column="COST_INFO" property="costInfo"/>
+		<result column="TOTAL_POINT" property="totalPoint"/>
+		<result column="CAPACITY" property="capacity"/>
+		<result column="ONLINE" property="online"/>
+		<result column="QUESTION" property="question"/>
+		<result column="THUMBNAIL_IMG" property="thumbnailImg"/>
+		<result column="CREATE_DATE" property="createDate"/>
+		<result column="MODIFY_DATE" property="modifyDate"/>
+		<result column="STATUS" property="status"/>
+		<result column="COUNT" property="count"/>
+	</resultMap>
+	
+	<update id="increaseCount">
+		UPDATE "CLUB" 
+		SET count = count + 1
+		WHERE
+			"CLUB_NO" = '1'
+			AND "STATUS" = 'Y';
+	</update>
+	
+</mapper>
