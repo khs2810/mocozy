@@ -2,8 +2,10 @@ package com.kh.mocozy.club.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.club.service.ClubService;
 
 @Controller
@@ -13,11 +15,20 @@ public class ClubController {
 	private ClubService clubService;
 	
 	@RequestMapping("detail.cl")
-	public String selectClub(int cno) {
+	public String selectClub(int cno, Model model) {
 		
 		int result = clubService.increaseCount(cno);
 		
-		return "club/clubDetailPage";
+		if (result > 0) {
+			Club c = clubService.selectClub(cno);
+			model.addAttribute("c", c);
+			System.out.println(c);
+			return "club/clubDetailPage";
+		} else {
+			model.addAttribute("errorMsg", "모임 조회 실패");
+			return "common/errorPage";
+		}
+		
 	}
 	
 	@RequestMapping("confirm.cl")
