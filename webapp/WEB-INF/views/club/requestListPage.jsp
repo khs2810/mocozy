@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jun/css/requestListPage.css">
 </head>
 <body>
-	<%@ include file="../common/Header.jsp"%>
+	<%@ include file="../common/header.jsp"%>
     <div id="contentBox">
         <h2>모임 신청 목록</h2>
         <hr style="background: lightgray; height: 1px; border: 0;" >

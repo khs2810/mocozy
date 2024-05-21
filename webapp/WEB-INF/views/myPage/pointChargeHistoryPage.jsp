@@ -13,7 +13,7 @@
 	<script src="${pageContext.request.contextPath}/resources/jun/js/pointChargeHistoryPage.js"></script>
 </head>
 <body>
-	<%@ include file="../common/Header.jsp"%>
+	<%@ include file="../common/header.jsp"%>
     <div class="MyPage-body">
         <div class="mypage-main">
             <div class="user-profile">
