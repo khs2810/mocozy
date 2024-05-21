@@ -12,7 +12,7 @@
 
 </head>
 <body>
-	<%@ include file="../common/Header.jsp"%>
+	<%@ include file="../common/header.jsp"%>
     <div id="wrap_main">
         <div id="main_text">
             <div class="host_question_head">

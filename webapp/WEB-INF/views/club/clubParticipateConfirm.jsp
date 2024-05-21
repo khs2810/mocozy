@@ -13,7 +13,7 @@
     <script src="${pageContext.request.contextPath}/resources/teo/js/clubParticipateConfirm.js"></script>
 </head>
 <body>
-	<%@ include file="../common/Header.jsp"%>
+	<%@ include file="../common/header.jsp"%>
     <div id="wrap_main">
         <div id="main_text">
             <div id="head_text">
