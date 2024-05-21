@@ -3,235 +3,16 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>모임 신청 내역 페이지</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-<style>
-    *{
-        box-sizing: border-box;
-    }
-    body{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    #contentBox{
-        border: 1px solid #F6EEE2;
-        width: 900px;
-        height: 100%;
-        padding: 10px 30px;
-        overflow-y: auto;
-    }
-    .clubList{
-        width: 85%;
-        margin: auto;
-        margin-bottom: 50px;
-    }
-    .titlePart{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 10px;
-    }
-    .title{
-        font-size: 20px;
-        display: flex;
-    }
-    .ing{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 135px;
-        height: 30px;
-        border: 2px solid #14A307;
-        border-radius: 5px;
-        color: #14A307;
-    }
-    .done{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 135px;
-        height: 30px;
-        border: 2px solid #FFB800;
-        border-radius: 5px;
-        color: #FFB800;
-    }
-    .clubRequestList > div{
-        border-radius: 5px;
-    }
-    .selectedClubRequest{
-        border: none;
-        background-color: #F6EEE2;
-        padding: 20px;
-    }
-    .clubRequest{
-        border: 1px solid #D9D9D9;
-        border-top: none;
-        padding: 20px;
-    }
-    .profileImg{
-        width: 50px;
-        border-radius: 50%;
-        margin-right: 10px;
-    }
-    .userId{
-        font-size: 20px;
-    }
-    .writeTime{
-        font-size: 12px;
-        color: #545454;
-    }
-    .reduceBtn{
-        background-color: white;
-        border: none;
-        font-size: 20px;
-        margin-left: 15px;
-    }
-    .simpleInfo{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .simpleInfoLeft{
-        display: flex;
-        align-items: center;
-        justify-content: left;
-    }
-    .simpleInfoRight{
-        display: flex;
-        align-items: center;
-        justify-content: right;
-    }
-    .btns{
-        display: flex;
-        align-items: center;
-        justify-content: right;
-        gap: 20px;
-        margin-right: 15px;
-    }
-    .denyBtn{
-        border: none;
-        background-color: #F28C8C;
-        width: 70px;
-        height: 30px;
-        color: white;
-        font-size: 18px;
-        font-weight: 600;
-        border-radius: 15%;
-    }
-    .acceptBtn{
-        border: none;
-        background-color: #7CCDA6;
-        width: 70px;
-        height: 30px;
-        color: white;
-        font-size: 18px;
-        font-weight: 600;
-        border-radius: 15%;
-    }
-    .acceptedBtn{
-        border: none;
-        background-color: #7CCDA6;
-        width: 100px;
-        height: 30px;
-        color: white;
-        font-size: 18px;
-        font-weight: 600;
-        border-radius: 15%;
-        margin-right: 30px;
-    }
-    .status_w{
-        width: 30px;
-        margin-left: 10px;
-        color: #FFB800;
-    }
-    .status_a{
-        width: 25px;
-        margin-left: 10px;
-    }
-    .status_d{
-        width: 20px;
-        margin-left: 10px;
-        background-color: none;
-    }
-    button:hover{
-        cursor: pointer;
-    }
-    /* profile modal */
-    .profile-modal-content{
-        background-color: #F3F3F3;
-        padding: 30px;
-        padding-top: 0;
-        border-radius: 10px;
-    }
-    .profile-modal-header{
-        border: none;
-        padding-bottom: 30px;
-    }
-    .m-userProfile{
-        font-size: 24px;
-    }
-    .m-profileImg{
-        width: 90px;
-        height: 90px;
-        border-radius: 50%;
-        margin-right: 20px;
-    }
-    .profile-modal-body{
-        border-bottom: 2px solid darkgray;
-        padding-top: 0;
-    }
-    .m-manner{
-        display: flex;
-        align-items: center;
-        margin: 30px 10px;
-    }
-    .m-manner > img{
-        width: 70px;
-        transform: rotate(120deg);
-        margin-right: 30px;
-    }
-    .m-score-range{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 15px;
-    }
-    .m-manner-area{
-        display: flex;
-    }
-    .m-manner-score-area{
-        margin-left: 10px;
-    }
-    .m-manner-score{
-        width: 170px;
-        height: 10px;
-        background-color: #F48E8E;
-        border-radius: 5px;
-    }
-    .profile-modal-bottom{
-        margin-top: 10px;
-    }
-    .m-introduction{
-        resize: none;
-        width: 430px;
-        height: 100px;
-        border: none;
-        border-radius: 15px;
-        padding: 20px;
-        background-color: #F0E3CE;
-    }
-    .m-introduction:focus{
-        outline: none;
-        border: none;
-    }
-</style>
+	<meta charset="UTF-8">
+	<title>모임 신청 내역 페이지</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jun/css/requestListPage.css">
 </head>
 <body>
+	<%@ include file="../common/Header.jsp"%>
     <div id="contentBox">
         <h2>모임 신청 목록</h2>
         <hr style="background: lightgray; height: 1px; border: 0;" >
@@ -245,9 +26,9 @@
                 <div class="selectedClubRequest">
                     <div class="simpleInfo">
                         <div class="simpleInfoLeft">
-                            <img src="resources/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
+                            <img src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
                             <b class="userId">떡꼬치대마왕</b>
-                            <img src="resources/waiting.png" class="status_w">
+                            <img src="${pageContext.request.contextPath}/resources/jun/img/waiting.png" class="status_w">
                         </div>
                         <div class="simpleInfoRight">
                             <span class="writeTime">2024.05.02 09:40</span>
@@ -268,9 +49,9 @@
                 <div class="clubRequest">
                     <div class="simpleInfo">
                         <div class="simpleInfoLeft">
-                            <img src="resources/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
+                            <img src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
                             <b class="userId">떡꼬치중마왕</b>
-                            <img src="resources/waiting.png" class="status_w">
+                            <img src="${pageContext.request.contextPath}/resources/jun/img/waiting.png" class="status_w">
                         </div>
                         <div class="simpleInfoRight">
                             <span class="writeTime">2024.05.02 10:31</span>
@@ -281,9 +62,9 @@
                 <div class="clubRequest">
                     <div class="simpleInfo">
                         <div class="simpleInfoLeft">
-                            <img src="resources/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
+                            <img src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
                             <b class="userId">떡꼬치소마왕</b>
-                            <img src="resources/waiting.png" class="status_w">
+                            <img src="${pageContext.request.contextPath}/resources/jun/img/waiting.png" class="status_w">
                         </div>
                         <div class="simpleInfoRight">
                             <span class="writeTime">2024.05.02 10:48</span>
@@ -302,9 +83,9 @@
                 <div class="selectedClubRequest">
                     <div class="simpleInfo">
                         <div class="simpleInfoLeft">
-                            <img src="resources/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
+                            <img src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
                             <b class="userId">떡꼬치대마왕</b>
-                            <img src="resources/accepted.png" class="status_a">
+                            <img src="${pageContext.request.contextPath}/resources/jun/img/accepted.png" class="status_a">
                         </div>
                         <div class="simpleInfoRight">
                             <span class="writeTime">2024.04.16 00:12</span>
@@ -323,9 +104,9 @@
                 <div class="clubRequest">
                     <div class="simpleInfo">
                         <div class="simpleInfoLeft">
-                            <img src="resources/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
+                            <img src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
                             <b class="userId">떡꼬치중마왕</b>
-                            <img src="resources/denied.png" class="status_d">
+                            <img src="${pageContext.request.contextPath}/resources/jun/img/denied.png" class="status_d">
                         </div>
                         <div class="simpleInfoRight">
                             <span class="writeTime">2024.04.17 17:09</span>
@@ -335,7 +116,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div><br>
 
     <!-- The Modal -->
     <div class="modal fade" id="profileModal">
@@ -350,12 +131,12 @@
                 <!-- Modal body -->
                 <div class="profile-modal-body">
                     <div class="m-userProfile">
-                        <img src="resources/프사.jpg" class="m-profileImg">
+                        <img src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" class="m-profileImg">
                         <span class="nickname">떡꼬치대마왕</span>
                         <span> 님</span>
                     </div>
                     <div class="m-manner">
-                        <img src="resources/로고.png" class="m-logo-area">
+                        <img src="${pageContext.request.contextPath}/resources/jun/img/로고.png" class="m-logo-area">
                         <div class="m-manner-area">
                             <span>매너 점수</span>
                             <div class="m-manner-score-area">
