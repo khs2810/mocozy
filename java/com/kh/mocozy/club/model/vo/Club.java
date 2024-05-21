@@ -19,7 +19,6 @@ public class Club {
 	private String clubTitle;
 	private String clubType;
 	private String clubContent;
-	private int categoryNo;
 	private String address;
 	private String addressDetail;
 	private Date eventDate;
@@ -34,4 +33,7 @@ public class Club {
 	private Date modifyDate;
 	private String status;
 	private int count;
+	private String nickname;
+	private String category_name1;
+	private String category_name2;
 }

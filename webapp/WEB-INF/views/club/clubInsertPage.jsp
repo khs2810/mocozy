@@ -13,7 +13,7 @@
 	<script src="${pageContext.request.contextPath}/resources/jun/js/clubInsertPage.js"></script>
 </head>
 <body>
-	<%@ include file="../common/Header.jsp"%>
+	<%@ include file="../common/header.jsp"%>
     <form id="contentBox">
         <h2 style="margin-left: 10px;">모임 등록</h2>
         <hr style="background: lightgray; height: 1px; border: 0;">
