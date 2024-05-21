@@ -1,0 +1,89 @@
+*{
+    box-sizing: border-box;
+}
+#contentBox{
+	margin: auto;
+    padding: 0px;
+    border: 1px solid #F6EEE2;
+    width: 900px;
+    height: 85vh;
+    overflow-y: auto;
+    display: flex;
+    justify-content: center;
+}
+.chatLists{
+    background-color: #F0E3CE;
+    width: 250px;
+}
+.chatList{
+    padding: 5px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+}
+.chatList:hover{
+    cursor: pointer;
+    background-color: #E9D5B6;
+}
+.chatPage{
+    width: 650px;
+    position: relative;
+}
+.title{
+    margin-left: 20px;
+}
+.chatCategory{
+    color: gray;
+    font-size: 15px;
+    margin: 20px 0px 10px 20px;
+}
+.profile{
+    margin-left: 20px;
+    margin-right: 10px;
+}
+.profileImg{
+    width: 40px;
+    border-radius: 50%;
+}
+.chatSimple > div{
+    font-size: 13px;
+}
+.chatDetail{
+    overflow-y: auto;
+    padding: 15px;
+}
+.chatInput{
+    position: absolute;
+    bottom: 5px;
+    right: 12px;
+    width: 625px;
+    height: 130px;
+    border: 2px solid lightgray;
+    border-radius: 15px;
+    padding: 10px;
+}
+#textArea{
+    border: none;
+    resize: none;
+    width: 100%;
+    height: 100%;
+    font-size: 16px;
+}
+#textArea:focus{
+    outline: none;
+}
+#submitBtn{
+    width: 60px;
+    height: 35px;
+    font-size: 18px;
+    border: none;
+    background-color: #9BCFFF;
+    border-radius: 5px;
+    color: white;
+    position: absolute;
+    bottom: 10px;
+    right: 15px;
+}
+button:hover{
+    cursor: pointer;
+}

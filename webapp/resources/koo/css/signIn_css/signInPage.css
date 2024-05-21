@@ -1,0 +1,102 @@
+/* Login_section */
+.SignIn-Page{
+    box-sizing: border-box;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    /* background: #FFFFFF; */
+    /* border: 1px solid #21A2EB; */
+    border-radius: 2px;
+}
+
+/* 회원가입화면 컨텐츠 */
+.content{
+box-sizing: border-box;
+/* border: 1px solid red; */
+position: relative;
+display: flex;
+flex-direction: column;
+align-items: center;
+width: 550px;
+height: 590px;
+padding-top: 4rem;
+padding-bottom: 8rem;
+/* left: 726px;
+top: 145px; */
+}
+
+.content{
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.enrollForm{
+
+}
+   
+.content>h1{
+    /* border: 1px solid #21A2EB; */
+    width: auto;
+    /* height: 103.8px; */
+    left: calc(50% - 469px/2 + 0.5px);
+    top: calc(50% - 103.8px/2 - 220.33px);
+    font-family: 'Noto Sans KR';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 52px;
+    text-align: center;
+    
+    color: #000000;
+}
+
+
+h4{
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    margin-top: 0;
+}
+
+.content-box>input{
+    box-sizing: border-box;
+    position: relative;
+    width: 360px;
+    height: 50px;
+    padding-left: 5%;
+    background: #D9D9D9;
+    border-radius: 10px;
+    border: 0;
+}
+
+.next-btn{
+    box-sizing: border-box;
+    position: relative;
+    width: 360px;
+    height: 50px;
+    background: #F0E3CE;
+    border-radius: 10px;
+    border: 0;
+    /* margin-bottom: 2rem; */
+    color: #3d3d3d;
+    font-size: large;
+    font-weight: 800;
+}
+
+.next-btn:hover{
+    background-color: #70C9A0;
+    color: white;
+}
+
+.forlogin{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.forlogin>p>a{
+    color: #F48E8E;
+    font-weight: 800;
+    text-decoration: none;
+}

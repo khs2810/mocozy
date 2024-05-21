@@ -1,0 +1,170 @@
+/* 내부 타이틀 */
+.content-title{
+    width: 175px;
+    margin-right: 20px;
+}
+/* 메인 콘텐츠 아이템 */
+.main-object{
+    display: flex;
+    align-items: center;
+    margin: 15px 0px;
+    height: 98px;
+}
+
+/* 텍스트박스(한줄 자기소개) */
+.textbox{
+    border: 1px solid #d9d9d9;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+/* 비번변경 버튼 */
+.change-btn{
+    border-style: none;
+    margin-left: 20px;
+    border-radius: 5px;
+    background-color: #F28C8C;
+    width: 144px;
+    height: 30px;
+    color: white;
+    font-weight: 800;
+    box-shadow: 2px 2px 2px black;
+    transition-duration: 0.1s;
+    cursor: pointer;
+}
+
+.box1:active{
+    margin-right: 5px;
+    margin-bottom: 5px;
+    box-shadow: none;
+}
+
+.edit-user{
+    display: flex;
+    justify-content: end;
+}
+
+.edit-user>a{
+    margin-left: 20px;
+}
+
+textarea{
+    resize: none;
+}
+
+.edit-user>a{
+ color: black;
+}
+
+/* 모달창 */
+.modal-content{
+    border-radius: 15px;
+    padding: 20px;
+    width: 500px;
+    height: 618px;
+}
+
+/* modal제목 */
+.modal-header{
+    border: none;
+}
+
+
+.content-box>input{
+    box-sizing: border-box;
+    position: relative;
+    width: 100%;
+    height: 50px;
+    padding-left: 5%;
+    border: 1px solid #D9D9D9;
+    border-radius: 10px;
+}
+
+/* 모달 하단 */
+.modal-footer{
+    box-sizing: border-box;
+    border: none;
+}
+
+.change-btn2{
+    border-style: none;
+    border-radius: 10px;
+    background-color: #F28C8C;
+    width: 100%;
+    height: 50px;
+    color: white;
+    font-weight: 800;
+    box-shadow: 2px 2px 2px black;
+    transition-duration: 0.1s;
+    cursor: pointer;
+}
+
+/* 탈퇴 모달 내용 */
+.signout-caution{
+    border-radius: 15px;
+    background-color: #D9D9D9;
+    padding: 20px;
+    font-weight: 600;
+}
+
+/* modal 체크박스 */
+.chk_box { 
+    position: relative; 
+    margin-bottom: 20px;
+    cursor: pointer; 
+    -webkit-user-select: none; 
+    -moz-user-select: none; 
+    -ms-user-select: none; 
+    user-select: none; 
+}
+
+/* 선택되지 않은 체크박스 스타일 꾸미기 */
+.on { 
+    width: 20px; 
+    height: 20px; 
+    border: 1px solid black;
+    border-radius: 5px;
+    position: absolute; 
+    top: 0; 
+    left: 0; 
+}
+
+/* 선택된 체크박스 스타일 꾸미기 */
+.chk_box input[type="checkbox"]:checked + .on {
+    background: black; 
+}
+
+.on:after { 
+    content: ""; 
+    position: absolute; 
+    display: none; 
+}
+
+.chk_box input[type="checkbox"]:checked + .on:after { 
+    display: block; 
+}
+.on:after { 
+    width: 6px; 
+    height: 10px; 
+    border: solid #fff; 
+    border-width: 0 2px 2px 0; 
+    -webkit-transform: rotate(45deg); 
+    -ms-transform: rotate(45deg); 
+    transform: rotate(45deg); 
+    position: absolute; left: 6px; 
+    top: 2px; 
+}
+
+/* 기본 체크박스 숨기기 */
+.chk_box input[type="checkbox"] { display: none; }
+
+.chk_box>p{
+    margin-left: 30px;
+}
+
+/* 탈퇴전 확인 */
+#last-caution{
+    font-size: smaller;
+}
+.height{
+    height: 0px;
+}

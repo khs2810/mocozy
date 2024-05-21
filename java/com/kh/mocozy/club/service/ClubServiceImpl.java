@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.mocozy.club.model.dao.ClubDao;
+import com.kh.mocozy.club.model.vo.Club;
 
 @Service
 public class ClubServiceImpl implements ClubService { 
@@ -13,6 +14,16 @@ public class ClubServiceImpl implements ClubService {
 	private ClubDao clubDao;
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	
+	@Override
+	public int increaseCount(int cno) {
+		return clubDao.increaseCount(sqlSession, cno);
+	}
+
+	@Override
+	public Club selectClub(int cno) {
+		return clubDao.selectClub(sqlSession, cno);
+	}
 	
 	
 }
