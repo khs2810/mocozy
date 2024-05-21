@@ -16,8 +16,8 @@
 	 
 	 <!-- 커넥션풀을 쓸수있는 클래스 -->
 	 <bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource" destroy-method="close">
-	 	<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver"/>
-	 	<property name="url" value="jdbc:oracle:thin:@localhost:1521:xe"/>
+	 	<property name="driverClassName" value="org.postgresql.Driver"/>
+	 	<property name="url" value="jdbc:postgresql://localhost:8899/mocozy"/>
 	 	<property name="username" value="mocozy"/>
 	 	<property name="password" value="mocozy"/>
 	 </bean>
