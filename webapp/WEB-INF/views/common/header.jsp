@@ -40,11 +40,11 @@
 <%-- --%>
 
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/jo/css/common_css/Style.css">
+	href="${pageContext.request.contextPath}/resources/jo/css/common_css/style.css">
 <link rel="stylesheet"
-	href="${pageContext.request.contextPath}/resources/jo/css/common_css/Header.css">
+	href="${pageContext.request.contextPath}/resources/jo/css/common_css/header.css">
 <script type="text/javascript" async=""
-	src="${pageContext.request.contextPath}/resources/jo/js/common_js/Header.js"></script>
+	src="${pageContext.request.contextPath}/resources/jo/js/common_js/header.js"></script>
 </head>
 
 <body>
