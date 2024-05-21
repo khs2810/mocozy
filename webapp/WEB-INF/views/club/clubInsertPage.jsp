@@ -3,379 +3,101 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>모임 신청 내역 페이지</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-<style>
-    *{
-        box-sizing: border-box;
-    }
-    body{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-    #contentBox{
-        border: 1px solid #F6EEE2;
-        width: 900px;
-        height: 100%;
-        padding: 10px 30px;
-        overflow-y: auto;
-    }
-    .clubList{
-        width: 85%;
-        margin: auto;
-        margin-bottom: 50px;
-    }
-    .titlePart{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 10px;
-    }
-    .title{
-        font-size: 20px;
-        display: flex;
-    }
-    .ing{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 135px;
-        height: 30px;
-        border: 2px solid #14A307;
-        border-radius: 5px;
-        color: #14A307;
-    }
-    .done{
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 135px;
-        height: 30px;
-        border: 2px solid #FFB800;
-        border-radius: 5px;
-        color: #FFB800;
-    }
-    .clubRequestList > div{
-        border-radius: 5px;
-    }
-    .selectedClubRequest{
-        border: none;
-        background-color: #F6EEE2;
-        padding: 20px;
-    }
-    .clubRequest{
-        border: 1px solid #D9D9D9;
-        border-top: none;
-        padding: 20px;
-    }
-    .profileImg{
-        width: 50px;
-        border-radius: 50%;
-        margin-right: 10px;
-    }
-    .userId{
-        font-size: 20px;
-    }
-    .writeTime{
-        font-size: 12px;
-        color: #545454;
-    }
-    .reduceBtn{
-        background-color: white;
-        border: none;
-        font-size: 20px;
-        margin-left: 15px;
-    }
-    .simpleInfo{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-    }
-    .simpleInfoLeft{
-        display: flex;
-        align-items: center;
-        justify-content: left;
-    }
-    .simpleInfoRight{
-        display: flex;
-        align-items: center;
-        justify-content: right;
-    }
-    .btns{
-        display: flex;
-        align-items: center;
-        justify-content: right;
-        gap: 20px;
-        margin-right: 15px;
-    }
-    .denyBtn{
-        border: none;
-        background-color: #F28C8C;
-        width: 70px;
-        height: 30px;
-        color: white;
-        font-size: 18px;
-        font-weight: 600;
-        border-radius: 15%;
-    }
-    .acceptBtn{
-        border: none;
-        background-color: #7CCDA6;
-        width: 70px;
-        height: 30px;
-        color: white;
-        font-size: 18px;
-        font-weight: 600;
-        border-radius: 15%;
-    }
-    .acceptedBtn{
-        border: none;
-        background-color: #7CCDA6;
-        width: 100px;
-        height: 30px;
-        color: white;
-        font-size: 18px;
-        font-weight: 600;
-        border-radius: 15%;
-        margin-right: 30px;
-    }
-    .status_w{
-        width: 30px;
-        margin-left: 10px;
-        color: #FFB800;
-    }
-    .status_a{
-        width: 25px;
-        margin-left: 10px;
-    }
-    .status_d{
-        width: 20px;
-        margin-left: 10px;
-        background-color: none;
-    }
-    button:hover{
-        cursor: pointer;
-    }
-    /* profile modal */
-    .profile-modal-content{
-        background-color: #F3F3F3;
-        padding: 30px;
-        padding-top: 0;
-        border-radius: 10px;
-    }
-    .profile-modal-header{
-        border: none;
-        padding-bottom: 30px;
-    }
-    .m-userProfile{
-        font-size: 24px;
-    }
-    .m-profileImg{
-        width: 90px;
-        height: 90px;
-        border-radius: 50%;
-        margin-right: 20px;
-    }
-    .profile-modal-body{
-        border-bottom: 2px solid darkgray;
-        padding-top: 0;
-    }
-    .m-manner{
-        display: flex;
-        align-items: center;
-        margin: 30px 10px;
-    }
-    .m-manner > img{
-        width: 70px;
-        transform: rotate(120deg);
-        margin-right: 30px;
-    }
-    .m-score-range{
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        height: 15px;
-    }
-    .m-manner-area{
-        display: flex;
-    }
-    .m-manner-score-area{
-        margin-left: 10px;
-    }
-    .m-manner-score{
-        width: 170px;
-        height: 10px;
-        background-color: #F48E8E;
-        border-radius: 5px;
-    }
-    .profile-modal-bottom{
-        margin-top: 10px;
-    }
-    .m-introduction{
-        resize: none;
-        width: 430px;
-        height: 100px;
-        border: none;
-        border-radius: 15px;
-        padding: 20px;
-        background-color: #F0E3CE;
-    }
-    .m-introduction:focus{
-        outline: none;
-        border: none;
-    }
-</style>
+	<meta charset="UTF-8">
+	<title>모임 신청 내역 페이지</title>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jun/css/clubInsertPage.css">
+	<script src="${pageContext.request.contextPath}/resources/jun/js/clubInsertPage.js"></script>
 </head>
 <body>
-    <div id="contentBox">
-        <h2>모임 신청 목록</h2>
-        <hr style="background: lightgray; height: 1px; border: 0;" >
-        <br><br>
-        <div class="clubList">
-            <div class="titlePart">
-                <span class="title">♥블랙라이어♥:: with.하이볼 무제한🍺</span>
-                <div class="ing">모집중(18/20)</div>
+	<%@ include file="../common/Header.jsp"%>
+    <form id="contentBox">
+        <h2 style="margin-left: 10px;">모임 등록</h2>
+        <hr style="background: lightgray; height: 1px; border: 0;">
+        <div id="content">
+            <div id="pictureInputBox">
+                <h3 style="margin-left: 10px; margin-bottom: 0;">대표사진</h3>
+                <hr style="margin-bottom: 0px;">
+                <img src="${pageContext.request.contextPath}/resources/jun/img/fileImg.png" id="fileImg" onclick="chooseFile(1)">
+                <input type="file" style="display: none;" name="attachment" id="file1" required onchange="loadImg(this, 1)">
             </div>
-            <div class="clubRequestList">
-                <div class="selectedClubRequest">
-                    <div class="simpleInfo">
-                        <div class="simpleInfoLeft">
-                            <img src="resources/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
-                            <b class="userId">떡꼬치대마왕</b>
-                            <img src="resources/waiting.png" class="status_w">
-                        </div>
-                        <div class="simpleInfoRight">
-                            <span class="writeTime">2024.05.02 09:40</span>
-                            <button type="button" class="reduceBtn" style="background-color: #F6EEE2;">︿</button>
+            <div id="clubInputBox">
+                <div id="manyInputBox">
+                    <div id="inputHead">
+                        <h3 style="margin-left: 10px; margin-bottom: 0;">모임 정보</h3>
+                        <div id="clubTypes">
+                            <input type="radio" name="clubType">소셜링
+                            <input type="radio" name="clubType" style="margin-left: 10px;">챌린지
                         </div>
                     </div>
-                    <div class="detailInfo">
-                        <pre class="detail">    [질문] 나이 / 성별 / 직업 / MBTI 를 작성해주세요 ✨
-            (블랙라이어 지원하실 분은 요기에 남겨주세용💌)
-
-    [대답] 26살 / 남자 / 홈프로텍터 / ESFJ</pre>
-                        <div class="btns">
-                            <button type="button" class="denyBtn">거절</button>
-                            <button type="button" class="acceptBtn">수락</button>
-                        </div>
-                    </div>
+                    <hr style="margin-bottom: 0px;">
+                    <table id="inputTable">
+                        <tr class="row1">
+                            <td class="column1">
+                                &nbsp;<b>장소</b><br>
+                                <input type="text" placeholder="도로명주소 API" name="address" id="address">
+                                <input type="radio" name="online">온라인
+                                <input type="radio" name="online" style="margin-left: 10px;">오프라인<br>
+                                <input type="text" name="detailAddress" id="detailAddress" placeholder="자세한 주소">
+                            </td>
+                            <td class="column2">
+                                &nbsp;<b>카테고리</b><br>
+                                <select name="category" id="category">
+                                    <option value="" hidden>카테고리를 선택해주세요</option>
+                                    <option value="">카테고리1</option>
+                                    <option value="">카테고리2</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr class="row2">
+                            <td class="column1">
+                                &nbsp;<b>날짜 & 시간</b><br>
+                                <input type="datetime-local" name="datetime" id="datetime">
+                            </td>
+                            <td class="column2">
+                                &nbsp;<b>참가비</b><br>
+                                <input type="number" name="cost" id="cost" placeholder="인당 참가비를 설정해주세요">
+                            </td>
+                        </tr>
+                        <tr class="row3">
+                            <td class="column1">
+                                &nbsp;<b>비용정보</b><br>
+                                <input type="text" name="costInfo" id="costInfo" placeholder="비용 정보를 입력해주세요">
+                            </td>
+                            <td class="column2">
+                                &nbsp;<b>인원수</b><br>
+                                <input type="number" name="maxPeople" id="maxPeople" placeholder="최대 인원수를 설정해주세요">
+                            </td>
+                        </tr>
+                        <tr class="row4">
+                            <td colspan="2">
+                                &nbsp;<b>제목</b><br>
+                                <input type="text" name="title" id="title" placeholder="모임 글의 제목을 작성해주세요">
+                            </td>
+                        </tr>
+                        <tr class="row5">
+                            <td colspan="2">
+                                &nbsp;<b>게스트에게 하고 싶은 질문</b>
+                                <sub class="letter_count" id="question_letter_count">0/300</sub>
+                                <textarea name="question" id="question" maxlength="300" placeholder="가입 신청자에게 묻고 싶은 질문을 작성해주세요(300자)&#13;&#10;&#13;&#10;※ 전화번호, 카카오톡 아이디, 신청 폼 작성 요구 등 과도한 개인정보를 요구하는 경우, 가이드 위반으로 신고 대상자가 될 수 있습니다."></textarea>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
-                <div class="clubRequest">
-                    <div class="simpleInfo">
-                        <div class="simpleInfoLeft">
-                            <img src="resources/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
-                            <b class="userId">떡꼬치중마왕</b>
-                            <img src="resources/waiting.png" class="status_w">
-                        </div>
-                        <div class="simpleInfoRight">
-                            <span class="writeTime">2024.05.02 10:31</span>
-                            <button class="reduceBtn">﹀</button>
-                        </div>
-                    </div>
+                <div id="detailInputBox">
+                    <h3 style="margin-left: 15px; margin-bottom: 0;">글 상세</h3>
+                    <hr>
+                    <textarea id="summernote" name="content"></textarea>
                 </div>
-                <div class="clubRequest">
-                    <div class="simpleInfo">
-                        <div class="simpleInfoLeft">
-                            <img src="resources/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
-                            <b class="userId">떡꼬치소마왕</b>
-                            <img src="resources/waiting.png" class="status_w">
-                        </div>
-                        <div class="simpleInfoRight">
-                            <span class="writeTime">2024.05.02 10:48</span>
-                            <button class="reduceBtn">﹀</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="clubList">
-            <div class="titlePart">
-                <span class="title">【D-2🐥어른이날】 천지방축 운동회</span>
-                <div class="done">모집완료(50/50)</div>
-            </div>
-            <div class="clubRequestList">
-                <div class="selectedClubRequest">
-                    <div class="simpleInfo">
-                        <div class="simpleInfoLeft">
-                            <img src="resources/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
-                            <b class="userId">떡꼬치대마왕</b>
-                            <img src="resources/accepted.png" class="status_a">
-                        </div>
-                        <div class="simpleInfoRight">
-                            <span class="writeTime">2024.04.16 00:12</span>
-                            <button type="button" class="reduceBtn" style="background-color: #F6EEE2;">︿</button>
-                        </div>
-                    </div>
-                    <div class="detailInfo">
-                        <pre class="detail">    [질문] 1. 성별  2. 나이  3. MBTI  4. 관심종목  5. 운동신경 1~10
-    
-    [대답] 1. 남자  2. 26살  3. ESFJ  4. 구기종목  5. 운동신경 6</pre>
-                        <div class="btns">
-                            <button type="button" class="acceptedBtn">수락됨</button>
-                        </div>
-                    </div>
-                </div>
-                <div class="clubRequest">
-                    <div class="simpleInfo">
-                        <div class="simpleInfoLeft">
-                            <img src="resources/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
-                            <b class="userId">떡꼬치중마왕</b>
-                            <img src="resources/denied.png" class="status_d">
-                        </div>
-                        <div class="simpleInfoRight">
-                            <span class="writeTime">2024.04.17 17:09</span>
-                            <button class="reduceBtn">﹀</button>
-                        </div>
-                    </div>
+                <div id="buttons">
+                    <button type="reset" id="resetBtn">초기화</button>
+                    <button type="submit" id="submitBtn">등록하기</button>
                 </div>
             </div>
         </div>
-    </div>
-
-    <!-- The Modal -->
-    <div class="modal fade" id="profileModal">
-        <div class="modal-dialog">
-            <div class="profile-modal-content">
-            
-                <!-- Modal Header -->
-                <div class="profile-modal-header">
-                    <button type="button" class="close" data-dismiss="modal">×</button>
-                </div>
-                
-                <!-- Modal body -->
-                <div class="profile-modal-body">
-                    <div class="m-userProfile">
-                        <img src="resources/프사.jpg" class="m-profileImg">
-                        <span class="nickname">떡꼬치대마왕</span>
-                        <span> 님</span>
-                    </div>
-                    <div class="m-manner">
-                        <img src="resources/로고.png" class="m-logo-area">
-                        <div class="m-manner-area">
-                            <span>매너 점수</span>
-                            <div class="m-manner-score-area">
-                                <div class="m-score-range">
-                                    <p>0</p>
-                                    <p>100</p>
-                                </div>
-                                <div class="m-manner-score"></div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Modal footer -->
-                <div class="profile-modal-bottom">
-                    <h6 style="font-size: 20px; font-weight: 600; margin: 10px 30px;">자기소개</h6>
-                    <textarea class="m-introduction"></textarea>
-                </div>
-                
-            </div>
-        </div>
-    </div>
+    </form><br>
 </body>
 </html>
