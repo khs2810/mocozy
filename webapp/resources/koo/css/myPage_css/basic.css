@@ -1,0 +1,238 @@
+*{
+    box-sizing: border-box;
+}
+
+h5{
+    font-weight: 800;
+}
+
+/* 움직이는 버튼 공통 스타일 */
+.btn-style{
+    border-style: none;
+    background: none;
+}
+button:active{
+    margin-left: 5px;
+    margin-top: 5px;
+    box-shadow: none;
+}
+
+    /* 마이페이지 전체 */
+.MyPage-body{
+    box-sizing: border-box;
+    position: relative;
+    width: 1250px;
+    height: 100%;
+    margin: auto;
+    top: 150px;
+    display: flex;
+    justify-content: space-between;
+}
+/* 좌측 */
+.mypage-main{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+}
+
+.user-profile{
+    box-sizing: border-box;
+    width: 330px;
+    height: 180px;
+    background-color: #D9D9D9;
+    border-radius: 15px;
+    padding: 3%;
+}
+
+.profile-box{
+    display: flex;
+    align-items: center;
+}
+
+/* 프로필이미지 */
+.profile-box1 {
+    width: 91px;
+    height: 91px; 
+    border-radius: 50%;
+    overflow: hidden;
+    cursor: pointer;
+    transition-duration: 0.1s;
+    cursor: pointer;
+}
+.profile-img {
+    width: 91px;
+    height: 91px;
+    
+    /* object-fit: cover; */
+}
+.profile-box1{
+    box-shadow: 2px 2px 2px black;
+    transition-duration: 0.1s;
+    
+}
+.profile-box1:active{
+        margin-left: 2px;
+        margin-top: 2px;
+        box-shadow: none;
+        
+}
+
+.profile>img:active{
+    margin-left: 5px;
+    margin-top: 5px;
+    box-shadow: none;
+    
+}
+
+/* 계정 닉네임, 이메일(id) */
+.account{
+    box-sizing: border-box;
+    padding-left: 10px;
+}
+
+
+/* 충전포인트 */
+.point{
+    display: flex;
+    margin-top: 1rem;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 충전 버튼 */
+.point>button{
+    width: 72px;
+    height: 30px;
+    border-radius: 10px;
+    background-color: #F0E3CE;
+    font-weight: 700;
+    box-shadow: 2px 2px 2px black;
+    transition-duration: 0.1s;
+    cursor: pointer;
+}
+
+button:active{
+    margin-left: 5px;
+    margin-top: 5px;
+    box-shadow: none;
+}
+
+
+/* 매너점수 */
+.manner{
+    box-sizing: border-box;
+    margin: 10px 0px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    font-weight: 800;
+}
+/* 모꼬지 로고 */
+.manner>img{
+    margin-right: 5px;
+}
+.manner>h6{
+    font-weight: bolder;
+}
+
+/* 매너점수 분홍 그래프 */
+#progress {
+    appearance: none;
+    margin-left: 10px;
+}
+#progress::-webkit-progress-bar {
+    background:#f0f0f0;
+    border-radius:10px;
+    box-shadow: inset 3px 3px 10px #fffdfd;
+}
+#progress::-webkit-progress-value {
+    border-radius:10px;
+    background: #F08A8A;
+
+}
+
+
+/* 네비 메뉴바 */
+.mypage-navi{
+    box-sizing: content-box;
+}
+
+nav{
+    box-sizing: border-box;
+    margin-top: 20px;
+    width: 100%;
+}
+
+/* 마이페이지 메뉴리스트 스타일*/
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    position: relative;
+    height: 100%;
+    overflow: auto;
+}
+
+li {
+    list-style: none;
+    line-height: 34px;
+}
+
+ul li a {
+    display: block;
+    color: #000;
+    border-bottom: 1px solid #d9d9d9;
+    padding: 8px 16px;
+    text-decoration-line: none;
+}
+
+ul li a.active {
+    background-color: #7a7a7a;
+    color: white;
+}
+  
+ul li a:hover{
+    text-decoration-line: none;
+}
+
+ul li a:hover:not(.active) {
+    background-color: #7a7a7a;
+    color: white;
+}
+
+.snd_menu { background: #efefef; }
+.sub_menu { display: none; }
+
+.snd_title{
+    padding-left: 30px;
+}
+
+/* 콘텐츠영역 */
+.main-content{
+/* box-sizing: border-box; */
+border: 1px solid #D9D9D9;
+width: 905px;
+height: 100%;
+border-radius: 15px;
+padding: 20px;
+}
+
+/* 콘텐츠 타이틀 */
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+h1{
+    margin: 0px;
+}
+.main-content>.title>h3{
+    flex: 1;
+    margin: 0px 20px;
+}
+.title .title-select {
+    margin-left: auto;
+}
