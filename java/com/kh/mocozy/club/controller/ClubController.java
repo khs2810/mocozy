@@ -13,7 +13,10 @@ public class ClubController {
 	private ClubService clubService;
 	
 	@RequestMapping("detail.cl")
-	public String selectClub() {
+	public String selectClub(int cno) {
+		
+		int result = clubService.increaseCount(cno);
+		
 		return "club/clubDetailPage";
 	}
 	

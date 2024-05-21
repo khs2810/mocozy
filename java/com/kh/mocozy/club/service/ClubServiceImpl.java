@@ -14,5 +14,10 @@ public class ClubServiceImpl implements ClubService {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
+	@Override
+	public int increaseCount(int cno) {
+		return clubDao.increaseCount(sqlSession, cno);
+	}
+	
 	
 }
