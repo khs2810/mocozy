@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>모꼬지-회원가입</title>
 
-    <link rel="stylesheet" href="${pageContext.request.contextPath}./SignInPage.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/signIn_css/SignInPage.css" />
     
 </head>
 <body class="SignIn-Page">

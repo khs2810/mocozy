@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mo-Cozy - Login</title>
     
-    <link rel="stylesheet" href="${pageContext.request.contextPath}./LoginPage.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/loginPage_css/LoginPage.css" />
 
 </head>
 <body class="Login_page">

@@ -9,8 +9,8 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}./basic.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}./social.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/5basic.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/social.css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -18,7 +18,7 @@
     <!--Get your code at fontawesome.com-->
     <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
 
-    <script src="${pageContext.request.contextPath}/MyPage.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
     
 </head>
 <body>

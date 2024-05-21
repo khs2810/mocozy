@@ -8,8 +8,8 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}./basic.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}./dibs.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/dibs.css" />
 
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
@@ -20,7 +20,7 @@
     <!--Get your code at fontawesome.com-->
     <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
 
-    <script src="${pageContext.request.contextPath}/MyPage.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
     
     
 

@@ -9,15 +9,15 @@
 
     <!-- css -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}./basic.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}./MyPage.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/MyPage.css" />
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
     
     <!-- 라이브러리 -->
-    <script src="${pageContext.request.contextPath}/MyPage.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
 
 </head>
 <body>
