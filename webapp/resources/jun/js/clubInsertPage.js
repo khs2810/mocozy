@@ -1,4 +1,71 @@
-function loadImg(inputFile, num){
+$(document).ready(function() {
+	$('#summernote').summernote({
+		placeholder: "게시글을 작성해주세요.",
+		height: 600,
+	  //   maxHeight: 1000,
+		width: 560,
+		toolbar: [
+			  // [groupName, [list of button]]
+			  ['style', ['bold', 'italic', 'underline', 'clear']],
+			  ['font', ['strikethrough', 'superscript']],
+			  ['fontsize', ['fontsize']],
+			  ['color', ['color']],
+			  ['para', ['ul', 'ol', 'paragraph']],
+			  ['height', ['height']],
+			  ['Insert',['picture']]
+			],
+		focus: true,
+		disableResizeEditor: true,
+		callbacks: {
+			  onImageUpload: fileUpload
+		}
+	});
+  
+	$('#question').keyup(function (e){
+	  console.log("입력");
+	  let content = $(this).val();
+	  $('#question_letter_count').text(content.length+" / 300");
+  
+	  if (content.length > 300){
+		  alert("최대 300자까지 입력 가능합니다.");
+		  $(this).val(content.substring(0, 300));
+		  $('#question_letter_count').text("(300 / 300)");
+	  }
+  });
+});
+
+function showSubcategories() {
+	// 모든 하위 카테고리를 숨깁니다.
+	var subcategories = document.querySelectorAll('.category2');
+	subcategories.forEach(function(subcategory) {
+		subcategory.style.display = 'none';
+		subcategory.disabled = true;
+	});
+
+	// 선택된 상위 카테고리에 해당하는 하위 카테고리를 표시합니다.
+	var mainCategory = document.getElementById('category1').value;
+	if (mainCategory) {
+		var selectedSubcategory = document.getElementById('category2_' + getCategoryIndex(mainCategory));
+		if (selectedSubcategory) {
+			selectedSubcategory.style.display = 'block';
+			selectedSubcategory.disabled = false;
+		}
+	}
+}
+
+function getCategoryIndex(category) {
+	switch (category) {
+		case '문화생활': return 1;
+		case '미래발전': return 2;
+		case '스포츠': return 3;
+		case '취미': return 4;
+		case '연애': return 5;
+		default: return 0;
+	}
+
+}
+
+function loadImg(inputFile, num, contextPath){
     // console.log(inputFile)
     // console.log(num)
     //inputFile : 현재 변화가 생긴 input type=file 요소객체
@@ -7,7 +74,7 @@ function loadImg(inputFile, num){
     
     //inputFile.files[0] => 선택된 파일이 담겨있다.
     //inputFile.files.length -> 1
-    console.log(inputFile.files.length)
+    // console.log(inputFile.files.length)
 
     if (inputFile.files.length == 1){//파일을 하나 선택 => 미리보기
         const reader = new FileReader();
@@ -21,8 +88,8 @@ function loadImg(inputFile, num){
         }
     } else { // 선택된 파일을 취소한 경우 => 미리보기 지우기
         if (num == 1) {
-            // document.getElementById("fileImg").src = "${pageContext.request.contextPath}/img/fileImg.png";
-            document.getElementById("fileImg").src = "${pageContext.request.contextPath}/resources/jun/img/fileImg.png";
+			document.getElementById("fileImg").src = contextPath + "/resources/jun/img/fileImg.png";
+			console.log(document.getElementById("fileImg").src);
         }
     }
 }
@@ -31,41 +98,6 @@ function chooseFile(num){
     const imgInput = document.querySelector("#file" + num);
     imgInput.click();
 }
-
-$('#question').keyup(function (e){
-    let content = $(this).val();
-    $('#question_letter_count').text(content.length+" / 300");
-
-    if (content.length > 300){
-        alert("최대 300자까지 입력 가능합니다.");
-        $(this).val(content.substring(0, 300));
-        $('#question_letter_count').text("(300 / 300)");
-    }
-});
-
-$(document).ready(function() {
-  $('#summernote').summernote({
-	  placeholder: "게시글을 작성해주세요.",
-	  height: 600,
-	//   maxHeight: 1000,
-	  width: 560,
-	  toolbar: [
-		    // [groupName, [list of button]]
-		    ['style', ['bold', 'italic', 'underline', 'clear']],
-		    ['font', ['strikethrough', 'superscript']],
-		    ['fontsize', ['fontsize']],
-		    ['color', ['color']],
-		    ['para', ['ul', 'ol', 'paragraph']],
-		    ['height', ['height']],
-		    ['Insert',['picture']]
-		  ],
-      focus: true,
-      disableResizeEditor: true,
-	  callbacks: {
-		    onImageUpload: fileUpload
-	  }
-  });
-});
 
 //썸머노트에 이미지업로드가 발생하였을 때 동작하는 함수
 function fileUpload(fileList){
