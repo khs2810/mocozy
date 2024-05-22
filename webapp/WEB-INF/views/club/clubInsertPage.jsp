@@ -22,7 +22,7 @@
                 <h3 style="margin-left: 10px; margin-bottom: 0;">대표사진</h3>
                 <hr style="margin-bottom: 0px;">
                 <img src="${pageContext.request.contextPath}/resources/jun/img/fileImg.png" id="fileImg" onclick="chooseFile(1)">
-                <input type="file" style="display: none;" name="attachment" id="file1" required onchange="loadImg(this, 1)">
+                <input type="file" style="display: none;" name="attachment" id="file1" required onchange="loadImg(this, 1, '${pageContext.request.contextPath}')">
             </div>
             <div id="clubInputBox">
                 <div id="manyInputBox">
@@ -37,18 +37,46 @@
                     <table id="inputTable">
                         <tr class="row1">
                             <td class="column1">
-                                &nbsp;<b>장소</b><br>
-                                <input type="text" placeholder="도로명주소 API" name="address" id="address">
+                                &nbsp;<b style="margin-right: 20px;">장소</b>
                                 <input type="radio" name="online">온라인
-                                <input type="radio" name="online" style="margin-left: 10px;">오프라인<br>
+                                <input type="radio" name="online" style="margin-left: 10px;">오프라인
+                                <br>
+                                <input type="text" placeholder="도로명주소 API" name="address" id="address">
                                 <input type="text" name="detailAddress" id="detailAddress" placeholder="자세한 주소">
                             </td>
                             <td class="column2">
                                 &nbsp;<b>카테고리</b><br>
-                                <select name="category" id="category">
-                                    <option value="" hidden>카테고리를 선택해주세요</option>
-                                    <option value="">카테고리1</option>
-                                    <option value="">카테고리2</option>
+                                <select name="category1" id="category1" onchange="showSubcategories()">
+                                    <option value="" hidden>상위 카테고리 선택</option>
+                                    <option value="문화생활">문화생활</option>
+                                    <option value="미래발전">미래발전</option>
+                                    <option value="스포츠">스포츠</option>
+                                    <option value="취미">취미</option>
+                                    <option value="연애">연애</option>
+                                </select>
+                                <select name="category2" class="category2" id="category2_1" style="display: none;">
+                                    <option value="" hidden>하위 카테고리 선택</option>
+                                    <option value="문화, 예술">문화, 예술</option>
+                                    <option value="푸드, 드링크">푸드, 드링크</option>
+                                </select>
+                                <select name="category2" class="category2" id="category2_2" style="display: none;">
+                                    <option value="" hidden>하위 카테고리 선택</option>
+                                    <option value="자기계발">자기계발</option>
+                                    <option value="재테크">재테크</option>
+                                    <option value="외국어">외국어</option>
+                                </select>
+                                <select name="category2" class="category2" id="category2_3" style="display: none;">
+                                    <option value="" hidden>하위 카테고리 선택</option>
+                                    <option value="액티비티">액티비티</option>
+                                    <option value="여행, 동행">여행, 동행</option>
+                                </select>
+                                <select name="category2" class="category2" id="category2_4" style="display: none;">
+                                    <option value="" hidden>하위 카테고리 선택</option>
+                                    <option value="취미">취미</option>
+                                    <option value="파티, 게임">파티, 게임</option>
+                                </select>
+                                <select name="category2" class="category2" id="category2_5" disabled>
+                                    <option value="" hidden>하위 카테고리 없음</option>
                                 </select>
                             </td>
                         </tr>
