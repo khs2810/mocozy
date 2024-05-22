@@ -136,3 +136,11 @@ function insertFileApi(data,callback){
 		}
 	})
 }
+
+function searchAd() {
+	new daum.Postcode({
+        oncomplete: function(data) {
+			document.querySelector('#address').value = data.roadAddress;
+        }
+    }).open();
+}

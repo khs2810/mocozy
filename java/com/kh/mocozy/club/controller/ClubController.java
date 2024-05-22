@@ -55,9 +55,12 @@ public class ClubController {
 		return "club/clubPaymentPage";
 	}
 	
+	@SuppressWarnings("null")
 	@RequestMapping("insert.cl")
-	public String insertClub(Attachment at, Club c, MultipartFile upfile, HttpSession session, Model model) {
-		at = null;
+	public String insertClub(Club c, MultipartFile upfile, HttpSession session, Model model) {
+		Attachment at = null;
+		System.out.println(c);
+		System.out.println(upfile);
 		
 		//전달된 파일이 있을 경우 => 파일이름 변경 => 서버에 저장 => 원본명, 서버업로드된 경로를 b객체에 담기
 		if(!upfile.getOriginalFilename().equals("")) {
@@ -65,14 +68,16 @@ public class ClubController {
 			
 			at.setOriginName(upfile.getOriginalFilename());
 			at.setChangeName("resources/jun/uploadFiles/" + changeName);
+			at.setFilePath("resources/jun/uploadFiles/");
+			c.setThumbnailImg("resources/jun/uploadFiles/" + changeName);
 		}
 		
-		int result = clubService.insertClub(c);
+		int result = clubService.insertClub(c, at);
 		if (result > 0) { //성공 => list페이지로 이동
-			session.setAttribute("alertMsg", "게시글 작성 성공");
-			return "redirect:list.bo";
+			session.setAttribute("alertMsg", "모임 등록 성공");
+			return "redirect:detail.cl";
 		} else { //실패 => 에러페이지
-			model.addAttribute("errorMsg", "게시글 작성 실패");
+			model.addAttribute("errorMsg", "모임 등록 실패");
 			return "common/errorPage";
 		}
 	}

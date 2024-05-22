@@ -34,6 +34,6 @@ public class Club {
 	private String status;
 	private int count;
 	private String nickname;
-	private String category_name1;
-	private String category_name2;
+	private String categoryName1;
+	private String categoryName2;
 }
