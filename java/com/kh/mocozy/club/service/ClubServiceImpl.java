@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kh.mocozy.club.model.dao.ClubDao;
 import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.club.model.vo.ClubReview;
+import com.kh.mocozy.common.model.vo.Attachment;
 
 @Service
 public class ClubServiceImpl implements ClubService { 
@@ -34,4 +35,15 @@ public class ClubServiceImpl implements ClubService {
 	}
 	
 	
+	public int insertClub(Club c, Attachment at) {
+		
+		int result1 = clubDao.insertClub(sqlSession, c);
+		int result2 = 1;
+		
+		if (result1 > 0) {
+			result2 = clubDao.insertAttachment(sqlSession, at);			
+		}
+		
+		return result1 * result2;
+	}
 }

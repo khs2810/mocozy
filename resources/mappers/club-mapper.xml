@@ -11,8 +11,6 @@
 		<result column="CLUB_TITLE" property="clubTitle"/>
 		<result column="CLUB_TYPE" property="clubType"/>
 		<result column="CLUB_CONTENT" property="clubContent"/>
-		<result column="CATEGORY1_NO" property="category1No"/>
-		<result column="CATEGORY2_NO" property="category2No"/>
 		<result column="ADDRESS" property="address"/>
 		<result column="ADDRESS_DETAIL" property="addressDetail"/>
 		<result column="EVENT_DATE" property="eventDate"/>
@@ -27,6 +25,8 @@
 		<result column="MODIFY_DATE" property="modifyDate"/>
 		<result column="STATUS" property="status"/>
 		<result column="COUNT" property="count"/>
+		<result column="CATEGORY_NAME1" property="categoryName1"/>
+		<result column="CATEGORY_NAME2" property="categoryName2"/>
 	</resultMap>
 	<resultMap type="ClubReview" id="clubReviewResult">
 		<result column="CLUB_REVIEW_NO" property="clubReviewNo"/>
@@ -89,4 +89,43 @@
 			   
 	</select>
 	
+	<insert id="insertClub">
+		INSERT INTO
+			club(
+					club_no,
+					user_no,
+					club_title,
+					club_type,
+					club_content,
+					address,
+					address_detail,
+					event_date,
+					cost,
+					cost_info,
+					capacity,
+					online,
+					question,
+					thumbnail_img,
+					category_name1,
+					category_name2)
+			VALUES (
+					NEXTVAL('SEQ_CNO'), 
+					#{userNo},
+					#{clubTitle},
+					#{clubType},
+					<!-- #{clubContent}, -->
+					"글 내용",
+					#{address},
+					#{addressDetail},
+					#{eventDate},
+					#{cost},
+					#{costInfo},
+					#{capacity},
+					#{online},
+					#{question},
+					#{thumbnailImg},
+					#{categoryName1},
+					#{categoryName2});
+	</insert>
+
 </mapper>

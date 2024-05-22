@@ -1,0 +1,119 @@
+.content-title{
+    width: 175px;
+    margin-right: 20px;
+}
+.main-object{
+    display: flex;
+    align-items: center;
+    margin: 15px 0px;
+}
+
+.dibs{
+    height: 175px;
+}
+  
+.club-content{
+    width: 125px;
+    display: flex;
+    flex-direction: column;
+    margin: 0px 20px;
+    cursor: pointer;
+}
+
+/* 모임 컨텐츠들 */
+
+.club-img>img{
+    box-sizing: border-box;
+    border-radius: 15px;
+    box-shadow: 2px 2px 2px #6d6d6d;
+    transition-duration: 0.1s;
+    cursor: pointer;
+}
+
+.club-title{
+    box-sizing: border-box;
+    display: inline-block;
+    width: 125px;
+    padding: 10px;
+    margin: 0px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+/* hover 모임타이틀 */
+
+
+
+.textbox{
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: 1px solid #8d8d8d;
+    width: 100%;
+    height: 30px;
+}
+
+
+.change>input{
+    box-sizing: border-box;
+    border-radius: 5px;
+    border: none;
+    background-color: #F28C8C;
+    color: #ffffff;
+    padding: 0px 20px ;
+    height: 30px;
+    margin: 30px;
+}
+
+.introduce{
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+textarea{
+    resize: none;
+}
+
+.edit-user{
+    display: flex;
+    flex-direction:row;
+    justify-content: end;
+}
+
+.edit-user a{
+    margin-inline-start: 30px;
+    margin-top: 20px;
+}
+
+.title{
+    display: flex;
+    align-items: flex-end;
+}
+.title>h1{
+    width: 400px;
+}
+.title>h3{
+    width: 300px;
+    margin: 20px;
+}
+.binbox{
+    width: 100%;
+}
+.title-select{
+    display: flex;
+    align-items: flex-end;
+    margin: 20px 0px;
+}
+
+select{
+    border: 1px solid #8d8d8d;
+    border-radius: 5px;
+    width: 65px;
+    height: 30px;
+}
+
+option{
+    border: 1px solid #8d8d8d;
+    border-radius: 5px;
+}
+
