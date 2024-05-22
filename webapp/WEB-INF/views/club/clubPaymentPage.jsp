@@ -17,18 +17,16 @@
                 <div class="main_img_div"><img src="${pageContext.request.contextPath}/resources/teo/img/clubMainImg.jpg" alt="메인이미지"></div>
                 <div>
                     <div>
-                        <h3>❤️블랙라이어 ❤️:: with.하이볼 무제한🍹</h3>
+                        <h4>${c.clubTitle }</h4>
                         <div id="club_detail_info_payment"><div>D-2</div><span>관악구 · 5.4(토) 오후 6:00</span></div>
                     </div>
                     <div class="payment_price_info">
                         <p>결제 포인트</p>
-                        <p>38,000pt</p>
+                        <p>${c.cost}pt</p>
                     </div>
                     <div>
-                        <p>참가비 정보</p>
-                        <p>운영비 - 콘텐츠 제작비, 호스트 수고비 <br>
-                            모임비 - 노쇼방지비, 대관료, 재료비, 다과비 <br>
-                            기타 - 플랫폼 수수료</p>
+                        <p>참가비 정보 </p>
+                        <p>${c.costInfo }</p>
                     </div>
                 </div>
             </div>
@@ -57,7 +55,7 @@
                         <tr>
                             <td>필요한 포인트</td>
                             <td>:</td>
-                            <td>38,000pt</td>
+                            <td>${c.cost }pt</td>
                         </tr>
                         <tr>
                             <td>결제 후 남은 포인트</td>
@@ -68,7 +66,7 @@
                     </table>
                 </div>
                 <img id="ticket_img" src="${pageContext.request.contextPath}/resources/teo/img/ticket.png" alt="">
-                <div>
+                <div style="width: 321.7px;">
                     <h4>참가비 환불 규정 안내</h4>
                     <ul>
                         <li>결제 후 30분 경과 전 : 전액 환불</li>
@@ -83,7 +81,7 @@
         </div>
         <div class="club_btns">
             <button class="background_color_brown">이 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전</button>
-            <button class="background_color_green">다 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;음</button>
+            <button class="background_color_green">결 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;제</button>
         </div>
         <a href="list.no">공지사항</a>
     </div>

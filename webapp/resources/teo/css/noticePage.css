@@ -6,6 +6,7 @@
 
 #notice_header {
     display: flex;
+    margin-top: 40px;
 }
 
 #notice_header >img {
@@ -43,7 +44,7 @@
 
 #notice_list_table {
     width: 100%;
-    margin-top: 80px;
+    margin-top: 50px;
     border-spacing: 0px;
     border-collapse: collapse;
     margin-bottom: 20px;

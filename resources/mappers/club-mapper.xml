@@ -28,6 +28,16 @@
 		<result column="STATUS" property="status"/>
 		<result column="COUNT" property="count"/>
 	</resultMap>
+	<resultMap type="ClubReview" id="clubReviewResult">
+		<result column="CLUB_REVIEW_NO" property="clubReviewNo"/>
+		<result column="REVIEW_CONTENT" property="reviewContent"/>
+		<result column="CREATE_DATE" property="createDate"/>
+		<result column="MODIFY_DATE" property="modifyDate"/>
+		<result column="GRADE" property="grade"/>
+		<result column="STATUS" property="status"/>
+		<result column="CLUB_NO" property="clubNo"/>
+		<result column="USER_NO" property="userNo"/>
+	</resultMap>
 	
 	<update id="increaseCount">
 		UPDATE CLUB 
@@ -63,6 +73,20 @@
 		join MEMBER USING (USER_NO)
 	WHERE public.CLUB.STATUS = 'Y'
 		AND CLUB_NO = #{cno};
+	</select>
+	
+	<select id="listReview" resultMap="clubReviewResult">
+		SELECT CLUB_REVIEW_NO,
+			   REVIEW_CONTENT,
+			   CR.MODIFY_DATE,
+			   GRADE,
+			   NICKNAME
+		FROM CLUB_REVIEW CR
+		JOIN MEMBER USING (USER_NO)
+		WHERE CR.STATUS = 'Y'
+			AND CLUB_NO = #{cno}; 
+			   
+			   
 	</select>
 	
 </mapper>
