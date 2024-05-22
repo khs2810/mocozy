@@ -383,7 +383,6 @@ option{
 .profile-modal-content{
     background-color: #F3F3F3;
     padding: 30px;
-    padding-top: 0;
     border-radius: 10px;
 }
 .profile-modal-header{
@@ -409,8 +408,7 @@ option{
     margin: 30px 10px;
 }
 .m-manner > img{
-    width: 70px;
-    transform: rotate(120deg);
+    
     margin-right: 30px;
 }
 .m-score-range{

@@ -8,6 +8,7 @@
 </head>
 <body>
 	<%-- <jsp:forward page="WEB-INF/views/mainPage/mainPage.jsp"/> --%>
+	<jsp:forward page="WEB-INF/views/myPage/challengeManagePage.jsp"/>
 	<jsp:forward page="WEB-INF/views/club/clubInsertPage.jsp"/>
 </body>
 </html>

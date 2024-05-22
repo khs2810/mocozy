@@ -61,7 +61,7 @@
 
 			<div class="Toggleborder"></div>
 
-			<a class="Togglelink" id="Togglelink" href="_blank"> <img
+			<a class="Togglelink" id="Togglelink" href="${pageContext.request.contextPath}/webapp/WEB-INF/views/myPage/myPage.jsp"> <img
 				src="_blank" class="Toggleimg" alt="마이페이지" />
 				<div class="Toggle">마이페이지</div>
 			</a> <a class="Togglelink" id="Togglelink" href="_blank"> <img
