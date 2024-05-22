@@ -17,7 +17,7 @@
     <div id="wrap_main">
         <div id="main_text">
             <div id="head_text">
-                <h1>모두가 즐거운 모임이 될수 있도록 꼭 확인해 주세요</h1>
+                <h1>모두가 즐거운 모임이  <br> 될수 있도록 꼭 확인해 주세요</h1>
                 <div><img src="${pageContext.request.contextPath}/resources/teo/img/exclamation_mark2.JPG" alt="느낌표"></div>
             </div>
 
@@ -51,7 +51,7 @@
             </div>
             <div class="club_btns">
                 <button class="background_color_brown">이 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전</button>
-                <button class="club_next_btn" onclick="location.href='hostQuestion.cl'" disabled>다 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;음</button>
+                <button class="club_next_btn" onclick="location.href='hostQuestion.cl?cno=${cno}'" disabled>다 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;음</button>
             </div>
         </div>
         </div>

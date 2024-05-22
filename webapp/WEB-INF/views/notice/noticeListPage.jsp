@@ -16,12 +16,13 @@
 	<%@ include file="../common/header.jsp"%>
     <div id="wrapper_notice">
         <div id="notice_header">
+        	<br><br>
             <h1>공지사항</h1>
             <img src="${pageContext.request.contextPath}/resources/teo/img/mocozy1.JPG" alt="이미지">
         </div>
         
         <table align="center" id="notice_list_table">
-            <thead>
+            <thead  >
                 <tr>
                     <th >번호</th>
                     <th style="width: 70%;">제목</th>

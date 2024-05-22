@@ -169,7 +169,23 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
+}
 
+.club_type2 {
+	position: absolute;
+    left: 50px;
+    top: 260px;
+    z-index: 1;
+    font-size: 20px;
+    background-color: #9BCFFF;
+    width: 100px;
+    height: 40px;
+    border-radius: 15px;
+    color: white;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .club_picked {
@@ -509,4 +525,12 @@ button:hover {
 
 .payment_table table td {
     padding: 0 5px;
+}
+
+.club_info {
+	margin-top: 10px;
+}
+
+.club_info > tr > td {
+	padding-right: 5px;
 }
