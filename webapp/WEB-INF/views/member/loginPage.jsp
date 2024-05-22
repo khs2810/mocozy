@@ -13,25 +13,25 @@
 <body class="Login_page">
     <form action="">
         <div class="Login-content">
-            <img src="./img/logo.png" id="logo" alt="">
+            <img src="${pageContext.request.contextPath}/resources/koo/upfile/loginPage_img/logo.png" id="logo" alt="">
                 <h1>
                     함께 하면 즐거운<br>
                     모꼬지에 오신 것을 환영합니다!
                 </h1>
             <div class="id-box">
-                <input type="text" placeholder="아이디(이메일 주소)">
+                <input type="text" name="userId" placeholder="아이디(이메일@mocozy.com)">
             </div>
             
             <br>
             
             <div class="pwd-box">
-                <input type="text" placeholder="비밀번호">
+                <input type="password" name="userPwd" placeholder="비밀번호">
             </div>
             
             <br>
 
             <div>
-                <input type="button" class="login-btn" value="로그인">
+                <input type="submit" class="login-btn" value="로그인">
             </div>
 
             <div class="flex justify-center gap-1 mt-6 text-sm text-taling-gray-700 ">
@@ -46,7 +46,7 @@
             <br>
 
             <div class="text-taling-gray-700">
-                <a href="SignInPage.html" class="text-taling-pink-400">회원가입</a>
+                <a href="signInPage" class="text-taling-pink-400">회원가입</a>
             </div>
             
             <div class="line">또는</div>
