@@ -11,7 +11,8 @@
 		<result column="CLUB_TITLE" property="clubTitle"/>
 		<result column="CLUB_TYPE" property="clubType"/>
 		<result column="CLUB_CONTENT" property="clubContent"/>
-		<result column="CATEGORY_NO" property="categoryNo"/>
+		<result column="CATEGORY1_NO" property="category1No"/>
+		<result column="CATEGORY2_NO" property="category2No"/>
 		<result column="ADDRESS" property="address"/>
 		<result column="ADDRESS_DETAIL" property="addressDetail"/>
 		<result column="EVENT_DATE" property="eventDate"/>
@@ -29,11 +30,39 @@
 	</resultMap>
 	
 	<update id="increaseCount">
-		UPDATE "CLUB" 
-		SET count = count + 1
+		UPDATE CLUB 
+		SET COUNT = COUNT + 1
 		WHERE
-			"CLUB_NO" = '1'
-			AND "STATUS" = 'Y';
+			CLUB_NO = #{cno}
+			AND STATUS = 'Y';
 	</update>
+	
+	<select id="selectClub" resultMap="clubResult" >
+		SELECT CLUB_NO,
+			   USER_NO,
+			   CLUB_TITLE,
+			   CLUB_TYPE,
+			   CLUB_CONTENT,
+			   ADDRESS,
+			   ADDRESS_DETAIL,
+			   EVENT_DATE, 
+			   COST,
+			   COST_INFO, 
+			   TOTAL_POINT, 
+			   CAPACITY, 
+			   ONLINE,
+			   QUESTION,
+			   THUMBNAIL_IMG,
+			   CREATE_DATE,
+			   CLUB.MODIFY_DATE,
+			   COUNT,
+			   NICKNAME,
+			   category_name1,
+			   category_name2
+	FROM public.CLUB
+		join MEMBER USING (USER_NO)
+	WHERE public.CLUB.STATUS = 'Y'
+		AND CLUB_NO = #{cno};
+	</select>
 	
 </mapper>
