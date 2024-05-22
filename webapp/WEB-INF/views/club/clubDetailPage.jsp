@@ -92,7 +92,7 @@
                 	<table class="club_info">
                 		<tr>
                 			<td><i class="fa-solid fa-folder-open"></i> </td>
-                			<td> ${c.category_name1} > ${c.category_name2}</td>
+                			<td> ${c.categoryName1} > ${c.categoryName2}</td>
                 		</tr>
                 		<tr>
                 			<td><i class="fa-solid fa-user"></i> </td>
