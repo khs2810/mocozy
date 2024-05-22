@@ -13,23 +13,23 @@ $(document).ready(function(){
         // 클릭한 서브 메뉴의 다음에 오는 .trd_menu를 슬라이드 토글
         $(this).next('.trd_menu').slideToggle('fast');
     });
+
+    // 완료/미완료 버튼 클릭 ui 구현
+    const statusBtn = document.querySelectorAll('.status');
+    statusBtn.forEach(button => {
+        const doneBtn = button.querySelector('.status-done');
+        const undoneBtn = button.querySelector('.status-undone');
+    
+        doneBtn.addEventListener('click', () => {
+            doneBtn.classList.add('done-active');
+            undoneBtn.classList.remove('undone-active');
+        });
+        undoneBtn.addEventListener('click', () => {
+            undoneBtn.classList.add('undone-active');
+            doneBtn.classList.remove('done-active');
+        });
+    });
 });
 
 // 날짜 기본값 오늘로 설정
 $('#challengeDate').val(new Date().toISOString().substring(0,10));
-
-// 완료/미완료 버튼 클릭 ui 구현
-const status = document.querySelectorAll('.status');
-status.forEach(button => {
-    const doneBtn = button.querySelector('.status-done');
-    const undoneBtn = button.querySelector('.status-undone');
-
-    doneBtn.addEventListener('click', () => {
-        doneBtn.classList.add('done-active');
-        undoneBtn.classList.remove('undone-active');
-    });
-    undoneBtn.addEventListener('click', () => {
-        undoneBtn.classList.add('undone-active');
-        doneBtn.classList.remove('done-active');
-    });
-});
