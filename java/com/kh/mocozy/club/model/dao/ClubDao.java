@@ -22,6 +22,8 @@ public class ClubDao {
 
 	public ArrayList<ClubReview> listReview(SqlSessionTemplate sqlSession, int cno) {
 		return (ArrayList)sqlSession.selectList("clubMapper.listReview", cno);
+	}
+	
 	public int insertClub(SqlSessionTemplate sqlSession, Club c) {
 		return sqlSession.insert("clubMapper.insertClub", c);
 	}
