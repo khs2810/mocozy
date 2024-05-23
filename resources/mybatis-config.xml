@@ -14,7 +14,8 @@
 	<typeAliases>
  		<typeAlias type="com.kh.mocozy.member.model.vo.Member" alias="Member" />
  		<typeAlias type="com.kh.mocozy.club.model.vo.Club" alias="Club" />
- 		<typeAlias type="com.kh.mocozy.club.model.vo.Category" alias="Category" />
+ 		<typeAlias type="com.kh.mocozy.club.model.vo.ClubReview" alias="ClubReview" />
+ 		<typeAlias type="com.kh.mocozy.common.model.vo.Attachment" alias="Attachment"/>
  	</typeAliases>
  	
  	<!-- 

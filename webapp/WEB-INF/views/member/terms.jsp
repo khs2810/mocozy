@@ -8,13 +8,13 @@
     <title>Mo-Cozy - 이용약관</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}./terms.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/signIn_css/terms.css" />
 
 </head>
 <body class="Login_page">
     <form action="">
         <div class="Login-content">
-            <img src="./img/logo.png" id="logo" alt="">
+            <img src="${pageContext.request.contextPath}/resources/koo/upfile/loginPage_img/logo.png" id="logo" alt="">
                 <h1>
                     서비스 이용을 위해<br>
                     약관에 동의해주세요.

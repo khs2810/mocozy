@@ -24,19 +24,28 @@
                 <img src="${pageContext.request.contextPath}/resources/teo/img/clubMainImg.jpg" alt="메인이미지">
             </div>
             <div class="club_title_profile">
-                <div class="club_profile_img"><img src="${pageContext.request.contextPath}/resources/teo/img/profile_img.jpg" alt="프로필 사진"></div>
-                <div align="center">이름</div>
+                <div class="club_profile_img"><img src="${pageContext.request.contextPath}${c.thumbnailImg}" alt="프로필 사진"></div>
+                <div align="center">${c.nickname}</div>
             </div>
             <div class="club_title">
                 <div class="club_modify_btn"></div>
                 <div>
-                    <h2 id="club_title">❤️블랙라이어 ❤️:: with.하이볼 무제한🍹</h2>
+                    <h3 id="club_title">${c.clubTitle }</h2>
                 </div>
                 <div class="club_modify_btn"><button>수 정</button><button>삭 제</button></div>
             </div>
 
             <!-- 소셜링 or 챌린지 -->
-            <div class="club_type"><p>소셜링</p></div>
+            <c:choose>
+            	<c:when test="${c.clubType eq '소셜링'}">
+            		<div class="club_type"><span>소셜링</span></div>
+            	</c:when>
+            	<c:when test="${c.clubType eq '챌린지'}">
+            		<div class="club_type2"><span>챌린지</span></div>
+            	</c:when>
+            	<c:otherwise>
+            	</c:otherwise>
+            </c:choose>          
             
             <!-- 찜 -->
             <!-- <div class="club_picked"><i class="fa-solid fa-heart" style="color: red;"></i></div> -->
@@ -47,7 +56,7 @@
 
             <!-- 모임 상세정보 -->
             <div class="club_detail_info">
-                모임 상세정보
+                ${c.clubContent}
             </div>
             
             <!-- 멤버 소개-->
@@ -80,15 +89,32 @@
                     <span>자세한 정보를 알려드릴게요</span>
                 </div>
                 <div>
-                    <p><i class="fa-solid fa-folder-open"></i> 파티 > 컨셉파티</p>
-                    <p><i class="fa-solid fa-user"></i> 최대 20명</p>                  <p></p>
-                    <p><i class="fa-solid fa-coins"></i> 38,000원</p>
-                    <p><i class="fa-solid fa-circle-info"></i> 운영비 - 콘텐츠 제작비, 호스트 수고비 <br>
-                        모임비 - 노쇼방지비, 대관료, 재료비, 다과비 <br>
-                        기타 - 플랫폼 수수료
-                    </p>
-                    <p><i class="fa-solid fa-calendar-days"></i> 24.05.04(토) 오후 6:00</p>
-                    <p><i class="fa-solid fa-location-dot"></i> 서울대입구역 2호선 (서울 관악구 봉천동 979-2)</p>
+                	<table class="club_info">
+                		<tr>
+                			<td><i class="fa-solid fa-folder-open"></i> </td>
+                			<td> ${c.categoryName1} > ${c.categoryName2}</td>
+                		</tr>
+                		<tr>
+                			<td><i class="fa-solid fa-user"></i> </td>
+                			<td> 최대  ${c.capacity}</td>
+                		</tr>
+                		<tr>
+                			<td><i class="fa-solid fa-coins"></i> </td>
+                			<td> ${c.cost}pt</td>
+                		</tr>
+                		<tr>
+                			<td><i class="fa-solid fa-circle-info"></i></td>
+                			<td> 참가비 정보 - ${c.costInfo}</td>
+                		</tr>
+                		<tr>
+                			<td><i class="fa-solid fa-calendar-days"></i> </td>
+                			<td> ${c.eventDate}</td>
+                		</tr>
+                		<tr>
+                			<td><i class="fa-solid fa-location-dot"></i> </td>
+                			<td> ${c.address} (${c.addressDetail})</td>
+                		</tr>
+                	</table>
                 </div>
             </div>
             <div class="club_address_center">
@@ -97,8 +123,8 @@
                         <i class="fa-solid fa-map-location-dot fa-xl"></i>
                     </div>
                     <div class="club_warning">
-                        <span>서울대입구역 2호선</span><br>
-                        <span>서울 관악구 봉천동 979-2</span>
+                        <span>${c.address}</span><br>
+                        <span>${c.addressDetail}</span>
                     </div>
                 </div>
                 <div class="club_address">
@@ -113,32 +139,22 @@
             </div>
             <br>
             <div class="club_member_info" >
-                <h3>리뷰(3)</h3>
+                <h3>리뷰(${reviewList.size()})</h3>
                 <table id="review_table">
-                    <tr>
-                        <td style="padding-left: 5px;">떡꼬치대마왕</td>
-                        <td style="width: 75%; padding-left: 14px;">리뷰입니다3</td>
-                        <td>2024.05.09</td>
-                        <!-- <td>X</td> -->
-                    </tr>
-                    <tr>
-                        <td style="padding-left: 5px;">떡꼬치대마왕</td>
-                        <td style="width: 75%; padding-left: 14px;">리뷰입니다3</td>
-                        <td>2024.05.09</td>
-                        <!-- <td>X</td> -->
-                    </tr>
-                    <tr>
-                        <td style="padding-left: 5px;">떡꼬치대마왕</td>
-                        <td style="width: 75%; padding-left: 14px;">리뷰입니다3</td>
-                        <td>2024.05.09</td>
-                        <!-- <td>X</td> -->
-                    </tr>
+                	<c:forEach var="cr" items="${reviewList}">
+	                	<tr>
+	                        <td style="padding-left: 5px;">${cr.nickname}</td>
+	                        <td style="width: 75%; padding-left: 14px;">${cr.reviewContent}</td>
+	                        <td>${cr.modifyDate}</td>
+	                        <!-- <td>X</td> -->
+	                    </tr>
+                	</c:forEach>
                 </table>
             </div>
             <br>
             <div class="club_btns">
                     <button class="background_color_brown">목록으로</button>
-                    <button class="background_color_green" onclick="location.href='confirm.cl'">참여 신청하기</button>
+                    <button class="background_color_green" onclick="location.href='confirm.cl?cno=${c.clubNo}'">참여 신청하기</button>
             </div>
         </div>
     </div>

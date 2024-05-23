@@ -29,8 +29,7 @@
                     <div align="center">이름</div>
                 </div>
                 <div class="host_question_question" >
-                    <p>나이 / 성별 / 직업 / MBTI 를 작성해주세요 ✨ <br>
-                    (블랙라이어 지원하실 분은 요기에 남겨주세용💌)</p>
+                    <p>${c.question}</p>
                 </div>
             </div>
             
@@ -44,7 +43,7 @@
             </div>
             <div class="club_btns">
                 <button class="background_color_brown">이 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전</button>
-                <button class="background_color_green" onclick="location.href='payment.cl'" >결 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;제</button>
+                <button class="background_color_green" onclick="location.href='payment.cl?cno=${c.clubNo}'" >결 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;제</button>
             </div>
         </div>
         

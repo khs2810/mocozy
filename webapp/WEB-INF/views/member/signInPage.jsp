@@ -46,10 +46,10 @@
                 <br>
 
                 <div>
-                    <input type="button" class="next-btn" value="다 음">
+                    <input type="button" class="next-btn" value="다 음" href="terms">
                 </div>
                 <div class="forlogin">
-                    <p>이미 계정이 있다면, <a href="/LoginPage.html">로그인</a> 해보세요.</p>
+                    <p>이미 계정이 있다면, <a href="loginPage">로그인</a> 해보세요.</p>
                 </div>
             </div>
             

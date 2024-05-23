@@ -13,7 +13,14 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Category {
-	private int categoryNo;
-	private String categoryName;
+public class ClubReview {
+	private int clubReviewNo;
+	private String reviewContent;
+	private Date createDate;
+	private Date modifyDate;
+	private int grade;
+	private String status;
+	private int clubNo;
+	private int userNo;
+	private String nickname;
 }
