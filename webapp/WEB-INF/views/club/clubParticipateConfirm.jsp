@@ -47,7 +47,7 @@
                 </div>
             </div>
             <div id="checkbox_pre_participate" class="checkbox_pre_participate" onclick="confirm()">
-                V 모꼬지 이용 규칙을 잘 지킬게요!
+                <i class="fa-regular fa-circle-check fa-xl"></i> 모꼬지 이용 규칙을 잘 지킬게요!
             </div>
             <div class="club_btns">
                 <button class="background_color_brown">이 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전</button>

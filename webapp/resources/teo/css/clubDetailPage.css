@@ -544,9 +544,17 @@ button:hover {
 }
 
 .payment_top_right {
-	width: 320px;
+	width: 340px;
 }
 
 .payment_top_right p {
 	margin: 10px 0 0 0;
+}
+
+.payment_bottom_right{
+	width: 340px;
+}
+
+.payment_bottom_right li {
+	list-style-type: none;
 }

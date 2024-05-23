@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="boardMapper"> 
+	<resultMap type="Notice" id="noticeResult">
+		<result column="NOTICE_NO" property="noticeNo"/>
+		<result column="NOTICE_TITLE" property="noticeTitle"/>
+		<result column="NOTICE_TYPE" property="noticeType"/>
+		<result column="USER_NO" property="userNo"/>
+		<result column="NOTICE_CONTENT" property="noticeContent"/>
+		<result column="COUNT" property="count"/>
+		<result column="CREATE_DATE" property="createDate"/>
+		<result column="MODIFY_DATE" property="modifyDate"/>
+		<result column="STATUS" property="status"/>
+	</resultMap>
+	<resultMap type="NoticeReply" id="noticeReplyResult">
+		<result column="REPLY_NO" property="replyNo"/>
+		<result column="REPLY_CONTENT" property="replyContent"/>
+		<result column="CREATE_DATE" property="createDate"/>
+		<result column="MODIFY_DATE" property="modifyDate"/>
+		<result column="STATUS" property="status"/>
+		<result column="NOTICE_NO" property="noticeNo"/>
+		<result column="USER_NO" property="user_no"/>
+	</resultMap>
+	
+	<select id="selectNoticeListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM NOTICE
+		WHERE STATUS = 'Y'
+	</select>
+	
+	<select id="selectNoticeList" resultMap="noticeResult">
+		SELECT  NOTICE_NO,
+	    		NOTICE_TITLE,
+	    		NOTICE_TYPE,
+	   			USER_NO,
+				COUNT,
+				N.MODIFY_DATE,
+				NICKNAME
+		FROM NOTICE N
+		JOIN MEMBER USING (USER_NO)
+		WHERE N.STATUS = 'Y'
+		ORDER BY NOTICE_NO DESC
+	</select>
+	
+	<update id="increaseCount">
+		UPDATE NOTICE 
+		SET COUNT = COUNT + 1
+		WHERE
+			NOTICE_NO = #{nno}
+			AND STATUS = 'Y'
+	</update>
+	
+	<select id="selectNotice" resultMap="noticeResult">
+		SELECT  NOTICE_NO,
+	    		NOTICE_TITLE,
+	    		NOTICE_TYPE,
+	    		NOTICE_CONTENT,
+	   			USER_NO,
+				COUNT,
+				N.MODIFY_DATE,
+				NICKNAME
+		FROM NOTICE N
+		JOIN MEMBER USING (USER_NO)
+		WHERE N.STATUS = 'Y'
+			AND NOTICE_NO = #{nno};
+	</select>
+	
+	<select id="replyListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM NOTICE_REPLY
+		WHERE STATUS = 'Y'
+			AND NOTICE_NO = #{nno};
+	</select>
+	
+</mapper>

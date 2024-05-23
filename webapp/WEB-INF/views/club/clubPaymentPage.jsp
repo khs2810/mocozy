@@ -66,7 +66,7 @@
                     </table>
                 </div>
                 <img id="ticket_img" src="${pageContext.request.contextPath}/resources/teo/img/ticket.png" alt="">
-                <div style="width: 321.7px;">
+                <div class="payment_bottom_right">
                     <h4>참가비 환불 규정 안내</h4>
                     <ul>
                         <li>결제 후 30분 경과 전 : 전액 환불</li>
