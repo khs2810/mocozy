@@ -1,9 +1,13 @@
 package com.kh.mocozy.club.controller;
 
-import java.util.ArrayList;
 import java.io.File;
 import java.io.IOException;
+import java.sql.Timestamp;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 
 import javax.servlet.http.HttpSession;
@@ -78,13 +82,21 @@ public class ClubController {
 		}
 	}
 	
-	@SuppressWarnings("null")
 	@RequestMapping("insert.cl")
 	public String insertClub(Club c, MultipartFile upfile, HttpSession session, Model model) {
-		Attachment at = null;
-		System.out.println(c);
-		System.out.println(upfile);
+		Attachment at = new Attachment();
+		String eventT = c.getEventDateStr();
 		
+		DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        LocalDateTime dateTime = LocalDateTime.parse(eventT, inputFormatter);
+        
+        // LocalDateTime을 원하는 형식의 문자열로 변환
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedDateTime = dateTime.format(outputFormatter);
+        System.out.println(formattedDateTime);
+
+        c.setEventDate(convertStringToTimestamp(formattedDateTime));
+
 		//전달된 파일이 있을 경우 => 파일이름 변경 => 서버에 저장 => 원본명, 서버업로드된 경로를 b객체에 담기
 		if(!upfile.getOriginalFilename().equals("")) {
 			String changeName = saveFile(upfile, session);
@@ -98,10 +110,22 @@ public class ClubController {
 		int result = clubService.insertClub(c, at);
 		if (result > 0) { //성공 => list페이지로 이동
 			session.setAttribute("alertMsg", "모임 등록 성공");
-			return "redirect:detail.cl";
+			return "redirect:detail.cl?cno=1";
 		} else { //실패 => 에러페이지
 			model.addAttribute("errorMsg", "모임 등록 실패");
 			return "common/errorPage";
+		}
+	}
+	
+	public static Timestamp convertStringToTimestamp(String dateString) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		
+		try {
+			Date parsedDate = dateFormat.parse(dateString);
+			return new Timestamp(parsedDate.getTime());
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null;
 		}
 	}
 	
@@ -134,5 +158,10 @@ public class ClubController {
 		}
 		
 		return changeName;
+	}
+	
+	@RequestMapping("enrollform.cl")
+	public String enrollClub() {
+		return "club/clubInsertPage";
 	}
 }

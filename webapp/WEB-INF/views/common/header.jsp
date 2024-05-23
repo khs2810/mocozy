@@ -54,7 +54,7 @@
 <%--    <c:when test="${empty loginUser}">--%>
 		<div class="LoginToggle" id="LoginToggle">
 
-			<a class="Togglelink" id="Togglelink" href="_blank"> <img
+			<a class="Togglelink" id="Togglelink" href="enrollform.cl"> <img
 				class="Toggleimg" src="_blank" alt="모임 작성하기" />
 				<div class="Toggle">모임 작성하기</div>
 			</a>

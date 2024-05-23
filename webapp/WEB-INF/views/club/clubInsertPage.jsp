@@ -44,7 +44,7 @@
                                 <input type="radio" name="online" value="온라인">온라인
                                 <input type="radio" name="online" value="오프라인" style="margin-left: 10px;">오프라인
                                 <br>
-                                <input type="text" placeholder="도로명주소 API" name="address" id="address" disabled>
+                                <input type="text" placeholder="도로명주소 API" name="address" id="address" readonly>
                                 <i class="fa-solid fa-magnifying-glass" onclick="searchAd()" style="cursor: pointer;"></i>
                                 <input type="text" name="addressDetail" id="detailAddress" placeholder="자세한 주소">
                             </td>
@@ -87,7 +87,9 @@
                         <tr class="row2">
                             <td class="column1">
                                 &nbsp;<b>날짜 & 시간</b><br>
-                                <input type="datetime-local" name="eventDate" id="datetime">
+                                <input type="datetime-local" name="eventDateStr" id="datetime">
+                                <!-- <input type="date" name="eventDate" id="eventDate">
+                                <input type="time" name="eventTime" id="eventTime"> -->
                             </td>
                             <td class="column2">
                                 &nbsp;<b>참가비</b><br>
@@ -122,7 +124,7 @@
                 <div id="detailInputBox">
                     <h3 style="margin-left: 15px; margin-bottom: 0;">글 상세</h3>
                     <hr>
-                    <!-- <textarea id="summernote" name="clubContent"></textarea> -->
+                    <textarea id="summernote" name="clubContent"></textarea>
                 </div>
                 <div id="buttons">
                     <button type="reset" id="resetBtn">초기화</button>
