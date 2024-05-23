@@ -10,6 +10,7 @@
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jun/css/requestListPage.css">
+    <script src="${pageContext.request.contextPath}/resources/jun/js/requestListPage.js"></script>
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>
@@ -23,52 +24,84 @@
                 <div class="ing">모집중(18/20)</div>
             </div>
             <div class="clubRequestList">
-                <div class="selectedClubRequest">
-                    <div class="simpleInfo">
-                        <div class="simpleInfoLeft">
-                            <img src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
-                            <b class="userId">떡꼬치대마왕</b>
-                            <img src="${pageContext.request.contextPath}/resources/jun/img/waiting.png" class="status_w">
-                        </div>
-                        <div class="simpleInfoRight">
-                            <span class="writeTime">2024.05.02 09:40</span>
-                            <button type="button" class="reduceBtn" style="background-color: #F6EEE2;">︿</button>
+                <div class="clubRequest">
+                    <div class="clubRequest-head">
+                        <div class="simpleInfo">
+                            <div class="simpleInfoLeft">
+                                <img src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
+                                <b class="userId">떡꼬치대마왕</b>
+                                <img src="${pageContext.request.contextPath}/resources/jun/img/waiting.png" class="status_w">
+                            </div>
+                            <div class="simpleInfoRight">
+                                <span class="writeTime">2024.05.02 09:40</span>
+                                <button type="button" class="reduceBtn"><i class="fa-solid fa-chevron-down"></i></button>
+                            </div>
                         </div>
                     </div>
-                    <div class="detailInfo">
-                        <pre class="detail">    [질문] 나이 / 성별 / 직업 / MBTI 를 작성해주세요 ✨
+                    <div class="selectedClubRequest">
+                        <div class="detailInfo">
+                            <pre class="detail">[질문] 나이 / 성별 / 직업 / MBTI 를 작성해주세요 ✨
             (블랙라이어 지원하실 분은 요기에 남겨주세용💌)
-
+    
     [대답] 26살 / 남자 / 홈프로텍터 / ESFJ</pre>
-                        <div class="btns">
-                            <button type="button" class="denyBtn">거절</button>
-                            <button type="button" class="acceptBtn">수락</button>
+                            <div class="btns">
+                                <button type="button" class="denyBtn">거절</button>
+                                <button type="button" class="acceptBtn">수락</button>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="clubRequest">
-                    <div class="simpleInfo">
-                        <div class="simpleInfoLeft">
-                            <img src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
-                            <b class="userId">떡꼬치중마왕</b>
-                            <img src="${pageContext.request.contextPath}/resources/jun/img/waiting.png" class="status_w">
+                    <div class="clubRequest-head">
+                        <div class="simpleInfo">
+                            <div class="simpleInfoLeft">
+                                <img src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
+                                <b class="userId">떡꼬치중마왕</b>
+                                <img src="${pageContext.request.contextPath}/resources/jun/img/waiting.png" class="status_w">
+                            </div>
+                            <div class="simpleInfoRight">
+                                <span class="writeTime">2024.05.02 10:31</span>
+                                <button class="reduceBtn"><i class="fa-solid fa-chevron-down"></i></button>
+                            </div>
                         </div>
-                        <div class="simpleInfoRight">
-                            <span class="writeTime">2024.05.02 10:31</span>
-                            <button class="reduceBtn">﹀</button>
+                    </div>
+                    <div class="selectedClubRequest">
+                        <div class="detailInfo">
+                            <pre class="detail">[질문] 나이 / 성별 / 직업 / MBTI 를 작성해주세요 ✨
+            (블랙라이어 지원하실 분은 요기에 남겨주세용💌)
+    
+    [대답] 26살 / 남자 / 홈프로텍터 / ESFJ</pre>
+                            <div class="btns">
+                                <button type="button" class="denyBtn">거절</button>
+                                <button type="button" class="acceptBtn">수락</button>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="clubRequest">
-                    <div class="simpleInfo">
-                        <div class="simpleInfoLeft">
-                            <img src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
-                            <b class="userId">떡꼬치소마왕</b>
-                            <img src="${pageContext.request.contextPath}/resources/jun/img/waiting.png" class="status_w">
+                    <div class="clubRequest-head">
+                        <div class="simpleInfo">
+                            <div class="simpleInfoLeft">
+                                <img src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
+                                <b class="userId">떡꼬치소마왕</b>
+                                <img src="${pageContext.request.contextPath}/resources/jun/img/waiting.png" class="status_w">
+                            </div>
+                            <div class="simpleInfoRight">
+                                <span class="writeTime">2024.05.02 10:48</span>
+                                <button class="reduceBtn"><i class="fa-solid fa-chevron-down"></i></button>
+                            </div>
                         </div>
-                        <div class="simpleInfoRight">
-                            <span class="writeTime">2024.05.02 10:48</span>
-                            <button class="reduceBtn">﹀</button>
+                    </div>
+                    <div class="selectedClubRequest">
+                        <div class="detailInfo">
+                            <pre class="detail">[질문] 나이 / 성별 / 직업 / MBTI 를 작성해주세요 ✨
+            (블랙라이어 지원하실 분은 요기에 남겨주세용💌)
+    
+    [대답] 26살 / 남자 / 홈프로텍터 / ESFJ</pre>
+                            <div class="btns">
+                                <button type="button" class="denyBtn">거절</button>
+                                <button type="button" class="acceptBtn">수락</button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -80,37 +113,53 @@
                 <div class="done">모집완료(50/50)</div>
             </div>
             <div class="clubRequestList">
-                <div class="selectedClubRequest">
-                    <div class="simpleInfo">
-                        <div class="simpleInfoLeft">
-                            <img src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
-                            <b class="userId">떡꼬치대마왕</b>
-                            <img src="${pageContext.request.contextPath}/resources/jun/img/accepted.png" class="status_a">
-                        </div>
-                        <div class="simpleInfoRight">
-                            <span class="writeTime">2024.04.16 00:12</span>
-                            <button type="button" class="reduceBtn" style="background-color: #F6EEE2;">︿</button>
+                <div class="clubRequest">
+                    <div class="clubRequest-head">
+                        <div class="simpleInfo">
+                            <div class="simpleInfoLeft">
+                                <img src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
+                                <b class="userId">떡꼬치대마왕</b>
+                                <img src="${pageContext.request.contextPath}/resources/jun/img/accepted.png" class="status_a">
+                            </div>
+                            <div class="simpleInfoRight">
+                                <span class="writeTime">2024.04.16 00:12</span>
+                                <button type="button" class="reduceBtn"><i class="fa-solid fa-chevron-down"></i></button>
+                            </div>
                         </div>
                     </div>
-                    <div class="detailInfo">
-                        <pre class="detail">    [질문] 1. 성별  2. 나이  3. MBTI  4. 관심종목  5. 운동신경 1~10
-    
-    [대답] 1. 남자  2. 26살  3. ESFJ  4. 구기종목  5. 운동신경 6</pre>
-                        <div class="btns">
-                            <button type="button" class="acceptedBtn">수락됨</button>
+                    <div class="selectedClubRequest">
+                        <div class="detailInfo">
+                            <pre class="detail">    [질문] 1. 성별  2. 나이  3. MBTI  4. 관심종목  5. 운동신경 1~10
+        
+        [대답] 1. 남자  2. 26살  3. ESFJ  4. 구기종목  5. 운동신경 6</pre>
+                            <div class="btns">
+                                <button type="button" class="acceptedBtn">수락됨</button>
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="clubRequest">
-                    <div class="simpleInfo">
-                        <div class="simpleInfoLeft">
-                            <img src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
-                            <b class="userId">떡꼬치중마왕</b>
-                            <img src="${pageContext.request.contextPath}/resources/jun/img/denied.png" class="status_d">
+                    <div class="clubRequest-head">
+                        <div class="simpleInfo">
+                            <div class="simpleInfoLeft">
+                                <img src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
+                                <b class="userId">떡꼬치중마왕</b>
+                                <img src="${pageContext.request.contextPath}/resources/jun/img/denied.png" class="status_d">
+                            </div>
+                            <div class="simpleInfoRight">
+                                <span class="writeTime">2024.04.17 17:09</span>
+                                <button class="reduceBtn"><i class="fa-solid fa-chevron-down"></i></button>
+                            </div>
                         </div>
-                        <div class="simpleInfoRight">
-                            <span class="writeTime">2024.04.17 17:09</span>
-                            <button class="reduceBtn">﹀</button>
+                    </div>
+                    <div class="selectedClubRequest">
+                        <div class="detailInfo">
+                            <pre class="detail">    [질문] 1. 성별  2. 나이  3. MBTI  4. 관심종목  5. 운동신경 1~10
+        
+        [대답] 1. 남자  2. 26살  3. ESFJ  4. 구기종목  5. 운동신경 6</pre>
+                            <div class="btns">
+                                <button type="button" class="deniedBtn">거절됨</button>
+                            </div>
                         </div>
                     </div>
                 </div>

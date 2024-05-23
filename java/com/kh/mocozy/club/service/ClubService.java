@@ -20,4 +20,6 @@ public interface ClubService {
 	// 클럽 추가
 	int insertClub(Club c, Attachment at);
 
+	int insertChMember(Club c);
+
 }
