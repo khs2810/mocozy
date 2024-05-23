@@ -29,7 +29,7 @@ public class ClubDao {
 	}
 
 	public int insertAttachment(SqlSessionTemplate sqlSession, Attachment at) {
-		return sqlSession.insert("clubMapper.insertAttachment", at);
+		return sqlSession.insert("attachmentMapper.insertAttachment", at);
 	}
 
 }
