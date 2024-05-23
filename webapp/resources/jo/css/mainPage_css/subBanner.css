@@ -1,3 +1,7 @@
+li {
+  list-style: none;
+}
+
 .Subbanner {
   border: none;
   margin: 0 auto;

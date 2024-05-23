@@ -1,6 +1,5 @@
-.top {
-  background-color: #60a1e2;
-  height: 300rem;
+li {
+    list-style: none;
 }
 
 .top .quickbtn {

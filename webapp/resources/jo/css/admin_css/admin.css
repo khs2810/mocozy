@@ -1,3 +1,7 @@
+li {
+    list-style: none;
+}
+
 /* admin */
 .admin {
     max-width: 1920px;
