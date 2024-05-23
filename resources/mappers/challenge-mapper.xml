@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="challengeMapper"> 
+	<resultMap type="Challenge" id="challengeResult">
+		<result column="CHALLENGE_NO" property="challengeNo"/>
+		<result column="USER_NO" property="userNo"/>
+		<result column="CLUB_NO" property="clubNo"/>
+		<result column="DETAIL_DATE" property="detailDate"/>
+		<result column="DAILY_STATUS" property="dailyStatus"/>
+		<result column="STATUS" property="status"/>
+		<result column="MASTER_NO" property="masterNo"/>
+	</resultMap>
+	
+	<insert id="insertChMember">
+		INSERT INTO challenge (
+								challenge_no,
+								user_no,
+								club_no,
+								master_no)
+						VALUES (
+								NEXTVAL('SEQ_CHNO'),
+								1,
+								CURRVAL('SEQ_CNO'),
+								1);
+	</insert>
+</mapper>

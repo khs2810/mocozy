@@ -9,15 +9,20 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.google.gson.Gson;
 import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.club.model.vo.ClubReview;
 import com.kh.mocozy.club.service.ClubService;
@@ -83,6 +88,7 @@ public class ClubController {
 	
 	@RequestMapping("insert.cl")
 	public String insertClub(Club c, MultipartFile upfile, HttpSession session, Model model) {
+		/* int uno = 1; */
 		Attachment at = new Attachment();
 		String eventT = c.getEventDateStr();
 		
@@ -92,7 +98,6 @@ public class ClubController {
         // LocalDateTime을 원하는 형식의 문자열로 변환
         DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         String formattedDateTime = dateTime.format(outputFormatter);
-        System.out.println(formattedDateTime);
 
         c.setEventDate(convertStringToTimestamp(formattedDateTime));
 
@@ -107,25 +112,65 @@ public class ClubController {
 		}
 		
 		int result = clubService.insertClub(c, at);
-		if (result > 0) { //성공 => list페이지로 이동
+		if (result > 0) {
+			if (c.getClubType().equals("챌린지")) {
+				clubService.insertChMember(c);
+			}
 			session.setAttribute("alertMsg", "모임 등록 성공");
-			return "redirect:detail.cl?cno=1";
+			return "redirect:detail.cl?cno=" + result;
 		} else { //실패 => 에러페이지
 			model.addAttribute("errorMsg", "모임 등록 실패");
 			return "common/errorPage";
 		}
 	}
 	
-	public static Timestamp convertStringToTimestamp(String dateString) {
-		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	// ajax로 들어오는 파일 업로드 요청 처리
+	// 파일목록을 저장한 후 저장된 파일명 목록을 반환
+	@PostMapping("upload")
+	@ResponseBody
+	public String upload(List<MultipartFile> fileList, HttpSession session) {
+		System.out.println(fileList);
+		
+		List<String> changeNameList = new ArrayList<String>();
+		
+		for(MultipartFile f : fileList) {
+			String changeName = saveFile(f, session, "/resources/jun/uploadFiles/");
+			
+			changeNameList.add("/resources/jun/uploadFiles/" + changeName);
+		}
+		
+		return new Gson().toJson(changeNameList);
+	}
+	
+	//실제 넘어온 파일의 이름을 변경해서 서버에 저장하는 메소드
+	public String saveFile(MultipartFile upfile, HttpSession session, String path) {
+		//파일명 수정 후 서버에 업로드하기("imgFile.jpg => 202404231004305488.jpg")
+		String originName = upfile.getOriginalFilename();
+		
+		//년월일시분초 
+		String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+		
+		//5자리 랜덤값
+		int ranNum = (int)(Math.random() * 90000) + 10000;
+		
+		//확장자
+		String ext = originName.substring(originName.lastIndexOf("."));
+		
+		//수정된 첨부파일명
+		String changeName = currentTime + ranNum + ext;
+		
+		//첨부파일을 저장할 폴더의 물리적 경로(session)
+		String savePath = session.getServletContext().getRealPath(path);
 		
 		try {
-			Date parsedDate = dateFormat.parse(dateString);
-			return new Timestamp(parsedDate.getTime());
-		} catch (ParseException e) {
+			upfile.transferTo(new File(savePath + changeName));
+		} catch (IllegalStateException e) {
 			e.printStackTrace();
-			return null;
+		} catch (IOException e) {
+			e.printStackTrace();
 		}
+		
+		return changeName;
 	}
 	
 	//실제 넘어온 파일의 이름을 변경해서 서버에 저장하는 메소드
@@ -157,6 +202,19 @@ public class ClubController {
 		}
 		
 		return changeName;
+	}
+	
+	// String을 Date로 바꾸고 다시 Timestamp로 바꾸는 메소드
+	public static Timestamp convertStringToTimestamp(String dateString) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		
+		try {
+			Date parsedDate = dateFormat.parse(dateString);
+			return new Timestamp(parsedDate.getTime());
+		} catch (ParseException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	@RequestMapping("enrollform.cl")
