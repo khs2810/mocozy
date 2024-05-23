@@ -268,3 +268,11 @@
     width: 800px;
     margin: auto;
 }
+
+#notice_list_table th {
+	text-align: center;
+}
+
+#notice_list_table p {
+	margin: 0px;
+}

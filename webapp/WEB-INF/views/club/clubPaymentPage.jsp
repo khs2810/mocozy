@@ -15,7 +15,7 @@
             <h1 align="center">결제 정보</h1>
             <div class="payment_top">
                 <div class="main_img_div"><img src="${pageContext.request.contextPath}/resources/teo/img/clubMainImg.jpg" alt="메인이미지"></div>
-                <div>
+                <div class="payment_top_right">
                     <div>
                         <h4>${c.clubTitle }</h4>
                         <div id="club_detail_info_payment"><div>D-2</div><span>관악구 · 5.4(토) 오후 6:00</span></div>
@@ -25,8 +25,8 @@
                         <p>${c.cost}pt</p>
                     </div>
                     <div>
-                        <p>참가비 정보 </p>
-                        <p>${c.costInfo }</p>
+                        <p>참가비 정보 <br>
+                        - ${c.costInfo }</p>
                     </div>
                 </div>
             </div>

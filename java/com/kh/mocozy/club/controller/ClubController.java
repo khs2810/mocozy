@@ -29,11 +29,10 @@ public class ClubController {
 	public String selectClub(int cno, Model model) {
 		
 		int result = clubService.increaseCount(cno);
-		ArrayList<ClubReview> reviewList = clubService.listReview(cno);
-		
 		
 		if (result > 0) {
 			Club c = clubService.selectClub(cno);
+			ArrayList<ClubReview> reviewList = clubService.listReview(cno);
 //			System.out.println(c);
 			model.addAttribute("c", c);
 			model.addAttribute("reviewList", reviewList);

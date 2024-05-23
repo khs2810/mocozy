@@ -531,6 +531,22 @@ button:hover {
 	margin-top: 10px;
 }
 
-.club_info > tr > td {
-	padding-right: 5px;
+.club_info tr td {
+	padding: 2px 4px;
+}
+
+.host_question_question p {
+	margin-bottom: 0px;
+}
+
+.club_member_info h3{
+	margin-top: 10px;
+}
+
+.payment_top_right {
+	width: 320px;
+}
+
+.payment_top_right p {
+	margin: 10px 0 0 0;
 }
