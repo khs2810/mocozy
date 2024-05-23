@@ -114,7 +114,7 @@
 					#{clubTitle},
 					#{clubType},
 					<!-- #{clubContent}, -->
-					"글 내용",
+					'글 내용',
 					#{address},
 					#{addressDetail},
 					#{eventDate},

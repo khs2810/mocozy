@@ -69,8 +69,6 @@ select{
 	margin-bottom: 10px;
 }
 #datetime{
-    width: 200px;
-    height: 30px;
     border: 2px solid darkgray;
     border-radius: 3px;
 }
@@ -167,4 +165,7 @@ table input, select, textarea{
 }
 input[type="radio"] {
     margin-right: 3px;
+}
+#question:focus{
+    outline: none;
 }

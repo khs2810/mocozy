@@ -24,7 +24,7 @@
 								change_name,
 								file_path,
 								file_level,
-								ref_club_no
+								ref_club_no)
 						VALUES (
 								NEXTVAL('SEQ_ATNO'),
 								#{originName},

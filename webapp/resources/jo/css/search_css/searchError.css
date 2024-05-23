@@ -1,3 +1,7 @@
+li {
+    list-style: none;
+}
+
 .searcherror {
     max-width: 1250px;
     height: 500px;

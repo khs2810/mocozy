@@ -1,6 +1,7 @@
 package com.kh.mocozy.club.model.vo;
 
-import java.sql.Date;
+import java.sql.Timestamp;
+import java.util.Date;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,7 +22,7 @@ public class Club {
 	private String clubContent;
 	private String address;
 	private String addressDetail;
-	private Date eventDate;
+	private Timestamp eventDate;
 	private int cost;
 	private String costInfo;
 	private int totalPoint;
@@ -36,4 +37,5 @@ public class Club {
 	private String nickname;
 	private String categoryName1;
 	private String categoryName2;
+	private String eventDateStr;
 }
