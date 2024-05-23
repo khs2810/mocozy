@@ -1,3 +1,8 @@
+li {
+    list-style: none;
+}
+
+
 .catebutton {
     margin: 0 auto;
     max-width: 1250px;

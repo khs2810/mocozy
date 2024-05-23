@@ -1,3 +1,8 @@
+li {
+    list-style: none;
+}
+
+
 /* 메뉴바 */
 ul, ol {
     padding-left: 16px;
