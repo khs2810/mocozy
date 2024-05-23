@@ -42,17 +42,17 @@
     border-radius: 5px;
     color: #FFB800;
 }
-.clubRequestList > div{
+.clubRequest > div{
     border-radius: 5px;
 }
 .selectedClubRequest{
+    display: none;
     border: none;
     background-color: #F6EEE2;
     padding: 20px;
 }
-.clubRequest{
+.clubRequest-head{
     border: 1px solid #D9D9D9;
-    border-top: none;
     padding: 20px;
 }
 .profileImg{
@@ -122,6 +122,17 @@
 .acceptedBtn{
     border: none;
     background-color: #7CCDA6;
+    width: 100px;
+    height: 30px;
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+    border-radius: 15%;
+    margin-right: 30px;
+}
+.deniedBtn{
+    border: none;
+    background-color: #F28C8C;
     width: 100px;
     height: 30px;
     color: white;
@@ -214,4 +225,14 @@ button:hover{
 .m-introduction:focus{
     outline: none;
     border: none;
+}
+.rotated {
+    /* transform: rotate(180deg); */
+    transform: rotateX( 180deg );
+    transition: transform 0.5s ease;
+}
+.rerotated {
+    /* transform: rotate(180deg); */
+    transform: rotateX( 360deg );
+    transition: transform 0.5s ease;
 }

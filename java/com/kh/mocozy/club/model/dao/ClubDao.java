@@ -25,11 +25,21 @@ public class ClubDao {
 	}
 	
 	public int insertClub(SqlSessionTemplate sqlSession, Club c) {
-		return sqlSession.insert("clubMapper.insertClub", c);
+		int result = 0;
+		
+		sqlSession.insert("clubMapper.insertClub", c);
+		
+		result = c.getClubNo();
+		
+		return result;
 	}
 
 	public int insertAttachment(SqlSessionTemplate sqlSession, Attachment at) {
 		return sqlSession.insert("attachmentMapper.insertAttachment", at);
+	}
+
+	public int insertChMember(SqlSessionTemplate sqlSession, Club c) {
+		return sqlSession.insert("challengeMapper.insertChMember", c);
 	}
 
 }

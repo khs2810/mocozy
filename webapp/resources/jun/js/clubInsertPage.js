@@ -115,7 +115,7 @@ function fileUpload(fileList){
 
 	insertFileApi(fd, function(nameList){
 		for(let name of nameList) {
-			$("#summernote").summernote('insertImage', "/summer" + name);	 
+			$("#summernote").summernote('insertImage', "/mocozy" + name);	 
 		}
 	});
 }

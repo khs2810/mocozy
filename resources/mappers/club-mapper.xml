@@ -113,8 +113,7 @@
 					#{userNo},
 					#{clubTitle},
 					#{clubType},
-					<!-- #{clubContent}, -->
-					'글 내용',
+					#{clubContent},
 					#{address},
 					#{addressDetail},
 					#{eventDate},
@@ -125,7 +124,11 @@
 					#{question},
 					#{thumbnailImg},
 					#{categoryName1},
-					#{categoryName2});
-	</insert>
+					#{categoryName2})
+			RETURNING club_no;
 
+		<selectKey keyProperty="clubNo" order="AFTER" resultType="int">
+			SELECT CURRVAL('SEQ_CNO') AS clubNo
+		</selectKey>
+	</insert>
 </mapper>
