@@ -83,13 +83,16 @@ button:hover {
 }
 
 .club_title_info{
-    margin-top: 130px;
+    margin-top: 105px;
     margin-bottom: 20px;
 }
 
 .club_detail_info {
-    height: 400px;
-    border: solid black 1px;
+    min-height: 400px;
+    background-color: white;
+    margin: 0 25px;
+    border-radius: 24px;
+    padding: 25px;
 }
 
 .club_member_info{
@@ -557,4 +560,9 @@ button:hover {
 
 .payment_bottom_right li {
 	list-style-type: none;
+}
+
+#club_title{
+	width: 500px;
+	text-align: center;
 }

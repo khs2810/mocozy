@@ -21,9 +21,9 @@
         <div id="wrap_club">
             <!-- 제목 프로필 -->
             <div id="club_main_img">
-                <img src="${pageContext.request.contextPath}/resources/teo/img/clubMainImg.jpg" alt="메인이미지">
+                <img src="${pageContext.request.contextPath}/${c.thumbnailImg}" alt="메인이미지">
             </div>
-            <div class="club_title_profile">
+            <div class="club_title_profile" align="center">
                 <div class="club_profile_img"><img src="${pageContext.request.contextPath}${c.thumbnailImg}" alt="프로필 사진"></div>
                 <div align="center">${c.nickname}</div>
             </div>
@@ -108,7 +108,7 @@
                 		</tr>
                 		<tr>
                 			<td><i class="fa-solid fa-calendar-days"></i> </td>
-                			<td> ${c.eventDate}</td>
+                			<td> ${evDate}</td>
                 		</tr>
                 		<tr>
                 			<td><i class="fa-solid fa-location-dot"></i> </td>
@@ -141,14 +141,25 @@
             <div class="club_member_info" >
                 <h3>리뷰(${reviewList.size()})</h3>
                 <table id="review_table">
-                	<c:forEach var="cr" items="${reviewList}">
-	                	<tr>
-	                        <td style="padding-left: 5px;">${cr.nickname}</td>
-	                        <td style="width: 75%; padding-left: 14px;">${cr.reviewContent}</td>
-	                        <td>${cr.modifyDate}</td>
-	                        <!-- <td>X</td> -->
-	                    </tr>
-                	</c:forEach>
+                	<c:choose>
+                		<c:when test="${reviewList.size() ne 0}">
+	                		<c:forEach var="cr" items="${reviewList}">
+			                	<tr>
+			                        <td style="padding-left: 5px;">${cr.nickname}</td>
+			                        <td style="width: 75%; padding-left: 14px;">${cr.reviewContent}</td>
+			                        <td style="padding-right: 5px;" align="right">${cr.modifyDate}</td>
+			                        <!-- <td>X</td> -->
+			                    </tr>
+		                	</c:forEach>
+                		</c:when>
+	                	<c:otherwise>
+	                		<tr>
+            				<td colspan="3" align="center">
+            					등록된 리뷰가 없습니다.
+            				</td>
+            			</tr>
+	                	</c:otherwise>
+	                </c:choose>
                 </table>
             </div>
             <br>
