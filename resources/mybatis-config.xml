@@ -17,6 +17,7 @@
  		<typeAlias type="com.kh.mocozy.club.model.vo.ClubReview" alias="ClubReview" />
  		<typeAlias type="com.kh.mocozy.common.model.vo.Attachment" alias="Attachment"/>
  		<typeAlias type="com.kh.mocozy.club.model.vo.Challenge" alias="Challenge" />
+ 		<typeAlias type="com.kh.mocozy.club.model.vo.Request" alias="Request"/>
  	</typeAliases>
  	
  	<!-- 
