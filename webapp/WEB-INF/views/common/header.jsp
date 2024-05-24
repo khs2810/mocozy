@@ -149,18 +149,33 @@
 				</div>
 
 				<%-- 로그인바 - 회원정보 --%>
-				<div class="userId">
+				<!-- <div class="userId">
 					<div class="profile" href="_blank">
 						<img class="profileImg" src="_blank" alt="image" />
 					</div>
 					<div class="alarm">+99</div>
 					<button class="userName" id="userName" type="button">
 						떡꼬치대마왕 님</button>
-				</div>
+				</div> -->
 				<%-- 로그인바 - 로그인 --%>
-				<%-- <div class="userId">
-            <a href="_blank">로그인</a>
-      </div> --%>
+				<div class="userId">
+				<c:choose>
+		         	<c:when test="${empty loginUser}">
+			              <!-- 로그인 전 -->
+			              <a href="loginPage.me">로그인</a>
+		         	</c:when>
+			             <c:otherwise>
+				            <!-- 로그인 후 -->
+				            <div class="profile" href="_blank">
+								<img class="profileImg" src="_blank" alt="image" />
+							</div>
+							<div class="alarm">+99</div>
+				              <button class="userName" id="userName" type="button">
+				              	${loginUser.userName} 님</button>
+			             </c:otherwise>
+		         </c:choose>
+            
+      </div>
 			</div>
 		</div>
 

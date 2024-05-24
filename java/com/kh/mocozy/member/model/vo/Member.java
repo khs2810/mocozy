@@ -23,8 +23,8 @@ public class Member {
 	private String nickname;
 	private String phone;
 	private Date birth;
-	private Date enroll_date;
-	private Date modify_date;
+	private Date enrollDate;
+	private Date modifyDate;
 	private String introduce;
 	private String profileImg;
 	private int point;
