@@ -52,9 +52,12 @@
             <input type="text">
             <button id="notice_search-btn">검 색</button>
         </div>
-
-        <button class="notice_write_btn background_color_green color_white font_weight_bold" 
+        
+       	<c:if test="${loginUser.admin eq 'Y'}">
+       		<button class="notice_write_btn background_color_green color_white font_weight_bold" 
         	onclick="location.href='enrollForm.no'">작 성</button>
+       	</c:if>
+        
         <div class="paging_bar">
         	<c:if test="${pi.currentPage ne 1}">
 				<button class="page_btn"><i class="fa-solid fa-angle-left" onclick="location.href='list.no?cpage=${pi.currentPage - 1}'"></i></button>

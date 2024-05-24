@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.club.model.vo.ClubReview;
+import com.kh.mocozy.club.model.vo.Request;
 import com.kh.mocozy.common.model.vo.Attachment;
 
 @Repository
@@ -40,6 +41,22 @@ public class ClubDao {
 
 	public int insertChMember(SqlSessionTemplate sqlSession, Club c) {
 		return sqlSession.insert("challengeMapper.insertChMember", c);
+	}
+
+	public ArrayList<Club> listClub(SqlSessionTemplate sqlSession, int uno) {
+		return (ArrayList)sqlSession.selectList("clubMapper.listClub", uno);
+	}
+
+	public Club selectClubList(SqlSessionTemplate sqlSession, int uno) {
+		return sqlSession.selectOne("clubMapper.selectClubList", uno);
+	}
+
+	public ArrayList<Request> selectRequestList(SqlSessionTemplate sqlSession, int cno) {
+		return (ArrayList)sqlSession.selectList("clubMapper.selectRequestList", cno);
+	}
+
+	public int acceptRequest(SqlSessionTemplate sqlSession, int rqno) {
+		return sqlSession.update("clubMapper.acceptRequest", rqno);
 	}
 
 }

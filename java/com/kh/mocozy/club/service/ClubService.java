@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.club.model.vo.ClubReview;
+import com.kh.mocozy.club.model.vo.Request;
 import com.kh.mocozy.common.model.vo.Attachment;
 
 public interface ClubService {
@@ -22,4 +23,11 @@ public interface ClubService {
 
 	int insertChMember(Club c);
 
+	ArrayList<Club> listClub(int uno);
+
+	Club selectClubList(int uno);
+
+	ArrayList<Request> requestList(int cno);
+
+	int acceptRequest(int rqno);
 }
