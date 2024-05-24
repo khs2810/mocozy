@@ -186,7 +186,7 @@
 				<%--카테고리 버튼--%>
 				<div class="categories">
 					<div class="cate">
-						<button class="catebutton" type="button" id="cateButton">
+						<button class="catebtn" type="button" id="cateButton">
 							<img class="cateIcon" src="_blank" alt="">
 							<p class="cateTitle">카테고리</p>
 						</button>

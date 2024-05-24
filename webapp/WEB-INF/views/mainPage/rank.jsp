@@ -8,35 +8,6 @@
 <!-- 공용 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<script
-	src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-<script src="https://kit.fontawesome.com/91f9609a45.js"
-	crossorigin="anonymous"></script>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-	href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100..900&display=swap"
-	rel="stylesheet">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-
-<!-- include libraries(jQuery, bootstrap) -->
-<link
-	href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"
-	rel="stylesheet">
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script
-	src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-
-<!-- include summernote css/js -->
-<link
-	href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css"
-	rel="stylesheet">
-<script
-	src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
-<!-- -->
 
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/jo/css/common_css/style.css">
@@ -65,8 +36,8 @@
 							<div class="gap">
 
 								<div class="container">
-									<a href="_blank"> <img class="img" alt="클래스 썸네일"
-										srcset="_blank 1x, _blank 2x">
+									<a href="_blank"> 
+									<img class="img" src="_blank">
 									</a>
 								</div>
 
@@ -80,7 +51,7 @@
 						</div>
 
 						<div class="circle">
-							<div class="box">
+							<div class="iconbox">
 								<div class="c">
 									<div class="graycontent">
 										<img class="icon" />
@@ -100,10 +71,10 @@
 						<div class="fullscreen">
 							<div class="items">
 
-								<div class="contentcard">
+								<div class="rankcontentcard">
 									<a href="_blank">
 										<div class="aspect">
-											<img class="img" srcset="_blank 1x, _blank 2x">
+											<img class="img" src="_blank">
 										</div>
 									</a>
 								</div>
@@ -119,7 +90,7 @@
 						</div>
 
 						<div class="one">
-							<div class="box">
+							<div class="iconbox">
 								<div class="c">
 									<div class="graycontent">
 										<img class="icon" src="_blank" /> </img>
@@ -140,10 +111,10 @@
 						<div class="fullscreen">
 							<div class="items">
 
-								<div class="contentcard">
+								<div class="rankcontentcard">
 									<a href="_blank">
 										<div class="aspect">
-											<img class="img" srcset="_blank 1x, _blank 2x" />
+											<img class="img" src="_blank" />
 										</div>
 									</a>
 								</div>
@@ -159,10 +130,10 @@
 						</div>
 
 						<div class="one">
-							<div class="box">
+							<div class="iconbox">
 								<div class="c">
 									<div class="graycontent">
-										<img src="_blank" class="icon"> </img>
+										<img src="_blank" class="icon">
 									</div>
 								</div>
 							</div>
@@ -180,9 +151,9 @@
 						<div class="fullscreen">
 							<div class="items">
 
-								<div class="contentcard">
-									<a href="_blank"> <img class="img"
-										srcset="_blank 1x, _blank 2x" />
+								<div class="rankcontentcard">
+									<a href="_blank">
+									 <img class="img" src="_blank"/>
 									</a>
 								</div>
 
@@ -197,10 +168,10 @@
 						</div>
 
 						<div class="one">
-							<div class="box">
+							<div class="iconbox">
 								<div class="c">
 									<div class="graycontent">
-										<img class="icon" src="_blank"> </img>
+										<img class="icon" src="_blank">
 									</div>
 								</div>
 							</div>
@@ -218,10 +189,10 @@
 						<div class="fullscreen">
 							<div class="items">
 
-								<div class="contentcard">
+								<div class="rankcontentcard">
 									<a href="_blank">
 										<div class="aspect">
-											<img class="img" srcset="_blank 1x, _blank 2x" />
+											<img class="img" src="_blank" />
 										</div>
 									</a>
 								</div>
@@ -237,7 +208,7 @@
 						</div>
 
 						<div class="one">
-							<div class="box">
+							<div class="iconbox">
 								<div class="c">
 									<div class="graycontent">
 										<img class="icon" src="_blank" />
@@ -253,7 +224,6 @@
 							실시간 랭킹 더보기 <img class="icon" src="_blank" />
 						</button>
 					</a>
-
 				</div>
 			</div>
 		</div>
