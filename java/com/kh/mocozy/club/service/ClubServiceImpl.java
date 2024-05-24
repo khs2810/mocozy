@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kh.mocozy.club.model.dao.ClubDao;
 import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.club.model.vo.ClubReview;
+import com.kh.mocozy.club.model.vo.Request;
 import com.kh.mocozy.common.model.vo.Attachment;
 
 @Service
@@ -50,5 +51,25 @@ public class ClubServiceImpl implements ClubService {
 	@Override
 	public int insertChMember(Club c) {
 		return clubDao.insertChMember(sqlSession, c);
+	}
+
+	@Override
+	public ArrayList<Club> listClub(int uno) {
+		return clubDao.listClub(sqlSession, uno);
+	}
+
+	@Override
+	public Club selectClubList(int uno) {
+		return clubDao.selectClubList(sqlSession, uno);
+	}
+
+	@Override
+	public ArrayList<Request> requestList(int cno) {
+		return clubDao.selectRequestList(sqlSession, cno);
+	}
+
+	@Override
+	public int acceptRequest(int rqno) {
+		return clubDao.acceptRequest(sqlSession, rqno);
 	}
 }
