@@ -105,4 +105,19 @@
 				)
 	</insert>
 	
+	<update id="updateNotice">
+		UPDATE notice 
+			SET notice_title = '${noticeTitle}',
+				notice_type = '${noticeType}',
+				notice_content = '${noticeContent}',
+				modify_date = CURRENT_DATE
+		WHERE notice_no = ${noticeNo}
+	</update>
+	
+	<update id="deleteNotice">
+		UPDATE notice 
+			SET STATUS = 'N'
+		WHERE notice_no = #{nno}
+	</update>
+	
 </mapper>
