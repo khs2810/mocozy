@@ -38,6 +38,14 @@
 		<result column="CLUB_NO" property="clubNo"/>
 		<result column="USER_NO" property="userNo"/>
 	</resultMap>
+	<resultMap type="Request" id="requestResult">
+		<result column="REQUEST_NO" property="requestNo"/>
+		<result column="USER_NO" property="userNo"/>
+		<result column="CLUB_NO" property="clubNo"/>
+		<result column="ANSWER" property="answer"/>
+		<result column="CREATE_DATE" property="createDate"/>
+		<result column="STATUS" property="status"/>
+	</resultMap>
 	
 	<update id="increaseCount">
 		UPDATE CLUB 
@@ -131,4 +139,48 @@
 			SELECT CURRVAL('SEQ_CNO') AS clubNo
 		</selectKey>
 	</insert>
+	
+	<select id="listClub">
+		SELECT CLUB_NO,
+			   USER_NO,
+			   CLUB_TITLE,
+			   CAPACITY,
+			   QUESTION,
+			   STATUS
+		FROM public.CLUB
+			join MEMBER USING (USER_NO)
+		WHERE public.CLUB.STATUS = 'Y'
+			AND USER_NO = #{uno};
+	</select>
+		
+	<select id="selectClubList">
+		SELECT CLUB_NO,
+			   USER_NO,
+			   CLUB_TITLE,
+			   CAPACITY,
+			   QUESTION,
+			   STATUS
+		FROM public.CLUB
+			join MEMBER USING (USER_NO)
+		WHERE public.CLUB.STATUS = 'Y'
+			AND USER_NO = #{uno};
+	</select>
+	
+	<select id="selectRequestList" resultMap="requestResult">
+		SELECT REQUEST_NO,
+				USER_NO,
+				CLUB_NO,
+				ANSWER,
+				CREATE_DATE,
+				STATUS
+		FROM REQUEST
+		WHERE CLUB_NO = #{cno};
+	</select>
+	
+	<update id="acceptRequest">
+		UPDATE REQUEST 
+		SET STATUS = 'Y'
+		WHERE
+			REQUEST_NO = #{rqno};
+	</update>
 </mapper>
