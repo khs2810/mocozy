@@ -13,15 +13,13 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Notice {
-	private int noticeNo;
-	private String noticeTitle;
-	private String noticeType;
-	private int userNo;
-	private String noticeContent;
-	private int count;
+public class NoticeReply {
+	private int replyNo;
+	private String replyContent;
 	private Date createDate;
 	private Date modifyDate;
 	private String status;
+	private int noticeNo;
+	private int user_no;
 	private String nickname;
 }

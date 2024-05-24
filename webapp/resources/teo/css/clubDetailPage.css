@@ -83,13 +83,16 @@ button:hover {
 }
 
 .club_title_info{
-    margin-top: 130px;
+    margin-top: 105px;
     margin-bottom: 20px;
 }
 
 .club_detail_info {
-    height: 400px;
-    border: solid black 1px;
+    min-height: 400px;
+    background-color: white;
+    margin: 0 25px;
+    border-radius: 24px;
+    padding: 25px;
 }
 
 .club_member_info{
@@ -544,9 +547,22 @@ button:hover {
 }
 
 .payment_top_right {
-	width: 320px;
+	width: 340px;
 }
 
 .payment_top_right p {
 	margin: 10px 0 0 0;
+}
+
+.payment_bottom_right{
+	width: 340px;
+}
+
+.payment_bottom_right li {
+	list-style-type: none;
+}
+
+#club_title{
+	width: 500px;
+	text-align: center;
 }

@@ -32,48 +32,15 @@
                 </tr>
             </thead>
             <tbody align="center">
-                <tr>
-                    <td>6</td>
-                    <td class="notice_title" ><p onclick="location.href = 'detail.no'">[공지] 5.5.0버전 업데이트 안내</p></td>
-                    <td>12</td>
-                    <td>관리자</td>
-                    <td>24.05.02</td>
-                </tr>
-                <tr>
-                    <td>5</td>
-                    <td class="notice_title"><p>[공지] 5.5.0버전 업데이트 안내</p></td>
-                    <td>12</td>
-                    <td>관리자</td>
-                    <td>24.05.02</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td class="notice_title"><p>[공지] 5.5.0버전 업데이트 안내</p></td>
-                    <td>12</td>
-                    <td>관리자</td>
-                    <td>24.05.02</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td class="notice_title"><p>[공지] 5.5.0버전 업데이트 안내</p></td>
-                    <td>12</td>
-                    <td>관리자</td>
-                    <td>24.05.02</td>
-                </tr>
-                <tr>
-                    <td>2</td>
-                    <td class="notice_title"><p>[공지] 5.5.0버전 업데이트 안내</p></td>
-                    <td>12</td>
-                    <td>관리자</td>
-                    <td>24.05.02</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td class="notice_title"><p>[이벤트] 이벤트입니다</p></td>
-                    <td>12</td>
-                    <td>관리자</td>
-                    <td>24.05.02</td>
-                </tr>
+            	<c:forEach var="n" items="${list}">
+            		<tr>
+	                    <td>${n.noticeNo}</td>
+	                    <td class="notice_title" ><p onclick="location.href = 'detail.no?nno=${n.noticeNo}'">[${n.noticeType}] ${n.noticeTitle}</p></td>
+	                    <td>${n.count}</td>
+	                    <td>${n.nickname}</td>
+	                    <td>${n.modifyDate}</td>
+	                </tr>
+            	</c:forEach>
             </tbody>
         </table>
         <div class="notice_search_bar_div">
@@ -89,10 +56,22 @@
         <button class="notice_write_btn background_color_green color_white font_weight_bold" 
         	onclick="location.href='enrollForm.no'">작 성</button>
         <div class="paging_bar">
-            <button disabled>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button><i class="fa-solid fa-angle-right"></i></button>
+        	<c:if test="${pi.currentPage ne 1}">
+				<button class="page_btn"><i class="fa-solid fa-angle-left" onclick="location.href='list.no?cpage=${pi.currentPage - 1}'"></i></button>
+			</c:if>
+        	<c:forEach var="p" begin="${pi.startPage}" end="${pi.endPage}">
+        		<c:choose>
+        			<c:when test="${p eq pi.currentPage }">
+        				<div class="notice_cpage">${p}</div>
+        			</c:when>
+        			<c:otherwise>
+        			<button class="page_btn" onclick="location.href='list.no?cpage=${p}'">${p}</button>
+        			</c:otherwise>
+        		</c:choose>
+        	</c:forEach>
+			<c:if test="${pi.currentPage ne pi.maxPage}">
+				<button class="page_btn" onclick="location.href='list.no?cpage=${pi.currentPage + 1}'"><i class="fa-solid fa-angle-right"></i></button>
+			</c:if>
         </div>
     </div>
 </body>

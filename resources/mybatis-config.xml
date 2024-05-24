@@ -16,6 +16,8 @@
  		<typeAlias type="com.kh.mocozy.club.model.vo.Club" alias="Club" />
  		<typeAlias type="com.kh.mocozy.club.model.vo.ClubReview" alias="ClubReview" />
  		<typeAlias type="com.kh.mocozy.common.model.vo.Attachment" alias="Attachment"/>
+ 		<typeAlias type="com.kh.mocozy.board.model.vo.Notice" alias="Notice"/>
+ 		<typeAlias type="com.kh.mocozy.board.model.vo.NoticeReply" alias="NoticeReply"/>
  		<typeAlias type="com.kh.mocozy.club.model.vo.Challenge" alias="Challenge" />
  		<typeAlias type="com.kh.mocozy.club.model.vo.Request" alias="Request"/>
  	</typeAliases>
@@ -29,7 +31,9 @@
 	<mappers>
  		<mapper resource="/mappers/club-mapper.xml"/>
  		<mapper resource="/mappers/attachment-mapper.xml"/>
+ 		<mapper resource="/mappers/board-mapper.xml"/>
  		<mapper resource="/mappers/challenge-mapper.xml"/>
+ 		<mapper resource="/mappers/member-mapper.xml"/>
  	</mappers>
 
  	

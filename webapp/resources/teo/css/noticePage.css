@@ -4,6 +4,7 @@
     position: relative; 
 }
 
+
 #notice_header {
     display: flex;
     margin-top: 40px;
@@ -28,7 +29,7 @@
     justify-content: center;
 }
 
-.paging_bar button {
+.page_btn {
     border: solid black 1px;
     width: 28px;
     height: 28px;
@@ -62,9 +63,11 @@
 }
 
 .notice_detail_content{
-    width: 700px;
-    margin: 40px auto;
-    margin-top: 80px;
+    width: 800px;
+    min-height: 300px;
+    margin: 20px auto;
+    padding: 30px;
+    margin-top: 20px;
 }
 
 .notice_detail_update_btn button{
@@ -275,4 +278,26 @@
 
 #notice_list_table p {
 	margin: 0px;
+}
+
+#notice_list_table p:hover {
+	transform: scale(1.02);
+}
+
+.notice_cpage {
+	border: solid black 1px;
+    width: 28px;
+    height: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 70px 5px;
+    cursor: pointer;
+    background-color: #70C9A0;
+    color: white;
+    font-size: 16px;
+}
+
+#wrapper_notice > p {
+	margin-left: 15px;
 }

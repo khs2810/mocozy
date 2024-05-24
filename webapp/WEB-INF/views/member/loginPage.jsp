@@ -7,11 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mo-Cozy - Login</title>
     
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/loginPage_css/LoginPage.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/loginPage_css/loginPage.css" />
 
 </head>
 <body class="Login_page">
-    <form action="">
+    <form action="login.me">
         <div class="Login-content">
             <img src="${pageContext.request.contextPath}/resources/koo/upfile/loginPage_img/logo.png" id="logo" alt="">
                 <h1>
@@ -31,7 +31,7 @@
             <br>
 
             <div>
-                <input type="submit" class="login-btn" value="로그인">
+                <button type="submit" class="login-btn">로그인</button>
             </div>
 
             <div class="flex justify-center gap-1 mt-6 text-sm text-taling-gray-700 ">
@@ -46,13 +46,13 @@
             <br>
 
             <div class="text-taling-gray-700">
-                <a href="signInPage" class="text-taling-pink-400">회원가입</a>
+                <a href="signInPage.me" class="text-taling-pink-400">회원가입</a>
             </div>
             
             <div class="line">또는</div>
 
             <div class="select-login">
-                <img src="./img/kakao_login_medium_wide.png" alt="">
+                <img src="${pageContext.request.contextPath}/resources/koo/upfile/loginPage_img/kakao_login_medium_wide.png" alt="">
             </div>
         </div>
 
