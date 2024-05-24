@@ -33,8 +33,8 @@
                     </button>
                     <!-- 닉네임 및 계정이메일 -->
                     <div class="account">
-                        <h5>떡꼬치대마왕 님</h5>
-                        <h6>mocozygood@gmail.com</h6>
+                        <h5>${loginUser.nickname}</h5>
+                        <h6>${loginUser.userId}</h6>
 
                         <!-- 포인트 -->
                         <div class="account point">
@@ -124,7 +124,7 @@
                     <h5>닉네임(별명)</h5>
                 </div>
                 <div class="box">
-                    <input type="text" class="textbox" value="떡꼬치대마왕">
+                    <input type="text" class="textbox" value="${loginUser.nickname}">
                 </div>
             </div>
             <hr>
@@ -147,7 +147,7 @@
                 <div class="content-title">
                     <h5>이메일(로그인 ID)</h5>
                 </div>
-                <p>mocozygood@gmail.com</p>
+                <p>${loginUser.userId}</p>
             </div>
             <hr>
 
@@ -217,7 +217,7 @@
                     <h5>전화번호</h5>
                 </div>
                 <div class="box">
-                    <input type="text" class="textbox" value="010-8282-9999">
+                    <input type="text" class="textbox" value="${loginUser.phone}">
                 </div>
                 <div class="change">
                     <!-- Button to Open the Modal -->
@@ -323,7 +323,7 @@
                         <!-- Modal body -->
                         <div class="modal-body">
                             <div>
-                                <h5>(떡꼬치대마왕) 님 <br>
+                                <h5>${loginUser.nickname} 님 <br>
                                     마지막 기회에요. <br>
                                     정말로 탈퇴하시겠어요?</h5>
                             </div>
@@ -334,7 +334,7 @@
                                     <h6>이메일 (로그인 ID)</h6>
                                 </div>
                                 <div>
-                                    mocozygood@gmail.com
+                                    ${loginUser.userId}
                                 </div>
                             </div>
                             <div class="main-object height">
@@ -414,7 +414,7 @@
                 <div class="profile-modal-body">
                     <div class="m-userProfile">
                         <img src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" class="m-profileImg">
-                        <span class="nickname">떡꼬치대마왕</span>
+                        <span class="nickname">${loginUser.nickname}</span>
                         <span> 님</span>
                     </div>
                     <div class="m-manner">

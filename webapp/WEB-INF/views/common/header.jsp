@@ -171,7 +171,7 @@
 							</div>
 							<div class="alarm">+99</div>
 				              <button class="userName" id="userName" type="button">
-				              	${loginUser.userName} 님</button>
+				              	${loginUser.nickname} 님</button>
 			             </c:otherwise>
 		         </c:choose>
             
