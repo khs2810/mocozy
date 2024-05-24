@@ -64,7 +64,7 @@
 			<a class="Togglelink" id="Togglelink" href="myPage.me"> <img
 				src="_blank" class="Toggleimg" alt="마이페이지" />
 				<div class="Toggle">마이페이지</div>
-			</a> <a class="Togglelink" id="Togglelink" href="_blank"> <img
+			</a> <a class="Togglelink" id="Togglelink" href="logout.me"> <img
 				src="_blank" class="Toggleimg" alt="로그아웃" />
 				<div class="Toggle">로그아웃</div>
 			</a> <a class="Togglelink" id="Togglelink" href="_blank"> <img
@@ -171,7 +171,7 @@
 							</div>
 							<div class="alarm">+99</div>
 				              <button class="userName" id="userName" type="button">
-				              	${loginUser.userName} 님</button>
+				              	${loginUser.nickname} 님</button>
 			             </c:otherwise>
 		         </c:choose>
             

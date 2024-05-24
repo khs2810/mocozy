@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.mocozy.board.model.dao.BoardDao;
 import com.kh.mocozy.board.model.vo.Notice;
+import com.kh.mocozy.board.model.vo.NoticeReply;
 import com.kh.mocozy.common.model.vo.PageInfo;
 
 @Service
@@ -41,6 +42,26 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int replyListCount(int nno) {
 		return boardDao.replyListCount(sqlSession, nno);
+	}
+
+	@Override
+	public ArrayList<NoticeReply> selectNoticeReplyList(int nno, PageInfo pi) {
+		return boardDao.selectNoticeReplyList(sqlSession, nno, pi);
+	}
+
+	@Override
+	public int insertNotice(Notice n) {
+		return boardDao.insertNotice(sqlSession, n);
+	}
+
+	@Override
+	public int updateNotice(Notice n) {
+		return boardDao.updateNotice(sqlSession, n);
+	}
+
+	@Override
+	public int deleteNotice(int nno) {
+		return boardDao.deleteNotice(sqlSession, nno);
 	}
 	
 }

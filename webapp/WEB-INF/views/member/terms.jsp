@@ -12,7 +12,7 @@
 
 </head>
 <body class="Login_page">
-    <form action="">
+    <form action="insert.me">
         <div class="Login-content">
             <img src="${pageContext.request.contextPath}/resources/koo/upfile/loginPage_img/logo.png" id="logo" alt="">
                 <h1>
@@ -45,7 +45,10 @@
             </div>
 
             <div class="start-account">
-                <input type="button" class="start-btn" value="시작하기">
+            	<input type="hidden" name="nickname" value="${m.nickname}">
+            	<input type="hidden" name="userId" value="${m.userId}">
+            	<input type="hidden" name="userPwd" value="${m.userPwd}">
+                <button type="submit" class="start-btn" id="startBtn">시작하기</button>
             </div>
         </div>
 
@@ -100,7 +103,46 @@
                 }
               });
             });
+            
+            
           </script>
+          
+          <script>
+			    document.getElementById('startBtn').addEventListener('click', function() {
+			        // 회원가입 정보를 가져오는 코드
+			        const signUpData = {
+			            nickname: document.getElementById('nickname').value,
+			            userId: document.getElementById('userId').value,
+			            userPwd: document.getElementById('userPwd').value,
+			            // 이하 필요한 정보들을 추가로 가져옴
+			        };
+			
+			        // 서버로 회원가입 정보를 전송
+			        fetch('insert.me', {
+			            method: 'POST',
+			            headers: {
+			                'Content-Type': 'application/json',
+			            },
+			            body: JSON.stringify(signUpData), // 데이터를 JSON 형식으로 변환하여 전송
+			        })
+			        .then(response => {
+			            if (!response.ok) {
+			                throw new Error('Network response was not ok');
+			            }
+			            return response.text(); // 응답 텍스트 반환
+			        })
+			        .then(data => {
+			            // 서버 응답 처리
+			            // 예를 들어, 회원가입 성공/실패 메시지 출력 등
+			            console.log(data); // 서버에서 반환된 데이터 출력 (선택사항)
+			            // 회원가입 성공 시 메인 페이지로 이동 등
+			            window.location.href = '/'; // 이동할 페이지 URL 설정 (메인 페이지로 이동)
+			        })
+			        .catch(error => {
+			            console.error('There has been a problem with your fetch operation:', error);
+			        });
+			    });
+			</script>
     </form>
 </body>
 </html>

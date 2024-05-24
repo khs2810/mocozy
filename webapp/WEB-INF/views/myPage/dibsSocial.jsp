@@ -41,8 +41,8 @@
                     </button>
                     <!-- 닉네임 및 계정이메일 -->
                     <div class="account">
-                        <h5>떡꼬치대마왕 님</h5>
-                        <h6>mocozygood@gmail.com</h6>
+                        <h5>${loginUser.nickname}</h5>
+                        <h6>${loginUser.userId}</h6>
 
                         <!-- 포인트 -->
                         <div class="account point">

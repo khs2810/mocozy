@@ -75,4 +75,49 @@
 			AND NOTICE_NO = #{nno};
 	</select>
 	
+	<select id="selectNoticeReplyList" resultMap="noticeReplyResult">
+		SELECT  reply_no,
+	    		reply_content,
+	    		nr.modify_date,
+	   			user_no,
+				nickname
+		FROM notice_reply nr
+		JOIN member USING (user_no)
+		WHERE nr.status = 'Y'
+			AND notice_no = #{nno}
+		ORDER BY reply_no DESC
+	</select>
+	
+	<insert id="insertNotice">
+		INSERT INTO notice (
+				notice_no,
+				notice_title,
+				notice_type,
+				user_no,
+				notice_content
+				)
+		VALUES (
+				NEXTVAL('SEQ_NNO'),
+				#{noticeTitle},
+				#{noticeType},
+				#{userNo},
+				#{noticeContent}
+				)
+	</insert>
+	
+	<update id="updateNotice">
+		UPDATE notice 
+			SET notice_title = '${noticeTitle}',
+				notice_type = '${noticeType}',
+				notice_content = '${noticeContent}',
+				modify_date = CURRENT_DATE
+		WHERE notice_no = ${noticeNo}
+	</update>
+	
+	<update id="deleteNotice">
+		UPDATE notice 
+			SET STATUS = 'N'
+		WHERE notice_no = #{nno}
+	</update>
+	
 </mapper>

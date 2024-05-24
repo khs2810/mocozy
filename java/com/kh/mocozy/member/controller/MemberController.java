@@ -96,7 +96,7 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-//	회원가입
+//	회원가입 페이지
 	@RequestMapping("signInPage.me")
 	public String signInPageView() {
 		return "member/signInPage";
@@ -115,33 +115,6 @@ public class MemberController {
 		}
 		
 		//return memberService.idCheck(checkId) > 0 ? "NNNNN" : "NNNNY";
-	}
-	
-	@RequestMapping("insert.me")
-	public String insertMember(Member m, HttpSession session, Model model) {
-		/*
-		 * 1. 한글깨짐문제 발생 => web.xml에 스프링에서 제공하는 인코딩 필터 등록
-		 * 2. 나이를 입력하지 않을 경우 int자료형에 빈문자열을 대입해야하는 경우가 발생한다.
-		 * => 400에러 방생  Member의 age필드 자료형을 String으로 변경해주면 된다.
-		 * 3. 비밀번호가 사용자 입력 그대로 전달이 된다(평문)
-		 * Bcrypt방식을 이용해서 암호화를 한 후 저장을 하겠다.
-		 * => 스프링시큐리티에서 제공하는 모듈을 이용<pom.xml에 라이브러리 추가>
-		 */
-		
-		//암호화작업
-		String encPwd = bcryptPasswordEncoder.encode(m.getUserPwd());
-		
-		m.setUserPwd(encPwd);
-		
-		int result = memberService.insertMember(m);
-		
-		if (result > 0) {
-			session.setAttribute("alertMsg", "성공적으로 회원가입이 완료되었습니다.");
-			return "redirect:/";
-		} else {
-			model.addAttribute("errorMsg", "회원가입 실패");
-			return "common/errorPage";
-		}
 	}
 	
 //	마이페이지 
@@ -197,8 +170,23 @@ public class MemberController {
 
 //	약관 동의
 	@RequestMapping("terms.me")
-	public String termsView() {
+	public String termsView(Member m, Model model) {
+		
+		model.addAttribute("m", m);
+		
 		return "member/terms";
+	}
+	
+	@RequestMapping("insert.me")
+	public String insertMember(Member m, HttpSession session, Model model) {
+		int result = memberService.insertMember(m);
+		if (result > 0) {
+			session.setAttribute("alertMsg", "성공적으로 회원가입이 완료되었습니다.");
+			return "redirect:/";
+		} else {
+			model.addAttribute("errorMsg", "회원가입 실패");
+			return "common/errorPage";
+		}
 	}
 
 
