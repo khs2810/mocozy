@@ -7,18 +7,19 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.common.model.vo.Attachment;
+import com.kh.mocozy.member.model.vo.Member;
 
 @Repository
 public class MainDao {
 	
 
-	public ArrayList<Attachment> selectAttachList(SqlSessionTemplate sqlSession, int cno) {
+	public ArrayList<Club> selectSocial(SqlSessionTemplate sqlSession, int cno) {
 		System.out.println(cno);
-		return (ArrayList)sqlSession.selectList("mainMapper.selectAttachList", cno);
+		return (ArrayList)sqlSession.selectList("mainMapper.selectSocial", cno);
 	}
 
-	public ArrayList<Club> selectSocial(SqlSessionTemplate sqlSession, int cno) {
-		return (ArrayList)sqlSession.selectList("mypageMapper.selectRestList", cno);
+	public Member selectClubMem(SqlSessionTemplate sqlSession, int uno) {
+		return sqlSession.selectOne("MainMapper.selectClubMem", uno);
 	}
 	
 }

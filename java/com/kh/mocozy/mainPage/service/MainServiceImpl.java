@@ -7,8 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.mocozy.club.model.vo.Club;
-import com.kh.mocozy.common.template.vo.Attachment;
 import com.kh.mocozy.mainPage.model.dao.MainDao;
+import com.kh.mocozy.member.model.vo.Member;
 
 @Service
 public class MainServiceImpl implements MainService {
@@ -18,16 +18,13 @@ public class MainServiceImpl implements MainService {
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	@Override
-	public ArrayList<Club> selectSocial(int clubno) {
-		ArrayList<Club> list = mainDao.selectSocial(sqlSession, clubno);
+    @Override
+    public ArrayList<Club> selectSocial(int cno) {
+        return mainDao.selectSocial(sqlSession, cno);
+    }
 
-		for(int i=0; i<list.size(); i++) {
-			ArrayList<Attachment> attachmentList = mainDao.selectAttachList(sqlSession, list.get(i).getClubNo());
-			list.get(i).setClubAtList(attachmentList);
-		}
-
-		sqlSession.close();
-		return list;
-}
+    @Override
+    public Member selectClubMem(int uno) {
+        return mainDao.selectClubMem(sqlSession, uno);
+    }
 }

@@ -1,40 +1,34 @@
+package com.kh.mocozy.mainPage.controller;
+
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.mocozy.club.model.vo.Club;
-import com.kh.mocozy.common.model.vo.Attachment;
 import com.kh.mocozy.mainPage.service.MainService;
+import com.kh.mocozy.mainPage.service.MainServiceImpl;
+import com.kh.mocozy.member.model.vo.Member;
 
 @RestController
 public class MainController {
 	
 	@Autowired
-    private MainService MainService;
+    private MainServiceImpl mService;
 	
 	@RequestMapping("social.ma")
-    public String selectSocial(MainService MainService) {
-        this.MainService = MainService;
-    }
+    public ArrayList<Club> selectSocial(int cno, Model model) {
+		ArrayList<Club> clist = new MainServiceImpl().selectSocial(cno);
+		
+			for (Club c : clist) {
+				Member m = new MainServiceImpl().selectClubMem(c.getUserNo()); 
+				c.setMemberlist(m);
+		
+		}
+		
+		return clist;
+	}
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ModelAndView getSocialList() {
-    	ModelAndView modelAndView = new ModelAndView("jsonView");
-
-        ArrayList<Club> clist = MainService.socialList(c.getclubNo);
-
-		/*
-		 * for (Club c : clist) { Attachment at = MainService.pickclub(c.getClubNo());
-		 * c.setAt(at); }
-		 */
-
-        modelAndView.addObject("clist", clist);
-
-        return modelAndView;
-    }
 }

@@ -23,8 +23,9 @@
 		<!--  1번 -->
 		<div class="screen">
 			<div class="box"  style="background-color: #F5F6F9; !important">
-			
 				<div class="display">
+				
+				
 					<div class="contentcard">
 						<div class="socialing">
 							<a class="cardlink" href="detail.cl?cno=1"> 

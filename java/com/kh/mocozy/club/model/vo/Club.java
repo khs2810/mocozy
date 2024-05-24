@@ -1,7 +1,10 @@
 package com.kh.mocozy.club.model.vo;
 
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.Date;
+
+import com.kh.mocozy.member.model.vo.Member;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -38,4 +41,6 @@ public class Club {
 	private String categoryName1;
 	private String categoryName2;
 	private String eventDateStr;
+	private Member memberlist;
 }
+
