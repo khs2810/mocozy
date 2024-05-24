@@ -7,16 +7,17 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -42,10 +43,24 @@ public class ClubController {
 		if (result > 0) {
 			Club c = clubService.selectClub(cno);
 			ArrayList<ClubReview> reviewList = clubService.listReview(cno);
-//			System.out.println(c);
 			model.addAttribute("c", c);
 			model.addAttribute("reviewList", reviewList);
-//			System.out.println(reviewList);
+			
+			// Timestamp -> (xxxx년 x월 x일(x) 오전 xx시 xx분) 
+	        LocalDateTime dateTime = c.getEventDate().toLocalDateTime();
+	        // 날짜 형식 변환을 위한 포매터
+	        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy년 M월 d일");
+	        String formattedDate = dateTime.format(dateFormatter);
+	        // 요일 가져오기 (짧은 형식)
+	        String dayOfWeek = dateTime.getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.KOREAN);
+	        // 시간 형식 변환을 위한 포매터
+	        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("a h시 m분").withLocale(Locale.KOREAN);
+	        String formattedTime = dateTime.format(timeFormatter);
+	        // 최종 형식 조합
+	        String eventDateDetailInfo = String.format("%s(%s) %s", formattedDate, dayOfWeek, formattedTime);
+	        
+	        model.addAttribute("evDate", eventDateDetailInfo);
+			
 			return "club/clubDetailPage";
 		} else {
 			model.addAttribute("errorMsg", "모임 조회 실패");

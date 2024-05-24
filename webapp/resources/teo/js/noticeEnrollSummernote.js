@@ -37,7 +37,7 @@ $(document).ready(function() {
       }
       insertFileApi(fd, function(nameList){
           for(let name of nameList) {
-              $("#summernote").summernote('insertImage', "/summer/" + name);
+              $("#summernote").summernote('insertImage', "/mocozy/" + name);
           }
       });
       
@@ -47,7 +47,7 @@ $(document).ready(function() {
 
   function insertFileApi(data, callback) {
       $.ajax({
-          url: "upload",
+          url: "upload.no",
           type: "POST",
           data: data, 
           processData: false, //기본이 true로 ture일때는 전송하는 data를 string으로 변환해서 요청
