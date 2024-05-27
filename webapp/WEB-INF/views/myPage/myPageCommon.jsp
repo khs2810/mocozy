@@ -72,7 +72,7 @@
                         <li><a href="dibsChallenge.me" class="snd_title">챌린지</a></li>
                     </ul>
                 </li>
-                <li><a href="">리뷰</a></li>
+                <li><a href="reviewList.cl">리뷰</a></li>
                 <li><a href="">채팅기록</a></li>
             </ul>
         </nav>

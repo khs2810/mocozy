@@ -25,6 +25,32 @@
             </div>
             <hr style="background: lightgray; height: 1px; border: 0;">
             <div class="reviewList">
+            
+            	<c:forEach var="c" items="${list}">
+            		<div class="review">
+	                    <div class="leftPart">
+	                        <img src="${pageContext.request.contextPath}/${c.thumbnailImg}">
+	                    </div>
+	                    <div class="midPart">
+	                        <div class="clubTitle">
+	                            <span>${c.clubTitle}</span>
+	                        </div>
+	                        <div class="clubMsg">
+	                            <pre>모임 종류</pre>
+	                        </div>
+	                    </div>
+	                    <div class="rightPart">
+	                        <div class="scorePart">
+	                            <img src="${pageContext.request.contextPath}/resources/jun/img/star.png">
+	                            <span class="score">4.5</span>
+	                        </div>
+	                        <div class="btnPart">
+	                            <button type="button" class="writeBtn" data-toggle="modal" data-target="#reviewEnrollWindow">리뷰 작성</button>
+	                        </div>
+	                    </div>
+	                </div>
+            	</c:forEach>
+            
                 <div class="review">
                     <div class="leftPart">
                         <img src="${pageContext.request.contextPath}/resources/jun/img/clubImg1.png">
@@ -59,7 +85,7 @@
                             <span>선착순 10분!! 상품은....함정카드 발동!</span>
                         </div>
                         <div class="clubMsg">
-                            <pre>들어오지 않고는 못베길거야</pre>
+                            <pre>모임 종류 : 소셜링<br>파티장 : 누구누구<br>날짜 : 언제언제</pre>
                         </div>
                     </div>
                     <div class="rightPart">
