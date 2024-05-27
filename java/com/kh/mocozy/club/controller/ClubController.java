@@ -274,7 +274,6 @@ public class ClubController {
 		return "club/clubInsertPage";
 	}
 	
-<<<<<<< HEAD
 	@RequestMapping("insert.rq")
 	public String insertRequest(Request r, int pt, Model model) {
 		r.setPoint(pt);
@@ -289,18 +288,12 @@ public class ClubController {
 			model.addAttribute("errorMsg", "모임 참가 신청 실패");
 			return "common/errorPage";
 		}
-		
 	}
 	
-	
-	
-	
-=======
 	@RequestMapping("updateform.cl")
 	public String updateClub(int cno, Model model) {
 		Club c = clubService.selectClub(cno);
 		model.addAttribute("c", c);
 		return "club/clubUpdatePage";
 	}
->>>>>>> 51e8a47f0265ac311785023a8f6f04828a12ae42
 }
