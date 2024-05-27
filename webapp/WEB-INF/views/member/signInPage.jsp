@@ -28,7 +28,7 @@
                     회원 가입하고<br>
                     다양한 모임에서 활동해보세요!
                 </h1>
-         <form action="terms.me" method="post" id="">
+         <form action="terms.me" method="post" id="signUpForm" onsubmit="return validateForm()">
             <div class="enrollForm">
                 <h4>* 닉네임</h4>
                 <div class="content-box">
