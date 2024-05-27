@@ -25,7 +25,7 @@ public interface ClubService {
 
 	ArrayList<Club> listClub(int uno);
 
-	Club selectClubList(int uno);
+	ArrayList<Club> selectClubList(int uno);
 
 	ArrayList<Request> requestList(int cno);
 
