@@ -3,14 +3,16 @@ function checkPass(){
     let userPwd = document.getElementById('user_pwd');
     let checkPwd = document.getElementById('check_pwd');
     let pwdReview = document.getElementById('pwd_review');
-
+    
     if (userPwd.value === checkPwd.value) {
         pwdReview.className = 'pass';
         pwdReview.innerText = '비밀번호가 일치합니다.';
+        
     } else {
         pwdReview.className = 'none_pass';
         pwdReview.innerText = '비밀번호가 다릅니다.';
     }
+    
 }
 
 // 자기소개 글자수
@@ -29,38 +31,19 @@ counter();
 // 비밀번호 변경
 $(document).ready(function(){
     $("#changePasswordButton").click(function(){
-        const currentPassword = $("#currentPassword").val().trim();
-        const newPassword = $("#newPassword").val().trim();
-        const confirmPassword = $("#confirmPassword").val().trim();
-
-        if (!currentPassword || !newPassword || !confirmPassword) {
-            alert("모든 필드를 입력해 주세요.");
-            return;
-        }
-
-        if (newPassword.length < 8) {
-            alert("새 비밀번호는 8자 이상이어야 합니다.");
-            return;
-        }
-
-        if (newPassword !== confirmPassword) {
-            alert("새 비밀번호가 일치하지 않습니다.");
-            return;
-        }
-
+        const formData = $("#changePasswordForm").serialize();
+        
         // AJAX 요청을 통해 비밀번호 변경
         $.ajax({
             url: "/changePassword",
             type: "POST",
-            contentType: "application/json",
-            data: JSON.stringify({
-                currentPassword: currentPassword,
-                newPassword: newPassword
-            }),
+            data: formData,
             success: function(response) {
                 if (response.success) {
-                    alert("비밀번호가 성공적으로 변경되었습니다.");
+                    alert("비밀번호가 성공적으로 변경되었습니다. 다시 로그인해주세요.");
                     $('#myModal').modal('hide');
+                    logout(); // 비밀번호 변경 후 로그아웃 실행
+                    
                 } else {
                     alert(response.message);
                 }
@@ -68,6 +51,24 @@ $(document).ready(function(){
             error: function() {
                 alert("비밀번호 변경 중 오류가 발생했습니다.");
             }
+            
         });
     });
 });
+
+// 세션 삭제 후 로그아웃 페이지로 리다이렉트
+function logout() {
+    
+    $.ajax({
+        url: "/logout",
+        type: "POST",
+        success: function(response) {
+            // 세션 삭제 성공 시 로그아웃 페이지로 리다이렉트
+            window.location.href = "logout.me"; // 로그아웃 페이지의 URL로 변경해주세요.
+        },
+        error: function() {
+            // 오류 발생 시 알림 표시
+            alert("로그아웃 중 오류가 발생했습니다.");
+        }
+    });
+}
