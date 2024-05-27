@@ -158,6 +158,7 @@
 			   C.USER_NO,
 			   CLUB_TITLE,
 			   CLUB_TYPE,
+			   THUMBNAIL_IMG,
 			   C.STATUS
 		  FROM CLUB C
 		  join REQUEST R USING(CLUB_NO)
