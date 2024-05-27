@@ -30,9 +30,8 @@
 }
 
 .header .Toggleimg {
-    border: 1px solid black;
-    width: 1.25rem;
-    height: 1.25rem;
+    width: 2rem;
+    height: 2rem;
     margin-right: 0.75rem;
     color: #4a5568;
 }
@@ -73,9 +72,6 @@
 }
 
 .header .searchlogo{
-    border: 1px solid black;
-    width: 4rem;
-    height: 4rem;
 }
 
 .header .search {
@@ -114,7 +110,6 @@
 }
 
 .header .searchIcon {
-    border: 1px solid black;
     margin-right: 1rem;
     width: 2rem;
     height: 2rem;
@@ -204,7 +199,6 @@
 }
 
 .header .cateIcon {
-    border: 1px solid black;
     width: 3rem;
     height: 3rem;
 }
@@ -273,7 +267,6 @@
     display: none;
     position: relative;
     background: white;
-    box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.15);
 }
 
 .header .grid {
@@ -286,6 +279,12 @@
     padding-top: 1rem;
     font-size: 0.8rem;
     gap: 1rem;
+}
+
+
+.header .categrid {
+	margin-left: 5rem;
+	margin-bottom: 5rem;
 }
 
 .header .getName {

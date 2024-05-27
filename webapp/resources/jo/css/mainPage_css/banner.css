@@ -11,9 +11,9 @@ li {
 .banner .slide {
   max-width: 1250px;
   min-width: 600px;
+  background-image: url("../../upfile/mainPage_img/mainbanner01.jpg");
   margin: 0 auto;
   height: 370px;
-  background-color: rgb(255, 145, 0);
   position: relative;
   display: flex;
   /* 다른 요소들이 넘치면 스크롤바 생성*/
@@ -27,6 +27,7 @@ li {
   .banner .slide {
     min-width: 705px;
     min-height: 500px;
+    background-image: url("../../upfile/mainPage_img/mobilebanner01.jpg");
   }
 }
 
@@ -75,49 +76,49 @@ li {
 .banner .item1 {
   width: 1250px;
   height: 370px;
-  background-image: url("../../../resources/jo/upfile/mainPage_img/banner01.png");
+  background-image: url("../../upfile/mainPage_img/mainbanner01.jpg");
 }
 
 .banner .item2 {
   width: 1250px;
   height: 370px;
-  background-image: url("../../../resources/jo/upfile/mainPage_img/banner01.png");
+  background-image: url("../../upfile/mainPage_img/mainbanner02.jpg");
 }
 
 .banner .item3 {
   width: 1250px;
   height: 370px;
-  background-image: url("../../../resources/jo/upfile/mainPage_img/banner01.png");
+  background-image: url("../../upfile/mainPage_img/mainbanner03.jpg");
 }
 
 .banner .item4 {
   width: 1250px;
   height: 370px;
-  background-image: url("../../../resources/jo/upfile/mainPage_img/banner01.png");
+  background-image: url("../../upfile/mainPage_img/mainbanner04.jpg");
 }
 
 .banner .item5 {
   width: 1250px;
   height: 370px;
-  background-image: url("../../../resources/jo/upfile/mainPage_img/banner01.png");
+  background-image: url("../../upfile/mainPage_img/mainbanner05.jpg");
 }
 
 .banner .item6 {
   width: 1250px;
   height: 370px;
-  background-image: url("../../../resources/jo/upfile/mainPage_img/banner01.png");
+  background-image: url("../../upfile/mainPage_img/mainbanner06.jpg");
 }
 
 .banner .item7 {
   width: 1250px;
   height: 370px;
-  background-image: url("../../../resources/jo/upfile/mainPage_img/banner01.png");
+  background-image: url("../../upfile/mainPage_img/mainbanner07.jpg");
 }
 
 .banner .item8 {
   width: 1250px;
   height: 370px;
-  background-image: url("../../../resources/jo/upfile/mainPage_img/banner01.png");
+  background-image: url("../../upfile/mainPage_img/mainbanner08.jpg");
 }
 
 @media (max-width: 706px) {
@@ -125,49 +126,49 @@ li {
   .banner .item1 {
     min-width: 705px;
     min-height: 500px;
-    background-image: url("../../../resources/jo/upfile/mainPage_img/mobile01.png")
+    background-image: url("../../upfile/mainPage_img/mobilebanner01.jpg")
   }
 
   .banner .item2 {
     min-width: 705px;
     min-height: 500px;
-    background-image: url("../../../resources/jo/upfile/mainPage_img/mobile01.png")
+    background-image: url("../../upfile/mainPage_img/mobilebanner02.jpg")
   }
 
   .banner .item3 {
     min-width: 705px;
     min-height: 500px;
-    background-image: url("../../../resources/jo/upfile/mainPage_img/mobile01.png")
+    background-image: url("../../upfile/mainPage_img/mobilebanner03.jpg")
   }
 
   .banner .item4 {
     min-width: 705px;
     min-height: 500px;
-    background-image: url("../../../resources/jo/upfile/mainPage_img/mobile01.png")
+    background-image: url("../../upfile/mainPage_img/mobilebanner04.jpg")
   }
 
   .banner .item5 {
     min-width: 705px;
     min-height: 500px;
-    background-image: url("../../../resources/jo/upfile/mainPage_img/mobile01.png")
+    background-image: url("../../upfile/mainPage_img/mobilebanner05.jpg")
   }
 
   .banner .item6 {
     min-width: 705px;
     min-height: 500px;
-    background-image: url("../../../resources/jo/upfile/mainPage_img/mobile01.png")
+    background-image: url("../../upfile/mainPage_img/mobilebanner06.jpg")
   }
 
   .banner .item7 {
     min-width: 705px;
     min-height: 500px;
-    background-image: url("../../../resources/jo/upfile/mainPage_img/mobile01.png")
+    background-image: url("../../upfile/mainPage_img/mobilebanner07.jpg")
   }
 
   .banner .item8 {
     min-width: 705px;
     min-height: 500px;
-    background-image: url("../../../resources/jo/upfile/mainPage_img/mobile01.png")
+    background-image: url("../../upfile/mainPage_img/mobilebanner08.jpg")
   }
 }
 /* */

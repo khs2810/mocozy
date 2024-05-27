@@ -10,8 +10,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/jo/css/mainPage_css/banner.css">
-<script type="text/javascript" async=""
-	src="${pageContext.request.contextPath}/resources/jo/js/mainPage_js/banner.js"></script>
+<script type="text/javascript" async="" src="${pageContext.request.contextPath}/resources/jo/js/mainPage_js/banner.js"></script>
 </head>
 
 <body>
