@@ -59,4 +59,19 @@ public class ClubDao {
 		return sqlSession.update("clubMapper.acceptRequest", rqno);
 	}
 
+	public int denyRequest(SqlSessionTemplate sqlSession, int rqno) {
+		return sqlSession.update("clubMapper.denyRequest", rqno);
+	}
+
+	public int updateClub(SqlSessionTemplate sqlSession, Club c) {
+		return sqlSession.update("clubMapper.updateClub", c);
+	}
+	
+	public Attachment selectAttachment(SqlSessionTemplate sqlSession, int cno) {
+		return sqlSession.selectOne("attachmentMapper.selectAttachment", cno);
+	}
+
+	public int updateAttachment(SqlSessionTemplate sqlSession, Attachment at) {
+		return sqlSession.update("attachmentMapper.updateAttachment", at);
+	}
 }
