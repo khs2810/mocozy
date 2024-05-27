@@ -1,5 +1,8 @@
 package com.kh.mocozy.member.service;
 
+import java.util.ArrayList;
+
+import com.kh.mocozy.club.model.vo.Request;
 import com.kh.mocozy.member.model.vo.Member;
 
 public interface MemberService {
@@ -20,4 +23,8 @@ public interface MemberService {
 	Member deleteMember(Member m);
 	int deleteMember(String userId);
 
+	int pointUpdate(Request r);
+	
+	//cno클럽에 참여한 맴버들
+	ArrayList<Member> participatedMemberList(int cno);
 }

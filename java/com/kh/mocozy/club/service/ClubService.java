@@ -31,6 +31,9 @@ public interface ClubService {
 
 	int acceptRequest(int rqno);
 
+	int insertRequest(Request r);
+
+
 	int denyRequest(int rqno);
 
 	Attachment selectAttachment(int cno);
