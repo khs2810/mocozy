@@ -54,31 +54,46 @@
 <%--    <c:when test="${empty loginUser}">--%>
 		<div class="LoginToggle" id="LoginToggle">
 
-			<a class="Togglelink" id="Togglelink" href="enrollform.cl"> <img
-				class="Toggleimg" src="_blank" alt="모임 작성하기" />
+			<a class="Togglelink" id="Togglelink" href="enrollform.cl"> 
+			<svg class="Toggleimg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+			  <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+			  <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z"/>
+			</svg>
 				<div class="Toggle">모임 작성하기</div>
 			</a>
 
 			<div class="Toggleborder"></div>
 
-			<a class="Togglelink" id="Togglelink" href="myPage.me"> <img
-				src="_blank" class="Toggleimg" alt="마이페이지" />
+			<a class="Togglelink" id="Togglelink" href="myPage.me"> 
+			<svg class="Toggleimg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+			  <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6"/>
+			</svg>
 				<div class="Toggle">마이페이지</div>
-			</a> <a class="Togglelink" id="Togglelink" href="logout.me"> <img
-				src="_blank" class="Toggleimg" alt="로그아웃" />
+			</a> <a class="Togglelink" id="Togglelink" href="logout.me"> 
+			<svg class="Toggleimg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+			  <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0z"/>
+			  <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
+			</svg>
 				<div class="Toggle">로그아웃</div>
-			</a> <a class="Togglelink" id="Togglelink" href="_blank"> <img
-				src="_blank" class="Toggleimg" alt="찜 목록" />
+			</a> <a class="Togglelink" id="Togglelink" href="_blank"> 
+			<svg class="Toggleimg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-right-heart-fill" viewBox="0 0 16 16">
+			  <path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h9.586a1 1 0 0 1 .707.293l2.853 2.853a.5.5 0 0 0 .854-.353zM8 3.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132"/>
+			</svg>
 				<div class="Toggle">찜 목록</div>
 			</a>
 
 			<div class="Toggleborder"></div>
 
-			<a class="Togglelink" id="Togglelink" href="_blank"> <img
-				src="_blank" class="Toggleimg" alt="공지사항" />
+			<a class="Togglelink" id="Togglelink" href="_blank"> 
+			<svg  class="Toggleimg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-megaphone" viewBox="0 0 16 16">
+			  <path d="M13 2.5a1.5 1.5 0 0 1 3 0v11a1.5 1.5 0 0 1-3 0v-.214c-2.162-1.241-4.49-1.843-6.912-2.083l.405 2.712A1 1 0 0 1 5.51 15.1h-.548a1 1 0 0 1-.916-.599l-1.85-3.49-.202-.003A2.014 2.014 0 0 1 0 9V7a2.02 2.02 0 0 1 1.992-2.013 75 75 0 0 0 2.483-.075c3.043-.154 6.148-.849 8.525-2.199zm1 0v11a.5.5 0 0 0 1 0v-11a.5.5 0 0 0-1 0m-1 1.35c-2.344 1.205-5.209 1.842-8 2.033v4.233q.27.015.537.036c2.568.189 5.093.744 7.463 1.993zm-9 6.215v-4.13a95 95 0 0 1-1.992.052A1.02 1.02 0 0 0 1 7v2c0 .55.448 1.002 1.006 1.009A61 61 0 0 1 4 10.065m-.657.975 1.609 3.037.01.024h.548l-.002-.014-.443-2.966a68 68 0 0 0-1.722-.082z"/>
+			</svg>
 				<div class="Toggle">공지사항</div>
-			</a> <a class="Togglelink" id="Togglelink" href="_blank"> <img
-				src="_blank" class="Toggleimg" alt="관리자 1:1 채팅" />
+			</a> <a class="Togglelink" id="Togglelink" href="_blank"> 
+			<svg class="Toggleimg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-dots" viewBox="0 0 16 16">
+			  <path d="M5 8a1 1 0 1 1-2 0 1 1 0 0 1 2 0m4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0m3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2"/>
+			  <path d="m2.165 15.803.02-.004c1.83-.363 2.948-.842 3.468-1.105A9 9 0 0 0 8 15c4.418 0 8-3.134 8-7s-3.582-7-8-7-8 3.134-8 7c0 1.76.743 3.37 1.97 4.6a10.4 10.4 0 0 1-.524 2.318l-.003.011a11 11 0 0 1-.244.637c-.079.186.074.394.273.362a22 22 0 0 0 .693-.125m.8-3.108a1 1 0 0 0-.287-.801C1.618 10.83 1 9.468 1 8c0-3.192 3.004-6 7-6s7 2.808 7 6-3.004 6-7 6a8 8 0 0 1-2.088-.272 1 1 0 0 0-.711.074c-.387.196-1.24.57-2.634.893a11 11 0 0 0 .398-2"/>
+			</svg>
 				<div class="Toggle">관리자 1:1 채팅</div>
 			</a>
 		</div>
@@ -134,15 +149,18 @@
 			<div class="loginwrap">
 				<%-- 로그인바 - 로고--%>
 				<div class="logobox">
-					<a href="../../views/mainPage/MainPage.html"> <img src="_blank"
-						class="searchlogo" />
+					<a href="../../views/mainPage/MainPage.html"> 
+					<img src="${pageContext.request.contextPath}/resources/jo/upfile/common_img/logo.png" class="searchlogo" />
 					</a>
 					<%-- 로그인바 - 검색바 --%>
 					<div class="search">
 						<form class="searchForm" action="_blank" method="POST">
 							<input class="searchInput" placeholder="원하는 모임을 검색해보세요." value="">
 							<button type="submit">
-								<img src="_blank" class="searchIcon" src="검색 아이콘" />
+								<svg class="searchIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+  									<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 
+  											1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+								</svg>
 							</button>
 						</form>
 					</div>
@@ -187,11 +205,15 @@
 				<div class="categories">
 					<div class="cate">
 						<button class="catebtn" type="button" id="cateButton">
-							<img class="cateIcon" src="_blank" alt="">
+							<svg class="cateIcon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
+  								<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 
+  										1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+							</svg>
+							
 							<p class="cateTitle">카테고리</p>
 						</button>
-						<a class="catelist" href="_blank">소셜링</a> <a class="catelist"
-							href="_blank">챌린지</a>
+						<a class="catelist" id="catesocial" href="${pageContext.request.contextPath}">소셜링</a> 
+						<a class="catelist" id="catechallenge" href="challenge.ma">챌린지</a>
 					</div>
 
 					<div class="studio">

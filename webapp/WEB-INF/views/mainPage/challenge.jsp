@@ -138,9 +138,7 @@
 						</div>
 					</div>
 				</c:forEach>	
-				</div>	
-
-					
+				</div>			
 	</div>
 	</div>
 	<%@ include file="../common/footer.jsp"%>

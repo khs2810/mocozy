@@ -3,70 +3,87 @@ li {
 }
 
 
-.main {
+.cate {
   max-width: 1250px;
   min-width: 600px;
   height: auto;
   margin: 0 auto;
 }
 
-.main .screen {
+.cate .screen {
   margin-bottom: 20px;
 }
 
 @media (min-width: 768px) {
-  .main .screen {
+  .cate .screen {
       margin-bottom: 0;
   }
 }
 
-.main .box {
+.cate .cateTitle{
   display: flex;
-  flex-direction: column;
-  gap: 2rem;
-  padding: 2rem;
-  margin: 0 auto;
-  max-width: 1280px;
-  background-color: #fff;
-}
-
-.main .screenheader {
-  display: flex;
-  align-items: center;
   justify-content: space-between;
-}
-
-.main .screenheader .title {
-  padding-top: 1rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
   padding-bottom: 1.5rem;
-  margin-left: 2rem;
-  font-size: 2rem;
-  font-weight: bold;
 }
 
-@media (max-width: 768px) {
-  .main .screenheader .title  {
-      font-size: 2rem;
-  }
-}
-
-.main .screenheader .selectBox {
-  padding-top: 1rem;
-  padding-bottom: 1.5rem;
-  margin-right: 2rem;
-  font-size: 1.3rem;
-}
-
-.main .display {
+.cate .leftTitle{
+  position: relative;
+  top: 8px;
+  font-size: .875rem;
+  line-height: 1.25rem;
+  padding-bottom: 1rem;
+  gap: 0.2rem;
   display: flex;
-  gap: 2rem;
-  flex-direction: row;
-  margin: 0 auto;
-  padding-bottom: 5rem;
-  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 1rem;
 }
 
-.main .contentcard {
+
+.leftTitle .cateRankicon{
+  position: relative;
+}
+
+.cate .leftTitle > p{
+	display: flex;
+}
+
+.cate .leftTitle > span {
+	font-weight: 700;
+}
+
+.cate .cateRankicon{
+	color: black;
+}
+
+.cate .rightTitle{
+  position: relative;
+  top: 8px;
+}
+
+.cate .rightContent{
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  gap: 0.5rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.cate .rightTitle > p{
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.cate .rightContent > span {
+	color: rgb(255 0 69);
+  font-weight: 700;
+}
+
+.cate .contentcard {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -77,17 +94,17 @@ li {
 }
 
 @media (max-width: 768px) {
-  .main .contentcard {
+  .cate .contentcard {
     margin-bottom: 0.5rem;
   }
 }
 
-.main .contentcard .socialing{
+.cate .contentcard .socialing{
   width: 571px;
   height: 176px;
 }
 
-.main .contentcard .cardlink{
+.cate .contentcard .cardlink{
   background-color: #fefefe;
   border-radius: 12px;
   display: flex;
@@ -96,7 +113,7 @@ li {
   padding: 20px 16px;
 }
 
-.main .contentcard .img{
+.cate .contentcard .img{
   border: 1px solid #d3d3d3;
   width: 120px;
   height: 120px;
@@ -107,7 +124,7 @@ li {
 }
 
 @media (min-width: 768px) {
-  .main .contentcard .img{
+  .cate .contentcard .img{
       width: 160px;
       height: 160px;
       border-radius: 16px;
@@ -115,24 +132,24 @@ li {
   }
 }
 
-.main .contentcard .info{
+.cate .contentcard .info{
   display: flex;
   flex-direction: column;
   width: calc(100% - 112px);
 }
 
 @media (min-width: 768px) {
-  .main .contentcard .info{
+  .cate .contentcard .info{
       width: calc(100% - 168px);
   }
 }
 
-.main .contentcard .subject{
+.cate .contentcard .subject{
   display: flex;
   margin-bottom: 5px;
 }
 
-.main .contentcard .tag{
+.cate .contentcard .tag{
   background-color: #f4f4f4;
   color: #666060;
   display: flex;
@@ -148,7 +165,7 @@ li {
   margin-right: 6px;
 }
 
-.main .contentcard .infotitle{
+.cate .contentcard .infotitle{
   font-weight: 600;
   line-height: 24px;
   letter-spacing: -.4px;
@@ -160,7 +177,7 @@ li {
   font-size: 1rem;
 }
 
-.main .contentcard .describe{
+.cate .contentcard .describe{
   font-weight: 400;
   font-size: 1.5rem;
   line-height: 14.4px;
@@ -173,18 +190,18 @@ li {
   white-space: nowrap;
 }
 
-.main .contentcard .image{
+.cate .contentcard .image{
   width: 12px;
   height: 12px;
   position: relative;
   margin-top: 1px;
 }
 
-.main .participant{
+.cate .participant{
   display: flex;
 }
 
-.main .participant .img{
+.cate .participant .img{
   object-fit: cover;
   width: 22px;
   height: 22px;
@@ -194,7 +211,7 @@ li {
   flex-shrink: 0;
 }
 
-.main .participant .span{
+.cate .participant .span{
   border: 3px solid rgb(255, 255, 255);
   background-color: lightblue;
   display: flex;
@@ -209,28 +226,28 @@ li {
   flex-shrink: 0;
 }
 
-.main .participant .cardImg{
+.cate .participant .cardImg{
   position: relative;
   margin-top: 1rem;
   padding: 4rem;
   border-radius: 100%;
 }
 
-.main .participant .socialmember{
+.cate .participant .socialmember{
   margin-left: 4.7px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.main .participant .people{
+.cate .participant .people{
   width: 10px;
   height: 10px;
   color: gray;
   position: relative;
 }
 
-.main .participant .count{
+.cate .participant .count{
   font-weight: 400;
   font-size: 10px;
   line-height: 12px;
@@ -239,7 +256,7 @@ li {
 }
 
 @media (max-width: 767px) {
-  .main .contentcard .tag {
+  .cate .contentcard .tag {
       font-size: 1rem;
       line-height: 11px;
       padding: 4px 8px;
@@ -247,113 +264,113 @@ li {
       margin-right: 6px;
   }
 
-  .main .contentcard .infotitle {
+  .cate .contentcard .infotitle {
       font-size: 1.5rem;
       line-height: 24px;
       margin-bottom: 4px;
   }
 
-  .main .contentcard .describe {
+  .cate .contentcard .describe {
       font-size: 1.3rem;
       line-height: 14.4px;
       margin-bottom: 10px;
   }
 
-  .main .contentcard .image {
+  .cate .contentcard .image {
       width: 15px;
       height: 15px;
   }
 
-  .main .participant .img {
+  .cate .participant .img {
     margin-right: 2rem;
       width: 33px;
       height: 33px;
   }
 
-    .main .participant .span{
+    .cate .participant .span{
       width: 2.5rem;
       height: 2.5rem;
       left: -8px;
   }
 
-  .main .participant .cardImg {
+  .cate .participant .cardImg {
       width: 22px;
       height: 22px;
   }
 
-  .main .participant .socialmember {
+  .cate .participant .socialmember {
       margin-left: 4.7px;
   }
 
-  .main .participant .people {
+  .cate .participant .people {
       width: 20px;
       height: 20px;
   }
 
-  .main .participant .count {
+  .cate .participant .count {
       font-size: 15px;
       line-height: 12px;
   }
 }
 
 @media (min-width: 768px) {
-  .main .contentcard .tag {
+  .cate .contentcard .tag {
       font-size: 1.2rem;
       line-height: 18px;
       padding: 8px 13px;
       border-radius: 10px;
   }
 
-  .main .contentcard .infotitle {
+  .cate .contentcard .infotitle {
       font-size: 1.5rem;
       line-height: 40px;
   }
 
-  .main .contentcard .describe {
+  .cate .contentcard .describe {
       font-size: 1.2rem;
       line-height: 24px;
   }
 
-  .main .contentcard .image {
+  .cate .contentcard .image {
       width: 20px;
       height: 20px;
       margin-top: 2px;
   }
 
-  .main .participant .img {
+  .cate .participant .img {
       border: 1px solid black;
       width: 36px;
       height: 36px;
   }
 
-  .main .participant .span {
+  .cate .participant .span {
       width: 28px;
       height: 28px;
       left: -2px;
   }
 
-  .main .participant .cardImg {
+  .cate .participant .cardImg {
       width: 36px;
       height: 36px;
   }
 
-  .main .participant .socialmember {
+  .cate .participant .socialmember {
       margin-left: 8.12px;
   }
 
-  .main .participant .people {
+  .cate .participant .people {
       width: 24px;
       height: 24px;
   }
 
-  .main .participant .count {
+  .cate .participant .count {
       margin-left: 0.5rem;
       font-size: 16px;
       line-height: 19px;
   }
 }
 
-.main .plus{
+.cate .plus{
   width: 575px;
   height: 50px;
   border: 1px solid #f3f3f3;
@@ -369,13 +386,13 @@ li {
   margin-left: 0.5rem;
 }
 
-.main .plus .title{
+.cate .plus .title{
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.main .plus .icon{
+.cate .plus .icon{
   border: 1px solid black;
   width: auto;
   height: auto;
@@ -383,7 +400,7 @@ li {
 }
 
 @media screen and (min-width: 767px) {
-  .main .plus{
+  .cate .plus{
     display: none;
   }
 }

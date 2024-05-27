@@ -50,7 +50,7 @@
 			<div class="error">
 
 				<div class="errorimg">
-					<img class="img" src="_blank" />
+					<img class="img" src="${pageContext.request.contextPath}/resources/jo/upfile/mainPage_img/error.png" />
 					<h1 class="sign">
 						오류 <span class="signspan">Error</span>
 					</h1>
