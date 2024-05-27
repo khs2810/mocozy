@@ -24,7 +24,6 @@ button:active{
     position: relative;
     width: 1250px;
     margin: auto;
-    top: 150px;
     display: flex;
     justify-content: space-between;
 }

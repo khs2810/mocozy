@@ -73,7 +73,7 @@
 	<update id="updateMember">
 		UPDATE MEMBER
 		   SET USER_NAME = #{nickname},
-		       profileImg = #{profileImg},
+		       profile_Img = #{profileImg},
 		       introduce = #{introduce},
 		       MODIFY_DATE = CURRENT_TIMESTAMP
 		WHERE USER_ID = #{userId}

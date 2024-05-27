@@ -15,6 +15,7 @@
 	<script src="${pageContext.request.contextPath}/resources/jun/js/challengeManagePage.js"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/myProfile.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/jun/js/clubInsertPage.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/MyPage.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/myProfile.css">
@@ -66,7 +67,8 @@
                     <div>
                         <!-- 프로필이미지 -->
                         <div class="profile-box1" style="">
-                            <img class="profile-img" src="./img/profile.jpg" alt="">
+                            <img class="profile-img" src="./img/profile.jpg" id="fileImg" onclick="chooseFile(1)" alt="">
+                            <input type="file" style="display: none;" name="upfile" id="file1" required onchange="loadImg(this, 1, '${pageContext.request.contextPath}')">
                         </div>
                     </div>
                 </div>
