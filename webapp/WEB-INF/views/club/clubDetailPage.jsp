@@ -32,7 +32,7 @@
                 <div>
                     <h3 id="club_title">${c.clubTitle }</h2>
                 </div>
-                <div class="club_modify_btn"><button>수 정</button><button>삭 제</button></div>
+                <div class="club_modify_btn"><button onclick="location.href='updateform.cl?cno=${c.clubNo}'">수 정</button><button>삭 제</button></div>
             </div>
 
             <!-- 소셜링 or 챌린지 -->

@@ -33,4 +33,22 @@
 								#{fileLevel},
 								CURRVAL('SEQ_CNO'));
 	</insert>
+	
+	<select id="selectAttachment" resultMap="attachmentResult">
+		SELECT FILE_NO,
+			   ORIGIN_NAME,
+			   CHANGE_NAME,
+			   FILE_PATH,
+			   FILE_LEVEL,
+			   REF_CLUB_NO
+		  FROM ATTACHMENT
+		 WHERE REF_CLUB_NO = #{cno};
+	</select>
+	
+	<update id="updateAttachment">
+		UPDATE ATTACHMENT
+		   SET ORIGIN_NAME = #{originName},
+			   CHANGE_NAME = #{changeName}
+		 WHERE REF_CLUB_NO = #{refClubNo}
+	</update>
 </mapper>

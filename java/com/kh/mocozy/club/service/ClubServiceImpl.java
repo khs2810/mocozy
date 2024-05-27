@@ -72,4 +72,26 @@ public class ClubServiceImpl implements ClubService {
 	public int acceptRequest(int rqno) {
 		return clubDao.acceptRequest(sqlSession, rqno);
 	}
+
+	@Override
+	public int denyRequest(int rqno) {
+		return clubDao.denyRequest(sqlSession, rqno);
+	}
+	
+	@Override
+	public Attachment selectAttachment(int cno) {
+		return clubDao.selectAttachment(sqlSession, cno);
+	}
+
+	@Override
+	public int updateClub(Club c, Attachment at) {
+		int result1 = clubDao.updateClub(sqlSession, c);
+		int result2 = 1;
+		
+		if (result1 > 0) {
+			result2 = clubDao.updateAttachment(sqlSession, at);
+		}
+		
+		return result1 * result2;
+	}
 }

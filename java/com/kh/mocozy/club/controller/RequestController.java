@@ -44,4 +44,14 @@ public class RequestController {
 		
 		return new Gson().toJson(rList);
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "deny.re", produces="application/json; charset-UTF-8")
+	public String ajaxDenyRequest(@RequestParam int rqno, int cno) {
+		int result = clubService.denyRequest(rqno);
+		
+		ArrayList<Request> rList = clubService.requestList(cno);
+		
+		return new Gson().toJson(rList);
+	}
 }
