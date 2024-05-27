@@ -75,7 +75,7 @@
 		   SET USER_NAME = #{nickname},
 		       profileImg = #{profileImg},
 		       introduce = #{introduce},
-		       MODIFY_DATE = SYSDATE
+		       MODIFY_DATE = CURRENT_TIMESTAMP
 		WHERE USER_ID = #{userId}
 	</update>
 	
