@@ -30,4 +30,10 @@ public interface ClubService {
 	ArrayList<Request> requestList(int cno);
 
 	int acceptRequest(int rqno);
+
+	int denyRequest(int rqno);
+
+	Attachment selectAttachment(int cno);
+	
+	int updateClub(Club c, Attachment at);
 }

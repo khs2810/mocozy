@@ -62,15 +62,35 @@ function getCategoryIndex(category) {
 		case '연애': return 5;
 		default: return 0;
 	}
-
 }
+
+// categoryName2 기본선택 불러오는 코드
+document.addEventListener('DOMContentLoaded', function() {
+	var mainCategory = document.getElementById('category1').value;
+
+	if (mainCategory) {
+		var selectedSubcategory = document.getElementById('category2_' + getCategoryIndex(mainCategory));
+		showSubcategories();
+
+		var selectElement = selectedSubcategory;
+		var options = selectElement.options;
+
+		for (var i = 0; i < options.length; i++) {
+			if (options[i].value === categoryName.trim()) {
+				options[i].selected = true;
+				break;
+			}
+		}
+	}
+            
+	console.log("Category Name: ", categoryName);
+});
 
 function loadImg(inputFile, num, contextPath){
     // console.log(inputFile)
     // console.log(num)
     //inputFile : 현재 변화가 생긴 input type=file 요소객체
     //num : 몇번째 input요소인지 확인하기 위한 파라미터
-    
     
     //inputFile.files[0] => 선택된 파일이 담겨있다.
     //inputFile.files.length -> 1
@@ -115,7 +135,7 @@ function fileUpload(fileList){
 
 	insertFileApi(fd, function(nameList){
 		for(let name of nameList) {
-			$("#summernote").summernote('insertImage', "/mocozy" + name);	 
+			$("#summernote").summernote('insertImage', "/mocozy" + name);
 		}
 	});
 }
@@ -144,3 +164,9 @@ function searchAd() {
         }
     }).open();
 }
+
+// 기존 club정보 불러오기
+document.addEventListener('DOMContentLoaded', (event) => {
+    document.getElementById('address').value = c.address;
+    document.getElementById('detailAddress').value = c.addressDetail;
+})
