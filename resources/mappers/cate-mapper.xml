@@ -4,22 +4,6 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
 <mapper namespace="cateMapper"> 
-	<resultMap type="Categories" id="cateResult">
-		<result column="문화생활" property="art"/>
-		<result column="미래발전" property="develop"/>
-		<result column="스포츠" property="sports"/>
-		<result column="취미" property="hobby"/>
-		<result column="연애" property="love"/>
-		<result column="문화, 예술" property="culture"/>
-		<result column="푸드, 드링크" property="food"/>
-		<result column="자기계발" property="study"/>
-		<result column="재테크" property="money"/>
-		<result column="외국어" property="foreign"/>
-		<result column="액티비티" property="activity"/>
-		<result column="여행, 동행" property="travel"/>
-		<result column="파티, 게임" property="game"/>
-	</resultMap>
-	
 	<resultMap type="Club" id="clubResult">
 		<result column="CLUB_NO" property="clubNo"/>
 		<result column="USER_NO" property="userNo"/>
