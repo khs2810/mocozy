@@ -566,3 +566,9 @@ button:hover {
 	width: 500px;
 	text-align: center;
 }
+
+.empty_p_member{
+	font-size: 16px;
+	text-align: center;
+	margin-right: 50px;
+}

@@ -28,6 +28,7 @@
 	<%@ include file="../common/header.jsp"%>
     <div id="wrapper_notice">
 	    <form method="post" action="insert.no" enctype="multipart/form-data">
+	    	<input type="hidden" name="userNo" value="${loginUser.userNo}">
 	        <div id="wapper_notice_enroll">
 	            <div>
 	                <span>제목</span>

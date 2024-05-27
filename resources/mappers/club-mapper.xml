@@ -208,4 +208,23 @@
 			   category_name2 = #{categoryName2}
 		 WHERE CLUB_NO = #{clubNo}
 	</update>
+	
+	<insert id="insertRequest">
+		INSERT INTO
+			request(
+					request_no,
+					user_no,
+					club_no,
+					answer
+					)
+			VALUES (
+					NEXTVAL('SEQ_RQNO'), 
+					#{userNo},
+					#{clubNo},
+					#{answer}
+					)
+	</insert>
+	
+	
+	
 </mapper>

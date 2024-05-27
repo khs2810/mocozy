@@ -9,6 +9,7 @@ import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.club.model.vo.ClubReview;
 import com.kh.mocozy.club.model.vo.Request;
 import com.kh.mocozy.common.model.vo.Attachment;
+import com.kh.mocozy.member.model.vo.Member;
 
 @Repository
 public class ClubDao {
@@ -59,6 +60,13 @@ public class ClubDao {
 		return sqlSession.update("clubMapper.acceptRequest", rqno);
 	}
 
+<<<<<<< HEAD
+	public int insertRequest(SqlSessionTemplate sqlSession, Request r) {
+		return sqlSession.insert("clubMapper.insertRequest", r);
+	}
+
+
+=======
 	public int denyRequest(SqlSessionTemplate sqlSession, int rqno) {
 		return sqlSession.update("clubMapper.denyRequest", rqno);
 	}
@@ -74,4 +82,5 @@ public class ClubDao {
 	public int updateAttachment(SqlSessionTemplate sqlSession, Attachment at) {
 		return sqlSession.update("attachmentMapper.updateAttachment", at);
 	}
+>>>>>>> 51e8a47f0265ac311785023a8f6f04828a12ae42
 }
