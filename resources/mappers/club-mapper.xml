@@ -153,17 +153,17 @@
 			AND USER_NO = #{uno};
 	</select>
 		
-	<select id="selectClubList">
+	<select id="selectClubList" resultMap="clubResult">
 		SELECT CLUB_NO,
-			   USER_NO,
+			   C.USER_NO,
 			   CLUB_TITLE,
-			   CAPACITY,
-			   QUESTION,
-			   STATUS
-		  FROM public.CLUB
-		  join MEMBER USING (USER_NO)
-		 WHERE public.CLUB.STATUS = 'Y'
-		   AND USER_NO = #{uno};
+			   CLUB_TYPE,
+			   C.STATUS
+		  FROM CLUB C
+		  join REQUEST R USING(CLUB_NO)
+		 WHERE R.STATUS = 'Y'
+		   AND C.STATUS = 'E'
+		   AND R.USER_NO = #{uno};
 	</select>
 	
 	<select id="selectRequestList" resultMap="requestResult">

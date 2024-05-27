@@ -93,7 +93,7 @@
                             </ul>
                         </li>
 
-                        <li><a href="">리뷰</a></li>
+                        <li><a href="reviewList.cl">리뷰</a></li>
 
                         <li><a href="">채팅기록</a></li>
                     </ul>

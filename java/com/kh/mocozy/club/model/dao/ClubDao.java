@@ -47,8 +47,8 @@ public class ClubDao {
 		return (ArrayList)sqlSession.selectList("clubMapper.listClub", uno);
 	}
 
-	public Club selectClubList(SqlSessionTemplate sqlSession, int uno) {
-		return sqlSession.selectOne("clubMapper.selectClubList", uno);
+	public ArrayList<Club> selectClubList(SqlSessionTemplate sqlSession, int uno) {
+		return (ArrayList)sqlSession.selectList("clubMapper.selectClubList", uno);
 	}
 
 	public ArrayList<Request> selectRequestList(SqlSessionTemplate sqlSession, int cno) {
