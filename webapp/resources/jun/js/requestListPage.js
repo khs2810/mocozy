@@ -1,16 +1,6 @@
 $(document).ready(function() {
-    // $(".clubRequest-head").click(function(){
-    //     const $p = $(this).next();
-    
-    //     if($p.css("display") === "none") {
-    //         $p.slideDown();
-    //         const icon = $(this)
-    //     } else { //보여지고있는 상태
-    //         $p.slideUp();
-    //     }
-    // })
 
-    $(".reduceBtn").click(function(){
+    $("#contentBox").on('click', '.reduceBtn', function(){
         const $p = $(this).parent().parent().parent().next();
 
         if($(this).hasClass("rerotated")) {
@@ -29,8 +19,10 @@ $(document).ready(function() {
         }
     })
     
-    $(".acceptBtn").click(function(ev) {
+    $("#contentBox").on('click', '.acceptBtn', function(ev) {
         const btn = ev.target;
+        const url = btn.dataset.url;
+        const question = btn.dataset.question;
 
         $.ajax({
             url: "accept.re",
@@ -40,7 +32,7 @@ $(document).ready(function() {
                 },
                 success: function(res){
                 alert('성공!');
-                drawRequest(res);
+                drawRequest(res, url, question);
             },
             error: function(res){
                 alert('실패!');
@@ -48,8 +40,10 @@ $(document).ready(function() {
         })
     })
 
-    $(".denyBtn").click(function(ev) {
+    $("#contentBox").on('click', '.denyBtn', function(ev) {
         const btn = ev.target;
+        const url = btn.dataset.url;
+        const question = btn.dataset.question;
         
         $.ajax({
             url: "deny.re",
@@ -59,7 +53,7 @@ $(document).ready(function() {
                 },
             success: function(res){
                 alert('성공!');
-                drawRequest(res);
+                drawRequest(res, url, question);
             },
             error: function(res){
                 alert('실패!');
@@ -68,161 +62,58 @@ $(document).ready(function() {
     })
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-    function drawRequest(data) {
-        $('.clubRequestList').empty();
-        const contextPath = '<%= request.getContextPath() %>';
-        const parent = document.getElementById('clubRequestList');
-    
-        for (let r of data) {
-            // 새로운 clubRequest div 생성
-            const clubRequest = document.createElement('div');
-            clubRequest.classList.add('clubRequest');
-        
-            // clubRequest-head div 생성
-            const clubRequestHead = document.createElement('div');
-            clubRequestHead.classList.add('clubRequest-head');
-        
-            // simpleInfo div 생성
-            const simpleInfo = document.createElement('div');
-            simpleInfo.classList.add('simpleInfo');
-        
-            // simpleInfoLeft div 생성
-            const simpleInfoLeft = document.createElement('div');
-            simpleInfoLeft.classList.add('simpleInfoLeft');
-        
-            // profileImg img 생성
-            const profileImg = document.createElement('img');
-            profileImg.src = `${contextPath}/resources/jun/img/프사.jpg`;
-            profileImg.classList.add('profileImg');
-            profileImg.dataset.toggle = "modal";
-            profileImg.dataset.target = "#profileModal";
-            profileImg.style.cursor = "pointer";
-        
-            // userId b 태그 생성
-            const userId = document.createElement('b');
-            userId.classList.add('userId');
-            userId.textContent = '떡꼬치소마왕';
-        
-            // status img 생성
-            let statusImg = document.createElement('img');
-            if (r.status === 'W') {
-                statusImg.src = `${contextPath}/resources/jun/img/waiting.png`;
-                statusImg.classList.add('status_w');
-            } else if (r.status === 'Y') {
-                statusImg.src = `${contextPath}/resources/jun/img/accepted.png`;
-                statusImg.classList.add('status_a');
-            } else if (r.status === 'N') {
-                statusImg.src = `${contextPath}/resources/jun/img/denied.png`;
-                statusImg.classList.add('status_d');
-            }
-        
-            // simpleInfoRight div 생성
-            const simpleInfoRight = document.createElement('div');
-            simpleInfoRight.classList.add('simpleInfoRight');
-        
-            // writeTime span 생성
-            const writeTime = document.createElement('span');
-            writeTime.classList.add('writeTime');
-            writeTime.textContent = r.createDate;
-        
-            // reduceBtn button 생성
-            const reduceBtn = document.createElement('button');
-            reduceBtn.classList.add('reduceBtn');
-            const chevronIcon = document.createElement('i');
-            chevronIcon.classList.add('fa-solid', 'fa-chevron-down');
-            reduceBtn.appendChild(chevronIcon);
-        
-            // simpleInfoRight에 writeTime과 reduceBtn 추가
-            simpleInfoRight.appendChild(writeTime);
-            simpleInfoRight.appendChild(reduceBtn);
-        
-            // simpleInfoLeft에 profileImg, userId, statusImg 추가
-            simpleInfoLeft.appendChild(profileImg);
-            simpleInfoLeft.appendChild(userId);
-            simpleInfoLeft.appendChild(statusImg);
-        
-            // simpleInfo에 simpleInfoLeft와 simpleInfoRight 추가
-            simpleInfo.appendChild(simpleInfoLeft);
-            simpleInfo.appendChild(simpleInfoRight);
-        
-            // clubRequestHead에 simpleInfo 추가
-            clubRequestHead.appendChild(simpleInfo);
-        
-            // selectedClubRequest div 생성
-            const selectedClubRequest = document.createElement('div');
-            selectedClubRequest.classList.add('selectedClubRequest');
-        
-            // detailInfo div 생성
-            const detailInfo = document.createElement('div');
-            detailInfo.classList.add('detailInfo');
-        
-            // detail pre 생성
-            const detail = document.createElement('pre');
-            detail.classList.add('detail');
-            detail.innerHTML = `[질문] ${r.question}<br><br>[대답] ${r.answer}`;
-        
-            // hidden input 생성
-            const hiddenInput = document.createElement('input');
-            hiddenInput.type = 'text';
-            hiddenInput.value = r.clubNo;
-            hiddenInput.hidden = true;
-        
-            // btns div 생성
-            const btns = document.createElement('div');
-            btns.classList.add('btns');
-        
-            // 조건에 따라 버튼 생성 및 추가
-            if (r.status === 'W') {
-                const denyBtn = document.createElement('button');
-                denyBtn.type = 'button';
-                denyBtn.classList.add('denyBtn');
-                denyBtn.dataset.rqno = r.requestNo;
-                denyBtn.dataset.cno = r.clubNo;
-                denyBtn.textContent = '거절';
-        
-                const acceptBtn = document.createElement('button');
-                acceptBtn.type = 'button';
-                acceptBtn.classList.add('acceptBtn');
-                acceptBtn.dataset.rqno = r.requestNo;
-                acceptBtn.dataset.cno = r.clubNo;
-                acceptBtn.textContent = '수락';
-        
-                btns.appendChild(denyBtn);
-                btns.appendChild(acceptBtn);
-            } else if (r.status === 'Y') {
-                const acceptedBtn = document.createElement('button');
-                acceptedBtn.type = 'button';
-                acceptedBtn.classList.add('acceptedBtn');
-                acceptedBtn.textContent = '수락됨';
-        
-                btns.appendChild(acceptedBtn);
-            } else if (r.status === 'N') {
-                const deniedBtn = document.createElement('button');
-                deniedBtn.type = 'button';
-                deniedBtn.classList.add('deniedBtn');
-                deniedBtn.textContent = '거절됨';
-        
-                btns.appendChild(deniedBtn);
-            }
-        
-            // detailInfo에 detail, hiddenInput, btns 추가
-            detailInfo.appendChild(detail);
-            detailInfo.appendChild(hiddenInput);
-            detailInfo.appendChild(btns);
-        
-            // selectedClubRequest에 detailInfo 추가
-            selectedClubRequest.appendChild(detailInfo);
-        
-            // clubRequest에 clubRequestHead와 selectedClubRequest 추가
-            clubRequest.appendChild(clubRequestHead);
-            clubRequest.appendChild(selectedClubRequest);
-        
-            // 최종적으로 부모 요소에 clubRequest 추가
-            parent.appendChild(clubRequest);
+function drawRequest(requestList, url, question) {
+    $('.clubRequestList').empty();
+    const parent = document.getElementById('clubRequestList');
+
+    for (let request of requestList) {
+        const clubRequest = document.createElement('div');
+        console.log(request);
+        console.log(url);
+        clubRequest.id = "clubRequest";
+        let str = "";
+        str = `<div class="clubRequest-head">
+                                    <div class="simpleInfo">
+                                        <div class="simpleInfoLeft">
+                                            <img src="${url}/resources/jun/img/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
+                                            <b class="userId">떡꼬치소마왕</b>`;
+
+        if (request.status === 'W') {
+            str += `<img src="${url}/resources/jun/img/waiting.png" class="status_w">`
+        } else if (request.status === 'Y') {
+            str += `<img src="${url}/resources/jun/img/accepted.png" class="status_a">`
+        } else {
+            str += `<img src="${url}/resources/jun/img/denied.png" class="status_d">`
         }
+        str +=  (`</div>
+                        <div class="simpleInfoRight">
+                            <span class="writeTime">` + request.createDate + `</span>
+                            <button class="reduceBtn"><i class="fa-solid fa-chevron-down"></i></button>
+                        </div>
+                    </div>
+                </div>
+                <div class="selectedClubRequest">
+                    <div class="detailInfo>
+                        <div>
+                            <pre class="detail">[질문] ` + question + `<br><br>[대답] ` + request.answer + `
+                        </div>
+                        <input type="text" value="` + request.clubNo + `" hidden>
+                        <div class="btns">`);
+        if (request.status === 'W') {
+            str += `<button type="button" class="denyBtn" data-rqno="` + request.requestNo + `" data-cno="` + request.clubNo + `">거절</button>
+            <button type="button" class="acceptBtn" data-rqno="` + request.requestNo + `" data-cno="` + request.clubNo + `">수락</button>`
+        } else if (request.status === 'Y') {
+            str += `<button type="button" class="acceptedBtn">수락됨</button>`
+        } else if (request.status === 'N') {
+            str += `<button type="button" class="deniedBtn">거절됨</button>`
+        }
+        str += `</div>
+                    </div>
+                </div>`;
+        clubRequest.innerHTML = str;
+        parent.appendChild(clubRequest);
     }
-})
+}
 
 document.addEventListener("DOMContentLoaded", function() {
     const timeElements = document.querySelectorAll('.writeTime');
