@@ -65,21 +65,32 @@
                     <p class="color_red">멤버 소개</p>
                     <p>우리 반갑게 만나요</p>
                 </div>
-                <div class="club_members">
-                    <div class="club_profile_img"><img src="${pageContext.request.contextPath}/resources/teo/img/profile_img.jpg" alt="프로필사진"></div>
-                    <div class="club_member_div">
-                        <div>이름</div>
-                        <div class="club_member_intro">한줄 자기소개</div>
-                    </div>
-                </div>
-                <div class="club_members">
-                    <div class="club_profile_img"><img src="${pageContext.request.contextPath}/resources/teo/img/profile_img.jpg" alt="프로필사진"></div>
-                    <div class="club_member_div">
-                        <div>이름</div>
-                        <div>한줄 자기소개</div>
-                    </div>
-                </div>
-                <div class="club_more_member" style="margin-left: 275px;">더보기 ></div>
+                <c:choose>
+                	<c:when test="${memberList.size() ne 0}">
+                		<c:forEach var="m" items="${memberList}">
+                			<div class="club_members">
+		                   		<div class="club_profile_img"><img src="${pageContext.request.contextPath}${m.profileImg}" alt="프로필사진"></div>
+		                    	<div class="club_member_div">
+		                        	<div>${m.nickname}</div>
+		                        	<div class="club_member_intro">${m.introduce}</div>
+		                  	    </div>
+		                	</div>
+		                	<c:if test="${reviewList.size() > 5}">
+		                		<div class="club_more_member" style="margin-left: 275px;">더보기 ></div>
+		                	</c:if>
+                		</c:forEach>
+                	</c:when>
+                	<c:otherwise>
+	                	<tr>
+            				<td colspan="3" align="center">
+            					<div class="empty_p_member">
+            						<span>아직 참여자가 없습니다.</span>
+            					</div>
+            				</td>
+            			</tr>
+	                </c:otherwise>
+                </c:choose>
+                
             </div>
 
             <!-- 안내 사항 -->

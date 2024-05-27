@@ -30,5 +30,4 @@ public class Member {
 	private int point;
 	private String status;
 	private String admin;
-		
 }

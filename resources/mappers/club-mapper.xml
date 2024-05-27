@@ -183,4 +183,23 @@
 		WHERE
 			REQUEST_NO = #{rqno};
 	</update>
+	
+	<insert id="insertRequest">
+		INSERT INTO
+			request(
+					request_no,
+					user_no,
+					club_no,
+					answer
+					)
+			VALUES (
+					NEXTVAL('SEQ_RQNO'), 
+					#{userNo},
+					#{clubNo},
+					#{answer}
+					)
+	</insert>
+	
+	
+	
 </mapper>

@@ -30,4 +30,8 @@ public interface ClubService {
 	ArrayList<Request> requestList(int cno);
 
 	int acceptRequest(int rqno);
+
+	int insertRequest(Request r);
+
+
 }

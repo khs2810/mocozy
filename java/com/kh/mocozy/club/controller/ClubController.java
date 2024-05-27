@@ -26,14 +26,19 @@ import org.springframework.web.multipart.MultipartFile;
 import com.google.gson.Gson;
 import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.club.model.vo.ClubReview;
+import com.kh.mocozy.club.model.vo.Request;
 import com.kh.mocozy.club.service.ClubService;
 import com.kh.mocozy.common.model.vo.Attachment;
+import com.kh.mocozy.member.model.vo.Member;
+import com.kh.mocozy.member.service.MemberService;
 
 @Controller
 public class ClubController {
 	
 	@Autowired
 	private ClubService clubService;
+	@Autowired
+	private MemberService memberService;
 	
 	@RequestMapping("detail.cl")
 	public String selectClub(int cno, Model model) {
@@ -42,9 +47,11 @@ public class ClubController {
 		
 		if (result > 0) {
 			Club c = clubService.selectClub(cno);
+			ArrayList<Member> memberList = memberService.participatedMemberList(cno);
 			ArrayList<ClubReview> reviewList = clubService.listReview(cno);
 			model.addAttribute("c", c);
 			model.addAttribute("reviewList", reviewList);
+			model.addAttribute("memberList", memberList);
 			
 			// Timestamp -> (xxxx년 x월 x일(x) 오전 xx시 xx분) 
 	        LocalDateTime dateTime = c.getEventDate().toLocalDateTime();
@@ -89,11 +96,13 @@ public class ClubController {
 	}
 	
 	@RequestMapping("payment.cl")
-	public String paymentClub(int cno, Model model) {
+	public String paymentClub(int cno, String answer, Model model) {
 		Club c = clubService.selectClub(cno);
-//		System.out.println(c);
-		if (c != null) {
+		
+		if (c != null && answer != null) {
 			model.addAttribute("c", c);
+			model.addAttribute("answer", answer);
+			
 			return "club/clubPaymentPage";
 		} else {
 			model.addAttribute("errorMsg", "모임 조회 실패");
@@ -139,8 +148,6 @@ public class ClubController {
 		}
 	}
 	
-	// ajax로 들어오는 파일 업로드 요청 처리
-	// 파일목록을 저장한 후 저장된 파일명 목록을 반환
 	@PostMapping("upload")
 	@ResponseBody
 	public String upload(List<MultipartFile> fileList, HttpSession session) {
@@ -236,4 +243,25 @@ public class ClubController {
 	public String enrollClub() {
 		return "club/clubInsertPage";
 	}
+	
+	@RequestMapping("insert.rq")
+	public String insertRequest(Request r, int pt, Model model) {
+		r.setPoint(pt);
+		
+		int result1 = clubService.insertRequest(r);
+		int result2 = memberService.pointUpdate(r);
+		
+		if (result1 * result2 > 0) {
+			
+			return "redirect:/";
+		} else {
+			model.addAttribute("errorMsg", "모임 참가 신청 실패");
+			return "common/errorPage";
+		}
+		
+	}
+	
+	
+	
+	
 }
