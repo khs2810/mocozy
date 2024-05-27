@@ -54,4 +54,5 @@ public class MemberServiceImpl implements MemberService {
 	public ArrayList<Member> participatedMemberList(int cno) {
 		return memberDao.participatedMemberList(sqlSession, cno);
 	}
+	
 }

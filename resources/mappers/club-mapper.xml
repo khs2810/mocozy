@@ -160,10 +160,10 @@
 			   CAPACITY,
 			   QUESTION,
 			   STATUS
-		FROM public.CLUB
-			join MEMBER USING (USER_NO)
-		WHERE public.CLUB.STATUS = 'Y'
-			AND USER_NO = #{uno};
+		  FROM public.CLUB
+		  join MEMBER USING (USER_NO)
+		 WHERE public.CLUB.STATUS = 'Y'
+		   AND USER_NO = #{uno};
 	</select>
 	
 	<select id="selectRequestList" resultMap="requestResult">
@@ -173,15 +173,40 @@
 				ANSWER,
 				CREATE_DATE,
 				STATUS
-		FROM REQUEST
-		WHERE CLUB_NO = #{cno};
+		   FROM REQUEST
+		  WHERE CLUB_NO = #{cno};
 	</select>
 	
 	<update id="acceptRequest">
 		UPDATE REQUEST 
-		SET STATUS = 'Y'
-		WHERE
-			REQUEST_NO = #{rqno};
+		   SET STATUS = 'Y'
+		 WHERE REQUEST_NO = #{rqno};
+	</update>
+	
+	<update id="denyRequest">
+		UPDATE REQUEST 
+		   SET STATUS = 'N'
+		 WHERE REQUEST_NO = #{rqno};
+	</update>
+	
+	<update id="updateClub">
+		UPDATE CLUB
+		   SET club_title = #{clubTitle},
+			   club_type = #{clubType},
+			   club_content = #{clubContent},
+			   address = #{address},
+			   address_detail = #{addressDetail},
+			   event_date = #{eventDate},
+			   cost = #{cost},
+			   cost_info = #{costInfo},
+			   capacity = #{capacity},
+			   online = #{online},
+			   question = #{question},
+			   thumbnail_img = #{thumbnailImg},
+			   modify_date = CURRENT_DATE,
+			   category_name1 = #{categoryName1},
+			   category_name2 = #{categoryName2}
+		 WHERE CLUB_NO = #{clubNo}
 	</update>
 	
 	<insert id="insertRequest">

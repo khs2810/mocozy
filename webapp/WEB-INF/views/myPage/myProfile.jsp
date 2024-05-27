@@ -16,87 +16,13 @@
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/MyPage.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/myProfile.css">
 </head>
 <body>
     <%@ include file="../common/header.jsp"%>
     <div class="MyPage-body">
         <!-- 마이페이지 공용 코드 -->
-        <div class="mypage-main">
-            <!-- 유저 프로필 섹션 -->
-            <div class="user-profile">
-                <div class="profile-box">
-                    <button class="btn-style">
-                        <!-- 프로필사진 -->
-                        <div class="profile-box1" style="background: #BDBDBD;">
-                            <img class="profile profile-img" src="${pageContext.request.contextPath}/resources/koo/upfile/common_img/profile.jpg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
-                        </div>
-                    </button>
-                    <!-- 닉네임 및 계정이메일 -->
-                    <div class="account">
-                        <h5>${loginUser.nickname}</h5>
-                        <h6>${loginUser.userId}</h6>
-
-                        <!-- 포인트 -->
-                        <div class="account point">
-                            100,000pt
-                            <button class="btn-style">충전</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- 매너점수 -->
-                <div class="manner">
-                    <img src="${pageContext.request.contextPath}/resources/koo/upfile/myPage_img/로고-떡떡떡.png" alt="">
-                    <h6>매너점수</h6>
-                    <div class="gauge">
-                        <progress id="progress" value="36.5" min="0" max="100"></progress>
-                    </div>
-                </div>
-            </div>
-                
-            <!-- 메뉴 네비 -->
-            <div class="mypage-navi">
-                <nav>
-                    <ul id="main_menu">
-                        <li><a href="myPage.me">마이페이지</a></li>
-
-                        <li><a href="myProfile.me">내 프로필</a></li>
-
-                        <li><a href="">소셜링 관리</a>
-                            <ul class="snd_menu sub_menu">
-                                <li><a href="mySocial.me" class="snd_title">내가 만든 소셜링</a></li>
-                                <li><a href="goSocial.me" class="snd_title">참여 중인 소셜링</a></li>
-                            </ul>
-                        </li>
-
-                        <li><a href="" onclick="">챌린지 관리</a>
-                            <ul class="snd_menu sub_menu">
-                                <li><a href="myChallenge.me" class="snd_title">내가 만든 챌린지</a></li>
-                                <li><a href="goChallenge.me" class="snd_title">참여 중인 챌린지</a></li>
-                            </ul>
-                        </li>
-
-                        <li><a href="">포인트</a>
-                            <ul class="snd_menu sub_menu">
-                                <li><a href="" class="snd_title">포인트 관리</a></li>
-                                <li><a href="" class="snd_title">충전 내역</a></li>
-                                <li><a href="" class="snd_title">사용 내역</a></li>
-                            </ul>
-                        </li>
-
-                        <li><a href="">찜</a>
-                            <ul class="snd_menu sub_menu">
-                                <li><a href="dibsSocial.me" class="snd_title">소셜링</a></li>
-                                <li><a href="dibsChallenge.me" class="snd_title">챌린지</a></li>
-                            </ul>
-                        </li>
-
-                        <li><a href="">리뷰</a></li>
-
-                        <li><a href="">채팅기록</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </div>
+        <%@ include file="myPageCommon.jsp" %>
         
         <!-- 메인 컨텐츠 부 전체-->
         <div class="main-content">
@@ -182,7 +108,7 @@
                         <div class="modal-body">
                             <h5>기존 비밀번호</h5>
                             <div class="content-box">
-                                <input type="password" placeholder="기존 비밀번호를 입력해 주세요.">
+                                <input type="password" id="currentPassword" placeholder="기존 비밀번호를 입력해 주세요.">
                             </div>
                             <br>
                             <hr>
@@ -190,19 +116,19 @@
 
                             <h5>새 비밀번호</h5>
                             <div class="content-box">
-                                <input type="password" placeholder="새 비밀번호를 입력해주세요 (8자 이상)">
+                                <input type="password" id="newPassword" placeholder="새 비밀번호를 입력해주세요 (8자 이상)">
                             </div>
                             <br>
 
                             <h5>새 비밀번호 확인</h5>
                             <div class="content-box">
-                                <input type="password" placeholder="새 비밀번호를 다시 한 번 입력해주세요">
+                                <input type="password" id="confirmPassword" placeholder="새 비밀번호를 다시 한 번 입력해주세요">
                             </div>
                         </div>
                 
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="button" class="change-btn2">변경하기</button>
+                            <button type="button" class="change-btn2" id="changePasswordButton">변경하기</button>
                         </div>
                 
                     </div>
@@ -265,141 +191,106 @@
 
             <div class="edit-user">
                 <a href="">수정</a>
-                <a href="">로그아웃</a>
+                <a href="logout.me">로그아웃</a>
                 <a type="button" data-toggle="modal" data-target="#myModal3">회원 탈퇴</a>
 
-                <!-- The Modal -->
-                <div class="modal fade" id="myModal3">
-                    <div class="modal-dialog">
-                    <div class="modal-content">
-                
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                        <h2 class="modal-title">회원 탈퇴하기</h2>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            <h5>정말 탈퇴하시겠어요?</h5>
-                            <br>
-                            <div class="signout-caution">
-                                <p>지금 탈퇴하시면 참가 예정이거나, 참가중인 모임을 이용할 수 없게 되요.</p>
-                                <p>지금 탈퇴하시면 보유중인 매너 점수가 사라져요.</p>
-                                <p>지금 탈퇴하시면 채팅 이력이 모두 사라져요.</p>
-                                <p>추후에 동일 계정으로 가입해도 복구되지 않아요.</p>
-                            </div>
-                            <br>
 
-                            <div class="checked">
-                                <label for="agree" class="chk_box">
-                                    <input type="checkbox" id="agree" checked="checked" />
-                                    <span class="on"></span>
-                                    <p>상기 유의 사항을 확인 하였으며, 탈퇴 신청에 동의 합니다.</p>
-                                </label>
-                            </div>
-                        </div>
-                
-                        <!-- 탈퇴신청 Modal footer -->
-                        <div class="modal-footer">
-                            <button type="button" class="change-btn2" data-toggle="modal" data-target="#myModal4">탈퇴 신청하기</button>
-                        </div>
-                
+        <!-- 회원탈퇴 모달창1 -->
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal3">
+            <div class="modal-dialog">
+            <div class="modal-content">
+        
+                <!-- Modal Header -->
+                <div class="modal-header">
+                <h2 class="modal-title">회원 탈퇴하기</h2>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+        
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <h5>정말 탈퇴하시겠어요?</h5>
+                    <br>
+                    <div class="signout-caution">
+                        <p>지금 탈퇴하시면 참가 예정이거나, 참가중인 모임을 이용할 수 없게 되요.</p>
+                        <p>지금 탈퇴하시면 보유중인 매너 점수가 사라져요.</p>
+                        <p>지금 탈퇴하시면 채팅 이력이 모두 사라져요.</p>
+                        <p>추후에 동일 계정으로 가입해도 복구되지 않아요.</p>
                     </div>
+                    <br>
+
+                    <div class="checked">
+                        <label for="agree" class="chk_box">
+                            <input type="checkbox" id="agree" checked="checked" />
+                            <span class="on"></span>
+                            <p>상기 유의 사항을 확인 하였으며, 탈퇴 신청에 동의 합니다.</p>
+                        </label>
                     </div>
                 </div>
+        
+                <!-- 탈퇴신청 Modal footer -->
+                <div class="modal-footer">
+                    <button type="button" class="change-btn2" data-toggle="modal" data-target="#myModal4">탈퇴 신청하기</button>
+                </div>
+        
+            </div>
+            </div>
+        </div>
 
-                <!-- The Modal -->
-                <div class="modal fade" id="myModal4">
-                    <div class="modal-dialog">
-                    <div class="modal-content">
-                
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                        <h2 class="modal-title">회원 탈퇴하기</h2>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <!-- 회원탈퇴 모달창2 -->
+            <!-- The Modal -->
+            <div class="modal fade" id="myModal4">
+                <div class="modal-dialog">
+                <div class="modal-content">
+            
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                    <h2 class="modal-title">회원 탈퇴하기</h2>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+            
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <div>
+                            <h5>${loginUser.nickname} 님 <br>
+                                마지막 기회에요. <br>
+                                정말로 탈퇴하시겠어요?</h5>
                         </div>
-                
-                        <!-- Modal body -->
-                        <div class="modal-body">
+                        <p id="last-caution">비밀번호를 입력하고 확인을 누르면 탈퇴신청이 완료됩니다.</p>
+                        <br>
+                        <div class="main-object">
+                            <div class="content-title">
+                                <h6>이메일 (로그인 ID)</h6>
+                            </div>
                             <div>
-                                <h5>${loginUser.nickname} 님 <br>
-                                    마지막 기회에요. <br>
-                                    정말로 탈퇴하시겠어요?</h5>
+                                ${loginUser.userId}
                             </div>
-                            <p id="last-caution">비밀번호를 입력하고 확인을 누르면 탈퇴신청이 완료됩니다.</p>
-                            <br>
-                            <div class="main-object">
-                                <div class="content-title">
-                                    <h6>이메일 (로그인 ID)</h6>
-                                </div>
-                                <div>
-                                    ${loginUser.userId}
-                                </div>
+                        </div>
+                        <div class="main-object height">
+                            <div class="content-title">
+                                <h6>비밀번호</h6>
                             </div>
-                            <div class="main-object height">
-                                <div class="content-title">
-                                    <h6>비밀번호</h6>
-                                </div>
-                                <div class="box">
-                                    <input type="password" class="textbox" value="비밀번호 입니다"id="check_pwd" onblur="checkPass()">
-                                    <span id="pwd_review"></span>
-                                </div>
+                            <div class="box">
+                                <input type="password" class="textbox" id="delete-password" >
+                                <span id="pwd_review"></span>
                             </div>
+                        </div>
 
-                        </div>
-                
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                            <button type="button" class="change-btn2">인증 하기</button>
-                        </div>
-                
                     </div>
+            
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="change-btn2" id="delete-account-btn">탈 퇴</button>
                     </div>
+            
+                </div>
+                </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <script>
-        const checkbox1 = document.querySelector('[data-id="checkbox-1"]');
-
-        checkbox1.addEventListener('click', function() {
-              checkboxes.forEach(function(checkbox) {
-                if (checkbox.classList.contains('bi-square')) {
-                  checkbox.classList.remove('bi-square');
-                  checkbox.classList.add('bi-check-square-fill');
-                } else {
-                  checkbox.classList.remove('bi-check-square-fill');
-                  checkbox.classList.add('bi-square');
-                }
-              });
-            });
-
-            checkboxes.forEach(function(checkbox) {
-              checkbox.addEventListener('click', function() {
-                if (checkbox === checkbox1) {
-                  checkboxes.forEach(function(cb) {
-                    if (checkbox1.classList.contains('bi-check-square-fill')) {
-                      cb.classList.remove('bi-square');
-                      cb.classList.add('bi-check-square-fill');
-                    } else {
-                      cb.classList.remove('bi-check-square-fill');
-                      cb.classList.add('bi-square');
-                    }
-                  });
-                } else {
-                  if (checkbox.classList.contains('bi-square')) {
-                    checkbox.classList.remove('bi-square');
-                    checkbox.classList.add('bi-check-square-fill');
-                  } else {
-                    checkbox.classList.remove('bi-check-square-fill');
-                    checkbox.classList.add('bi-square');
-                  }
-                }
-                });
-            });
-    </script>
+    <!-- 자기소개 모달창 -->
     <!-- The Modal -->
     <div class="modal fade" id="profileModal">
         <div class="modal-dialog">
@@ -441,5 +332,80 @@
             </div>
         </div>
     </div>
+    
+
+    <script>
+        const checkbox1 = document.querySelector('[data-id="checkbox-1"]');
+
+        checkbox1.addEventListener('click', function() {
+              checkboxes.forEach(function(checkbox) {
+                if (checkbox.classList.contains('bi-square')) {
+                  checkbox.classList.remove('bi-square');
+                  checkbox.classList.add('bi-check-square-fill');
+                } else {
+                  checkbox.classList.remove('bi-check-square-fill');
+                  checkbox.classList.add('bi-square');
+                }
+              });
+            });
+
+            checkboxes.forEach(function(checkbox) {
+              checkbox.addEventListener('click', function() {
+                if (checkbox === checkbox1) {
+                  checkboxes.forEach(function(cb) {
+                    if (checkbox1.classList.contains('bi-check-square-fill')) {
+                      cb.classList.remove('bi-square');
+                      cb.classList.add('bi-check-square-fill');
+                    } else {
+                      cb.classList.remove('bi-check-square-fill');
+                      cb.classList.add('bi-square');
+                    }
+                  });
+                } else {
+                  if (checkbox.classList.contains('bi-square')) {
+                    checkbox.classList.remove('bi-square');
+                    checkbox.classList.add('bi-check-square-fill');
+                  } else {
+                    checkbox.classList.remove('bi-check-square-fill');
+                    checkbox.classList.add('bi-square');
+                  }
+                }
+                });
+            });
+    </script>
+    <script>
+    document.getElementById("delete-account-btn").addEventListener("click", function() {
+        const userId = "${loginUser.userId}";
+        const password = document.getElementById("delete-password").value;
+
+        if (!password) {
+            alert("비밀번호를 입력해주세요.");
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "${pageContext.request.contextPath}/delete.me",
+            data: {
+                userId: userId,
+                userPwd: password
+            },
+            success: function(response) {
+                if (response.success) {
+                    alert("비밀번호가 일치하지 않습니다. 회원탈퇴 실패하였습니다.");
+                    window.location.href = "${pageContext.request.contextPath}/";
+                } else {
+                    alert("성공적으로 회원탈퇴 되었습니다.");
+                    window.location.href = "redirect:/";
+                }
+            },
+            error: function() {
+                alert("오류가 발생했습니다. 다시 시도해주세요.");
+                window.location.href = "${pageContext.request.contextPath}/";
+            }
+        });
+    });
+    </script>
+    
 </body>
 </html>

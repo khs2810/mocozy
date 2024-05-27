@@ -4,7 +4,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>모임 신청 내역 페이지</title>
+	<title>모임 신청 페이지</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
@@ -129,16 +129,16 @@
                         </tr>
                     </table>
                 </div>
-                <div id="detailInputBox">
-                    <h3 style="margin-left: 15px; margin-bottom: 0;">글 상세</h3>
-                    <hr>
-                    <textarea id="summernote" name="clubContent"></textarea>
-                </div>
-                <div id="buttons">
-                    <button type="reset" id="resetBtn">초기화</button>
-                    <button type="submit" id="submitBtn">등록하기</button>
-                </div>
             </div>
+        </div>
+        <div id="detailInputBox">
+            <h3 style="margin-left: 15px; margin-bottom: 0;">글 상세</h3>
+            <hr>
+            <textarea id="summernote" name="clubContent"></textarea>
+        </div>
+        <div id="buttons">
+            <button type="reset" id="resetBtn">초기화</button>
+            <button type="submit" id="submitBtn">등록하기</button>
         </div>
         <input type="text" name="userNo" id="userNo" value="2" hidden>
     </form><br>

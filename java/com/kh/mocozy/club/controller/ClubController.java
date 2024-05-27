@@ -142,12 +142,42 @@ public class ClubController {
 			}
 			session.setAttribute("alertMsg", "모임 등록 성공");
 			return "redirect:detail.cl?cno=" + result;
-		} else { //실패 => 에러페이지
+		} else {
 			model.addAttribute("errorMsg", "모임 등록 실패");
 			return "common/errorPage";
 		}
 	}
 	
+	@RequestMapping("update.cl")
+	public String updateClub(Club c, MultipartFile upfile, HttpSession session, Model model) {
+		Attachment at = clubService.selectAttachment(c.getClubNo());
+		c.setThumbnailImg(at.getChangeName());
+		
+		String eventT = c.getEventDateStr();
+		
+		DateTimeFormatter inputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm");
+        LocalDateTime dateTime = LocalDateTime.parse(eventT, inputFormatter);
+        
+        // LocalDateTime을 원하는 형식의 문자열로 변환
+        DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+        String formattedDateTime = dateTime.format(outputFormatter);
+
+        c.setEventDate(convertStringToTimestamp(formattedDateTime));
+        System.out.println(c);
+        
+        int result = clubService.updateClub(c, at);
+        
+        if (result > 0) {
+        	session.setAttribute("alertMsg", "모임 수정 성공");
+        	return "redirect:detail.cl?cno=" + c.getClubNo();
+        } else {
+        	model.addAttribute("errorMsg", "게시글 수정 실패");
+        	return "common/errorPage";
+        }
+	}
+	
+	// ajax로 들어오는 파일 업로드 요청 처리
+	// 파일목록을 저장한 후 저장된 파일명 목록을 반환
 	@PostMapping("upload")
 	@ResponseBody
 	public String upload(List<MultipartFile> fileList, HttpSession session) {
@@ -244,6 +274,7 @@ public class ClubController {
 		return "club/clubInsertPage";
 	}
 	
+<<<<<<< HEAD
 	@RequestMapping("insert.rq")
 	public String insertRequest(Request r, int pt, Model model) {
 		r.setPoint(pt);
@@ -264,4 +295,12 @@ public class ClubController {
 	
 	
 	
+=======
+	@RequestMapping("updateform.cl")
+	public String updateClub(int cno, Model model) {
+		Club c = clubService.selectClub(cno);
+		model.addAttribute("c", c);
+		return "club/clubUpdatePage";
+	}
+>>>>>>> 51e8a47f0265ac311785023a8f6f04828a12ae42
 }

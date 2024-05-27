@@ -34,4 +34,9 @@ public interface ClubService {
 	int insertRequest(Request r);
 
 
+	int denyRequest(int rqno);
+
+	Attachment selectAttachment(int cno);
+	
+	int updateClub(Club c, Attachment at);
 }

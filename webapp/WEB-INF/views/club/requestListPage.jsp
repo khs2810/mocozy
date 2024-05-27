@@ -64,7 +64,7 @@
                 	</c:when>
                 </c:choose> --%>
             </div>
-            <div class="clubRequestList">
+            <div class="clubRequestList" id="clubRequestList">
             	<c:forEach var="r" items="${requestList}">
 	                <div class="clubRequest">
 	                    <div class="clubRequest-head">
@@ -100,8 +100,8 @@
                             		<%-- <c:set var="status" value="${r.status}"/> --%>
 	                            	<c:choose>
 	                            		<c:when test="${r.status eq 'W'}">
-			                                <button type="button" class="denyBtn" data-rqno="${r.requestNo}" data-cno="${r.clubNo}">거절</button>
-			                                <button type="button" class="acceptBtn" data-rqno="${r.requestNo}" data-cno="${r.clubNo}">수락</button>	                            			
+			                                <button type="button" class="denyBtn" data-rqno="${r.requestNo}" data-cno="${r.clubNo}" data-url="${pageContext.request.contextPath}" data-question="${c.question}">거절</button>
+			                                <button type="button" class="acceptBtn" data-rqno="${r.requestNo}" data-cno="${r.clubNo}" data-url="${pageContext.request.contextPath}" data-question="${c.question}">수락</button>	                            			
 	                            		</c:when>
 	                            		<c:when test="${r.status eq 'Y'}">
 			                                <button type="button" class="acceptedBtn">수락됨</button>
