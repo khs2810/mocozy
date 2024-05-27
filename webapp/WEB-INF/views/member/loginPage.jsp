@@ -13,7 +13,9 @@
 <body class="Login_page">
     <form action="login.me">
         <div class="Login-content">
-            <img src="${pageContext.request.contextPath}/resources/koo/upfile/loginPage_img/logo.png" id="logo" alt="">
+            <a href="">
+            	<img src="${pageContext.request.contextPath}/resources/koo/upfile/loginPage_img/logo.png" id="logo" alt="모꼬지">
+            </a>
                 <h1>
                     함께 하면 즐거운<br>
                     모꼬지에 오신 것을 환영합니다!

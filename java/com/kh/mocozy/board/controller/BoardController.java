@@ -77,7 +77,7 @@ public class BoardController {
 	@PostMapping("upload.no")
 	@ResponseBody
 	public String upload(List<MultipartFile> fileList, HttpSession session) {
-		System.out.println(fileList);
+//		System.out.println(fileList);
 		
 		List<String> changeNameList = new ArrayList<String>();
 		
@@ -123,8 +123,7 @@ public class BoardController {
 	
 	@RequestMapping("insert.no")
 	public String insertNotice(Notice n, Model model) {
-		//로그인 유저로 하고 지워야함
-		n.setUserNo(1);
+		
 		int result = boardService.insertNotice(n);
 		
 		if (result > 0) {

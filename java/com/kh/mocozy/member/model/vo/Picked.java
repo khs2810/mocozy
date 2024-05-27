@@ -1,6 +1,5 @@
-package com.kh.mocozy.club.model.vo;
+package com.kh.mocozy.member.model.vo;
 
-import java.sql.Timestamp;
 import java.sql.Date;
 
 import lombok.AllArgsConstructor;
@@ -14,12 +13,10 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Request {
-	private int requestNo;
+public class Picked {
+	
+	private int pickedNo;
 	private int userNo;
 	private int clubNo;
-	private String answer;
-	private Timestamp createDate;
-	private String status;
-	private int point;
+	
 }

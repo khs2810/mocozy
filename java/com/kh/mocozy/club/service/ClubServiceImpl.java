@@ -11,6 +11,7 @@ import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.club.model.vo.ClubReview;
 import com.kh.mocozy.club.model.vo.Request;
 import com.kh.mocozy.common.model.vo.Attachment;
+import com.kh.mocozy.member.model.vo.Member;
 
 @Service
 public class ClubServiceImpl implements ClubService { 
@@ -19,6 +20,7 @@ public class ClubServiceImpl implements ClubService {
 	private ClubDao clubDao;
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+
 	
 	@Override
 	public int increaseCount(int cno) {
@@ -74,6 +76,10 @@ public class ClubServiceImpl implements ClubService {
 	}
 
 	@Override
+	public int insertRequest(Request r) {
+		return clubDao.insertRequest(sqlSession, r);
+	}
+
 	public int denyRequest(int rqno) {
 		return clubDao.denyRequest(sqlSession, rqno);
 	}

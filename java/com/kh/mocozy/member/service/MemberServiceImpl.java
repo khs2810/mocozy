@@ -1,9 +1,12 @@
 package com.kh.mocozy.member.service;
 
+import java.util.ArrayList;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.mocozy.club.model.vo.Request;
 import com.kh.mocozy.member.model.dao.MemberDao;
 import com.kh.mocozy.member.model.vo.Member;
 
@@ -41,4 +44,20 @@ public class MemberServiceImpl implements MemberService {
 	public int deleteMember(String userId) {
 		return memberDao.deleteMember(sqlSession, userId);
 	}
+
+	@Override
+	public int pointUpdate(Request r) {
+		return memberDao.pointUpdate(sqlSession, r);
+	}
+
+	@Override
+	public ArrayList<Member> participatedMemberList(int cno) {
+		return memberDao.participatedMemberList(sqlSession, cno);
+	}
+
+	@Override
+	public Member deleteMember(Member m) {
+		return null;
+	}
+	
 }

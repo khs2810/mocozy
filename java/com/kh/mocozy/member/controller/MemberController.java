@@ -1,5 +1,8 @@
 package com.kh.mocozy.member.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
@@ -7,6 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
@@ -140,32 +145,39 @@ public class MemberController {
 		
 	}
 	
+	
 	@RequestMapping("delete.me")
 	public String deleteMember(Member m, HttpSession session) {
 		
 		//1. 암호화된 비밀번호 가져오기
-		String encPwd = ((Member)session.getAttribute("loginUser")).getUserPwd();
-		
+		Member loginUser = memberService.loginMember(m);
+		String userPwd = ((Member)session.getAttribute("loginUser")).getUserPwd();
 		//2. 비밀번호 일치/불일치 판단후
-		if (bcryptPasswordEncoder.matches(m.getUserPwd(), encPwd)) {
+//		if (bcryptPasswordEncoder.matches(m.getUserPwd(), userPwd)) {
 			//일치 -> 탈퇴처리 -> session에서 제거 -> 메인페이지로
 			int result = memberService.deleteMember(m.getUserId());
-			
+			System.out.println(2);
+			System.out.println(result);
 			if(result > 0) {
 				session.removeAttribute("loginUser");
 				session.setAttribute("alertMsg", "회원탈퇴가 성공적으로 이루어졌습니다.");
+				System.out.println(3);
 				return "redirect:/";
+				
 			} else {
-				session.setAttribute("alertMsg", "탈퇴처리 실패");
-				return "redirect:/myPage.me";
+				session.setAttribute("alertMsg", "비밀번호를 다시 확인해주세요");
+				System.out.println(4);
+				return "redirect:/myProfile.me";
+				
 			}
-			
-		} else {
-			//불일치 -> alertMsg: 비밀번호 다시 입력 -> 마이페이지
-			session.setAttribute("alertMsg", "비밀번호를 다시 확인해주세요");
-			return "redirect:/myPage.me";
-		}
 	}
+			
+//		} else {
+//			//불일치 -> alertMsg: 비밀번호 다시 입력 -> 마이페이지
+//			session.setAttribute("alertMsg", "비밀번호를 다시 확인해주세요");
+//			return "redirect:/myProfile.me";
+//		}
+	
 	
 
 //	약관 동의
