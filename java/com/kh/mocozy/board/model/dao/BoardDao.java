@@ -47,4 +47,12 @@ public class BoardDao {
 		return sqlSession.insert("boardMapper.insertNotice", n);
 	}
 
+	public int updateNotice(SqlSessionTemplate sqlSession, Notice n) {
+		return sqlSession.update("boardMapper.updateNotice", n);
+	}
+
+	public int deleteNotice(SqlSessionTemplate sqlSession, int nno) {
+		return sqlSession.update("boardMapper.deleteNotice", nno);
+	}
+
 }

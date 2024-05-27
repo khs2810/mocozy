@@ -171,7 +171,7 @@
 							</div>
 							<div class="alarm">+99</div>
 				              <button class="userName" id="userName" type="button">
-				              	${loginUser.userName} 님</button>
+				              	${loginUser.nickname} 님</button>
 			             </c:otherwise>
 		         </c:choose>
             
@@ -186,7 +186,7 @@
 				<%--카테고리 버튼--%>
 				<div class="categories">
 					<div class="cate">
-						<button class="catebutton" type="button" id="cateButton">
+						<button class="catebtn" type="button" id="cateButton">
 							<img class="cateIcon" src="_blank" alt="">
 							<p class="cateTitle">카테고리</p>
 						</button>

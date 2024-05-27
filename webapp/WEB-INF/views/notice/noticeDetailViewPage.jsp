@@ -6,9 +6,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>공자사항 상세페이지</title>
-
+	
+	<!-- css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/teo/css/noticePage.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/teo/css/clubDetailPage.css">
+    
+    <!-- 라이브러리 -->
+    <script src="${pageContext.request.contextPath}/resources/teo/js/noticeDetailView.js"></script>
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>
@@ -19,8 +23,12 @@
             ${n.noticeContent}
         </div>
         <div class="notice_detail_update_btn">
-            <button class="background_color_green color_white font_weight_bold">수 정</button>
-            <button class="background_color_green color_white font_weight_bold">삭 제</button>
+        	<c:if test="${loginUser.admin eq 'Y'}">
+	       		<button class="background_color_green color_white font_weight_bold" onclick="location.href='updateForm.no?nno=${n.noticeNo}'">수 정</button>
+           		<button class="background_color_green color_white font_weight_bold" onclick="confirmDelete(${n.noticeNo})">삭 제</button>
+           		<%-- <button class="background_color_green color_white font_weight_bold" onclick="location.href='delete.no?nno=${n.noticeNo}'">삭 제</button> --%>
+	       	</c:if>
+            
         </div>
         <div id="notice_review">
             <h3>댓글(${rlist.size()})</h3>
@@ -52,7 +60,9 @@
                     <div class="review_content_write">
                         <textarea></textarea>
                     </div>
-                    <button class="background_color_green color_white font_weight_bold review_enroll_btn">등 록</button>
+                    <button class="background_color_green color_white font_weight_bold review_enroll_btn">
+                    	등 록
+                    </button>
                 </div>
             </div>
         </div>

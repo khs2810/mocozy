@@ -122,12 +122,51 @@ public class BoardController {
 	}
 	
 	@RequestMapping("insert.no")
-	public String insertNotice(Notice n) {
+	public String insertNotice(Notice n, Model model) {
 		//로그인 유저로 하고 지워야함
 		n.setUserNo(1);
 		int result = boardService.insertNotice(n);
 		
-		return "notice/noticeListPage";
+		if (result > 0) {
+			return "redirect:list.no";
+		} else {
+			model.addAttribute("errorMsg", "공지사항 등록 실패");
+			return "common/errorPage";
+		}
+		
+	}
+	
+	@RequestMapping("updateForm.no")
+	public String updateFormNotice(int nno, Model model) {
+		Notice n = boardService.selectNotice(nno);
+		model.addAttribute("n", n);
+		
+		return "notice/noticeUpdateFormPage";
+	}
+	
+	@RequestMapping("update.no")
+	public String updateNotice(Notice n, Model model) {
+		int result = boardService.updateNotice(n);
+		
+		if (result > 0) {
+			return "redirect:list.no";
+		} else {
+			model.addAttribute("errorMsg", "공지사항 수정 실패");
+			return "common/errorPage";
+		}
+		
+	}
+	
+	@RequestMapping("delete.no")
+	public String deleteNotice(int nno, Model model) {
+		int result = boardService.deleteNotice(nno);
+		
+		if (result > 0) {
+			return "redirect:list.no";
+		} else {
+			model.addAttribute("errorMsg", "공지사항 삭제 실패");
+			return "common/errorPage";
+		}
 	}
 	
 }

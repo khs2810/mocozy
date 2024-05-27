@@ -5,8 +5,6 @@ li {
 .rank{
   max-width: 100vw;
   max-height: 100vh;
-  min-width: 600px;
-  min-height: 500rem;
 }
 
 .rank .screen{
@@ -214,7 +212,7 @@ li {
   flex-direction: row;
 }
 
-.rank .slide .contentcard{
+.rank .slide .rankcontentcard{
   display: flex;
   align-items: center;
   justify-content: center;

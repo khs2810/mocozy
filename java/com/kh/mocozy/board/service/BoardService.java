@@ -27,4 +27,8 @@ public interface BoardService {
 
 	int insertNotice(Notice n);
 
+	int updateNotice(Notice n);
+
+	int deleteNotice(int nno);
+
 }
