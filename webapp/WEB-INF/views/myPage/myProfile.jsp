@@ -183,7 +183,7 @@
                 </div>
                 <div id="introduce">
                     <div>
-                        <textarea onkeyup="counter();" class="form-control textbox"  id="jagisogae" style="width: 500px; height: 50px;">내 최애 떡꼬치. 근데 누가 뺐어갔어...</textarea>
+                        <textarea onkeyup="counter();" class="form-control textbox" id="jagisogae" style="width: 500px; height: 50px;">내 최애 떡꼬치. 근데 누가 뺐어갔어...</textarea>
                         <span id = "count"></span>
                     </div>
                 </div>
