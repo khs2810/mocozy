@@ -11,7 +11,7 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jun/css/challengeManagePage.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/myProfile.css">
 	<script src="${pageContext.request.contextPath}/resources/jun/js/challengeManagePage.js"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css" />
@@ -182,7 +182,7 @@
                         <div class="modal-body">
                             <h5>기존 비밀번호</h5>
                             <div class="content-box">
-                                <input type="password" placeholder="기존 비밀번호를 입력해 주세요.">
+                                <input type="password" id="currentPassword" placeholder="기존 비밀번호를 입력해 주세요.">
                             </div>
                             <br>
                             <hr>
@@ -190,19 +190,19 @@
 
                             <h5>새 비밀번호</h5>
                             <div class="content-box">
-                                <input type="password" placeholder="새 비밀번호를 입력해주세요 (8자 이상)">
+                                <input type="password" id="newPassword" placeholder="새 비밀번호를 입력해주세요 (8자 이상)">
                             </div>
                             <br>
 
                             <h5>새 비밀번호 확인</h5>
                             <div class="content-box">
-                                <input type="password" placeholder="새 비밀번호를 다시 한 번 입력해주세요">
+                                <input type="password" id="confirmPassword" placeholder="새 비밀번호를 다시 한 번 입력해주세요">
                             </div>
                         </div>
                 
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="button" class="change-btn2">변경하기</button>
+                            <button type="button" class="change-btn2" id="changePasswordButton">변경하기</button>
                         </div>
                 
                     </div>
@@ -265,7 +265,7 @@
 
             <div class="edit-user">
                 <a href="">수정</a>
-                <a href="">로그아웃</a>
+                <a href="logout.me">로그아웃</a>
                 <a type="button" data-toggle="modal" data-target="#myModal3">회원 탈퇴</a>
 
                 <!-- The Modal -->
@@ -342,7 +342,7 @@
                                     <h6>비밀번호</h6>
                                 </div>
                                 <div class="box">
-                                    <input type="password" class="textbox" value="비밀번호 입니다"id="check_pwd" onblur="checkPass()">
+                                    <input type="password" class="textbox" id="delete-password" >
                                     <span id="pwd_review"></span>
                                 </div>
                             </div>
@@ -351,7 +351,7 @@
                 
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="button" class="change-btn2">인증 하기</button>
+                            <button type="button" class="change-btn2" id="delete-account-btn">탈 퇴</button>
                         </div>
                 
                     </div>
@@ -361,45 +361,7 @@
         </div>
     </div>
 
-    <script>
-        const checkbox1 = document.querySelector('[data-id="checkbox-1"]');
-
-        checkbox1.addEventListener('click', function() {
-              checkboxes.forEach(function(checkbox) {
-                if (checkbox.classList.contains('bi-square')) {
-                  checkbox.classList.remove('bi-square');
-                  checkbox.classList.add('bi-check-square-fill');
-                } else {
-                  checkbox.classList.remove('bi-check-square-fill');
-                  checkbox.classList.add('bi-square');
-                }
-              });
-            });
-
-            checkboxes.forEach(function(checkbox) {
-              checkbox.addEventListener('click', function() {
-                if (checkbox === checkbox1) {
-                  checkboxes.forEach(function(cb) {
-                    if (checkbox1.classList.contains('bi-check-square-fill')) {
-                      cb.classList.remove('bi-square');
-                      cb.classList.add('bi-check-square-fill');
-                    } else {
-                      cb.classList.remove('bi-check-square-fill');
-                      cb.classList.add('bi-square');
-                    }
-                  });
-                } else {
-                  if (checkbox.classList.contains('bi-square')) {
-                    checkbox.classList.remove('bi-square');
-                    checkbox.classList.add('bi-check-square-fill');
-                  } else {
-                    checkbox.classList.remove('bi-check-square-fill');
-                    checkbox.classList.add('bi-square');
-                  }
-                }
-                });
-            });
-    </script>
+    <!-- 자기소개 모달창 -->
     <!-- The Modal -->
     <div class="modal fade" id="profileModal">
         <div class="modal-dialog">
@@ -441,5 +403,80 @@
             </div>
         </div>
     </div>
+    
+
+    <script>
+        const checkbox1 = document.querySelector('[data-id="checkbox-1"]');
+
+        checkbox1.addEventListener('click', function() {
+              checkboxes.forEach(function(checkbox) {
+                if (checkbox.classList.contains('bi-square')) {
+                  checkbox.classList.remove('bi-square');
+                  checkbox.classList.add('bi-check-square-fill');
+                } else {
+                  checkbox.classList.remove('bi-check-square-fill');
+                  checkbox.classList.add('bi-square');
+                }
+              });
+            });
+
+            checkboxes.forEach(function(checkbox) {
+              checkbox.addEventListener('click', function() {
+                if (checkbox === checkbox1) {
+                  checkboxes.forEach(function(cb) {
+                    if (checkbox1.classList.contains('bi-check-square-fill')) {
+                      cb.classList.remove('bi-square');
+                      cb.classList.add('bi-check-square-fill');
+                    } else {
+                      cb.classList.remove('bi-check-square-fill');
+                      cb.classList.add('bi-square');
+                    }
+                  });
+                } else {
+                  if (checkbox.classList.contains('bi-square')) {
+                    checkbox.classList.remove('bi-square');
+                    checkbox.classList.add('bi-check-square-fill');
+                  } else {
+                    checkbox.classList.remove('bi-check-square-fill');
+                    checkbox.classList.add('bi-square');
+                  }
+                }
+                });
+            });
+    </script>
+    <script>
+    document.getElementById("delete-account-btn").addEventListener("click", function() {
+        const userId = "${loginUser.userId}";
+        const password = document.getElementById("delete-password").value;
+
+        if (!password) {
+            alert("비밀번호를 입력해주세요.");
+            return;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "${pageContext.request.contextPath}/delete.me",
+            data: {
+                userId: userId,
+                userPwd: password
+            },
+            success: function(response) {
+                if (response.success) {
+                    alert("비밀번호가 일치하지 않습니다. 회원탈퇴 실패하였습니다.");
+                    window.location.href = "${pageContext.request.contextPath}/";
+                } else {
+                    alert("성공적으로 회원탈퇴 되었습니다.");
+                    window.location.href = "redirect:/";
+                }
+            },
+            error: function() {
+                alert("오류가 발생했습니다. 다시 시도해주세요.");
+                window.location.href = "${pageContext.request.contextPath}/";
+            }
+        });
+    });
+    </script>
+    
 </body>
 </html>
