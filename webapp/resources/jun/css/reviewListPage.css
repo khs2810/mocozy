@@ -212,6 +212,7 @@ hr{
 .clubMsg > pre{
 	border: none;
 	background-color: transparent;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 .box{
     width: 180px;
@@ -310,6 +311,8 @@ button:hover{
 }
 .leftPart > img{
     border-radius: 15px;
+    width: 125px;
+    height: 125px;
 }
 .midPart{
     margin-left: 30px;

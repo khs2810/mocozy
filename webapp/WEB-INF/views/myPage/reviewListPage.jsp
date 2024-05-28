@@ -29,29 +29,36 @@
             	<c:forEach var="c" items="${list}">
             		<div class="review">
 	                    <div class="leftPart">
-	                        <img src="${pageContext.request.contextPath}/${c.thumbnailImg}">
+	                        <img class="thumbnail" src="${pageContext.request.contextPath}/${c.thumbnailImg}">
 	                    </div>
 	                    <div class="midPart">
 	                        <div class="clubTitle">
 	                            <span>${c.clubTitle}</span>
 	                        </div>
 	                        <div class="clubMsg">
-	                            <pre>모임 종류</pre>
+	                            <pre>모임 종류 : ${c.clubType}<br>파티장 : ${c.nickname}<br>날짜 : ${c.eventDateStr}</pre>
 	                        </div>
 	                    </div>
 	                    <div class="rightPart">
 	                        <div class="scorePart">
 	                            <img src="${pageContext.request.contextPath}/resources/jun/img/star.png">
-	                            <span class="score">4.5</span>
+	                            <span class="score">${c.totalPoint}</span>
 	                        </div>
 	                        <div class="btnPart">
-	                            <button type="button" class="writeBtn" data-toggle="modal" data-target="#reviewEnrollWindow">리뷰 작성</button>
+	                        	<c:choose>
+	                        		<c:when test="${c.isReview eq 0}">
+			                            <button type="button" class="writeBtn" data-toggle="modal" data-target="#reviewEnrollWindow">리뷰 작성</button>
+	                        		</c:when>
+	                        		<c:when test="${c.isReview eq 1}">
+			                            <button type="button" class="detailBtn" data-toggle="modal" data-target="#reviewDetailWindow">리뷰 보기</button>
+	                        		</c:when>
+	                        	</c:choose>
 	                        </div>
 	                    </div>
 	                </div>
             	</c:forEach>
             
-                <div class="review">
+                <%-- <div class="review">
                     <div class="leftPart">
                         <img src="${pageContext.request.contextPath}/resources/jun/img/clubImg1.png">
                     </div>
@@ -97,49 +104,51 @@
                             <button type="button" class="detailBtn" data-toggle="modal" data-target="#reviewDetailWindow">리뷰 보기</button>
                         </div>
                     </div>
-                </div>
+                </div> --%>
             </div>
         </div>
     </div>
 
     <!-- The Modal -->
-    <div class="modal" id="reviewEnrollWindow">
-        <div class="modal-dialog">
-            <div class="modal-content" style="border: 4px solid black; border-bottom-right-radius: 30px;">
-            
-                <!-- Modal Header -->
-                <div class="modal-header">
-                <h4 class="modal-title">리뷰 작성하기</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="star-rating">
-                        <input type="radio" id="5-stars" name="rating" value="5" />
-                        <label for="5-stars" class="star">&#9733;</label>
-                        <input type="radio" id="4-stars" name="rating" value="4" />
-                        <label for="4-stars" class="star">&#9733;</label>
-                        <input type="radio" id="3-stars" name="rating" value="3" />
-                        <label for="3-stars" class="star">&#9733;</label>
-                        <input type="radio" id="2-stars" name="rating" value="2" />
-                        <label for="2-stars" class="star">&#9733;</label>
-                        <input type="radio" id="1-star" name="rating" value="1" />
-                        <label for="1-star" class="star">&#9733;</label>
-                    </div>
-                    <div class="review-write">
-                        <textarea name="" id="" placeholder="리뷰를 작성하세요"></textarea>
-                    </div>
-                </div>
-                
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">리뷰 등록</button>
-                </div>
-                
-            </div>
-        </div>
-    </div>
+    <c:forEach var="r" items="${list}">
+	    <div class="modal" id="reviewEnrollWindow">
+	        <div class="modal-dialog">
+	            <div class="modal-content" style="border: 4px solid black; border-bottom-right-radius: 30px;">
+	            
+	                <!-- Modal Header -->
+	                <div class="modal-header">
+	                <h4 class="modal-title">리뷰 작성하기</h4>
+	                <button type="button" class="close" data-dismiss="modal">&times;</button>
+	                </div>
+	                
+	                <!-- Modal body -->
+	                <div class="modal-body">
+	                    <div class="star-rating">
+	                        <input type="radio" id="5-stars" name="rating" value="5" />
+	                        <label for="5-stars" class="star">&#9733;</label>
+	                        <input type="radio" id="4-stars" name="rating" value="4" />
+	                        <label for="4-stars" class="star">&#9733;</label>
+	                        <input type="radio" id="3-stars" name="rating" value="3" />
+	                        <label for="3-stars" class="star">&#9733;</label>
+	                        <input type="radio" id="2-stars" name="rating" value="2" />
+	                        <label for="2-stars" class="star">&#9733;</label>
+	                        <input type="radio" id="1-star" name="rating" value="1" />
+	                        <label for="1-star" class="star">&#9733;</label>
+	                    </div>
+	                    <div class="review-write">
+	                        <textarea name="" id="" placeholder="리뷰를 작성하세요"></textarea>
+	                    </div>
+	                </div>
+	                
+	                <!-- Modal footer -->
+	                <div class="modal-footer">
+	                    <button type="button" class="btn btn-danger" data-dismiss="modal">리뷰 등록</button>
+	                </div>
+	                
+	            </div>
+	        </div>
+	    </div>
+    </c:forEach>
     
     <!-- <div class="reviewEnrollWindow">
         <div class="review-head">
@@ -169,37 +178,39 @@
     </div> -->
     
     <!-- The Modal -->
-    <div class="modal" id="reviewDetailWindow">
-        <div class="modal-dialog">
-            <div class="modal-content" style="padding-bottom: 20px; border: 4px solid black; border-bottom-right-radius: 30px;">
-            
-                <!-- Modal Header -->
-                <div class="modal-header">
-                <h4 class="modal-title">리뷰 보기</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="star-rating">
-                        <input type="radio" id="5-stars" name="rating" value="5" />
-                        <label for="5-stars" class="star">&#9733;</label>
-                        <input type="radio" id="4-stars" name="rating" value="4" />
-                        <label for="4-stars" class="star">&#9733;</label>
-                        <input type="radio" id="3-stars" name="rating" value="3" />
-                        <label for="3-stars" class="star">&#9733;</label>
-                        <input type="radio" id="2-stars" name="rating" value="2" />
-                        <label for="2-stars" class="star">&#9733;</label>
-                        <input type="radio" id="1-star" name="rating" value="1" />
-                        <label for="1-star" class="star">&#9733;</label>
-                    </div>
-                    <div class="review-write">
-                        <textarea name="" id="">짐이 작성한 리뷰이니라. 소중하게 생각하도록.</textarea>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    <c:forEach var="r" items="${list}">
+	    <div class="modal" id="reviewDetailWindow">
+	        <div class="modal-dialog">
+	            <div class="modal-content" style="padding-bottom: 20px; border: 4px solid black; border-bottom-right-radius: 30px;">
+	            
+	                <!-- Modal Header -->
+	                <div class="modal-header">
+	                <h4 class="modal-title">리뷰 보기</h4>
+	                <button type="button" class="close" data-dismiss="modal">&times;</button>
+	                </div>
+	                
+	                <!-- Modal body -->
+	                <div class="modal-body">
+	                    <div class="star-rating">
+	                        <input type="radio" id="5-stars" name="rating" value="5" />
+	                        <label for="5-stars" class="star">&#9733;</label>
+	                        <input type="radio" id="4-stars" name="rating" value="4" />
+	                        <label for="4-stars" class="star">&#9733;</label>
+	                        <input type="radio" id="3-stars" name="rating" value="3" />
+	                        <label for="3-stars" class="star">&#9733;</label>
+	                        <input type="radio" id="2-stars" name="rating" value="2" />
+	                        <label for="2-stars" class="star">&#9733;</label>
+	                        <input type="radio" id="1-star" name="rating" value="1" />
+	                        <label for="1-star" class="star">&#9733;</label>
+	                    </div>
+	                    <div class="review-write">
+	                        <textarea name="" id=""><%-- ${r.reviewContent} --%>리뷰내용</textarea>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+	    </div>
+    </c:forEach>
     
     <!-- 프로필 모달 -->
     <%@ include file="../member/profileModal.jsp" %>
