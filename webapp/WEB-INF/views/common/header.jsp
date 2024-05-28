@@ -75,7 +75,7 @@
 			  <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708z"/>
 			</svg>
 				<div class="Toggle">로그아웃</div>
-			</a> <a class="Togglelink" id="Togglelink" href="_blank"> 
+			</a> <a class="Togglelink" id="Togglelink" href="dibsSocial.me"> 
 			<svg class="Toggleimg" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chat-right-heart-fill" viewBox="0 0 16 16">
 			  <path d="M16 2a2 2 0 0 0-2-2H2a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h9.586a1 1 0 0 1 .707.293l2.853 2.853a.5.5 0 0 0 .854-.353zM8 3.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132"/>
 			</svg>
@@ -149,7 +149,7 @@
 			<div class="loginwrap">
 				<%-- 로그인바 - 로고--%>
 				<div class="logobox">
-					<a href="../../views/mainPage/MainPage.html"> 
+					<a href="mainPage.re"> 
 					<img src="${pageContext.request.contextPath}/resources/jo/upfile/common_img/logo.png" class="searchlogo" />
 					</a>
 					<%-- 로그인바 - 검색바 --%>
