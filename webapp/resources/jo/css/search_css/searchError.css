@@ -4,10 +4,11 @@ li {
 
 .searcherror {
     max-width: 1250px;
-    height: 500px;
+    height: 700px;
     min-width: 600px;
     display: flex;
     align-items: center;
+    overflow: hidden;
     justify-content: center;
     margin: 0 auto;
 }

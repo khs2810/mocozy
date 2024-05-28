@@ -49,17 +49,6 @@ public class MainController {
 		model.addAttribute("rlist", rlist); 
 		model.addAttribute("flist", flist);
 
-	    
-	    System.out.println(clist);
-	    System.out.println(clist.size());
-	    
-		System.out.println(rlist); 
-		System.out.println(rlist.size());
-		  
-		System.out.println(flist); 
-		System.out.println(flist.size());
-		 
-
 	    return "mainPage/mainPage";
 	}
 	
@@ -85,17 +74,6 @@ public class MainController {
 	    model.addAttribute("clist", clist);
 		model.addAttribute("rlist", rlist); 
 		model.addAttribute("flist", flist);
-
-	    
-	    System.out.println(clist);
-	    System.out.println(clist.size());
-	    
-		System.out.println(rlist); 
-		System.out.println(rlist.size());
-		  
-		System.out.println(flist); 
-		System.out.println(flist.size());
-		 
 
 	    return "mainPage/challenge";
 	}
