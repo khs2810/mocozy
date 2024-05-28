@@ -147,7 +147,7 @@ public class MemberController {
 	
 //	회원정보 수정
 	@RequestMapping("updatePwd.me")
-	public String updateMember(Member m, HttpSession session, Model model) {
+	public String updatePassword(Member m, HttpSession session, Model model) {
 		
 		int result = memberService.updateMember(m);
 		
