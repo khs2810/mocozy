@@ -4,6 +4,7 @@ var menuItems = document.querySelector('#cateToggle');
 
 /* 메뉴 버튼 클릭시 카테고리 토글*/
 menuButton.addEventListener('click', function() {
+/* css display 속성 가져오기 */	
   var display = menuItems.style.display;
   if (display === 'none') {
     menuItems.style.display = 'block';
@@ -19,6 +20,7 @@ var LoginItems = document.querySelector('#LoginToggle');
 
 LoginButton.addEventListener('click', function() {
 console.log("1");
+/* css display 속성 가져오기 */
   var display = LoginItems.style.display;
   if (display === 'none') {
     LoginItems.style.display = 'block';

@@ -76,7 +76,67 @@
 								CURRVAL('SEQ_CNO'));
 	</insert>
 	
-	<select id="selectSocial" resultMap="clubResult">
+	<select id="selectSocialList" resultType="_int">
+		SELECT COUNT(*)
+		  FROM CLUB
+		 WHERE public.CLUB.STATUS = 'Y';
+	</select>
+	
+	<select id="selectClist" resultMap="clubResult">
+		SELECT CLUB_NO,
+			   USER_NO,
+			   CLUB_TITLE,
+			   CLUB_TYPE,
+			   CLUB_CONTENT,
+			   ADDRESS,
+			   ADDRESS_DETAIL,
+			   EVENT_DATE, 
+			   COST,
+			   COST_INFO, 
+			   TOTAL_POINT, 
+			   CAPACITY, 
+			   ONLINE,
+			   QUESTION,
+			   THUMBNAIL_IMG,
+			   CREATE_DATE,
+			   CLUB.MODIFY_DATE,
+			   COUNT,
+			   NICKNAME,
+			   category_name1,
+			   category_name2
+	FROM public.CLUB
+		join MEMBER USING (USER_NO)
+	WHERE public.CLUB.STATUS = 'Y';
+	</select>
+	
+	<select id="selectRlist" resultMap="clubResult">
+		SELECT CLUB_NO,
+			   USER_NO,
+			   CLUB_TITLE,
+			   CLUB_TYPE,
+			   CLUB_CONTENT,
+			   ADDRESS,
+			   ADDRESS_DETAIL,
+			   EVENT_DATE, 
+			   COST,
+			   COST_INFO, 
+			   TOTAL_POINT, 
+			   CAPACITY, 
+			   ONLINE,
+			   QUESTION,
+			   THUMBNAIL_IMG,
+			   CREATE_DATE,
+			   CLUB.MODIFY_DATE,
+			   COUNT,
+			   NICKNAME,
+			   category_name1,
+			   category_name2
+	FROM public.CLUB
+		join MEMBER USING (USER_NO)
+	WHERE public.CLUB.STATUS = 'Y';
+	</select>
+	
+	<select id="selectFlist" resultMap="clubResult">
 		SELECT CLUB_NO,
 			   USER_NO,
 			   CLUB_TITLE,
@@ -101,17 +161,7 @@
 	FROM public.CLUB
 		join MEMBER USING (USER_NO)
 	WHERE public.CLUB.STATUS = 'Y'
-		AND CLUB_NO = #{cno};
+	ORDER BY CLUB_NO DESC;
 	</select>
-	
-	<select id="selectClubMem" resultMap="memberResultSet">
-		SELECT  USER_NO,
-				USER_NAME,
-			   	PROFILE_IMG
-		    FROM public.MEMBER
-		    JOIN CLUB USING(USER_NO)
-			WHERE USER_NO = #{uno}
-	</select>
-	
 	
 </mapper>

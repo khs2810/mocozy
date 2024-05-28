@@ -145,6 +145,22 @@ public class MemberController {
 		
 	}
 	
+//	회원정보 수정
+	@RequestMapping("updatePwd.me")
+	public String updatePassword(Member m, HttpSession session, Model model) {
+		
+		int result = memberService.updateMember(m);
+		
+		if (result > 0) {
+			session.setAttribute("loginUser", memberService.loginMember(m));
+			session.setAttribute("alertMsg", "회원정보 수정 성공");
+			return "redirect:/myPage.me";
+		} else {
+			model.addAttribute("errorMsg", "회원정보 수정 실패");
+			return "common/errorPage";
+		}
+		
+	}
 	
 	@RequestMapping("delete.me")
 	public String deleteMember(Member m, HttpSession session) {
