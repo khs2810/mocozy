@@ -103,10 +103,10 @@
 										  headers: {"cache-control":"no-cache", "pragma": "no-cache"},
 										   // kind를 kind로 명명하여 보내겠다
 										  data : {"cate" : cate},
-										  success : function(cate){ 
-											 console.log(cate);
+										  success : function(contentcard){ 
+											 console.log(contentcard);
 											//성공할시에 body부분에 data라는 html문장들을 다 적용시키겠다
-											 $('body').html(cate);
+											 $('div').html(contentcard);
 										  },
 										  error : function(cate){
 											 alert('error');
