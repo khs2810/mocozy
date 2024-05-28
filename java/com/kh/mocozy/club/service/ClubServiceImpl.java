@@ -100,4 +100,19 @@ public class ClubServiceImpl implements ClubService {
 		
 		return result1 * result2;
 	}
+
+	@Override
+	public int selectCountReview(int cno) {
+		return clubDao.selectCountReview(sqlSession, cno);
+	}
+
+	@Override
+	public int insertClubReview(ClubReview r) {
+		return clubDao.insertReviewList(sqlSession, r);
+	}
+
+	@Override
+	public ClubReview selectClubReview(int cno) {
+		return clubDao.selectClubReview(sqlSession, cno);
+	}
 }

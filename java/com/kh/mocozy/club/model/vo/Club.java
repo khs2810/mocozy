@@ -42,5 +42,6 @@ public class Club {
 	private String categoryName2;
 	private String eventDateStr;
 	private Member memberlist;
+	private int isReview;
 }
 

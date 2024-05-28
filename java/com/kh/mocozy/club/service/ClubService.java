@@ -39,4 +39,10 @@ public interface ClubService {
 	Attachment selectAttachment(int cno);
 	
 	int updateClub(Club c, Attachment at);
+
+	int selectCountReview(int cno);
+
+	int insertClubReview(ClubReview r);
+
+	ClubReview selectClubReview(int cno);
 }
