@@ -26,7 +26,7 @@
 
                 <!-- 포인트 -->
                 <div class="account point">
-                    100,000pt
+                    ${m.point }pt
                     <button class="btn-style">충전</button>
                 </div>
             </div>

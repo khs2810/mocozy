@@ -149,7 +149,7 @@
 			<div class="loginwrap">
 				<%-- 로그인바 - 로고--%>
 				<div class="logobox">
-					<a href="mainPage.re"> 
+					<a href="${pageContext.request.contextPath}"> 
 					<img src="${pageContext.request.contextPath}/resources/jo/upfile/common_img/logo.png" class="searchlogo" />
 					</a>
 					<%-- 로그인바 - 검색바 --%>
