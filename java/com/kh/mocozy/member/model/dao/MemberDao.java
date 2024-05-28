@@ -26,6 +26,10 @@ public class MemberDao {
 		return sqlSession.update("memberMapper.updateMember", m);
 	}
 	
+	public int updatePassword(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.update("memberMapper.updatePassword", m);
+	}
+	
 	public int deleteMember(SqlSessionTemplate sqlSession, String userId) {
 		return sqlSession.update("memberMapper.deleteMember", userId );
 	}
@@ -37,4 +41,6 @@ public class MemberDao {
 	public ArrayList<Member> participatedMemberList(SqlSessionTemplate sqlSession, int cno) {
 		return (ArrayList)sqlSession.selectList("memberMapper.participatedMemberList", cno);
 	}
+
+	
 }

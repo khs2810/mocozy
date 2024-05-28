@@ -42,7 +42,7 @@
             <!-- Modal footer -->
             <div class="profile-modal-bottom">
                 <h6 style="font-size: 20px; font-weight: 600; margin: 10px 30px;">자기소개</h6>
-                <textarea class="m-introduction"></textarea>
+                <textarea class="m-introduction">${m.introduce}</textarea>
             </div>
             
         </div>
