@@ -4,7 +4,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.club.model.vo.ClubReview;
 import com.kh.mocozy.club.service.ClubService;
+import com.kh.mocozy.member.model.vo.Member;
 
 @Controller
 public class ClubReviewController {
@@ -22,9 +26,11 @@ public class ClubReviewController {
 	private ClubService clubService;
 
 	@RequestMapping("reviewList.cl")
-	public String selectClubList(Model model) {
-		int uno = 4;
+	public String selectClubList(HttpSession session, Model model) throws Exception {
+		Member m = (Member)session.getAttribute("loginUser");
+		int uno = m.getUserNo();
 		ArrayList<Club> list = clubService.selectClubList(uno);
+		ArrayList<ClubReview> rlist = new ArrayList<ClubReview>();
 		
 		for(Club club : list) {	// 파티장 닉네임
 			// Timestamp -> (xxxx년 x월 x일(x) 오전 xx시 xx분) 
@@ -41,15 +47,23 @@ public class ClubReviewController {
 			String eventDateDetailInfo = String.format("%s(%s) %s", formattedDate, dayOfWeek, formattedTime);
 			
 			club.setEventDateStr(eventDateDetailInfo);
+			
+			int cno = club.getClubNo();
 
 			// review가 있으면 1반환, 없으면 0반환
-			int isReview = clubService.selectCountReview(club.getClubNo()) ==  0 ? 0 : 1;
-			System.out.println(isReview);
-			
+			int isReview = clubService.selectCountReview(cno) ==  0 ? 0 : 1;
 			club.setIsReview(isReview);
+			
+			HashMap<String, Integer> map = new HashMap<>();
+			map.put("cno", cno);
+			map.put("uno", uno);
+			
+			ClubReview r = clubService.selectClubReview(map);
+			rlist.add(r);
 		}
 		
 		model.addAttribute("list", list);
+		model.addAttribute("rlist", rlist);
 		model.addAttribute("uno", uno);
 		
 		return "myPage/reviewListPage";

@@ -1,6 +1,7 @@
 package com.kh.mocozy.club.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.club.model.vo.ClubReview;
@@ -44,5 +45,5 @@ public interface ClubService {
 
 	int insertClubReview(ClubReview r);
 
-	ClubReview selectClubReview(int cno);
+	ClubReview selectClubReview(HashMap<String, Integer> map) throws Exception;
 }
