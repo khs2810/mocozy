@@ -254,18 +254,14 @@
 			CLUB_REVIEW(
 						CLUB_REVIEW_NO,
 						REVIEW_CONTENT,
-						CREATE_DATE,
 						GRADE,
-						STATUS,
 						CLUB_NO,
 						USER_NO
 						)
 			VALUES (
 					NEXTVAL('SEQ_CRNO'),
 					#{reviewContent},
-					#{createDate},
 					#{grade},
-					#{status},
 					#{clubNo},
 					#{userNo}
 					)
