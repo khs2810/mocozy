@@ -35,7 +35,7 @@ $(document).ready(function(){
         
         // AJAX 요청을 통해 비밀번호 변경
         $.ajax({
-            url: "/changePassword",
+            url: "updatePassword",
             type: "POST",
             data: formData,
             success: function(response) {
