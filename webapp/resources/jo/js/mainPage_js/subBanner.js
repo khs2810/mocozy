@@ -1,6 +1,6 @@
 // 슬라이드 너비 호출
 const subslide = document.querySelector(".subslide");
-let subslideWidth = subslide.clientWidth;
+const subslideWidth = subslide.clientWidth;
 
 // 버튼 엘리먼트 호출
 const subprevBtn = document.querySelector(".subprev");
@@ -47,15 +47,25 @@ subslideItems.forEach((i) => {
 
 //다음 슬라이드로 이동하는 함수
 function nextSubMove() {
+  //현재 슬라이드 증가
   currSubslide++;
+  //현재 슬라이드가 전체 슬라이드 갯수보다 작거나 같을 때
   if (currSubslide <= maxSubslide) {
-    offset = subslideWidth * currSubslide;
+    //슬라이드 아이템의 left에 offset 적용
+    //const로 변수 재선언
+    const offset = subslideWidth * currSubslide;
     subslideItems.forEach((i) => {
       i.setAttribute("style", `left: ${-offset}px`);
     });
+
+    //active 클래스 초기화 active = 현재 슬라이드
+    subPaginationItems.forEach((i) => i.classList.remove("active"));
+    // 현재 슬라이드에 해당하는 페이징 항목에 active 클래스 추가
+    subPaginationItems[mainCurrSlide - 1].classList.add("active");
   } else {
+    // 무한 슬라이드 기능
     currSubslide = 0;
-    offset = subslideWidth * currSubslide;
+    let offset = subslideWidth * currSubslide;
     subslideItems.forEach((i) => {
       i.setAttribute("style", `transition: ${0}s; left: ${-offset}px`);
     });
@@ -64,31 +74,39 @@ function nextSubMove() {
     offset = subslideWidth * currSubslide;
 
     setTimeout(() => {
+      //슬라이드 아이템들에 transition 속성, offset 적용
         subslideItems.forEach((i) => {
           i.setAttribute("style", `transition: ${0.15}s; left: ${-offset}px`);
         });
       }, 0);
     }
-}
+  }
+
 
 //이전 슬라이드로 이동하는 함수
 function prevSubMove() {
   currSubslide--;
+  // 현재 슬라이드가 0보다 클 때
   if (currSubslide > 0) {
-    offset = subslideWidth * currSubslide;
+    const offset = subslideWidth * currSubslide;
+    // 각 슬라이드 아이템의 left에 offset 적용
     subslideItems.forEach((i) => {
       i.setAttribute("style", `left: ${-offset}px`);
     });
   } else {
     currSubslide = maxSubslide + 1;
-    offset = subslideWidth * currSubslide;
+    let offset = subslideWidth * currSubslide;
     subslideItems.forEach((i) => {
       i.setAttribute("style", `transition: ${0}s; left: ${-offset}px`);
     });
 
+    // 현재 슬라이드 감소
     currSubslide--;
+    // 슬라이드 이동을 위한 offset 계산
+    //offset = 현재 슬라이드 위치
     offset = subslideWidth * currSubslide;
 
+    // 0초 뒤에 트랜지션, offset 적용
     setTimeout(() => {
       subslideItems.forEach((i) => {
         i.setAttribute("style", `transition: ${0.15}s; left: ${-offset}px`);
@@ -109,6 +127,7 @@ subprevBtn.addEventListener("click", () => {
 
 // 브라우저 창의 크기가 변경될 때마다 이벤트 리스너 추가
 window.addEventListener("resize", () => {
+  // 슬라이드의 너비 업데이트
     subslideWidth = subslide.clientWidth;
 });
 
@@ -118,13 +137,17 @@ let endPoint = 0;
 
 // 마우스 드래그 이벤트
 subslide.addEventListener("mousedown", (e) => {
+  // 마우스 드래그 위치 저장
   startPoint = e.pageX;
 });
 
 subslide.addEventListener("mouseup", (e) => {
+  //마우스 끝 위치 저장
   endPoint = e.pageX;
+  //오른쪽으로 드래그 된 경우
   if (startPoint < endPoint) {
     prevSubMove();
+    //왼쪽으로 드래그 된 경우
   } else if (startPoint > endPoint) {
     nextSubMove();
   }
@@ -132,12 +155,16 @@ subslide.addEventListener("mouseup", (e) => {
 
 //모바일 사이즈 드래그 (터치 이벤트)
 subslide.addEventListener("touchstart", (e) => {
+  //터치 위치 저장
   startPoint = e.touches[0].pageX;
 });
 subslide.addEventListener("touchend", (e) => {
+  // 터치가 끝나는 위치 저장
   endPoint = e.changedTouches[0].pageX;
+  //오른쪽으로 클릭 된 경우
   if (startPoint < endPoint) {
     prevSubMove();
+    //왼쪽으로 클릭 된 경우
   } else if (startPoint > endPoint) {
     nextSubMove();
   }

@@ -3,24 +3,24 @@ li {
 }
 
 
-.catePage {
+.searchPage {
   max-width: 1250px;
   min-width: 600px;
   height: auto;
   margin: 0 auto;
 }
 
-.catePage .screen {
+.searchPage .screen {
   margin-bottom: 20px;
 }
 
 @media (min-width: 768px) {
-  .catePage .screen {
+  .searchPage .screen {
       margin-bottom: 0;
   }
 }
 
-.catePage .catelistTitle{
+.searchPage .catelistTitle{
   display: flex;
   font-size: 1.5rem;
   justify-content: space-between;
@@ -29,7 +29,7 @@ li {
   padding-bottom: 1.5rem;
 }
 
-.catePage .leftlistTitle{
+.searchPage .leftlistTitle{
   position: relative;
   top: 8px;
   line-height: 1.25rem;
@@ -46,27 +46,27 @@ li {
   position: relative;
 }
 
-.catePage .leftlistTitle > p{
+.searchPage .leftlistTitle > p{
 	display: flex;
 }
 
-.catePage .leftlistTitle > span {
+.searchPage .leftlistTitle > span {
 	font-weight: 700;
 }
 
-.catePage .cateRanklisticon{
+.searchPage .cateRanklisticon{
 	color: black;
   position: relative;
   bottom: 3px;
 }
 
-.catePage .rightlistTitle{
+.searchPage .rightlistTitle{
   position: relative;
   top: 8px;
   margin-right: 1rem;
 }
 
-.catePage .rightlistContent{
+.searchPage .rightlistContent{
   flex-direction: row;
   gap: 1.5rem;
   display: flex;
@@ -74,29 +74,29 @@ li {
   margin-top: 1rem;
 }
 
-.catePage .rightlistContent > p{
+.searchPage .rightlistContent > p{
   line-height: 1.25rem;
   position: relative;
   top: 5px;
 }
 
-.catePage .rightlistContent > span {
+.searchPage .rightlistContent > span {
   line-height: 1.25rem;
 	color: rgb(255 0 69);
   font-weight: 700;
 }
 
-.catePage .screen {
+.searchPage .screen {
   margin-bottom: 20px;
 }
 
 @media (min-width: 768px) {
-  .catePage .screen {
+  .searchPage .screen {
       margin-bottom: 0;
   }
 }
 
-.catePage .box {
+.searchPage .box {
   display: flex;
   flex-direction: column;
   gap: 2rem;
@@ -106,7 +106,7 @@ li {
   background-color: #fff;
 }
 
-.catePage .display {
+.searchPage .display {
   display: flex;
   gap: 2rem;
   flex-direction: row;
@@ -115,7 +115,7 @@ li {
   flex-wrap: wrap;
 }
 
-.catePage .contentcard {
+.searchPage .contentcard {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -126,17 +126,17 @@ li {
 }
 
 @media (max-width: 768px) {
-  .catePage .contentcard {
+  .searchPage .contentcard {
     margin-bottom: 0.5rem;
   }
 }
 
-.catePage .contentcard .socialing{
+.searchPage .contentcard .socialing{
   width: 571px;
   height: 176px;
 }
 
-.catePage .contentcard .cardlink{
+.searchPage .contentcard .cardlink{
   background-color: #fefefe;
   border-radius: 12px;
   display: flex;
@@ -145,7 +145,7 @@ li {
   padding: 20px 16px;
 }
 
-.catePage .contentcard .img{
+.searchPage .contentcard .img{
   border: 1px solid #d3d3d3;
   width: 120px;
   height: 120px;
@@ -156,7 +156,7 @@ li {
 }
 
 @media (min-width: 768px) {
-  .catePage .contentcard .img{
+  .searchPage .contentcard .img{
       width: 160px;
       height: 160px;
       border-radius: 16px;
@@ -164,24 +164,24 @@ li {
   }
 }
 
-.catePage .contentcard .info{
+.searchPage .contentcard .info{
   display: flex;
   flex-direction: column;
   width: calc(100% - 112px);
 }
 
 @media (min-width: 768px) {
-  .catePage .contentcard .info{
+  .searchPage .contentcard .info{
       width: calc(100% - 168px);
   }
 }
 
-.catePage .contentcard .subject{
+.searchPage .contentcard .subject{
   display: flex;
   margin-bottom: 5px;
 }
 
-.catePage .contentcard .tag{
+.searchPage .contentcard .tag{
   background-color: #f4f4f4;
   color: #666060;
   display: flex;
@@ -197,7 +197,7 @@ li {
   margin-right: 6px;
 }
 
-.catePage .contentcard .infotitle{
+.searchPage .contentcard .infotitle{
   font-weight: 600;
   line-height: 24px;
   letter-spacing: -.4px;
@@ -209,7 +209,7 @@ li {
   font-size: 1rem;
 }
 
-.catePage .contentcard .describe{
+.searchPage .contentcard .describe{
   font-weight: 400;
   font-size: 1.5rem;
   line-height: 14.4px;
@@ -222,18 +222,18 @@ li {
   white-space: nowrap;
 }
 
-.catePage .contentcard .image{
+.searchPage .contentcard .image{
   width: 12px;
   height: 12px;
   position: relative;
   margin-top: 1px;
 }
 
-.catePage .participant{
+.searchPage .participant{
   display: flex;
 }
 
-.catePage .participant .img{
+.searchPage .participant .img{
   object-fit: cover;
   width: 22px;
   height: 22px;
@@ -243,7 +243,7 @@ li {
   flex-shrink: 0;
 }
 
-.catePage .participant .span{
+.searchPage .participant .span{
   border: 3px solid rgb(255, 255, 255);
   background-color: lightblue;
   display: flex;
@@ -258,28 +258,28 @@ li {
   flex-shrink: 0;
 }
 
-.catePage .participant .cardImg{
+.searchPage .participant .cardImg{
   position: relative;
   margin-top: 1rem;
   padding: 4rem;
   border-radius: 100%;
 }
 
-.catePage .participant .socialmember{
+.searchPage .participant .socialmember{
   margin-left: 4.7px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.catePage .participant .people{
+.searchPage .participant .people{
   width: 10px;
   height: 10px;
   color: gray;
   position: relative;
 }
 
-.catePage .participant .count{
+.searchPage .participant .count{
   font-weight: 400;
   font-size: 10px;
   line-height: 12px;
@@ -288,7 +288,7 @@ li {
 }
 
 @media (max-width: 767px) {
-  .catePage .contentcard .tag {
+  .searchPage .contentcard .tag {
       font-size: 1rem;
       line-height: 11px;
       padding: 4px 8px;
@@ -296,113 +296,113 @@ li {
       margin-right: 6px;
   }
 
-  .catePage .contentcard .infotitle {
+  .searchPage .contentcard .infotitle {
       font-size: 1.5rem;
       line-height: 24px;
       margin-bottom: 4px;
   }
 
-  .catePage .contentcard .describe {
+  .searchPage .contentcard .describe {
       font-size: 1.3rem;
       line-height: 14.4px;
       margin-bottom: 10px;
   }
 
-  .catePage .contentcard .image {
+  .searchPage .contentcard .image {
       width: 15px;
       height: 15px;
   }
 
-  .catePage .participant .img {
+  .searchPage .participant .img {
     margin-right: 2rem;
       width: 33px;
       height: 33px;
   }
 
-    .catePage .participant .span{
+    .searchPage .participant .span{
       width: 2.5rem;
       height: 2.5rem;
       left: -8px;
   }
 
-  .catePage .participant .cardImg {
+  .searchPage .participant .cardImg {
       width: 22px;
       height: 22px;
   }
 
-  .catePage .participant .socialmember {
+  .searchPage .participant .socialmember {
       margin-left: 4.7px;
   }
 
-  .catePage .participant .people {
+  .searchPage .participant .people {
       width: 20px;
       height: 20px;
   }
 
-  .catePage .participant .count {
+  .searchPage .participant .count {
       font-size: 15px;
       line-height: 12px;
   }
 }
 
 @media (min-width: 768px) {
-  .catePage .contentcard .tag {
+  .searchPage .contentcard .tag {
       font-size: 1.2rem;
       line-height: 18px;
       padding: 8px 13px;
       border-radius: 10px;
   }
 
-  .catePage .contentcard .infotitle {
+  .searchPage .contentcard .infotitle {
       font-size: 1.5rem;
       line-height: 40px;
   }
 
-  .catePage .contentcard .describe {
+  .searchPage .contentcard .describe {
       font-size: 1.2rem;
       line-height: 24px;
   }
 
-  .catePage .contentcard .image {
+  .searchPage .contentcard .image {
       width: 20px;
       height: 20px;
       margin-top: 2px;
   }
 
-  .catePage .participant .img {
+  .searchPage .participant .img {
       border: 1px solid black;
       width: 36px;
       height: 36px;
   }
 
-  .catePage .participant .span {
+  .searchPage .participant .span {
       width: 28px;
       height: 28px;
       left: -2px;
   }
 
-  .catePage .participant .cardImg {
+  .searchPage .participant .cardImg {
       width: 36px;
       height: 36px;
   }
 
-  .catePage .participant .socialmember {
+  .searchPage .participant .socialmember {
       margin-left: 8.12px;
   }
 
-  .catePage .participant .people {
+  .searchPage .participant .people {
       width: 24px;
       height: 24px;
   }
 
-  .catePage .participant .count {
+  .searchPage .participant .count {
       margin-left: 0.5rem;
       font-size: 16px;
       line-height: 19px;
   }
 }
 
-.catePage .plus{
+.searchPage .plus{
   width: 575px;
   height: 50px;
   border: 1px solid #f3f3f3;
@@ -418,13 +418,13 @@ li {
   margin-left: 0.5rem;
 }
 
-.catePage .plus .title{
+.searchPage .plus .title{
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.catePage .plus .icon{
+.searchPage .plus .icon{
   border: 1px solid black;
   width: auto;
   height: auto;
@@ -432,7 +432,7 @@ li {
 }
 
 @media screen and (min-width: 767px) {
-  .catePage .plus{
+  .searchPage .plus{
     display: none;
   }
 }
