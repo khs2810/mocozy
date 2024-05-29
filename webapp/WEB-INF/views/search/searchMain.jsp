@@ -9,7 +9,7 @@
 			<link rel="stylesheet" type="text/css"
 				href="${pageContext.request.contextPath}/resources/jo/css/common_css/style.css">
 			<link rel="stylesheet" type="text/css"
-				href="${pageContext.request.contextPath}/resources/jo/css/categories_css/search.css">
+				href="${pageContext.request.contextPath}/resources/jo/css/search_css/search.css">
 		</head>
 
 		<%@ include file="../common/header.jsp" %>
@@ -25,8 +25,8 @@
 
 									<div class="catelistTitle">
 										<div class="leftlistTitle">
-											<p> ${keyword} </p>
-											<span> 의 검색 결과입니다. </span>
+											<span> ${keyword} </span>
+											<p> 의 검색 결과입니다. </p>
 										</div>
 
 										<div class="rightlistTitle">
@@ -40,7 +40,7 @@
 
 									<div class="display">
 										<!--  1번  -->
-										<c:forEach var="club" items="${catelist}">
+										<c:forEach var="club" items="${clist}">
 											<div class="contentcard">
 												<div class="socialing">
 													<a class="cardlink" href="detail.cl?cno=1">
@@ -49,6 +49,8 @@
 														<div class="info">
 															<div class="subject">
 																<div class="tag">${club.clubType}</div>
+																<div class="tagone">${club.categoryName1}</div>
+																<div class="tagtwo">${club.categoryName2}</div>
 															</div>
 
 															<div class="infotitle">${club.clubTitle}</div>
