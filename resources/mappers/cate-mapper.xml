@@ -62,7 +62,7 @@
 								CURRVAL('SEQ_CNO'));
 	</insert>
 	
-	<select id="selectClub" resultMap="clubResult">
+	<select id="selectcatelist" resultMap="clubResult">
 		SELECT CLUB_NO,
 			   USER_NO,
 			   CLUB_TITLE,
