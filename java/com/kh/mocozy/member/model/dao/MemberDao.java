@@ -54,6 +54,10 @@ public class MemberDao {
 	public int ajaxDeletePicked(SqlSessionTemplate sqlSession, Picked p) {
 		return sqlSession.insert("memberMapper.ajaxDeletePicked", p);
 	}
+
+	public ArrayList<Member> requestMemberList(SqlSessionTemplate sqlSession, int cno) {
+		return (ArrayList)sqlSession.selectList("memberMapper.requestMemberList", cno);
+	}
 	
 	
 }

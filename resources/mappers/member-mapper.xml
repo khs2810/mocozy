@@ -147,4 +147,17 @@
 		WHERE USER_NO = #{userNo}
 			AND CLUB_NO = #{clubNo}
 	</delete>
+	
+	<!-- cno에 요청한 request 전부 (수락,거절,대기) -->
+	<select id="requestMemberList" resultMap="memberResult">
+		SELECT M.USER_NO,
+			   NICKNAME,
+			   INTRODUCE,
+			   PROFILE_IMG
+		FROM MEMBER M 
+		JOIN REQUEST R USING (USER_NO)
+		WHERE R.CLUB_NO = #{cno}
+		ORDER BY CREATE_DATE ASC;
+	</select>
+	
 </mapper>

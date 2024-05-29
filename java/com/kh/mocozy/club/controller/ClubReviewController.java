@@ -69,24 +69,17 @@ public class ClubReviewController {
 		return "myPage/reviewListPage";
 	}
 	
-//	@RequestMapping("reviewDetail.cl")
-//	public String selectClubReview(int cno, Model model) {
-//		
-//		ClubReview r = clubService.selectClubReview(cno);
-//		
-//		model.addAttribute("r", r);
-//		
-//		return "myPage/reviewListPage";
-//	}
-//	
-//	@RequestMapping("reviewInsert.cl")
-//	public String insertReview(ClubReview r, Model model) {
-//		int result = clubService.insertClubReview(r);
-//		if (result > 0) {
-//			model.addAttribute("r", r);
-//		} else {
-//			model.addAttribute("errorMsg", "리뷰 작성 실패");
-//		}
-//		return "myPage/reviewListPage";
-//	}
+	@RequestMapping("insertReview.cl")
+	public String insertClubReview(ClubReview r, HttpSession session, Model model) {
+		System.out.println(r);
+		int result = clubService.insertClubReview(r);
+		if (result > 0) {
+			session.setAttribute("alertMsg", "리뷰 작성 성공");
+			System.out.println(result);
+			return "redirect:reviewList.cl";
+		} else {
+			model.addAttribute("errorMsg", "리뷰 작성 실패");
+			return "common/errorPage";
+		}
+	}
 }

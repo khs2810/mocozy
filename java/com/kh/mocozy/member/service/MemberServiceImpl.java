@@ -81,5 +81,16 @@ public class MemberServiceImpl implements MemberService {
 	public int ajaxDeletePicked(Picked p) {
 		return memberDao.ajaxDeletePicked(sqlSession, p);
 	}
+
+	@Override
+	public Attachment selectAttachment(String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public ArrayList<Member> requestMemberList(int cno) {
+		return memberDao.requestMemberList(sqlSession, cno);
+	}
 	
 }
