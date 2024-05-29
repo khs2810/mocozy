@@ -22,7 +22,7 @@
 						<%@ include file="../mainPage/cateButton.jsp" %>
 
 							<div class="screen">
-								<div class="box" style="background-color: #F5F6F9 !important;">
+								<div class="box">
 									<!-- 카테고리 -->
 
 									<div class="catelistTitle">

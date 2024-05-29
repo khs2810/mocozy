@@ -16,7 +16,7 @@
 
 <body>
 	<div class="catebutton">
-		<div class="screen">
+		<div class="catescreen">
 			<div class="grid">
 				<div class="icon" id="cateAll">
 					<a href="cateAll.ct">

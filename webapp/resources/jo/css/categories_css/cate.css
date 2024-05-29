@@ -4,7 +4,7 @@ li {
 
 
 .catePage {
-  max-width: 1250px;
+  max-width: 1920px;
   min-width: 600px;
   height: auto;
   margin: 0 auto;
@@ -18,6 +18,11 @@ li {
   .catePage .screen {
       margin-bottom: 0;
   }
+}
+
+.catePage .box{
+  max-width: 1250px;
+  margin: 0 auto;
 }
 
 .catePage .catelistTitle{
@@ -103,7 +108,6 @@ li {
   padding: 2rem;
   margin: 0 auto;
   max-width: 1280px;
-  background-color: #fff;
 }
 
 .catePage .display {
