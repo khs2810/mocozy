@@ -27,28 +27,29 @@ import com.kh.mocozy.member.service.MemberService;
 
 @Controller
 public class MemberController {
-	
+
 //	로그인
 	@Autowired
 	private MemberService memberService;
-	
+
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
-	
+
 //	로그인 페이지
 	@RequestMapping("loginPage.me")
 	public String loginPageView() {
 		return "member/loginPage";
 	}
-	
+
 	@RequestMapping("login.me")
-	public ModelAndView loginMember(Member m, ModelAndView mv, HttpSession session, String saveId, HttpServletResponse response) {	
-		//암호화 전
+	public ModelAndView loginMember(Member m, ModelAndView mv, HttpSession session, String saveId,
+			HttpServletResponse response) {
+		// 암호화 전
 		Member loginUser = memberService.loginMember(m);
-		
-		if(loginUser == null) { //로그인 실패 => 에러문구를 requestScope에 담고 에러페이지로 포워딩
+
+		if (loginUser == null) { // 로그인 실패 => 에러문구를 requestScope에 담고 에러페이지로 포워딩
 			mv.addObject("errorMsg", "로그인실패");
-			
+
 			mv.setViewName("common/errorPage");
 		} else { // 로그인 성공 => sessionScope에 로그인유저 담아서 메인으로 url재요청
 			session.setAttribute("loginUser", loginUser);
@@ -56,8 +57,7 @@ public class MemberController {
 		}
 		return mv;
 	}
-		
-		
+
 //		//암호화 후
 //		//Member m의 id => 사용자가 입력한 아이디
 //		//		 m의 pwd => 사용자가 입력한 pwd(평문)
@@ -96,53 +96,54 @@ public class MemberController {
 //		
 //		return mv;
 //	}
-	
+
 //	로그아웃
 	@RequestMapping("logout.me")
-	public String logoutMember(HttpSession session){
-		//로그아웃 -> session에서 loginUser 삭제, 만료
-		//session.invalidate();
+	public String logoutMember(HttpSession session) {
+		// 로그아웃 -> session에서 loginUser 삭제, 만료
+		// session.invalidate();
 		session.removeAttribute("loginUser");
-		
+
 		return "redirect:/";
 	}
-	
+
 //	회원가입 페이지
 	@RequestMapping("signInPage.me")
 	public String signInPageView() {
 		return "member/signInPage";
 	}
 
-	//idCheck ajax요청을 받아줄 controller
+	// idCheck ajax요청을 받아줄 controller
 	@ResponseBody
 	@RequestMapping("idCheck.me")
-	public String idCheck(String checkId) {
+	public String idCheck(@RequestBody String checkId) {
 		int result = memberService.idCheck(checkId);
-		
+		System.out.println(checkId);
+		System.out.println(result);
 		if (result > 0) {// 이미존재한다면
 			return "NNNNN";
-		} else { //존재하지않는다면
+		} else { // 존재하지않는다면
 			return "NNNNY";
 		}
-		
-		//return memberService.idCheck(checkId) > 0 ? "NNNNN" : "NNNNY";
+
+		// return memberService.idCheck(checkId) > 0 ? "NNNNN" : "NNNNY";
 	}
-	
+
 //	마이페이지 
 	@RequestMapping("myPage.me")
 	public String myPageView() {
 		return "myPage/myPage";
-}
-	
+	}
+
 //	회원정보 수정
 	@RequestMapping("update.me")
 	public String updateMember(Member m, MultipartFile upfile, HttpSession session, Model model) {
 		Attachment at = memberService.selectAttachment(m.getUserId());
 		m.setProfileImg(at.getChangeName());
-		
+
 		int result = memberService.updateMember(m, at);
 		System.out.println(m);
-		
+
 		if (result > 0) {
 			session.setAttribute("loginUser", memberService.loginMember(m));
 			session.setAttribute("alertMsg", "회원정보 수정 성공");
@@ -151,29 +152,29 @@ public class MemberController {
 			model.addAttribute("errorMsg", "회원정보 수정 실패");
 			return "common/errorPage";
 		}
-		
+
 	}
-	
-	//실제 넘어온 파일의 이름을 변경해서 서버에 저장하는 메소드
+
+	// 실제 넘어온 파일의 이름을 변경해서 서버에 저장하는 메소드
 	public String saveFile(MultipartFile upfile, HttpSession session) {
-		//파일명 수정 후 서버에 업로드하기("imgFile.jpg => 202404231004305488.jpg")
+		// 파일명 수정 후 서버에 업로드하기("imgFile.jpg => 202404231004305488.jpg")
 		String originName = upfile.getOriginalFilename();
-		
-		//년월일시분초 
+
+		// 년월일시분초
 		String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
-		
-		//5자리 랜덤값
-		int ranNum = (int)(Math.random() * 90000) + 10000;
-		
-		//확장자
+
+		// 5자리 랜덤값
+		int ranNum = (int) (Math.random() * 90000) + 10000;
+
+		// 확장자
 		String ext = originName.substring(originName.lastIndexOf("."));
-		
-		//수정된 첨부파일명
+
+		// 수정된 첨부파일명
 		String changeName = currentTime + ranNum + ext;
-		
-		//첨부파일을 저장할 폴더의 물리적 경로(session)
+
+		// 첨부파일을 저장할 폴더의 물리적 경로(session)
 		String savePath = session.getServletContext().getRealPath("/resources/koo/upfile/profile_img");
-		
+
 		try {
 			upfile.transferTo(new File(savePath + changeName));
 		} catch (IllegalStateException e) {
@@ -181,16 +182,16 @@ public class MemberController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return changeName;
 	}
-	
+
 //	비밀번호 수정
 	@RequestMapping("updatePwd.me")
 	public String updatePassword(Member m, HttpSession session, Model model) {
-		
+
 		int result = memberService.updatePassword(m);
-		
+
 		if (result > 0) {
 			session.setAttribute("loginUser", memberService.loginMember(m));
 			session.setAttribute("alertMsg", "회원정보 수정 성공");
@@ -199,52 +200,50 @@ public class MemberController {
 			model.addAttribute("errorMsg", "회원정보 수정 실패");
 			return "common/errorPage";
 		}
-		
+
 	}
-	
+
 	@RequestMapping("delete.me")
 	public String deleteMember(Member m, HttpSession session) {
-		
-		//1. 암호화된 비밀번호 가져오기
+
+		// 1. 암호화된 비밀번호 가져오기
 		Member loginUser = memberService.loginMember(m);
-		String userPwd = ((Member)session.getAttribute("loginUser")).getUserPwd();
-		//2. 비밀번호 일치/불일치 판단후
+		String userPwd = ((Member) session.getAttribute("loginUser")).getUserPwd();
+		// 2. 비밀번호 일치/불일치 판단후
 //		if (bcryptPasswordEncoder.matches(m.getUserPwd(), userPwd)) {
-			//일치 -> 탈퇴처리 -> session에서 제거 -> 메인페이지로
-			int result = memberService.deleteMember(m.getUserId());
-			System.out.println(2);
-			System.out.println(result);
-			if(result > 0) {
-				session.removeAttribute("loginUser");
-				session.setAttribute("alertMsg", "회원탈퇴가 성공적으로 이루어졌습니다.");
-				System.out.println(3);
-				return "redirect:/";
-				
-			} else {
-				session.setAttribute("alertMsg", "비밀번호를 다시 확인해주세요");
-				System.out.println(4);
-				return "redirect:/myProfile.me";
-				
-			}
+		// 일치 -> 탈퇴처리 -> session에서 제거 -> 메인페이지로
+		int result = memberService.deleteMember(m.getUserId());
+		System.out.println(2);
+		System.out.println(result);
+		if (result > 0) {
+			session.removeAttribute("loginUser");
+			session.setAttribute("alertMsg", "회원탈퇴가 성공적으로 이루어졌습니다.");
+			System.out.println(3);
+			return "redirect:/";
+
+		} else {
+			session.setAttribute("alertMsg", "비밀번호를 다시 확인해주세요");
+			System.out.println(4);
+			return "redirect:/myProfile.me";
+
+		}
 	}
-			
+
 //		} else {
 //			//불일치 -> alertMsg: 비밀번호 다시 입력 -> 마이페이지
 //			session.setAttribute("alertMsg", "비밀번호를 다시 확인해주세요");
 //			return "redirect:/myProfile.me";
 //		}
-	
-	
 
 //	약관 동의
 	@RequestMapping("terms.me")
 	public String termsView(Member m, Model model) {
-		
+
 		model.addAttribute("m", m);
-		
+
 		return "member/terms";
 	}
-	
+
 	@RequestMapping("insert.me")
 	public String insertMember(Member m, HttpSession session, Model model) {
 		int result = memberService.insertMember(m);
@@ -257,41 +256,46 @@ public class MemberController {
 		}
 	}
 
-
 //		마이프로필
-		@RequestMapping("myProfile.me")
-		public String myProfileView() {
-			return "myPage/myProfile";
+	@RequestMapping("myProfile.me")
+	public String myProfileView() {
+		return "myPage/myProfile";
 	}
+
 //		내 소셜
-		@RequestMapping("mySocial.me")
-		public String mySocialView() {
-			return "myPage/mySocial";
+	@RequestMapping("mySocial.me")
+	public String mySocialView() {
+		return "myPage/mySocial";
 	}
+
 //		참가한 소셜
-		@RequestMapping("goSocial.me")
-		public String goSocialView() {
-			return "myPage/goSocial";
+	@RequestMapping("goSocial.me")
+	public String goSocialView() {
+		return "myPage/goSocial";
 	}
+
 //		내 챌린지
-		@RequestMapping("myChallenge.me")
-		public String myChallengeView() {
-			return "myPage/myChallenge";
+	@RequestMapping("myChallenge.me")
+	public String myChallengeView() {
+		return "myPage/myChallenge";
 	}
+
 //		참가한 챌린지
-		@RequestMapping("goChallenge.me")
-		public String goChallengeView() {
-			return "myPage/goChallenge";
+	@RequestMapping("goChallenge.me")
+	public String goChallengeView() {
+		return "myPage/goChallenge";
 	}
+
 //		찜한 챌린지
-		@RequestMapping("dibsChallenge.me")
-		public String dibsChallengeView() {
-			return "myPage/dibsChallenge";
+	@RequestMapping("dibsChallenge.me")
+	public String dibsChallengeView() {
+		return "myPage/dibsChallenge";
 	}
+
 //		찜한 소셜
-		@RequestMapping("dibsSocial.me")
-		public String dibsSocialView() {
-			return "myPage/dibsSocial";
+	@RequestMapping("dibsSocial.me")
+	public String dibsSocialView() {
+		return "myPage/dibsSocial";
 	}
-		
+
 }

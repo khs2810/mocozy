@@ -47,7 +47,7 @@
 	</select>
 	
 	<!-- 아이디중복체크 -->
-	<select id="idCheck" resultType="_int">
+	<select id="idCheck" parameterType="String" resultType="_int">
 		SELECT COUNT(*)
 		  FROM MEMBER
 		 WHERE USER_ID = #{checkId}
