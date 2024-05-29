@@ -242,6 +242,20 @@ button:hover {
     font-weight: bold;
 }
 
+.club_btns div{
+    width: 300px;
+    height: 60px;
+    border-radius: 15px;
+    border: none;
+    font-size: 20px;
+    font-weight: bold;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #cccccc;
+    cursor: default;
+}
+
 .background_color_brown {
     background-color: #F0E3CE;
 }
