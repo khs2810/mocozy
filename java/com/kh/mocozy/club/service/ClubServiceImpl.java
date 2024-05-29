@@ -1,6 +1,7 @@
 package com.kh.mocozy.club.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -112,7 +113,7 @@ public class ClubServiceImpl implements ClubService {
 	}
 
 	@Override
-	public ClubReview selectClubReview(int cno) {
-		return clubDao.selectClubReview(sqlSession, cno);
+	public ClubReview selectClubReview(HashMap<String, Integer> map) throws Exception {
+		return clubDao.selectClubReview(sqlSession, map);
 	}
 }
