@@ -175,12 +175,14 @@
 	
 	<select id="selectRequestList" resultMap="requestResult">
 		SELECT REQUEST_NO,
-				USER_NO,
+				R.USER_NO,
 				CLUB_NO,
 				ANSWER,
-				CREATE_DATE,
-				STATUS
-		   FROM REQUEST
+				R.CREATE_DATE,
+				R.STATUS,
+				M.NICKNAME
+		   FROM REQUEST R
+		   JOIN MEMBER M USING (USER_NO)
 		  WHERE CLUB_NO = #{cno};
 	</select>
 	

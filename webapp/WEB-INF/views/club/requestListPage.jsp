@@ -54,15 +54,15 @@
         	
         	<div class="titlePart">
                 <span class="title">${c.clubTitle}</span>
-                <div class="ing">모집중(18/${c.capacity})</div>
-<%--                 <c:choose>
-                	<c:when test="${c.memberCnt eq c.capacity}">
-                		<div class="done">모집완료(${c.memberCtn}/${c.capacity})</div>
+                <%-- div class="ing">모집중(18/${c.capacity})</div> --%>
+                <c:choose>
+                	<c:when test="${memberCnt eq c.capacity}">
+                		<div class="done">모집완료(${memberCnt}/${c.capacity})</div>
                 	</c:when>
-                	<c:when test="${c.memberCnt ne c.capacity}">
-                		<div class="done">모집중(${c.memberCtn}/${c.capacity})</div>
+                	<c:when test="${memberCnt ne c.capacity}">
+                		<div class="ing">모집중(${memberCnt}/${c.capacity})</div>
                 	</c:when>
-                </c:choose> --%>
+                </c:choose>
             </div>
             <div class="clubRequestList" id="clubRequestList">
             	<c:forEach var="r" items="${requestList}">
@@ -71,7 +71,7 @@
 	                        <div class="simpleInfo">
 	                            <div class="simpleInfoLeft">
 	                                <img src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
-	                                <b class="userId">떡꼬치소마왕</b>
+	                                <b class="userId">${r.nickname}</b>
 	                                <c:choose>
 	                                	<c:when test="${r.status eq 'W'}">
 			                                <img src="${pageContext.request.contextPath}/resources/jun/img/waiting.png" class="status_w">
