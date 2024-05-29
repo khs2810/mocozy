@@ -32,12 +32,18 @@ public class SearchController {
         
         PageInfo re = Pagination.getPageInfo(clubCount, currentPage, 1, 9);
         ArrayList<Club> clist = sService.selectSearchList(map, re);
-
+        
+        System.out.print(clist);
         model.addAttribute("clist", clist);
         model.addAttribute("re", re);
         model.addAttribute("keyword", keyword);
-
-        return "search/searchError";
+        
+        if (clubCount == 0) { //검색결과 없음
+        	return "search/searchError";
+		} else { //검색결과있음
+			return "search/searchMain";
+		}
+     
     }
       
 //    //카테고리 검색

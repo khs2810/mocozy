@@ -52,6 +52,8 @@ li {
 
 .searchPage .leftlistTitle > span {
 	font-weight: 700;
+	position: relative;
+	bottom: 5px;
 }
 
 .searchPage .cateRanklisticon{
@@ -137,7 +139,7 @@ li {
 }
 
 .searchPage .contentcard .cardlink{
-  background-color: #fefefe;
+  background-color: #F5F6F9;
   border-radius: 12px;
   display: flex;
   padding: 12px 10px;
@@ -182,7 +184,7 @@ li {
 }
 
 .searchPage .contentcard .tag{
-  background-color: #f4f4f4;
+  background-color: #dddddd;
   color: #666060;
   display: flex;
   justify-content: center;
@@ -197,6 +199,37 @@ li {
   margin-right: 6px;
 }
 
+.searchPage .contentcard .tagone{
+  background-color: #dddddd;
+  color: #666060;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: 11px;
+  text-align: center;
+  padding: 4px 8px;
+  letter-spacing: -.2px;
+  border-radius: 10px;
+  margin-right: 6px;
+}
+
+.searchPage .contentcard .tagtwo{
+  background-color: #dddddd;
+  color: #666060;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: 11px;
+  text-align: center;
+  padding: 4px 8px;
+  letter-spacing: -.2px;
+  border-radius: 10px;
+  margin-right: 6px;
+}
 .searchPage .contentcard .infotitle{
   font-weight: 600;
   line-height: 24px;
