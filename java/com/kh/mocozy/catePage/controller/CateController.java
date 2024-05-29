@@ -1,64 +1,156 @@
 package com.kh.mocozy.catePage.controller;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.kh.mocozy.catePage.service.CateService;
+import com.kh.mocozy.club.model.vo.Club;
+import com.kh.mocozy.common.model.vo.PageInfo;
+import com.kh.mocozy.common.template.Pagination;
+import com.kh.mocozy.mainPage.service.MainService;
+import com.kh.mocozy.member.model.vo.Member;
+
+@Controller
 public class CateController {
-	// BbsAction.java의 bbs_kind 액션 부분
-	@RequestMapping(value = "/bbs_kind.nhn")
-	   public ModelAndView bbs_kind( HttpServletRequest request, HttpServletResponse response) throws Exception {
-		  String kind = request.getParameter("kind");
-	      
-		  /*페이징 처리 시작*/
-		  int page = 1; 
-	      int limit = 10;   
-	      
-	      if(request.getParameter("page") != null) {
-	         page = Integer.parseInt(request.getParameter("page"));
-	      }
-	      
-	      Map m = new HashMap();
-	      m.put("page", page);
-	      m.put("kind", "%" + kind + "%");
-	      
-	      int listcount = bbsService.getKindCount(m); 
-	      
-	      int maxpage = (listcount+limit-1)/limit;
-	      int startpage = ((page-1)/10) * 10 + 1;
-	      
-	      int endpage = startpage + 10 - 1;
-	      
-	      if(endpage > maxpage) endpage = maxpage;
-	      
-	      if(endpage < page) page = endpage;
-	      /*페이징 처리 끝*/
-	      
-	      List<BbsBean> bbslist = bbsService.getKindList(m); // 카테고리에 해당하는 부분만 불러오기
-	      
-	      ModelAndView bbsListM = new ModelAndView("bbs/bbs_list");
-	      bbsListM.addObject("kind",kind);
-	      bbsListM.addObject("page", page);
-	      bbsListM.addObject("maxpage", maxpage);
-	      bbsListM.addObject("startpage", startpage);
-	      bbsListM.addObject("endpage", endpage);
-	      bbsListM.addObject("listcount", listcount);
-	      bbsListM.addObject("bbslist", bbslist);
-	      
-	      return bbsListM;
-	   }//bbs_list() end
-	//BbsDAOImpl.java 에서 getKindList부분
-	public List<BbsBean> getKindList(Map m) throws Exception {
-		      getSession(); //세션은 오브젝트니까
-		      Object obj = m.get("kind");
-		      List<BbsBean> list= null;
-		      if(obj.equals("%all%")){ // 받아온게 all이면
-		    	  list = sqlsession.selectList("bbs_list", m);
-		      }else{
-		    	  list = sqlsession.selectList("bbs_kindlist", m); //	    	  
-		      }	      		
-		      return list;
-		   }
+
+    @Autowired
+    private CateService cService;
+
+	@RequestMapping("cateAll.ct")
+	public String showcateAll(Model model) {    
+		ArrayList<Club> catelist = cService.selectcatelist();
+	    model.addAttribute("catelist", catelist);
+	    
+	    return "categories/cateAll";
+
+    }
+	
+	@RequestMapping("cateActivity.ct")
+	public String showcateActivity(Model model) {    
+		ArrayList<Club> catelist = cService.selectcatelist();
+	    model.addAttribute("catelist", catelist);
+
+	    return "categories/cateActivity";
+
+    }
+	
+	@RequestMapping("cateArt.ct")
+	public String showcateArt(Model model) {    
+		ArrayList<Club> catelist = cService.selectcatelist();
+	    model.addAttribute("catelist", catelist);
+	    
+	    return "categories/cateArt";
+
+    }
+	
+	@RequestMapping("cateBest20.ct")
+	public String showcateBest20(Model model) {    
+		ArrayList<Club> catelist = cService.selectcatelist();
+	    model.addAttribute("catelist", catelist);
+	    
+	    return "categories/cateBest20";
+
+    }
+	
+	@RequestMapping("cateDevelope.ct")
+	public String showcateDevelope(Model model) {    
+		ArrayList<Club> catelist = cService.selectcatelist();
+	    model.addAttribute("catelist", catelist);
+	    
+	    return "categories/cateDevelope";
+
+    }
+	
+	@RequestMapping("cateFood.ct")
+	public String showcateFood(Model model) {    
+		ArrayList<Club> catelist = cService.selectcatelist();
+	    model.addAttribute("catelist", catelist);
+	    
+	    return "categories/cateFood";
+
+    }
+	
+	@RequestMapping("cateForeign.ct")
+	public String showcateForeign(Model model) {    
+		ArrayList<Club> catelist = cService.selectcatelist();
+	    model.addAttribute("catelist", catelist);
+	    
+	    return "categories/cateForeign";
+
+    }
+	
+	@RequestMapping("cateGame.ct")
+	public String showcateGame(Model model) {    
+		ArrayList<Club> catelist = cService.selectcatelist();
+	    model.addAttribute("catelist", catelist);
+	    
+	    return "categories/cateGame";
+
+    }
+	
+	@RequestMapping("cateHobby.ct")
+	public String showcateHobby(Model model) {    
+		ArrayList<Club> catelist = cService.selectcatelist();
+	    model.addAttribute("catelist", catelist);
+
+	    return "categories/cateHobby";
+
+    }
+	
+	@RequestMapping("cateHot.ct")
+	public String showcateHot(Model model) {    
+		ArrayList<Club> catelist = cService.selectcatelist();
+	    model.addAttribute("catelist", catelist);
+	    
+	    return "categories/cateHot";
+
+    }
+	
+	@RequestMapping("cateInvest.ct")
+	public String showcateInvest(Model model) {    
+		ArrayList<Club> catelist = cService.selectcatelist();
+	    model.addAttribute("catelist", catelist);
+	    
+	    return "categories/cateInvest";
+
+    }
+	
+	@RequestMapping("cateLove.ct")
+	public String showcateLove(Model model) {    
+		ArrayList<Club> catelist = cService.selectcatelist();
+	    model.addAttribute("catelist", catelist);
+	    
+	    return "categories/cateLove";
+
+    }
+	
+	@RequestMapping("cateReview.ct")
+	public String showcateReview(Model model) {    
+		ArrayList<Club> catelist = cService.selectcatelist();
+	    model.addAttribute("catelist", catelist);
+	    
+	    return "categories/cateReview";
+
+    }
+	
+	@RequestMapping("cateTravel.ct")
+	public String showcateTravel(Model model) {    
+		ArrayList<Club> catelist = cService.selectcatelist();
+	    model.addAttribute("catelist", catelist);
+	    
+	    return "categories/cateTravel";
+
+    }
 }
