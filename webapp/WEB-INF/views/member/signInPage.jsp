@@ -8,7 +8,7 @@
     <title>모꼬지-회원가입</title>
 
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/signIn_css/signInPage.css" />
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/signIn_js/signIn.js"></script>
     
     <style>
@@ -62,7 +62,7 @@
 
                 <div>
                     <!-- <input type="button" class="next-btn" value="다 음" href="terms"> -->
-                    <button type="submit" class="next-btn btn btn-primary">다 음</button>
+                    <button type="submit" class="next-btn btn btn-primary" id="submitBtn">다 음</button>
                 </div>
                 <div class="forlogin">
                     <p>이미 계정이 있다면, <a href="loginPage.me">로그인</a> 해보세요.</p>

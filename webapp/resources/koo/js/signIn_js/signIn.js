@@ -1,6 +1,6 @@
 function checkId(idInput){
     let idReview = document.getElementById('id_review');
-    if (idInput.value === 'user01') {
+    if (idInput.value === '${m.userId}') {
         idReview.className = "none_pass";
         idReview.innerText = '이미 존재하는 아이디입니다.';
     } else {
@@ -46,17 +46,26 @@ function validate(){
     alert(document.getElementById('userPwd').value + "님 회원가입이 성공적으로 완료되었습니다.^^");
 }
 
+
 document.addEventListener('DOMContentLoaded', function () {
     const userIdInput = document.getElementById('userId');
     const idReview = document.getElementById('id_review');
     const submitBtn = document.getElementById('submitBtn');
 
     userIdInput.addEventListener('keyup', function () {
-        const email = userIdInput.value;
-        if (validateEmail(email)) {
-            idReview.textContent = '유효한 이메일 주소입니다.';
-            idReview.className = 'pass';
-            submitBtn.disabled = false;
+        const userId = userIdInput.value;
+        
+        if (validateUserId(userId)) {
+            //idReview.textContent = '유효한 이메일 주소입니다.';
+            //idReview.className = 'pass';
+
+            if(dupliCheck(userId)) {
+                idReview.textContent = '';
+                submitBtn.disabled = false;
+            } else {
+                idReview.textContent = '이미 가입된 계정입니다.';
+                submitBtn.disabled = true;
+            }
         } else {
             idReview.textContent = '유효하지 않은 이메일 주소입니다.';
             idReview.className = 'none_pass';
@@ -64,18 +73,46 @@ document.addEventListener('DOMContentLoaded', function () {
         }
     });
 
-    function validateEmail(email) {
+    function validateUserId(userId) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        return re.test(String(email).toLowerCase());
+        return re.test(String(userId).toLowerCase());
+    }
+
+    function dupliCheck(user_Id) {
+        // AJAX 요청을 통해 이메일 중복 확인
+        $.ajax({
+            url: "idCheck.me",
+            type: "POST",
+            contentType: 'application/json',
+            data: user_Id,
+            
+            success: function(response) {
+                console.log(user_Id);
+                if (response == 'NNNNY') {
+                    console.log(user_Id);
+                    idReview.textContent = '';
+                    submitBtn.disabled = false;
+                } else {
+                    idReview.textContent = '중복된 이메일 주소입니다.';
+                    idReview.className = 'none_pass';
+                }
+            },
+            error: function() {
+                alert("중복 아이디 확인 중에 오류가 발생했습니다.");
+            }
+            
+        });
+
+        return true;
     }
 });
 
 
 function validateForm() {
-    const emailValid = document.getElementById('id_review').className === 'pass';
+    const userIdValid = document.getElementById('id_review').className === 'pass';
     const passwordValid = checkPass();
     
-    if (emailValid && passwordValid) {
+    if (userIdValid && passwordValid) {
         return true;
     } else {
         alert('폼을 올바르게 작성해 주세요.');
