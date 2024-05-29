@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.kh.mocozy.club.model.vo.Request;
 import com.kh.mocozy.member.model.dao.MemberDao;
 import com.kh.mocozy.member.model.vo.Member;
+import com.kh.mocozy.member.model.vo.Picked;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -58,6 +59,21 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public Member deleteMember(Member m) {
 		return null;
+	}
+
+	@Override
+	public Picked ajaxSelectPicked(Picked p) {
+		return memberDao.ajaxSelectPicked(sqlSession, p);
+	}
+
+	@Override
+	public int ajaxInsertPicked(Picked p) {
+		return memberDao.ajaxInsertPicked(sqlSession, p);
+	}
+
+	@Override
+	public int ajaxDeletePicked(Picked p) {
+		return memberDao.ajaxDeletePicked(sqlSession, p);
 	}
 	
 }

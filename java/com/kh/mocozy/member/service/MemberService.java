@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.kh.mocozy.club.model.vo.Request;
 import com.kh.mocozy.member.model.vo.Member;
+import com.kh.mocozy.member.model.vo.Picked;
 
 public interface MemberService {
 
@@ -27,4 +28,11 @@ public interface MemberService {
 	
 	//cno클럽에 참여한 맴버들
 	ArrayList<Member> participatedMemberList(int cno);
+	
+	//club pick되었는지 확인 ajax
+	Picked ajaxSelectPicked(Picked p);
+
+	int ajaxInsertPicked(Picked p);
+
+	int ajaxDeletePicked(Picked p);
 }

@@ -23,6 +23,12 @@
 		<result column="ADMIN" property="admin"/>
 	</resultMap>
 	
+	<resultMap type="Picked" id="pickedResult">
+		<result column="PICKED_NO" property="pickedNo"/>
+		<result column="USER_NO" property="userNo"/>
+		<result column="CLUB_NO" property="clubNo"/>	
+	</resultMap>
+	
 	<!-- 로그인 쿼리문 -->
 	<select id="loginMember" resultMap="memberResult">
 		SELECT user_no,
@@ -105,4 +111,32 @@
 			AND R.CLUB_NO = #{cno}
 		ORDER BY CREATE_DATE ASC;
 	</select>
+	
+	<select id="ajaxSelectPicked" resultMap="pickedResult">
+		SELECT PICKED_NO,
+			   USER_NO,
+			   CLUB_NO
+		FROM PICKED
+		WHERE USER_NO = #{userNo}
+			and CLUB_NO = #{clubNo}
+	</select>
+	
+	<insert id="ajaxInsertPicked">
+		INSERT INTO PICKED(
+			PICKED_NO,
+			USER_NO,
+			CLUB_NO
+		)
+		VALUES(
+			NEXTVAL('SEQ_PNNO'),
+			#{userNo},
+			#{clubNo}
+		) 
+	</insert>
+	
+	<delete id="ajaxDeletePicked">
+		DELETE FROM PICKED
+		WHERE USER_NO = #{userNo}
+			AND CLUB_NO = #{clubNo}
+	</delete>
 </mapper>

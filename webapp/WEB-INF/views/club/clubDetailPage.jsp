@@ -12,10 +12,15 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/teo/css/clubDetailPage.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/teo/css/noticePage.css">
 
+    <!-- 라이브러리 -->
+    <script src="${pageContext.request.contextPath}/resources/teo/js/clubDetailPage.js"></script>
+
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    
 </head>
-<body>
+<body onload="init({clubNo: ${c.clubNo}})">
 	<%@ include file="../common/header.jsp"%>
     <div id="wrap_main">
         <div id="wrap_club">
@@ -32,7 +37,12 @@
                 <div>
                     <h3 id="club_title">${c.clubTitle }</h2>
                 </div>
-                <div class="club_modify_btn"><button onclick="location.href='updateform.cl?cno=${c.clubNo}'">수 정</button><button>삭 제</button></div>
+                <div class="club_modify_btn">
+                    <c:if test="${c.userNo eq loginUser.userNo}">
+						<button onclick="location.href='updateform.cl?cno=${c.clubNo}'">수 정</button>
+	                    <button onclick="deleteClub(${c.clubNo})">삭 제</button>
+                    </c:if>
+                </div>
             </div>
 
             <!-- 소셜링 or 챌린지 -->
@@ -48,8 +58,9 @@
             </c:choose>          
             
             <!-- 찜 -->
+            <div class="club_picked" data-cno="${c.clubNo}" data-uno="${loginUser.userNo}"></div>
             <!-- <div class="club_picked"><i class="fa-solid fa-heart" style="color: red;"></i></div> -->
-            <div class="club_picked"><i class="fa-regular fa-heart" style="color: red;"></i></div>
+            <!-- <div class="club_picked"><i class="fa-regular fa-heart" style="color: red;"></i></div> -->
             <div class="club_title_info">
                 <p align="center" style="color: rgb(90, 90, 90);"><i class="fa-solid fa-location-dot"></i> 관악구 · 5.4(토) 오후 6:00      18/20</p>
             </div>

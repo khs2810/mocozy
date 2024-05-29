@@ -20,6 +20,7 @@
  		<typeAlias type="com.kh.mocozy.board.model.vo.NoticeReply" alias="NoticeReply"/>
  		<typeAlias type="com.kh.mocozy.club.model.vo.Challenge" alias="Challenge" />
  		<typeAlias type="com.kh.mocozy.club.model.vo.Request" alias="Request"/>
+ 		<typeAlias type="com.kh.mocozy.member.model.vo.Picked" alias="Picked" />
  	</typeAliases>
  	
  	<!-- 
