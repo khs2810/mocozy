@@ -16,14 +16,18 @@
 </head>
 
 <%@ include file="../common/header.jsp"%>
+<%@ include file="../mainPage/banner.jsp"%>
 <body>
 	<div class="main">
-		<%@ include file="../mainPage/banner.jsp"%>
 		<%@ include file="../mainPage/cateButton.jsp"%>
 		
 		<!--  1번 -->
 		<div class="screen">
-			<div class="box"  style="background-color: #F5F6F9; !important">
+			<div class="box">
+				<div class="screenheader">
+					<h1 class="title">주간 베스트 TOP20👑</h1>
+					<div class="selectBox"><a href="cateBest20.ct">모두보기</a></div>
+				</div>
 				<div class="display">
 				
 					<c:forEach var="club" items="${clist}">
@@ -86,6 +90,12 @@
 	<%@ include file="../mainPage/rank.jsp"%>
 	<%@ include file="../mainPage/subBanner.jsp"%>
 	
+	<div class="box">
+		<div class="screenheader">
+			<h1 class="title">다수가 본 최다 조회수 HOT 클래스 🔥 </h1>
+			<div class="selectBox"><a href="cateHot.ct">모두보기</a></div>
+		</div>
+
 	<div class="display">
 	<c:forEach var="club" items="${flist}">
 					<div class="contentcard">
@@ -138,7 +148,9 @@
 						</div>
 					</div>
 				</c:forEach>	
-				</div>			
+				</div>	
+
+		</div>			
 	</div>
 	</div>
 	<%@ include file="../common/footer.jsp"%>
