@@ -15,6 +15,7 @@
 	<script src="${pageContext.request.contextPath}/resources/jun/js/challengeManagePage.js"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/myProfile.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/jun/js/clubInsertPage.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/MyPage.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/myProfile.css">
@@ -48,7 +49,7 @@
 
             <!-- 컨텐츠 내용 -->
             <!-- 프로필 정보 -->
-            <form action="">
+            <form action="update.me?uno=${m.userNo}">
                 <div class="main-object">
                     <div class="content-title">
                         <h5>닉네임(별명)</h5>
@@ -66,7 +67,8 @@
                     <div>
                         <!-- 프로필이미지 -->
                         <div class="profile-box1" style="">
-                            <img class="profile-img" src="./img/profile.jpg" alt="">
+                            <img class="profile-img" src="./img/profile.jpg" id="fileImg" onclick="chooseFile(1)" alt="">
+                            <input type="file" style="display: none;" name="upfile" id="file1" required onchange="loadImg(this, 1, '${pageContext.request.contextPath}')">
                         </div>
                     </div>
                 </div>
@@ -122,7 +124,7 @@
                     </div>
                     <div id="introduce">
                         <div>
-                            <textarea onkeyup="counter();" class="form-control textbox" id="jagisogae" style="width: 500px; height: 50px;">내 최애 떡꼬치. 근데 누가 뺐어갔어...</textarea>
+                            <textarea onkeyup="counter();" class="form-control textbox" id="jagisogae" style="width: 500px; height: 50px;">${m.introduce}내 최애 떡꼬치. 근데 누가 뺐어갔어...</textarea>
                             <span id = "count"></span>
                         </div>
                     </div>
@@ -140,39 +142,37 @@
         <div class="modal fade" id="myModal">
             <div class="modal-dialog">
                 <div class="modal-content">
-            
+
                     <!-- Modal Header -->
                     <div class="modal-header">
                         <h2 class="modal-title">비밀번호 변경하기</h2>
                         <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
-            
+
                     <!-- Modal body -->
-                    <form action="">
+                    <form action="updatePwd.me" method="post" id="changePasswordForm">
                         <div class="modal-body">
-                            <form id="changePasswordForm">
-                                <h5>기존 비밀번호</h5>
-                                <div class="content-box">
-                                    <input type="password" id="currentPassword" placeholder="기존 비밀번호를 입력해 주세요.">
-                                </div>
+                            <h5>기존 비밀번호</h5>
+                            <div class="content-box">
+                                <input type="password" id="currentPassword" name="currentPassword" placeholder="기존 비밀번호를 입력해 주세요." required>
+                            </div>
 
-                                <br>
-                                <hr>
-                                <br>
+                            <br>
+                            <hr>
+                            <br>
 
-                                <h5>새 비밀번호</h5>
-                                <div class="content-box">
-                                    <input type="password" id="newPassword" name="newPassword" placeholder="새 비밀번호를 입력해주세요">
-                                </div>
-                                <br>
+                            <h5>새 비밀번호</h5>
+                            <div class="content-box">
+                                <input type="password" id="newPassword" name="newPassword" placeholder="새 비밀번호를 입력해주세요" required>
+                            </div>
+                            <br>
 
-                                <h5>새 비밀번호 확인</h5>
-                                <div class="content-box">
-                                    <input type="password" id="confirmPassword"  name="confirmPassword" placeholder="새 비밀번호를 다시 한 번 입력해주세요">
-                                </div>
-                            </form>
+                            <h5>새 비밀번호 확인</h5>
+                            <div class="content-box">
+                                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="새 비밀번호를 다시 한 번 입력해주세요" required>
+                            </div>
                         </div>
-                
+
                         <!-- Modal footer -->
                         <div class="modal-footer">
                             <button type="submit" class="change-btn2" id="changePasswordButton">변경하기</button>
@@ -181,6 +181,7 @@
                 </div>
             </div>
         </div>
+
 
 
         <!-- 전화번호 인증 모달창 -->
