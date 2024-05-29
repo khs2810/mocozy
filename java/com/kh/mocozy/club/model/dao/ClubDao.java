@@ -1,6 +1,7 @@
 package com.kh.mocozy.club.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -88,8 +89,8 @@ public class ClubDao {
 		return sqlSession.insert("clubMapper.insertClubReview", r);
 	}
 
-	public ClubReview selectClubReview(SqlSessionTemplate sqlSession, int cno) {
-		return sqlSession.selectOne("clubMapper.selectClubReview", cno);
+	public ClubReview selectClubReview(SqlSessionTemplate sqlSession, HashMap<String, Integer> map) {
+		return sqlSession.selectOne("clubMapper.selectClubReview", map);
 	}
 	
 }

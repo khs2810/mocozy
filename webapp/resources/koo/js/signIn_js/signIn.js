@@ -1,3 +1,4 @@
+// 아이디 체크
 function checkId(idInput){
     let idReview = document.getElementById('id_review');
     if (idInput.value === '${m.userId}') {
@@ -8,7 +9,7 @@ function checkId(idInput){
         idReview.innerText = '사용가능한 아이디입니다.';
     }
 }
-
+//비밀번호 체크
 function checkPass() {
     const userPwd = document.getElementById('userPwd').value;
     const checkPwd = document.getElementById('checkPwd').value;
@@ -25,6 +26,7 @@ function checkPass() {
     }
 }
 
+//유효성 검사
 function validate(){
     let idReview = document.getElementById('id_review');
     let pwdReview = document.getElementById('pwd_review');

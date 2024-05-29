@@ -444,7 +444,7 @@ button:hover{
     font-size: 18px;
 }
 
-.star-rating {
+.star-rating, .star-rated {
     display: flex;
     flex-direction: row-reverse;
     font-size: 60px;
@@ -457,13 +457,17 @@ button:hover{
     margin-bottom: 20px;
 }
 
-.star-rating input {
+.star-rating input, .star-rated input {
     display:none;
 }
 
 .star-rating label {
     color: #ccc;
     cursor: pointer;
+}
+
+.star-rated label {
+    color: #ccc;
 }
 
 .star-rating :checked ~ label {

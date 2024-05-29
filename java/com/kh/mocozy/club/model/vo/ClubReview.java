@@ -24,3 +24,4 @@ public class ClubReview {
 	private int userNo;
 	private String nickname;
 }
+

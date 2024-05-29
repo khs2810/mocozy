@@ -8,15 +8,23 @@ li {
 }
 
 .rank .screen{
-    width: 1250px;
+    max-width: 1920px;
     margin: 0 auto;
 }
 
-.rank .display{
+.rank .rankdisplay{
     padding: 5rem;
+    padding-bottom: 8rem;
     display: flex;
+    max-width: 1250px;
+    min-width: 600px;
+    height: auto;
+    margin: 0 auto;
+    gap: 2rem;
+    flex-direction: row;
+    flex-wrap: wrap;
     justify-content: space-between;
-    background-color: #f8f8f8;
+    background-color: #F5F6F9;
 }
 
 .rank .ranktitle{
@@ -364,8 +372,12 @@ li {
     margin-left: 0rem;
   }
 
+  .rank .pluslink{
+    position: flex;
+    justify-content: center;
+  }
+
   .rank .plusbutton{
-    width: 100%;
-    margin-left: 0;
+    max-width: 100%;
   }
 }
