@@ -93,7 +93,7 @@ li {
 }
 
 .main .contentcard .cardlink{
-  background-color: #fefefe;
+  background-color: #F5F6F9;
   border-radius: 12px;
   display: flex;
   padding: 12px 10px;
@@ -138,7 +138,7 @@ li {
 }
 
 .main .contentcard .tag{
-  background-color: #f4f4f4;
+  background-color: #dddddd;
   color: #666060;
   display: flex;
   justify-content: center;

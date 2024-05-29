@@ -11,22 +11,36 @@
 			<link rel="stylesheet" type="text/css"
 				href="${pageContext.request.contextPath}/resources/jo/css/common_css/style.css">
 			<link rel="stylesheet" type="text/css"
-				href="${pageContext.request.contextPath}/resources/jo/css/categories_css/cate.css">
+				href="${pageContext.request.contextPath}/resources/jo/css/event_css/event.css">
+			<script type="text/javascript" async="" src="${pageContext.request.contextPath}/resources/jo/js/event_js/event.js"></script>
 		</head>
 
 		<%@ include file="../common/header.jsp" %>
 
-			<body>
+		<body>	
+			<!-- 상단배너 -->
+				<section class="eventbanner" id="eventsection7">
+					<div class="eventbannerdiv">
+						<h1>파티 기획전</h1>
+						<h3>퇴근하고 뭘 할지 고민되나요? <br>
+							관심사를 나눌 진짜 친구를 만들어봐요
+						</h3>
+						<a href="javascript:void(0);" class="scrolldown">
+						
+						<!-- scroll 애니메이션 -->
+						<span></span>
+						<span></span>
+						<span></span>
+						<!-- -->
+						Scroll
+						</a>
+					</div>
+				</section>
+
 				<div class="eventPage">
-					<%@ include file="../mainPage/banner.jsp" %>
-
-							<div class="screen">
-								<div class="box">
-									<!-- 카테고리 -->
-
-									<div class="display">
+						<div class="display">
 										<!--  1번  -->
-										<c:forEach var="club" items="${catelist}">
+										<c:forEach var="club" items="${eventlist}">
 											<div class="contentcard">
 												<div class="socialing">
 													<a class="cardlink" href="detail.cl?cno=1">
@@ -35,9 +49,7 @@
 														<div class="info">
 															<div class="subject">
 																<div class="tag">${club.clubType}</div>
-															</div>
-															<div class="subjective">
-																<div class="tagP">$추천</div>
+																<div class="tagpick">추천</div>
 															</div>
 															
 															<div class="infotitle">${club.clubTitle}</div>
@@ -90,6 +102,7 @@
 
 									</div>
 								</div>
+							</div>
 							</div>
 
 							<%@ include file="../common/footer.jsp" %>

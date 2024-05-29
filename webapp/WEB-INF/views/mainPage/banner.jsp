@@ -16,14 +16,14 @@
 <body>
 	<div class="banner">
 		<div class="slide" id="slide">
-			<div class="item1" id="item"></div>
-			<div class="item2" id="item"></div>
-			<div class="item3" id="item"></div>
-			<div class="item4" id="item"></div>
-			<div class="item5" id="item"></div>
-			<div class="item6" id="item"></div>
-			<div class="item7" id="item"></div>
-			<div class="item8" id="item"></div>
+			<div class="item1" id="item"><a href="eventTravel.ev"></a></div>
+			<div class="item2" id="item"><a href="eventArt.ev"></a></div>
+			<div class="item3" id="item"><a href="eventDessert.ev"></a></div>
+			<div class="item4" id="item"><a href="eventPhoto.ev"></a></div>
+			<div class="item5" id="item"><a href="eventStudy.ev"></a></div>
+			<div class="item6" id="item"><a href="eventGame.ev"></a></div>
+			<div class="item7" id="item"><a href="eventParty.ev"></a></div>
+			<div class="item8" id="item"><a href="eventLove.ev"></a></div>
 			<div class="prev" id="prev"></div>
 			<div class="next" id="next"></div>
 		</div>
