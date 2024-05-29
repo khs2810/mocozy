@@ -19,7 +19,7 @@
 	<div class="rank">
 		<div class="screen">
 		
- 			<div class="display">
+ 			<div class="rankdisplay">
 				<div class="ranktitle">
 					<a href="_blank">
 						<div class="name">최다 리뷰 소셜링 TOP5</div>

@@ -25,7 +25,8 @@
 
 									<div class="catelistTitle">
 										<div class="leftlistTitle">
-											<span> 전체 </span>
+											<p> ${keyword} </p>
+											<span> 의 검색 결과입니다. </span>
 										</div>
 
 										<div class="rightlistTitle">
