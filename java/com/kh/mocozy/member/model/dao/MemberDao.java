@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.mocozy.club.model.vo.Request;
 import com.kh.mocozy.member.model.vo.Member;
+import com.kh.mocozy.member.model.vo.Picked;
 
 @Repository
 public class MemberDao {
@@ -42,5 +43,17 @@ public class MemberDao {
 		return (ArrayList)sqlSession.selectList("memberMapper.participatedMemberList", cno);
 	}
 
+	public Picked ajaxSelectPicked(SqlSessionTemplate sqlSession, Picked p) {
+		return sqlSession.selectOne("memberMapper.ajaxSelectPicked", p);
+	}
+
+	public int ajaxInsertPicked(SqlSessionTemplate sqlSession, Picked p) {
+		return sqlSession.insert("memberMapper.ajaxInsertPicked", p);
+	}
+
+	public int ajaxDeletePicked(SqlSessionTemplate sqlSession, Picked p) {
+		return sqlSession.insert("memberMapper.ajaxDeletePicked", p);
+	}
+	
 	
 }

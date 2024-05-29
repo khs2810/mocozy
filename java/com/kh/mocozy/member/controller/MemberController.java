@@ -14,15 +14,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.kh.mocozy.common.model.vo.Attachment;
 import com.kh.mocozy.member.model.vo.Member;
+import com.kh.mocozy.member.model.vo.Picked;
 import com.kh.mocozy.member.service.MemberService;
 
 @Controller
@@ -297,5 +297,46 @@ public class MemberController {
 	public String dibsSocialView() {
 		return "myPage/dibsSocial";
 	}
+	
+	//찜 ajax 확인
+	@ResponseBody
+	@RequestMapping(value = "getPicked.cl", produces="application/json; charset-UTF-8")
+	public String ajaxGetPicked(Picked p, HttpSession session) {
+		Member m = (Member)session.getAttribute("loginUser");
+		if (m != null) {
+			p.setUserNo(m.getUserNo());
+			
+			Picked pd = memberService.ajaxSelectPicked(p);
+			if (pd != null) {
+				return new Gson().toJson("YYY");
+			} else {
+				return new Gson().toJson("NNN");
+			}
+		} else {
+			return new Gson().toJson("NNN");
+		}
+	}
+	
+	//찜 ajax 업데이트
+		@ResponseBody
+		@RequestMapping(value ="updatePicked.cl", produces="application/json; charset-UTF-8")
+		public String ajaxUpdatePicked(Picked p, HttpSession session) {
+			Picked pd = memberService.ajaxSelectPicked(p);
+			if (pd == null) { //picked 생성
+				int result = memberService.ajaxInsertPicked(p);
+				if (result > 0) {
+					return new Gson().toJson("YYY");
+				} else {
+					return new Gson().toJson("NNN");
+				}
+			} else { //picked 제거
+				int result = memberService.ajaxDeletePicked(p);
+				if (result > 0) {
+					return new Gson().toJson("NNN");
+				} else {
+					return new Gson().toJson("YYY");
+				}
+			}
+		}
 
 }

@@ -41,8 +41,7 @@ public class ClubController {
 	private MemberService memberService;
 	
 	@RequestMapping("detail.cl")
-	public String selectClub(int cno, Model model) {
-		
+	public String selectClub(int cno, Model model, HttpSession session) {
 		int result = clubService.increaseCount(cno);
 		
 		if (result > 0) {
