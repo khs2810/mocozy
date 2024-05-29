@@ -42,6 +42,8 @@ public interface MemberService {
 
 	int ajaxDeletePicked(Picked p);
 
+	ArrayList<Member> requestMemberList(int cno);
+
 	
 
 }
