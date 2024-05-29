@@ -10,7 +10,7 @@ li {
     height: auto;
 }
 
-.catebutton .screen {
+.catebutton .catescreen {
     margin: 0 auto;
     display: flex;
     justify-content: center;
@@ -47,9 +47,8 @@ li {
 }
 
 .catebutton .img {
-    border: 1px solid #e5e7eb;
     color: #F08080;
-    background-color: #e0e0e0;
+    background-color: #f6f6f6;
     border-radius: 10px;
     width: 4rem;
     height: 4rem;

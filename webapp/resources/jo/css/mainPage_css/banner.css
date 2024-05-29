@@ -2,14 +2,13 @@ li {
   list-style: none;
 }
 
-
 .banner {
   border: none;
   margin: 0 auto;
 }
 
 .banner .slide {
-  max-width: 1250px;
+  max-width: 1920px;
   min-width: 600px;
   background-image: url("../../upfile/mainPage_img/mainbanner01.jpg");
   margin: 0 auto;

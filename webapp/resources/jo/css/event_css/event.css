@@ -3,66 +3,154 @@ li {
 }
 
 
-.main {
+.eventPage {
   max-width: 1920px;
   min-width: 600px;
   height: auto;
   margin: 0 auto;
 }
 
-.main .screen {
-  margin-bottom: 20px;
-  max-width: 1920px;
+.eventPage .scrolldown {
+  position: relative;
+  bottom: 24px;
+  right: 24px;
+  border-radius: 100%;
+  background-color: white;
+  box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.15);
+}
+
+.eventPage .box{
+  max-width: 1250px;
   margin: 0 auto;
 }
 
+.eventbanner {
+  border: none;
+  margin: 0 auto;
+}
+
+.eventbanner .eventslide {
+  max-width: 1920px;
+  min-width: 600px;
+  background-image: url("../../upfile/mainPage_img/mainbanner01.jpg");
+  margin: 0 auto;
+  height: 370px;
+  position: relative;
+  display: flex;
+  /* 다른 요소들이 넘치면 스크롤바 생성*/
+  flex-wrap: nowrap;
+  overflow: hidden;
+}
+
+@media (max-width: 706px) {
+
+  /* 화면이 706px 이하일 때 */
+  .eventbanner .eventslide {
+    min-width: 705px;
+    min-height: 500px;
+    background-image: url("../../upfile/mainPage_img/mobilebanner01.jpg");
+  }
+}
+
+.eventbanner #slideitem {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  left: 0px;
+  width: 100%;
+  /* flex-shrink: 0;을 주면 슬라이드 될때 화면 크기가 변경되지 않음 */
+  flex-shrink: 0;
+  /*슬라이드 변경시 애니메이션 효과*/
+  transition: left 0.15s;
+}
+
+.eventPage .catelistTitle{
+  display: flex;
+  font-size: 1.5rem;
+  justify-content: space-between;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 1.5rem;
+}
+
+.eventPage .leftlistTitle{
+  position: relative;
+  top: 8px;
+  line-height: 1.25rem;
+  padding-bottom: 1rem;
+  gap: 0.2rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 1rem;
+  margin-left: 2rem;
+}
+
+.leftTitle .cateRanklisticon{
+  position: relative;
+}
+
+.eventPage .leftlistTitle > p{
+	display: flex;
+}
+
+.eventPage .leftlistTitle > span {
+	font-weight: 700;
+}
+
+.eventPage .cateRanklisticon{
+	color: black;
+  position: relative;
+  bottom: 3px;
+}
+
+.eventPage .rightlistTitle{
+  position: relative;
+  top: 8px;
+  margin-right: 1rem;
+}
+
+.eventPage .rightlistContent{
+  flex-direction: row;
+  gap: 1.5rem;
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.eventPage .rightlistContent > p{
+  line-height: 1.25rem;
+  position: relative;
+  top: 5px;
+}
+
+.eventPage .rightlistContent > span {
+  line-height: 1.25rem;
+	color: rgb(255 0 69);
+  font-weight: 700;
+}
+
+.eventPage .screen {
+  margin-bottom: 20px;
+}
+
 @media (min-width: 768px) {
-  .main .screen {
+  .eventPage .screen {
       margin-bottom: 0;
   }
 }
 
-.main .box {
+.eventPage .box {
   display: flex;
   flex-direction: column;
-  max-width: 1250px;
   gap: 2rem;
   padding: 2rem;
   margin: 0 auto;
+  max-width: 1280px;
 }
 
-.main .display{
-  max-width: 1250px;
-}
-
-.main .screenheader {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.main .screenheader .title {
-  padding-top: 1rem;
-  padding-bottom: 1.5rem;
-  margin-left: 2rem;
-  font-size: 2rem;
-  font-weight: bold;
-}
-
-@media (max-width: 768px) {
-  .main .screenheader .title  {
-      font-size: 2rem;
-  }
-}
-
-.main .screenheader .selectBox {
-  padding-top: 1rem;
-  padding-bottom: 1.5rem;
-  margin-right: 2rem;
-  font-size: 1.3rem;
-}
-
-.main .display {
+.eventPage .display {
   display: flex;
   gap: 2rem;
   flex-direction: row;
@@ -71,7 +159,7 @@ li {
   flex-wrap: wrap;
 }
 
-.main .contentcard {
+.eventPage .contentcard {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
@@ -82,17 +170,17 @@ li {
 }
 
 @media (max-width: 768px) {
-  .main .contentcard {
+  .eventPage .contentcard {
     margin-bottom: 0.5rem;
   }
 }
 
-.main .contentcard .socialing{
+.eventPage .contentcard .socialing{
   width: 571px;
   height: 176px;
 }
 
-.main .contentcard .cardlink{
+.eventPage .contentcard .cardlink{
   background-color: #fefefe;
   border-radius: 12px;
   display: flex;
@@ -101,7 +189,7 @@ li {
   padding: 20px 16px;
 }
 
-.main .contentcard .img{
+.eventPage .contentcard .img{
   border: 1px solid #d3d3d3;
   width: 120px;
   height: 120px;
@@ -112,7 +200,7 @@ li {
 }
 
 @media (min-width: 768px) {
-  .main .contentcard .img{
+  .eventPage .contentcard .img{
       width: 160px;
       height: 160px;
       border-radius: 16px;
@@ -120,24 +208,24 @@ li {
   }
 }
 
-.main .contentcard .info{
+.eventPage .contentcard .info{
   display: flex;
   flex-direction: column;
   width: calc(100% - 112px);
 }
 
 @media (min-width: 768px) {
-  .main .contentcard .info{
+  .eventPage .contentcard .info{
       width: calc(100% - 168px);
   }
 }
 
-.main .contentcard .subject{
+.eventPage .contentcard .subject{
   display: flex;
   margin-bottom: 5px;
 }
 
-.main .contentcard .tag{
+.eventPage .contentcard .tag{
   background-color: #f4f4f4;
   color: #666060;
   display: flex;
@@ -153,7 +241,28 @@ li {
   margin-right: 6px;
 }
 
-.main .contentcard .infotitle{
+.eventPage .contentcard .subjectpick{
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.eventPage .contentcard .tagpick{
+  background-color: #f4f4f4;
+  color: #666060;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 11px;
+  text-align: center;
+  padding: 4px 8px;
+  letter-spacing: -.2px;
+  border-radius: 10px;
+  margin-right: 6px;
+}
+
+.eventPage .contentcard .infotitle{
   font-weight: 600;
   line-height: 24px;
   letter-spacing: -.4px;
@@ -165,7 +274,7 @@ li {
   font-size: 1rem;
 }
 
-.main .contentcard .describe{
+.eventPage .contentcard .describe{
   font-weight: 400;
   font-size: 1.5rem;
   line-height: 14.4px;
@@ -178,18 +287,18 @@ li {
   white-space: nowrap;
 }
 
-.main .contentcard .image{
+.eventPage .contentcard .image{
   width: 12px;
   height: 12px;
   position: relative;
   margin-top: 1px;
 }
 
-.main .participant{
+.eventPage .participant{
   display: flex;
 }
 
-.main .participant .img{
+.eventPage .participant .img{
   object-fit: cover;
   width: 22px;
   height: 22px;
@@ -199,7 +308,7 @@ li {
   flex-shrink: 0;
 }
 
-.main .participant .span{
+.eventPage .participant .span{
   border: 3px solid rgb(255, 255, 255);
   background-color: lightblue;
   display: flex;
@@ -214,28 +323,28 @@ li {
   flex-shrink: 0;
 }
 
-.main .participant .cardImg{
+.eventPage .participant .cardImg{
   position: relative;
   margin-top: 1rem;
   padding: 4rem;
   border-radius: 100%;
 }
 
-.main .participant .socialmember{
+.eventPage .participant .socialmember{
   margin-left: 4.7px;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.main .participant .people{
+.eventPage .participant .people{
   width: 10px;
   height: 10px;
   color: gray;
   position: relative;
 }
 
-.main .participant .count{
+.eventPage .participant .count{
   font-weight: 400;
   font-size: 10px;
   line-height: 12px;
@@ -244,7 +353,7 @@ li {
 }
 
 @media (max-width: 767px) {
-  .main .contentcard .tag {
+  .eventPage .contentcard .tag {
       font-size: 1rem;
       line-height: 11px;
       padding: 4px 8px;
@@ -252,113 +361,113 @@ li {
       margin-right: 6px;
   }
 
-  .main .contentcard .infotitle {
+  .eventPage .contentcard .infotitle {
       font-size: 1.5rem;
       line-height: 24px;
       margin-bottom: 4px;
   }
 
-  .main .contentcard .describe {
+  .eventPage .contentcard .describe {
       font-size: 1.3rem;
       line-height: 14.4px;
       margin-bottom: 10px;
   }
 
-  .main .contentcard .image {
+  .eventPage .contentcard .image {
       width: 15px;
       height: 15px;
   }
 
-  .main .participant .img {
+  .eventPage .participant .img {
     margin-right: 2rem;
       width: 33px;
       height: 33px;
   }
 
-    .main .participant .span{
+    .eventPage .participant .span{
       width: 2.5rem;
       height: 2.5rem;
       left: -8px;
   }
 
-  .main .participant .cardImg {
+  .eventPage .participant .cardImg {
       width: 22px;
       height: 22px;
   }
 
-  .main .participant .socialmember {
+  .eventPage .participant .socialmember {
       margin-left: 4.7px;
   }
 
-  .main .participant .people {
+  .eventPage .participant .people {
       width: 20px;
       height: 20px;
   }
 
-  .main .participant .count {
+  .eventPage .participant .count {
       font-size: 15px;
       line-height: 12px;
   }
 }
 
 @media (min-width: 768px) {
-  .main .contentcard .tag {
+  .eventPage .contentcard .tag {
       font-size: 1.2rem;
       line-height: 18px;
       padding: 8px 13px;
       border-radius: 10px;
   }
 
-  .main .contentcard .infotitle {
+  .eventPage .contentcard .infotitle {
       font-size: 1.5rem;
       line-height: 40px;
   }
 
-  .main .contentcard .describe {
+  .eventPage .contentcard .describe {
       font-size: 1.2rem;
       line-height: 24px;
   }
 
-  .main .contentcard .image {
+  .eventPage .contentcard .image {
       width: 20px;
       height: 20px;
       margin-top: 2px;
   }
 
-  .main .participant .img {
+  .eventPage .participant .img {
       border: 1px solid black;
       width: 36px;
       height: 36px;
   }
 
-  .main .participant .span {
+  .eventPage .participant .span {
       width: 28px;
       height: 28px;
       left: -2px;
   }
 
-  .main .participant .cardImg {
+  .eventPage .participant .cardImg {
       width: 36px;
       height: 36px;
   }
 
-  .main .participant .socialmember {
+  .eventPage .participant .socialmember {
       margin-left: 8.12px;
   }
 
-  .main .participant .people {
+  .eventPage .participant .people {
       width: 24px;
       height: 24px;
   }
 
-  .main .participant .count {
+  .eventPage .participant .count {
       margin-left: 0.5rem;
       font-size: 16px;
       line-height: 19px;
   }
 }
 
-.main .plus{
+.eventPage .plus{
   width: 575px;
   height: 50px;
   border: 1px solid #f3f3f3;
@@ -374,13 +483,13 @@ li {
   margin-left: 0.5rem;
 }
 
-.main .plus .title{
+.eventPage .plus .title{
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-.main .plus .icon{
+.eventPage .plus .icon{
   border: 1px solid black;
   width: auto;
   height: auto;
@@ -388,7 +497,7 @@ li {
 }
 
 @media screen and (min-width: 767px) {
-  .main .plus{
+  .eventPage .plus{
     display: none;
   }
 }

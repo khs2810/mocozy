@@ -11,7 +11,7 @@ li {
   max-width: 1250px;
   min-width: 600px;
   margin: 0 auto;
-  height: 150px;
+  height: 200px;
   border-radius: 20px;
   background-image: url("../../upfile/mainPage_img/subbanner01.jpg");
   position: relative;
@@ -25,8 +25,8 @@ li {
 
   /* 화면이 706px 이하일 때 */
   .Subbanner .subslide {
-    min-width: 450px;
-    min-height: 120px;
+    min-width: 40px;
+    min-height: 200px;
     background-image: url("../../upfile/mainPage_img/submobilebanner.jpg");
     border-radius: 10px;
   }
@@ -76,13 +76,13 @@ li {
 /*이미지 넣기*/
 .Subbanner .subitem1 {
   width: 1250px;
-  height: 150px;
+  height: 200px;
   background-image: url("../../upfile/mainPage_img/subbanner01.jpg");
 }
 
 .Subbanner .subitem2 {
   width: 1250px;
-  height: 150px;
+  height: 200px;
   background-image: url("../../upfile/mainPage_img/subbanner02.jpg");
 }
 

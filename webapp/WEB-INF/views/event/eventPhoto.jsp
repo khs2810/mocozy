@@ -17,12 +17,12 @@
 		<%@ include file="../common/header.jsp" %>
 
 			<body>
-				<div class="catePage">
+				<div class="eventPage">
 					<%@ include file="../mainPage/banner.jsp" %>
 						<%@ include file="../mainPage/cateButton.jsp" %>
 
 							<div class="screen">
-								<div class="box" style="background-color: #F5F6F9 !important;">
+								<div class="box">
 									<!-- 카테고리 -->
 
 									<div class="catelistTitle">
