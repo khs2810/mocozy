@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.mocozy.club.model.vo.Request;
+import com.kh.mocozy.common.model.vo.Attachment;
 import com.kh.mocozy.member.model.dao.MemberDao;
 import com.kh.mocozy.member.model.vo.Member;
 import com.kh.mocozy.member.model.vo.Picked;
@@ -37,10 +38,15 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int updateMember(Member m) {
+	public int updateMember(Member m, Attachment at) {
 		return memberDao.updateMember(sqlSession, m);
 	}
-
+	
+	@Override
+	public int updatePassword(Member m) {
+		return memberDao.updatePassword(sqlSession, m);
+	}
+	
 	@Override
 	public int deleteMember(String userId) {
 		return memberDao.deleteMember(sqlSession, userId);

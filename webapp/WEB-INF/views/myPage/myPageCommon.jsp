@@ -26,7 +26,7 @@
 
                 <!-- 포인트 -->
                 <div class="account point">
-                    100,000pt
+                    ${m.point }pt
                     <button class="btn-style">충전</button>
                 </div>
             </div>
@@ -72,7 +72,7 @@
                         <li><a href="dibsChallenge.me" class="snd_title">챌린지</a></li>
                     </ul>
                 </li>
-                <li><a href="">리뷰</a></li>
+                <li><a href="reviewList.cl">리뷰</a></li>
                 <li><a href="">채팅기록</a></li>
             </ul>
         </nav>

@@ -42,12 +42,13 @@ li {
 @media (min-width: 768px) {
     .catebutton .img:hover {
         /* 커지는 애니메이션 */
-        transform: scale(1.05);
+        transform: scale(1.2);
     }
 }
 
 .catebutton .img {
     border: 1px solid #e5e7eb;
+    color: #F08080;
     background-color: #e0e0e0;
     border-radius: 10px;
     width: 4rem;

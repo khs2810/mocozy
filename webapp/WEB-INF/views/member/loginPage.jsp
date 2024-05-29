@@ -13,7 +13,7 @@
 <body class="Login_page">
     <form action="login.me">
         <div class="Login-content">
-            <a href="">
+            <a href="${pageContext.request.contextPath}">
             	<img src="${pageContext.request.contextPath}/resources/koo/upfile/loginPage_img/logo.png" id="logo" alt="모꼬지">
             </a>
                 <h1>

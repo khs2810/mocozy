@@ -35,6 +35,9 @@
  		<mapper resource="/mappers/board-mapper.xml"/>
  		<mapper resource="/mappers/challenge-mapper.xml"/>
  		<mapper resource="/mappers/member-mapper.xml"/>
+ 		<mapper resource="/mappers/mainPage-mapper.xml"/>
+ 		<mapper resource="/mappers/cate-mapper.xml"/>
+ 		<mapper resource="/mappers/search-mapper.xml"/>
  	</mappers>
 
  	

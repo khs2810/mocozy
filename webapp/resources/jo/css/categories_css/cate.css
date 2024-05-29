@@ -1,0 +1,438 @@
+li {
+  list-style: none;
+}
+
+
+.catePage {
+  max-width: 1250px;
+  min-width: 600px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.catePage .screen {
+  margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+  .catePage .screen {
+      margin-bottom: 0;
+  }
+}
+
+.catePage .catelistTitle{
+  display: flex;
+  font-size: 1.5rem;
+  justify-content: space-between;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-bottom: 1.5rem;
+}
+
+.catePage .leftlistTitle{
+  position: relative;
+  top: 8px;
+  line-height: 1.25rem;
+  padding-bottom: 1rem;
+  gap: 0.2rem;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  margin-top: 1rem;
+  margin-left: 2rem;
+}
+
+.leftTitle .cateRanklisticon{
+  position: relative;
+}
+
+.catePage .leftlistTitle > p{
+	display: flex;
+}
+
+.catePage .leftlistTitle > span {
+	font-weight: 700;
+}
+
+.catePage .cateRanklisticon{
+	color: black;
+  position: relative;
+  bottom: 3px;
+}
+
+.catePage .rightlistTitle{
+  position: relative;
+  top: 8px;
+  margin-right: 1rem;
+}
+
+.catePage .rightlistContent{
+  flex-direction: row;
+  gap: 1.5rem;
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.catePage .rightlistContent > p{
+  line-height: 1.25rem;
+  position: relative;
+  top: 5px;
+}
+
+.catePage .rightlistContent > span {
+  line-height: 1.25rem;
+	color: rgb(255 0 69);
+  font-weight: 700;
+}
+
+.catePage .screen {
+  margin-bottom: 20px;
+}
+
+@media (min-width: 768px) {
+  .catePage .screen {
+      margin-bottom: 0;
+  }
+}
+
+.catePage .box {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  margin: 0 auto;
+  max-width: 1280px;
+  background-color: #fff;
+}
+
+.catePage .display {
+  display: flex;
+  gap: 2rem;
+  flex-direction: row;
+  margin: 0 auto;
+  padding-bottom: 5rem;
+  flex-wrap: wrap;
+}
+
+.catePage .contentcard {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+  margin-right: 1rem;
+  margin-left: 1rem;
+}
+
+@media (max-width: 768px) {
+  .catePage .contentcard {
+    margin-bottom: 0.5rem;
+  }
+}
+
+.catePage .contentcard .socialing{
+  width: 571px;
+  height: 176px;
+}
+
+.catePage .contentcard .cardlink{
+  background-color: #fefefe;
+  border-radius: 12px;
+  display: flex;
+  padding: 12px 10px;
+  margin: 0;
+  padding: 20px 16px;
+}
+
+.catePage .contentcard .img{
+  border: 1px solid #d3d3d3;
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 10px;
+  margin-right: 10px;
+  position: relative;
+}
+
+@media (min-width: 768px) {
+  .catePage .contentcard .img{
+      width: 160px;
+      height: 160px;
+      border-radius: 16px;
+      margin-right: 16px;
+  }
+}
+
+.catePage .contentcard .info{
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 112px);
+}
+
+@media (min-width: 768px) {
+  .catePage .contentcard .info{
+      width: calc(100% - 168px);
+  }
+}
+
+.catePage .contentcard .subject{
+  display: flex;
+  margin-bottom: 5px;
+}
+
+.catePage .contentcard .tag{
+  background-color: #f4f4f4;
+  color: #666060;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 11px;
+  text-align: center;
+  padding: 4px 8px;
+  letter-spacing: -.2px;
+  border-radius: 10px;
+  margin-right: 6px;
+}
+
+.catePage .contentcard .infotitle{
+  font-weight: 600;
+  line-height: 24px;
+  letter-spacing: -.4px;
+  color: #383535;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  margin-bottom: 4px;
+  font-size: 1rem;
+}
+
+.catePage .contentcard .describe{
+  font-weight: 400;
+  font-size: 1.5rem;
+  line-height: 14.4px;
+  letter-spacing: -.2px;
+  color: #999696;
+  display: flex;
+  margin-bottom: 10px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.catePage .contentcard .image{
+  width: 12px;
+  height: 12px;
+  position: relative;
+  margin-top: 1px;
+}
+
+.catePage .participant{
+  display: flex;
+}
+
+.catePage .participant .img{
+  object-fit: cover;
+  width: 22px;
+  height: 22px;
+  margin-right: 1rem;
+  border-radius: 100%;
+  position: relative;
+  flex-shrink: 0;
+}
+
+.catePage .participant .span{
+  border: 3px solid rgb(255, 255, 255);
+  background-color: lightblue;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+  width: 20rem;
+  height: 20rem;
+  border-radius: 100%;
+  margin-top: 0.2rem;
+  margin-left: -7px;
+  flex-shrink: 0;
+}
+
+.catePage .participant .cardImg{
+  position: relative;
+  margin-top: 1rem;
+  padding: 4rem;
+  border-radius: 100%;
+}
+
+.catePage .participant .socialmember{
+  margin-left: 4.7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.catePage .participant .people{
+  width: 10px;
+  height: 10px;
+  color: gray;
+  position: relative;
+}
+
+.catePage .participant .count{
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: -.4px;
+  color: #999696;
+}
+
+@media (max-width: 767px) {
+  .catePage .contentcard .tag {
+      font-size: 1rem;
+      line-height: 11px;
+      padding: 4px 8px;
+      border-radius: 10px;
+      margin-right: 6px;
+  }
+
+  .catePage .contentcard .infotitle {
+      font-size: 1.5rem;
+      line-height: 24px;
+      margin-bottom: 4px;
+  }
+
+  .catePage .contentcard .describe {
+      font-size: 1.3rem;
+      line-height: 14.4px;
+      margin-bottom: 10px;
+  }
+
+  .catePage .contentcard .image {
+      width: 15px;
+      height: 15px;
+  }
+
+  .catePage .participant .img {
+    margin-right: 2rem;
+      width: 33px;
+      height: 33px;
+  }
+
+    .catePage .participant .span{
+      width: 2.5rem;
+      height: 2.5rem;
+      left: -8px;
+  }
+
+  .catePage .participant .cardImg {
+      width: 22px;
+      height: 22px;
+  }
+
+  .catePage .participant .socialmember {
+      margin-left: 4.7px;
+  }
+
+  .catePage .participant .people {
+      width: 20px;
+      height: 20px;
+  }
+
+  .catePage .participant .count {
+      font-size: 15px;
+      line-height: 12px;
+  }
+}
+
+@media (min-width: 768px) {
+  .catePage .contentcard .tag {
+      font-size: 1.2rem;
+      line-height: 18px;
+      padding: 8px 13px;
+      border-radius: 10px;
+  }
+
+  .catePage .contentcard .infotitle {
+      font-size: 1.5rem;
+      line-height: 40px;
+  }
+
+  .catePage .contentcard .describe {
+      font-size: 1.2rem;
+      line-height: 24px;
+  }
+
+  .catePage .contentcard .image {
+      width: 20px;
+      height: 20px;
+      margin-top: 2px;
+  }
+
+  .catePage .participant .img {
+      border: 1px solid black;
+      width: 36px;
+      height: 36px;
+  }
+
+  .catePage .participant .span {
+      width: 28px;
+      height: 28px;
+      left: -2px;
+  }
+
+  .catePage .participant .cardImg {
+      width: 36px;
+      height: 36px;
+  }
+
+  .catePage .participant .socialmember {
+      margin-left: 8.12px;
+  }
+
+  .catePage .participant .people {
+      width: 24px;
+      height: 24px;
+  }
+
+  .catePage .participant .count {
+      margin-left: 0.5rem;
+      font-size: 16px;
+      line-height: 19px;
+  }
+}
+
+.catePage .plus{
+  width: 575px;
+  height: 50px;
+  border: 1px solid #f3f3f3;
+  background: #fefefe;
+  border-radius: 10px;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #666060;
+  margin-left: 0.5rem;
+}
+
+.catePage .plus .title{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.catePage .plus .icon{
+  border: 1px solid black;
+  width: auto;
+  height: auto;
+  margin-left: 2px
+}
+
+@media screen and (min-width: 767px) {
+  .catePage .plus{
+    display: none;
+  }
+}

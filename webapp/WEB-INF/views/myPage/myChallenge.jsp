@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -131,5 +133,8 @@
             </div>
         </div>
     </div>
+
+    <!-- 프로필 모달 -->
+    <%@ include file="../member/profileModal.jsp" %>
 </body>
 </html>

@@ -226,6 +226,7 @@ li {
 .main .participant .people{
   width: 10px;
   height: 10px;
+  color: gray;
   position: relative;
 }
 
@@ -341,7 +342,6 @@ li {
   }
 
   .main .participant .people {
-    border: 1px solid black;
       width: 24px;
       height: 24px;
   }

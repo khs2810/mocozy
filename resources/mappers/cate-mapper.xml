@@ -3,18 +3,46 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
-<mapper namespace="attachmentMapper"> 
-	<resultMap type="Attachment" id="attachmentResult">
-		<result column="FILE_NO" property="fileNo"/>
-		<result column="ORIGIN_NAME" property="originName"/>
-		<result column="CHANGE_NAME" property="changeName"/>
-		<result column="FILE_PATH" property="filePath"/>
-		<result column="UPLOAD_DATE" property="uploadDate"/>
-		<result column="FILE_LEVEL" property="fileLevel"/>
+<mapper namespace="cateMapper"> 
+	<resultMap type="Club" id="clubResult">
+		<result column="CLUB_NO" property="clubNo"/>
+		<result column="USER_NO" property="userNo"/>
+		<result column="CLUB_TITLE" property="clubTitle"/>
+		<result column="CLUB_TYPE" property="clubType"/>
+		<result column="CLUB_CONTENT" property="clubContent"/>
+		<result column="ADDRESS" property="address"/>
+		<result column="ADDRESS_DETAIL" property="addressDetail"/>
+		<result column="EVENT_DATE" property="eventDate"/>
+		<result column="COST" property="cost"/>
+		<result column="COST_INFO" property="costInfo"/>
+		<result column="TOTAL_POINT" property="totalPoint"/>
+		<result column="CAPACITY" property="capacity"/>
+		<result column="ONLINE" property="online"/>
+		<result column="QUESTION" property="question"/>
+		<result column="THUMBNAIL_IMG" property="thumbnailImg"/>
+		<result column="CREATE_DATE" property="createDate"/>
+		<result column="MODIFY_DATE" property="modifyDate"/>
 		<result column="STATUS" property="status"/>
-		<result column="REF_CLUB_NO" property="refClubNo"/>
-		<result column="REF_NOTICE_NO" property="refNoticeNo"/>
-		<result column="REF_USER_NO" property="refUserNo"/>
+		<result column="COUNT" property="count"/>
+		<result column="CATEGORY_NAME1" property="categoryName1"/>
+		<result column="CATEGORY_NAME2" property="categoryName2"/>
+	</resultMap>
+
+	<resultMap type="Member" id="memberResult">
+		<result column="USER_NO" property="userNo"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="USER_PWD" property="userPwd"/>
+		<result column="USER_NAME" property="userName"/>
+		<result column="GENDER" property="gender"/>
+		<result column="NICKNAME" property="nickname"/>
+		<result column="BIRTH" property="birth"/>
+		<result column="ENROLL_DATE" property="enrollDate"/>
+		<result column="MODIFY_DATE" property="modifyDate"/>
+		<result column="INTRODUCE" property="introduce"/>
+		<result column="PROFILE_IMG" property="profileImg"/>
+		<result column="POINT" property="point"/>
+		<result column="STATUS" property="status"/>
+		<result column="ADMIN" property="admin"/>
 	</resultMap>
 	
 	<insert id="insertAttachment">
@@ -33,4 +61,33 @@
 								#{fileLevel},
 								CURRVAL('SEQ_CNO'));
 	</insert>
+	
+	<select id="selectcatelist" resultMap="clubResult">
+		SELECT CLUB_NO,
+			   USER_NO,
+			   CLUB_TITLE,
+			   CLUB_TYPE,
+			   CLUB_CONTENT,
+			   ADDRESS,
+			   ADDRESS_DETAIL,
+			   EVENT_DATE, 
+			   COST,
+			   COST_INFO, 
+			   TOTAL_POINT, 
+			   CAPACITY, 
+			   ONLINE,
+			   QUESTION,
+			   THUMBNAIL_IMG,
+			   CREATE_DATE,
+			   CLUB.MODIFY_DATE,
+			   COUNT,
+			   NICKNAME,
+			   category_name1,
+			   category_name2
+	FROM public.CLUB
+		join MEMBER USING (USER_NO)
+	WHERE public.CLUB.STATUS = 'Y';
+	</select>
+	
+	
 </mapper>

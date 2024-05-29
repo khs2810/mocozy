@@ -61,7 +61,7 @@ public class ClubServiceImpl implements ClubService {
 	}
 
 	@Override
-	public Club selectClubList(int uno) {
+	public ArrayList<Club> selectClubList(int uno) {
 		return clubDao.selectClubList(sqlSession, uno);
 	}
 
@@ -99,5 +99,20 @@ public class ClubServiceImpl implements ClubService {
 		}
 		
 		return result1 * result2;
+	}
+
+	@Override
+	public int selectCountReview(int cno) {
+		return clubDao.selectCountReview(sqlSession, cno);
+	}
+
+	@Override
+	public int insertClubReview(ClubReview r) {
+		return clubDao.insertReviewList(sqlSession, r);
+	}
+
+	@Override
+	public ClubReview selectClubReview(int cno) {
+		return clubDao.selectClubReview(sqlSession, cno);
 	}
 }

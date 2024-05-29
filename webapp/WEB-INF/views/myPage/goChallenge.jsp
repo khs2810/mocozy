@@ -133,5 +133,8 @@
             </div>
         </div>
     </div>
+
+    <!-- 프로필 모달 -->
+    <%@ include file="../member/profileModal.jsp" %>
 </body>
 </html>

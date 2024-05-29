@@ -48,8 +48,8 @@ public class ClubDao {
 		return (ArrayList)sqlSession.selectList("clubMapper.listClub", uno);
 	}
 
-	public Club selectClubList(SqlSessionTemplate sqlSession, int uno) {
-		return sqlSession.selectOne("clubMapper.selectClubList", uno);
+	public ArrayList<Club> selectClubList(SqlSessionTemplate sqlSession, int uno) {
+		return (ArrayList)sqlSession.selectList("clubMapper.selectClubList", uno);
 	}
 
 	public ArrayList<Request> selectRequestList(SqlSessionTemplate sqlSession, int cno) {
@@ -78,6 +78,18 @@ public class ClubDao {
 
 	public int updateAttachment(SqlSessionTemplate sqlSession, Attachment at) {
 		return sqlSession.update("attachmentMapper.updateAttachment", at);
+	}
+
+	public int selectCountReview(SqlSessionTemplate sqlSession, int cno) {
+		return sqlSession.selectOne("clubMapper.selectCountReview", cno);
+	}
+
+	public int insertReviewList(SqlSessionTemplate sqlSession, ClubReview r) {
+		return sqlSession.insert("clubMapper.insertClubReview", r);
+	}
+
+	public ClubReview selectClubReview(SqlSessionTemplate sqlSession, int cno) {
+		return sqlSession.selectOne("clubMapper.selectClubReview", cno);
 	}
 	
 }

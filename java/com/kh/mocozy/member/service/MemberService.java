@@ -3,6 +3,7 @@ package com.kh.mocozy.member.service;
 import java.util.ArrayList;
 
 import com.kh.mocozy.club.model.vo.Request;
+import com.kh.mocozy.common.model.vo.Attachment;
 import com.kh.mocozy.member.model.vo.Member;
 import com.kh.mocozy.member.model.vo.Picked;
 
@@ -18,7 +19,12 @@ public interface MemberService {
 	int insertMember(Member m);
 	
 	//회원수정
-	int updateMember(Member m);
+	int updateMember(Member m, Attachment at);
+//	유저 프로필 사진
+	Attachment selectAttachment(String userId);
+	
+	//비밀번호 수정
+	int updatePassword(Member m);
 	
 	//회원탈퇴
 	Member deleteMember(Member m);
@@ -35,4 +41,7 @@ public interface MemberService {
 	int ajaxInsertPicked(Picked p);
 
 	int ajaxDeletePicked(Picked p);
+
+	
+
 }

@@ -53,7 +53,7 @@
 	</select>
 	
 	<!-- 아이디중복체크 -->
-	<select id="idCheck" resultType="_int">
+	<select id="idCheck" parameterType="String" resultType="_int">
 		SELECT COUNT(*)
 		  FROM MEMBER
 		 WHERE USER_ID = #{checkId}
@@ -79,9 +79,17 @@
 	<update id="updateMember">
 		UPDATE MEMBER
 		   SET USER_NAME = #{nickname},
-		       profileImg = #{profileImg},
+		       profile_Img = #{profileImg},
 		       introduce = #{introduce},
-		       MODIFY_DATE = SYSDATE
+		       MODIFY_DATE = CURRENT_TIMESTAMP
+		WHERE USER_ID = #{userId}
+	</update>
+	
+	<!-- 회원 비밀번호 수정 -->
+	<update id="updatePassword">
+		UPDATE MEMBER
+		   SET USER_PWD = #{userPwd},
+		       MODIFY_DATE = CURRENT_TIMESTAMP
 		WHERE USER_ID = #{userId}
 	</update>
 	

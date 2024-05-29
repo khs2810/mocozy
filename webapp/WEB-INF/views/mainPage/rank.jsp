@@ -18,53 +18,20 @@
 <body>
 	<div class="rank">
 		<div class="screen">
-			<div class="display">
+		
+ 			<div class="display">
 				<div class="ranktitle">
 					<a href="_blank">
-						<div class="name">실시간 랭킹 TOP100</div>
+						<div class="name">최다 리뷰 소셜링 TOP5</div>
 					</a>
-					<div class="text">현재 가장 핫한 클래스를 만나보세요.</div>
+					<div class="text">현재 가장 핫한 소셜링을 만나보세요.</div>
 				</div>
 
-				<div class="ranklayer">
-					<div class="wrapper">
-						<div class="arank">
-							<p class="rankP">1</p>
-						</div>
-
-						<div class="rankbox">
-							<div class="gap">
-
-								<div class="container">
-									<a href="_blank"> 
-									<img class="img" src="_blank">
-									</a>
-								</div>
-
-								<div class="title">
-									<div class="captain">제레미 튜터</div>
-									<div class="explain">
-										<span>취업에 필수! 포트폴리오 10분만에 노션으로 만들기</span>
-									</div>
-								</div>
-							</div>
-						</div>
-
-						<div class="circle">
-							<div class="iconbox">
-								<div class="c">
-									<div class="graycontent">
-										<img class="icon" />
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-
+					<c:forEach var="club" items="${rlist}">
 					<div class="slide">
 						<a href="_blank">
 							<div class="ranking">
-								<p class="number">2</p>
+								<p class="number"></p>
 							</div>
 						</a>
 
@@ -74,15 +41,15 @@
 								<div class="rankcontentcard">
 									<a href="_blank">
 										<div class="aspect">
-											<img class="img" src="_blank">
+											<img class="aspectimg" src="${club.thumbnailImg}"/>
 										</div>
 									</a>
 								</div>
 
 								<div class="teacher">
-									<div class="tutor">쏘피 튜터</div>
+									<div class="tutor">${club.clubTitle}</div>
 									<div class="class">
-										<span>실무에 진짜 필요한 엑셀 노하우</span>
+										<span>${club.clubContent}</span>
 									</div>
 								</div>
 
@@ -93,137 +60,28 @@
 							<div class="iconbox">
 								<div class="c">
 									<div class="graycontent">
-										<img class="icon" src="_blank" /> </img>
+										<svg class="icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+										  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+										</svg>
 									</div>
 								</div>
 							</div>
 						</div>
-
+							
 					</div>
-
-					<div class="slide">
-						<a href="_blank">
-							<div class="ranking">
-								<p class="number">3</p>
-							</div>
-						</a>
-
-						<div class="fullscreen">
-							<div class="items">
-
-								<div class="rankcontentcard">
-									<a href="_blank">
-										<div class="aspect">
-											<img class="img" src="_blank" />
-										</div>
-									</a>
-								</div>
-
-								<div class="teacher">
-									<div class="tutor">오상직 튜터</div>
-									<div class="class">
-										<span>단, 10일만에 팔로워 1K이상 만드는 인스타 노하우</span>
-									</div>
-								</div>
-
-							</div>
-						</div>
-
-						<div class="one">
-							<div class="iconbox">
-								<div class="c">
-									<div class="graycontent">
-										<img src="_blank" class="icon">
-									</div>
-								</div>
-							</div>
-						</div>
-
-					</div>
-
-					<div class="slide">
-						<a href="_blank">
-							<div class="ranking">
-								<p class="number">4</p>
-							</div>
-						</a>
-
-						<div class="fullscreen">
-							<div class="items">
-
-								<div class="rankcontentcard">
-									<a href="_blank">
-									 <img class="img" src="_blank"/>
-									</a>
-								</div>
-
-								<div class="teacher">
-									<div class="tutor">내성적인 건물주 튜터</div>
-									<div class="class">
-										<span>부동산 경매로 월급 대신 월세 받기</span>
-									</div>
-								</div>
-
-							</div>
-						</div>
-
-						<div class="one">
-							<div class="iconbox">
-								<div class="c">
-									<div class="graycontent">
-										<img class="icon" src="_blank">
-									</div>
-								</div>
-							</div>
-						</div>
-
-					</div>
-
-					<div class="slide">
-						<a href="_blank">
-							<div class="ranking">
-								<p class="number">5</p>
-							</div>
-						</a>
-
-						<div class="fullscreen">
-							<div class="items">
-
-								<div class="rankcontentcard">
-									<a href="_blank">
-										<div class="aspect">
-											<img class="img" src="_blank" />
-										</div>
-									</a>
-								</div>
-
-								<div class="teacher">
-									<div class="tutor">비됴클래스 튜터</div>
-									<div class="class">
-										<span>50만 유튜버들의 극찬! 비됴클래스의 한 방에 끝내는 영상편집 올인원 패키지</span>
-									</div>
-								</div>
-
-							</div>
-						</div>
-
-						<div class="one">
-							<div class="iconbox">
-								<div class="c">
-									<div class="graycontent">
-										<img class="icon" src="_blank" />
-									</div>
-								</div>
-							</div>
-						</div>
-
-					</div>
-
+					<div class="blankbox"></div>
+					</c:forEach>
+				
+					<div class="plusdiv">
 					<a class="pluslink" href="_blank">
 						<button class="plusbutton">
-							실시간 랭킹 더보기 <img class="icon" src="_blank" />
+							인기 소셜링 더보기 
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
+							  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
+							</svg>
 						</button>
 					</a>
+					</div>
 				</div>
 			</div>
 		</div>

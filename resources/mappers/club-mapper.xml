@@ -153,17 +153,24 @@
 			AND USER_NO = #{uno};
 	</select>
 		
-	<select id="selectClubList">
-		SELECT CLUB_NO,
-			   USER_NO,
+	<select id="selectClubList" resultMap="clubResult">
+		SELECT DISTINCT CLUB_NO,
+			   C.USER_NO,
 			   CLUB_TITLE,
-			   CAPACITY,
-			   QUESTION,
-			   STATUS
-		  FROM public.CLUB
-		  join MEMBER USING (USER_NO)
-		 WHERE public.CLUB.STATUS = 'Y'
-		   AND USER_NO = #{uno};
+			   CLUB_TYPE,
+			   EVENT_DATE,
+			   TOTAL_POINT,
+			   THUMBNAIL_IMG,
+			   C.STATUS,
+			   NICKNAME
+		  FROM CLUB C
+	 LEFT JOIN REQUEST R USING(CLUB_NO)
+	 LEFT JOIN MEMBER M ON C.USER_NO = M.USER_NO
+		 WHERE R.STATUS = 'Y'
+		   AND C.STATUS = 'E'
+		   AND M.USER_NO = C.USER_NO
+		   AND R.USER_NO = #{uno}
+	  ORDER BY EVENT_DATE DESC;
 	</select>
 	
 	<select id="selectRequestList" resultMap="requestResult">
@@ -225,6 +232,54 @@
 					)
 	</insert>
 	
+	<select id="selectCountReview" resultType="_int">
+		SELECT COUNT(*)
+		FROM (
+				SELECT R.CLUB_REVIEW_NO,
+					   R.REVIEW_CONTENT,
+					   R.CREATE_DATE,
+					   R.GRADE,
+					   R.STATUS,
+					   R.CLUB_NO,
+					   R.USER_NO
+				  FROM CLUB_REVIEW R
+		    INNER JOIN MEMBER M ON M.USER_NO = R.USER_NO
+		    INNER JOIN REQUEST Q ON M.USER_NO = Q.USER_NO
+		     	 WHERE R.CLUB_NO = #{cno}
+		)
+	</select>
 	
+	<insert id="insertClubReview">
+		INSERT INTO
+			CLUB_REVIEW(
+						CLUB_REVIEW_NO,
+						REVIEW_CONTENT,
+						CREATE_DATE,
+						GRADE,
+						STATUS,
+						CLUB_NO,
+						USER_NO
+						)
+			VALUES (
+					NEXTVAL('SEQ_CRNO'),
+					#{reviewContent},
+					#{createDate},
+					#{grade},
+					#{status},
+					#{clubNo},
+					#{userNo}
+					)
+	</insert>
 	
+	<select id="selectClubReview">
+			SELECT R.CLUB_REVIEW_NO,
+				   R.REVIEW_CONTENT,
+				   R.GRADE,
+				   R.CLUB_NO,
+				   R.USER_NO
+			  FROM CLUB_REVIEW R
+	    INNER JOIN MEMBER M ON M.USER_NO = R.USER_NO
+	    INNER JOIN REQUEST Q ON M.USER_NO = Q.USER_NO
+	     	 WHERE R.CLUB_NO = #{cno}
+	</select>
 </mapper>

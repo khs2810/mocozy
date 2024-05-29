@@ -14,9 +14,13 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jun/css/challengeManagePage.css">
 	<script src="${pageContext.request.contextPath}/resources/jun/js/challengeManagePage.js"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/myProfile.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/jun/js/clubInsertPage.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/MyPage.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/myProfile.css">
+
+
 </head>
 <body>
     <%@ include file="../common/header.jsp"%>
@@ -45,155 +49,166 @@
 
             <!-- 컨텐츠 내용 -->
             <!-- 프로필 정보 -->
-            <div class="main-object">
-                <div class="content-title">
-                    <h5>닉네임(별명)</h5>
-                </div>
-                <div class="box">
-                    <input type="text" class="textbox" value="${loginUser.nickname}">
-                </div>
-            </div>
-            <hr>
-
-            <div class="main-object">
-                <div class="content-title">
-                    <h5>프로필 이미지</h5>
-                </div>
-                <div>
-                    <!-- 프로필이미지 -->
-                    <div class="profile-box1" style="">
-                        <img class="profile-img" src="./img/profile.jpg" alt="">
+            <form action="update.me?uno=${m.userNo}">
+                <div class="main-object">
+                    <div class="content-title">
+                        <h5>닉네임(별명)</h5>
+                    </div>
+                    <div class="box">
+                        <input type="text" class="textbox" value="${loginUser.nickname}">
                     </div>
                 </div>
-            </div>
-            <hr>
+                <hr>
 
-            <!-- 이메일(로그인 ID) -->
-            <div class="main-object">
-                <div class="content-title">
-                    <h5>이메일(로그인 ID)</h5>
-                </div>
-                <p>${loginUser.userId}</p>
-            </div>
-            <hr>
-
-            <!-- 비밀번호 -->
-            <div class="main-object">
-                <div class="content-title">
-                    <h5>비밀번호</h5>
-                </div>
-                <div class="box">
-                    <input type="password" class="textbox" value="비밀번호 입니다"id="check_pwd" onblur="checkPass()">
-                    <span id="pwd_review"></span>
-                </div>
-
-                <!-- 비밀번호 변경 modal창 -->
-                <div class="change">
-                    <!-- Button to Open the Modal -->
-                    <input type="button" class="change-btn box1" data-toggle="modal" data-target="#myModal" value="비밀번호 변경하기">
-                </div>
-
-                <!-- The Modal -->
-                <div class="modal fade" id="myModal">
-                    <div class="modal-dialog">
-                    <div class="modal-content">
-                
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                        <h2 class="modal-title">비밀번호 변경하기</h2>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <div class="main-object">
+                    <div class="content-title">
+                        <h5>프로필 이미지</h5>
+                    </div>
+                    <div>
+                        <!-- 프로필이미지 -->
+                        <div class="profile-box1" style="">
+                            <img class="profile-img" src="./img/profile.jpg" id="fileImg" onclick="chooseFile(1)" alt="">
+                            <input type="file" style="display: none;" name="upfile" id="file1" required onchange="loadImg(this, 1, '${pageContext.request.contextPath}')">
                         </div>
-                
-                        <!-- Modal body -->
+                    </div>
+                </div>
+                <hr>
+
+                <!-- 이메일(로그인 ID) -->
+                <div class="main-object">
+                    <div class="content-title">
+                        <h5>이메일(로그인 ID)</h5>
+                    </div>
+                    <p>${loginUser.userId}</p>
+                </div>
+                <hr>
+
+                <!-- 비밀번호 -->
+                <div class="main-object">
+                    <div class="content-title">
+                        <h5>비밀번호</h5>
+                    </div>
+                    <div class="box">
+                        <input type="password" class="textbox" value="비밀번호 입니다"id="check_pwd" onblur="checkPass()">
+                        <span id="pwd_review"></span>
+                    </div>
+
+                    <!-- 비밀번호 변경 modal창 -->
+                    <div class="change">
+                        <!-- Button to Open the Modal -->
+                        <input type="button" class="change-btn box1" data-toggle="modal" data-target="#myModal" value="비밀번호 변경하기">
+                    </div>
+
+                </div>
+                <hr>
+
+                <!-- 전화번호 -->
+                <div class="main-object">
+                    <div class="content-title">
+                        <h5>전화번호</h5>
+                    </div>
+                    <div class="box">
+                        <input type="text" class="textbox" value="${loginUser.phone}">
+                    </div>
+                    <div class="change">
+                        <!-- Button to Open the Modal -->
+                        <input type="button" class="change-btn box1" data-toggle="modal" data-target="#myModal1"  value="인증 요청">
+                    </div>
+                    
+                </div>
+                <hr>
+
+                <div class="main-object">
+                    <div class="content-title">
+                        <h5>한줄 자기소개</h5>
+                    </div>
+                    <div id="introduce">
+                        <div>
+                            <textarea onkeyup="counter();" class="form-control textbox" id="jagisogae" style="width: 500px; height: 50px;">${m.introduce}내 최애 떡꼬치. 근데 누가 뺐어갔어...</textarea>
+                            <span id = "count"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="edit-user">
+                    <a href="update.me">수정</a>
+                    <a href="logout.me">로그아웃</a>
+                    <a type="button" data-toggle="modal" data-target="#myModal3">회원 탈퇴</a>
+                </div>
+            </form>
+
+        <!-- 비번 변경 모달창 -->
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                        <h2 class="modal-title">비밀번호 변경하기</h2>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <!-- Modal body -->
+                    <form action="updatePwd.me" method="post" id="changePasswordForm">
                         <div class="modal-body">
                             <h5>기존 비밀번호</h5>
                             <div class="content-box">
-                                <input type="password" id="currentPassword" placeholder="기존 비밀번호를 입력해 주세요.">
+                                <input type="password" id="currentPassword" name="currentPassword" placeholder="기존 비밀번호를 입력해 주세요." required>
                             </div>
+
                             <br>
                             <hr>
                             <br>
 
                             <h5>새 비밀번호</h5>
                             <div class="content-box">
-                                <input type="password" id="newPassword" placeholder="새 비밀번호를 입력해주세요 (8자 이상)">
+                                <input type="password" id="newPassword" name="newPassword" placeholder="새 비밀번호를 입력해주세요" required>
                             </div>
                             <br>
 
                             <h5>새 비밀번호 확인</h5>
                             <div class="content-box">
-                                <input type="password" id="confirmPassword" placeholder="새 비밀번호를 다시 한 번 입력해주세요">
+                                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="새 비밀번호를 다시 한 번 입력해주세요" required>
                             </div>
                         </div>
-                
+
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="button" class="change-btn2" id="changePasswordButton">변경하기</button>
+                            <button type="submit" class="change-btn2" id="changePasswordButton">변경하기</button>
                         </div>
-                
-                    </div>
-                    </div>
+                    </form>
                 </div>
             </div>
-            <hr>
+        </div>
 
-            <!-- 전화번호 -->
-            <div class="main-object">
-                <div class="content-title">
-                    <h5>전화번호</h5>
-                </div>
-                <div class="box">
-                    <input type="text" class="textbox" value="${loginUser.phone}">
-                </div>
-                <div class="change">
-                    <!-- Button to Open the Modal -->
-                    <input type="button" class="change-btn box1" data-toggle="modal" data-target="#myModal1"  value="인증 요청">
-                </div>
-                
-                <!-- The Modal -->
-                <div class="modal fade" id="myModal1">
-                    <div class="modal-dialog">
-                    <div class="modal-content">
-                
-                        <!-- Modal Header -->
-                        <div class="modal-header">
-                        <h2 class="modal-title">전화번호 인증</h2>
-                            <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        </div>
-                
-                        <!-- Modal body -->
-                        <div class="modal-body">
-                            <h5>전화번호 인증하기기기</h5>
-                        </div>
-                
-                        <!-- Modal footer -->
-                        <div class="modal-footer">
-                            <button type="button" class="change-btn2">인증 하기</button>
-                        </div>
-                
+
+
+        <!-- 전화번호 인증 모달창 -->
+        <!-- The Modal -->
+        <div class="modal fade" id="myModal1">
+            <div class="modal-dialog">
+                <div class="modal-content">
+            
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                    <h2 class="modal-title">전화번호 인증</h2>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
                     </div>
+            
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <h5>전화번호 인증하기기기</h5>
                     </div>
+            
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="button" class="change-btn2">인증 하기</button>
+                    </div>
+            
                 </div>
             </div>
-            <hr>
-
-            <div class="main-object">
-                <div class="content-title">
-                    <h5>한줄 자기소개</h5>
-                </div>
-                <div id="introduce">
-                    <div>
-                        <textarea onkeyup="counter();" class="form-control textbox"  id="jagisogae" style="width: 500px; height: 50px;">내 최애 떡꼬치. 근데 누가 뺐어갔어...</textarea>
-                        <span id = "count"></span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="edit-user">
-                <a href="">수정</a>
-                <a href="logout.me">로그아웃</a>
-                <a type="button" data-toggle="modal" data-target="#myModal3">회원 탈퇴</a>
-
+        </div>
 
         <!-- 회원탈퇴 모달창1 -->
         <!-- The Modal -->
@@ -290,122 +305,11 @@
         </div>
     </div>
 
-    <!-- 자기소개 모달창 -->
-    <!-- The Modal -->
-    <div class="modal fade" id="profileModal">
-        <div class="modal-dialog">
-            <div class="profile-modal-content">
-            
-                <!-- Modal Header -->
-                <div class="profile-modal-header">
-                    <button type="button" class="close" data-dismiss="modal">×</button>
-                </div>
-                
-                <!-- Modal body -->
-                <div class="profile-modal-body">
-                    <div class="m-userProfile">
-                        <img src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" class="m-profileImg">
-                        <span class="nickname">${loginUser.nickname}</span>
-                        <span> 님</span>
-                    </div>
-                    <div class="m-manner">
-                        <img src="${pageContext.request.contextPath}/resources/koo/upfile/myPage_img/로고-떡떡떡.png" class="m-logo-area">
-                        <div class="m-manner-area">
-                            <span>매너 점수</span>
-                            <div class="m-manner-score-area">
-                                <div class="m-score-range">
-                                    <p>0</p>
-                                    <p>100</p>
-                                </div>
-                                <progress id="progress" value="36.5" min="0" max="100"></progress>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Modal footer -->
-                <div class="profile-modal-bottom">
-                    <h6 style="font-size: 20px; font-weight: 600; margin: 10px 30px;">자기소개</h6>
-                    <textarea class="m-introduction"></textarea>
-                </div>
-                
-            </div>
-        </div>
-    </div>
+    <!-- 프로필 모달 -->
+    <%@ include file="../member/profileModal.jsp" %>
     
 
-    <script>
-        const checkbox1 = document.querySelector('[data-id="checkbox-1"]');
-
-        checkbox1.addEventListener('click', function() {
-              checkboxes.forEach(function(checkbox) {
-                if (checkbox.classList.contains('bi-square')) {
-                  checkbox.classList.remove('bi-square');
-                  checkbox.classList.add('bi-check-square-fill');
-                } else {
-                  checkbox.classList.remove('bi-check-square-fill');
-                  checkbox.classList.add('bi-square');
-                }
-              });
-            });
-
-            checkboxes.forEach(function(checkbox) {
-              checkbox.addEventListener('click', function() {
-                if (checkbox === checkbox1) {
-                  checkboxes.forEach(function(cb) {
-                    if (checkbox1.classList.contains('bi-check-square-fill')) {
-                      cb.classList.remove('bi-square');
-                      cb.classList.add('bi-check-square-fill');
-                    } else {
-                      cb.classList.remove('bi-check-square-fill');
-                      cb.classList.add('bi-square');
-                    }
-                  });
-                } else {
-                  if (checkbox.classList.contains('bi-square')) {
-                    checkbox.classList.remove('bi-square');
-                    checkbox.classList.add('bi-check-square-fill');
-                  } else {
-                    checkbox.classList.remove('bi-check-square-fill');
-                    checkbox.classList.add('bi-square');
-                  }
-                }
-                });
-            });
-    </script>
-    <script>
-    document.getElementById("delete-account-btn").addEventListener("click", function() {
-        const userId = "${loginUser.userId}";
-        const password = document.getElementById("delete-password").value;
-
-        if (!password) {
-            alert("비밀번호를 입력해주세요.");
-            return;
-        }
-
-        $.ajax({
-            type: "POST",
-            url: "${pageContext.request.contextPath}/delete.me",
-            data: {
-                userId: userId,
-                userPwd: password
-            },
-            success: function(response) {
-                if (response.success) {
-                    alert("비밀번호가 일치하지 않습니다. 회원탈퇴 실패하였습니다.");
-                    window.location.href = "${pageContext.request.contextPath}/";
-                } else {
-                    alert("성공적으로 회원탈퇴 되었습니다.");
-                    window.location.href = "redirect:/";
-                }
-            },
-            error: function() {
-                alert("오류가 발생했습니다. 다시 시도해주세요.");
-                window.location.href = "${pageContext.request.contextPath}/";
-            }
-        });
-    });
-    </script>
+    
     
 </body>
 </html>
