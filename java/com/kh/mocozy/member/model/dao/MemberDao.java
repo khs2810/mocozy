@@ -27,6 +27,10 @@ public class MemberDao {
 		return sqlSession.update("memberMapper.updateMember", m);
 	}
 	
+	public String pwdCheck(SqlSessionTemplate sqlSession, String userPwd) {
+		return sqlSession.selectOne("memberMapper.pwdCheck", userPwd);
+	}
+	
 	public int updatePassword(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.update("memberMapper.updatePassword", m);
 	}
@@ -54,6 +58,8 @@ public class MemberDao {
 	public int ajaxDeletePicked(SqlSessionTemplate sqlSession, Picked p) {
 		return sqlSession.insert("memberMapper.ajaxDeletePicked", p);
 	}
+
+	
 	
 	
 }

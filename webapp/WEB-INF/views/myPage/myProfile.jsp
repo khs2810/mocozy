@@ -14,7 +14,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jun/css/challengeManagePage.css">
 	<script src="${pageContext.request.contextPath}/resources/jun/js/challengeManagePage.js"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/myProfile.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyProfile.js"></script>
     <script src="${pageContext.request.contextPath}/resources/jun/js/clubInsertPage.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/MyPage.css" />
@@ -89,7 +89,7 @@
                         <h5>비밀번호</h5>
                     </div>
                     <div class="box">
-                        <input type="password" class="textbox" value="비밀번호 입니다"id="check_pwd" onblur="checkPass()">
+                        <input type="password" class="textbox" value="${loginUser.userPwd }"id="check_pwd" onblur="checkPass()">
                         <span id="pwd_review"></span>
                     </div>
 
@@ -124,7 +124,7 @@
                     </div>
                     <div id="introduce">
                         <div>
-                            <textarea onkeyup="counter();" class="form-control textbox" id="jagisogae" style="width: 500px; height: 50px;">${m.introduce}내 최애 떡꼬치. 근데 누가 뺐어갔어...</textarea>
+                            <textarea onkeyup="counter();" class="form-control textbox" id="jagisogae" style="width: 500px; height: 50px;">${loginUser.introduce}내 최애 떡꼬치. 근데 누가 뺐어갔어...</textarea>
                             <span id = "count"></span>
                         </div>
                     </div>
@@ -150,11 +150,14 @@
                     </div>
 
                     <!-- Modal body -->
-                    <form action="updatePwd.me" method="post" id="changePasswordForm">
+                    <form method="post" id="changePasswordForm">
                         <div class="modal-body">
                             <h5>기존 비밀번호</h5>
                             <div class="content-box">
-                                <input type="password" id="currentPassword" name="currentPassword" placeholder="기존 비밀번호를 입력해 주세요." required>
+                                <input type="hidden" id="userId" name="userId" value="${loginUser.userId}">
+                                <input type="password" id="currentPwd" name="currentPwd" onkeyup="checkPwd(this)"placeholder="기존 비밀번호를 입력해 주세요." required>
+                                <span id="pwd_review"></span>
+                                <div id="checkResult" style="font-size:0.7em; display:none;"></div>
                             </div>
 
                             <br>
@@ -163,19 +166,20 @@
 
                             <h5>새 비밀번호</h5>
                             <div class="content-box">
-                                <input type="password" id="newPassword" name="newPassword" placeholder="새 비밀번호를 입력해주세요" required>
+                                <input type="password" class="form-control" id="userPwd" name="userPwd" placeholder="새 비밀번호를 입력해주세요" required>
                             </div>
                             <br>
 
                             <h5>새 비밀번호 확인</h5>
                             <div class="content-box">
-                                <input type="password" id="confirmPassword" name="confirmPassword" placeholder="새 비밀번호를 다시 한 번 입력해주세요" required>
+                                <input type="password" class="form-control" id="checkPwd" onblur="checkPass()" placeholder="새 비밀번호를 다시 한 번 입력해주세요" required>
+                                <span id="pwd_review"></span><br>
                             </div>
                         </div>
 
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="submit" class="change-btn2" id="changePasswordButton">변경하기</button>
+                            <button type="submit" class="change-btn2" id="submitBtn" onclick="change_pass();">변경하기</button>
                         </div>
                     </form>
                 </div>
@@ -309,7 +313,6 @@
     <%@ include file="../member/profileModal.jsp" %>
     
 
-    
     
 </body>
 </html>

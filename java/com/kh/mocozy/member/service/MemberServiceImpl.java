@@ -28,6 +28,18 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
+	public Attachment selectAttachment(String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public String pwdCheck(String userId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
 	public int idCheck(String checkId) {
 		return memberDao.idCheck(sqlSession, checkId);
 	}
@@ -41,6 +53,10 @@ public class MemberServiceImpl implements MemberService {
 	public int updateMember(Member m, Attachment at) {
 		return memberDao.updateMember(sqlSession, m);
 	}
+	
+	public String pwdCheck(Member m, String userId) {
+        return memberDao.pwdCheck(sqlSession, userId);
+    }
 	
 	@Override
 	public int updatePassword(Member m) {
