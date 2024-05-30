@@ -31,11 +31,11 @@ $(document).ready(function() {
                     cno: btn.dataset.cno
                 },
                 success: function(res){
-                alert('성공!');
+                alert('참가 신청 수락됨!');
                 drawRequest(res, url, question);
             },
             error: function(res){
-                alert('실패!');
+                alert('모임 인원 초과');
             }
         })
     })
@@ -52,11 +52,11 @@ $(document).ready(function() {
                     cno: btn.dataset.cno
                 },
             success: function(res){
-                alert('성공!');
+                alert('참가 신청 거절됨!');
                 drawRequest(res, url, question);
             },
             error: function(res){
-                alert('실패!');
+                alert('오류');
             }
         })
     })
