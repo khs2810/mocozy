@@ -55,4 +55,9 @@ public class BoardDao {
 		return sqlSession.update("boardMapper.deleteNotice", nno);
 	}
 
+	public int insertNoticeReply(SqlSessionTemplate sqlSession, NoticeReply nr) {
+		return sqlSession.insert("boardMapper.insertNoticeReply", nr);
+	}
+
+
 }
