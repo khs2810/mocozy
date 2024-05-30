@@ -32,7 +32,7 @@
 	        <div id="wapper_notice_enroll">
 	            <div>
 	                <span>제목</span>
-	                <input id="input_notice_title" name="noticeTitle" type="text" >
+	                <input id="input_notice_title" name="noticeTitle" type="text" required >
 	            </div>
 	            <div class="notice_div_second_row" >
 	                <div>
@@ -49,10 +49,10 @@
 	            </div>
 	        </div>
 	        <div class="summernote_div">
-	            <textarea id="summernote" name="noticeContent"></textarea>
+	            <textarea id="summernote" name="noticeContent" required></textarea>
 	        </div>
 	        <div class="notice_enroll_btns">
-	            <button type="reset" class="background_color_brown font_weight_bold">이 전</button>
+	            <button type="text" class="background_color_brown font_weight_bold" onclick="history.back()">이 전</button>
 	            <button type="submit" class="background_color_green font_weight_bold">등 록</button>
 	        </div>
         </form>
