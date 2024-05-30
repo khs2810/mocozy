@@ -47,7 +47,7 @@
 	                <div class="host_question_caution_content">전화번호, 카카오톡 아이디, 신청 폼 작성 요구등 과도한 개인정보를 요구하는 경우 가이드 위반 모임이므로 모꼬지에 신고해 주세요.</div>
 	            </div>
 	            <div class="club_btns">
-	                <button class="background_color_brown" type="button">이 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전</button>
+	                <button class="background_color_brown" type="button" onclick="history.back()">이 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전</button>
 	                <button type="submit" class="background_color_green">결 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;제</button>
 	            </div>
 	        </div>

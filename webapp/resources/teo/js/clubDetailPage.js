@@ -44,7 +44,7 @@ function clickedPicked(ev){
             drawPickedHeart(res);
         });
     } else {
-        alert("로그인 후 사용가능한 기능입니다.")
+        alert("로그인 후 이용가능한 기능입니다.")
     }
     
 }
@@ -69,5 +69,14 @@ function deleteClub(cno){
     } else {
     	alert("클럽 삭제를 취소했습니다.")
     }
-	
+}
+
+function joinClub(cno){
+    const isTrue = $('#join_club_btn').val() ? true : false;
+    if (isTrue) {
+        location.href='confirm.cl?cno=' + cno;
+    } else {
+        alert("로그인 후 이용가능한 기능입니다.")
+    }
+    
 }

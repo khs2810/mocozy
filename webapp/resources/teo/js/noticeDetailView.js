@@ -8,55 +8,42 @@ function confirmDelete(data) {
     }
 }
 
-
-
-
-// function insertNoticeReply(cno, uno) {
-//     const replyContent = document.querySelector('textarea[name="reply_content"]');
-//     console.log(replyContent);
-    
-//     if (!uno){
-//         alert("로그인 후 이용가능한 기능입니다.")
-//     } else {
-//         const data = {
-//             clubNo: cno,
-//             userNo: uno
-//         }
-//         console.log(data)
-//         ajaxInsertReply(data)
-//     }
-// }
-
-// function ajaxInsertReply(data) {
-//     $.ajax({
-//         url : 'insertReply.no',
-//         data : data,
-//         success : function(res) {
-//             console.log(res)
-            
-//         },
-//         error : function (){
-//             alert("ajax 실패");
-//         }
-//     })
-// }
-
 $(document).ready(function(){
     $('#enroll_notice_reply').click(function(ev){
         const content = document.querySelector('#reply_content').value;
-        const btn = ev.target;
-        
-        if (!btn.dataset.uno){
-            alert("로그인 후 이용가능한 기능입니다.")
+        if (content == ""){
+            alert("댓글 내용을 입력해주세요!");
         } else {
-            const data = {
-                noticeNo : btn.dataset.nno,
-                userNo : btn.dataset.uno,
-                replyContent : content
+            const btn = ev.target;
+            
+            if (!btn.dataset.uno){
+                alert("로그인 후 이용가능한 기능입니다.")
+            } else {
+                const data = {
+                    noticeNo : btn.dataset.nno,
+                    userNo : btn.dataset.uno,
+                    replyContent : content
+                }
+                ajaxInsertReply(data)
+                document.querySelector('#reply_content').value = "";
             }
-            ajaxInsertReply(data)
         }
     }) 
+
+    $('#review_table').on("click", '#notice_review_delete_btn',function(ev){
+        const btn = ev.target;
+
+        data = {
+            rno: btn.dataset.rno,
+            nno: btn.dataset.nno
+        }
+    
+        const isTrue = confirm("댓글을 삭제하시겠습니까?");
+        
+        if (isTrue) {
+            ajaxDeleteReply(data)
+        }
+    })
 })
 
 function ajaxInsertReply(data) {
@@ -75,7 +62,8 @@ function ajaxInsertReply(data) {
 function drawReplyList(data, size) {
     
     document.querySelector('#notice_review_size_h').innerHTML = "댓글(" + size + ")";
-
+    const userNo = $('#loginuser_userno_hidden').val();
+    
     let str = "";
     if (data.length == 0){
         str = `<tr>\n
@@ -88,10 +76,26 @@ function drawReplyList(data, size) {
             str += `<tr>\n
                         <td style="padding-left: 5px; width: 105px">${nr.nickname}</td> \n
                         <td style="width: 75%; padding-left: 14px;">${nr.replyContent}</td>\n
-                        <td>${nr.modifyDate}</td>\n
-                        <td>X</td>\n
-                    </tr>`
+                        <td>${nr.modifyDate}</td>\n`;
+            if (`${nr.userNo}` === userNo){
+                str += `<td><button id="notice_review_delete_btn" data-rno="${nr.replyNo}" data-nno="${nr.noticeNo}">X</button></td>\n`;
+            }
+            str += `</tr>`;    
         }
+        
     }
     document.querySelector('#review_table').innerHTML = str;
+}
+
+function ajaxDeleteReply(data) {
+    $.ajax({
+        url : 'deleteReply.no',
+        data : data,
+        success : function(res) {
+            drawReplyList(res.rlist, res.rsize);          
+        },
+        error : function (){
+            alert("ajax 실패");
+        }
+    })
 }

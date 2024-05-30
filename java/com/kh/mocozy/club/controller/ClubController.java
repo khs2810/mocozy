@@ -6,6 +6,7 @@ import java.sql.Timestamp;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
 import java.time.format.TextStyle;
 import java.util.ArrayList;
@@ -101,6 +102,30 @@ public class ClubController {
 		Club c = clubService.selectClub(cno);
 		
 		if (c != null && answer != null) {
+			
+			// Timestamp -> (xxxx년 x월 x일(x) 오전 xx시 xx분) 
+	        LocalDateTime dateTime = c.getEventDate().toLocalDateTime();
+	        // 날짜 형식 변환을 위한 포매터
+	        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("M월 d일");
+	        String formattedDate = dateTime.format(dateFormatter);
+	        // 요일 가져오기 (짧은 형식)
+	        String dayOfWeek = dateTime.getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.KOREAN);
+	        // 시간 형식 변환을 위한 포매터
+	        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("a h:mm").withLocale(Locale.KOREAN);
+	        String formattedTime = dateTime.format(timeFormatter);
+	        // 최종 형식 조합
+	        String eventDateDetailInfo = String.format("%s(%s) %s", formattedDate, dayOfWeek, formattedTime);
+	        
+	        // 현재 날짜와 시간 가져오기
+	        LocalDateTime currentDateTime = LocalDateTime.now();
+	        
+            // D-Day 계산
+	        Period period = Period.between(currentDateTime.toLocalDate(), dateTime.toLocalDate());
+	        long daysBetween = period.getDays();
+	        String dDay = (daysBetween > 0) ? "D-" + daysBetween : (daysBetween == 0) ? "D-0" : "D+" + Math.abs(daysBetween);
+	        
+	        model.addAttribute("dDay", dDay);	        
+	        model.addAttribute("evDate", eventDateDetailInfo);
 			model.addAttribute("c", c);
 			model.addAttribute("answer", answer);
 			
