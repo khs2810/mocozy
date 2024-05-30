@@ -100,6 +100,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     submitBtn.disabled = false;
                 } else {
                     callback(false);
+                    idReview.textContent = '중복된 이메일 주소입니다.';
+                    idReview.className = 'none_pass';
                 }
             },
             error: function() {
