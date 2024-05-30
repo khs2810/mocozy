@@ -92,9 +92,7 @@
 		FROM CLUB_REVIEW CR
 		JOIN MEMBER USING (USER_NO)
 		WHERE CR.STATUS = 'Y'
-			AND CLUB_NO = #{cno}; 
-			   
-			   
+			AND CLUB_NO = #{cno};
 	</select>
 	
 	<insert id="insertClub">

@@ -12,8 +12,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
@@ -184,7 +186,38 @@ public class MemberController {
 
 		return changeName;
 	}
+	
+	
+	
+	String functionName(int number) {
+		return "abc";
+	}
 
+	// pwdCheck ajax요청을 받아줄 controller
+	// 비밀번호 확인 요청을 처리하는 메서드
+	@ResponseBody
+    @PostMapping("checkPassword.me")
+    public String checkPassword(Member m, @RequestParam("currentPwd") String currentPwd, HttpSession session) {
+        // 현재 로그인한 사용자의 정보를 세션에서 가져옴
+		System.out.println(m);
+        Member loginUser = (Member) session.getAttribute("loginUser");
+        if (loginUser == null) {
+        	System.out.println(loginUser);
+            return "NNNNN"; // 사용자가 로그인되어 있지 않음
+        }
+        
+        // 사용자의 ID를 이용해 현재 비밀번호를 가져옴
+        String userId = loginUser.getUserId();
+        String actualPwd = memberService.pwdCheck(userId);
+
+        // 입력된 비밀번호와 실제 비밀번호를 비교
+        if (currentPwd.equals(actualPwd)) {
+            return "NNNNY"; // 비밀번호가 일치함
+        } else {
+            return "NNNNN"; // 비밀번호가 일치하지 않음
+        }
+    }
+	
 //	비밀번호 수정
 	@RequestMapping("updatePwd.me")
 	public String updatePassword(Member m, HttpSession session, Model model) {

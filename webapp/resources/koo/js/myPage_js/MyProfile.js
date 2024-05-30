@@ -1,60 +1,67 @@
-// 비번확인
-function checkPass(){
-    let userPwd = document.getElementById('user_pwd');
-    let checkPwd = document.getElementById('check_pwd');
-    let pwdReview = document.getElementById('pwd_review');
-    
-    if (userPwd.value === checkPwd.value) {
+//새 비밀번호 체크
+function checkPass() {
+    const userPwd = document.getElementById('userPwd').value;
+    const checkPwd = document.getElementById('checkPwd').value;
+    const pwdReview = document.getElementById('pwd_review');
+
+    if (userPwd === checkPwd) {
+        pwdReview.textContent = '';
         pwdReview.className = 'pass';
-        pwdReview.innerText = '비밀번호가 일치합니다.';
-        
+        return true;
     } else {
+        pwdReview.textContent = '비밀번호가 일치하지 않습니다.';
         pwdReview.className = 'none_pass';
-        pwdReview.innerText = '비밀번호가 다릅니다.';
+        return false;
     }
-    
 }
 
-// 자기소개 글자수
-function counter(){
-    var content = document.getElementById('jagisogae').value;
-    if (content.length > 50){
-        content = content.substring(0,50);
-        document.getElementById('jagisogae').value = content;
-    }
-   
-    document.getElementById('count').innerHTML = '('+content.length+'/50)'
+//기존 비밀번호 체크, 변경
+function change_pass(){
+    console.log("1");
 
-};
-counter();
-
-// 비밀번호 변경
-$(document).ready(function(){
-    $("#changePasswordButton").click(function(){
-        const formData = $("#changePasswordForm").serialize();
+    // DB
+    const formData = $("#changePasswordForm").serialize();
+    $.ajax({
+        url: "checkPassword.me",
+        type: "POST",
+        contentType: 'application/json',
+        data: formData,
         
-        // AJAX 요청을 통해 비밀번호 변경
-        $.ajax({
-            url: "/changePassword",
-            type: "POST",
-            data: formData,
-            success: function(response) {
-                if (response.success) {
-                    alert("비밀번호가 성공적으로 변경되었습니다. 다시 로그인해주세요.");
-                    $('#myModal').modal('hide');
-                    logout(); // 비밀번호 변경 후 로그아웃 실행
-                    
-                } else {
-                    alert(response.message);
-                }
-            },
-            error: function() {
-                alert("비밀번호 변경 중 오류가 발생했습니다.");
+        success: function(response) {
+            // DB 정상
+            if (response == 'NNNNY') {
+                // 팝업을 닫고 로그아웃
+                pwdReview.textContent = '';
+                submitBtn.disabled = false;
+
+            } else { // 업데이트 실패(alert메세지)
+                // 팝업에 실패 내용 표시
+                pwdReview.textContent = '잘못된 비밀번호 입니다.';
+                pwdReview.className = 'none_pass';
             }
-            
-        });
+        },
+        error: function() {
+            alert("비밀번호 확인 중에 오류가 발생했습니다.");
+        }
+        
     });
-});
+}
+
+
+function validateForm() {
+    const userIdValid = document.getElementById('id_review').className === 'pass';
+    const passwordValid = checkPass();
+    
+    if (userIdValid && passwordValid) {
+        return true;
+    } else {
+        alert('폼을 올바르게 작성해 주세요.');
+        return false;
+    }
+}
+
+
+
 
 // 세션 삭제 후 로그아웃 페이지로 리다이렉트
 function logout() {
@@ -72,3 +79,16 @@ function logout() {
         }
     });
 }
+
+// 자기소개 글자수
+function counter(){
+    var content = document.getElementById('jagisogae').value;
+    if (content.length > 50){
+        content = content.substring(0,50);
+        document.getElementById('jagisogae').value = content;
+    }
+   
+    document.getElementById('count').innerHTML = '('+content.length+'/50)'
+
+};
+counter();
