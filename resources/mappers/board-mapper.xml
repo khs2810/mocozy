@@ -22,7 +22,7 @@
 		<result column="MODIFY_DATE" property="modifyDate"/>
 		<result column="STATUS" property="status"/>
 		<result column="NOTICE_NO" property="noticeNo"/>
-		<result column="USER_NO" property="user_no"/>
+		<result column="USER_NO" property="userNo"/>
 	</resultMap>
 	
 	<select id="selectNoticeListCount" resultType="_int">
@@ -119,5 +119,21 @@
 			SET STATUS = 'N'
 		WHERE notice_no = #{nno}
 	</update>
+	
+	<insert id="insertNoticeReply">
+		INSERT INTO NOTICE_REPLY(
+			REPLY_NO,
+		    REPLY_CONTENT,
+		    NOTICE_NO,
+			USER_NO
+		)
+		VALUES(
+			NEXTVAL('SEQ_NRNO'),
+		    #{replyContent},
+		    #{noticeNo},
+		    #{userNo}
+		)
+	</insert>
+	
 	
 </mapper>

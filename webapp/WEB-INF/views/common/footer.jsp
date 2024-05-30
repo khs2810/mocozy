@@ -55,7 +55,7 @@
 						<div class="service">
 							<div class="slist">
 								<p class="policy">mo-cozy</p>
-								<a href="_blank">공지사항</a> <a href="_blank">이벤트</a>
+								<a href="list.no">공지사항</a> <a href="_blank">이벤트</a>
 							</div>
 
 							<div class="slist">
@@ -107,7 +107,7 @@
 							  2.405 3.301 4.492 3.301 1.078 0 2.004-.276 2.722-.764h-.003a3.7 3.7 0 0 0 1.599-2.431H8v-3.08z"/>
 							</svg></a></li>
 					</ul>
-					<p>Copyright ⓒ 2023 mo-cozy Inc. All rights reserved.</p>
+					<p>Copyright ⓒ 2024 mo-cozy Inc. All rights reserved.</p>
 				</div>
 			</div>
 		</div>
