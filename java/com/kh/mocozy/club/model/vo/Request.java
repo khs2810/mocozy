@@ -1,7 +1,7 @@
 package com.kh.mocozy.club.model.vo;
 
 import java.sql.Timestamp;
-import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
