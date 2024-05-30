@@ -31,4 +31,7 @@ public interface BoardService {
 
 	int deleteNotice(int nno);
 
+	int insertNoticeReply(NoticeReply nr);
+
+
 }

@@ -12,7 +12,9 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/teo/css/clubDetailPage.css">
     
     <!-- 라이브러리 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
     <script src="${pageContext.request.contextPath}/resources/teo/js/noticeDetailView.js"></script>
+    
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>
@@ -23,21 +25,20 @@
             ${n.noticeContent}
         </div>
         <div class="notice_detail_update_btn">
-        	<c:if test="${loginUser.admin eq 'Y'}">
+        	<c:if test="${loginUser.nickname eq n.nickname}">
 	       		<button class="background_color_green color_white font_weight_bold" onclick="location.href='updateForm.no?nno=${n.noticeNo}'">수 정</button>
            		<button class="background_color_green color_white font_weight_bold" onclick="confirmDelete(${n.noticeNo})">삭 제</button>
-           		<%-- <button class="background_color_green color_white font_weight_bold" onclick="location.href='delete.no?nno=${n.noticeNo}'">삭 제</button> --%>
 	       	</c:if>
             
         </div>
         <div id="notice_review">
-            <h3>댓글(${rlist.size()})</h3>
+            <h3 id="notice_review_size_h">댓글(${rlist.size()})</h3>
             <table id="review_table">
             	<c:choose>
             		<c:when test="${rlist.size() ne 0}">
             			<c:forEach var="p" items="${rlist}">
             				<tr>
-            					<td style="padding-left: 5px;">${p.nickname}</td>
+            					<td style="padding-left: 5px; width: 105px">${p.nickname}</td>
 			                    <td style="width: 75%; padding-left: 14px;">${p.replyContent}</td>
 			                    <td>${p.modifyDate}</td>
 			                    <td>X</td> <!-- 본인 리뷰일때만 보이게  -->
@@ -55,12 +56,12 @@
             </table>
             <br>
             <div id="review_write_box">
-                <h4>떡꼬치대마왕</h4>
+                <h4>${loginUser.nickname}</h4>
                 <div class="review_content_write_box">
                     <div class="review_content_write">
-                        <textarea></textarea>
+                        <textarea id="reply_content" onkeyup="insertText(this.value)"></textarea>
                     </div>
-                    <button class="background_color_green color_white font_weight_bold review_enroll_btn">
+                    <button type="button" id="enroll_notice_reply" data-nno="${n.noticeNo}" data-uno="${loginUser.userNo}" class="background_color_green color_white font_weight_bold review_enroll_btn">
                     	등 록
                     </button>
                 </div>
