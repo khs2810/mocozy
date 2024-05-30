@@ -20,7 +20,7 @@
 		<%@ include file="../mainPage/cateButton.jsp"%>
 
 		<div class="screen">
-			<div class="box" style="background-color: #F5F6F9 !important;">
+			<div class="box">
 				<!-- 카테고리 -->
 
 				<div class="catelistTitle">
@@ -43,7 +43,7 @@
 					<c:forEach var="club" items="${clist}">
 						<div class="contentcard">
 							<div class="socialing">
-								<a class="cardlink" href="detail.cl?cno=1"> <img class="img"
+								<a class="cardlink" href="detail.cl?cno=${club.clubNo}"> <img class="img"
 									src="${club.thumbnailImg}" />
 
 									<div class="info">

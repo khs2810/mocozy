@@ -18,6 +18,7 @@
 		<%@ include file="../common/header.jsp" %>
 
 		<body>	
+			<div class="bannerbox"></div>
 			<!-- 상단배너 -->
 				<section class="eventbanner" id="eventsection4">
 					<div class="eventbannerdiv">
@@ -43,7 +44,7 @@
 										<c:forEach var="club" items="${eventlist}">
 											<div class="contentcard">
 												<div class="socialing">
-													<a class="cardlink" href="detail.cl?cno=1">
+													<a class="cardlink" href="detail.cl?cno=${club.clubNo}">
 														<img class="img" src="${club.thumbnailImg}" />
 
 														<div class="info">
