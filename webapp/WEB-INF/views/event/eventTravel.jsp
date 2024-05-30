@@ -11,44 +11,36 @@
 			<link rel="stylesheet" type="text/css"
 				href="${pageContext.request.contextPath}/resources/jo/css/common_css/style.css">
 			<link rel="stylesheet" type="text/css"
-				href="${pageContext.request.contextPath}/resources/jo/css/categories_css/cate.css">
+				href="${pageContext.request.contextPath}/resources/jo/css/event_css/event.css">
+			<script type="text/javascript" async="" src="${pageContext.request.contextPath}/resources/jo/js/event_js/event.js"></script>
 		</head>
 
 		<%@ include file="../common/header.jsp" %>
 
-			<body>
+		<body>	
+			<!-- 상단배너 -->
+				<section class="eventbanner" id="eventsection1">
+					<div class="eventbannerdiv">
+						<h1>장기투어 기획전</h1>
+						<h3>낯선 공간속 새로운 만남 <br>
+							모꼬지와 버킷리스트를 완성해보세요	
+						</h3>
+						<a href="javascript:void(0);" class="scrolldown">
+						
+						<!-- scroll 애니메이션 -->
+						<span></span>
+						<span></span>
+						<span></span>
+						<!-- -->
+						Scroll
+						</a>
+					</div>
+				</section>
+
 				<div class="eventPage">
-					<%@ include file="../mainPage/banner.jsp" %>
-						<%@ include file="../mainPage/cateButton.jsp" %>
-
-							<div class="screen">
-								<div class="box">
-									<!-- 카테고리 -->
-
-									<div class="catelistTitle">
-										<div class="leftlistTitle">
-											<p> 스포츠 </p>
-											<svg class="cateRanklisticon" xmlns="http://www.w3.org/2000/svg" width="16"
-												height="16" fill="currentColor" class="bi bi-chevron-compact-right"
-												viewBox="0 0 16 16">
-												<path fill-rule="evenodd"
-													d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671" />
-											</svg>
-											<span> 여행 · 동행 </p>
-										</div>
-
-										<div class="rightlistTitle">
-											<div class="rightlistContent">
-												<span id="cateRecent"> 최근순 </span>
-												<p id="cateDibs"> 추천순 </p>
-												<p id="cateViews"> 인기순 </p>
-											</div>
-										</div>
-									</div>
-
-									<div class="display">
+						<div class="display">
 										<!--  1번  -->
-										<c:forEach var="club" items="${catelist}">
+										<c:forEach var="club" items="${eventlist}">
 											<div class="contentcard">
 												<div class="socialing">
 													<a class="cardlink" href="detail.cl?cno=1">
@@ -57,8 +49,9 @@
 														<div class="info">
 															<div class="subject">
 																<div class="tag">${club.clubType}</div>
+																<div class="tagpick">추천</div>
 															</div>
-
+															
 															<div class="infotitle">${club.clubTitle}</div>
 
 															<div class="describe">
@@ -110,8 +103,10 @@
 									</div>
 								</div>
 							</div>
+							</div>
 
 							<%@ include file="../common/footer.jsp" %>
 			</body>
 			<%@ include file="../common/topButton.jsp" %>
 
+		</html>

@@ -11,6 +11,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jun/css/reviewListPage.css">
 	<script src="${pageContext.request.contextPath}/resources/jun/js/reviewListPage.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/MyPage.css" />
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>
@@ -47,7 +50,7 @@
 	                        <div class="btnPart">
 	                        	<c:choose>
 	                        		<c:when test="${c.isReview eq 0}">
-			                            <button type="button" class="writeBtn" data-toggle="modal" data-target="#reviewEnrollWindow">리뷰 작성</button>
+			                            <button type="button" class="writeBtn" data-toggle="modal" data-target="#reviewEnrollWindow" data-cno="${c.clubNo}">리뷰 작성</button>
 	                        		</c:when>
 	                        		<c:when test="${c.isReview eq 1}">
 			                            <button type="button" class="detailBtn" data-toggle="modal" data-target="#reviewDetailWindow">리뷰 보기</button>
@@ -76,29 +79,33 @@
 			                </div>
 			                
 			                <!-- Modal body -->
-			                <div class="modal-body">
-			                    <div class="star-rating">
-			                        <input type="radio" id="5-stars" name="rating" value="5" />
-			                        <label for="5-stars" class="star">&#9733;</label>
-			                        <input type="radio" id="4-stars" name="rating" value="4" />
-			                        <label for="4-stars" class="star">&#9733;</label>
-			                        <input type="radio" id="3-stars" name="rating" value="3" />
-			                        <label for="3-stars" class="star">&#9733;</label>
-			                        <input type="radio" id="2-stars" name="rating" value="2" />
-			                        <label for="2-stars" class="star">&#9733;</label>
-			                        <input type="radio" id="1-star" name="rating" value="1" />
-			                        <label for="1-star" class="star">&#9733;</label>
-			                    </div>
-			                    <div class="review-write">
-			                        <textarea name="" id="" placeholder="리뷰를 작성하세요"></textarea>
-			                    </div>
-			                </div>
-			                
-			                <!-- Modal footer -->
-			                <div class="modal-footer">
-			                    <button type="button" class="btn btn-danger" data-dismiss="modal">리뷰 등록</button>
-			                </div>
-			                
+			                <form id="" method="post" action="insertReview.cl">
+				                <div class="modal-body">
+				                    <div class="star-rating">
+				                        <input type="radio" id="5-stars" name="rating" value="5"/>
+				                        <label for="5-stars" class="star" onclick="countingStar(5)">&#9733;</label>
+				                        <input type="radio" id="4-stars" name="rating" value="4"/>
+				                        <label for="4-stars" class="star" onclick="countingStar(4)">&#9733;</label>
+				                        <input type="radio" id="3-stars" name="rating" value="3"/>
+				                        <label for="3-stars" class="star" onclick="countingStar(3)">&#9733;</label>
+				                        <input type="radio" id="2-stars" name="rating" value="2"/>
+				                        <label for="2-stars" class="star" onclick="countingStar(2)">&#9733;</label>
+				                        <input type="radio" id="1-star" name="rating" value="1"/>
+				                        <label for="1-star" class="star" onclick="countingStar(1)">&#9733;</label>
+				                    </div>
+				                    <div class="review-write">
+				                        <textarea name="reviewContent" id="" placeholder="리뷰를 작성하세요"></textarea>
+				                    </div>
+				                </div>
+				                
+				                <!-- Modal footer -->
+				                <div class="modal-footer">
+				                	<input type="hidden" name="grade" value=""/>
+				                	<input type="hidden" name="clubNo"/>
+				                	<input type="hidden" name="userNo" value="${loginUser.userNo}"/>
+				                    <button type="submit" class="btn btn-danger">리뷰 등록</button>
+				                </div>
+			                </form>
 			            </div>
 			        </div>
 			    </div>

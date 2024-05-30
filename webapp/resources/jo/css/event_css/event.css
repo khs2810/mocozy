@@ -2,67 +2,1019 @@ li {
   list-style: none;
 }
 
-
-.eventPage {
-  max-width: 1920px;
-  min-width: 600px;
-  height: auto;
-  margin: 0 auto;
-}
-
-.eventPage .scrolldown {
-  position: relative;
-  bottom: 24px;
-  right: 24px;
-  border-radius: 100%;
-  background-color: white;
-  box-shadow: 0 0.25rem 0.5rem 0 rgba(0, 0, 0, 0.15);
-}
-
-.eventPage .box{
-  max-width: 1250px;
-  margin: 0 auto;
-}
-
 .eventbanner {
-  border: none;
-  margin: 0 auto;
-}
-
-.eventbanner .eventslide {
-  max-width: 1920px;
-  min-width: 600px;
-  background-image: url("../../upfile/mainPage_img/mainbanner01.jpg");
-  margin: 0 auto;
-  height: 370px;
   position: relative;
-  display: flex;
-  /* 다른 요소들이 넘치면 스크롤바 생성*/
-  flex-wrap: nowrap;
-  overflow: hidden;
+  width: 100vw;
+  height: 500px;
 }
 
-@media (max-width: 706px) {
-
-  /* 화면이 706px 이하일 때 */
-  .eventbanner .eventslide {
-    min-width: 705px;
-    min-height: 500px;
-    background-image: url("../../upfile/mainPage_img/mobilebanner01.jpg");
+@media (max-width: 601px) {
+  .eventbanner {
+    width: 600px;
+    height: 500px;
   }
 }
 
-.eventbanner #slideitem {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  left: 0px;
+.eventbanner::after {
+  bottom: 0;
+  left: 0;
+  content: '';
   width: 100%;
-  /* flex-shrink: 0;을 주면 슬라이드 될때 화면 크기가 변경되지 않음 */
-  flex-shrink: 0;
-  /*슬라이드 변경시 애니메이션 효과*/
-  transition: left 0.15s;
+  height: 80%;
+  /* 배경 색상주기 */
+  background: -webkit-linear-gradient(top,rgba(112, 82, 82, 0) 0,rgba(0,0,0,.8) 80%,rgba(0,0,0,.8) 100%);
+  background: linear-gradient(to bottom,rgba(0,0,0,0) 0,rgba(0,0,0,.8) 80%,rgba(0,0,0,.8) 100%);
+}
+
+#eventsection1 { 
+  background: url(../../upfile/event_img/eventbanner01.jpg) 
+  center center / cover no-repeat;
+  
+}
+
+#eventsection1 .eventbannerdiv{ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#eventsection1 h1 {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  padding-left: 35px;
+  z-index: 2;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: 500;
+  font-size: 50px;
+  white-space: nowrap;
+}
+
+#eventsection1 h3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding-left: 35px;
+  z-index: 2;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 601px) {
+  #eventsection1 h1 {
+    position: absolute;
+    left: 40%;
+  }
+
+  #eventsection1 h3 {
+    position: absolute;
+    left: 40%;
+  }
+
+  #eventsection1 a {
+    position: absolute;
+    left: 40%;
+  }
+}
+
+#eventsection1 a {
+  padding-top: 80px;
+  color: #fff;
+}
+
+#eventsection1 a span {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  border-left: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-animation: sdb07 2s infinite;
+  animation: sdb07 2s infinite;
+  opacity: 0;
+  box-sizing: border-box;
+}
+
+#eventsection1 a span:nth-of-type(1) {
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+}
+#eventsection1 a span:nth-of-type(2) {
+  top: 16px;
+  -webkit-animation-delay: .15s;
+  animation-delay: .15s;
+}
+
+#eventsection1 a span:nth-of-type(3) {
+  top: 32px;
+  -webkit-animation-delay: .3s;
+  animation-delay: .3s;
+}
+
+/* span 애니메이션 주기 */
+@-webkit-keyframes sdb07 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes sdb07 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#eventsection2 { 
+  background: url(../../upfile/event_img/eventbanner02.jpg) 
+  center center / cover no-repeat;
+  
+}
+
+#eventsection2 .eventbannerdiv{ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#eventsection2 h1 {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  padding-left: 35px;
+  z-index: 2;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: 500;
+  font-size: 50px;
+  white-space: nowrap;
+}
+
+#eventsection2 h3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding-left: 35px;
+  z-index: 2;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 601px) {
+  #eventsection2 h1 {
+    position: absolute;
+    left: 40%;
+  }
+
+  #eventsection2 h3 {
+    position: absolute;
+    left: 40%;
+  }
+
+  #eventsection2 a {
+    position: absolute;
+    left: 40%;
+  }
+}
+
+#eventsection2 a {
+  padding-top: 80px;
+  color: #fff;
+}
+
+#eventsection2 a span {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  border-left: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-animation: sdb07 2s infinite;
+  animation: sdb07 2s infinite;
+  opacity: 0;
+  box-sizing: border-box;
+}
+
+#eventsection2 a span:nth-of-type(1) {
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+}
+#eventsection2 a span:nth-of-type(2) {
+  top: 16px;
+  -webkit-animation-delay: .15s;
+  animation-delay: .15s;
+}
+
+#eventsection2 a span:nth-of-type(3) {
+  top: 32px;
+  -webkit-animation-delay: .3s;
+  animation-delay: .3s;
+}
+
+/* span 애니메이션 주기 */
+@-webkit-keyframes sdb07 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes sdb07 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#eventsection3 { 
+  background: url(../../upfile/event_img/eventbanner03.jpg) 
+  center center / cover no-repeat;
+  
+}
+
+#eventsection3 .eventbannerdiv{ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#eventsection3 h1 {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  padding-left: 35px;
+  z-index: 2;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: 500;
+  font-size: 50px;
+  white-space: nowrap;
+}
+
+#eventsection3 h3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding-left: 35px;
+  z-index: 2;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 601px) {
+  #eventsection3 h1 {
+    position: absolute;
+    left: 40%;
+  }
+
+  #eventsection3 h3 {
+    position: absolute;
+    left: 40%;
+  }
+
+  #eventsection3 a {
+    position: absolute;
+    left: 40%;
+  }
+}
+
+#eventsection3 a {
+  padding-top: 80px;
+  color: #fff;
+}
+
+#eventsection3 a span {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  border-left: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-animation: sdb07 2s infinite;
+  animation: sdb07 2s infinite;
+  opacity: 0;
+  box-sizing: border-box;
+}
+
+#eventsection3 a span:nth-of-type(1) {
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+}
+
+#eventsection3 a span:nth-of-type(2) {
+  top: 16px;
+  -webkit-animation-delay: .15s;
+  animation-delay: .15s;
+}
+
+#eventsection3 a span:nth-of-type(3) {
+  top: 32px;
+  -webkit-animation-delay: .3s;
+  animation-delay: .3s;
+}
+
+/* span 애니메이션 주기 */
+@-webkit-keyframes sdb07 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes sdb07 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#eventsection4 { 
+  background: url(../../upfile/event_img/eventbanner04.jpg) 
+  center center / cover no-repeat;
+  
+}
+
+#eventsection4 .eventbannerdiv{ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#eventsection4 h1 {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  padding-left: 35px;
+  z-index: 2;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: 500;
+  font-size: 50px;
+  white-space: nowrap;
+}
+
+#eventsection4 h3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding-left: 35px;
+  z-index: 2;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 601px) {
+  #eventsection4 h1 {
+    position: absolute;
+    left: 40%;
+  }
+
+  #eventsection4 h3 {
+    position: absolute;
+    left: 40%;
+  }
+
+  #eventsection4 a {
+    position: absolute;
+    left: 40%;
+  }
+}
+
+#eventsection4 a {
+  padding-top: 80px;
+  color: #fff;
+}
+
+#eventsection4 a span {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  border-left: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-animation: sdb07 2s infinite;
+  animation: sdb07 2s infinite;
+  opacity: 0;
+  box-sizing: border-box;
+}
+
+#eventsection4 a span:nth-of-type(1) {
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+}
+#eventsection4 a span:nth-of-type(2) {
+  top: 16px;
+  -webkit-animation-delay: .15s;
+  animation-delay: .15s;
+}
+
+#eventsection4 a span:nth-of-type(3) {
+  top: 32px;
+  -webkit-animation-delay: .3s;
+  animation-delay: .3s;
+}
+
+/* span 애니메이션 주기 */
+@-webkit-keyframes sdb07 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes sdb07 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#eventsection5 { 
+  background: url(../../upfile/event_img/eventbanner05.jpg) 
+  center center / cover no-repeat;
+
+}
+
+#eventsection5 .eventbannerdiv{ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#eventsection5 h1 {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  padding-left: 35px;
+  z-index: 2;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: 500;
+  font-size: 50px;
+  white-space: nowrap;
+}
+
+#eventsection5 h3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding-left: 35px;
+  z-index: 2;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 601px) {
+  #eventsection5 h1 {
+    position: absolute;
+    left: 40%;
+  }
+
+  #eventsection5 h3 {
+    position: absolute;
+    left: 40%;
+  }
+
+  #eventsection5 a {
+    position: absolute;
+    left: 40%;
+  }
+}
+
+#eventsection5 a {
+  padding-top: 80px;
+  color: #fff;
+}
+
+#eventsection5 a span {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  border-left: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-animation: sdb07 2s infinite;
+  animation: sdb07 2s infinite;
+  opacity: 0;
+  box-sizing: border-box;
+}
+
+#eventsection5 a span:nth-of-type(1) {
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+}
+#eventsection5 a span:nth-of-type(2) {
+  top: 16px;
+  -webkit-animation-delay: .15s;
+  animation-delay: .15s;
+}
+
+#eventsection5 a span:nth-of-type(3) {
+  top: 32px;
+  -webkit-animation-delay: .3s;
+  animation-delay: .3s;
+}
+
+/* span 애니메이션 주기 */
+@-webkit-keyframes sdb07 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes sdb07 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#eventsection6 { 
+  background: url(../../upfile/event_img/eventbanner06.jpg) 
+  center center / cover no-repeat;
+  
+}
+
+#eventsection6 .eventbannerdiv{ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#eventsection6 h1 {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  padding-left: 35px;
+  z-index: 2;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: 500;
+  font-size: 50px;
+  white-space: nowrap;
+}
+
+#eventsection6 h3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding-left: 35px;
+  z-index: 2;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 601px) {
+  #eventsection6 h1 {
+    position: absolute;
+    left: 40%;
+  }
+
+  #eventsection6 h3 {
+    position: absolute;
+    left: 40%;
+  }
+
+  #eventsection6 a {
+    position: absolute;
+    left: 40%;
+  }
+}
+
+#eventsection6 a {
+  padding-top: 80px;
+  color: #fff;
+}
+
+#eventsection6 a span {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  border-left: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-animation: sdb07 2s infinite;
+  animation: sdb07 2s infinite;
+  opacity: 0;
+  box-sizing: border-box;
+}
+
+#eventsection6 a span:nth-of-type(1) {
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+}
+#eventsection6 a span:nth-of-type(2) {
+  top: 16px;
+  -webkit-animation-delay: .15s;
+  animation-delay: .15s;
+}
+
+#eventsection6 a span:nth-of-type(3) {
+  top: 32px;
+  -webkit-animation-delay: .3s;
+  animation-delay: .3s;
+}
+
+/* span 애니메이션 주기 */
+@-webkit-keyframes sdb07 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes sdb07 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#eventsection7 { 
+  background: url(../../upfile/event_img/eventbanner07.jpg) 
+  center center / cover no-repeat;
+  
+}
+
+#eventsection7 .eventbannerdiv{ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#eventsection7 h1 {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  padding-left: 35px;
+  z-index: 2;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: 500;
+  font-size: 50px;
+  white-space: nowrap;
+}
+
+#eventsection7 h3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding-left: 35px;
+  z-index: 2;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 601px) {
+  #eventsection7 h1 {
+    position: absolute;
+    left: 40%;
+  }
+
+  #eventsection7 h3 {
+    position: absolute;
+    left: 40%;
+  }
+
+  #eventsection7 a {
+    position: absolute;
+    left: 40%;
+  }
+}
+
+#eventsection7 a {
+  padding-top: 80px;
+  color: #fff;
+}
+
+#eventsection7 a span {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  border-left: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-animation: sdb07 2s infinite;
+  animation: sdb07 2s infinite;
+  opacity: 0;
+  box-sizing: border-box;
+}
+
+#eventsection7 a span:nth-of-type(1) {
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+}
+#eventsection7 a span:nth-of-type(2) {
+  top: 16px;
+  -webkit-animation-delay: .15s;
+  animation-delay: .15s;
+}
+
+#eventsection7 a span:nth-of-type(3) {
+  top: 32px;
+  -webkit-animation-delay: .3s;
+  animation-delay: .3s;
+}
+
+/* span 애니메이션 주기 */
+@-webkit-keyframes sdb07 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes sdb07 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+#eventsection8 { 
+  background: url(../../upfile/event_img/eventbanner08.jpg) 
+  center center / cover no-repeat;
+  
+}
+
+#eventsection8 .eventbannerdiv{ 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#eventsection8 h1 {
+  position: absolute;
+  top: 35%;
+  left: 50%;
+  padding-left: 35px;
+  z-index: 2;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: 500;
+  font-size: 50px;
+  white-space: nowrap;
+}
+
+#eventsection8 h3 {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  padding-left: 35px;
+  z-index: 2;
+  -webkit-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: 500;
+  font-size: 20px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+@media (max-width: 601px) {
+  #eventsection8 h1 {
+    position: absolute;
+    left: 40%;
+  }
+
+  #eventsection8 h3 {
+    position: absolute;
+    left: 40%;
+  }
+
+  #eventsection8 a {
+    position: absolute;
+    left: 40%;
+  }
+}
+
+#eventsection8 a {
+  padding-top: 80px;
+  color: #fff;
+}
+
+#eventsection8 a span {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 24px;
+  height: 24px;
+  margin-left: -12px;
+  border-left: 1px solid #fff;
+  border-bottom: 1px solid #fff;
+  -webkit-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+  -webkit-animation: sdb07 2s infinite;
+  animation: sdb07 2s infinite;
+  opacity: 0;
+  box-sizing: border-box;
+}
+
+#eventsection8 a span:nth-of-type(1) {
+  -webkit-animation-delay: 0s;
+  animation-delay: 0s;
+}
+#eventsection8 a span:nth-of-type(2) {
+  top: 16px;
+  -webkit-animation-delay: .15s;
+  animation-delay: .15s;
+}
+
+#eventsection8 a span:nth-of-type(3) {
+  top: 32px;
+  -webkit-animation-delay: .3s;
+  animation-delay: .3s;
+}
+
+/* span 애니메이션 주기 */
+@-webkit-keyframes sdb07 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes sdb07 {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.eventbanner a {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  z-index: 2;
+  display: inline-block;
+  -webkit-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  color: #fff;
+  font : normal 400 20px;
+  letter-spacing: .1em;
+}
+
+/* ----------------------------------------------------- */
+
+.eventPage {
+  max-width: 1250px;
+  min-width: 600px;
+  height: auto;
+  margin: 0 auto;
 }
 
 .eventPage .catelistTitle{
@@ -181,7 +1133,7 @@ li {
 }
 
 .eventPage .contentcard .cardlink{
-  background-color: #fefefe;
+  background-color: #F5F6F9;
   border-radius: 12px;
   display: flex;
   padding: 12px 10px;
@@ -226,7 +1178,7 @@ li {
 }
 
 .eventPage .contentcard .tag{
-  background-color: #f4f4f4;
+  background-color: #dddddd;
   color: #666060;
   display: flex;
   justify-content: center;
@@ -241,19 +1193,14 @@ li {
   margin-right: 6px;
 }
 
-.eventPage .contentcard .subjectpick{
-  display: flex;
-  margin-bottom: 5px;
-}
-
 .eventPage .contentcard .tagpick{
-  background-color: #f4f4f4;
-  color: #666060;
+  background-color: #f59c9c;
+  color: #ffffff;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-weight: 600;
-  font-size: 1.5rem;
+  font-weight: 500;
+  font-size: 1.2rem;
   line-height: 11px;
   text-align: center;
   padding: 4px 8px;

@@ -38,6 +38,7 @@
  		<mapper resource="/mappers/mainPage-mapper.xml"/>
  		<mapper resource="/mappers/cate-mapper.xml"/>
  		<mapper resource="/mappers/search-mapper.xml"/>
+ 		<mapper resource="/mappers/event-mapper.xml"/>
  	</mappers>
 
  	

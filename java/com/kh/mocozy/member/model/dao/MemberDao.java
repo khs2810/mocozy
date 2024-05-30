@@ -60,6 +60,9 @@ public class MemberDao {
 	}
 
 	
+	public ArrayList<Member> requestMemberList(SqlSessionTemplate sqlSession, int cno) {
+		return (ArrayList)sqlSession.selectList("memberMapper.requestMemberList", cno);
+	}
 	
 	
 }

@@ -48,9 +48,11 @@ public class ClubController {
 			Club c = clubService.selectClub(cno);
 			ArrayList<Member> memberList = memberService.participatedMemberList(cno);
 			ArrayList<ClubReview> reviewList = clubService.listReview(cno);
+			ArrayList<Member> rqMemberList = memberService.requestMemberList(cno);
 			model.addAttribute("c", c);
 			model.addAttribute("reviewList", reviewList);
 			model.addAttribute("memberList", memberList);
+			model.addAttribute("rqMemberList", rqMemberList);
 			
 			// Timestamp -> (xxxx년 x월 x일(x) 오전 xx시 xx분) 
 	        LocalDateTime dateTime = c.getEventDate().toLocalDateTime();

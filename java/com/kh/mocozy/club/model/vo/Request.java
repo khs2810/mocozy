@@ -22,4 +22,5 @@ public class Request {
 	private Timestamp createDate;
 	private String status;
 	private int point;
+	private String nickname;
 }

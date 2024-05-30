@@ -187,7 +187,20 @@
             <br>
             <div class="club_btns">
                     <button class="background_color_brown">목록으로</button>
-                    <button class="background_color_green" onclick="location.href='confirm.cl?cno=${c.clubNo}'">참여 신청하기</button>
+                    <c:forEach var="rq" items="${rqMemberList}">
+					    <c:if test="${rq.userNo == loginUser.userNo}">
+					        <c:set var="isUserFound" value="true" />
+					    </c:if>
+					</c:forEach>
+					<c:choose>
+					    <c:when test="${isUserFound}">
+					        <div disabled>참여 신청하기</div>
+					    </c:when>
+					    <c:otherwise>
+					        <button class="background_color_green" onclick="location.href='confirm.cl?cno=${c.clubNo}'">참여 신청하기</button>
+					    </c:otherwise>
+					</c:choose>
+                    
             </div>
         </div>
     </div>

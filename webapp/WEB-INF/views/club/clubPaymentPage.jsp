@@ -89,7 +89,6 @@
 	            <button class="background_color_green" type="submit">결 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;제</button>
 	        </div>
         </form>
-        <a href="list.no">공지사항</a>
     </div>
 </body>
 </html>

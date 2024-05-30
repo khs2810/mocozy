@@ -2,10 +2,12 @@ package com.kh.mocozy.board.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Date;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
@@ -168,4 +170,30 @@ public class BoardController {
 		}
 	}
 	
+	//ajax 공지사항 댓글 등록
+		@ResponseBody
+		@RequestMapping(value = "insertReply.no", produces="application/json; charset-UTF-8")
+		public String ajaxGetPicked(@RequestParam(value="rpage", defaultValue="1") int currentPage, NoticeReply nr, HttpSession session) {
+			int result = boardService.insertNoticeReply(nr);
+			int nno = nr.getNoticeNo();
+			
+			if (result > 0) {
+				Notice n = boardService.selectNotice(nno);
+				int replyListCount = boardService.replyListCount(nno);
+//				System.out.println(replyListCount);
+				
+				PageInfo pi = Pagination.getPageInfo(replyListCount, currentPage, 5, 5);
+				ArrayList<NoticeReply> rlist = boardService.selectNoticeReplyList(nno, pi);
+				
+				Map<String, Object> map = new HashMap<>();
+				map.put("rlist", rlist);
+				map.put("rsize", replyListCount);
+				
+				return new Gson().toJson(map);
+			} else {
+				return null;
+			}
+			
+			
+		}
 }
