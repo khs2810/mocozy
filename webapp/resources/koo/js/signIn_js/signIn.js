@@ -62,11 +62,12 @@ document.addEventListener('DOMContentLoaded', function () {
             //idReview.className = 'pass';
 
             if(dupliCheck(userId)) {
-                idReview.textContent = '';
-                submitBtn.disabled = false;
-            } else {
                 idReview.textContent = '이미 가입된 계정입니다.';
                 submitBtn.disabled = true;
+                
+            } else {
+                idReview.textContent = '';
+                submitBtn.disabled = false;
             }
         } else {
             idReview.textContent = '유효하지 않은 이메일 주소입니다.';
@@ -74,22 +75,25 @@ document.addEventListener('DOMContentLoaded', function () {
             submitBtn.disabled = true;
         }
     });
-
+    
+    
     function validateUserId(userId) {
-        const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        // 영문, 숫자만 사용. 이메일형식으로 제한.
+        const re = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+        // 이메일형식으로만 제한.
+        // const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(String(userId).toLowerCase());
     }
 
-    function dupliCheck(user_Id) {
+    function dupliCheck(user_Id, callback) {
         // AJAX 요청을 통해 이메일 중복 확인
         $.ajax({
             url: "idCheck.me",
             type: "POST",
             contentType: 'application/json',
-            data: user_Id,
+            data: JSON.stringify({ userId: user_Id }),
             
             success: function(response) {
-                console.log(user_Id);
                 if (response == 'NNNNY') {
                     console.log(user_Id);
                     idReview.textContent = '';
@@ -101,11 +105,9 @@ document.addEventListener('DOMContentLoaded', function () {
             },
             error: function() {
                 alert("중복 아이디 확인 중에 오류가 발생했습니다.");
+                callback(false);
             }
-            
         });
-
-        return true;
     }
 });
 
