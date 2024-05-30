@@ -94,10 +94,14 @@ document.addEventListener('DOMContentLoaded', function () {
             data: JSON.stringify({ userId: user_Id }),
             
             success: function(response) {
-                if (response === 'NNNNY') {
-                    callback(true);
+                if (response == 'NNNNY') {
+                    console.log(user_Id);
+                    idReview.textContent = '';
+                    submitBtn.disabled = false;
                 } else {
                     callback(false);
+                    idReview.textContent = '중복된 이메일 주소입니다.';
+                    idReview.className = 'none_pass';
                 }
             },
             error: function() {
