@@ -20,6 +20,15 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/MyPage.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/myProfile.css">
 
+    <style>
+        .none_pass{
+            color: red;
+        }
+        .pass{
+            color: green;
+        }
+        
+    </style>
 
 </head>
 <body>
@@ -90,7 +99,6 @@
                     </div>
                     <div class="box">
                         <input type="password" class="textbox" value="${loginUser.userPwd }"id="check_pwd" onblur="checkPass()">
-                        <span id="pwd_review"></span>
                     </div>
 
                     <!-- 비밀번호 변경 modal창 -->
@@ -156,8 +164,6 @@
                             <div class="content-box">
                                 <input type="hidden" id="userId" name="userId" value="${loginUser.userId}">
                                 <input type="password" id="currentPwd" name="currentPwd" onkeyup="checkPwd(this)"placeholder="기존 비밀번호를 입력해 주세요." required>
-                                <span id="pwd_review"></span>
-                                <div id="checkResult" style="font-size:0.7em; display:none;"></div>
                             </div>
 
                             <br>
@@ -174,6 +180,7 @@
                             <div class="content-box">
                                 <input type="password" class="form-control" id="checkPwd" onblur="checkPass()" placeholder="새 비밀번호를 다시 한 번 입력해주세요" required>
                                 <span id="pwd_review"></span><br>
+                                <div id="checkResult" style="font-size:0.7em; display:none;"></div>
                             </div>
                         </div>
 

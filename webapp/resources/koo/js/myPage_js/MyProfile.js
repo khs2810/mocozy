@@ -1,11 +1,11 @@
-//새 비밀번호 체크
+// 비밀번호 체크
 function checkPass() {
     const userPwd = document.getElementById('userPwd').value;
     const checkPwd = document.getElementById('checkPwd').value;
     const pwdReview = document.getElementById('pwd_review');
 
     if (userPwd === checkPwd) {
-        pwdReview.textContent = '';
+        pwdReview.textContent = '비밀번호가 일치합니다.';
         pwdReview.className = 'pass';
         return true;
     } else {
@@ -21,16 +21,18 @@ function change_pass(){
 
     // DB
     const formData = $("#changePasswordForm").serialize();
+    
     $.ajax({
         url: "checkPassword.me",
         type: "POST",
-        contentType: 'application/json',
+        // contentType: 'application/json',
         data: formData,
         
         success: function(response) {
             // DB 정상
-            if (response == 'NNNNY') {
+            if (response === 'NNNNY') {
                 // 팝업을 닫고 로그아웃
+                alert("새 비밀번호로 다시 로그인 해주세요.");
                 pwdReview.textContent = '';
                 submitBtn.disabled = false;
 
