@@ -9,30 +9,42 @@
 			<meta charset="utf-8">
 			<meta name="viewport" content="width=device-width, initial-scale=1.0">
 			<link rel="stylesheet" type="text/css"
-				href="../../../resources/jo/css/common_css/style.css">
+				href="${pageContext.request.contextPath}/resources/jo/css/common_css/style.css">
 			<link rel="stylesheet" type="text/css"
-				href="../../../resources/jo/css/event_css/event.css">
+				href="${pageContext.request.contextPath}/resources/jo/css/categories_css/cate.css">
 		</head>
 
 		<%@ include file="../common/header.jsp" %>
 
 			<body>
-				<div class="eventPage">
-						<div class="eventbanner">
-							<div class="eventslide" id="eventslide">
-								<img class="slideitem" id="item" src=""/>
-									<div class="scrolldown">
-										<div class="scrollbtn" id="scrollbtn">
-											<a href="_blank">
-											<!--  부트스트랩 -->
-												<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-down" viewBox="0 0 16 16">
-												  <path fill-rule="evenodd" d="M1.646 4.646a.5.5 0 0 1 .708 0L8 10.293l5.646-5.647a.5.5 0 0 1 .708.708l-6 6a.5.5 0 0 1-.708 0l-6-6a.5.5 0 0 1 0-.708"/>
-												</svg>
-											</a>
+				<div class="catePage">
+					<%@ include file="../mainPage/banner.jsp" %>
+						<%@ include file="../mainPage/cateButton.jsp" %>
+
+							<div class="screen">
+								<div class="box">
+									<!-- 카테고리 -->
+
+									<div class="catelistTitle">
+										<div class="leftlistTitle">
+											<p> 미래발전 </p>
+											<svg class="cateRanklisticon" xmlns="http://www.w3.org/2000/svg" width="16"
+												height="16" fill="currentColor" class="bi bi-chevron-compact-right"
+												viewBox="0 0 16 16">
+												<path fill-rule="evenodd"
+													d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671" />
+											</svg>
+											<span> 재테크 </p>
+										</div>
+
+										<div class="rightlistTitle">
+											<div class="rightlistContent">
+												<span id="cateRecent"> 최근순 </span>
+												<p id="cateDibs"> 추천순 </p>
+												<p id="cateViews"> 인기순 </p>
+											</div>
+										</div>
 									</div>
-								</div>
-							</img>
-						</div>
 
 									<div class="display">
 										<!--  1번  -->
@@ -46,10 +58,7 @@
 															<div class="subject">
 																<div class="tag">${club.clubType}</div>
 															</div>
-															<div class="subjectpick">
-																<div class="tagpick">추천</div>
-															</div>
-															
+
 															<div class="infotitle">${club.clubTitle}</div>
 
 															<div class="describe">
@@ -100,7 +109,6 @@
 
 									</div>
 								</div>
-							</div>
 							</div>
 
 							<%@ include file="../common/footer.jsp" %>

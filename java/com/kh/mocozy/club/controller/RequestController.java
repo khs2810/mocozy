@@ -13,12 +13,16 @@ import com.google.gson.Gson;
 import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.club.model.vo.Request;
 import com.kh.mocozy.club.service.ClubService;
+import com.kh.mocozy.member.model.vo.Member;
+import com.kh.mocozy.member.service.MemberService;
 
 @Controller
 public class RequestController {
 	
 	@Autowired
 	private ClubService clubService;
+	@Autowired
+	private MemberService memberService;
 
 	@RequestMapping("list.re")
 	public String selectClub(int cno, Model model) {
@@ -26,11 +30,15 @@ public class RequestController {
 //		model.addAttribute("clubList", clubList);
 //		int uno = 2;
 		
+		ArrayList<Member> memberList = memberService.participatedMemberList(cno);
+		int memberCnt = memberList.size();
+		
 		Club c = clubService.selectClub(cno);
 		model.addAttribute("c", c);
 		
 		ArrayList<Request> requestList = clubService.requestList(cno);
 		model.addAttribute("requestList", requestList);
+		model.addAttribute("memberCnt", memberCnt);
 		
 		return "club/requestListPage";
 	}

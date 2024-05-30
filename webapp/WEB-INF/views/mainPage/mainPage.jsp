@@ -33,7 +33,7 @@
 					<c:forEach var="club" items="${clist}">
 					<div class="contentcard">
 						<div class="socialing">
-							<a class="cardlink" href="detail.cl?cno=1"> 
+							<a class="cardlink" href="detail.cl?cno=${club.clubNo}"> 
 							<img class="img" src="${club.thumbnailImg}" />
 								
 								<div class="info">
@@ -100,7 +100,7 @@
 	<c:forEach var="club" items="${flist}">
 					<div class="contentcard">
 						<div class="socialing">
-							<a class="cardlink" href="detail.cl?cno=1"> 
+							<a class="cardlink" href="detail.cl?cno=${club.clubNo}"> 
 							<img class="img" src="${club.thumbnailImg}" />
 							
 								<div class="info">

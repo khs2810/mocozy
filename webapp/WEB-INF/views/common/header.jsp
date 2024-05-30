@@ -257,7 +257,7 @@
 						<div class="getTitle">
 							<div class="cateL">
 								<a href="cateBest20.ct" class="cateT">주간 베스트 20</a> <a href="cateReview.ct"
-									class="cateT">HOT 클래스</a> <a href="_blank" class="cateT">최대 리뷰순</a>
+									class="cateT">HOT 클래스</a> <a href="_blank" class="cateT">인기 리뷰순</a>
 							</div>
 						</div>
 					</div>

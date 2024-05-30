@@ -22,9 +22,9 @@
  			<div class="rankdisplay">
 				<div class="ranktitle">
 					<a href="_blank">
-						<div class="name">최다 리뷰 소셜링 TOP5</div>
+						<div class="name">리뷰순 모임 TOP5</div>
 					</a>
-					<div class="text">현재 가장 핫한 소셜링을 만나보세요.</div>
+					<div class="text">현재 가장 핫한 모임을 만나보세요.</div>
 				</div>
 
 					<c:forEach var="club" items="${rlist}">
@@ -75,7 +75,7 @@
 					<div class="plusdiv">
 					<a class="pluslink" href="_blank">
 						<button class="plusbutton">
-							인기 소셜링 더보기 
+							인기 클럽 더보기 
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">
 							  <path fill-rule="evenodd" d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"/>
 							</svg>

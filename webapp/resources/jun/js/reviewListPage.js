@@ -43,4 +43,16 @@ $(document).ready(function(){
         // 클릭한 서브 메뉴의 다음에 오는 .trd_menu를 슬라이드 토글
         $(this).next('.trd_menu').slideToggle('fast');
     });
+
+    $('#reviewEnrollWindow').on('show.bs.modal', function(event) {
+        // 버튼에서 data-cno 값을 가져오기
+        var button = $(event.relatedTarget);
+        var clubNo = button.data('cno');
+        
+        document.querySelector('input[name="clubNo"]').value = clubNo;
+    });
 });
+
+function countingStar(n) {
+    document.querySelector('input[name="grade"]').value = n;
+}

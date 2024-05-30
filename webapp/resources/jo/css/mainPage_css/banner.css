@@ -43,6 +43,12 @@ li {
   transition: left 0.15s;
 }
 
+.banner #item a{
+	position: relative;
+	width: 50%;
+	height: 100%;	
+}
+
 .banner .prev {
   display: flex;
   justify-content: center;
