@@ -80,6 +80,7 @@
 	    		reply_content,
 	    		nr.modify_date,
 	   			user_no,
+	   			nr.notice_no,
 				nickname
 		FROM notice_reply nr
 		JOIN member USING (user_no)
@@ -135,5 +136,9 @@
 		)
 	</insert>
 	
-	
+	<update id="deleteNoticeReply">
+		UPDATE NOTICE_REPLY 
+			SET STATUS = 'N'
+		WHERE REPLY_NO = ${rno}
+	</update>
 </mapper>

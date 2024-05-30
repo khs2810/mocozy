@@ -83,8 +83,12 @@ button:hover {
 }
 
 .club_title_info{
-    margin-top: 105px;
+    margin-top: 110px;
     margin-bottom: 20px;
+}
+
+.club_title_info i{
+    margin-left: 10px;
 }
 
 .club_detail_info {
@@ -421,7 +425,7 @@ button:hover {
 
 #club_detail_info_payment {
     display: flex;
-    align-items: center;
+    flex-direction: column
 }
 
 #club_detail_info_payment > div {
@@ -429,7 +433,11 @@ button:hover {
     color: green;
     padding: 1px 6px;
     border-radius: 10px;
-    margin-right: 5px;
+    width: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 3px;
 }
 
 .payment_top p{

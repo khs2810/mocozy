@@ -69,5 +69,10 @@ public class BoardServiceImpl implements BoardService {
 		return boardDao.insertNoticeReply(sqlSession, nr);
 	}
 
+	@Override
+	public int deleteNoticeReply(int rno) {
+		return boardDao.deleteNoticeReply(sqlSession, rno);
+	}
+
 	
 }

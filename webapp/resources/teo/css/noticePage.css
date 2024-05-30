@@ -221,6 +221,8 @@
 .notice_search_bar_div button {
     width: 70px;
     height: 30px;
+    border: 1px solid;
+    background: #f0e3ce;
 }
 
 #wapper_notice_enroll{

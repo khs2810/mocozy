@@ -50,7 +50,7 @@
                 <i class="fa-regular fa-circle-check fa-xl"></i> 모꼬지 이용 규칙을 잘 지킬게요!
             </div>
             <div class="club_btns">
-                <button class="background_color_brown">이 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전</button>
+                <button class="background_color_brown" onclick="history.back()">이 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전</button>
                 <button class="club_next_btn" onclick="location.href='hostQuestion.cl?cno=${cno}'" disabled>다 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;음</button>
             </div>
         </div>

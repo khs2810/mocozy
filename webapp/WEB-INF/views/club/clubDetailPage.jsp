@@ -59,10 +59,9 @@
             
             <!-- 찜 -->
             <div class="club_picked" data-cno="${c.clubNo}" data-uno="${loginUser.userNo}"></div>
-            <!-- <div class="club_picked"><i class="fa-solid fa-heart" style="color: red;"></i></div> -->
-            <!-- <div class="club_picked"><i class="fa-regular fa-heart" style="color: red;"></i></div> -->
+
             <div class="club_title_info">
-                <p align="center" style="color: rgb(90, 90, 90);"><i class="fa-solid fa-location-dot"></i> 관악구 · 5.4(토) 오후 6:00      18/20</p>
+                <p align="center" style="color: rgb(90, 90, 90);"><i class="fa-solid fa-location-dot"></i> ${c.address} <i class="fa-solid fa-calendar-days"></i>  ${evDate}    <i class="fa-solid fa-user"></i>    ${memberList.size()}/${c.capacity}</p>
             </div>
 
             <!-- 모임 상세정보 -->
@@ -186,7 +185,7 @@
             </div>
             <br>
             <div class="club_btns">
-                    <button class="background_color_brown">목록으로</button>
+                    <button class="background_color_brown" onclick="history.back()">목록으로</button>
                     <c:forEach var="rq" items="${rqMemberList}">
 					    <c:if test="${rq.userNo == loginUser.userNo}">
 					        <c:set var="isUserFound" value="true" />
@@ -197,7 +196,7 @@
 					        <div disabled>참여 신청하기</div>
 					    </c:when>
 					    <c:otherwise>
-					        <button class="background_color_green" onclick="location.href='confirm.cl?cno=${c.clubNo}'">참여 신청하기</button>
+					        <button id="join_club_btn" class="background_color_green" value="${loginUser.userNo}" onclick="joinClub(${c.clubNo})">참여 신청하기</button>
 					    </c:otherwise>
 					</c:choose>
                     

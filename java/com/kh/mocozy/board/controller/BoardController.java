@@ -171,29 +171,50 @@ public class BoardController {
 	}
 	
 	//ajax 공지사항 댓글 등록
-		@ResponseBody
-		@RequestMapping(value = "insertReply.no", produces="application/json; charset-UTF-8")
-		public String ajaxGetPicked(@RequestParam(value="rpage", defaultValue="1") int currentPage, NoticeReply nr, HttpSession session) {
-			int result = boardService.insertNoticeReply(nr);
-			int nno = nr.getNoticeNo();
+	@ResponseBody
+	@RequestMapping(value = "insertReply.no", produces="application/json; charset-UTF-8")
+	public String ajaxInsertNoticeReply(@RequestParam(value="cpage", defaultValue="1") int currentPage, NoticeReply nr, HttpSession session) {
+		int result = boardService.insertNoticeReply(nr);
+		int nno = nr.getNoticeNo();
+		
+		if (result > 0) {
+			Notice n = boardService.selectNotice(nno);
+			int replyListCount = boardService.replyListCount(nno);
+			//System.out.println(replyListCount);
 			
-			if (result > 0) {
-				Notice n = boardService.selectNotice(nno);
-				int replyListCount = boardService.replyListCount(nno);
-//				System.out.println(replyListCount);
-				
-				PageInfo pi = Pagination.getPageInfo(replyListCount, currentPage, 5, 5);
-				ArrayList<NoticeReply> rlist = boardService.selectNoticeReplyList(nno, pi);
-				
-				Map<String, Object> map = new HashMap<>();
-				map.put("rlist", rlist);
-				map.put("rsize", replyListCount);
-				
-				return new Gson().toJson(map);
-			} else {
-				return null;
-			}
+			PageInfo pi = Pagination.getPageInfo(replyListCount, currentPage, 5, 5);
+			ArrayList<NoticeReply> rlist = boardService.selectNoticeReplyList(nno, pi);
 			
+			Map<String, Object> map = new HashMap<>();
+			map.put("rlist", rlist);
+			map.put("rsize", replyListCount);
 			
-		}
+			return new Gson().toJson(map);
+		} else {
+			return null;
+		}			
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "deleteReply.no", produces="application/json; charset-UTF-8")
+	public String ajaxDeleteNoticeReply(@RequestParam(value="cpage", defaultValue="1") int currentPage, int rno, int nno, HttpSession session) {
+		int result = boardService.deleteNoticeReply(rno);
+		
+		if (result > 0) {
+			Notice n = boardService.selectNotice(nno);
+			int replyListCount = boardService.replyListCount(nno);
+			//System.out.println(replyListCount);
+			
+			PageInfo pi = Pagination.getPageInfo(replyListCount, currentPage, 5, 5);
+			ArrayList<NoticeReply> rlist = boardService.selectNoticeReplyList(nno, pi);
+			
+			Map<String, Object> map = new HashMap<>();
+			map.put("rlist", rlist);
+			map.put("rsize", replyListCount);
+			
+			return new Gson().toJson(map);
+		} else {
+			return null;
+		}			
+	}	
 }
