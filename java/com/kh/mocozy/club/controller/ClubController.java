@@ -113,7 +113,6 @@ public class ClubController {
 	
 	@RequestMapping("insert.cl")
 	public String insertClub(Club c, MultipartFile upfile, HttpSession session, Model model) {
-		/* int uno = 1; */
 		Attachment at = new Attachment();
 		String eventT = c.getEventDateStr();
 		
