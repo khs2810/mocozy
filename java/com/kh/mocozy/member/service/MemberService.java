@@ -20,8 +20,12 @@ public interface MemberService {
 	
 	//회원수정
 	int updateMember(Member m, Attachment at);
+	
 //	유저 프로필 사진
 	Attachment selectAttachment(String userId);
+	
+	//현재 비밀번호 확인
+	String pwdCheck(String userId);
 	
 	//비밀번호 수정
 	int updatePassword(Member m);
@@ -43,6 +47,8 @@ public interface MemberService {
 	int ajaxDeletePicked(Picked p);
 
 	ArrayList<Member> requestMemberList(int cno);
+
+	
 
 	
 
