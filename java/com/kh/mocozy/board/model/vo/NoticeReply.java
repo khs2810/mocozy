@@ -20,6 +20,6 @@ public class NoticeReply {
 	private Date modifyDate;
 	private String status;
 	private int noticeNo;
-	private int user_no;
+	private int userNo;
 	private String nickname;
 }
