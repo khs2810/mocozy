@@ -158,7 +158,7 @@
                     </div>
 
                     <!-- Modal body -->
-                    <form method="post" id="changePasswordForm">
+                    <form action="updatePwd.me" method="post" id="changePasswordForm">
                         <div class="modal-body">
                             <h5>기존 비밀번호</h5>
                             <div class="content-box">
