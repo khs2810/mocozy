@@ -55,4 +55,14 @@ public class MainServiceImpl implements MainService {
     public ArrayList<Club> getChallenge(PageInfo pi) {
         return mainDao.getChallenge(sqlSession, pi);
     }
+
+    @Override
+    public int getReviewCount(int clubNo) {
+        return mainDao.getReviewCount(sqlSession, clubNo);
+    }
+    
+    @Override
+    public int getPickedCount(int clubNo) {
+        return mainDao.getPickedCount(sqlSession, clubNo);
+    }
 }

@@ -83,9 +83,9 @@
 											<h3 class="getName">인기</h3>
 											<div class="getTitle">
 												<div class="cateL">
-													<a href="cateBest20.ct" class="cateT">주간 베스트 20</a> <a
-														href="cateReview.ct" class="cateT">HOT 클래스</a> <a
-														href="_blank" class="cateT">인기 리뷰순</a>
+													<a href="cateBest20.ct" class="cateT">따끈따끈 신규 모임</a> <a
+														href="cateHOT.ct" class="cateT">HOT 클래스</a> <a
+														href="cateReview.ct" class="cateT">리뷰순 모임</a>
 												</div>
 											</div>
 										</li>

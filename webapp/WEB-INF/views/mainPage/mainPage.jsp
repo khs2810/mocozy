@@ -25,7 +25,7 @@
 		<div class="screen">
 			<div class="box">
 				<div class="screenheader">
-					<h1 class="title">주간 베스트 TOP20👑</h1>
+					<h1 class="title">따끈따끈한 신규 모임 🌈 </h1>
 					<div class="selectBox">
 						<a href="cateBest20.ct">모두보기</a>
 					</div>
@@ -112,7 +112,7 @@
 
 			<div class="box">
 				<div class="screenheader">
-					<h1 class="title">다수가 본 최다 조회수 HOT 클래스 🔥</h1>
+					<h1 class="title">HOT 클래스 🔥</h1>
 					<div class="selectBox">
 						<a href="cateHot.ct">모두보기</a>
 					</div>

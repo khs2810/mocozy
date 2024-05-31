@@ -13,6 +13,46 @@ public class CateDao {
 	        return (ArrayList)sqlSession.selectList("cateMapper.selectcatelist");
 	    }
 	    
+	    public ArrayList<Club> selectArt(SqlSessionTemplate sqlSession) {
+	        return (ArrayList)sqlSession.selectList("cateMapper.selectArt");
+	    }
+	    
+	    public ArrayList<Club> selectActivity(SqlSessionTemplate sqlSession) {
+	        return (ArrayList)sqlSession.selectList("cateMapper.selectActivity");
+	    }
+	    
+	    public ArrayList<Club> selectFood(SqlSessionTemplate sqlSession) {
+	        return (ArrayList)sqlSession.selectList("cateMapper.selectFood");
+	    }
+	    
+	    public ArrayList<Club> selectHobby(SqlSessionTemplate sqlSession) {
+	        return (ArrayList)sqlSession.selectList("cateMapper.selectHobby");
+	    }
+	    
+	    public ArrayList<Club> selectTravel(SqlSessionTemplate sqlSession) {
+	        return (ArrayList)sqlSession.selectList("cateMapper.selectTravel");
+	    }
+	    
+	    public ArrayList<Club> selectDevelope(SqlSessionTemplate sqlSession) {
+	        return (ArrayList)sqlSession.selectList("cateMapper.selectDevelope");
+	    }
+	    
+	    public ArrayList<Club> selectInvest(SqlSessionTemplate sqlSession) {
+	        return (ArrayList)sqlSession.selectList("cateMapper.selectInvest");
+	    }
+	    
+	    public ArrayList<Club> selectLove(SqlSessionTemplate sqlSession) {
+	        return (ArrayList)sqlSession.selectList("cateMapper.selectLove");
+	    }
+	    
+		public ArrayList<Club> selectForeign(SqlSessionTemplate sqlSession) {
+			 return (ArrayList)sqlSession.selectList("cateMapper.selectForeign");
+		}
+
+		public ArrayList<Club> selectGame(SqlSessionTemplate sqlSession) {
+			 return (ArrayList)sqlSession.selectList("cateMapper.selectGame");
+		}
+		
 		public ArrayList<Member> MemberList(SqlSessionTemplate sqlSession, int clubNo) {
 			ArrayList<Member> result = (ArrayList)sqlSession.selectList("cateMapper.MemberList", clubNo);
 			return result;
