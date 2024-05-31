@@ -9,9 +9,11 @@ textarea:focus {outline:none;}
 button{
     cursor: pointer;
 }
+
 button:hover {
     transform: scale(0.97);
 }
+
 #wrap_main{
     display: flex;
     justify-content: center;

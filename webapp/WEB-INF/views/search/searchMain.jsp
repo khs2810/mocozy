@@ -43,8 +43,8 @@
 					<c:forEach var="club" items="${clist}">
 						<div class="contentcard">
 							<div class="socialing">
-								<a class="cardlink" href="detail.cl?cno=${club.clubNo}"> <img class="img"
-									src="${club.thumbnailImg}" />
+								<a class="cardlink" href="detail.cl?cno=${club.clubNo}"> <img
+									class="img" src="${club.thumbnailImg}" />
 
 									<div class="info">
 										<div class="subject">
@@ -59,29 +59,49 @@
 											<svg class="image" xmlns="http://www.w3.org/2000/svg"
 												width="10" height="10" fill="currentColor"
 												class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-																	<path
+											 <path
 													d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
-																</svg>
+										</svg>
 											${club.address} · ${club.eventDate}
 										</div>
 
 										<div class="participant">
-											<img alt="participant" class="img" /> <span class="span">
-												<img class="cardImg" src="_blank" />
-											</span> <span class="span"> <img class="cardImg" src="_blank" />
-											</span> <span class="span"> <img class="cardImg" src="_blank" />
-											</span> <span class="span"> <img class="cardImg" src="_blank" />
-											</span> <span class="span"> <img class="cardImg" src="_blank" />
-											</span> <span class="span"> <img class="cardImg" src="_blank" />
-											</span>
+											<c:if test="${not empty club.profileImg}">
+												<img class="people"
+													src="${pageContext.request.contextPath}${club.profileImg[0]}" />
+											</c:if>
+
+											<div class="profileimglist">
+												<c:if test="${club.profileImg.size() >= 5}">
+													<c:forEach var="clubMember" items="${club.profileImg}"
+														begin="2" end="4">
+														<img class="cardImg"
+															src="${pageContext.request.contextPath}${clubMember}" />
+													</c:forEach>
+												</c:if>
+												<c:choose>
+													<c:when test="${club.profileImg.size() eq 1}">
+													</c:when>
+													<c:when
+														test="${1 < club.profileImg.size() && club.profileImg.size() < 5}">
+														<c:forEach var="clubMember" items="${club.profileImg}"
+															begin="2" end="${club.profileImg.size() - 1}">
+															<img class="cardImg"
+																src="${pageContext.request.contextPath}${clubMember}" />
+														</c:forEach>
+													</c:when>
+												</c:choose>
+											</div>
+
 											<div class="socialmember">
-												<svg class="people" xmlns="http://www.w3.org/2000/svg"
-													width="10" height="10" fill="currentColor"
-													class="bi bi-people-fill" viewBox="0 0 16 16">
-																		<path
-														d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6m-5.784 6A2.24 2.24 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.3 6.3 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1zM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5" />
-																	</svg>
-												<div class="count">${club.count}/5</div>
+												<svg xmlns="http://www.w3.org/2000/svg" width="16"
+													height="16" fill="currentColor" class="bi bi-eye-fill"
+													viewBox="0 0 16 16" style="color: gray">
+											  <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
+											  <path
+														d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
+											</svg>
+												<div class="count">${club.count}</div>
 											</div>
 										</div>
 									</div>

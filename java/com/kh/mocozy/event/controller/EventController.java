@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.event.service.EventService;
+import com.kh.mocozy.member.model.vo.Member;
 
 @Controller
 public class EventController {
@@ -19,7 +20,16 @@ public class EventController {
 	@RequestMapping("eventArt.ev")
 	public String showeventArt(Model model) {    
 		ArrayList<Club> eventlist = eService.selecteventlist();
-	    model.addAttribute("eventlist", eventlist);
+		for (Club c : eventlist){
+		    ArrayList<Member> memberList = eService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+		
+		model.addAttribute("eventlist", eventlist);
 	    
 	    return "event/eventArt";
 
@@ -28,6 +38,15 @@ public class EventController {
 	@RequestMapping("eventDessert.ev")
 	public String showeventDessert(Model model) {    
 		ArrayList<Club> eventlist = eService.selecteventlist();
+		for (Club c : eventlist){
+		    ArrayList<Member> memberList = eService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+		
 	    model.addAttribute("eventlist", eventlist);
 
 	    return "event/eventDessert";
@@ -37,7 +56,16 @@ public class EventController {
 	@RequestMapping("eventGame.ev")
 	public String showeventGame(Model model) {    
 		ArrayList<Club> eventlist = eService.selecteventlist();
-	    model.addAttribute("eventlist", eventlist);
+		for (Club c : eventlist){
+		    ArrayList<Member> memberList = eService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+		
+		model.addAttribute("eventlist", eventlist);
 	    
 	    return "event/eventGame";
 
@@ -46,7 +74,16 @@ public class EventController {
 	@RequestMapping("eventParty.ev")
 	public String showeventParty(Model model) {    
 		ArrayList<Club> eventlist = eService.selecteventlist();
-	    model.addAttribute("eventlist", eventlist);
+		for (Club c : eventlist){
+		    ArrayList<Member> memberList = eService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+		
+		model.addAttribute("eventlist", eventlist);
 	    
 	    return "event/eventParty";
 
@@ -55,7 +92,16 @@ public class EventController {
 	@RequestMapping("eventPhoto.ev")
 	public String showeventPhoto(Model model) {    
 		ArrayList<Club> eventlist = eService.selecteventlist();
-	    model.addAttribute("eventlist", eventlist);
+		for (Club c : eventlist){
+		    ArrayList<Member> memberList = eService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+		
+		model.addAttribute("eventlist", eventlist);
 	    
 	    return "event/eventPhoto";
 
@@ -64,7 +110,16 @@ public class EventController {
 	@RequestMapping("eventStudy.ev")
 	public String showeventStudy(Model model) {    
 		ArrayList<Club> eventlist = eService.selecteventlist();
-	    model.addAttribute("eventlist", eventlist);
+		for (Club c : eventlist){
+		    ArrayList<Member> memberList = eService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+		
+		model.addAttribute("eventlist", eventlist);
 	    
 	    return "event/eventStudy";
 
@@ -73,7 +128,16 @@ public class EventController {
 	@RequestMapping("eventTravel.ev")
 	public String showeventTravel(Model model) {    
 		ArrayList<Club> eventlist = eService.selecteventlist();
-	    model.addAttribute("eventlist", eventlist);
+		for (Club c : eventlist){
+		    ArrayList<Member> memberList = eService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+		
+		model.addAttribute("eventlist", eventlist);
 	    
 	    return "event/eventTravel";
 
@@ -82,7 +146,16 @@ public class EventController {
 	@RequestMapping("eventLove.ev")
 	public String showeventLove(Model model) {    
 		ArrayList<Club> eventlist = eService.selecteventlist();
-	    model.addAttribute("eventlist", eventlist);
+		for (Club c : eventlist){
+		    ArrayList<Member> memberList = eService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+		
+		model.addAttribute("eventlist", eventlist);
 	    
 	    return "event/eventLove";
 

@@ -98,7 +98,6 @@
 			OR category_name2 LIKE '%' || #{keyword} || '%')
 	</select>
 	
-	<!-- 순수 검색 -->
 	<!-- map에서 keyword가 포함된 값을 가져옴 -->
 	<select id="searchForm" resultType="_int">
 			SELECT COUNT(*)
@@ -109,60 +108,14 @@
 			OR category_name2 LIKE '%' || #{keyword} || '%')
 	</select>
 	
-	<!-- 카테고리 검색 -->
-	<select id="selectSearchCate" resultMap="clubResult">
-			SELECT CLUB_NO,
-				USER_NO,
-				 CLUB_TITLE,
-				CLUB_TYPE,
-				CLUB_CONTENT,
-				ADDRESS,
-				ADDRESS_DETAIL,
-				EVENT_DATE, 
-				COST,
-				COST_INFO, 
-				TOTAL_POINT, 
-				CAPACITY, 
-				ONLINE,
-				QUESTION,
-				THUMBNAIL_IMG,
-				CREATE_DATE,
-				CLUB.MODIFY_DATE,
-				COUNT,
-				NICKNAME,
-				category_name1,
-				category_name2
-			FROM public.CLUB
-			join MEMBER USING (USER_NO)
-			WHERE public.CLUB.STATUS = 'Y';
+	<select id="MemberList" resultMap="memberResult">
+		SELECT USER_NO,
+			   NICKNAME,
+			   INTRODUCE,
+			   PROFILE_IMG
+		FROM public.MEMBER 
+		JOIN public.REQUEST USING (USER_NO)
+		WHERE public.REQUEST.STATUS = 'Y'
+			AND public.request.CLUB_NO = #{clubNo};
 	</select>
-	
-	<!-- 클럽 검색 -->
-	<select id="selectSearchClub" resultMap="clubResult">
-			SELECT CLUB_NO,
-				USER_NO,
-				 CLUB_TITLE,
-				CLUB_TYPE,
-				CLUB_CONTENT,
-				ADDRESS,
-				ADDRESS_DETAIL,
-				EVENT_DATE, 
-				COST,
-				COST_INFO, 
-				TOTAL_POINT, 
-				CAPACITY, 
-				ONLINE,
-				QUESTION,
-				THUMBNAIL_IMG,
-				CREATE_DATE,
-				CLUB.MODIFY_DATE,
-				COUNT,
-				NICKNAME,
-				category_name1,
-				category_name2
-			FROM public.CLUB
-			join MEMBER USING (USER_NO)
-			WHERE public.CLUB.STATUS = 'Y';
-	</select>
-
 </mapper>
