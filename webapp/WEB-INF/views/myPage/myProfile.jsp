@@ -14,6 +14,7 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jun/css/challengeManagePage.css">
 	<script src="${pageContext.request.contextPath}/resources/jun/js/challengeManagePage.js"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/changePwd.js"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyProfile.js"></script>
     <script src="${pageContext.request.contextPath}/resources/jun/js/clubInsertPage.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css" />
@@ -158,7 +159,7 @@
                     </div>
 
                     <!-- Modal body -->
-                    <form method="post" id="changePasswordForm">
+                    <form action="updatePwd.me" method="post" id="changePasswordForm">
                         <div class="modal-body">
                             <h5>기존 비밀번호</h5>
                             <div class="content-box">

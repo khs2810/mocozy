@@ -195,6 +195,9 @@
 					    <c:when test="${isUserFound}">
 					        <div disabled>참여 신청하기</div>
 					    </c:when>
+                        <c:when test="${loginUser.userNo eq c.userNo}">
+                            <div disabled>참여 신청하기</div>
+                        </c:when>
 					    <c:otherwise>
 					        <button id="join_club_btn" class="background_color_green" value="${loginUser.userNo}" onclick="joinClub(${c.clubNo})">참여 신청하기</button>
 					    </c:otherwise>
