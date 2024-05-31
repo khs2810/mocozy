@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.mocozy.club.model.vo.Request;
+import com.kh.mocozy.common.model.vo.Attachment;
 import com.kh.mocozy.member.model.vo.Member;
 import com.kh.mocozy.member.model.vo.Picked;
 
@@ -62,6 +63,10 @@ public class MemberDao {
 	
 	public ArrayList<Member> requestMemberList(SqlSessionTemplate sqlSession, int cno) {
 		return (ArrayList)sqlSession.selectList("memberMapper.requestMemberList", cno);
+	}
+
+	public Attachment insertAttachment(SqlSessionTemplate sqlSession, int uno) {
+		return null;
 	}
 	
 	

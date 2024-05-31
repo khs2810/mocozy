@@ -59,13 +59,16 @@
 
             <!-- 컨텐츠 내용 -->
             <!-- 프로필 정보 -->
-            <form action="update.me?uno=${m.userNo}">
+            <form action="update.me" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="userNo" value="${ loginUser.userNo}">
+                <input type="hidden" name="userId" value="${ loginUser.userId}">
+                <input type="hidden" name="userPwd" value="${ loginUser.userPwd}">
                 <div class="main-object">
                     <div class="content-title">
                         <h5>닉네임(별명)</h5>
                     </div>
                     <div class="box">
-                        <input type="text" class="textbox" value="${loginUser.nickname}">
+                        <input type="text" name="nickname" class="textbox" value="${loginUser.nickname}">
                     </div>
                 </div>
                 <hr>
@@ -77,7 +80,7 @@
                     <div>
                         <!-- 프로필이미지 -->
                         <div class="profile-box1" style="">
-                            <img class="profile-img" src="./img/profile.jpg" id="fileImg" onclick="chooseFile(1)" alt="">
+                            <img class="profile-img" src="${pageContext.request.contextPath}${loginUser.profileImg}" id="fileImg" onclick="chooseFile(1)" alt="">
                             <input type="file" style="display: none;" name="upfile" id="file1" required onchange="loadImg(this, 1, '${pageContext.request.contextPath}')">
                         </div>
                     </div>
@@ -117,7 +120,7 @@
                         <h5>전화번호</h5>
                     </div>
                     <div class="box">
-                        <input type="text" class="textbox" value="${loginUser.phone}">
+                        <input type="text" name="phone" class="textbox" value="${loginUser.phone}">
                     </div>
                     <div class="change">
                         <!-- Button to Open the Modal -->
@@ -133,16 +136,16 @@
                     </div>
                     <div id="introduce">
                         <div>
-                            <textarea onkeyup="counter();" class="form-control textbox" id="jagisogae" style="width: 500px; height: 50px;">${loginUser.introduce}내 최애 떡꼬치. 근데 누가 뺐어갔어...</textarea>
+                            <textarea name="introduce" onkeyup="counter();" class="form-control textbox" id="jagisogae" style="width: 500px; height: 50px;">${loginUser.introduce}</textarea>
                             <span id = "count"></span>
                         </div>
                     </div>
                 </div>
 
                 <div class="edit-user">
-                    <a href="update.me">수정</a>
-                    <a href="logout.me">로그아웃</a>
-                    <a type="button" data-toggle="modal" data-target="#myModal3">회원 탈퇴</a>
+                    <button type="submit">수정</button>
+                    <button type="button" href="logout.me">로그아웃</button>
+                    <button type="button" data-toggle="modal" data-target="#myModal3">회원 탈퇴</button>
                 </div>
             </form>
 

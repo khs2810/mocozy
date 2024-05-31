@@ -28,9 +28,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Attachment selectAttachment(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Attachment insertAttachment(int uno) {
+		return memberDao.insertAttachment(sqlSession, uno);
 	}
 
 	@Override
@@ -50,7 +49,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int updateMember(Member m, Attachment at) {
+	public int updateMember(Member m) {
 		return memberDao.updateMember(sqlSession, m);
 	}
 	

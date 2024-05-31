@@ -139,10 +139,20 @@ public class MemberController {
 //	회원정보 수정
 	@RequestMapping("update.me")
 	public String updateMember(Member m, MultipartFile upfile, HttpSession session, Model model) {
-		Attachment at = memberService.selectAttachment(m.getUserId());
+		Attachment at = new Attachment();
+		
+		if(!upfile.getOriginalFilename().equals("")) {
+			String changeName = saveFile(upfile, session);
+			
+			at.setOriginName(upfile.getOriginalFilename());
+			at.setChangeName("/resources/koo/upfile/profile_img/" + changeName);
+			at.setFilePath("/resources/koo/upfile/profile_img/");
+		}
+		
 		m.setProfileImg(at.getChangeName());
+		System.out.println(m);
 
-		int result = memberService.updateMember(m, at);
+		int result = memberService.updateMember(m);
 		System.out.println(m);
 
 		if (result > 0) {
@@ -174,7 +184,7 @@ public class MemberController {
 		String changeName = currentTime + ranNum + ext;
 
 		// 첨부파일을 저장할 폴더의 물리적 경로(session)
-		String savePath = session.getServletContext().getRealPath("/resources/koo/upfile/profile_img");
+		String savePath = session.getServletContext().getRealPath("/resources/koo/upfile/profile_img/");
 
 		try {
 			upfile.transferTo(new File(savePath + changeName));
@@ -227,7 +237,7 @@ public class MemberController {
 		if (result > 0) {
 			session.setAttribute("loginUser", memberService.loginMember(m));
 			session.setAttribute("alertMsg", "비밀번호 수정 성공");
-			return "redirect:/";
+			return "redirect:/myProfile.me";
 		} else {
 			model.addAttribute("errorMsg", "비밀번호 수정 실패");
 			return "redirect:/myProfile.me";
