@@ -28,6 +28,10 @@ public interface MainService {
 	ArrayList<Club> getSocialing(PageInfo pi);
 	
 	ArrayList<Club> getChallenge(PageInfo pi);
+
+    int getReviewCount(int clubNo);
+
+	int getPickedCount(int clubNo);
 	
 	 
 }

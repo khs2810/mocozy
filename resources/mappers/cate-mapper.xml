@@ -100,4 +100,295 @@
 			AND public.request.CLUB_NO = #{clubNo};
 	</select>
 	
+	<!-- 카테고리 가져오기 -->
+	<select id="selectArt" resultMap="clubResult">
+	    SELECT CLUB_NO,
+	           USER_NO,
+	           CLUB_TITLE,
+	           CLUB_TYPE,
+	           CLUB_CONTENT,
+	           ADDRESS,
+	           ADDRESS_DETAIL,
+	           EVENT_DATE, 
+	           COST,
+	           COST_INFO, 
+	           TOTAL_POINT, 
+	           CAPACITY, 
+	           ONLINE,
+	           QUESTION,
+	           THUMBNAIL_IMG,
+	           CREATE_DATE,
+	           CLUB.MODIFY_DATE,
+	           COUNT,
+	           NICKNAME,
+	           category_name1,
+	           category_name2
+	    FROM public.CLUB
+	    join MEMBER USING (USER_NO)
+	    WHERE public.CLUB.STATUS = 'Y' AND CATEGORY_NAME2 = '문화, 예술';
+	</select>
+	
+	<select id="selectActivity" resultMap="clubResult">
+	    SELECT CLUB_NO,
+	           USER_NO,
+	           CLUB_TITLE,
+	           CLUB_TYPE,
+	           CLUB_CONTENT,
+	           ADDRESS,
+	           ADDRESS_DETAIL,
+	           EVENT_DATE, 
+	           COST,
+	           COST_INFO, 
+	           TOTAL_POINT, 
+	           CAPACITY, 
+	           ONLINE,
+	           QUESTION,
+	           THUMBNAIL_IMG,
+	           CREATE_DATE,
+	           CLUB.MODIFY_DATE,
+	           COUNT,
+	           NICKNAME,
+	           category_name1,
+	           category_name2
+	    FROM public.CLUB
+	    join MEMBER USING (USER_NO)
+	    WHERE public.CLUB.STATUS = 'Y' AND CATEGORY_NAME2 = '액티비티';
+	</select>
+	
+	<select id="selectFood" resultMap="clubResult">
+		SELECT CLUB_NO,
+	           USER_NO,
+	           CLUB_TITLE,
+	           CLUB_TYPE,
+	           CLUB_CONTENT,
+	           ADDRESS,
+	           ADDRESS_DETAIL,
+	           EVENT_DATE, 
+	           COST,
+	           COST_INFO, 
+	           TOTAL_POINT, 
+	           CAPACITY, 
+	           ONLINE,
+	           QUESTION,
+	           THUMBNAIL_IMG,
+	           CREATE_DATE,
+	           CLUB.MODIFY_DATE,
+	           COUNT,
+	           NICKNAME,
+	           category_name1,
+	           category_name2
+	    FROM public.CLUB
+	    join MEMBER USING (USER_NO)
+	    WHERE public.CLUB.STATUS = 'Y' AND CATEGORY_NAME2 = '푸드, 드링크';
+	</select>
+	
+	<select id="selectHobby" resultMap="clubResult">
+	    SELECT CLUB_NO,
+	           USER_NO,
+	           CLUB_TITLE,
+	           CLUB_TYPE,
+	           CLUB_CONTENT,
+	           ADDRESS,
+	           ADDRESS_DETAIL,
+	           EVENT_DATE, 
+	           COST,
+	           COST_INFO, 
+	           TOTAL_POINT, 
+	           CAPACITY, 
+	           ONLINE,
+	           QUESTION,
+	           THUMBNAIL_IMG,
+	           CREATE_DATE,
+	           CLUB.MODIFY_DATE,
+	           COUNT,
+	           NICKNAME,
+	           category_name1,
+	           category_name2
+	    FROM public.CLUB
+	    join MEMBER USING (USER_NO)
+	    WHERE public.CLUB.STATUS = 'Y' AND CATEGORY_NAME2 = '취미';
+	</select>
+	
+	<select id="selectTravel" resultMap="clubResult">
+		SELECT CLUB_NO,
+	           USER_NO,
+	           CLUB_TITLE,
+	           CLUB_TYPE,
+	           CLUB_CONTENT,
+	           ADDRESS,
+	           ADDRESS_DETAIL,
+	           EVENT_DATE, 
+	           COST,
+	           COST_INFO, 
+	           TOTAL_POINT, 
+	           CAPACITY, 
+	           ONLINE,
+	           QUESTION,
+	           THUMBNAIL_IMG,
+	           CREATE_DATE,
+	           CLUB.MODIFY_DATE,
+	           COUNT,
+	           NICKNAME,
+	           category_name1,
+	           category_name2
+	    FROM public.CLUB
+	    join MEMBER USING (USER_NO)
+	    WHERE public.CLUB.STATUS = 'Y' AND CATEGORY_NAME2 = '여행, 동행';
+	</select>
+	
+	<select id="selectDevelope" resultMap="clubResult">
+	    SELECT CLUB_NO,
+	           USER_NO,
+	           CLUB_TITLE,
+	           CLUB_TYPE,
+	           CLUB_CONTENT,
+	           ADDRESS,
+	           ADDRESS_DETAIL,
+	           EVENT_DATE, 
+	           COST,
+	           COST_INFO, 
+	           TOTAL_POINT, 
+	           CAPACITY, 
+	           ONLINE,
+	           QUESTION,
+	           THUMBNAIL_IMG,
+	           CREATE_DATE,
+	           CLUB.MODIFY_DATE,
+	           COUNT,
+	           NICKNAME,
+	           category_name1,
+	           category_name2
+	    FROM public.CLUB
+	    join MEMBER USING (USER_NO)
+	    WHERE public.CLUB.STATUS = 'Y' AND CATEGORY_NAME2 = '자기계발';
+	</select>
+	
+	<select id="selectInvest" resultMap="clubResult">
+		SELECT CLUB_NO,
+	           USER_NO,
+	           CLUB_TITLE,
+	           CLUB_TYPE,
+	           CLUB_CONTENT,
+	           ADDRESS,
+	           ADDRESS_DETAIL,
+	           EVENT_DATE, 
+	           COST,
+	           COST_INFO, 
+	           TOTAL_POINT, 
+	           CAPACITY, 
+	           ONLINE,
+	           QUESTION,
+	           THUMBNAIL_IMG,
+	           CREATE_DATE,
+	           CLUB.MODIFY_DATE,
+	           COUNT,
+	           NICKNAME,
+	           category_name1,
+	           category_name2
+	    FROM public.CLUB
+	    join MEMBER USING (USER_NO)
+	    WHERE public.CLUB.STATUS = 'Y' AND CATEGORY_NAME2 = '재테크';
+	</select>
+	
+	<select id="selectLove" resultMap="clubResult">
+	    SELECT CLUB_NO,
+	           USER_NO,
+	           CLUB_TITLE,
+	           CLUB_TYPE,
+	           CLUB_CONTENT,
+	           ADDRESS,
+	           ADDRESS_DETAIL,
+	           EVENT_DATE, 
+	           COST,
+	           COST_INFO, 
+	           TOTAL_POINT, 
+	           CAPACITY, 
+	           ONLINE,
+	           QUESTION,
+	           THUMBNAIL_IMG,
+	           CREATE_DATE,
+	           CLUB.MODIFY_DATE,
+	           COUNT,
+	           NICKNAME,
+	           category_name1,
+	           category_name2
+	    FROM public.CLUB
+	    join MEMBER USING (USER_NO)
+	    WHERE public.CLUB.STATUS = 'Y' AND CATEGORY_NAME2 = '연애, 사랑';
+	</select>
+	
+	<select id="selectForeign" resultMap="clubResult">
+	    SELECT CLUB_NO,
+	           USER_NO,
+	           CLUB_TITLE,
+	           CLUB_TYPE,
+	           CLUB_CONTENT,
+	           ADDRESS,
+	           ADDRESS_DETAIL,
+	           EVENT_DATE, 
+	           COST,
+	           COST_INFO, 
+	           TOTAL_POINT, 
+	           CAPACITY, 
+	           ONLINE,
+	           QUESTION,
+	           THUMBNAIL_IMG,
+	           CREATE_DATE,
+	           CLUB.MODIFY_DATE,
+	           COUNT,
+	           NICKNAME,
+	           category_name1,
+	           category_name2
+	    FROM public.CLUB
+	    join MEMBER USING (USER_NO)
+	    WHERE public.CLUB.STATUS = 'Y' AND CATEGORY_NAME2 = '외국어';
+	</select>
+	
+	<select id="selectGame" resultMap="clubResult">
+	    SELECT CLUB_NO,
+	           USER_NO,
+	           CLUB_TITLE,
+	           CLUB_TYPE,
+	           CLUB_CONTENT,
+	           ADDRESS,
+	           ADDRESS_DETAIL,
+	           EVENT_DATE, 
+	           COST,
+	           COST_INFO, 
+	           TOTAL_POINT, 
+	           CAPACITY, 
+	           ONLINE,
+	           QUESTION,
+	           THUMBNAIL_IMG,
+	           CREATE_DATE,
+	           CLUB.MODIFY_DATE,
+	           COUNT,
+	           NICKNAME,
+	           category_name1,
+	           category_name2
+	    FROM public.CLUB
+	    join MEMBER USING (USER_NO)
+	    WHERE public.CLUB.STATUS = 'Y' AND CATEGORY_NAME2 = '파티, 게임';
+	</select>
+	
+	<!--  소셜링 필터  -->
+	<select id="getSocialing" resultMap="clubResult">
+	    SELECT *
+		FROM club
+		WHERE club_type = '소셜링';
+	</select>
+	
+	<!-- 챌린지 필터 -->
+	<select id="getChallenge" resultMap="clubResult">
+	    SELECT *
+		FROM club
+		WHERE club_type = '챌린지';
+	</select>
+	
+	<!-- 찜 개수 가져오기 -->
+	<select id="getPickedCount" resultType="int">
+		SELECT COUNT(*) 
+		FROM picked 
+		WHERE CLUB_NO = #{clubNo};
+	</select>
 </mapper>

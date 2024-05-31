@@ -1,6 +1,8 @@
 package com.kh.mocozy.search.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,6 +45,14 @@ public class SearchController {
 		    c.setProfileImg(imgs);    
 		}
 		
+		//Club의 count 높은 순으로 정렬
+	    Collections.sort(clist, new Comparator<Club>() {
+	        @Override
+	        public int compare(Club c1, Club c2) {
+	            return Integer.compare(c2.getCount(), c1.getCount());
+	        }
+	    });
+	    
         model.addAttribute("clist", clist);
         model.addAttribute("re", re);
         model.addAttribute("keyword", keyword);
