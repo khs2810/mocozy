@@ -102,7 +102,7 @@
                         <h5>비밀번호</h5>
                     </div>
                     <div class="box">
-                        <input type="password" class="textbox" value="${loginUser.userPwd }"id="check_pwd" onblur="checkPass()">
+                        <input type="password" class="textbox" value="${loginUser.userPwd }" id="check_pwd" onblur="checkPass()">
                     </div>
 
                     <!-- 비밀번호 변경 modal창 -->
