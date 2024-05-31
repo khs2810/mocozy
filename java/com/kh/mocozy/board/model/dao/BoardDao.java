@@ -1,6 +1,7 @@
 package com.kh.mocozy.board.model.dao;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -61,6 +62,17 @@ public class BoardDao {
 
 	public int deleteNoticeReply(SqlSessionTemplate sqlSession, int rno) {
 		return sqlSession.update("boardMapper.deleteNoticeReply", rno);
+	}
+
+	public int selectNoticeListCount(SqlSessionTemplate sqlSession, Map<String, String> map) {
+		return sqlSession.selectOne("boardMapper.selectNoticeListCountWithKeyword", map);
+	}
+
+	public ArrayList<Notice> selectNoticeListKeyword(SqlSessionTemplate sqlSession, Map<String, String> map,
+			PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("boardMapper.selectNoticeListKeyword", map, rowBounds);
 	}
 
 
