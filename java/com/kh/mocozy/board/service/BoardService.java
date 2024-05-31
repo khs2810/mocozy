@@ -1,6 +1,7 @@
 package com.kh.mocozy.board.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.kh.mocozy.board.model.vo.Notice;
 import com.kh.mocozy.board.model.vo.NoticeReply;
@@ -34,6 +35,10 @@ public interface BoardService {
 	int insertNoticeReply(NoticeReply nr);
 
 	int deleteNoticeReply(int rno);
+
+	int selectNoticeListCount(Map<String, String> map);
+
+	ArrayList<Notice> selectNoticeListKeyword(Map<String, String> map, PageInfo pi);
 
 
 }

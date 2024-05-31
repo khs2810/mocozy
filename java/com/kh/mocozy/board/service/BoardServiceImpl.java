@@ -1,6 +1,7 @@
 package com.kh.mocozy.board.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -72,6 +73,16 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int deleteNoticeReply(int rno) {
 		return boardDao.deleteNoticeReply(sqlSession, rno);
+	}
+
+	@Override
+	public int selectNoticeListCount(Map<String, String> map) {
+		return boardDao.selectNoticeListCount(sqlSession, map);
+	}
+
+	@Override
+	public ArrayList<Notice> selectNoticeListKeyword(Map<String, String> map, PageInfo pi) {
+		return boardDao.selectNoticeListKeyword(sqlSession, map, pi);
 	}
 
 	
