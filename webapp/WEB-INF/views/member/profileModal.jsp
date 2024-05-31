@@ -20,7 +20,7 @@
             <!-- Modal body -->
             <div class="profile-modal-body">
                 <div class="m-userProfile">
-                    <img src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" class="m-profileImg">
+                    <img src="${pageContext.request.contextPath}${loginUser.profileImg}" class="m-profileImg">
                     <span class="nickname">${loginUser.nickname}</span>
                     <span> 님</span>
                 </div>
@@ -42,7 +42,7 @@
             <!-- Modal footer -->
             <div class="profile-modal-bottom">
                 <h6 style="font-size: 20px; font-weight: 600; margin: 10px 30px;">자기소개</h6>
-                <textarea class="m-introduction">${m.introduce}</textarea>
+                <textarea class="m-introduction">${loginUser.introduce}</textarea>
             </div>
             
         </div>

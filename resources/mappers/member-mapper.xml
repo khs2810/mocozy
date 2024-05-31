@@ -78,11 +78,12 @@
 	<!-- 회원정보 수정 -->
 	<update id="updateMember">
 		UPDATE MEMBER
-		   SET USER_NAME = #{nickname},
+		   SET nickname = #{nickname},
 		       profile_Img = #{profileImg},
 		       introduce = #{introduce},
-		       MODIFY_DATE = CURRENT_TIMESTAMP
-		WHERE USER_ID = #{userId}
+		       phone = #{phone},
+		       MODIFY_DATE = CURRENT_DATE
+		WHERE USER_NO = #{userNo}
 	</update>
 	
 	<!-- 비밀번호 확인 -->

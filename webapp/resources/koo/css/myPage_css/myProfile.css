@@ -43,7 +43,7 @@
     justify-content: end;
 }
 
-.edit-user>a{
+.edit-user>button{
     margin-left: 20px;
 }
 
@@ -51,7 +51,7 @@ textarea{
     resize: none;
 }
 
-.edit-user>a{
+.edit-user>button{
  color: black;
 }
 
