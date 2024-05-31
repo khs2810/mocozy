@@ -110,60 +110,6 @@ button:active{
 
 }
 
-/* 네비 메뉴바 */
-.mypage-navi{
-    box-sizing: content-box;
-}
-
-nav{
-    /* border: 1px solid blue; */
-    box-sizing: border-box;
-    margin-top: 20px;
-    width: 100%;
-}
-
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    /* background-color: #f1f1f1; */
-    position: relative;
-    height: 100%;
-    overflow: auto;
-}
-
-li {
-    list-style: none;
-    line-height: 34px;
-}
-
-ul li a {
-display: block;
-color: #000;
-height: 50px;
-padding: 8px 16px;
-text-decoration: none;
-align-content: center;
-justify-content: space-between;
-}
-
-ul li a.active {
-background-color: #555;
-color: white;
-}
-
-ul li a:hover:not(.active) {
-background-color: #7a7a7a;
-color: white;
-}
-
-.snd_menu { background: #efefef; }
-.sub_menu { display: none; }
-
-.snd_title{
-    padding-left: 30px;
-}
 
 
 .main-content{
