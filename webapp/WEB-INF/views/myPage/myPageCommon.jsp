@@ -44,36 +44,36 @@
     <!-- 메뉴 네비 -->
     <div class="mypage-navi">
         <nav>
-            <ul id="main_menu">
-                <li><a href="myPage.me">마이페이지</a></li>
-                <li><a href="myProfile.me">내 프로필</a></li>
-                <li><a href="">소셜링 관리</a>
-                    <ul class="snd_menu sub_menu">
-                        <li><a href="mySocial.me" class="snd_title">내가 만든 소셜링</a></li>
-                        <li><a href="goSocial.me" class="snd_title">참여 중인 소셜링</a></li>
+            <ul class="main_menu">
+                <li class="main_menu1"><a class="main_menu2" href="myPage.me">마이페이지</a></li>
+                <li class="main_menu1"><a class="main_menu2" href="myProfile.me">내 프로필</a></li>
+                <li class="main_menu1"><a class="main_menu2" href="">소셜링 관리</a>
+                    <ul class="main_menu snd_menu sub_menu">
+                        <li><a href="mySocial.me" class="main_menu2 snd_title">내가 만든 소셜링</a></li>
+                        <li><a href="goSocial.me" class="main_menu2 snd_title">참여 중인 소셜링</a></li>
                     </ul>
                 </li>
-                <li><a href="" onclick="">챌린지 관리</a>
-                    <ul class="snd_menu sub_menu">
-                        <li><a href="myChallenge.me" class="snd_title">내가 만든 챌린지</a></li>
-                        <li><a href="goChallenge.me" class="snd_title">참여 중인 챌린지</a></li>
+                <li class="main_menu1"><a class="main_menu2" href="" onclick="">챌린지 관리</a>
+                    <ul class="main_menu snd_menu sub_menu">
+                        <li><a href="myChallenge.me" class="main_menu2 snd_title">내가 만든 챌린지</a></li>
+                        <li><a href="goChallenge.me" class="main_menu2 snd_title">참여 중인 챌린지</a></li>
                     </ul>
                 </li>
-                <li><a href="">포인트</a>
-                    <ul class="snd_menu sub_menu">
-                        <li><a href="" class="snd_title">포인트 관리</a></li>
-                        <li><a href="" class="snd_title">충전 내역</a></li>
-                        <li><a href="" class="snd_title">사용 내역</a></li>
+                <li class="main_menu1"><a class="main_menu2" href="">포인트</a>
+                    <ul class="main_menu snd_menu sub_menu">
+                        <li><a href="" class="main_menu2 snd_title">포인트 관리</a></li>
+                        <li><a href="" class="main_menu2 snd_title">충전 내역</a></li>
+                        <li><a href="" class="main_menu2 snd_title">사용 내역</a></li>
                     </ul>
                 </li>
-                <li><a href="">찜</a>
-                    <ul class="snd_menu sub_menu">
-                        <li><a href="dibsSocial.me" class="snd_title">소셜링</a></li>
-                        <li><a href="dibsChallenge.me" class="snd_title">챌린지</a></li>
+                <li class="main_menu1"><a class="main_menu2" href="">찜</a>
+                    <ul class="main_menu snd_menu sub_menu">
+                        <li><a href="dibsSocial.me" class="main_menu2 snd_title">소셜링</a></li>
+                        <li><a href="dibsChallenge.me" class="main_menu2 snd_title">챌린지</a></li>
                     </ul>
                 </li>
-                <li><a href="reviewList.cl">리뷰</a></li>
-                <li><a href="list.ch">채팅</a></li>
+                <li class="main_menu1"><a class="main_menu2" href="reviewList.cl">리뷰</a></li>
+                <li class="main_menu1"><a class="main_menu2" href="list.ch">채팅</a></li>
             </ul>
         </nav>
     </div>

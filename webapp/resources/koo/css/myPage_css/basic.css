@@ -1,5 +1,6 @@
 *{
     box-sizing: border-box;
+    margin-top: 100px;
 }
 
 h5{
@@ -167,7 +168,7 @@ nav{
 }
 
 /* 마이페이지 메뉴리스트 스타일*/
-ul {
+.main_menu {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -177,12 +178,12 @@ ul {
     overflow: auto;
 }
 
-li {
+.main_menu1 {
     list-style: none;
     line-height: 34px;
 }
 
-ul li a {
+.main_menu .main_menu1 .main_menu2 {
     display: block;
     color: #000;
     border-bottom: 1px solid #d9d9d9;
@@ -190,16 +191,16 @@ ul li a {
     text-decoration-line: none;
 }
 
-ul li a.active {
+.main_menu .main_menu1 .main_menu2.active {
     background-color: #7a7a7a;
     color: white;
 }
   
-ul li a:hover{
+.main_menu .main_menu1 .main_menu2:hover{
     text-decoration-line: none;
 }
 
-ul li a:hover:not(.active) {
+.main_menu .main_menu1 .main_menu2:hover:not(.main_menu2.active) {
     background-color: #7a7a7a;
     color: white;
 }

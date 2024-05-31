@@ -25,7 +25,7 @@ function change_pass(){
     $.ajax({
         url: "checkPassword.me",
         type: "POST",
-        // contentType: 'application/json',
+        contentType: 'application/json',
         data: formData,
         
         success: function(response) {
@@ -36,8 +36,10 @@ function change_pass(){
                 pwdReview.textContent = '';
                 submitBtn.disabled = false;
 
+
             } else { // 업데이트 실패(alert메세지)
                 // 팝업에 실패 내용 표시
+                alert("입력 내용에 오류가 있습니다.");
                 pwdReview.textContent = '잘못된 비밀번호 입니다.';
                 pwdReview.className = 'none_pass';
             }
