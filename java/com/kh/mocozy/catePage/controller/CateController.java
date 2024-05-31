@@ -31,7 +31,16 @@ public class CateController {
 	@RequestMapping("cateAll.ct")
 	public String showcateAll(Model model) {    
 		ArrayList<Club> catelist = cService.selectcatelist();
-	    model.addAttribute("catelist", catelist);
+		for (Club c : catelist){
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+	    
+		model.addAttribute("catelist", catelist);
 	    
 	    return "categories/cateAll";
 
@@ -40,7 +49,16 @@ public class CateController {
 	@RequestMapping("cateActivity.ct")
 	public String showcateActivity(Model model) {    
 		ArrayList<Club> catelist = cService.selectcatelist();
-	    model.addAttribute("catelist", catelist);
+		for (Club c : catelist){
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+	    
+		model.addAttribute("catelist", catelist);
 
 	    return "categories/cateActivity";
 
@@ -49,7 +67,16 @@ public class CateController {
 	@RequestMapping("cateArt.ct")
 	public String showcateArt(Model model) {    
 		ArrayList<Club> catelist = cService.selectcatelist();
-	    model.addAttribute("catelist", catelist);
+		for (Club c : catelist){
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+	    
+		model.addAttribute("catelist", catelist);
 	    
 	    return "categories/cateArt";
 
@@ -58,7 +85,16 @@ public class CateController {
 	@RequestMapping("cateBest20.ct")
 	public String showcateBest20(Model model) {    
 		ArrayList<Club> catelist = cService.selectcatelist();
-	    model.addAttribute("catelist", catelist);
+		for (Club c : catelist){
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+	    
+		model.addAttribute("catelist", catelist);
 	    
 	    return "categories/cateBest20";
 
@@ -67,7 +103,16 @@ public class CateController {
 	@RequestMapping("cateDevelope.ct")
 	public String showcateDevelope(Model model) {    
 		ArrayList<Club> catelist = cService.selectcatelist();
-	    model.addAttribute("catelist", catelist);
+		for (Club c : catelist){
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+	    
+		model.addAttribute("catelist", catelist);
 	    
 	    return "categories/cateDevelope";
 
@@ -76,7 +121,16 @@ public class CateController {
 	@RequestMapping("cateFood.ct")
 	public String showcateFood(Model model) {    
 		ArrayList<Club> catelist = cService.selectcatelist();
-	    model.addAttribute("catelist", catelist);
+		for (Club c : catelist){
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+	    
+		model.addAttribute("catelist", catelist);
 	    
 	    return "categories/cateFood";
 
@@ -85,7 +139,16 @@ public class CateController {
 	@RequestMapping("cateForeign.ct")
 	public String showcateForeign(Model model) {    
 		ArrayList<Club> catelist = cService.selectcatelist();
-	    model.addAttribute("catelist", catelist);
+		for (Club c : catelist){
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+	    
+		model.addAttribute("catelist", catelist);
 	    
 	    return "categories/cateForeign";
 
@@ -94,7 +157,16 @@ public class CateController {
 	@RequestMapping("cateGame.ct")
 	public String showcateGame(Model model) {    
 		ArrayList<Club> catelist = cService.selectcatelist();
-	    model.addAttribute("catelist", catelist);
+		for (Club c : catelist){
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+	    
+		model.addAttribute("catelist", catelist);
 	    
 	    return "categories/cateGame";
 
@@ -103,7 +175,16 @@ public class CateController {
 	@RequestMapping("cateHobby.ct")
 	public String showcateHobby(Model model) {    
 		ArrayList<Club> catelist = cService.selectcatelist();
-	    model.addAttribute("catelist", catelist);
+		for (Club c : catelist){
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+	    
+		model.addAttribute("catelist", catelist);
 
 	    return "categories/cateHobby";
 
@@ -112,7 +193,16 @@ public class CateController {
 	@RequestMapping("cateHot.ct")
 	public String showcateHot(Model model) {    
 		ArrayList<Club> catelist = cService.selectcatelist();
-	    model.addAttribute("catelist", catelist);
+		for (Club c : catelist){
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+		
+		model.addAttribute("catelist", catelist);
 	    
 	    return "categories/cateHot";
 
@@ -121,7 +211,16 @@ public class CateController {
 	@RequestMapping("cateInvest.ct")
 	public String showcateInvest(Model model) {    
 		ArrayList<Club> catelist = cService.selectcatelist();
-	    model.addAttribute("catelist", catelist);
+		for (Club c : catelist){
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+		
+		model.addAttribute("catelist", catelist);
 	    
 	    return "categories/cateInvest";
 
@@ -130,7 +229,16 @@ public class CateController {
 	@RequestMapping("cateLove.ct")
 	public String showcateLove(Model model) {    
 		ArrayList<Club> catelist = cService.selectcatelist();
-	    model.addAttribute("catelist", catelist);
+		for (Club c : catelist){
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+	    
+		model.addAttribute("catelist", catelist);
 	    
 	    return "categories/cateLove";
 
@@ -139,7 +247,16 @@ public class CateController {
 	@RequestMapping("cateReview.ct")
 	public String showcateReview(Model model) {    
 		ArrayList<Club> catelist = cService.selectcatelist();
-	    model.addAttribute("catelist", catelist);
+		for (Club c : catelist){
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+	    
+		model.addAttribute("catelist", catelist);
 	    
 	    return "categories/cateReview";
 
@@ -148,7 +265,16 @@ public class CateController {
 	@RequestMapping("cateTravel.ct")
 	public String showcateTravel(Model model) {    
 		ArrayList<Club> catelist = cService.selectcatelist();
-	    model.addAttribute("catelist", catelist);
+		for (Club c : catelist){
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+	    
+		model.addAttribute("catelist", catelist);
 	    
 	    return "categories/cateTravel";
 

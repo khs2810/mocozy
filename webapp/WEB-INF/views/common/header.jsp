@@ -68,8 +68,8 @@
 
 								<p class="cateTitle">카테고리</p>
 								<%-- 카테고리 --%>
-								<ul class="cateToggle" id="cateToggle">
-									<ul class="grid">
+								<ul class="headercateToggle" id="cateToggle">
+									<ul class="headergrid">
 										<li class="categrid">
 											<h3 class="getName">
 												<a href="cateAll.ct">전체</a>
@@ -197,8 +197,8 @@
 								</c:when>
 								<c:otherwise>
 									<!-- 로그인 후 -->
-									<div class="profile" href="_blank">
-										<img class="profileImg" src="_blank" alt="image" />
+									<div class="profile">
+										<img class="profileImg" src="${pageContext.request.contextPath}${loginUser.profileImg}" alt="image" />
 									</div>
 									<div class="alarm">+99</div>
 									<button class="userName" id="userName" type="button">

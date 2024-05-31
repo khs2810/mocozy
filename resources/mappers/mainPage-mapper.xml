@@ -106,7 +106,7 @@
 			   category_name2
 	FROM public.CLUB
 		join MEMBER USING (USER_NO)
-	WHERE public.CLUB.STATUS = 'Y';
+	WHERE public.CLUB.STATUS = 'Y'
 	</select>
 	
 	<select id="selectRlist" resultMap="clubResult">
@@ -160,8 +160,29 @@
 			   category_name2
 	FROM public.CLUB
 		join MEMBER USING (USER_NO)
-	WHERE public.CLUB.STATUS = 'Y'
-	ORDER BY CLUB_NO DESC;
+	WHERE public.CLUB.STATUS = 'Y';
 	</select>
 	
+	<select id="MemberList" resultMap="memberResult">
+		SELECT USER_NO,
+			   NICKNAME,
+			   INTRODUCE,
+			   PROFILE_IMG
+		FROM public.MEMBER 
+		JOIN public.REQUEST USING (USER_NO)
+		WHERE public.REQUEST.STATUS = 'Y'
+			AND public.request.CLUB_NO = #{clubNo};
+	</select>
+	
+	<select id="getSocialing" resultMap="clubResult">
+	    SELECT *
+		FROM club
+		WHERE club_type = '소셜링';
+	</select>
+	
+	<select id="getChallenge" resultMap="clubResult">
+	    SELECT *
+		FROM club
+		WHERE club_type = '챌린지';
+	</select>
 </mapper>

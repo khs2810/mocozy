@@ -89,5 +89,15 @@
 	WHERE public.CLUB.STATUS = 'Y';
 	</select>
 	
+	<select id="MemberList" resultMap="memberResult">
+		SELECT USER_NO,
+			   NICKNAME,
+			   INTRODUCE,
+			   PROFILE_IMG
+		FROM public.MEMBER 
+		JOIN public.REQUEST USING (USER_NO)
+		WHERE public.REQUEST.STATUS = 'Y'
+			AND public.request.CLUB_NO = #{clubNo};
+	</select>
 	
 </mapper>
