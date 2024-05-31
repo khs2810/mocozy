@@ -61,9 +61,9 @@
                 </li>
                 <li><a href="">포인트</a>
                     <ul class="snd_menu sub_menu">
-                        <li><a href="" class="snd_title">포인트 관리</a></li>
-                        <li><a href="" class="snd_title">충전 내역</a></li>
-                        <li><a href="" class="snd_title">사용 내역</a></li>
+                        <li><a href="manage.po" class="snd_title">포인트 관리</a></li>
+                        <li><a href="chargeHistory.po" class="snd_title">충전 내역</a></li>
+                        <li><a href="useHistory.po" class="snd_title">사용 내역</a></li>
                     </ul>
                 </li>
                 <li><a href="">찜</a>
