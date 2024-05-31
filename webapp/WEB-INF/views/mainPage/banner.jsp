@@ -14,6 +14,7 @@
 </head>
 
 <body>
+	<div class="bannerbox"></div>
 	<div class="banner">
 		<div class="slide" id="slide">
 			<div class="item1" id="item"><a href="eventTravel.ev"></a></div>

@@ -226,11 +226,11 @@ public class MemberController {
 
 		if (result > 0) {
 			session.setAttribute("loginUser", memberService.loginMember(m));
-			session.setAttribute("alertMsg", "회원정보 수정 성공");
-			return "redirect:/myPage.me";
+			session.setAttribute("alertMsg", "비밀번호 수정 성공");
+			return "redirect:/";
 		} else {
-			model.addAttribute("errorMsg", "회원정보 수정 실패");
-			return "common/errorPage";
+			model.addAttribute("errorMsg", "비밀번호 수정 실패");
+			return "redirect:/myProfile.me";
 		}
 
 	}

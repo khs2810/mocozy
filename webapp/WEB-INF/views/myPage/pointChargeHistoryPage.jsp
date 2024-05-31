@@ -11,6 +11,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jun/css/pointChargeHistoryPage.css">
 	<script src="${pageContext.request.contextPath}/resources/jun/js/pointChargeHistoryPage.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css" />
+
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>

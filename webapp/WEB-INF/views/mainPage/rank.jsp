@@ -39,7 +39,7 @@
 							<div class="items">
 
 								<div class="rankcontentcard">
-									<a href="_blank">
+									<a href="detail.cl?cno=${club.clubNo}">
 										<div class="aspect">
 											<img class="aspectimg" src="${club.thumbnailImg}"/>
 										</div>
