@@ -45,7 +45,7 @@ function change_pass(){
             }
         },
         error: function() {
-            alert("비밀번호 확인 중에 오류가 발생했습니다.");
+            // alert("비밀번호 확인 중에 오류가 발생했습니다.");
         }
         
     });

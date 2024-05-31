@@ -229,7 +229,7 @@ public class MemberController {
 			session.setAttribute("alertMsg", "비밀번호 수정 성공");
 			return "redirect:/";
 		} else {
-			model.addAttribute("errorMsg", "비밀번 수정 실패");
+			model.addAttribute("errorMsg", "비밀번호 수정 실패");
 			return "redirect:/myProfile.me";
 		}
 
