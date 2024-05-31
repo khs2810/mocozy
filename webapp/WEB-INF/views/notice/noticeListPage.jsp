@@ -11,6 +11,10 @@
 
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <!-- 라이브러리 -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/teo/js/noticeListView.js"></script>
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>
@@ -44,13 +48,13 @@
             </tbody>
         </table>
         <div class="notice_search_bar_div">
-            <select name="" id="">
-                <option >제목</option>
-                <option >작성자</option>
-                <option >말머리</option>
+            <select name="keywordType" id="keyword_type">
+                <option>제목</option>
+                <option>작성자</option>
+                <option>말머리</option>
             </select>
-            <input type="text">
-            <button id="notice_search-btn">검 색</button>
+            <input id="search_keyword" type="text" name="keyword">
+            <button id="notice_search_btn">검 색</button>
         </div>
         
        	<c:if test="${loginUser.admin eq 'Y'}">
@@ -68,7 +72,7 @@
         				<div class="notice_cpage">${p}</div>
         			</c:when>
         			<c:otherwise>
-        			<button class="page_btn" onclick="location.href='list.no?cpage=${p}'">${p}</button>
+        			    <button class="page_btn" onclick="location.href='list.no?cpage=${p}'">${p}</button>
         			</c:otherwise>
         		</c:choose>
         	</c:forEach>
