@@ -307,15 +307,19 @@
     top: 80;
     display: block;
     background: transparent;
-    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2);
     overflow: hidden;
 }
 
-.header .headercateToggle:hover,
+.header .headercateToggle:hover{
+    height: 250px;
+    width: 100%;
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2);
+    background: white;
+}
+
 .header .headergrid:hover {
     height: 250px;
     background: white;
-
 }
 
 .header .headergrid {
@@ -359,4 +363,8 @@
     line-height: 1.5;
     margin-bottom: 0.8rem;
     color: #000000;
+}
+
+.header .cateT:hover {
+    color: rgb(255 0 69);
 }
