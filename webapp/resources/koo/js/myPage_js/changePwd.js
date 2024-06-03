@@ -1,24 +1,24 @@
 //기존 비밀번호 체크
-function checkPwd() {
-    const checkPwd1 = document.getElementById('checkPwd1').value;
-    const currentPwd = document.getElementById('currentPwd').value;
-    const pwdReview1 = document.getElementById('pwd_review1');
+// function checkPwd(currentPwd) {
+//     const checkPwd1 = document.getElementById('checkPwd1').value;
+//     const currentPwd = document.getElementById('currentPwd').value;
+//     const pwdReview1 = document.getElementById('pwd_review1');
 
-    if (checkPwd1 === currentPwd) {
-        pwdReview1.textContent = '비밀번호가 일치합니다.';
-        pwdReview1.className = 'pass';
-        return true;
-    } else {
-        pwdReview1.textContent = '비밀번호가 일치하지 않습니다.';
-        pwdReview1.className = 'none_pass';
-        return false;
-    }
-}
+//     if (checkPwd1 === currentPwd) {
+//         pwdReview1.textContent = '비밀번호가 일치합니다.';
+//         pwdReview1.className = 'pass';
+//         return true;
+//     } else {
+//         pwdReview1.textContent = '비밀번호가 일치하지 않습니다.';
+//         pwdReview1.className = 'none_pass';
+//         return false;
+//     }
+// }
 
 // 비밀번호 체크
 function checkPass() {
     const userPwd = document.getElementById('userPwd').value;
-    const checkPwd = document.getElementById('checkPwd').value;
+    const checkPwd = document.getElementById('checkPwd').value;5
     const pwdReview = document.getElementById('pwd_review');
 
     if (userPwd === checkPwd) {
@@ -51,12 +51,10 @@ function change_pass(){
                 // 팝업을 닫고 로그아웃
                 pwdReview.textContent = '';
                 submitBtn.disabled = false;
-                console.log(alertMsg);
                 alert("새 비밀번호로 다시 로그인 해주세요.");
             } else { // 업데이트 실패(alert메세지)
                 // 팝업에 실패 내용 표시
                 alert("입력 내용에 오류가 있습니다.");
-                console.log(errorMsg);
                 pwdReview.textContent = '잘못된 비밀번호 입니다.';
                 pwdReview.className = 'none_pass';
             }

@@ -168,7 +168,7 @@
                             <div class="content-box">
                                 <input type="hidden" id="userId" name="userId" value="${loginUser.userId}">
                                 <input type="hidden" id="checkPwd1" name="checkPwd1" value="${loginUser.userPwd}">
-                                <input type="password" id="currentPwd" name="currentPwd" onkeydown="checkPwd()"placeholder="기존 비밀번호를 입력해 주세요." required>
+                                <input type="password" id="currentPwd" name="currentPwd" onkeyup="checkPwd(this)" placeholder="기존 비밀번호를 입력해 주세요." required>
                                 <span id="pwd_review1"></span><br>
                             </div>
 
