@@ -192,8 +192,11 @@
 					    </c:if>
 					</c:forEach>
 					<c:choose>
-						<c:when test="${c.status ne 'Y'}">
+						<c:when test="${c.status eq 'E'}">
 							<div disabled>종료된 모임</div>
+						</c:when>
+						<c:when test="${c.status eq 'N'}">
+							<div disabled>취소된 모임</div>
 						</c:when>
 					    <c:when test="${isUserFound}">
 					        <div disabled>참여 신청하기</div>
