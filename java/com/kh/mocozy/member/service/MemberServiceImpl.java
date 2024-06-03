@@ -32,10 +32,11 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.insertAttachment(sqlSession, uno);
 	}
 
+//	비밀번호 체크
 	@Override
 	public String pwdCheck(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return memberDao.pwdCheck(sqlSession, userId);
 	}
 
 	@Override

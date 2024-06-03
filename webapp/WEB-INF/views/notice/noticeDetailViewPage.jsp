@@ -34,7 +34,7 @@
 	       		<button class="background_color_brown color_white font_weight_bold" style="color:black;" onclick="location.href='list.no'">목 록</button>
         </div>
         <div id="notice_review">
-            <h3 id="notice_review_size_h">댓글(${rlist.size()})</h3>
+            <h3 id="notice_review_size_h">댓글(${pi.listCount})</h3>
             <table id="review_table">
             	<c:choose>
             		<c:when test="${rlist.size() ne 0}">
@@ -46,7 +46,6 @@
                                 <c:if test="${p.nickname eq loginUser.nickname}">
                                     <td><button id="notice_review_delete_btn" data-rno="${p.replyNo}" data-nno="${n.noticeNo}">X</button></td> <!-- 본인 리뷰일때만 보이게  -->
                                 </c:if>
-			                    
             				</tr>
             			</c:forEach>
             		</c:when>
@@ -59,6 +58,11 @@
             		</c:otherwise>
             	</c:choose>
             </table>
+            <div class="notice_more_reply_div">
+                <c:if test="${pi.currentPage ne pi.maxPage}">
+                    <div class="notice_more_reply" data-nno="${n.noticeNo}" data-cpage="${pi.currentPage + 1}"> 더보기 ></div>
+                </c:if>
+            </div>
             <br>
             <div id="review_write_box">
                 <c:choose>
