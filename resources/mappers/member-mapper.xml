@@ -87,10 +87,10 @@
 	</update>
 	
 	<!-- 비밀번호 확인 -->
-	<select id="pwdCheck" parameterType="string" resultType="string">
+	<select id="pwdCheck"  resultType="string">
         SELECT USER_PWD
           FROM MEMBER
-         WHERE USER_ID = #{userId}
+         where user_id = #{userId}
     </select>
 	
 	
@@ -110,9 +110,9 @@
 	</update>
 	
 	<!-- 포인트 업데이트 -->
-	<update id="updatePoint">
+	<update id="updatePointRq">
 		UPDATE MEMBER
-			SET point = #{point}
+			SET point = point - #{point}
 		WHERE USER_NO = #{userNo}
 	</update>
 	
@@ -168,5 +168,17 @@
 		WHERE R.CLUB_NO = #{cno}
 		ORDER BY CREATE_DATE ASC;
 	</select>
+	
+	<update id="chargePoint">
+		UPDATE MEMBER
+			SET point = point + #{point}
+		WHERE USER_NO = #{userNo}
+	</update>
+	
+	<update id="withdrawPoint">
+		UPDATE MEMBER
+			SET point = point - #{point}
+		WHERE USER_NO = #{userNo}
+	</update>
 	
 </mapper>

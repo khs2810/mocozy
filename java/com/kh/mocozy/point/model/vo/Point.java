@@ -1,4 +1,4 @@
-package com.kh.mocozy.board.model.vo;
+package com.kh.mocozy.point.model.vo;
 
 import java.sql.Date;
 
@@ -13,14 +13,12 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class NoticeReply {
-	private int replyNo;
-	private String replyContent;
-	private Date createDate;
-	private Date modifyDate;
-	private String status;
-	private int noticeNo;
+public class Point {
+	
+	private int pointNo;
 	private int userNo;
-	private String nickname;
-	private String dateFormat;
+	private int point;
+	private Date createDate;
+	private String status;
+	
 }

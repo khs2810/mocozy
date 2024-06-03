@@ -45,17 +45,17 @@
 		<result column="ANSWER" property="answer"/>
 		<result column="CREATE_DATE" property="createDate"/>
 		<result column="STATUS" property="status"/>
+		<result column="PAYMENT_NO" property="paymentNo"/>
 	</resultMap>
 	
 	<update id="increaseCount">
 		UPDATE CLUB 
 		SET COUNT = COUNT + 1
 		WHERE
-			CLUB_NO = #{cno}
-			AND STATUS = 'Y';
+			CLUB_NO = #{cno};
 	</update>
 	
-	<select id="selectClub" resultMap="clubResult" >
+	<select id="selectClub" resultMap="clubResult">
 		SELECT CLUB_NO,
 			   USER_NO,
 			   CLUB_TITLE,
@@ -72,15 +72,16 @@
 			   QUESTION,
 			   THUMBNAIL_IMG,
 			   CREATE_DATE,
-			   CLUB.MODIFY_DATE,
+			   C.MODIFY_DATE,
 			   COUNT,
 			   NICKNAME,
 			   category_name1,
-			   category_name2
-	FROM public.CLUB
+			   category_name2,
+			   profile_img,
+			   C.STATUS
+	FROM CLUB C
 		join MEMBER USING (USER_NO)
-	WHERE public.CLUB.STATUS = 'Y'
-		AND CLUB_NO = #{cno};
+	WHERE CLUB_NO = #{cno};
 	</select>
 	
 	<select id="listReview" resultMap="clubReviewResult">
@@ -212,7 +213,8 @@
 			   thumbnail_img = #{thumbnailImg},
 			   modify_date = CURRENT_DATE,
 			   category_name1 = #{categoryName1},
-			   category_name2 = #{categoryName2}
+			   category_name2 = #{categoryName2},
+			   status = 'Y'
 		 WHERE CLUB_NO = #{clubNo}
 	</update>
 	
@@ -222,13 +224,15 @@
 					request_no,
 					user_no,
 					club_no,
-					answer
+					answer,
+					payment_no
 					)
 			VALUES (
 					NEXTVAL('SEQ_RQNO'), 
 					#{userNo},
 					#{clubNo},
-					#{answer}
+					#{answer},
+					CURRVAL('SEQ_PMNO')
 					)
 	</insert>
 	
@@ -280,4 +284,54 @@
 	     	 WHERE R.CLUB_NO = #{cno, jdbcType=BIGINT}
 	     	   AND R.USER_NO = #{uno, jdbcType=BIGINT}
 	</select>
+	
+	<select id="selectMySocialList" resultMap="clubResult">
+		SELECT CLUB_NO,
+			   USER_NO,
+			   CLUB_TITLE,
+			   CLUB_TYPE,
+			   EVENT_DATE,
+			   CAPACITY,
+			   THUMBNAIL_IMG,
+			   CREATE_DATE,
+			   CLUB.MODIFY_DATE,
+			   category_name1,
+			   category_name2
+		  FROM CLUB
+		 WHERE USER_NO = #{uno}
+		   AND CLUB_TYPE = '소셜링'
+		   AND STATUS = 'Y'
+	  ORDER BY CREATE_DATE DESC;
+	</select>
+	
+	<select id="selectMySocialListDone" resultMap="clubResult">
+		SELECT CLUB_NO,
+			   USER_NO,
+			   CLUB_TITLE,
+			   CLUB_TYPE,
+			   EVENT_DATE,
+			   CAPACITY,
+			   THUMBNAIL_IMG,
+			   CREATE_DATE,
+			   CLUB.MODIFY_DATE,
+			   category_name1,
+			   category_name2
+		  FROM CLUB
+		 WHERE USER_NO = #{uno}
+		   AND CLUB_TYPE = '소셜링'
+		   AND STATUS = 'E'
+	  ORDER BY CREATE_DATE DESC;
+	</select>
+	
+	<update id="finishSocial">
+		UPDATE CLUB
+		   SET STATUS = 'E'
+		 WHERE CLUB_NO = #{cno}
+	</update>
+	
+	<update id="cancleFinishSocial">
+		UPDATE CLUB
+		   SET STATUS = 'Y'
+		 WHERE CLUB_NO = #{cno}
+	</update>
 </mapper>

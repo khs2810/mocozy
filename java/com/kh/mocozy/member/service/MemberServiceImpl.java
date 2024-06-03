@@ -32,10 +32,11 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.insertAttachment(sqlSession, uno);
 	}
 
+//	비밀번호 체크
 	@Override
 	public String pwdCheck(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return memberDao.pwdCheck(sqlSession, userId);
 	}
 
 	@Override
@@ -68,8 +69,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int pointUpdate(Request r) {
-		return memberDao.pointUpdate(sqlSession, r);
+	public int pointUpdateRq(Request r) {
+		return memberDao.pointUpdateRq(sqlSession, r);
 	}
 
 	@Override
@@ -100,6 +101,16 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public ArrayList<Member> requestMemberList(int cno) {
 		return memberDao.requestMemberList(sqlSession, cno);
+	}
+
+	@Override
+	public int chargePoint(Member m) {
+		return memberDao.chargePoint(sqlSession, m);
+	}
+
+	@Override
+	public int withdrawPoint(Member m) {
+		return memberDao.withdrawPoint(sqlSession, m);
 	}
 	
 }

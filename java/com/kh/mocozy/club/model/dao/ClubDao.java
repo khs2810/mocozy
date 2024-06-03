@@ -92,4 +92,24 @@ public class ClubDao {
 	public ClubReview selectClubReview(SqlSessionTemplate sqlSession, HashMap<String, Integer> map) {
 		return sqlSession.selectOne("clubMapper.selectClubReview", map);
 	}
+
+	public ArrayList<Club> selectMySocialList(SqlSessionTemplate sqlSession, int uno) {
+		return (ArrayList)sqlSession.selectList("clubMapper.selectMySocialList", uno);
+	}
+
+	public int insertPayment(SqlSessionTemplate sqlSession, Request r) {
+		return sqlSession.insert("pointMapper.insertPayment", r);
+	}
+
+	public ArrayList<Club> selectMySocialListDone(SqlSessionTemplate sqlSession, int uno) {
+		return (ArrayList)sqlSession.selectList("clubMapper.selectMySocialListDone", uno);
+	}
+
+	public int finishSocial(SqlSessionTemplate sqlSession, int cno) {
+		return sqlSession.update("clubMapper.finishSocial", cno);
+	}
+
+	public int cancleFinishSocial(SqlSessionTemplate sqlSession, int cno) {
+		return sqlSession.update("clubMapper.cancleFinishSocial", cno);
+	}
 }
