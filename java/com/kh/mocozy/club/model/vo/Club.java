@@ -44,5 +44,10 @@ public class Club {
 	private Member memberlist;
 	private int isReview;
 	private String profile_img;
+	public ArrayList<String> profileImg;
+	public int reviewCount;
+	public int PickCount;
 }
+
+
 

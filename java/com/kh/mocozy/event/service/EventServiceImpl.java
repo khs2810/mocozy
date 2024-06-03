@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.event.model.dao.EventDao;
+import com.kh.mocozy.member.model.vo.Member;
 
 @Service
 public class EventServiceImpl implements EventService{
@@ -21,4 +22,10 @@ public class EventServiceImpl implements EventService{
     public ArrayList<Club> selecteventlist() {
     	return eDao.selecteventlist(sqlSession);
     }
+	
+	@Override
+	public ArrayList<Member> MemberList(int clubNo) {
+		ArrayList<Member> result = eDao.MemberList(sqlSession, clubNo);
+		return result;
+	}
 }

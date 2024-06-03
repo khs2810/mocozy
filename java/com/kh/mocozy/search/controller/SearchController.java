@@ -1,6 +1,8 @@
 package com.kh.mocozy.search.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.common.model.vo.PageInfo;
 import com.kh.mocozy.common.template.Pagination;
+import com.kh.mocozy.member.model.vo.Member;
 import com.kh.mocozy.search.service.SearchService;
 
 @Controller
@@ -21,7 +24,7 @@ public class SearchController {
     @Autowired
     private SearchService sService;
     
-    //순수검색
+    //검색
     @GetMapping("searchForm.sc")
     public String searchForm(@RequestParam("keyword") String keyword, @RequestParam("rpage") int currentPage, Model model) {
         HashMap<String, String> map = new HashMap<>();
@@ -33,7 +36,23 @@ public class SearchController {
         PageInfo re = Pagination.getPageInfo(clubCount, currentPage, 1, 9);
         ArrayList<Club> clist = sService.selectSearchList(map, re);
         
-        System.out.print(clist);
+		for (Club c : clist){
+		    ArrayList<Member> memberList = sService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+		
+		//Club의 count 높은 순으로 정렬
+	    Collections.sort(clist, new Comparator<Club>() {
+	        @Override
+	        public int compare(Club c1, Club c2) {
+	            return Integer.compare(c2.getCount(), c1.getCount());
+	        }
+	    });
+	    
         model.addAttribute("clist", clist);
         model.addAttribute("re", re);
         model.addAttribute("keyword", keyword);
@@ -43,26 +62,5 @@ public class SearchController {
 		} else { //검색결과있음
 			return "search/searchMain";
 		}
-     
     }
-      
-//    //카테고리 검색
-//    @GetMapping("searchCate.sc")
-//    public String selectSearchCate(@RequestParam("rpage") int currentPage, Model model) {
-//        int clubCount = sService.searchCount();
-//        PageInfo re = Pagination.getPageInfo(clubCount, currentPage, 1, 9);
-//        ArrayList<Club> list = sService.selectSearchClub(re);
-//
-//        model.addAttribute("list", list);
-//        model.addAttribute("re", re);
-//
-//        return "search/searchCate";
-//    }
-//    
-    //카테고리 검색AJAX + JSON 형식으로 받기
-    
-	// 순수 검색AJAX
-	
-    //클럽명 검색
-    
 }

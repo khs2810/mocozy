@@ -16,7 +16,7 @@
             <button class="btn-style">
                 <!-- 프로필사진 -->
                 <div class="profile-box1" style="background: #BDBDBD;">
-                    <img class="profile profile-img" src="${pageContext.request.contextPath}/resources/koo/upfile/common_img/profile.jpg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
+                    <img class="profile profile-img" src="${pageContext.request.contextPath}${loginUser.profileImg}" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
                 </div>
             </button>
             <!-- 닉네임 및 계정이메일 -->
@@ -26,7 +26,7 @@
 
                 <!-- 포인트 -->
                 <div class="account point">
-                    ${m.point }pt
+                    ${loginUser.point }pt
                     <button class="btn-style">충전</button>
                 </div>
             </div>

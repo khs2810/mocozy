@@ -120,6 +120,14 @@ li {
   }
 }
 
+.main .profileimglist{
+  gap: 0.5rem;
+	display: flex;
+	flex-direction: row;
+  align-items: center;
+	width: 200px;
+}
+
 .main .contentcard .info{
   display: flex;
   flex-direction: column;
@@ -145,6 +153,38 @@ li {
   align-items: center;
   font-weight: 600;
   font-size: 1.5rem;
+  line-height: 11px;
+  text-align: center;
+  padding: 4px 8px;
+  letter-spacing: -.2px;
+  border-radius: 10px;
+  margin-right: 6px;
+}
+
+.main .contentcard .tagone{
+  background-color: #dddddd;
+  color: #666060;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.2rem;
+  line-height: 11px;
+  text-align: center;
+  padding: 4px 8px;
+  letter-spacing: -.2px;
+  border-radius: 10px;
+  margin-right: 6px;
+}
+
+.main .contentcard .tagtwo{
+  background-color: #dddddd;
+  color: #666060;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.2rem;
   line-height: 11px;
   text-align: center;
   padding: 4px 8px;
@@ -187,6 +227,8 @@ li {
 
 .main .participant{
   display: flex;
+  justify-content: space-between;
+  width: 35rem;
 }
 
 .main .participant .img{
@@ -199,38 +241,26 @@ li {
   flex-shrink: 0;
 }
 
-.main .participant .span{
-  border: 3px solid rgb(255, 255, 255);
-  background-color: lightblue;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  position: relative;
-  width: 20rem;
-  height: 20rem;
-  border-radius: 100%;
-  margin-top: 0.2rem;
-  margin-left: -7px;
-  flex-shrink: 0;
-}
-
 .main .participant .cardImg{
   position: relative;
-  margin-top: 1rem;
-  padding: 4rem;
+  margin-left: -1.8rem;
+  border: 5px solid white;
   border-radius: 100%;
+  width: 8px;
+  height: 8px;
 }
 
 .main .participant .socialmember{
-  margin-left: 4.7px;
   display: flex;
+  position: relative;
   justify-content: center;
   align-items: center;
 }
 
 .main .participant .people{
-  width: 10px;
-  height: 10px;
+  width: 45px;
+  height: 45px;
+  border-radius: 100%;
   color: gray;
   position: relative;
 }
@@ -291,8 +321,8 @@ li {
   }
 
   .main .participant .people {
-      width: 20px;
-      height: 20px;
+     width: 45px;
+ 	  height: 45px;
   }
 
   .main .participant .count {
@@ -347,8 +377,8 @@ li {
   }
 
   .main .participant .people {
-      width: 24px;
-      height: 24px;
+    width: 45px;
+    height: 45px;
   }
 
   .main .participant .count {

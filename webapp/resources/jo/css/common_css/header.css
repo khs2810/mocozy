@@ -139,7 +139,16 @@
 }
 
 .header .profile {
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #dbdbdb;
+    border-radius: 100%;
+    width: auto;
+    height: auto;
+}
+
+.header .profileImg {
     border-radius: 100%;
     width: 4.5rem;
     height: 4.5rem;
@@ -290,7 +299,7 @@
 }
 
 /* 카테고리 토글 */
-.header .cateToggle {
+.header .headercateToggle {
     position: fixed;
     width: 100%;
     height: 10px;
@@ -298,18 +307,22 @@
     top: 80;
     display: block;
     background: transparent;
-    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2);
     overflow: hidden;
 }
 
-.header .cateToggle:hover,
-.header .grid:hover {
+.header .headercateToggle:hover{
     height: 250px;
+    width: 100%;
+    box-shadow: 0 8px 8px 0 rgba(0, 0, 0, 0.2);
     background: white;
-
 }
 
-.header .grid {
+.header .headergrid:hover {
+    height: 250px;
+    background: white;
+}
+
+.header .headergrid {
     max-width: 1250px;
     min-width: 600px;
     /* 그리드 10개의 행 생성 */
@@ -326,6 +339,7 @@
 .header .categrid {
 	margin-left: 5rem;
 	margin-bottom: 5rem;
+    list-style: none;
 }
 
 .header .getName {
@@ -349,4 +363,8 @@
     line-height: 1.5;
     margin-bottom: 0.8rem;
     color: #000000;
+}
+
+.header .cateT:hover {
+    color: rgb(255 0 69);
 }
