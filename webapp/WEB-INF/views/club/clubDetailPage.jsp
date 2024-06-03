@@ -192,6 +192,9 @@
 					    </c:if>
 					</c:forEach>
 					<c:choose>
+                        <c:when test="${memberList.size() eq c.capacity}">
+                            <div disabled>모집 완료</div>
+                        </c:when>
 						<c:when test="${c.status eq 'E'}">
 							<div disabled>종료된 모임</div>
 						</c:when>

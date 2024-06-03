@@ -22,4 +22,5 @@ public class NoticeReply {
 	private int noticeNo;
 	private int userNo;
 	private String nickname;
+	private String dateFormat;
 }

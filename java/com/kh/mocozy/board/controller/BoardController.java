@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.kh.mocozy.board.model.vo.Notice;
 import com.kh.mocozy.board.model.vo.NoticeReply;
 import com.kh.mocozy.board.service.BoardService;
@@ -59,15 +60,14 @@ public class BoardController {
 		if (result > 0) {
 			Notice n = boardService.selectNotice(nno);
 			int replyListCount = boardService.replyListCount(nno);
-//			System.out.println(replyListCount);
 
 			PageInfo pi = Pagination.getPageInfo(replyListCount, currentPage, 5, 5);
 
 			ArrayList<NoticeReply> rlist = boardService.selectNoticeReplyList(nno, pi);
-
-//			System.out.println(rlist);
+			
 			model.addAttribute("n", n);
 			model.addAttribute("rlist", rlist);
+			model.addAttribute("pi", pi);
 
 			return "notice/noticeDetailViewPage";
 		} else {
@@ -187,9 +187,11 @@ public class BoardController {
 			PageInfo pi = Pagination.getPageInfo(replyListCount, currentPage, 5, 5);
 			ArrayList<NoticeReply> rlist = boardService.selectNoticeReplyList(nno, pi);
 
+			rlist = dateFormatForReply(rlist);
+			
 			Map<String, Object> map = new HashMap<>();
 			map.put("rlist", rlist);
-			map.put("rsize", replyListCount);
+			map.put("pi", pi);
 
 			return new Gson().toJson(map);
 		} else {
@@ -210,10 +212,12 @@ public class BoardController {
 
 			PageInfo pi = Pagination.getPageInfo(replyListCount, currentPage, 5, 5);
 			ArrayList<NoticeReply> rlist = boardService.selectNoticeReplyList(nno, pi);
+			
+			rlist = dateFormatForReply(rlist);
 
 			Map<String, Object> map = new HashMap<>();
 			map.put("rlist", rlist);
-			map.put("rsize", replyListCount);
+			map.put("pi", pi);
 
 			return new Gson().toJson(map);
 		} else {
@@ -256,7 +260,36 @@ public class BoardController {
 		} else {
 			return new Gson().toJson("NNN");	
 		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "moreReply.no", produces = "application/json; charset-UTF-8")
+	public String ajaxMoreNoticeReply(@RequestParam(value = "cpage", defaultValue = "1") int currentPage,
+			int nno, HttpSession session) {
 		
+		int replyListCount = boardService.replyListCount(nno);
+		// System.out.println(replyListCount);
 
+		PageInfo pi = Pagination.getPageInfo(replyListCount, currentPage, 5, 5);
+		ArrayList<NoticeReply> rlist = boardService.selectNoticeReplyList(nno, pi);
+		
+		rlist = dateFormatForReply(rlist);
+		
+		Map<String, Object> map = new HashMap<>();
+		map.put("rlist", rlist);
+		map.put("pi", pi);
+
+		return new Gson().toJson(map);
+	}
+	
+	private ArrayList<NoticeReply> dateFormatForReply(ArrayList<NoticeReply> rlist) {
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        
+		for (NoticeReply r : rlist) {
+			r.setDateFormat(dateFormat.format(r.getModifyDate()));
+		}
+		
+		return rlist;
 	}
 }

@@ -44,6 +44,16 @@ $(document).ready(function(){
             ajaxDeleteReply(data)
         }
     })
+
+    $('.notice_more_reply_div').on("click", `.notice_more_reply`,function(ev){
+        const btn = ev.target;
+
+        data = {
+            nno: btn.dataset.nno,
+            cpage: btn.dataset.cpage
+        }
+        ajaxMoreReply(data);
+    })
 })
 
 function ajaxInsertReply(data) {
@@ -51,7 +61,8 @@ function ajaxInsertReply(data) {
         url : 'insertReply.no',
         data : data,
         success : function(res) {
-            drawReplyList(res.rlist, res.rsize);            
+            document.querySelector('#review_table').innerHTML = "";
+            drawReplyList(res.rlist, res.pi);            
         },
         error : function (){
             alert("ajax 실패");
@@ -59,11 +70,11 @@ function ajaxInsertReply(data) {
     })
 }
 
-function drawReplyList(data, size) {
+function drawReplyList(data, pi) {
     
-    document.querySelector('#notice_review_size_h').innerHTML = "댓글(" + size + ")";
+    document.querySelector('#notice_review_size_h').innerHTML = "댓글(" + pi.listCount + ")";
     const userNo = $('#loginuser_userno_hidden').val();
-    
+    let noticeNo = "";
     let str = "";
     if (data.length == 0){
         str = `<tr>\n
@@ -73,10 +84,11 @@ function drawReplyList(data, size) {
                </tr>\n`
     } else {
         for (const nr of data){
+            noticeNo = nr.noticeNo;
             str += `<tr>\n
                         <td style="padding-left: 5px; width: 105px">${nr.nickname}</td> \n
                         <td style="width: 75%; padding-left: 14px;">${nr.replyContent}</td>\n
-                        <td>${nr.modifyDate}</td>\n`;
+                        <td>${nr.dateFormat}</td>\n`;
             if (`${nr.userNo}` === userNo){
                 str += `<td><button id="notice_review_delete_btn" data-rno="${nr.replyNo}" data-nno="${nr.noticeNo}">X</button></td>\n`;
             }
@@ -84,7 +96,16 @@ function drawReplyList(data, size) {
         }
         
     }
-    document.querySelector('#review_table').innerHTML = str;
+    document.querySelector('#review_table').innerHTML += str;
+    
+    if (pi.currentPage !== pi.maxPage) {
+        str = `<div class="notice_more_reply" data-nno="`;
+        str += noticeNo;
+        str += `" data-cpage="${pi.currentPage + 1}"> 더보기 ></div>`;
+        document.querySelector('.notice_more_reply_div').innerHTML = str;
+    } else {
+        document.querySelector('.notice_more_reply_div').innerHTML = "";
+    }
 }
 
 function ajaxDeleteReply(data) {
@@ -92,7 +113,21 @@ function ajaxDeleteReply(data) {
         url : 'deleteReply.no',
         data : data,
         success : function(res) {
-            drawReplyList(res.rlist, res.rsize);          
+            document.querySelector('#review_table').innerHTML = "";
+            drawReplyList(res.rlist, res.pi);          
+        },
+        error : function (){
+            alert("ajax 실패");
+        }
+    })
+}
+
+function ajaxMoreReply(data) {
+    $.ajax({
+        url : 'moreReply.no',
+        data : data,
+        success : function(res) {
+            drawReplyList(res.rlist, res.pi);            
         },
         error : function (){
             alert("ajax 실패");
