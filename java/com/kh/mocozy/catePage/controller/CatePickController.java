@@ -49,7 +49,7 @@ public class CatePickController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "catePick/cateAllPick";
+	    return "categories/catePick/cateAllPick";
 
     }
 	
@@ -75,7 +75,7 @@ public class CatePickController {
 	    
 		model.addAttribute("catelist", catelist);
 
-	    return "catePick/cateActivityPick";
+	    return "categories/catePick/cateActivityPick";
 
     }
 	
@@ -102,7 +102,7 @@ public class CatePickController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "catePick/cateArtPick";
+	    return "categories/catePick/cateArtPick";
 
     }
 	
@@ -129,7 +129,7 @@ public class CatePickController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "catePick/cateDevelopePick";
+	    return "categories/catePick/cateDevelopePick";
 
     }
 	
@@ -155,7 +155,7 @@ public class CatePickController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "catePick/cateFoodPick";
+	    return "categories/catePick/cateFoodPick";
 
     }
 	
@@ -182,7 +182,7 @@ public class CatePickController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "catePick/cateForeignPick";
+	    return "categories/catePick/cateForeignPick";
 
     }
 	
@@ -209,7 +209,7 @@ public class CatePickController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "catePick/cateGamePick";
+	    return "categories/catePick/cateGamePick";
 
     }
 	
@@ -235,7 +235,7 @@ public class CatePickController {
 	   
 		model.addAttribute("catelist", catelist);
 
-	    return "catePick/cateHobbyPick";
+	    return "categories/catePick/cateHobbyPick";
 
     }
 	
@@ -262,7 +262,7 @@ public class CatePickController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "catePick/cateInvestPick";
+	    return "categories/catePick/cateInvestPick";
 
     }
 	
@@ -288,7 +288,7 @@ public class CatePickController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "catePick/cateLovePick";
+	    return "categories/catePick/cateLovePick";
 
     }
 	
@@ -314,7 +314,7 @@ public class CatePickController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "catePick/cateReviewPick";
+	    return "categories/catePick/cateReviewPick";
 
     }
 	
@@ -340,7 +340,7 @@ public class CatePickController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "catePick/cateTravelPick";
+	    return "categories/catePick/cateTravelPick";
 
     }
 }

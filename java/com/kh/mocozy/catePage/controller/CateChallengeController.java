@@ -50,7 +50,7 @@ public class CateChallengeController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateChallenge/cateBestChallenge";
+	    return "categories/cateChallenge/cateBestChallenge";
 
     }
 
@@ -76,7 +76,7 @@ public class CateChallengeController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateChallenge/cateHot";
+	    return "categories/cateChallenge/cateHot";
 
     }
 
@@ -102,7 +102,7 @@ public class CateChallengeController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateChallenge/cateRecent";
+	    return "categories/cateChallenge/cateRecent";
 
     }
 }

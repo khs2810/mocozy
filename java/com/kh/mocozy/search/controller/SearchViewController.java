@@ -60,7 +60,7 @@ public class SearchViewController {
         if (clubCount == 0) { //검색결과 없음
         	return "search/searchError";
 		} else { //검색결과있음
-			return "searchView/searchMainView";
+			return "search/searchView/searchMainView";
 		}
     }
 }

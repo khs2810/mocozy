@@ -31,7 +31,7 @@ public class EventViewController {
 		
 		model.addAttribute("eventlist", eventlist);
 	    
-	    return "eventView/eventArt";
+	    return "event/eventView/eventArt";
 
     }
 	
@@ -49,7 +49,7 @@ public class EventViewController {
 		
 	    model.addAttribute("eventlist", eventlist);
 
-	    return "eventView/eventDessert";
+	    return "event/eventView/eventDessert";
 
     }
 	
@@ -67,7 +67,7 @@ public class EventViewController {
 		
 		model.addAttribute("eventlist", eventlist);
 	    
-	    return "eventView/eventGame";
+	    return "event/eventView/eventGame";
 
     }
 	
@@ -85,7 +85,7 @@ public class EventViewController {
 		
 		model.addAttribute("eventlist", eventlist);
 	    
-	    return "eventView/eventParty";
+	    return "event/eventView/eventParty";
 
     }
 	
@@ -103,7 +103,7 @@ public class EventViewController {
 		
 		model.addAttribute("eventlist", eventlist);
 	    
-	    return "eventView/eventPhoto";
+	    return "event/eventView/eventPhoto";
 
     }
 	
@@ -121,7 +121,7 @@ public class EventViewController {
 		
 		model.addAttribute("eventlist", eventlist);
 	    
-	    return "eventView/eventStudy";
+	    return "event/eventView/eventStudy";
 
     }
 	
@@ -139,7 +139,7 @@ public class EventViewController {
 		
 		model.addAttribute("eventlist", eventlist);
 	    
-	    return "eventView/eventTravel";
+	    return "event/eventView/eventTravel";
 
     }
 	
@@ -157,7 +157,7 @@ public class EventViewController {
 		
 		model.addAttribute("eventlist", eventlist);
 	    
-	    return "eventView/eventLove";
+	    return "event/eventView/eventLove";
 
     }
 }

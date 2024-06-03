@@ -305,7 +305,7 @@
 									<div class="Toggleborder"></div>
 
 									<!--  관리자페이지 -->
-									<a class="Togglelink" id="Togglelink" href="_blank"> <svg
+									<a class="Togglelink" id="Togglelink" href="admin.ad"> <svg
 											class="Toggleimg" xmlns="http://www.w3.org/2000/svg" width="16"
 											height="16" fill="currentColor" class="bi bi-person-fill"
 											viewBox="0 0 16 16">

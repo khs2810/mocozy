@@ -49,7 +49,7 @@ public class CateController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateRecent/cateAll";
+	    return "categories/cateRecent/cateAll";
 
     }
 	
@@ -75,7 +75,7 @@ public class CateController {
 	    
 		model.addAttribute("catelist", catelist);
 
-	    return "cateRecent/cateActivity";
+	    return "categories/cateRecent/cateActivity";
 
     }
 	
@@ -102,7 +102,7 @@ public class CateController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateRecent/cateArt";
+	    return "categories/cateRecent/cateArt";
 
     }
 	
@@ -129,7 +129,7 @@ public class CateController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateRecent/cateDevelope";
+	    return "categories/cateRecent/cateDevelope";
 
     }
 	
@@ -155,7 +155,7 @@ public class CateController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateRecent/cateFood";
+	    return "categories/cateRecent/cateFood";
 
     }
 	
@@ -182,7 +182,7 @@ public class CateController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateRecent/cateForeign";
+	    return "categories/cateRecent/cateForeign";
 
     }
 	
@@ -209,7 +209,7 @@ public class CateController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateRecent/cateGame";
+	    return "categories/cateRecent/cateGame";
 
     }
 	
@@ -235,7 +235,7 @@ public class CateController {
 	   
 		model.addAttribute("catelist", catelist);
 
-	    return "cateRecent/cateHobby";
+	    return "categories/cateRecent/cateHobby";
 
     }
 	
@@ -262,7 +262,7 @@ public class CateController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateRecent/cateInvest";
+	    return "categories/cateRecent/cateInvest";
 
     }
 	
@@ -288,7 +288,7 @@ public class CateController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateRecent/cateLove";
+	    return "categories/cateRecent/cateLove";
 
     }
 	
@@ -314,7 +314,7 @@ public class CateController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateRecent/cateReview";
+	    return "categories/cateRecent/cateReview";
 
     }
 	
@@ -340,7 +340,7 @@ public class CateController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateRecent/cateTravel";
+	    return "categories/cateRecent/cateTravel";
 
     }
 }

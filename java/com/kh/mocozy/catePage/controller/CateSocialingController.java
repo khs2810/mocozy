@@ -50,7 +50,7 @@ public class CateSocialingController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateSocialing/cateBest";
+	    return "categories/cateSocialing/cateBest";
 
     }
 
@@ -76,7 +76,7 @@ public class CateSocialingController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateSocialing/cateHot";
+	    return "categories/cateSocialing/cateHot";
 
     }
 
@@ -102,7 +102,7 @@ public class CateSocialingController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateSocialing/cateRecent";
+	    return "categories/cateSocialing/cateRecent";
 
     }
 }

@@ -49,7 +49,7 @@ public class CateViewController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateView/cateAllView";
+	    return "categories/cateView/cateAllView";
 
     }
 	
@@ -75,7 +75,7 @@ public class CateViewController {
 	    
 		model.addAttribute("catelist", catelist);
 
-	    return "cateView/cateActivityView";
+	    return "categories/cateView/cateActivityView";
 
     }
 	
@@ -102,7 +102,7 @@ public class CateViewController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateView/cateArtView";
+	    return "categories/cateView/cateArtView";
 
     }
 	
@@ -129,7 +129,7 @@ public class CateViewController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateView/cateDevelopeView";
+	    return "categories/cateView/cateDevelopeView";
 
     }
 	
@@ -155,7 +155,7 @@ public class CateViewController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateView/cateFoodView";
+	    return "categories/cateView/cateFoodView";
 
     }
 	
@@ -182,7 +182,7 @@ public class CateViewController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateView/cateForeignView";
+	    return "categories/cateView/cateForeignView";
 
     }
 	
@@ -209,7 +209,7 @@ public class CateViewController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateView/cateGameView";
+	    return "categories/cateView/cateGameView";
 
     }
 	
@@ -235,7 +235,7 @@ public class CateViewController {
 	   
 		model.addAttribute("catelist", catelist);
 
-	    return "cateView/cateHobbyView";
+	    return "categories/cateView/cateHobbyView";
 
     }
 	
@@ -262,7 +262,7 @@ public class CateViewController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateView/cateInvestView";
+	    return "categories/cateView/cateInvestView";
 
     }
 	
@@ -288,7 +288,7 @@ public class CateViewController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateView/cateLoveView";
+	    return "categories/cateView/cateLoveView";
 
     }
 	
@@ -314,7 +314,7 @@ public class CateViewController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateView/cateReviewView";
+	    return "categories/cateView/cateReviewView";
 
     }
 	
@@ -340,7 +340,7 @@ public class CateViewController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateView/cateTravelView";
+	    return "categories/cateView/cateTravelView";
 
     }
 }
