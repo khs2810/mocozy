@@ -1,6 +1,8 @@
 package com.kh.mocozy.catePage.controller;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -17,9 +19,6 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.mocozy.catePage.service.CateService;
 import com.kh.mocozy.club.model.vo.Club;
-import com.kh.mocozy.common.model.vo.PageInfo;
-import com.kh.mocozy.common.template.Pagination;
-import com.kh.mocozy.mainPage.service.MainService;
 import com.kh.mocozy.member.model.vo.Member;
 
 @Controller
@@ -31,126 +30,317 @@ public class CateController {
 	@RequestMapping("cateAll.ct")
 	public String showcateAll(Model model) {    
 		ArrayList<Club> catelist = cService.selectcatelist();
-	    model.addAttribute("catelist", catelist);
+		for (Club c : catelist){
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
 	    
-	    return "categories/cateAll";
+		//Club의 count 높은 순으로 정렬
+	    Collections.sort(catelist, new Comparator<Club>() {
+	        @Override
+	        public int compare(Club c1, Club c2) {
+	            return Integer.compare(c2.getCount(), c1.getCount());
+	        }
+	    });
+	    
+		model.addAttribute("catelist", catelist);
+	    
+	    return "cateRecent/cateAll";
 
     }
 	
 	@RequestMapping("cateActivity.ct")
-	public String showcateActivity(Model model) {    
-		ArrayList<Club> catelist = cService.selectcatelist();
-	    model.addAttribute("catelist", catelist);
+	public String selectActivity(Model model) {    
+		ArrayList<Club> catelist = cService.selectActivity();
+		for (Club c : catelist){
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+	    
+		//Club의 count 높은 순으로 정렬
+	    Collections.sort(catelist, new Comparator<Club>() {
+	        @Override
+	        public int compare(Club c1, Club c2) {
+	            return Integer.compare(c2.getCount(), c1.getCount());
+	        }
+	    });
+	    
+		model.addAttribute("catelist", catelist);
 
-	    return "categories/cateActivity";
+	    return "cateRecent/cateActivity";
 
     }
 	
 	@RequestMapping("cateArt.ct")
-	public String showcateArt(Model model) {    
-		ArrayList<Club> catelist = cService.selectcatelist();
-	    model.addAttribute("catelist", catelist);
+	public String selectArt(Model model) {    
+		ArrayList<Club> catelist = cService.selectArt();
+		for (Club c : catelist){
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
 	    
-	    return "categories/cateArt";
-
-    }
-	
-	@RequestMapping("cateBest20.ct")
-	public String showcateBest20(Model model) {    
-		ArrayList<Club> catelist = cService.selectcatelist();
-	    model.addAttribute("catelist", catelist);
+		//Club의 count 높은 순으로 정렬
+	    Collections.sort(catelist, new Comparator<Club>() {
+	        @Override
+	        public int compare(Club c1, Club c2) {
+	            return Integer.compare(c2.getCount(), c1.getCount());
+	        }
+	    });
 	    
-	    return "categories/cateBest20";
+	    
+		model.addAttribute("catelist", catelist);
+	    
+	    return "cateRecent/cateArt";
 
     }
 	
 	@RequestMapping("cateDevelope.ct")
-	public String showcateDevelope(Model model) {    
-		ArrayList<Club> catelist = cService.selectcatelist();
-	    model.addAttribute("catelist", catelist);
+	public String selectDevelope(Model model) {    
+		ArrayList<Club> catelist = cService.selectDevelope();
+		for (Club c : catelist){
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
 	    
-	    return "categories/cateDevelope";
+		//Club의 count 높은 순으로 정렬
+	    Collections.sort(catelist, new Comparator<Club>() {
+	        @Override
+	        public int compare(Club c1, Club c2) {
+	            return Integer.compare(c2.getCount(), c1.getCount());
+	        }
+	    });
+	    
+	    
+		model.addAttribute("catelist", catelist);
+	    
+	    return "cateRecent/cateDevelope";
 
     }
 	
 	@RequestMapping("cateFood.ct")
-	public String showcateFood(Model model) {    
-		ArrayList<Club> catelist = cService.selectcatelist();
-	    model.addAttribute("catelist", catelist);
+	public String selectFood(Model model) {    
+		ArrayList<Club> catelist = cService.selectFood();
+		for (Club c : catelist){
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
 	    
-	    return "categories/cateFood";
+		//Club의 count 높은 순으로 정렬
+	    Collections.sort(catelist, new Comparator<Club>() {
+	        @Override
+	        public int compare(Club c1, Club c2) {
+	            return Integer.compare(c2.getCount(), c1.getCount());
+	        }
+	    });
+	    
+		model.addAttribute("catelist", catelist);
+	    
+	    return "cateRecent/cateFood";
 
     }
 	
+	/* 수정해야함 */
 	@RequestMapping("cateForeign.ct")
-	public String showcateForeign(Model model) {    
-		ArrayList<Club> catelist = cService.selectcatelist();
-	    model.addAttribute("catelist", catelist);
+	public String selectForeign(Model model) {    
+		ArrayList<Club> catelist = cService.selectForeign();
+		for (Club c : catelist){
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
 	    
-	    return "categories/cateForeign";
+		//Club의 count 높은 순으로 정렬
+	    Collections.sort(catelist, new Comparator<Club>() {
+	        @Override
+	        public int compare(Club c1, Club c2) {
+	            return Integer.compare(c2.getCount(), c1.getCount());
+	        }
+	    });
+	    
+		model.addAttribute("catelist", catelist);
+	    
+	    return "cateRecent/cateForeign";
 
     }
 	
+	/* 수정해야함 */
 	@RequestMapping("cateGame.ct")
-	public String showcateGame(Model model) {    
-		ArrayList<Club> catelist = cService.selectcatelist();
-	    model.addAttribute("catelist", catelist);
+	public String selectGame(Model model) {    
+		ArrayList<Club> catelist = cService.selectGame();
+		for (Club c : catelist){
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
 	    
-	    return "categories/cateGame";
+		//Club의 count 높은 순으로 정렬
+	    Collections.sort(catelist, new Comparator<Club>() {
+	        @Override
+	        public int compare(Club c1, Club c2) {
+	            return Integer.compare(c2.getCount(), c1.getCount());
+	        }
+	    });
+	    
+		model.addAttribute("catelist", catelist);
+	    
+	    return "cateRecent/cateGame";
 
     }
 	
 	@RequestMapping("cateHobby.ct")
-	public String showcateHobby(Model model) {    
-		ArrayList<Club> catelist = cService.selectcatelist();
-	    model.addAttribute("catelist", catelist);
+	public String selectHobby(Model model) {    
+		ArrayList<Club> catelist = cService.selectHobby();
+		for (Club c : catelist){
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+	    
+		//Club의 count 높은 순으로 정렬
+	    Collections.sort(catelist, new Comparator<Club>() {
+	        @Override
+	        public int compare(Club c1, Club c2) {
+	            return Integer.compare(c2.getCount(), c1.getCount());
+	        }
+	    });
+	   
+		model.addAttribute("catelist", catelist);
 
-	    return "categories/cateHobby";
+	    return "cateRecent/cateHobby";
 
     }
 	
-	@RequestMapping("cateHot.ct")
-	public String showcateHot(Model model) {    
-		ArrayList<Club> catelist = cService.selectcatelist();
-	    model.addAttribute("catelist", catelist);
-	    
-	    return "categories/cateHot";
-
-    }
 	
 	@RequestMapping("cateInvest.ct")
 	public String showcateInvest(Model model) {    
-		ArrayList<Club> catelist = cService.selectcatelist();
-	    model.addAttribute("catelist", catelist);
+		ArrayList<Club> catelist = cService.selectInvest();
+		for (Club c : catelist){
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+		
+		//Club의 count 높은 순으로 정렬
+	    Collections.sort(catelist, new Comparator<Club>() {
+	        @Override
+	        public int compare(Club c1, Club c2) {
+	            return Integer.compare(c2.getCount(), c1.getCount());
+	        }
+	    });
 	    
-	    return "categories/cateInvest";
+		model.addAttribute("catelist", catelist);
+	    
+	    return "cateRecent/cateInvest";
 
     }
 	
 	@RequestMapping("cateLove.ct")
 	public String showcateLove(Model model) {    
-		ArrayList<Club> catelist = cService.selectcatelist();
-	    model.addAttribute("catelist", catelist);
+		ArrayList<Club> catelist = cService.selectLove();
+		for (Club c : catelist){
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
 	    
-	    return "categories/cateLove";
+		//Club의 count 높은 순으로 정렬
+	    Collections.sort(catelist, new Comparator<Club>() {
+	        @Override
+	        public int compare(Club c1, Club c2) {
+	            return Integer.compare(c2.getCount(), c1.getCount());
+	        }
+	    });
+	    
+		model.addAttribute("catelist", catelist);
+	    
+	    return "cateRecent/cateLove";
 
     }
 	
 	@RequestMapping("cateReview.ct")
 	public String showcateReview(Model model) {    
 		ArrayList<Club> catelist = cService.selectcatelist();
-	    model.addAttribute("catelist", catelist);
+		for (Club c : catelist){
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
 	    
-	    return "categories/cateReview";
+		//Club의 count 높은 순으로 정렬
+	    Collections.sort(catelist, new Comparator<Club>() {
+	        @Override
+	        public int compare(Club c1, Club c2) {
+	            return Integer.compare(c2.getCount(), c1.getCount());
+	        }
+	    });
+	    
+		model.addAttribute("catelist", catelist);
+	    
+	    return "cateRecent/cateReview";
 
     }
 	
 	@RequestMapping("cateTravel.ct")
 	public String showcateTravel(Model model) {    
-		ArrayList<Club> catelist = cService.selectcatelist();
-	    model.addAttribute("catelist", catelist);
+		ArrayList<Club> catelist = cService.selectTravel();
+		for (Club c : catelist){
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
 	    
-	    return "categories/cateTravel";
+		//Club의 count 높은 순으로 정렬
+	    Collections.sort(catelist, new Comparator<Club>() {
+	        @Override
+	        public int compare(Club c1, Club c2) {
+	            return Integer.compare(c2.getCount(), c1.getCount());
+	        }
+	    });
+	    
+		model.addAttribute("catelist", catelist);
+	    
+	    return "cateRecent/cateTravel";
 
     }
 }

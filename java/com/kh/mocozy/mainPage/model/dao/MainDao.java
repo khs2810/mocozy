@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.common.model.vo.PageInfo;
+import com.kh.mocozy.member.model.vo.Member;
 
 @Repository
 public class MainDao {
@@ -36,5 +37,25 @@ public class MainDao {
 		    RowBounds rowBounds = new RowBounds(offset, fi.getBoardLimit());
 		    return (ArrayList)sqlSession.selectList("mainPageMapper.selectRlist", null, rowBounds);
 	}
-	
+
+	public ArrayList<Member> MemberList(SqlSessionTemplate sqlSession, int clubNo) {
+		ArrayList<Member> result = (ArrayList)sqlSession.selectList("mainPageMapper.MemberList", clubNo);
+		return result;
+	}
+
+    public ArrayList<Club> getSocialing(SqlSessionTemplate sqlSession, PageInfo pi) {
+        return (ArrayList)sqlSession.selectList("mainPageMapper.getSocialing", pi);
+    }
+
+    public ArrayList<Club> getChallenge(SqlSessionTemplate sqlSession, PageInfo pi) {
+        return (ArrayList)sqlSession.selectList("mainPageMapper.getChallenge", pi);
+    }
+
+	public int getReviewCount(SqlSessionTemplate sqlSession, int clubNo) {
+		return sqlSession.selectOne("mainPageMapper.getReviewCount", clubNo);
+	}
+
+	public int getPickedCount(SqlSessionTemplate sqlSession, int clubNo) {
+		return sqlSession.selectOne("mainPageMapper.getPickedCount", clubNo);
+	}
 }

@@ -20,5 +20,18 @@ public interface MainService {
 	ArrayList<Club> selectRlist(PageInfo ri);
 	
 	ArrayList<Club> selectFlist(PageInfo fi);
+	
+	//프로필 사진 가져오기
+	ArrayList<Member> MemberList(int clubNo);
+	
+	//챌린지, 클럽
+	ArrayList<Club> getSocialing(PageInfo pi);
+	
+	ArrayList<Club> getChallenge(PageInfo pi);
+
+    int getReviewCount(int clubNo);
+
+	int getPickedCount(int clubNo);
+	
 	 
 }

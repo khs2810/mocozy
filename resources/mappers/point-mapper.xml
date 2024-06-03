@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- namespace: 해당 mapper파일의 고유한 별칭 -->
+<mapper namespace="pointMapper">
+	
+	<resultMap type="Point" id="pointResult">
+		<result column="POINT_NO" property="pointNo"/>
+		<result column="USER_NO" property="userNo"/>
+		<result column="POINT" property="point"/>
+		<result column="CREATE_DATE" property="createDate"/>
+		<result column="STATUS" property="status"/>
+	</resultMap>
+	
+	<resultMap type="Payment" id="paymentResult">
+		<result column="PAYMENT_NO" property="paymentNo"/>
+		<result column="CLUB_NO" property="clubNo"/>
+		<result column="USER_NO" property="userNo"/>
+		<result column="POINT" property="point"/>
+		<result column="PAYMENT_DATE" property="paymentDate"/>
+		<result column="STATUS" property="status"/>
+	</resultMap>
+	
+<insert id="insertPayment">
+	INSERT INTO
+			PAYMENT (
+					 payment_no,
+					 club_no,
+					 user_no,
+					 point
+					 )
+			VALUES (
+					NEXTVAL('SEQ_PMNO'),
+					#{clubNo},
+					#{userNo},
+					#{point}
+					)
+</insert>
+	
+
+	
+</mapper>

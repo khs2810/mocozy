@@ -96,4 +96,8 @@ public class ClubDao {
 	public ArrayList<Club> selectMySocialList(SqlSessionTemplate sqlSession, int uno) {
 		return (ArrayList)sqlSession.selectList("clubMapper.selectMySocialList", uno);
 	}
+
+	public int insertPayment(SqlSessionTemplate sqlSession, Request r) {
+		return sqlSession.insert("pointMapper.insertPayment", r);
+	}
 }

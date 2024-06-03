@@ -48,10 +48,10 @@ public class MemberController {
 		// 암호화 전
 		Member loginUser = memberService.loginMember(m);
 
-		if (loginUser == null) { // 로그인 실패 => 에러문구를 requestScope에 담고 에러페이지로 포워딩
-			mv.addObject("errorMsg", "로그인실패");
+		if (loginUser == null) { // 로그인 실패 => 에러문구를 requestScope에 담고 로그인페이지로 포워딩
+			mv.addObject("errorMsg", "아이디와 비밀번호를 확인하세요.");
 
-			mv.setViewName("common/errorPage");
+			mv.setViewName("member/loginPage");
 		} else { // 로그인 성공 => sessionScope에 로그인유저 담아서 메인으로 url재요청
 			session.setAttribute("loginUser", loginUser);
 			mv.setViewName("redirect:/");
@@ -119,8 +119,7 @@ public class MemberController {
 	@RequestMapping("idCheck.me")
 	public String idCheck(@RequestBody String checkId) {
 		int result = memberService.idCheck(checkId);
-		System.out.println(checkId);
-		System.out.println(result);
+
 		if (result > 0) {// 이미존재한다면
 			return "NNNNN";
 		} else { // 존재하지않는다면
@@ -139,11 +138,19 @@ public class MemberController {
 //	회원정보 수정
 	@RequestMapping("update.me")
 	public String updateMember(Member m, MultipartFile upfile, HttpSession session, Model model) {
-		Attachment at = memberService.selectAttachment(m.getUserId());
+		Attachment at = new Attachment();
+		
+		if(!upfile.getOriginalFilename().equals("")) {
+			String changeName = saveFile(upfile, session);
+			
+			at.setOriginName(upfile.getOriginalFilename());
+			at.setChangeName("/resources/koo/upfile/profile_img/" + changeName);
+			at.setFilePath("/resources/koo/upfile/profile_img/");
+		}
+		
 		m.setProfileImg(at.getChangeName());
 
-		int result = memberService.updateMember(m, at);
-		System.out.println(m);
+		int result = memberService.updateMember(m);
 
 		if (result > 0) {
 			session.setAttribute("loginUser", memberService.loginMember(m));
@@ -151,7 +158,7 @@ public class MemberController {
 			return "redirect:/myPage.me?uno=" + m.getUserNo();
 		} else {
 			model.addAttribute("errorMsg", "회원정보 수정 실패");
-			return "common/errorPage";
+			return "myPage/myProfile";
 		}
 
 	}
@@ -174,7 +181,7 @@ public class MemberController {
 		String changeName = currentTime + ranNum + ext;
 
 		// 첨부파일을 저장할 폴더의 물리적 경로(session)
-		String savePath = session.getServletContext().getRealPath("/resources/koo/upfile/profile_img");
+		String savePath = session.getServletContext().getRealPath("/resources/koo/upfile/profile_img/");
 
 		try {
 			upfile.transferTo(new File(savePath + changeName));
@@ -199,7 +206,6 @@ public class MemberController {
     @PostMapping("checkPassword.me")
     public String checkPassword(Member m, @RequestParam("currentPwd") String currentPwd, HttpSession session) {
         // 현재 로그인한 사용자의 정보를 세션에서 가져옴
-		System.out.println(m);
         Member loginUser = (Member) session.getAttribute("loginUser");
         if (loginUser == null) {
         	System.out.println(loginUser);
@@ -226,7 +232,8 @@ public class MemberController {
 
 		if (result > 0) {
 			session.setAttribute("loginUser", memberService.loginMember(m));
-			session.setAttribute("alertMsg", "비밀번호 수정 성공");
+			session.setAttribute("alertMsg", "비밀번호 수정 성공. 다시 로그인 해주세요.");
+			session.removeAttribute("loginUser");
 			return "redirect:/";
 		} else {
 			model.addAttribute("errorMsg", "비밀번호 수정 실패");
@@ -245,17 +252,13 @@ public class MemberController {
 //		if (bcryptPasswordEncoder.matches(m.getUserPwd(), userPwd)) {
 		// 일치 -> 탈퇴처리 -> session에서 제거 -> 메인페이지로
 		int result = memberService.deleteMember(m.getUserId());
-		System.out.println(2);
-		System.out.println(result);
 		if (result > 0) {
 			session.removeAttribute("loginUser");
 			session.setAttribute("alertMsg", "회원탈퇴가 성공적으로 이루어졌습니다.");
-			System.out.println(3);
 			return "redirect:/";
 
 		} else {
 			session.setAttribute("alertMsg", "비밀번호를 다시 확인해주세요");
-			System.out.println(4);
 			return "redirect:/myProfile.me";
 
 		}
@@ -335,7 +338,7 @@ public class MemberController {
 		} else {
 			return new Gson().toJson("NNN");
 		}
-	}
+	} 
 	
 	//찜 ajax 업데이트
 		@ResponseBody

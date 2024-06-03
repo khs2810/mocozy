@@ -19,10 +19,10 @@ public interface MemberService {
 	int insertMember(Member m);
 	
 	//회원수정
-	int updateMember(Member m, Attachment at);
+	int updateMember(Member m);
 	
 //	유저 프로필 사진
-	Attachment selectAttachment(String userId);
+	Attachment insertAttachment(int uno);
 	
 	//현재 비밀번호 확인
 	String pwdCheck(String userId);
@@ -34,7 +34,7 @@ public interface MemberService {
 	Member deleteMember(Member m);
 	int deleteMember(String userId);
 
-	int pointUpdate(Request r);
+	int pointUpdateRq(Request r);
 	
 	//cno클럽에 참여한 맴버들
 	ArrayList<Member> participatedMemberList(int cno);
@@ -47,6 +47,12 @@ public interface MemberService {
 	int ajaxDeletePicked(Picked p);
 
 	ArrayList<Member> requestMemberList(int cno);
+	
+	//포인트 충전
+	int chargePoint(Member m);
+	
+	//포인트 출금
+	int withdrawPoint(Member m);
 
 	
 

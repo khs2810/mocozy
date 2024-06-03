@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.common.model.vo.PageInfo;
+import com.kh.mocozy.member.model.vo.Member;
 
 @Repository
 public class SearchDao {
@@ -31,26 +32,9 @@ public class SearchDao {
 			return sqlSession.selectOne("searchMapper.searchForm", map);
 		}
 		  
-		// 카테고리 검색
-		/* MenuSelectSearchRest */
-		public ArrayList<Club> selectSearchCate(SqlSessionTemplate sqlSession, PageInfo re){
-			int offset = (re.getCurrentPage() - 1) * re.getBoardLimit();
-			int limit = re.getBoardLimit();
-//			System.out.println(pi);
-			RowBounds rowBounds = new RowBounds(offset, limit);
-			
-			return (ArrayList)sqlSession.selectList("searchMapper.selectSearchCate", null, rowBounds);
-		} 
-		
-		// 클럽 검색
-		/* selectSearchRest */
-		public ArrayList<Club> selectSearchClub(SqlSessionTemplate sqlSession, PageInfo re){
-			
-			int offset = (re.getCurrentPage() - 1) * re.getBoardLimit();
-			int limit = re.getBoardLimit();
-//			System.out.println(pi);
-			RowBounds rowBounds = new RowBounds(offset, limit);
-			return (ArrayList)sqlSession.selectList("searchMapper.selectSearchClub", null, rowBounds);
+		public ArrayList<Member> MemberList(SqlSessionTemplate sqlSession, int clubNo) {
+			ArrayList<Member> result = (ArrayList)sqlSession.selectList("searchMapper.MemberList", clubNo);
+			return result;
 		}
 }
 

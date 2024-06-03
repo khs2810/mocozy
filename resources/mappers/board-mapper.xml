@@ -141,4 +141,27 @@
 			SET STATUS = 'N'
 		WHERE REPLY_NO = ${rno}
 	</update>
+	
+	<select id="selectNoticeListCountWithKeyword" parameterType="java.util.Map" resultType="_int">
+		SELECT COUNT(*)
+		FROM NOTICE n
+		join member using (user_no)
+		WHERE n.STATUS = 'Y'
+			AND ${keywordType} like '%'||#{keyword}||'%'
+	</select>
+	
+	<select id="selectNoticeListKeyword" parameterType="java.util.Map" resultMap="noticeResult">
+		SELECT  NOTICE_NO,
+	    		NOTICE_TITLE,
+	    		NOTICE_TYPE,
+	   			USER_NO,
+				COUNT,
+				N.MODIFY_DATE,
+				NICKNAME
+		FROM NOTICE N
+		JOIN MEMBER USING (USER_NO)
+		WHERE N.STATUS = 'Y'
+			AND ${keywordType} like '%'||#{keyword}||'%'
+		ORDER BY NOTICE_NO DESC
+	</select>
 </mapper>

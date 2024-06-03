@@ -143,7 +143,7 @@ li {
   cursor: pointer;
 }
 
-.rank .ranklayer .circle .icon{
+.rank .ranklayer .one .bootstrapicon{
   width: 2rem;
   height: 2rem;
 }
@@ -151,27 +151,20 @@ li {
 .rank .one{
   position: relative;
   display: flex;
-  cursor: pointer;
-  height: 5rem;
-  width: 5rem;
-}
-
-.rank .ranklayer .one .graycontent{
-  display: flex;
   align-items: center;
-  justify-content: center;
-  background-color: rgb(199, 199, 199);
-  border-radius: 100%;
-  width: 4rem;
-  height: 4rem;
+  justify-content: space-between;
   cursor: pointer;
+  height: 3rem;
+  width: 10rem;
 }
 
-.rank .ranklayer .one .icon{
-  width: 2rem;
-  height: 2rem;
+.rank .reviewCount{
+  color: gray;
+  font-size: 18px;
+  font-weight: 500;
+  text-align: center;
+  margin-right: 4rem;
 }
-
 .rank .slide {
   display: flex;
   justify-content: space-between;

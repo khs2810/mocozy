@@ -28,9 +28,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public Attachment selectAttachment(String userId) {
-		// TODO Auto-generated method stub
-		return null;
+	public Attachment insertAttachment(int uno) {
+		return memberDao.insertAttachment(sqlSession, uno);
 	}
 
 	@Override
@@ -50,7 +49,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int updateMember(Member m, Attachment at) {
+	public int updateMember(Member m) {
 		return memberDao.updateMember(sqlSession, m);
 	}
 	
@@ -69,8 +68,8 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public int pointUpdate(Request r) {
-		return memberDao.pointUpdate(sqlSession, r);
+	public int pointUpdateRq(Request r) {
+		return memberDao.pointUpdateRq(sqlSession, r);
 	}
 
 	@Override
@@ -101,6 +100,16 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public ArrayList<Member> requestMemberList(int cno) {
 		return memberDao.requestMemberList(sqlSession, cno);
+	}
+
+	@Override
+	public int chargePoint(Member m) {
+		return memberDao.chargePoint(sqlSession, m);
+	}
+
+	@Override
+	public int withdrawPoint(Member m) {
+		return memberDao.withdrawPoint(sqlSession, m);
 	}
 	
 }

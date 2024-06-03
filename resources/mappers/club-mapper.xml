@@ -45,6 +45,7 @@
 		<result column="ANSWER" property="answer"/>
 		<result column="CREATE_DATE" property="createDate"/>
 		<result column="STATUS" property="status"/>
+		<result column="PAYMENT_NO" property="paymentNo"/>
 	</resultMap>
 	
 	<update id="increaseCount">
@@ -76,7 +77,8 @@
 			   COUNT,
 			   NICKNAME,
 			   category_name1,
-			   category_name2
+			   category_name2,
+			   profile_img
 	FROM public.CLUB
 		join MEMBER USING (USER_NO)
 	WHERE public.CLUB.STATUS = 'Y'
@@ -222,13 +224,15 @@
 					request_no,
 					user_no,
 					club_no,
-					answer
+					answer,
+					payment_no
 					)
 			VALUES (
 					NEXTVAL('SEQ_RQNO'), 
 					#{userNo},
 					#{clubNo},
-					#{answer}
+					#{answer},
+					CURRVAL('SEQ_PMNO')
 					)
 	</insert>
 	

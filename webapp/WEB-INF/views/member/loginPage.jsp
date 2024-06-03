@@ -11,7 +11,7 @@
 
 </head>
 <body class="Login_page">
-    <form action="login.me">
+    <form action="login.me" method="post">
         <div class="Login-content">
             <a href="${pageContext.request.contextPath}">
             	<img src="${pageContext.request.contextPath}/resources/koo/upfile/loginPage_img/logo.png" id="logo" alt="모꼬지">
@@ -59,5 +59,14 @@
         </div>
 
     </form>
+
+    <script>
+        window.onload = function() {
+        const errorMsg = '<%= request.getAttribute("errorMsg") != null ? request.getAttribute("errorMsg") : "" %>';
+        if (errorMsg) {
+            alert(errorMsg);
+        }
+    };
+    </script>
 </body>
 </html>

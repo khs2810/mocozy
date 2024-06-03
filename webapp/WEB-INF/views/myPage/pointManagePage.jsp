@@ -11,6 +11,9 @@
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jun/css/pointManagePage.css">
 	<script src="${pageContext.request.contextPath}/resources/jun/js/pointManagePage.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css" />
+    
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>
@@ -29,7 +32,7 @@
                     <p style="font-size: 24px; margin-left: 5px; font-weight: 650;">잔여 포인트</p>
                 </div>
                 <div class="pointBox-mid">
-                    <p class="point-level">110,000,000,000pt</p>
+                    <p class="point-level">${loginUser.point} pt</p>
                 </div>
                 <div class="pointBox-foot">
                     <button type="button" class="chargeBtn" data-toggle="modal" data-target="#chargeWindow">충 전</button>
@@ -62,29 +65,32 @@
     <div class="modal" id="chargeWindow">
         <div class="modal-dialog">
             <div class="modal-content">
-            
-                <!-- Modal Header -->
-                <div class="modal-header">
-                <h4 class="modal-title">얼마나 충전할까요?</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <input type="radio" name="chargeMoney" id="btn100"><label for="btn100">100만원</label><br>
-                    <input type="radio" name="chargeMoney" id="btn50"><label for="btn50">50만원</label><br>
-                    <input type="radio" name="chargeMoney" id="btn20"><label for="btn20">20만원</label><br>
-                    <input type="radio" name="chargeMoney" id="btn10"><label for="btn10">10만원</label><br>
-                    <input type="radio" name="chargeMoney" id="btn1"><label for="btn1">1만원</label><br>
-                    <input type="radio" name="chargeMoney" id="directInput"><label for="directInput">직접 입력하기</label><br>
-                    <input type="number" id="directAmount" placeholder="숫자만 입력해주세요" disabled>
-                </div>
-                
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">충전하기</button>
-                </div>
-                
+                <form type="POST" action="charge.pt">
+                    <input type="hidden" name="userNo" value="${loginUser.userNo}">
+                    <input type="hidden" name="userId" value="${loginUser.userId}">
+                    <input type="hidden" name="userPwd" value="${loginUser.userPwd}">
+                    <!-- Modal Header -->
+                    <div class="modal-header">
+                    <h4 class="modal-title">얼마나 충전할까요?</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+                    
+                    <!-- Modal body -->
+                    <div class="modal-body">
+                        <input type="radio" name="point" id="btn100" value="1000000"><label for="btn100">100만원</label><br>
+                        <input type="radio" name="point" id="btn50" value="500000"><label for="btn50">50만원</label><br>
+                        <input type="radio" name="point" id="btn20" value="200000"><label for="btn20">20만원</label><br>
+                        <input type="radio" name="point" id="btn10" value="100000"><label for="btn10">10만원</label><br>
+                        <input type="radio" name="point" id="btn1" value="10000"><label for="btn1">1만원</label><br>
+                        <input type="radio" name="point" id="directInput"><label for="directInput">직접 입력하기</label><br>
+                        <input type="number" id="directAmount" placeholder="숫자만 입력해주세요" disabled>
+                    </div>
+                    
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary" >충전하기</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -100,33 +106,37 @@
                 </div>
                 
                 <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="body-row1">
-                        <span>잔여 포인트</span>
-                        <div>
-                            <span id="remaining-point">110000</span>
-                            <span>pt</span>
+                <form type="POST" action="withdraw.pt">
+                    <input type="hidden" name="userNo" value="${loginUser.userNo}">
+                    <input type="hidden" name="userId" value="${loginUser.userId}">
+                    <input type="hidden" name="userPwd" value="${loginUser.userPwd}">
+                    <div class="modal-body">
+                        <div class="body-row1">
+                            <span>잔여 포인트</span>
+                            <div>
+                                <span id="remaining-point">${loginUser.point}</span>
+                                <span>pt</span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="body-row2">
-                        <span>금액 입력</span>
-                        <div class="point-area">
-                            <input type="number" id="point-input">
-                            <div class="point-opt">
-                                <div>
-                                    <input type="checkbox" id="widthdrawAll"> 전액 출금
+                        <div class="body-row2">
+                            <span>금액 입력</span>
+                            <div class="point-area">
+                                <input type="number" name="point" id="point-input">
+                                <div class="point-opt">
+                                    <div>
+                                        <input type="checkbox" id="widthdrawAll"> 전액 출금
+                                    </div>
+                                    <span>※ 출금 수수료 10%</span>
                                 </div>
-                                <span>※ 출금 수수료 10%</span>
                             </div>
                         </div>
                     </div>
-                </div>
-                
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-primary" data-dismiss="modal">출금하기</button>
-                </div>
-                
+                    
+                    <!-- Modal footer -->
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-primary">출금하기</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>

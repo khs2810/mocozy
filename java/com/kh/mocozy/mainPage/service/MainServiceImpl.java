@@ -39,4 +39,30 @@ public class MainServiceImpl implements MainService {
     public ArrayList<Club> selectFlist(PageInfo fi) {
     	return mainDao.selectClist(sqlSession, fi);
     }
+
+	@Override
+	public ArrayList<Member> MemberList(int clubNo) {
+		ArrayList<Member> result = mainDao.MemberList(sqlSession, clubNo);
+		return result;
+	}
+
+    @Override
+    public ArrayList<Club> getSocialing(PageInfo pi) {
+        return mainDao.getSocialing(sqlSession, pi);
+    }
+
+    @Override
+    public ArrayList<Club> getChallenge(PageInfo pi) {
+        return mainDao.getChallenge(sqlSession, pi);
+    }
+
+    @Override
+    public int getReviewCount(int clubNo) {
+        return mainDao.getReviewCount(sqlSession, clubNo);
+    }
+    
+    @Override
+    public int getPickedCount(int clubNo) {
+        return mainDao.getPickedCount(sqlSession, clubNo);
+    }
 }
