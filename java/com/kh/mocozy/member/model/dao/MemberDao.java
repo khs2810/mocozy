@@ -71,6 +71,8 @@ public class MemberDao {
 
 	public int withdrawPoint(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.update("memberMapper.withdrawPoint", m);
+	}
+	
 	public Attachment insertAttachment(SqlSessionTemplate sqlSession, int uno) {
 		return null;
 	}
