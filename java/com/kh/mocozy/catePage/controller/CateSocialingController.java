@@ -26,20 +26,25 @@ public class CateSocialingController {
 
     @Autowired
     private CateService cService;
-
+    
+    //조회순
 	@RequestMapping("cateBest.ct")
 	public String cateBest(Model model) {    
-		ArrayList<Club> catelist = cService.selectcatelist();
-		for (Club c : catelist){
-		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	imgs.add(m.getProfileImg());
-		    }
-		    c.setProfileImg(imgs);    
-		}
+		//소셜링 불러오기
+	    ArrayList<Club> catelist = cService.getSocialing();
+	    //소셜링 안의 클럽 불러오기
+	    for (Club c : catelist){
+	    	//클럽 안의 멤버들
+	        ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+	        //멤버 이미지
+	        ArrayList<String> imgs = new ArrayList<String>();
+	        for (Member m : memberList) {
+	            imgs.add(m.getProfileImg());
+	        }
+	        c.setProfileImg(imgs);    
+	    }
 	    
-		//Club의 count 높은 순으로 정렬
+	    // 클럽 리스트를 count가 최신인 순으로 정렬
 	    Collections.sort(catelist, new Comparator<Club>() {
 	        @Override
 	        public int compare(Club c1, Club c2) {
@@ -53,24 +58,30 @@ public class CateSocialingController {
 	    return "categories/cateSocialing/cateBest";
 
     }
-
+	
+	//찜순
 	@RequestMapping("cateHot.ct")
-	public String showcateHot(Model model) {    
-		ArrayList<Club> catelist = cService.selectcatelist();
-		for (Club c : catelist){
-		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	imgs.add(m.getProfileImg());
-		    }
-		    c.setProfileImg(imgs);    
-		}
-		
-		//Club의 count 높은 순으로 정렬
+	public String cateHot(Model model) {    
+		//소셜링 불러오기
+	    ArrayList<Club> catelist = cService.getSocialing();
+	  //소셜링 안의 클럽 불러오기
+	    for (Club c : catelist){
+	    	//클럽 안의 멤버들
+	        ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+	      //멤버 이미지
+	        ArrayList<String> imgs = new ArrayList<String>();
+	        for (Member m : memberList) {
+	            imgs.add(m.getProfileImg());
+	        }
+	        c.setProfileImg(imgs); 
+	        c.setPickCount(cService.getPickedCount(c.getClubNo()));
+	    }
+	    
+	  //Club의 pickcount 높은 순으로 정렬
 	    Collections.sort(catelist, new Comparator<Club>() {
 	        @Override
 	        public int compare(Club c1, Club c2) {
-	            return Integer.compare(c2.getCount(), c1.getCount());
+	            return Integer.compare(c2.getPickCount(), c1.getPickCount());
 	        }
 	    });
 	    
@@ -79,24 +90,29 @@ public class CateSocialingController {
 	    return "categories/cateSocialing/cateHot";
 
     }
-
+	
+	//최신순
 	@RequestMapping("cateRecent.ct")
-	public String showcateReview(Model model) {    
-		ArrayList<Club> catelist = cService.selectcatelist();
-		for (Club c : catelist){
-		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	imgs.add(m.getProfileImg());
-		    }
-		    c.setProfileImg(imgs);    
-		}
+	public String cateRecent(Model model) {    
+		//소셜링 불러오기
+	    ArrayList<Club> catelist = cService.getSocialing();
+	    //소셜링 안의 클럽 불러오기
+	    for (Club c : catelist){
+	    	//클럽 안의 멤버들
+	        ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+	        //멤버 이미지
+	        ArrayList<String> imgs = new ArrayList<String>();
+	        for (Member m : memberList) {
+	            imgs.add(m.getProfileImg());
+	        }
+	        c.setProfileImg(imgs);    
+	    }
 	    
-		//Club의 count 높은 순으로 정렬
+	    // 클럽 리스트를 createDate가 최신인 순으로 정렬
 	    Collections.sort(catelist, new Comparator<Club>() {
 	        @Override
 	        public int compare(Club c1, Club c2) {
-	            return Integer.compare(c2.getCount(), c1.getCount());
+	            return c2.getCreateDate().compareTo(c1.getCreateDate());
 	        }
 	    });
 	    

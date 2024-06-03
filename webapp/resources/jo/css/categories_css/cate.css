@@ -85,6 +85,10 @@ li {
   top: 5px;
 }
 
+.rightlistTitle > p > a:hover{
+	color: rgb(255 0 69); 
+}
+
 .catePage .rightlistContent > span {
   line-height: 1.25rem;
 	color: rgb(255 0 69);
@@ -290,13 +294,6 @@ li {
   height: 8px;
 }
 
-.catePage .participant .socialmember{
-  display: flex;
-  position: relative;
-  justify-content: center;
-  align-items: center;
-}
-
 .catePage .participant .people{
   width: 45px;
   height: 45px;
@@ -364,10 +361,6 @@ li {
       height: 22px;
   }
 
-  .catePage .participant .socialmember {
-      margin-left: 4.7px;
-  }
-
   .catePage .participant .people {
      width: 45px;
  	  height: 45px;
@@ -429,11 +422,18 @@ li {
       height: 24px;
   }
 
-  .catePage .participant .count {
-      margin-left: 0.5rem;
-      font-size: 16px;
+ .catePage .participant .count {
+      font-size: 12px;
       line-height: 19px;
   }
+}
+
+.catePage .participant .socialmember{
+    display: flex;
+    position: relative;
+    justify-content: right;
+    align-items: center;
+    width: 300px;
 }
 
 .catePage .plus{

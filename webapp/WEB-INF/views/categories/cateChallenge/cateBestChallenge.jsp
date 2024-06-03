@@ -41,9 +41,8 @@
 
 					<div class="rightlistTitle">
 						<div class="rightlistContent">
-							<span id="cateRecent"> 최근순 </span>
-							<p id="cateDibs">추천순</p>
-							<p id="cateViews">인기순</p>
+							<p id="cateRecent"><a href="cateBest.ct">소셜링</a></p>
+							<span id="cateDibs"><a href="cateBestChallenge.ct">챌린지</a></span]>
 						</div>
 					</div>
 				</div>

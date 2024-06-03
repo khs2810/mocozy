@@ -31,9 +31,15 @@
 
 					<div class="rightlistTitle">
 						<div class="rightlistContent">
-							<span id="cateRecent"> 최근순 </span>
-							<p id="cateDibs">추천순</p>
-							<p id="cateViews">인기순</p>
+							<p id="cateRecent">
+								<a href="searchForm.sc" onclick="location.href='/searchForm.sc?keyword='+keyword+'&rpage='+currentPage">최신순</a>
+							</p>
+							<p id="cateDibs">
+								<a href="searchFormPick.sc" onclick="location.href='/searchFormPick.sc?keyword='+keyword+'&rpage='+currentPage">인기순</a>
+							</p>
+							<span id="cateViews">
+								<a href="searchFormView.sc" onclick="location.href='/searchFormView.sc?keyword='+keyword+'&rpage='+currentPage">조회순</a>
+							</span>
 						</div>
 					</div>
 				</div>

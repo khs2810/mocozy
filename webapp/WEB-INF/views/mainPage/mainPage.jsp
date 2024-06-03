@@ -93,7 +93,7 @@
 											  <path
 														d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
 											</svg>
-												<div class="count">${club.count}</div>
+												<div class="count">${club.createDate}</div>
 											</div>
 										</div>
 									</div>
@@ -112,7 +112,7 @@
 
 			<div class="box">
 				<div class="screenheader">
-					<h1 class="title">HOT 클래스 🔥</h1>
+					<h1 class="title">조회수 인기 모임</h1>
 					<div class="selectBox">
 						<a href="cateHot.ct">모두보기</a>
 					</div>

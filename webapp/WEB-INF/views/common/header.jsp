@@ -83,9 +83,9 @@
 											<h3 class="getName">인기</h3>
 											<div class="getTitle">
 												<div class="cateL">
-													<a href="cateBest20.ct" class="cateT">따끈따끈 신규 모임</a> <a
-														href="cateHOT.ct" class="cateT">HOT 클래스</a> <a
-														href="cateReview.ct" class="cateT">리뷰순 모임</a>
+													<a href="cateRecent.ct" class="cateT">따끈따끈 신규 모임</a> <a
+														href="cateHot.ct" class="cateT">HOT 클래스</a> <a
+														href="cateBest.ct" class="cateT">조회순 모임</a>
 												</div>
 											</div>
 										</li>
@@ -148,13 +148,13 @@
 
 						<div class="studio">
 							<div class="stu">
-								<a href="cateHot.ct">실시간 HOT 🔥</a>
+								<a href="cateHot.ct">HOT 클래스 🔥</a>
 							</div>
 
 							<div class="studioBorder"></div>
 
 							<div class="stubutton">
-								<a href="cateBest20.ct">주간베스트</a>
+								<a href="cateRecent.ct">신규모임</a>
 							</div>
 						</div>
 

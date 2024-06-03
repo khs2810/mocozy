@@ -45,11 +45,11 @@ public class SearchPickController {
 		    c.setProfileImg(imgs);    
 		}
 		
-		//Club의 count 높은 순으로 정렬
+		  //Club의 pickcount 높은 순으로 정렬
 	    Collections.sort(clist, new Comparator<Club>() {
 	        @Override
 	        public int compare(Club c1, Club c2) {
-	            return Integer.compare(c2.getCount(), c1.getCount());
+	            return Integer.compare(c2.getPickCount(), c1.getPickCount());
 	        }
 	    });
 	    

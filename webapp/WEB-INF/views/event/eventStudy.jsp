@@ -17,16 +17,16 @@
 	src="${pageContext.request.contextPath}/resources/jo/js/event_js/event.js"></script>
 </head>
 
-<%@ include file="../../common/header.jsp"%>
+<%@ include file="../common/header.jsp"%>
 
 <body>
 	<div class="bannerbox"></div>
 	<!-- 상단배너 -->
-	<section class="eventbanner" id="eventsection1">
+	<section class="eventbanner" id="eventsection5">
 		<div class="eventbannerdiv">
-			<h1>장기투어 기획전</h1>
+			<h1>스터디 기획전</h1>
 			<h3>
-				낯선 공간속 새로운 만남 <br> 모꼬지와 버킷리스트를 완성해보세요
+				생각하는 대로 자연스럽게 <br> 즐겁게 스터디하며 실력을 키워봐요
 			</h3>
 			<a href="javascript:void(0);" class="scrolldown"> <!-- scroll 애니메이션 -->
 				<span></span> <span></span> <span></span> <!-- --> Scroll
@@ -111,8 +111,8 @@
 	</div>
 	</div>
 
-	<%@ include file="../../common/footer.jsp"%>
+	<%@ include file="../common/footer.jsp"%>
 </body>
-<%@ include file="../../common/topButton.jsp"%>
+<%@ include file="../common/topButton.jsp"%>
 
 </html>

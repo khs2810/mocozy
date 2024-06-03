@@ -25,6 +25,11 @@ li {
     flex-direction: column;
 }
 
+.errorpage h1{
+	text-align: center; 
+	color: orange;
+}
+
 .errorpage .errorimg {
     display: flex;
     align-items: center;

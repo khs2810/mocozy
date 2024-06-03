@@ -26,7 +26,8 @@ public class CatePickController {
 
     @Autowired
     private CateService cService;
-
+    
+    //전체
 	@RequestMapping("cateAllPick.ct")
 	public String showcateAll(Model model) {    
 		ArrayList<Club> catelist = cService.selectcatelist();
@@ -39,11 +40,11 @@ public class CatePickController {
 		    c.setProfileImg(imgs);    
 		}
 	    
-		//Club의 count 높은 순으로 정렬
+		  //Club의 pickcount 높은 순으로 정렬
 	    Collections.sort(catelist, new Comparator<Club>() {
 	        @Override
 	        public int compare(Club c1, Club c2) {
-	            return Integer.compare(c2.getCount(), c1.getCount());
+	            return Integer.compare(c2.getPickCount(), c1.getPickCount());
 	        }
 	    });
 	    
@@ -53,6 +54,7 @@ public class CatePickController {
 
     }
 	
+	//액티비티
 	@RequestMapping("cateActivityPick.ct")
 	public String selectActivity(Model model) {    
 		ArrayList<Club> catelist = cService.selectActivity();
@@ -65,11 +67,11 @@ public class CatePickController {
 		    c.setProfileImg(imgs);    
 		}
 	    
-		//Club의 count 높은 순으로 정렬
+		  //Club의 pickcount 높은 순으로 정렬
 	    Collections.sort(catelist, new Comparator<Club>() {
 	        @Override
 	        public int compare(Club c1, Club c2) {
-	            return Integer.compare(c2.getCount(), c1.getCount());
+	            return Integer.compare(c2.getPickCount(), c1.getPickCount());
 	        }
 	    });
 	    
@@ -79,6 +81,7 @@ public class CatePickController {
 
     }
 	
+	//문화
 	@RequestMapping("cateArtPick.ct")
 	public String selectArt(Model model) {    
 		ArrayList<Club> catelist = cService.selectArt();
@@ -91,11 +94,11 @@ public class CatePickController {
 		    c.setProfileImg(imgs);    
 		}
 	    
-		//Club의 count 높은 순으로 정렬
+		  //Club의 pickcount 높은 순으로 정렬
 	    Collections.sort(catelist, new Comparator<Club>() {
 	        @Override
 	        public int compare(Club c1, Club c2) {
-	            return Integer.compare(c2.getCount(), c1.getCount());
+	            return Integer.compare(c2.getPickCount(), c1.getPickCount());
 	        }
 	    });
 	    
@@ -106,6 +109,7 @@ public class CatePickController {
 
     }
 	
+	//자기개발
 	@RequestMapping("cateDevelopePick.ct")
 	public String selectDevelope(Model model) {    
 		ArrayList<Club> catelist = cService.selectDevelope();
@@ -118,11 +122,11 @@ public class CatePickController {
 		    c.setProfileImg(imgs);    
 		}
 	    
-		//Club의 count 높은 순으로 정렬
+		  //Club의 pickcount 높은 순으로 정렬
 	    Collections.sort(catelist, new Comparator<Club>() {
 	        @Override
 	        public int compare(Club c1, Club c2) {
-	            return Integer.compare(c2.getCount(), c1.getCount());
+	            return Integer.compare(c2.getPickCount(), c1.getPickCount());
 	        }
 	    });
 	    
@@ -133,6 +137,7 @@ public class CatePickController {
 
     }
 	
+	//푸드 드링크
 	@RequestMapping("cateFoodPick.ct")
 	public String selectFood(Model model) {    
 		ArrayList<Club> catelist = cService.selectFood();
@@ -145,11 +150,11 @@ public class CatePickController {
 		    c.setProfileImg(imgs);    
 		}
 	    
-		//Club의 count 높은 순으로 정렬
+		  //Club의 pickcount 높은 순으로 정렬
 	    Collections.sort(catelist, new Comparator<Club>() {
 	        @Override
 	        public int compare(Club c1, Club c2) {
-	            return Integer.compare(c2.getCount(), c1.getCount());
+	            return Integer.compare(c2.getPickCount(), c1.getPickCount());
 	        }
 	    });
 	    
@@ -159,7 +164,7 @@ public class CatePickController {
 
     }
 	
-	/* 수정해야함 */
+	//외국어
 	@RequestMapping("cateForeignPick.ct")
 	public String selectForeign(Model model) {    
 		ArrayList<Club> catelist = cService.selectForeign();
@@ -172,11 +177,11 @@ public class CatePickController {
 		    c.setProfileImg(imgs);    
 		}
 	    
-		//Club의 count 높은 순으로 정렬
+		  //Club의 pickcount 높은 순으로 정렬
 	    Collections.sort(catelist, new Comparator<Club>() {
 	        @Override
 	        public int compare(Club c1, Club c2) {
-	            return Integer.compare(c2.getCount(), c1.getCount());
+	            return Integer.compare(c2.getPickCount(), c1.getPickCount());
 	        }
 	    });
 	    
@@ -186,7 +191,7 @@ public class CatePickController {
 
     }
 	
-	/* 수정해야함 */
+	//게임
 	@RequestMapping("cateGamePick.ct")
 	public String selectGame(Model model) {    
 		ArrayList<Club> catelist = cService.selectGame();
@@ -199,11 +204,11 @@ public class CatePickController {
 		    c.setProfileImg(imgs);    
 		}
 	    
-		//Club의 count 높은 순으로 정렬
+		  //Club의 pickcount 높은 순으로 정렬
 	    Collections.sort(catelist, new Comparator<Club>() {
 	        @Override
 	        public int compare(Club c1, Club c2) {
-	            return Integer.compare(c2.getCount(), c1.getCount());
+	            return Integer.compare(c2.getPickCount(), c1.getPickCount());
 	        }
 	    });
 	    
@@ -213,6 +218,7 @@ public class CatePickController {
 
     }
 	
+	//취미
 	@RequestMapping("cateHobbyPick.ct")
 	public String selectHobby(Model model) {    
 		ArrayList<Club> catelist = cService.selectHobby();
@@ -225,11 +231,11 @@ public class CatePickController {
 		    c.setProfileImg(imgs);    
 		}
 	    
-		//Club의 count 높은 순으로 정렬
+		  //Club의 pickcount 높은 순으로 정렬
 	    Collections.sort(catelist, new Comparator<Club>() {
 	        @Override
 	        public int compare(Club c1, Club c2) {
-	            return Integer.compare(c2.getCount(), c1.getCount());
+	            return Integer.compare(c2.getPickCount(), c1.getPickCount());
 	        }
 	    });
 	   
@@ -239,7 +245,7 @@ public class CatePickController {
 
     }
 	
-	
+	//재테크
 	@RequestMapping("cateInvestPick.ct")
 	public String showcateInvest(Model model) {    
 		ArrayList<Club> catelist = cService.selectInvest();
@@ -252,11 +258,11 @@ public class CatePickController {
 		    c.setProfileImg(imgs);    
 		}
 		
-		//Club의 count 높은 순으로 정렬
+		  //Club의 pickcount 높은 순으로 정렬
 	    Collections.sort(catelist, new Comparator<Club>() {
 	        @Override
 	        public int compare(Club c1, Club c2) {
-	            return Integer.compare(c2.getCount(), c1.getCount());
+	            return Integer.compare(c2.getPickCount(), c1.getPickCount());
 	        }
 	    });
 	    
@@ -266,6 +272,7 @@ public class CatePickController {
 
     }
 	
+	//연애
 	@RequestMapping("cateLovePick.ct")
 	public String showcateLove(Model model) {    
 		ArrayList<Club> catelist = cService.selectLove();
@@ -278,11 +285,11 @@ public class CatePickController {
 		    c.setProfileImg(imgs);    
 		}
 	    
-		//Club의 count 높은 순으로 정렬
+		  //Club의 pickcount 높은 순으로 정렬
 	    Collections.sort(catelist, new Comparator<Club>() {
 	        @Override
 	        public int compare(Club c1, Club c2) {
-	            return Integer.compare(c2.getCount(), c1.getCount());
+	            return Integer.compare(c2.getPickCount(), c1.getPickCount());
 	        }
 	    });
 	    
@@ -292,32 +299,7 @@ public class CatePickController {
 
     }
 	
-	@RequestMapping("cateReviewPick.ct")
-	public String showcateReview(Model model) {    
-		ArrayList<Club> catelist = cService.selectcatelist();
-		for (Club c : catelist){
-		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	imgs.add(m.getProfileImg());
-		    }
-		    c.setProfileImg(imgs);    
-		}
-	    
-		//Club의 count 높은 순으로 정렬
-	    Collections.sort(catelist, new Comparator<Club>() {
-	        @Override
-	        public int compare(Club c1, Club c2) {
-	            return Integer.compare(c2.getCount(), c1.getCount());
-	        }
-	    });
-	    
-		model.addAttribute("catelist", catelist);
-	    
-	    return "categories/catePick/cateReviewPick";
-
-    }
-	
+	//여행
 	@RequestMapping("cateTravelPick.ct")
 	public String showcateTravel(Model model) {    
 		ArrayList<Club> catelist = cService.selectTravel();
@@ -330,11 +312,11 @@ public class CatePickController {
 		    c.setProfileImg(imgs);    
 		}
 	    
-		//Club의 count 높은 순으로 정렬
+		  //Club의 pickcount 높은 순으로 정렬
 	    Collections.sort(catelist, new Comparator<Club>() {
 	        @Override
 	        public int compare(Club c1, Club c2) {
-	            return Integer.compare(c2.getCount(), c1.getCount());
+	            return Integer.compare(c2.getPickCount(), c1.getPickCount());
 	        }
 	    });
 	    

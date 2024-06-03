@@ -69,19 +69,19 @@ public class MainController {
 	        c.setReviewCount(mService.getReviewCount(c.getClubNo()));
 	    }
 	    
-	  //Club의 Reviewcount가 높은 순으로 정렬
+		  //Club의 pickcount 높은 순으로 정렬
 	    Collections.sort(rlist, new Comparator<Club>() {
 	        @Override
 	        public int compare(Club c1, Club c2) {
-	            return Integer.compare(c2.getReviewCount(), c1.getReviewCount());
+	            return Integer.compare(c2.getPickCount(), c1.getPickCount());
 	        }
 	    });
-
+	     
 	    // 리뷰 top5
 	    if (rlist.size() > 5) {
 	        rlist = new ArrayList<Club>(rlist.subList(0, 5));
 	    }
-	     
+	    
 	  //소셜링 불러오기
 	    ArrayList<Club> flist = mService.getSocialing(fi);
 	  //소셜링 안의 클럽 불러오기
@@ -97,11 +97,11 @@ public class MainController {
 	        c.setPickCount(mService.getPickedCount(c.getClubNo()));
 	    }
 	    
-	  //Club의 pickcount 높은 순으로 정렬
+	    // 클럽 리스트를 count가 높은 순으로 정렬
 	    Collections.sort(flist, new Comparator<Club>() {
 	        @Override
 	        public int compare(Club c1, Club c2) {
-	            return Integer.compare(c2.getPickCount(), c1.getPickCount());
+	            return Integer.compare(c2.getCount(), c1.getCount());
 	        }
 	    });
 	    
@@ -125,7 +125,7 @@ public class MainController {
 	    PageInfo ri = Pagination.getPageInfo(SocialList, currentPage, 5, 5); 
 	    PageInfo fi = Pagination.getPageInfo(SocialList, currentPage, 5, 2);
 	    
-	    //소셜링 불러오기
+	    //챌린지 불러오기
 	    ArrayList<Club> clist = mService.getChallenge(ci);
 	    //소셜링 안의 클럽 불러오기
 	    for (Club c : clist){
@@ -147,7 +147,7 @@ public class MainController {
 	        }
 	    });
 	    
-	  //소셜링 불러오기
+	  //챌린지 불러오기
 	    ArrayList<Club> rlist = mService.getChallenge(ri);
 	  //소셜링 안의 클럽 불러오기
 	    for (Club c : rlist){
@@ -162,19 +162,19 @@ public class MainController {
 	        c.setReviewCount(mService.getReviewCount(c.getClubNo()));
 	    }
 	    
-	  //Club의 Reviewcount가 높은 순으로 정렬
+		  //Club의 pickcount 높은 순으로 정렬
 	    Collections.sort(rlist, new Comparator<Club>() {
 	        @Override
 	        public int compare(Club c1, Club c2) {
-	            return Integer.compare(c2.getReviewCount(), c1.getReviewCount());
+	            return Integer.compare(c2.getPickCount(), c1.getPickCount());
 	        }
 	    });
-
+	     
 	    // 리뷰 top5
 	    if (rlist.size() > 5) {
 	        rlist = new ArrayList<Club>(rlist.subList(0, 5));
 	    }
-	     
+	    
 	  //소셜링 불러오기
 	    ArrayList<Club> flist = mService.getChallenge(fi);
 	  //소셜링 안의 클럽 불러오기
@@ -190,11 +190,11 @@ public class MainController {
 	        c.setPickCount(mService.getPickedCount(c.getClubNo()));
 	    }
 	    
-	  //Club의 pickcount 높은 순으로 정렬
+	    // 클럽 리스트를 count가 높은 순으로 정렬
 	    Collections.sort(flist, new Comparator<Club>() {
 	        @Override
 	        public int compare(Club c1, Club c2) {
-	            return Integer.compare(c2.getPickCount(), c1.getPickCount());
+	            return Integer.compare(c2.getCount(), c1.getCount());
 	        }
 	    });
 	    
