@@ -10,9 +10,9 @@ button{
     cursor: pointer;
 }
 
-button:hover {
+/* button:hover {
     transform: scale(0.97);
-}
+} */
 
 #wrap_main{
     display: flex;

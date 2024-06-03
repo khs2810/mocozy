@@ -23,22 +23,53 @@
 		<result column="STATUS" property="status"/>
 	</resultMap>
 	
-<insert id="insertPayment">
+	<insert id="insertPayment">
+		INSERT INTO
+				PAYMENT (
+						 payment_no,
+						 club_no,
+						 user_no,
+						 point
+						 )
+				VALUES (
+						NEXTVAL('SEQ_PMNO'),
+						#{clubNo},
+						#{userNo},
+						#{point}
+						)
+	</insert>
+
+	<insert id="chargePoint">
 	INSERT INTO
-			PAYMENT (
-					 payment_no,
-					 club_no,
+			POINT (
+					 point_no,
 					 user_no,
-					 point
+					 point,
+					 status
 					 )
 			VALUES (
-					NEXTVAL('SEQ_PMNO'),
-					#{clubNo},
+					NEXTVAL('SEQ_PNO'),
 					#{userNo},
-					#{point}
+					#{point},
+					'C'
 					)
-</insert>
-	
+	</insert>
+
+	<insert id="withdrawPoint">
+	INSERT INTO
+			POINT (
+					 point_no,
+					 user_no,
+					 point,
+					 status
+					 )
+			VALUES (
+					NEXTVAL('SEQ_PNO'),
+					#{userNo},
+					#{point},
+					'W'
+					)
+	</insert>
 
 	
 </mapper>

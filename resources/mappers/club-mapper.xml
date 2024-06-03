@@ -78,8 +78,9 @@
 			   NICKNAME,
 			   category_name1,
 			   category_name2,
-			   profile_img
-	FROM public.CLUB
+			   profile_img,
+			   c.status
+	FROM public.CLUB c
 		join MEMBER USING (USER_NO)
 	WHERE public.CLUB.STATUS = 'Y'
 		AND CLUB_NO = #{cno};
