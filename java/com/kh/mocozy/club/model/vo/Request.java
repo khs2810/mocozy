@@ -23,4 +23,5 @@ public class Request {
 	private String status;
 	private int point;
 	private String nickname;
+	private int paymentNo;
 }

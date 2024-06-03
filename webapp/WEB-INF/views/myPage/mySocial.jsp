@@ -35,78 +35,45 @@
                 
                 <!-- 셀렉버튼 -->
                 <div class="title-select">
-                    <select name="" id="">
-                        <option value="">진행중</option>
-                        <option value="">종료됨</option>
+                    <select id="optionSelect">
+                        <option value="진행중" selected>진행중</option>
+                        <option value="종료됨">종료됨</option>
                     </select>
                 </div> 
             </div>
             <hr>
 
-            <!-- 컨텐츠 내용 -->
             <!-- 소셜링 목록 -->
-            <div class="club-content container">
-                <div class="club-img" onclick="location.href='이동할 링크주소(URL)';">
-                    <img src="./img/image 22.png" alt="">
-                </div>
-                <div class="club-title" onclick="location.href='이동할 링크주소(URL)';">
-                    <h4>선착순 10분!! 상품은....함정카드 발동!</h4>
-                    <p>들어오지 않고는 못베길거야</p>
-                </div>
-                <div class="status">
-                    
-                        <div class="mozip">
-                            <p>모집중(18/20)</p>
-                        </div>
-                    
-                    <div class="btn">
-                        <button class="btn-style btn-color1">수정</button>
-                        <button class="btn-style btn-color2">삭제</button>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="club-content container">
-                <div class="club-img" onclick="location.href='이동할 링크주소(URL)';">
-                    <img src="./img/image 21.png" alt="">
-                </div>
-                <div class="club-title" onclick="location.href='이동할 링크주소(URL)';">
-                    <h4>리액트 때려부셔버리겠어 으아아아아아</h4>
-                    <p>리액트와 원수진 사람 여기여기 모여라</p>
-                </div>
-                <div class="status">
-                    
-                        <div class="mozip">
-                            <p>모집중(18/20)</p>
-                        </div>
-                    
-                    <div class="btn">
-                        <button class="btn-style btn-color1">수정</button>
-                        <button class="btn-style btn-color2">삭제</button>
-                    </div>
-                </div>
-            </div>
-
-            <div class="club-content container">
-                <div class="club-img" onclick="location.href='이동할 링크주소(URL)';">
-                    <img src="./img/image 23.png" alt="">
-                </div>
-                <div class="club-title" onclick="location.href='이동할 링크주소(URL)';">
-                    <h4>발로 개발</h4>
-                    <p>개발... 그거슨... 전쟁같은 사랑....</p>
-                </div>
-                <div class="status">
-                    
-                        <div class="mozip">
-                            <p>모집중(18/20)</p>
-                        </div>
-                    
-                    <div class="btn">
-                        <button class="btn-style btn-color1">수정</button>
-                        <button class="btn-style btn-color2">삭제</button>
-                    </div>
-                </div>
-            </div>
+            <c:forEach var="c" items="${clist}">
+	            <div class="club-content">
+	                <div class="club-img" onclick="location.href='http://localhost:8890/mocozy/detail.cl?cno=${c.clubNo}';">
+	                    <img src="${pageContext.request.contextPath}/${c.thumbnailImg}">
+	                </div>
+	                <div class="club-title" onclick="location.href='http://localhost:8890/mocozy/detail.cl?cno=${c.clubNo}';">
+	                    <h4>${c.clubTitle}</h4>
+	                    <p>카테고리 : ${c.categoryName1} > ${c.categoryName2}</p>
+	                    <P>모임 날짜 : ${c.eventDate}</P>
+	                </div>
+	                <div class="status">
+	                    <c:choose>
+		                	<c:when test="${c.memberCnt eq c.capacity}">
+		                		<div class="done">
+		                			<p>모집완료(${c.memberCnt}/${c.capacity})</p>
+		                		</div>
+		                	</c:when>
+		                	<c:when test="${c.memberCnt ne c.capacity}">
+		                		<div class="ing">
+		                			<p>모집중(${c.memberCnt}/${c.capacity})</p>
+		                		</div>
+		                	</c:when>
+		                </c:choose>
+	                    <div class="btn">
+	                        <button class="btn-style btn-color1" onclick="location.href='http://localhost:8890/mocozy/updateform.cl?cno=${c.clubNo}'">수정</button>
+	                        <button class="btn-style btn-color2">삭제</button>
+	                    </div>
+	                </div>
+	            </div>
+            </c:forEach>
         </div>
     </div>
 

@@ -10,15 +10,16 @@ button{
     cursor: pointer;
 }
 
-button:hover {
+/* button:hover {
     transform: scale(0.97);
-}
+} */
 
 #wrap_main{
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-top: 120px;
 }
 #wrap_club {
     width: 900px;
@@ -596,3 +597,4 @@ button:hover {
 	text-align: center;
 	margin-right: 50px;
 }
+

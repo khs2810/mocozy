@@ -46,7 +46,7 @@
 
             <!-- 컨텐츠 내용 -->
             <!-- 소셜링 목록 -->
-            <div class="club-content container">
+            <div class="club-content">
                 <div class="club-img" onclick="location.href='이동할 링크주소(URL)';">
                     <img src="./img/image 18.png" alt="">
                 </div>
@@ -69,7 +69,7 @@
                 </div>
             </div>
 
-            <div class="club-content container">
+            <div class="club-content">
                 <div class="club-img" onclick="location.href='이동할 링크주소(URL)';">
                     <img src="./img/image 22.png" alt="">
                 </div>
@@ -90,7 +90,7 @@
                 </div>
             </div>
             
-            <div class="club-content container">
+            <div class="club-content">
                 <div class="club-img" onclick="location.href='이동할 링크주소(URL)';">
                     <img src="./img/image 21.png" alt="">
                 </div>
@@ -111,7 +111,7 @@
                 </div>
             </div>
 
-            <div class="club-content container">
+            <div class="club-content">
                 <div class="club-img" onclick="location.href='이동할 링크주소(URL)';">
                     <img src="./img/image 23.png" alt="">
                 </div>

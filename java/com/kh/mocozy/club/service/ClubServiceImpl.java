@@ -116,4 +116,14 @@ public class ClubServiceImpl implements ClubService {
 	public ClubReview selectClubReview(HashMap<String, Integer> map) throws Exception {
 		return clubDao.selectClubReview(sqlSession, map);
 	}
+
+	@Override
+	public ArrayList<Club> selectMySocialList(int uno) {
+		return clubDao.selectMySocialList(sqlSession, uno);
+	}
+
+	@Override
+	public int insertPayment(Request r) {
+		return clubDao.insertPayment(sqlSession, r);
+	}
 }
