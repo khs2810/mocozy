@@ -214,7 +214,8 @@
 			   thumbnail_img = #{thumbnailImg},
 			   modify_date = CURRENT_DATE,
 			   category_name1 = #{categoryName1},
-			   category_name2 = #{categoryName2}
+			   category_name2 = #{categoryName2},
+			   status = 'Y'
 		 WHERE CLUB_NO = #{clubNo}
 	</update>
 	
@@ -300,6 +301,38 @@
 		  FROM CLUB
 		 WHERE USER_NO = #{uno}
 		   AND CLUB_TYPE = '소셜링'
+		   AND STATUS = 'Y'
 	  ORDER BY CREATE_DATE DESC;
 	</select>
+	
+	<select id="selectMySocialListDone" resultMap="clubResult">
+		SELECT CLUB_NO,
+			   USER_NO,
+			   CLUB_TITLE,
+			   CLUB_TYPE,
+			   EVENT_DATE,
+			   CAPACITY,
+			   THUMBNAIL_IMG,
+			   CREATE_DATE,
+			   CLUB.MODIFY_DATE,
+			   category_name1,
+			   category_name2
+		  FROM CLUB
+		 WHERE USER_NO = #{uno}
+		   AND CLUB_TYPE = '소셜링'
+		   AND STATUS = 'E'
+	  ORDER BY CREATE_DATE DESC;
+	</select>
+	
+	<update id="finishSocial">
+		UPDATE CLUB
+		   SET STATUS = 'E'
+		 WHERE CLUB_NO = #{cno}
+	</update>
+	
+	<update id="cancleFinishSocial">
+		UPDATE CLUB
+		   SET STATUS = 'Y'
+		 WHERE CLUB_NO = #{cno}
+	</update>
 </mapper>
