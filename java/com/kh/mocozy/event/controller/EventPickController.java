@@ -31,7 +31,7 @@ public class EventPickController {
 		
 		model.addAttribute("eventlist", eventlist);
 	    
-	    return "eventPick/eventArtPick";
+	    return "event/eventPick/eventArtPick";
 
     }
 	
@@ -49,7 +49,7 @@ public class EventPickController {
 		
 	    model.addAttribute("eventlist", eventlist);
 
-	    return "eventPick/eventDessertPick";
+	    return "event/eventPick/eventDessertPick";
 
     }
 	
@@ -67,7 +67,7 @@ public class EventPickController {
 		
 		model.addAttribute("eventlist", eventlist);
 	    
-	    return "eventPick/eventGamePick";
+	    return "event/eventPick/eventGamePick";
 
     }
 	
@@ -85,7 +85,7 @@ public class EventPickController {
 		
 		model.addAttribute("eventlist", eventlist);
 	    
-	    return "eventPick/eventPartyPick";
+	    return "event/eventPick/eventPartyPick";
 
     }
 	
@@ -103,7 +103,7 @@ public class EventPickController {
 		
 		model.addAttribute("eventlist", eventlist);
 	    
-	    return "eventPick/eventPhotoPick";
+	    return "event/eventPick/eventPhotoPick";
 
     }
 	
@@ -121,7 +121,7 @@ public class EventPickController {
 		
 		model.addAttribute("eventlist", eventlist);
 	    
-	    return "eventPick/eventStudyPick";
+	    return "event/eventPick/eventStudyPick";
 
     }
 	
@@ -139,7 +139,7 @@ public class EventPickController {
 		
 		model.addAttribute("eventlist", eventlist);
 	    
-	    return "eventPick/eventTravelPick";
+	    return "event/eventPick/eventTravelPick";
 
     }
 	
@@ -157,7 +157,7 @@ public class EventPickController {
 		
 		model.addAttribute("eventlist", eventlist);
 	    
-	    return "eventPick/eventLovePick";
+	    return "event/eventPick/eventLovePick";
 
     }
 }

@@ -120,4 +120,11 @@
 		FROM picked 
 		WHERE CLUB_NO = #{clubNo};
 	</select>
+	
+	<!-- 리뷰 개수 가져오기 -->
+	<select id="getReviewCount" resultType="int">
+	    SELECT COUNT(*) 
+	    FROM club_review
+	    WHERE CLUB_NO = #{clubNo};
+	</select>
 </mapper>

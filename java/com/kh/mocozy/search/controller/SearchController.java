@@ -60,7 +60,7 @@ public class SearchController {
         if (clubCount == 0) { //검색결과 없음
         	return "search/searchError";
 		} else { //검색결과있음
-			return "search/searchMain";
+			return "search/searchRecent/searchMain";
 		}
     }
 }
