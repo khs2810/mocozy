@@ -50,4 +50,10 @@ public interface ClubService {
 	ArrayList<Club> selectMySocialList(int uno);
 
 	int insertPayment(Request r);
+
+	ArrayList<Club> selectMySocialListDone(int uno);
+
+	int finishSocial(int cno);
+
+	int cancleFinishSocial(int cno);
 }

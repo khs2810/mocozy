@@ -30,7 +30,7 @@ $(document).ready(function() {
                     rqno: btn.dataset.rqno,
                     cno: btn.dataset.cno
                 },
-                success: function(res){
+            success: function(res){
                 alert('참가 신청 수락됨!');
                 drawRequest(res, url, question);
             },

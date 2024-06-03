@@ -17,6 +17,7 @@
     <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
 
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/mySocial.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/social.css" />    
 </head>
@@ -43,37 +44,73 @@
             </div>
             <hr>
 
-            <!-- 소셜링 목록 -->
-            <c:forEach var="c" items="${clist}">
-	            <div class="club-content">
-	                <div class="club-img" onclick="location.href='http://localhost:8890/mocozy/detail.cl?cno=${c.clubNo}';">
-	                    <img src="${pageContext.request.contextPath}/${c.thumbnailImg}">
-	                </div>
-	                <div class="club-title" onclick="location.href='http://localhost:8890/mocozy/detail.cl?cno=${c.clubNo}';">
-	                    <h4>${c.clubTitle}</h4>
-	                    <p>카테고리 : ${c.categoryName1} > ${c.categoryName2}</p>
-	                    <P>모임 날짜 : ${c.eventDate}</P>
-	                </div>
-	                <div class="status">
-	                    <c:choose>
-		                	<c:when test="${c.memberCnt eq c.capacity}">
-		                		<div class="done">
-		                			<p>모집완료(${c.memberCnt}/${c.capacity})</p>
-		                		</div>
-		                	</c:when>
-		                	<c:when test="${c.memberCnt ne c.capacity}">
-		                		<div class="ing">
-		                			<p>모집중(${c.memberCnt}/${c.capacity})</p>
-		                		</div>
-		                	</c:when>
-		                </c:choose>
-	                    <div class="btn">
-	                        <button class="btn-style btn-color1" onclick="location.href='http://localhost:8890/mocozy/updateform.cl?cno=${c.clubNo}'">수정</button>
-	                        <button class="btn-style btn-color2">삭제</button>
-	                    </div>
-	                </div>
-	            </div>
-            </c:forEach>
+            <!-- 진행중인 소셜링 목록 -->
+            <div id="club-ing">
+	            <c:forEach var="c" items="${clist}">
+		            <div class="club-content">
+		                <div class="club-img" onclick="location.href='http://localhost:8890/mocozy/detail.cl?cno=${c.clubNo}';">
+		                    <img src="${pageContext.request.contextPath}/${c.thumbnailImg}">
+		                </div>
+		                <div class="club-title" onclick="location.href='http://localhost:8890/mocozy/detail.cl?cno=${c.clubNo}';">
+		                    <h4>${c.clubTitle}</h4>
+		                    <p>카테고리 : ${c.categoryName1} > ${c.categoryName2}</p>
+		                    <P>모임 날짜 : ${c.eventDate}</P>
+		                </div>
+		                <div class="status">
+		                    <c:choose>
+			                	<c:when test="${c.memberCnt eq c.capacity}">
+			                		<div class="done">
+			                			<p>모집완료(${c.memberCnt}/${c.capacity})</p>
+			                		</div>
+			                	</c:when>
+			                	<c:when test="${c.memberCnt ne c.capacity}">
+			                		<div class="ing">
+			                			<p>모집중(${c.memberCnt}/${c.capacity})</p>
+			                		</div>
+			                	</c:when>
+			                </c:choose>
+		                    <div class="btn">
+		                        <button class="btn-style btn-color1" onclick="location.href='http://localhost:8890/mocozy/updateform.cl?cno=${c.clubNo}'">수정</button>
+		                        <button class="btn-style btn-color2" onclick="location.href='http://localhost:8890/mocozy/finishSocial.me?cno=${c.clubNo}'">종료</button>
+		                    </div>
+		                </div>
+		            </div>
+	            </c:forEach>
+            </div>
+            
+            <!-- 종료된 소셜링 목록 -->
+            <div id="club-done" style="display: none;">
+	            <c:forEach var="d" items="${dlist}">
+		            <div class="club-content">
+		                <div class="club-img" onclick="location.href='http://localhost:8890/mocozy/detail.cl?cno=${d.clubNo}';">
+		                    <img src="${pageContext.request.contextPath}/${d.thumbnailImg}">
+		                </div>
+		                <div class="club-title" onclick="location.href='http://localhost:8890/mocozy/detail.cl?cno=${d.clubNo}';">
+		                    <h4>${d.clubTitle}</h4>
+		                    <p>카테고리 : ${d.categoryName1} > ${d.categoryName2}</p>
+		                    <P>모임 날짜 : ${d.eventDate}</P>
+		                </div>
+		                <div class="status">
+		                    <c:choose>
+			                	<c:when test="${d.memberCnt eq d.capacity}">
+			                		<div class="done">
+			                			<p>모집완료(${d.memberCnt}/${d.capacity})</p>
+			                		</div>
+			                	</c:when>
+			                	<c:when test="${d.memberCnt ne d.capacity}">
+			                		<div class="ing">
+			                			<p>모집중(${d.memberCnt}/${d.capacity})</p>
+			                		</div>
+			                	</c:when>
+			                </c:choose>
+		                    <div class="btn">
+		                        <button class="btn-style btn-color1" onclick="location.href='http://localhost:8890/mocozy/update.cl?cno=${d.clubNo}'">재탕</button>
+		                        <button class="btn-style btn-color2" onclick="location.href='http://localhost:8890/mocozy/cancleFinishSocial.me?cno=${d.clubNo}'">종료취소</button>
+		                    </div>
+		                </div>
+		            </div>
+	            </c:forEach>
+            </div>
         </div>
     </div>
 

@@ -126,4 +126,19 @@ public class ClubServiceImpl implements ClubService {
 	public int insertPayment(Request r) {
 		return clubDao.insertPayment(sqlSession, r);
 	}
+
+	@Override
+	public ArrayList<Club> selectMySocialListDone(int uno) {
+		return clubDao.selectMySocialListDone(sqlSession, uno);
+	}
+
+	@Override
+	public int finishSocial(int cno) {
+		return clubDao.finishSocial(sqlSession, cno);
+	}
+
+	@Override
+	public int cancleFinishSocial(int cno) {
+		return clubDao.cancleFinishSocial(sqlSession, cno);
+	}
 }
