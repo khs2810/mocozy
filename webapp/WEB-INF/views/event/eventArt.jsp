@@ -17,16 +17,16 @@
 	src="${pageContext.request.contextPath}/resources/jo/js/event_js/event.js"></script>
 </head>
 
-<%@ include file="../../common/header.jsp"%>
+<%@ include file="../common/header.jsp"%>
 
 <body>
 	<div class="bannerbox"></div>
 	<!-- 상단배너 -->
-	<section class="eventbanner" id="eventsection6">
+	<section class="eventbanner" id="eventsection2">
 		<div class="eventbannerdiv">
-			<h1>보드게임 기획전</h1>
+			<h1>전시회 기획전</h1>
 			<h3>
-				보드게임 인원수가 부족해 <br> 곤란한 적이 있으신가요? 모꼬지와 함께해요
+				관객의 참여와 체험으로 완성되는 <br> 특별한 전시회 지금 만나러 가봐요
 			</h3>
 			<a href="javascript:void(0);" class="scrolldown"> <!-- scroll 애니메이션 -->
 				<span></span> <span></span> <span></span> <!-- --> Scroll
@@ -40,8 +40,8 @@
 			<c:forEach var="club" items="${eventlist}">
 				<div class="contentcard">
 					<div class="socialing">
-						<a class="cardlink" href="detail.cl?cno=${club.clubNo}"> <img class="img"
-							src="${club.thumbnailImg}" />
+						<a class="cardlink" href="detail.cl?cno=${club.clubNo}"> <img
+							class="img" src="${club.thumbnailImg}" />
 
 							<div class="info">
 								<div class="subject">
@@ -62,27 +62,33 @@
 								</div>
 
 								<div class="participant">
-										<c:if test="${not empty club.profileImg}">
-										    <img class="people" src="${pageContext.request.contextPath}${club.profileImg[0]}"/>
+									<c:if test="${not empty club.profileImg}">
+										<img class="people"
+											src="${pageContext.request.contextPath}${club.profileImg[0]}" />
+									</c:if>
+
+									<div class="profileimglist">
+										<c:if test="${club.profileImg.size() >= 5}">
+											<c:forEach var="clubMember" items="${club.profileImg}"
+												begin="2" end="4">
+												<img class="cardImg"
+													src="${pageContext.request.contextPath}${clubMember}" />
+											</c:forEach>
 										</c:if>
-									
-										<div class="profileimglist">
-										    <c:if test="${club.profileImg.size() >= 5}">
-										        <c:forEach var="clubMember" items="${club.profileImg}" begin="2" end="4">
-										                <img class="cardImg" src="${pageContext.request.contextPath}${clubMember}"/>
-										        </c:forEach>
-										    </c:if>
-										    <c:choose>
-										    	<c:when test="${club.profileImg.size() eq 1}">
-										    	</c:when>
-										    	<c:when test="${1 < club.profileImg.size() && club.profileImg.size() < 5}">
-										    		<c:forEach var="clubMember" items="${club.profileImg}" begin="2" end="${club.profileImg.size() - 1}">
-										                <img class="cardImg" src="${pageContext.request.contextPath}${clubMember}"/>
-										       		</c:forEach>
-										    	</c:when>
-										    </c:choose>
-										</div>
-										
+										<c:choose>
+											<c:when test="${club.profileImg.size() eq 1}">
+											</c:when>
+											<c:when
+												test="${1 < club.profileImg.size() && club.profileImg.size() < 5}">
+												<c:forEach var="clubMember" items="${club.profileImg}"
+													begin="2" end="${club.profileImg.size() - 1}">
+													<img class="cardImg"
+														src="${pageContext.request.contextPath}${clubMember}" />
+												</c:forEach>
+											</c:when>
+										</c:choose>
+									</div>
+
 									<div class="socialmember">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 											fill="currentColor" class="bi bi-eye-fill"
@@ -105,8 +111,8 @@
 	</div>
 	</div>
 
-	<%@ include file="../../common/footer.jsp"%>
+	<%@ include file="../common/footer.jsp"%>
 </body>
-<%@ include file="../../common/topButton.jsp"%>
+<%@ include file="../common/topButton.jsp"%>
 
 </html>

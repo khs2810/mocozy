@@ -41,9 +41,9 @@
 
 					<div class="rightlistTitle">
 						<div class="rightlistContent">
-							<span id="cateRecent"> 최근순 </span>
-							<p id="cateDibs">추천순</p>
-							<p id="cateViews">인기순</p>
+							<p id="cateRecent"><a href="cateForeign.ct">최신순</a></p>
+							<p id="cateDibs"><a href="cateForeignPick.ct">인기순</a></p>
+							<span id="cateViews"><a href="cateForeignView.ct">조회순</a></span>
 						</div>
 					</div>
 				</div>

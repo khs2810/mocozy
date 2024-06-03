@@ -68,6 +68,11 @@ li {
   margin-right: 1rem;
 }
 
+.searchPage .rightlistTitle > p > a:hover{
+	color: rgb(255 0 69); 
+}
+
+
 .searchPage .rightlistContent{
   flex-direction: row;
   gap: 1.5rem;
@@ -362,18 +367,14 @@ li {
       height: 22px;
   }
 
-  .searchPage .participant .socialmember {
-      margin-left: 4.7px;
-  }
-
   .searchPage .participant .people {
      width: 45px;
  	  height: 45px;
   }
 
-  .searchPage .participant .count {
-      font-size: 15px;
-      line-height: 12px;
+ .searchPage .participant .count {
+      font-size: 12px;
+      line-height: 19px;
   }
 }
 
@@ -418,20 +419,24 @@ li {
     height: 36px;
 }
 
-.searchPage .participant .socialmember {
-    margin-left: 8.12px;
-}
-
 .searchPage .participant .people {
   width: 45px;
   height: 45px;
 }
 
-.searchPage .participant .count {
-    margin-left: 0.5rem;
-    font-size: 16px;
-    line-height: 19px;
+ .searchPage .participant .count {
+      margin-left: 0.5rem;
+      font-size: 12px;
+      line-height: 19px;
+  }
 }
+
+.searchPage .participant .socialmember{
+    display: flex;
+    position: relative;
+    justify-content: right;
+    align-items: center;
+    width: 300px;
 }
 
 .searchPage .plus{
