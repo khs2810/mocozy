@@ -17,16 +17,16 @@
 	src="${pageContext.request.contextPath}/resources/jo/js/event_js/event.js"></script>
 </head>
 
-<%@ include file="../../common/header.jsp"%>
+<%@ include file="../common/header.jsp"%>
 
 <body>
 	<div class="bannerbox"></div>
 	<!-- 상단배너 -->
-	<section class="eventbanner" id="eventsection3">
+	<section class="eventbanner" id="eventsection4">
 		<div class="eventbannerdiv">
-			<h1>디저트 기획전</h1>
+			<h1>사진 기획전</h1>
 			<h3>
-				맛있는 디저트로 <br> 즐거운 시간을 보내 보세요
+				누구든 간직하고 싶은 추억이 있어요 <br> 빛나는 순간을 함께해요
 			</h3>
 			<a href="javascript:void(0);" class="scrolldown"> <!-- scroll 애니메이션 -->
 				<span></span> <span></span> <span></span> <!-- --> Scroll
@@ -99,7 +99,6 @@
 											</svg>
 										<div class="count">${club.count}</div>
 									</div>
-									</div>
 								</div>
 							</div>
 						</a>
@@ -112,8 +111,8 @@
 	</div>
 	</div>
 
-	<%@ include file="../../common/footer.jsp"%>
+	<%@ include file="../common/footer.jsp"%>
 </body>
-<%@ include file="../../common/topButton.jsp"%>
+<%@ include file="../common/topButton.jsp"%>
 
 </html>

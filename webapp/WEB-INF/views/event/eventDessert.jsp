@@ -17,7 +17,7 @@
 	src="${pageContext.request.contextPath}/resources/jo/js/event_js/event.js"></script>
 </head>
 
-<%@ include file="../../common/header.jsp"%>
+<%@ include file="../common/header.jsp"%>
 
 <body>
 	<div class="bannerbox"></div>
@@ -112,8 +112,8 @@
 	</div>
 	</div>
 
-	<%@ include file="../../common/footer.jsp"%>
+	<%@ include file="../common/footer.jsp"%>
 </body>
-<%@ include file="../../common/topButton.jsp"%>
+<%@ include file="../common/topButton.jsp"%>
 
 </html>

@@ -41,4 +41,24 @@ public class SearchServiceImpl implements SearchService{
 		ArrayList<Member> result = sDao.MemberList(sqlSession, clubNo);
 		return result;
 	}
+	
+	@Override
+	public ArrayList<Club> getSocialing(PageInfo pi) {
+	     return sDao.getSocialing(sqlSession, pi);
+	}
+
+	@Override
+	public ArrayList<Club> getChallenge(PageInfo pi) {
+	     return sDao.getChallenge(sqlSession, pi);
+	}
+
+	@Override
+	public int getReviewCount(int clubNo) {
+		return sDao.getReviewCount(sqlSession, clubNo);
+	}
+	    
+	@Override
+	public int getPickedCount(int clubNo) {
+		return sDao.getPickedCount(sqlSession, clubNo);
+	}
 }

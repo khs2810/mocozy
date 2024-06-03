@@ -36,5 +36,21 @@ public class SearchDao {
 			ArrayList<Member> result = (ArrayList)sqlSession.selectList("searchMapper.MemberList", clubNo);
 			return result;
 		}
+		
+	    public ArrayList<Club> getSocialing(SqlSessionTemplate sqlSession, PageInfo pi) {
+	        return (ArrayList)sqlSession.selectList("mainPageMapper.getSocialing", pi);
+	    }
+
+	    public ArrayList<Club> getChallenge(SqlSessionTemplate sqlSession, PageInfo pi) {
+	        return (ArrayList)sqlSession.selectList("mainPageMapper.getChallenge", pi);
+	    }
+
+		public int getReviewCount(SqlSessionTemplate sqlSession, int clubNo) {
+			return sqlSession.selectOne("mainPageMapper.getReviewCount", clubNo);
+		}
+
+		public int getPickedCount(SqlSessionTemplate sqlSession, int clubNo) {
+			return sqlSession.selectOne("mainPageMapper.getPickedCount", clubNo);
+		}
 }
 
