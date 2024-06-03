@@ -52,8 +52,7 @@
 		UPDATE CLUB 
 		SET COUNT = COUNT + 1
 		WHERE
-			CLUB_NO = #{cno}
-			AND STATUS = 'Y';
+			CLUB_NO = #{cno};
 	</update>
 	
 	<select id="selectClub" resultMap="clubResult">
@@ -73,17 +72,16 @@
 			   QUESTION,
 			   THUMBNAIL_IMG,
 			   CREATE_DATE,
-			   CLUB.MODIFY_DATE,
+			   C.MODIFY_DATE,
 			   COUNT,
 			   NICKNAME,
 			   category_name1,
 			   category_name2,
 			   profile_img,
-			   c.status
-	FROM public.CLUB c
+			   C.STATUS
+	FROM CLUB C
 		join MEMBER USING (USER_NO)
-	WHERE public.CLUB.STATUS = 'Y'
-		AND CLUB_NO = #{cno};
+	WHERE CLUB_NO = #{cno};
 	</select>
 	
 	<select id="listReview" resultMap="clubReviewResult">
