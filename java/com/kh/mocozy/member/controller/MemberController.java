@@ -212,7 +212,6 @@ public class MemberController {
         System.out.println(currentPwd);
         
         if (loginUser == null) {
-        	System.out.println("loginUser1 : " + loginUser);
             return "NNNNN"; // 사용자가 로그인되어 있지 않음
         } else {
         	System.out.println("loginUser2 : " + loginUser);
