@@ -87,10 +87,10 @@
 	</update>
 	
 	<!-- 비밀번호 확인 -->
-	<select id="pwdCheck" parameterType="string" resultType="string">
+	<select id="pwdCheck"  resultType="string">
         SELECT USER_PWD
           FROM MEMBER
-         WHERE USER_ID = #{userId}
+         where user_id = #{userId}
     </select>
 	
 	

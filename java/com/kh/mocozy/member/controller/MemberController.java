@@ -207,20 +207,33 @@ public class MemberController {
     public String checkPassword(Member m, @RequestParam("currentPwd") String currentPwd, HttpSession session) {
         // 현재 로그인한 사용자의 정보를 세션에서 가져옴
         Member loginUser = (Member) session.getAttribute("loginUser");
-        if (loginUser == null) {
-        	System.out.println(loginUser);
-            return "NNNNN"; // 사용자가 로그인되어 있지 않음
-        }
+        System.out.println("checkPassword : ");
+        System.out.println(m);
+        System.out.println(currentPwd);
         
-        // 사용자의 ID를 이용해 현재 비밀번호를 가져옴
-        String userId = loginUser.getUserId();
-        String actualPwd = memberService.pwdCheck(userId);
-
-        // 입력된 비밀번호와 실제 비밀번호를 비교
-        if (currentPwd.equals(actualPwd)) {
-            return "NNNNY"; // 비밀번호가 일치함
+        if (loginUser == null) {
+        	System.out.println("loginUser1 : " + loginUser);
+            return "NNNNN"; // 사용자가 로그인되어 있지 않음
         } else {
-            return "NNNNN"; // 비밀번호가 일치하지 않음
+        	System.out.println("loginUser2 : " + loginUser);
+        	
+        	// 사용자의 ID를 이용해 현재 비밀번호를 가져옴
+	        String userId = loginUser.getUserId();
+	        String actualPwd = memberService.pwdCheck(userId);
+	        
+	     // 입력된 비밀번호와 실제 비밀번호를 비교
+	        System.out.println("비교1");
+	        System.out.println("UserId: " + userId);
+	        System.out.println("Actual Password: " + actualPwd);
+	        System.out.println("currentPwd Password: " + currentPwd);
+	        
+	        if (currentPwd.equals(actualPwd)) {
+	            return "NNNNY"; // 비밀번호가 일치함
+	            
+	        } else {
+	            return "NNNNN"; // 비밀번호가 일치하지 않음
+	        }
+	      
         }
     }
 	
@@ -228,13 +241,17 @@ public class MemberController {
 	@RequestMapping("updatePwd.me")
 	public String updatePassword(Member m, HttpSession session, Model model) {
 
+		
 		int result = memberService.updatePassword(m);
 
 		if (result > 0) {
-			session.setAttribute("loginUser", memberService.loginMember(m));
+			System.out.println("겹치는 비번 : " + result);
+			
+			session.setAttribute("loginUser", memberService.updatePassword(m));
 			session.setAttribute("alertMsg", "비밀번호 수정 성공. 다시 로그인 해주세요.");
 			session.removeAttribute("loginUser");
 			return "redirect:/";
+			
 		} else {
 			model.addAttribute("errorMsg", "비밀번호 수정 실패");
 			return "redirect:/myProfile.me";
@@ -245,7 +262,7 @@ public class MemberController {
 	@RequestMapping("delete.me")
 	public String deleteMember(Member m, HttpSession session) {
 
-		// 1. 암호화된 비밀번호 가져오기
+		// 1. (암호화된) 비밀번호 가져오기
 		Member loginUser = memberService.loginMember(m);
 		String userPwd = ((Member) session.getAttribute("loginUser")).getUserPwd();
 		// 2. 비밀번호 일치/불일치 판단후
