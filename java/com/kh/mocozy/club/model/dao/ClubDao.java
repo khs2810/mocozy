@@ -92,4 +92,8 @@ public class ClubDao {
 	public ClubReview selectClubReview(SqlSessionTemplate sqlSession, HashMap<String, Integer> map) {
 		return sqlSession.selectOne("clubMapper.selectClubReview", map);
 	}
+
+	public int insertPayment(SqlSessionTemplate sqlSession, Request r) {
+		return sqlSession.insert("pointMapper.insertPayment", r);
+	}
 }

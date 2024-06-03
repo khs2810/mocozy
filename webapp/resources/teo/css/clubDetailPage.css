@@ -17,6 +17,7 @@ button:hover {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    margin-top: 120px;
 }
 #wrap_club {
     width: 900px;
@@ -594,3 +595,4 @@ button:hover {
 	text-align: center;
 	margin-right: 50px;
 }
+

@@ -15,7 +15,7 @@
 			<input type="hidden" name="clubNo" value="${c.clubNo}">
 			<input type="hidden" name="userNo" value="${loginUser.userNo}">
 			<input type="hidden" name="answer" value="${answer}">
-			<input type="hidden" name="pt" value="${loginUser.point - c.cost}">
+			<input type="hidden" name="pt" value="${c.cost}">
 			<div id="payment_main_text">
 				<h1 align="center">결제 정보</h1>
 				<div class="payment_top">

@@ -26,10 +26,10 @@
         <div id="wrap_club">
             <!-- 제목 프로필 -->
             <div id="club_main_img">
-                <img src="${pageContext.request.contextPath}/${c.thumbnailImg}" alt="메인이미지">
+                <img src="${c.thumbnailImg}" alt="메인이미지">
             </div>
             <div class="club_title_profile" align="center">
-                <div class="club_profile_img"><img src="${pageContext.request.contextPath}${c.thumbnailImg}" alt="프로필 사진"></div>
+                <div class="club_profile_img"><img src="${pageContext.request.contextPath}${c.profile_img}" alt="프로필 사진"></div>
                 <div align="center">${c.nickname}</div>
             </div>
             <div class="club_title">
@@ -72,7 +72,7 @@
             <!-- 멤버 소개-->
             <div class="club_member_info" >
                 <div>
-                    <p class="color_red">멤버 소개</p>
+                    <p class="color_red">멤버 소개(${memberList.size()})</p>
                     <p>우리 반갑게 만나요</p>
                 </div>
                 <c:choose>

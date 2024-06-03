@@ -300,15 +300,26 @@ public class ClubController {
 	}
 	
 	@RequestMapping("insert.rq")
-	public String insertRequest(Request r, int pt, Model model) {
+	public String insertRequest(Request r, int pt, Model model, HttpSession session) {
 		r.setPoint(pt);
+		Member m = (Member)session.getAttribute("loginUser");
 		
-		int result1 = clubService.insertRequest(r);
-		int result2 = memberService.pointUpdate(r);
+		int result = clubService.insertPayment(r);
 		
-		if (result1 * result2 > 0) {
+		if (result > 0) {
+			int result1 = clubService.insertRequest(r);
+			int result2 = memberService.pointUpdateRq(r);
 			
-			return "redirect:/";
+			if (result1 * result2 > 0) {
+				
+				Member loginUser = memberService.loginMember(m);
+				session.setAttribute("loginUser", loginUser);
+				
+				return "redirect:/";
+			} else {
+				model.addAttribute("errorMsg", "모임 참가 신청 실패");
+				return "common/errorPage";
+			}
 		} else {
 			model.addAttribute("errorMsg", "모임 참가 신청 실패");
 			return "common/errorPage";

@@ -34,7 +34,7 @@ public interface MemberService {
 	Member deleteMember(Member m);
 	int deleteMember(String userId);
 
-	int pointUpdate(Request r);
+	int pointUpdateRq(Request r);
 	
 	//cno클럽에 참여한 맴버들
 	ArrayList<Member> participatedMemberList(int cno);
@@ -47,6 +47,12 @@ public interface MemberService {
 	int ajaxDeletePicked(Picked p);
 
 	ArrayList<Member> requestMemberList(int cno);
+	
+	//포인트 충전
+	int chargePoint(Member m);
+	
+	//포인트 출금
+	int withdrawPoint(Member m);
 
 	
 

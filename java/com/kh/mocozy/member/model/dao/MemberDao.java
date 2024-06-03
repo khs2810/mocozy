@@ -39,8 +39,8 @@ public class MemberDao {
 		return sqlSession.update("memberMapper.deleteMember", userId );
 	}
 
-	public int pointUpdate(SqlSessionTemplate sqlSession, Request r) {
-		return sqlSession.update("memberMapper.updatePoint", r);
+	public int pointUpdateRq(SqlSessionTemplate sqlSession, Request r) {
+		return sqlSession.update("memberMapper.updatePointRq", r);
 	}
 
 	public ArrayList<Member> participatedMemberList(SqlSessionTemplate sqlSession, int cno) {
@@ -62,6 +62,14 @@ public class MemberDao {
 	
 	public ArrayList<Member> requestMemberList(SqlSessionTemplate sqlSession, int cno) {
 		return (ArrayList)sqlSession.selectList("memberMapper.requestMemberList", cno);
+	}
+
+	public int chargePoint(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.update("memberMapper.chargePoint", m);
+	}
+
+	public int withdrawPoint(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.update("memberMapper.withdrawPoint", m);
 	}
 	
 	

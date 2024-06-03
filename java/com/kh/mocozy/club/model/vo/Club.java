@@ -43,5 +43,6 @@ public class Club {
 	private String eventDateStr;
 	private Member memberlist;
 	private int isReview;
+	private String profile_img;
 }
 
