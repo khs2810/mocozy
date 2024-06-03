@@ -47,5 +47,7 @@ public interface ClubService {
 
 	ClubReview selectClubReview(HashMap<String, Integer> map) throws Exception;
 
+	ArrayList<Club> selectMySocialList(int uno);
+
 	int insertPayment(Request r);
 }

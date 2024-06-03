@@ -297,18 +297,6 @@ public class MemberController {
 		return "myPage/myProfile";
 	}
 
-//		내 소셜
-	@RequestMapping("mySocial.me")
-	public String mySocialView() {
-		return "myPage/mySocial";
-	}
-
-//		참가한 소셜
-	@RequestMapping("goSocial.me")
-	public String goSocialView() {
-		return "myPage/goSocial";
-	}
-
 //		내 챌린지
 	@RequestMapping("myChallenge.me")
 	public String myChallengeView() {

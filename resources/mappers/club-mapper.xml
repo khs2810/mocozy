@@ -56,7 +56,7 @@
 			AND STATUS = 'Y';
 	</update>
 	
-	<select id="selectClub" resultMap="clubResult" >
+	<select id="selectClub" resultMap="clubResult">
 		SELECT CLUB_NO,
 			   USER_NO,
 			   CLUB_TITLE,
@@ -283,5 +283,23 @@
 	    INNER JOIN REQUEST Q ON M.USER_NO = Q.USER_NO
 	     	 WHERE R.CLUB_NO = #{cno, jdbcType=BIGINT}
 	     	   AND R.USER_NO = #{uno, jdbcType=BIGINT}
+	</select>
+	
+	<select id="selectMySocialList" resultMap="clubResult">
+		SELECT CLUB_NO,
+			   USER_NO,
+			   CLUB_TITLE,
+			   CLUB_TYPE,
+			   EVENT_DATE,
+			   CAPACITY,
+			   THUMBNAIL_IMG,
+			   CREATE_DATE,
+			   CLUB.MODIFY_DATE,
+			   category_name1,
+			   category_name2
+		  FROM CLUB
+		 WHERE USER_NO = #{uno}
+		   AND CLUB_TYPE = '소셜링'
+	  ORDER BY CREATE_DATE DESC;
 	</select>
 </mapper>
