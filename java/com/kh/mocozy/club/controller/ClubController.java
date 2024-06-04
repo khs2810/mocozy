@@ -17,6 +17,7 @@ import java.util.Locale;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,6 +41,9 @@ public class ClubController {
 	private ClubService clubService;
 	@Autowired
 	private MemberService memberService;
+	
+	@Value("${kakao.api.js.key}")
+    private String kakaoApiKey;
 	
 	@RequestMapping("detail.cl")
 	public String selectClub(int cno, Model model, HttpSession session) {
@@ -69,6 +73,7 @@ public class ClubController {
 	        String eventDateDetailInfo = String.format("%s(%s) %s", formattedDate, dayOfWeek, formattedTime);
 	        
 	        model.addAttribute("evDate", eventDateDetailInfo);
+	        model.addAttribute("kakaoApiKey", kakaoApiKey);
 			
 			return "club/clubDetailPage";
 		} else {
@@ -188,16 +193,28 @@ public class ClubController {
         String formattedDateTime = dateTime.format(outputFormatter);
 
         c.setEventDate(convertStringToTimestamp(formattedDateTime));
-        System.out.println(c);
         
-        int result = clubService.updateClub(c, at);
-        
-        if (result > 0) {
-        	session.setAttribute("alertMsg", "모임 수정 성공");
-        	return "redirect:detail.cl?cno=" + c.getClubNo();
-        } else {
-        	model.addAttribute("errorMsg", "게시글 수정 실패");
-        	return "common/errorPage";
+        if (c.getStatus().equals("E")) {
+        	int result1 = clubService.cancleFinishSocial(c.getClubNo());
+        	int result2 = clubService.clubRequestReset(c.getClubNo());
+        	
+        	if (result1 * result2 > 0) {
+        		session.setAttribute("alertMsg", "모임 수정 성공");
+        		return "redirect:detail.cl?cno=" + c.getClubNo();
+        	} else {
+        		model.addAttribute("errorMsg", "게시글 수정 실패");
+        		return "common/errorPage";
+        	}
+        } else {        	
+        	int result = clubService.updateClub(c, at);
+        	
+        	if (result > 0) {
+        		session.setAttribute("alertMsg", "모임 수정 성공");
+        		return "redirect:detail.cl?cno=" + c.getClubNo();
+        	} else {
+        		model.addAttribute("errorMsg", "게시글 수정 실패");
+        		return "common/errorPage";
+        	}
         }
 	}
 	

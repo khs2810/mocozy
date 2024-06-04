@@ -163,6 +163,7 @@
         </div>
         <input type="hidden" name="userNo" id="userNo" value="2">
         <input type="hidden" name="clubNo" id="clubNo" value="${c.clubNo}">
+        <input type="hidden" name="status" value="${c.status}">
     </form><br>
 </body>
 </html>

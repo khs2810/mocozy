@@ -312,18 +312,6 @@ public class MemberController {
 		return "myPage/myProfile";
 	}
 
-//		내 챌린지
-	@RequestMapping("myChallenge.me")
-	public String myChallengeView() {
-		return "myPage/myChallenge";
-	}
-
-//		참가한 챌린지
-	@RequestMapping("goChallenge.me")
-	public String goChallengeView() {
-		return "myPage/goChallenge";
-	}
-
 //		찜한 챌린지
 	@RequestMapping("dibsChallenge.me")
 	public String dibsChallengeView() {

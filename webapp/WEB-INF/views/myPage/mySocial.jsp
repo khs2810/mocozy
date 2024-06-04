@@ -70,7 +70,7 @@
 			                	</c:when>
 			                </c:choose>
 		                    <div class="btn">
-		                        <button class="btn-style btn-color1" onclick="location.href='http://localhost:8890/mocozy/updateform.cl?cno=${c.clubNo}'">수정</button>
+		                        <button class="btn-style btn-color1" onclick="location.href='http://localhost:8890/mocozy/list.re?cno=${c.clubNo}'">요청목록</button>
 		                        <button class="btn-style btn-color2" onclick="location.href='http://localhost:8890/mocozy/finishSocial.me?cno=${c.clubNo}'">종료</button>
 		                    </div>
 		                </div>
@@ -91,20 +91,11 @@
 		                    <P>모임 날짜 : ${d.eventDate}</P>
 		                </div>
 		                <div class="status">
-		                    <c:choose>
-			                	<c:when test="${d.memberCnt eq d.capacity}">
-			                		<div class="done">
-			                			<p>모집완료(${d.memberCnt}/${d.capacity})</p>
-			                		</div>
-			                	</c:when>
-			                	<c:when test="${d.memberCnt ne d.capacity}">
-			                		<div class="ing">
-			                			<p>모집중(${d.memberCnt}/${d.capacity})</p>
-			                		</div>
-			                	</c:when>
-			                </c:choose>
+		                    <div class="done">
+			                	<p>모임종료</p>
+			                </div>
 		                    <div class="btn">
-		                        <button class="btn-style btn-color1" onclick="location.href='http://localhost:8890/mocozy/update.cl?cno=${d.clubNo}'">재탕</button>
+		                        <button class="btn-style btn-color1" onclick="location.href='http://localhost:8890/mocozy/updateform.cl?cno=${d.clubNo}'">재탕</button>
 		                        <button class="btn-style btn-color2" onclick="location.href='http://localhost:8890/mocozy/cancleFinishSocial.me?cno=${d.clubNo}'">종료취소</button>
 		                    </div>
 		                </div>

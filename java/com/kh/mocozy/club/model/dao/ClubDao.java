@@ -106,10 +106,42 @@ public class ClubDao {
 	}
 
 	public int finishSocial(SqlSessionTemplate sqlSession, int cno) {
-		return sqlSession.update("clubMapper.finishSocial", cno);
+		int result1 = sqlSession.update("clubMapper.finishSocial", cno);
+		int result2 = sqlSession.update("clubMapper.finishRequest", cno);
+		return result1 * result2;
 	}
 
 	public int cancleFinishSocial(SqlSessionTemplate sqlSession, int cno) {
 		return sqlSession.update("clubMapper.cancleFinishSocial", cno);
+	}
+
+	public int clubRequestReset(SqlSessionTemplate sqlSession, int cno) {
+		return sqlSession.update("clubMapper.clubRequestReset", cno);
+	}
+
+	public ArrayList<Club> selectGoSocialList(SqlSessionTemplate sqlSession, int uno) {
+		return (ArrayList)sqlSession.selectList("clubMapper.selectGoSocialList", uno);
+	}
+
+	public ArrayList<Club> selectGoSocialListDone(SqlSessionTemplate sqlSession, int uno) {
+		return (ArrayList)sqlSession.selectList("clubMapper.selectGoSocialListDone", uno);
+	}
+
+	public ArrayList<Club> selectMyChallengeList(SqlSessionTemplate sqlSession, int uno) {
+		return (ArrayList)sqlSession.selectList("clubMapper.selectMyChallengeList", uno);
+	}
+
+	public ArrayList<Club> selectMyChallengeListDone(SqlSessionTemplate sqlSession, int uno) {
+		return (ArrayList)sqlSession.selectList("clubMapper.selectMyChallengeListDone", uno);
+	}
+
+	public int finishChallenge(SqlSessionTemplate sqlSession, int cno) {
+		int result1 = sqlSession.update("clubMapper.finishChallenge", cno);
+		int result2 = sqlSession.update("clubMapper.finishRequest",cno);
+		return result1 * result2;
+	}
+
+	public int cancleFinishChallenge(SqlSessionTemplate sqlSession, int cno) {
+		return sqlSession.update("clubMapper.cancleFinishChallenge", cno);
 	}
 }

@@ -14,10 +14,25 @@
 
     <!-- 라이브러리 -->
     <script src="${pageContext.request.contextPath}/resources/teo/js/clubDetailPage.js"></script>
+    
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.7.1/dist/jquery.slim.min.js"></script>
+
+    <!-- Popper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+
+    <!-- Latest compiled JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 
     <!-- font awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 
+    <!-- 카카오 지도 api -->
+    <script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=${kakaoApiKey}&libraries=services,clusterer,drawing"></script>
+    
     
 </head>
 <body onload="init({clubNo: ${c.clubNo}})">
@@ -132,7 +147,7 @@
                 		</tr>
                 		<tr>
                 			<td><i class="fa-solid fa-user"></i> </td>
-                			<td> 최대  ${c.capacity}</td>
+                			<td> 최대  ${c.capacity}명</td>
                 		</tr>
                 		<tr>
                 			<td><i class="fa-solid fa-coins"></i> </td>
@@ -154,7 +169,7 @@
                 </div>
             </div>
             <div class="club_address_center">
-                <div class="club_address">
+                <div id="club_address_btn" class="club_address" data-toggle="modal" data-target="#myModal" onclick="modalMap('${c.address}')">
                     <div>
                         <i class="fa-solid fa-map-location-dot fa-xl"></i>
                     </div>
@@ -228,6 +243,30 @@
 					</c:choose>
                     
             </div>
+        </div>
+    </div>
+    <!-- The Modal -->
+    <div class="modal" id="myModal">
+        <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+    
+            <!-- Modal Header -->
+            <div class="modal-header">
+            <h4 class="modal-title">지도 보기</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+    
+            <!-- Modal body -->
+            <div class="modal-body">
+                <div id="map" style="width:100%;height:500px;"></div>
+            </div>
+    
+            <!-- Modal footer -->
+            <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">닫기</button>
+            </div>
+    
+        </div>
         </div>
     </div>
 </body>
