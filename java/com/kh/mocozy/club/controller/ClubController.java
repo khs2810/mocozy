@@ -193,16 +193,28 @@ public class ClubController {
         String formattedDateTime = dateTime.format(outputFormatter);
 
         c.setEventDate(convertStringToTimestamp(formattedDateTime));
-        System.out.println(c);
         
-        int result = clubService.updateClub(c, at);
-        
-        if (result > 0) {
-        	session.setAttribute("alertMsg", "모임 수정 성공");
-        	return "redirect:detail.cl?cno=" + c.getClubNo();
-        } else {
-        	model.addAttribute("errorMsg", "게시글 수정 실패");
-        	return "common/errorPage";
+        if (c.getStatus().equals("E")) {
+        	int result1 = clubService.cancleFinishSocial(c.getClubNo());
+        	int result2 = clubService.clubRequestReset(c.getClubNo());
+        	
+        	if (result1 * result2 > 0) {
+        		session.setAttribute("alertMsg", "모임 수정 성공");
+        		return "redirect:detail.cl?cno=" + c.getClubNo();
+        	} else {
+        		model.addAttribute("errorMsg", "게시글 수정 실패");
+        		return "common/errorPage";
+        	}
+        } else {        	
+        	int result = clubService.updateClub(c, at);
+        	
+        	if (result > 0) {
+        		session.setAttribute("alertMsg", "모임 수정 성공");
+        		return "redirect:detail.cl?cno=" + c.getClubNo();
+        	} else {
+        		model.addAttribute("errorMsg", "게시글 수정 실패");
+        		return "common/errorPage";
+        	}
         }
 	}
 	

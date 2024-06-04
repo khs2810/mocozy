@@ -26,7 +26,7 @@ public class SearchPickController {
     
     //검색
     @GetMapping("searchFormPick.sc")
-    public String searchForm(@RequestParam("keyword") String keyword, @RequestParam("rpage") int currentPage, Model model) {
+    public String searchFormPick(@RequestParam("keyword") String keyword, @RequestParam("rpage") int currentPage, Model model) {
         HashMap<String, String> map = new HashMap<>();
         map.put("keyword", keyword);
         

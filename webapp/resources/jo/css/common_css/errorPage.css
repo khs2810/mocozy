@@ -25,7 +25,7 @@ li {
     flex-direction: column;
 }
 
-.errorpage h1{
+.errorpage h2{
 	text-align: center; 
 	color: orange;
 }

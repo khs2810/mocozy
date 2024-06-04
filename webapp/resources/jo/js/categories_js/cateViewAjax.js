@@ -4,16 +4,16 @@ const size = 10;  // 한 페이지에 로드할 아이템의 수
 /* --------- */
 $(window).scroll(function() {
     if($(window).scrollTop() + $(window).height() == $(document).height()) {
-        eventArtAjax({page: currentPage, size: size}, function() {
+        cateAllViewAjax({page: currentPage, size: size}, function() {
             console.log("데이터 로드 성공");
             currentPage++;  // 다음 페이지로 이동
         });
     }
 });
 
-function eventArtAjax(data, callback) {
+function cateAllViewAjax(data, callback) {
     $.ajax({
-        url: `eventArt.ev`,
+        url: `cateAllView.ct`,
         method: 'GET',
         data: data,
         success: function (data) {
@@ -37,16 +37,16 @@ function eventArtAjax(data, callback) {
 /* --------- */
 $(window).scroll(function() {
     if($(window).scrollTop() + $(window).height() == $(document).height()) {
-        cateActivityajax({page: currentPage, size: size}, function() {
+        cateActivityViewAjax({page: currentPage, size: size}, function() {
             console.log("데이터 로드 성공");
             currentPage++;  // 다음 페이지로 이동
         });
     }
 });
 
-function eventDessertAjax(data, callback) {
+function cateActivityViewAjax(data, callback) {
     $.ajax({
-        url: `eventDessert.ev`,
+        url: `cateActivityView.ct`,
         method: 'GET',
         data: data,
         success: function (data) {
@@ -70,16 +70,16 @@ function eventDessertAjax(data, callback) {
 /* --------- */
 $(window).scroll(function() {
     if($(window).scrollTop() + $(window).height() == $(document).height()) {
-        eventGameAjax({page: currentPage, size: size}, function() {
+        cateArtViewAjax({page: currentPage, size: size}, function() {
             console.log("데이터 로드 성공");
             currentPage++;  // 다음 페이지로 이동
         });
     }
 });
 
-function eventGameAjax(data, callback) {
+function cateArtViewAjax(data, callback) {
     $.ajax({
-        url: `eventGame.ev`,
+        url: `cateArtView.ct`,
         method: 'GET',
         data: data,
         success: function (data) {
@@ -103,16 +103,16 @@ function eventGameAjax(data, callback) {
 /* --------- */
 $(window).scroll(function() {
     if($(window).scrollTop() + $(window).height() == $(document).height()) {
-        eventPartyAjax({page: currentPage, size: size}, function() {
+        cateDevelopeViewAjax({page: currentPage, size: size}, function() {
             console.log("데이터 로드 성공");
             currentPage++;  // 다음 페이지로 이동
         });
     }
 });
 
-function eventPartyAjax(data, callback) {
+function cateDevelopeViewAjax(data, callback) {
     $.ajax({
-        url: `eventParty.ev`,
+        url: `cateDevelopeView.ct`,
         method: 'GET',
         data: data,
         success: function (data) {
@@ -136,16 +136,16 @@ function eventPartyAjax(data, callback) {
 /* --------- */
 $(window).scroll(function() {
     if($(window).scrollTop() + $(window).height() == $(document).height()) {
-        eventPhotoAjax({page: currentPage, size: size}, function() {
+        cateFoodViewAjax({page: currentPage, size: size}, function() {
             console.log("데이터 로드 성공");
             currentPage++;  // 다음 페이지로 이동
         });
     }
 });
 
-function eventPhotoAjax(data, callback) {
+function cateFoodViewAjax(data, callback) {
     $.ajax({
-        url: `eventPhoto.ev`,
+        url: `cateFoodView.ct`,
         method: 'GET',
         data: data,
         success: function (data) {
@@ -169,16 +169,16 @@ function eventPhotoAjax(data, callback) {
 /* --------- */
 $(window).scroll(function() {
     if($(window).scrollTop() + $(window).height() == $(document).height()) {
-        eventStudyAjax({page: currentPage, size: size}, function() {
+        cateForeignViewAjax({page: currentPage, size: size}, function() {
             console.log("데이터 로드 성공");
             currentPage++;  // 다음 페이지로 이동
         });
     }
 });
 
-function eventStudyAjax(data, callback) {
+function cateForeignViewAjax(data, callback) {
     $.ajax({
-        url: `eventStudy.ev`,
+        url: `cateForeignView.ct`,
         method: 'GET',
         data: data,
         success: function (data) {
@@ -202,16 +202,16 @@ function eventStudyAjax(data, callback) {
 /* --------- */
 $(window).scroll(function() {
     if($(window).scrollTop() + $(window).height() == $(document).height()) {
-        eventTravelAjax({page: currentPage, size: size}, function() {
+        cateGameViewAjax({page: currentPage, size: size}, function() {
             console.log("데이터 로드 성공");
             currentPage++;  // 다음 페이지로 이동
         });
     }
 });
 
-function eventTravelAjax(data, callback) {
+function cateGameViewAjax(data, callback) {
     $.ajax({
-        url: `eventTravel.ev`,
+        url: `cateGameView.ct`,
         method: 'GET',
         data: data,
         success: function (data) {
@@ -235,16 +235,16 @@ function eventTravelAjax(data, callback) {
 /* --------- */
 $(window).scroll(function() {
     if($(window).scrollTop() + $(window).height() == $(document).height()) {
-        eventLoveAjax({page: currentPage, size: size}, function() {
+        cateHobbyViewAjax({page: currentPage, size: size}, function() {
             console.log("데이터 로드 성공");
             currentPage++;  // 다음 페이지로 이동
         });
     }
 });
 
-function eventLoveAjax(data, callback) {
+function cateHobbyViewAjax(data, callback) {
     $.ajax({
-        url: `eventLove.ev`,
+        url: `cateHobbyView.ct`,
         method: 'GET',
         data: data,
         success: function (data) {
@@ -264,3 +264,103 @@ function eventLoveAjax(data, callback) {
         }
     });
 }
+
+/* --------- */
+$(window).scroll(function() {
+    if($(window).scrollTop() + $(window).height() == $(document).height()) {
+        cateInvestViewAjax({page: currentPage, size: size}, function() {
+            console.log("데이터 로드 성공");
+            currentPage++;  // 다음 페이지로 이동
+        });
+    }
+});
+
+function cateInvestViewAjax(data, callback) {
+    $.ajax({
+        url: `cateInvestView.ct`,
+        method: 'GET',
+        data: data,
+        success: function (data) {
+                        let $data = $(data); 
+            let $contentcards = $data.find('.contentcard'); 
+
+            $contentcards.each(function() {
+                let str = $(this).prop('outerHTML');  // 찾은 div의 HTML 가져오기
+                $('.display').append(str);  // 화면에 추가
+            });
+
+            if(callback) callback();
+        },
+
+        error: function () {
+            console.error("데이터 요청 ajax 실패");
+        }
+    });
+}
+
+/* --------- */
+$(window).scroll(function() {
+    if($(window).scrollTop() + $(window).height() == $(document).height()) {
+        cateLoveViewAjax({page: currentPage, size: size}, function() {
+            console.log("데이터 로드 성공");
+            currentPage++;  // 다음 페이지로 이동
+        });
+    }
+});
+
+function cateLoveViewAjax(data, callback) {
+    $.ajax({
+        url: `cateLoveView.ct`,
+        method: 'GET',
+        data: data,
+        success: function (data) {
+                        let $data = $(data); 
+            let $contentcards = $data.find('.contentcard'); 
+
+            $contentcards.each(function() {
+                let str = $(this).prop('outerHTML');  // 찾은 div의 HTML 가져오기
+                $('.display').append(str);  // 화면에 추가
+            });
+
+            if(callback) callback();
+        },
+
+        error: function () {
+            console.error("데이터 요청 ajax 실패");
+        }
+    });
+}
+
+/* --------- */
+$(window).scroll(function() {
+    if($(window).scrollTop() + $(window).height() == $(document).height()) {
+        cateTravelViewAjax({page: currentPage, size: size}, function() {
+            console.log("데이터 로드 성공");
+            currentPage++;  // 다음 페이지로 이동
+        });
+    }
+});
+
+function cateTravelViewAjax(data, callback) {
+    $.ajax({
+        url: `cateTravelView.ct`,
+        method: 'GET',
+        data: data,
+        success: function (data) {
+                        let $data = $(data); 
+            let $contentcards = $data.find('.contentcard'); 
+
+            $contentcards.each(function() {
+                let str = $(this).prop('outerHTML');  // 찾은 div의 HTML 가져오기
+                $('.display').append(str);  // 화면에 추가
+            });
+
+            if(callback) callback();
+        },
+
+        error: function () {
+            console.error("데이터 요청 ajax 실패");
+        }
+    });
+}
+
