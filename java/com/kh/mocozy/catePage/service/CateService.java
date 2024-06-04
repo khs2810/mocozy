@@ -40,4 +40,7 @@ public interface CateService {
     int getReviewCount(int clubNo);
 
 	int getPickedCount(int clubNo);
+
+	public int getClublist();
+
 }

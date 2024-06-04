@@ -10,8 +10,10 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.google.gson.Gson;
 import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.common.model.vo.PageInfo;
 import com.kh.mocozy.common.template.Pagination;
@@ -24,7 +26,7 @@ public class SearchController {
     @Autowired
     private SearchService sService;
      
-    //검색
+    //최신순
     @GetMapping("searchForm.sc")
     public String searchForm(@RequestParam("keyword") String keyword, @RequestParam("rpage") int currentPage, Model model) {
         HashMap<String, String> map = new HashMap<>();
@@ -45,11 +47,11 @@ public class SearchController {
 		    c.setProfileImg(imgs);    
 		}
 		
-	    // 클럽 리스트를 createDate가 최신인 순으로 정렬
+	    // 클럽 리스트를 ClubNo가 최신인 순으로 정렬
 	    Collections.sort(clist, new Comparator<Club>() {
 	        @Override
 	        public int compare(Club c1, Club c2) {
-	            return c2.getCreateDate().compareTo(c1.getCreateDate());
+	            return Integer.compare(c2.getClubNo(), c1.getClubNo());
 	        }
 	    });
 	    
@@ -63,4 +65,211 @@ public class SearchController {
 			return "search/searchRecent/searchMain";
 		}
     }
+
+	//최신순Ajax
+    @RequestMapping(value="searchFormAjax.sc", produces="application/json; charset=UTF-8")
+    public String searchFormAjax(@RequestParam("keyword") String keyword, @RequestParam("rpage") int currentPage, Model model) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("keyword", keyword);
+        
+        //키워드로 검색한 클럽 수 + 키워드에 맞는 클럽 호출
+        int clubCount = sService.searchForm(map);
+        
+        PageInfo re = Pagination.getPageInfo(clubCount, currentPage, 12, 4);
+        ArrayList<Club> clist = sService.selectSearchList(map, re);
+        
+		for (Club c : clist){
+		    ArrayList<Member> memberList = sService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+		
+	    // 클럽 리스트를 ClubNo가 최신인 순으로 정렬
+	    Collections.sort(clist, new Comparator<Club>() {
+	        @Override
+	        public int compare(Club c1, Club c2) {
+	            return Integer.compare(c2.getClubNo(), c1.getClubNo());
+	        }
+	    });
+	    
+        model.addAttribute("clist", clist);
+        model.addAttribute("re", re);
+        model.addAttribute("keyword", keyword);
+        
+        if (clubCount == 0) { //검색결과 없음
+        	return "search/searchError";
+		} else { //검색결과있음
+			return new Gson().toJson(clist);
+		}
+    }
+
+	/* --------------------- */
+
+	    //찜순
+		@GetMapping("searchFormPick.sc")
+		public String searchFormPick(@RequestParam("keyword") String keyword, @RequestParam("rpage") int currentPage, Model model) {
+			HashMap<String, String> map = new HashMap<>();
+			map.put("keyword", keyword);
+			
+			//키워드로 검색한 클럽 수 + 키워드에 맞는 클럽 호출
+			int clubCount = sService.searchForm(map);
+			
+			PageInfo re = Pagination.getPageInfo(clubCount, currentPage, 1, 9);
+			ArrayList<Club> clist = sService.selectSearchList(map, re);
+			
+			for (Club c : clist){
+				ArrayList<Member> memberList = sService.MemberList(c.getClubNo());
+				ArrayList<String> imgs = new ArrayList<String>();
+				for (Member m : memberList) {
+					imgs.add(m.getProfileImg());
+				}
+				c.setProfileImg(imgs);   
+				c.setPickCount(sService.getPickedCount(c.getClubNo()));
+			}
+			
+			  //Club의 pickcount 높은 순으로 정렬
+			Collections.sort(clist, new Comparator<Club>() {
+				@Override
+				public int compare(Club c1, Club c2) {
+					return Integer.compare(c2.getPickCount(), c1.getPickCount());
+				}
+			});
+			
+			model.addAttribute("clist", clist);
+			model.addAttribute("re", re);
+			model.addAttribute("keyword", keyword);
+			
+			if (clubCount == 0) { //검색결과 없음
+				return "search/searchError";
+			} else { //검색결과있음
+				return "search/searchPick/searchMainPick";
+			}
+		}
+
+	   //찜순Ajax
+	   @RequestMapping(value="searchFormPickAjax.sc", produces="application/json; charset=UTF-8")
+	   public String searchFormPickAjax(@RequestParam("keyword") String keyword, @RequestParam("rpage") int currentPage, Model model) {
+		   HashMap<String, String> map = new HashMap<>();
+		   map.put("keyword", keyword);
+		   
+		   //키워드로 검색한 클럽 수 + 키워드에 맞는 클럽 호출
+		   int clubCount = sService.searchForm(map);
+		   
+		   PageInfo re = Pagination.getPageInfo(clubCount, currentPage, 1, 9);
+		   ArrayList<Club> clist = sService.selectSearchList(map, re);
+		   
+		   for (Club c : clist){
+			   ArrayList<Member> memberList = sService.MemberList(c.getClubNo());
+			   ArrayList<String> imgs = new ArrayList<String>();
+			   for (Member m : memberList) {
+				   imgs.add(m.getProfileImg());
+			   }
+			   c.setProfileImg(imgs);   
+			   c.setPickCount(sService.getPickedCount(c.getClubNo()));
+		   }
+		   
+			 //Club의 pickcount 높은 순으로 정렬
+		   Collections.sort(clist, new Comparator<Club>() {
+			   @Override
+			   public int compare(Club c1, Club c2) {
+				   return Integer.compare(c2.getPickCount(), c1.getPickCount());
+			   }
+		   });
+		   
+		   model.addAttribute("clist", clist);
+		   model.addAttribute("re", re);
+		   model.addAttribute("keyword", keyword);
+		   
+		   if (clubCount == 0) { //검색결과 없음
+			   return "search/searchError";
+		   } else { //검색결과있음
+			return new Gson().toJson(clist);
+		   }
+	   }
+   
+	/* --------------------- */
+			
+	//조회순
+    @GetMapping("searchFormView.sc")
+    public String searchFormView(@RequestParam("keyword") String keyword, @RequestParam("rpage") int currentPage, Model model) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("keyword", keyword);
+        
+        //키워드로 검색한 클럽 수 + 키워드에 맞는 클럽 호출
+        int clubCount = sService.searchForm(map);
+        
+        PageInfo re = Pagination.getPageInfo(clubCount, currentPage, 1, 9);
+        ArrayList<Club> clist = sService.selectSearchList(map, re);
+        
+		for (Club c : clist){
+		    ArrayList<Member> memberList = sService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+		
+		//Club의 count 높은 순으로 정렬
+	    Collections.sort(clist, new Comparator<Club>() {
+	        @Override
+	        public int compare(Club c1, Club c2) {
+	            return Integer.compare(c2.getCount(), c1.getCount());
+	        }
+	    });
+	    
+        model.addAttribute("clist", clist);
+        model.addAttribute("re", re);
+        model.addAttribute("keyword", keyword);
+        
+        if (clubCount == 0) { //검색결과 없음
+        	return "search/searchError";
+		} else { //검색결과있음
+			return "search/searchView/searchMainView";
+		}
+    }
+
+	//조회순Ajax
+	@RequestMapping(value="searchFormViewAjax.sc", produces="application/json; charset=UTF-8")
+    public String searchFormViewAjax(@RequestParam("keyword") String keyword, @RequestParam("rpage") int currentPage, Model model) {
+        HashMap<String, String> map = new HashMap<>();
+        map.put("keyword", keyword);
+        
+        //키워드로 검색한 클럽 수 + 키워드에 맞는 클럽 호출
+        int clubCount = sService.searchForm(map);
+        
+        PageInfo re = Pagination.getPageInfo(clubCount, currentPage, 1, 9);
+        ArrayList<Club> clist = sService.selectSearchList(map, re);
+        
+		for (Club c : clist){
+		    ArrayList<Member> memberList = sService.MemberList(c.getClubNo());
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	imgs.add(m.getProfileImg());
+		    }
+		    c.setProfileImg(imgs);    
+		}
+		
+		//Club의 count 높은 순으로 정렬
+	    Collections.sort(clist, new Comparator<Club>() {
+	        @Override
+	        public int compare(Club c1, Club c2) {
+	            return Integer.compare(c2.getCount(), c1.getCount());
+	        }
+	    });
+	    
+        model.addAttribute("clist", clist);
+        model.addAttribute("re", re);
+        model.addAttribute("keyword", keyword);
+        
+        if (clubCount == 0) { //검색결과 없음
+        	return "search/searchError";
+		} else { //검색결과있음
+			return new Gson().toJson(clist);
+		}
+    }	
 }
+
