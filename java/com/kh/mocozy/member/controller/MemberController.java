@@ -255,21 +255,16 @@ public class MemberController {
 		// 1. (암호화된) 비밀번호 가져오기
 		Member loginUser = memberService.loginMember(m);
 //		String userPwd = ((Member) session.getAttribute("loginUser")).getUserPwd();
-		System.out.println("loginUser : " + loginUser);
 		String plainPwd = ((Member) session.getAttribute("loginUser")).getUserPwd();
 		// 2. 비밀번호 일치/불일치 판단후
 //		if (bcryptPasswordEncoder.matches(m.getUserPwd(), userPwd)) {
-		System.out.println("plainPwd : " + plainPwd);
 
 		if (m.getUserPwd().equals(plainPwd)) {
 			
-			System.out.println("plainPwd : " + plainPwd);
 		// 일치 -> 탈퇴처리 -> session에서 제거 -> 메인페이지로
 			int result = memberService.deleteMember(m.getUserId());
-			System.out.println("m : " + m);
 			if (result > 0) {
 				
-				System.out.println("result : " + result);
 				session.removeAttribute("loginUser");
 				session.setAttribute("alertMsg", "회원탈퇴가 성공적으로 이루어졌습니다.");
 				return "redirect:/";
