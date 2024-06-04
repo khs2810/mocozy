@@ -1,11 +1,15 @@
 package com.kh.mocozy.point.service;
 
+import java.util.ArrayList;
+import java.util.Map;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.mocozy.member.model.vo.Member;
 import com.kh.mocozy.point.model.dao.PointDao;
+import com.kh.mocozy.point.model.vo.Point;
 
 
 
@@ -26,6 +30,16 @@ public class PointServiceImpl implements PointService {
 	@Override
 	public int withdrawPoint(Member m) {
 		return pointDao.withdrawPoint(sqlSession, m);
+	}
+
+	@Override
+	public ArrayList<Point> selectPointChargeList(Map<String, Object> map) {
+		return pointDao.selectPointChargeList(sqlSession, map);
+	}
+
+	@Override
+	public int sumPointMonth(Map<String, Object> map) {
+		return pointDao.sumPointMonth(sqlSession, map);
 	}
 	
 }

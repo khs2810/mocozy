@@ -17,6 +17,7 @@ import java.util.Locale;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,6 +41,9 @@ public class ClubController {
 	private ClubService clubService;
 	@Autowired
 	private MemberService memberService;
+	
+	@Value("${kakao.api.js.key}")
+    private String kakaoApiKey;
 	
 	@RequestMapping("detail.cl")
 	public String selectClub(int cno, Model model, HttpSession session) {
@@ -69,6 +73,7 @@ public class ClubController {
 	        String eventDateDetailInfo = String.format("%s(%s) %s", formattedDate, dayOfWeek, formattedTime);
 	        
 	        model.addAttribute("evDate", eventDateDetailInfo);
+	        model.addAttribute("kakaoApiKey", kakaoApiKey);
 			
 			return "club/clubDetailPage";
 		} else {
