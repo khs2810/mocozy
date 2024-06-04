@@ -600,3 +600,7 @@ button{
 #hidden_club_members {
     display: none;
 }
+
+#club_address_btn {
+    cursor: pointer;
+}

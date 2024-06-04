@@ -28,48 +28,37 @@
             <div class="total-box">
                 <div class="month-select">
                     <button type="button">&lt;</button>
-                    <span style="padding: 0 20px; margin-bottom: 7px;">2024. 04</span>
+                    <span style="padding: 0 20px; margin-bottom: 7px;">${strMonth}</span>
                     <button type="button">&gt;</button>
                 </div>
                 <div class="total-area">
                     <h2>총 액</h2>
                     <div class="amount-area">
-                        <h2 id="total-amount">110000</h2>
+                        <h2 id="total-amount">${sumPoint}</h2>
                         <h2>pt</h2>
                     </div>
                 </div>
             </div>
             <div class="history-list-area">
-                <div class="history-list">
-                    <div class="history-list-main">
-                        <span class="history-detail">포인트 충전</span>
-                        <div class="history-point">
-                            <span id="history-point-num">30000</span>
-                            <span>pt</span>
+                <c:forEach var="p" items="${plist}">
+                    <div class="history-list">
+                        <div class="history-list-main">
+                            <c:choose>
+                                <c:when test="${p.status eq 'D'}">
+                                    <span class="history-detail">포인트 충전</span>
+                                </c:when>
+                                <c:otherwise>
+                                    <span class="history-detail">챌린지 상금</span>
+                                </c:otherwise>
+                            </c:choose>
+                            <div class="history-point">
+                                <span id="history-point-num">${p.point}</span>
+                                <span>pt</span>
+                            </div>
                         </div>
+                        <span class="history-date">${p.createDate}</span>
                     </div>
-                    <span class="history-date">2024.4.5</span>
-                </div>
-                <div class="history-list">
-                    <div class="history-list-main">
-                        <span class="history-detail">포인트 충전</span>
-                        <div class="history-point">
-                            <span id="history-point-num">30000</span>
-                            <span>pt</span>
-                        </div>
-                    </div>
-                    <span class="history-date">2024.4.13</span>
-                </div>
-                <div class="history-list">
-                    <div class="history-list-main">
-                        <span class="history-detail">챌린지 상금</span>
-                        <div class="history-point">
-                            <span id="history-point-num">50000</span>
-                            <span>pt</span>
-                        </div>
-                    </div>
-                    <span class="history-date">2024.4.13</span>
-                </div>
+                </c:forEach>
             </div>
         </form>
 
