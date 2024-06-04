@@ -6,7 +6,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>모임 결제페이지</title>
+	<!-- css -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/teo/css/clubDetailPage.css"/>
+
+	<!-- 라이브러리 -->
+    <script src="${pageContext.request.contextPath}/resources/teo/js/clubPayment.js"></script>
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>
@@ -19,7 +23,7 @@
 			<div id="payment_main_text">
 				<h1 align="center">결제 정보</h1>
 				<div class="payment_top">
-					<div class="main_img_div"><img src="${pageContext.request.contextPath}/resources/teo/img/clubMainImg.jpg" alt="메인이미지"></div>
+					<div class="main_img_div"><img src="${c.thumbnailImg}" alt="메인이미지"></div>
 					<div class="payment_top_right">
 						<div>
 							<h4>${c.clubTitle }</h4>
@@ -88,7 +92,7 @@
 			</div>
 			<div class="club_btns">
 				<button class="background_color_brown" type="button" onclick="history.back()">이 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;전</button>
-				<button class="background_color_green" type="submit">결 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;제</button>
+				<button class="background_color_green" type="submit" onclick="return confirmPay()">결 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;제</button>
 			</div>
 		</div>
 	</form>
