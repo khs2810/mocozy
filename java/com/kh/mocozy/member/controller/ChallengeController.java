@@ -28,9 +28,8 @@ public class ChallengeController {
 	// 내가 만든 챌린지
 	@RequestMapping("myChallenge.me")
 	public String myChallengeView(HttpSession session, Model model) {
-//		Member m = (Member)session.getAttribute("loginUser");
-//		int uno = m.getUserNo();
-		int uno = 2;
+		Member m = (Member)session.getAttribute("loginUser");
+		int uno = m.getUserNo();
 		
 		ArrayList<Club> clist = clubService.selectMyChallengeList(uno);
 		ArrayList<Club> dlist = clubService.selectMyChallengeListDone(uno);
@@ -61,9 +60,8 @@ public class ChallengeController {
 		int result = clubService.finishChallenge(cno);
 		
 		if (result > 0) {
-//			Member m = (Member)session.getAttribute("loginUser");
-//			int uno = m.getUserNo();
-			int uno = 2;
+			Member m = (Member)session.getAttribute("loginUser");
+			int uno = m.getUserNo();
 			
 			ArrayList<Club> clist = clubService.selectMyChallengeList(uno);
 			ArrayList<Club> dlist = clubService.selectMyChallengeListDone(uno);
@@ -98,9 +96,8 @@ public class ChallengeController {
 		int result = clubService.cancleFinishChallenge(cno);
 		
 		if (result > 0) {
-//			Member m = (Member)session.getAttribute("loginUser");
-//			int uno = m.getUserNo();
-			int uno = 2;
+			Member m = (Member)session.getAttribute("loginUser");
+			int uno = m.getUserNo();
 			
 			ArrayList<Club> clist = clubService.selectMyChallengeList(uno);
 			ArrayList<Club> dlist = clubService.selectMyChallengeListDone(uno);
@@ -132,9 +129,8 @@ public class ChallengeController {
 	// 참가한 챌린지
 	@RequestMapping("goChallenge.me")
 	public String goChallengeView(HttpSession session, Model model) {
-//		Member m = (Member)session.getAttribute("loginUser");
-//		int uno = m.getUserNo();
-		int uno = 2;
+		Member m = (Member)session.getAttribute("loginUser");
+		int uno = m.getUserNo();
 		
 		ArrayList<Club> clist = clubService.selectMyChallengeList(uno);
 		ArrayList<Club> dlist = clubService.selectMyChallengeListDone(uno);
