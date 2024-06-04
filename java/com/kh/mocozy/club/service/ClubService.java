@@ -56,4 +56,18 @@ public interface ClubService {
 	int finishSocial(int cno);
 
 	int cancleFinishSocial(int cno);
+
+	int clubRequestReset(int cno);
+
+	ArrayList<Club> selectGoSocialList(int uno);
+
+	ArrayList<Club> selectGoSocialListDone(int uno);
+
+	ArrayList<Club> selectMyChallengeList(int uno);
+
+	ArrayList<Club> selectMyChallengeListDone(int uno);
+
+	int finishChallenge(int cno);
+
+	int cancleFinishChallenge(int cno);
 }

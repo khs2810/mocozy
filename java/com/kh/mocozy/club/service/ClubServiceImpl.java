@@ -141,4 +141,39 @@ public class ClubServiceImpl implements ClubService {
 	public int cancleFinishSocial(int cno) {
 		return clubDao.cancleFinishSocial(sqlSession, cno);
 	}
+
+	@Override
+	public int clubRequestReset(int cno) {
+		return clubDao.clubRequestReset(sqlSession, cno);
+	}
+
+	@Override
+	public ArrayList<Club> selectGoSocialList(int uno) {
+		return clubDao.selectGoSocialList(sqlSession, uno);
+	}
+
+	@Override
+	public ArrayList<Club> selectGoSocialListDone(int uno) {
+		return clubDao.selectGoSocialListDone(sqlSession, uno);
+	}
+
+	@Override
+	public ArrayList<Club> selectMyChallengeList(int uno) {
+		return clubDao.selectMyChallengeList(sqlSession, uno);
+	}
+
+	@Override
+	public ArrayList<Club> selectMyChallengeListDone(int uno) {
+		return clubDao.selectMyChallengeListDone(sqlSession, uno);
+	}
+
+	@Override
+	public int finishChallenge(int cno) {
+		return clubDao.finishChallenge(sqlSession, cno);
+	}
+
+	@Override
+	public int cancleFinishChallenge(int cno) {
+		return clubDao.cancleFinishChallenge(sqlSession, cno);
+	}
 }
