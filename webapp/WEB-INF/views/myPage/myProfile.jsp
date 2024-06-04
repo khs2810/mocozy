@@ -144,134 +144,92 @@
 
                 <div class="edit-user">
                     <button type="submit">수정</button>
-                    <button type="button" href="logout.me">로그아웃</button>
+                    <button type="button" onclick="location.href='logout.me'">로그아웃</button>
                     <button type="button" data-toggle="modal" data-target="#myModal3">회원 탈퇴</button>
                 </div>
             </form>
 
-        <!-- 비번 변경 모달창 -->
-        <!-- The Modal -->
-        <div class="modal fade" id="myModal">
-            <div class="modal-dialog">
-                <div class="modal-content">
+            <!-- 비번 변경 모달창 -->
+            <!-- The Modal -->
+            <div class="modal fade" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
 
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                        <h2 class="modal-title">비밀번호 변경하기</h2>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-
-                    <!-- Modal body -->
-                    <form action="updatePwd.me" method="post" id="changePasswordForm">
-                        <div class="modal-body">
-                            <h5>기존 비밀번호</h5>
-                            <div class="content-box">
-                                <input type="hidden" id="userId" name="userId" value="${loginUser.userId}">
-                                <input type="hidden" id="checkPwd1" name="checkPwd1" value="${loginUser.userPwd}">
-                                <input type="password" id="currentPwd" name="currentPwd" onkeyup="checkPwd(this)" placeholder="기존 비밀번호를 입력해 주세요." required>
-                                <span id="pwd_review1"></span><br>
-                            </div>
-
-                            <br>
-                            <hr>
-                            <br>
-
-                            <h5>새 비밀번호</h5>
-                            <div class="content-box">
-                                <input type="password" class="form-control" id="userPwd" name="userPwd" placeholder="새 비밀번호를 입력해주세요" required>
-                            </div>
-                            <br>
-
-                            <h5>새 비밀번호 확인</h5>
-                            <div class="content-box">
-                                <input type="password" class="form-control" id="checkPwd" onblur="checkPass()" placeholder="새 비밀번호를 다시 한 번 입력해주세요" required>
-                                <span id="pwd_review"></span><br>
-                                <div id="checkResult" style="font-size:0.7em; display:none;"></div>
-                            </div>
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                            <h2 class="modal-title">비밀번호 변경하기</h2>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
                         </div>
 
+                        <!-- Modal body -->
+                        <form action="updatePwd.me" method="post" id="changePasswordForm">
+                            <div class="modal-body">
+                                <h5>기존 비밀번호</h5>
+                                <div class="content-box">
+                                    <input type="hidden" id="userId" name="userId" value="${loginUser.userId}">
+                                    <input type="hidden" id="checkPwd1" name="checkPwd1" value="${loginUser.userPwd}">
+                                    <input type="password" id="currentPwd" name="currentPwd" onkeyup="checkPwd(this)" placeholder="기존 비밀번호를 입력해 주세요." required>
+                                    <span id="pwd_review1"></span><br>
+                                </div>
+
+                                <br>
+                                <hr>
+                                <br>
+
+                                <h5>새 비밀번호</h5>
+                                <div class="content-box">
+                                    <input type="password" class="form-control" id="userPwd" name="userPwd" placeholder="새 비밀번호를 입력해주세요" required>
+                                </div>
+                                <br>
+
+                                <h5>새 비밀번호 확인</h5>
+                                <div class="content-box">
+                                    <input type="password" class="form-control" id="checkPwd" onblur="checkPass()" placeholder="새 비밀번호를 다시 한 번 입력해주세요" required>
+                                    <span id="pwd_review"></span><br>
+                                    <div id="checkResult" style="font-size:0.7em; display:none;"></div>
+                                </div>
+                            </div>
+
+                            <!-- Modal footer -->
+                            <div class="modal-footer">
+                                <button type="submit" class="change-btn2" id="submitBtn" onclick="change_pass();">변경하기</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- 전화번호 인증 모달창 -->
+            <!-- The Modal -->
+            <div class="modal fade" id="myModal1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                        <h2 class="modal-title">전화번호 인증</h2>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                
+                        <!-- Modal body -->
+                        <div class="modal-body">
+                            <h5>전화번호 인증하기기기</h5>
+                        </div>
+                
                         <!-- Modal footer -->
                         <div class="modal-footer">
-                            <button type="submit" class="change-btn2" id="submitBtn" onclick="change_pass();">변경하기</button>
+                            <button type="button" class="change-btn2">인증 하기</button>
                         </div>
-                    </form>
+                
+                    </div>
                 </div>
             </div>
-        </div>
 
-
-
-        <!-- 전화번호 인증 모달창 -->
-        <!-- The Modal -->
-        <div class="modal fade" id="myModal1">
-            <div class="modal-dialog">
-                <div class="modal-content">
-            
-                    <!-- Modal Header -->
-                    <div class="modal-header">
-                    <h2 class="modal-title">전화번호 인증</h2>
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    </div>
-            
-                    <!-- Modal body -->
-                    <div class="modal-body">
-                        <h5>전화번호 인증하기기기</h5>
-                    </div>
-            
-                    <!-- Modal footer -->
-                    <div class="modal-footer">
-                        <button type="button" class="change-btn2">인증 하기</button>
-                    </div>
-            
-                </div>
-            </div>
-        </div>
-
-        <!-- 회원탈퇴 모달창1 -->
-        <!-- The Modal -->
-        <div class="modal fade" id="myModal3">
-            <div class="modal-dialog">
-            <div class="modal-content">
-        
-                <!-- Modal Header -->
-                <div class="modal-header">
-                <h2 class="modal-title">회원 탈퇴하기</h2>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-        
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <h5>정말 탈퇴하시겠어요?</h5>
-                    <br>
-                    <div class="signout-caution">
-                        <p>지금 탈퇴하시면 참가 예정이거나, 참가중인 모임을 이용할 수 없게 되요.</p>
-                        <p>지금 탈퇴하시면 보유중인 매너 점수가 사라져요.</p>
-                        <p>지금 탈퇴하시면 채팅 이력이 모두 사라져요.</p>
-                        <p>추후에 동일 계정으로 가입해도 복구되지 않아요.</p>
-                    </div>
-                    <br>
-
-                    <div class="checked">
-                        <label for="agree" class="chk_box">
-                            <input type="checkbox" id="agree" checked="checked" />
-                            <span class="on"></span>
-                            <p>상기 유의 사항을 확인 하였으며, 탈퇴 신청에 동의 합니다.</p>
-                        </label>
-                    </div>
-                </div>
-        
-                <!-- 탈퇴신청 Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="change-btn2" data-toggle="modal" data-target="#myModal4">탈퇴 신청하기</button>
-                </div>
-        
-            </div>
-            </div>
-        </div>
-
-        <!-- 회원탈퇴 모달창2 -->
+            <!-- 회원탈퇴 모달창1 -->
             <!-- The Modal -->
-            <div class="modal fade" id="myModal4">
+            <div class="modal fade" id="myModal3">
                 <div class="modal-dialog">
                 <div class="modal-content">
             
@@ -283,40 +241,84 @@
             
                     <!-- Modal body -->
                     <div class="modal-body">
-                        <div>
-                            <h5>${loginUser.nickname} 님 <br>
-                                마지막 기회에요. <br>
-                                정말로 탈퇴하시겠어요?</h5>
-                        </div>
-                        <p id="last-caution">비밀번호를 입력하고 확인을 누르면 탈퇴신청이 완료됩니다.</p>
+                        <h5>정말 탈퇴하시겠어요?</h5>
                         <br>
-                        <div class="main-object">
-                            <div class="content-title">
-                                <h6>이메일 (로그인 ID)</h6>
-                            </div>
-                            <div>
-                                ${loginUser.userId}
-                            </div>
+                        <div class="signout-caution">
+                            <p>지금 탈퇴하시면 참가 예정이거나, 참가중인 모임을 이용할 수 없게 되요.</p>
+                            <p>지금 탈퇴하시면 보유중인 매너 점수가 사라져요.</p>
+                            <p>지금 탈퇴하시면 채팅 이력이 모두 사라져요.</p>
+                            <p>추후에 동일 계정으로 가입해도 복구되지 않아요.</p>
                         </div>
-                        <div class="main-object height">
-                            <div class="content-title">
-                                <h6>비밀번호</h6>
-                            </div>
-                            <div class="box">
-                                <input type="password" class="textbox" id="delete-password" >
-                                <span id="pwd_review"></span>
-                            </div>
-                        </div>
+                        <br>
 
+                        <div class="checked">
+                            <label for="agree" class="chk_box">
+                                <input type="checkbox" id="agree" checked="checked" />
+                                <span class="on"></span>
+                                <p>상기 유의 사항을 확인 하였으며, 탈퇴 신청에 동의 합니다.</p>
+                            </label>
+                        </div>
                     </div>
             
-                    <!-- Modal footer -->
+                    <!-- 탈퇴신청 Modal footer -->
                     <div class="modal-footer">
-                        <button type="button" class="change-btn2" id="delete-account-btn">탈 퇴</button>
+                        <button type="button" class="change-btn2" data-toggle="modal" data-target="#myModal4">탈퇴 신청하기</button>
                     </div>
             
                 </div>
                 </div>
+            </div>
+
+            <!-- 회원탈퇴 모달창2 -->
+            <!-- The Modal -->
+            <div class="modal fade" id="myModal4">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                
+                        <!-- Modal Header -->
+                        <div class="modal-header">
+                        <h2 class="modal-title">회원 탈퇴하기</h2>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                
+                            <!-- Modal body -->
+                            <form action="delete.me" method="post">
+                            <input type="hidden" name="userId" value="${loginUser.userId }">
+                            <div class="modal-body">
+                                <div> 
+                                    <h5>${loginUser.nickname} 님 <br>
+                                        마지막 기회에요. <br>
+                                        정말로 탈퇴하시겠어요?</h5>
+                                </div>
+                                <p id="last-caution">비밀번호를 입력하고 확인을 누르면 탈퇴신청이 완료됩니다.</p>
+                                <br>
+                                <div class="main-object">
+                                    <div class="content-title">
+                                        <h6>이메일 (로그인 ID)</h6>
+                                    </div>
+                                    <div>
+                                        ${loginUser.userId}
+                                    </div>
+                                </div>
+
+                                <div class="main-object height">
+                                    <div class="content-title">
+                                        <h6>비밀번호</h6>
+                                    </div>
+                                    <div class="box">
+                                        <input type="password" class="textbox" name="userPwd" id="delete-password" required>
+                                        <span id="pwd_review"></span>
+                                    </div>
+                                </div>
+
+                            </div>
+                    
+                                <!-- Modal footer -->
+                                <div class="modal-footer">
+                                    <button type="submit" class="change-btn2" id="delete-account-btn" onsubmit="event.preventDefault(); deleteMember();">탈 퇴</button>
+                                </div>
+                            </form>
+                    </div>
                 </div>
             </div>
         </div>

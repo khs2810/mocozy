@@ -27,6 +27,7 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.loginMember(sqlSession, m);
 	}
 
+//	프로필 사진첨부
 	@Override
 	public Attachment insertAttachment(int uno) {
 		return memberDao.insertAttachment(sqlSession, uno);
@@ -39,30 +40,36 @@ public class MemberServiceImpl implements MemberService {
 		return memberDao.pwdCheck(sqlSession, userId);
 	}
 
+//	아이디체크
 	@Override
 	public int idCheck(String checkId) {
 		return memberDao.idCheck(sqlSession, checkId);
 	}
 
+//	회원가입
 	@Override
 	public int insertMember(Member m) {
 		return memberDao.insertMember(sqlSession, m);
 	}
 
+//	회원정보 수정
 	@Override
 	public int updateMember(Member m) {
 		return memberDao.updateMember(sqlSession, m);
 	}
 	
+//	비번체크
 	public String pwdCheck(Member m, String userId) {
         return memberDao.pwdCheck(sqlSession, userId);
     }
 	
+//	비번변경
 	@Override
 	public int updatePassword(Member m) {
 		return memberDao.updatePassword(sqlSession, m);
 	}
 	
+//	회원탈퇴
 	@Override
 	public int deleteMember(String userId) {
 		return memberDao.deleteMember(sqlSession, userId);
