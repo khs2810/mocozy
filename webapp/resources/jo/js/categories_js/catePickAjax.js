@@ -17,8 +17,7 @@ function cateAllajax(data, callback) {
         method: 'GET',
         data: data,
         success: function (data) {
-            console.log(data);
-            let $data = $(data); 
+                        let $data = $(data); 
             let $contentcards = $data.find('.contentcard'); 
 
             $contentcards.each(function() {
@@ -51,8 +50,7 @@ function cateActivityajax(data, callback) {
         method: 'GET',
         data: data,
         success: function (data) {
-            console.log(data);
-            let $data = $(data); 
+                        let $data = $(data); 
             let $contentcards = $data.find('.contentcard'); 
 
             $contentcards.each(function() {
@@ -85,8 +83,7 @@ function cateArtajax(data, callback) {
         method: 'GET',
         data: data,
         success: function (data) {
-            console.log(data);
-            let $data = $(data); 
+                        let $data = $(data); 
             let $contentcards = $data.find('.contentcard'); 
 
             $contentcards.each(function() {
@@ -119,8 +116,7 @@ function cateDevelopeajax(data, callback) {
         method: 'GET',
         data: data,
         success: function (data) {
-            console.log(data);
-            let $data = $(data); 
+                        let $data = $(data); 
             let $contentcards = $data.find('.contentcard'); 
 
             $contentcards.each(function() {
@@ -153,8 +149,7 @@ function cateFoodajax(data, callback) {
         method: 'GET',
         data: data,
         success: function (data) {
-            console.log(data);
-            let $data = $(data); 
+                        let $data = $(data); 
             let $contentcards = $data.find('.contentcard'); 
 
             $contentcards.each(function() {
@@ -187,8 +182,7 @@ function cateForeignajax(data, callback) {
         method: 'GET',
         data: data,
         success: function (data) {
-            console.log(data);
-            let $data = $(data); 
+                        let $data = $(data); 
             let $contentcards = $data.find('.contentcard'); 
 
             $contentcards.each(function() {
@@ -221,8 +215,7 @@ function cateGameajax(data, callback) {
         method: 'GET',
         data: data,
         success: function (data) {
-            console.log(data);
-            let $data = $(data); 
+                        let $data = $(data); 
             let $contentcards = $data.find('.contentcard'); 
 
             $contentcards.each(function() {
@@ -255,8 +248,7 @@ function cateArtajax(data, callback) {
         method: 'GET',
         data: data,
         success: function (data) {
-            console.log(data);
-            let $data = $(data); 
+                        let $data = $(data); 
             let $contentcards = $data.find('.contentcard'); 
 
             $contentcards.each(function() {
@@ -289,8 +281,7 @@ function cateInvestajax(data, callback) {
         method: 'GET',
         data: data,
         success: function (data) {
-            console.log(data);
-            let $data = $(data); 
+                        let $data = $(data); 
             let $contentcards = $data.find('.contentcard'); 
 
             $contentcards.each(function() {
@@ -323,8 +314,7 @@ function cateLoveajax(data, callback) {
         method: 'GET',
         data: data,
         success: function (data) {
-            console.log(data);
-            let $data = $(data); 
+                        let $data = $(data); 
             let $contentcards = $data.find('.contentcard'); 
 
             $contentcards.each(function() {
@@ -357,8 +347,7 @@ function cateTravelajax(data, callback) {
         method: 'GET',
         data: data,
         success: function (data) {
-            console.log(data);
-            let $data = $(data); 
+                        let $data = $(data); 
             let $contentcards = $data.find('.contentcard'); 
 
             $contentcards.each(function() {

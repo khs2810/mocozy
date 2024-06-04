@@ -7,6 +7,8 @@
 <!-- 공용 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/jo/js/search_js/searchAjax.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/jo/css/common_css/style.css">
 <link rel="stylesheet" type="text/css"
@@ -32,13 +34,13 @@
 					<div class="rightlistTitle">
 						<div class="rightlistContent">
 							<p id="cateRecent">
-								<a href="searchForm.sc" onclick="location.href='/searchForm.sc?keyword='+keyword+'&rpage='+currentPage">최신순</a>
+								<a href="searchForm.sc?rpage=1&keyword=${keyword}">최신순</a>
 							</p>
 							<p id="cateDibs">
-								<a href="searchFormPick.sc" onclick="location.href='/searchFormPick.sc?keyword='+keyword+'&rpage='+currentPage">인기순</a>
+								<a href="searchFormPick.sc?rpage=1&keyword=${keyword}">인기순</a>
 							</p>
 							<span id="cateViews">
-								<a href="searchFormView.sc" onclick="location.href='/searchFormView.sc?keyword='+keyword+'&rpage='+currentPage">조회순</a>
+								<a href="searchFormView.sc?rpage=1&keyword=${keyword}">조회순</a>
 							</span>
 						</div>
 					</div>
