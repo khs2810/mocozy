@@ -250,7 +250,7 @@ public class MemberController {
 	}
 
 	@RequestMapping("delete.me")
-	public String deleteMember(Member m, HttpSession session, String userPwd) {
+	public String deleteMember(Member m, HttpSession session, String userPwd, Model model) {
 
 		// 1. (암호화된) 비밀번호 가져오기
 		Member loginUser = memberService.loginMember(m);
@@ -266,16 +266,16 @@ public class MemberController {
 			if (result > 0) {
 				
 				session.removeAttribute("loginUser");
-				session.setAttribute("alertMsg", "회원탈퇴가 성공적으로 이루어졌습니다.");
+				model.addAttribute("alertMsg", "회원탈퇴가 성공적으로 이루어졌습니다.");
 				return "redirect:/";
 
 			} else {
-				session.setAttribute("alertMsg", "비밀번호를 다시 확인해주세요");
+				model.addAttribute("alertMsg", "비밀번호를 다시 확인해주세요");
 				return "redirect:/myProfile.me";
 			}
 		} else {
 			//불일치 -> alertMsg: 비밀번호 다시 입력 -> 마이페이지
-			session.setAttribute("alertMsg", "비밀번호를 다시 확인해주세요");
+			model.addAttribute("alertMsg", "비밀번호를 다시 확인해주세요");
 			return "redirect:/myProfile.me";
 		}
 	}
