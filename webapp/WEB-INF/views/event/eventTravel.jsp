@@ -13,6 +13,7 @@
 	href="${pageContext.request.contextPath}/resources/jo/css/common_css/style.css">
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/jo/css/event_css/event.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" async=""
 	src="${pageContext.request.contextPath}/resources/jo/js/event_js/event.js"></script>
 </head>

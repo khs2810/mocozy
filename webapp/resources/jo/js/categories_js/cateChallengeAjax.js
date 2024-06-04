@@ -17,8 +17,7 @@ function cateBestChallengeAjax(data, callback) {
         method: 'GET',
         data: data,
         success: function (data) {
-            console.log(data);
-            let $data = $(data); 
+                        let $data = $(data); 
             let $contentcards = $data.find('.contentcard'); 
 
             $contentcards.each(function() {
@@ -51,8 +50,7 @@ function cateHotChallengeajax(data, callback) {
         method: 'GET',
         data: data,
         success: function (data) {
-            console.log(data);
-            let $data = $(data); 
+                        let $data = $(data); 
             let $contentcards = $data.find('.contentcard'); 
 
             $contentcards.each(function() {
@@ -85,8 +83,7 @@ function cateRecentChallengeajax(data, callback) {
         method: 'GET',
         data: data,
         success: function (data) {
-            console.log(data);
-            let $data = $(data); 
+                        let $data = $(data); 
             let $contentcards = $data.find('.contentcard'); 
 
             $contentcards.each(function() {

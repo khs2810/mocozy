@@ -131,12 +131,6 @@
                                                 <span class="title title-controls">댓글</span>
                                             </a>
                                         </li>
-                                        <li>
-                                            <!-- 임시 -->
-                                            <a href="adminBlock.ad">
-                                                <span class="title title-controls">신고 · 차단</span>
-                                            </a>
-                                        </li>
                                     </ul>
                                 </li>
 

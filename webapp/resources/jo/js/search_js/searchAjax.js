@@ -4,16 +4,16 @@ const size = 10;  // 한 페이지에 로드할 아이템의 수
 /* --------- */
 $(window).scroll(function() {
     if($(window).scrollTop() + $(window).height() == $(document).height()) {
-        cateBestAjax({page: currentPage, size: size}, function() {
+        searchFormAjax({page: currentPage, size: size}, function() {
             console.log("데이터 로드 성공");
             currentPage++;  // 다음 페이지로 이동
         });
     }
 });
 
-function cateBestAjax(data, callback) {
+function searchFormAjax(data, callback) {
     $.ajax({
-        url: `cateBest.ct`,
+        url: `searchForm.sc`,
         method: 'GET',
         data: data,
         success: function (data) {
@@ -37,16 +37,16 @@ function cateBestAjax(data, callback) {
 /* --------- */
 $(window).scroll(function() {
     if($(window).scrollTop() + $(window).height() == $(document).height()) {
-        cateHotAjax({page: currentPage, size: size}, function() {
+        searchFormPickAjax({page: currentPage, size: size}, function() {
             console.log("데이터 로드 성공");
             currentPage++;  // 다음 페이지로 이동
         });
     }
 });
 
-function cateHotAjax(data, callback) {
+function searchFormPickAjax(data, callback) {
     $.ajax({
-        url: `cateHot.ct`,
+        url: `searchFormPick.sc`,
         method: 'GET',
         data: data,
         success: function (data) {
@@ -70,16 +70,16 @@ function cateHotAjax(data, callback) {
 /* --------- */
 $(window).scroll(function() {
     if($(window).scrollTop() + $(window).height() == $(document).height()) {
-        cateRecentAjax({page: currentPage, size: size}, function() {
+        searchFormViewAjax({page: currentPage, size: size}, function() {
             console.log("데이터 로드 성공");
             currentPage++;  // 다음 페이지로 이동
         });
     }
 });
 
-function cateRecentAjax(data, callback) {
+function searchFormViewAjax(data, callback) {
     $.ajax({
-        url: `cateRecent.ct`,
+        url: `searchFormView.sc`,
         method: 'GET',
         data: data,
         success: function (data) {

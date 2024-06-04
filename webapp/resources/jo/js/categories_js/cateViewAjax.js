@@ -17,8 +17,7 @@ function cateAllViewAjax(data, callback) {
         method: 'GET',
         data: data,
         success: function (data) {
-            console.log(data);
-            let $data = $(data); 
+                        let $data = $(data); 
             let $contentcards = $data.find('.contentcard'); 
 
             $contentcards.each(function() {
@@ -51,8 +50,7 @@ function cateActivityViewAjax(data, callback) {
         method: 'GET',
         data: data,
         success: function (data) {
-            console.log(data);
-            let $data = $(data); 
+                        let $data = $(data); 
             let $contentcards = $data.find('.contentcard'); 
 
             $contentcards.each(function() {
@@ -85,8 +83,7 @@ function cateArtViewAjax(data, callback) {
         method: 'GET',
         data: data,
         success: function (data) {
-            console.log(data);
-            let $data = $(data); 
+                        let $data = $(data); 
             let $contentcards = $data.find('.contentcard'); 
 
             $contentcards.each(function() {
@@ -119,8 +116,7 @@ function cateDevelopeViewAjax(data, callback) {
         method: 'GET',
         data: data,
         success: function (data) {
-            console.log(data);
-            let $data = $(data); 
+                        let $data = $(data); 
             let $contentcards = $data.find('.contentcard'); 
 
             $contentcards.each(function() {
@@ -153,8 +149,7 @@ function cateFoodViewAjax(data, callback) {
         method: 'GET',
         data: data,
         success: function (data) {
-            console.log(data);
-            let $data = $(data); 
+                        let $data = $(data); 
             let $contentcards = $data.find('.contentcard'); 
 
             $contentcards.each(function() {
@@ -187,8 +182,7 @@ function cateForeignViewAjax(data, callback) {
         method: 'GET',
         data: data,
         success: function (data) {
-            console.log(data);
-            let $data = $(data); 
+                        let $data = $(data); 
             let $contentcards = $data.find('.contentcard'); 
 
             $contentcards.each(function() {
@@ -221,8 +215,7 @@ function cateGameViewAjax(data, callback) {
         method: 'GET',
         data: data,
         success: function (data) {
-            console.log(data);
-            let $data = $(data); 
+                        let $data = $(data); 
             let $contentcards = $data.find('.contentcard'); 
 
             $contentcards.each(function() {
@@ -255,8 +248,7 @@ function cateHobbyViewAjax(data, callback) {
         method: 'GET',
         data: data,
         success: function (data) {
-            console.log(data);
-            let $data = $(data); 
+                        let $data = $(data); 
             let $contentcards = $data.find('.contentcard'); 
 
             $contentcards.each(function() {
@@ -289,8 +281,7 @@ function cateInvestViewAjax(data, callback) {
         method: 'GET',
         data: data,
         success: function (data) {
-            console.log(data);
-            let $data = $(data); 
+                        let $data = $(data); 
             let $contentcards = $data.find('.contentcard'); 
 
             $contentcards.each(function() {
@@ -323,8 +314,7 @@ function cateLoveViewAjax(data, callback) {
         method: 'GET',
         data: data,
         success: function (data) {
-            console.log(data);
-            let $data = $(data); 
+                        let $data = $(data); 
             let $contentcards = $data.find('.contentcard'); 
 
             $contentcards.each(function() {
@@ -357,8 +347,7 @@ function cateTravelViewAjax(data, callback) {
         method: 'GET',
         data: data,
         success: function (data) {
-            console.log(data);
-            let $data = $(data); 
+                        let $data = $(data); 
             let $contentcards = $data.find('.contentcard'); 
 
             $contentcards.each(function() {
