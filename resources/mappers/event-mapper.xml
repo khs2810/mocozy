@@ -86,6 +86,19 @@
 			   category_name2
 	FROM public.CLUB
 		join MEMBER USING (USER_NO)
-	WHERE public.CLUB.STATUS = 'Y';
+	WHERE public.CLUB.STATUS = 'Y'
+	ORDER BY CLUB_NO DESC;
+	</select>
+	
+	<select id="MemberList" resultMap="memberResult">
+		SELECT USER_NO,
+			   NICKNAME,
+			   INTRODUCE,
+			   PROFILE_IMG
+		FROM public.MEMBER 
+		JOIN public.REQUEST USING (USER_NO)
+		WHERE public.REQUEST.STATUS = 'Y'
+			AND public.request.CLUB_NO = #{clubNo}
+		ORDER BY CLUB_NO DESC;
 	</select>
 </mapper>

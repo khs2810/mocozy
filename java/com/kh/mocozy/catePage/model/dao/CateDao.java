@@ -74,4 +74,8 @@ public class CateDao {
 		public int getPickedCount(SqlSessionTemplate sqlSession, int clubNo) {
 			return sqlSession.selectOne("mainPageMapper.getPickedCount", clubNo);
 		}
+
+		public int getClublist(SqlSessionTemplate sqlSession) {
+			return sqlSession.selectOne("mainPageMapper.selectSocialList");
+		}
 	}
