@@ -145,7 +145,6 @@ button{
     justify-content: center;
     margin-top: 15px;
     cursor: pointer;
-    margin-left: 100px;
 }
 
 .club_member_div{
@@ -598,3 +597,6 @@ button{
 	margin-right: 50px;
 }
 
+#hidden_club_members {
+    display: none;
+}
