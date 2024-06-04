@@ -26,7 +26,8 @@ public class CateViewController {
 
     @Autowired
     private CateService cService;
-
+    
+    //전체
 	@RequestMapping("cateAllView.ct")
 	public String showcateAll(Model model) {    
 		ArrayList<Club> catelist = cService.selectcatelist();
@@ -49,10 +50,11 @@ public class CateViewController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateView/cateAllView";
+	    return "categories/cateView/cateAllView";
 
     }
 	
+	//액티비티
 	@RequestMapping("cateActivityView.ct")
 	public String selectActivity(Model model) {    
 		ArrayList<Club> catelist = cService.selectActivity();
@@ -75,10 +77,11 @@ public class CateViewController {
 	    
 		model.addAttribute("catelist", catelist);
 
-	    return "cateView/cateActivityView";
+	    return "categories/cateView/cateActivityView";
 
     }
 	
+	//문화
 	@RequestMapping("cateArtView.ct")
 	public String selectArt(Model model) {    
 		ArrayList<Club> catelist = cService.selectArt();
@@ -102,10 +105,11 @@ public class CateViewController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateView/cateArtView";
+	    return "categories/cateView/cateArtView";
 
     }
 	
+	//자기개발
 	@RequestMapping("cateDevelopeView.ct")
 	public String selectDevelope(Model model) {    
 		ArrayList<Club> catelist = cService.selectDevelope();
@@ -129,10 +133,11 @@ public class CateViewController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateView/cateDevelopeView";
+	    return "categories/cateView/cateDevelopeView";
 
     }
 	
+	//푸드 드링크
 	@RequestMapping("cateFoodView.ct")
 	public String selectFood(Model model) {    
 		ArrayList<Club> catelist = cService.selectFood();
@@ -155,11 +160,11 @@ public class CateViewController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateView/cateFoodView";
+	    return "categories/cateView/cateFoodView";
 
     }
 	
-	/* 수정해야함 */
+	//외국어
 	@RequestMapping("cateForeignView.ct")
 	public String selectForeign(Model model) {    
 		ArrayList<Club> catelist = cService.selectForeign();
@@ -182,11 +187,11 @@ public class CateViewController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateView/cateForeignView";
+	    return "categories/cateView/cateForeignView";
 
     }
 	
-	/* 수정해야함 */
+	//게임
 	@RequestMapping("cateGameView.ct")
 	public String selectGame(Model model) {    
 		ArrayList<Club> catelist = cService.selectGame();
@@ -209,10 +214,11 @@ public class CateViewController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateView/cateGameView";
+	    return "categories/cateView/cateGameView";
 
     }
 	
+	//취미
 	@RequestMapping("cateHobbyView.ct")
 	public String selectHobby(Model model) {    
 		ArrayList<Club> catelist = cService.selectHobby();
@@ -235,11 +241,11 @@ public class CateViewController {
 	   
 		model.addAttribute("catelist", catelist);
 
-	    return "cateView/cateHobbyView";
+	    return "categories/cateView/cateHobbyView";
 
     }
 	
-	
+	//자기개발
 	@RequestMapping("cateInvestView.ct")
 	public String showcateInvest(Model model) {    
 		ArrayList<Club> catelist = cService.selectInvest();
@@ -262,10 +268,11 @@ public class CateViewController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateView/cateInvestView";
+	    return "categories/cateView/cateInvestView";
 
     }
 	
+	//연애
 	@RequestMapping("cateLoveView.ct")
 	public String showcateLove(Model model) {    
 		ArrayList<Club> catelist = cService.selectLove();
@@ -288,36 +295,11 @@ public class CateViewController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateView/cateLoveView";
+	    return "categories/cateView/cateLoveView";
 
     }
 	
-	@RequestMapping("cateReviewView.ct")
-	public String showcateReview(Model model) {    
-		ArrayList<Club> catelist = cService.selectcatelist();
-		for (Club c : catelist){
-		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	imgs.add(m.getProfileImg());
-		    }
-		    c.setProfileImg(imgs);    
-		}
-	    
-		//Club의 count 높은 순으로 정렬
-	    Collections.sort(catelist, new Comparator<Club>() {
-	        @Override
-	        public int compare(Club c1, Club c2) {
-	            return Integer.compare(c2.getCount(), c1.getCount());
-	        }
-	    });
-	    
-		model.addAttribute("catelist", catelist);
-	    
-	    return "cateView/cateReviewView";
-
-    }
-	
+	//여행
 	@RequestMapping("cateTravelView.ct")
 	public String showcateTravel(Model model) {    
 		ArrayList<Club> catelist = cService.selectTravel();
@@ -340,7 +322,7 @@ public class CateViewController {
 	    
 		model.addAttribute("catelist", catelist);
 	    
-	    return "cateView/cateTravelView";
+	    return "categories/cateView/cateTravelView";
 
     }
 }

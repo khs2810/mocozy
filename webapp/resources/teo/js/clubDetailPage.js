@@ -80,3 +80,11 @@ function joinClub(cno){
     }
     
 }
+
+function showMoreMembers() {
+    let members = document.querySelectorAll('#hidden_club_members')
+    for (let i = 0; i < members.length; i++) {
+        members[i].style.display = 'flex';
+    }
+    document.querySelector('.club_more_member').style.display = 'none';
+}

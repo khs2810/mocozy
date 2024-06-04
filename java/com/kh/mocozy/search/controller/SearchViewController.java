@@ -26,7 +26,7 @@ public class SearchViewController {
     
     //검색
     @GetMapping("searchFormView.sc")
-    public String searchForm(@RequestParam("keyword") String keyword, @RequestParam("rpage") int currentPage, Model model) {
+    public String searchFormView(@RequestParam("keyword") String keyword, @RequestParam("rpage") int currentPage, Model model) {
         HashMap<String, String> map = new HashMap<>();
         map.put("keyword", keyword);
         
@@ -60,7 +60,7 @@ public class SearchViewController {
         if (clubCount == 0) { //검색결과 없음
         	return "search/searchError";
 		} else { //검색결과있음
-			return "searchView/searchMainView";
+			return "search/searchView/searchMainView";
 		}
     }
 }

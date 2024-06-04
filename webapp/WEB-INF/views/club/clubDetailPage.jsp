@@ -77,18 +77,33 @@
                 </div>
                 <c:choose>
                 	<c:when test="${memberList.size() ne 0}">
-                		<c:forEach var="m" items="${memberList}">
-                			<div class="club_members">
-		                   		<div class="club_profile_img"><img src="${pageContext.request.contextPath}${m.profileImg}" alt="프로필사진"></div>
-		                    	<div class="club_member_div">
-		                        	<div>${m.nickname}</div>
-		                        	<div class="club_member_intro">${m.introduce}</div>
-		                  	    </div>
-		                	</div>
-		                	<c:if test="${reviewList.size() > 5}">
-		                		<div class="club_more_member" style="margin-left: 275px;">더보기 ></div>
-		                	</c:if>
+                		<c:forEach var="m" items="${memberList}" varStatus="status">
+                            <c:choose>
+                                <c:when test="${status.index < 5}">
+                                    <div class="club_members">
+                                        <div class="club_profile_img"><img src="${pageContext.request.contextPath}${m.profileImg}" alt="프로필사진"></div>
+                                        <div class="club_member_div">
+                                            <div><b>${m.nickname}</b></div> 
+                                            <div class="club_member_intro">${m.introduce}</div>
+                                        </div>
+                                    </div>
+                                </c:when>
+                                <c:otherwise>
+                                    <div id="hidden_club_members" class="club_members">
+                                        <div class="club_profile_img"><img src="${pageContext.request.contextPath}${m.profileImg}" alt="프로필사진"></div>
+                                        <div class="club_member_div">
+                                            <div><b>${m.nickname}</b></div> 
+                                            <div class="club_member_intro">${m.introduce}</div>
+                                        </div>
+                                    </div>
+                                </c:otherwise>
+                            </c:choose>    
+                        
+                			
                 		</c:forEach>
+                        <c:if test="${memberList.size() > 5}">
+		                	<div class="club_more_member" style="margin-left: 275px;" onclick="showMoreMembers()">더보기 ></div>
+		                </c:if>
                 	</c:when>
                 	<c:otherwise>
 	                	<tr>

@@ -9,6 +9,8 @@
 <!-- 공용 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/jo/js/categories_js/catePickAjax.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/jo/css/common_css/style.css">
 <link rel="stylesheet" type="text/css"
@@ -33,9 +35,9 @@
 
 					<div class="rightlistTitle">
 						<div class="rightlistContent">
-							<span id="cateRecent"> 최근순 </span>
-							<p id="cateDibs">추천순</p>
-							<p id="cateViews">인기순</p>
+							<p id="cateRecent"><a href="cateAll.ct">최신순</a></p>
+							<span id="cateDibs"><a href="cateAllPick.ct">인기순</a></span>
+							<p id="cateViews"><a href="cateAllView.ct">조회순</a></p>
 						</div>
 					</div>
 				</div>
@@ -95,14 +97,10 @@
 												</c:choose>
 											</div>
 											<div class="socialmember">
-												<svg xmlns="http://www.w3.org/2000/svg" width="16"
-													height="16" fill="currentColor" class="bi bi-eye-fill"
-													viewBox="0 0 16 16" style="color: gray">
-											  <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
-											  <path
-														d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
-											</svg>
-												<div class="count">${club.count}</div>
+													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" style="color: gray;" viewBox="0 0 16 16">
+													  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+													</svg>
+												<div class="count">${club.pickCount}</div>
 											</div>
 										</div>
 									</div>

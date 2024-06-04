@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.mocozy.catePage.model.dao.CateDao;
 import com.kh.mocozy.club.model.vo.Club;
+import com.kh.mocozy.common.model.vo.PageInfo;
 import com.kh.mocozy.member.model.vo.Member;
 
 @Service
@@ -77,5 +78,25 @@ public class CateServiceImpl implements CateService{
 	public ArrayList<Member> MemberList(int clubNo) {
 		ArrayList<Member> result = cDao.MemberList(sqlSession, clubNo);
 		return result;
+	}
+	
+	@Override
+	public ArrayList<Club> getSocialing() {
+	     return cDao.getSocialing(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Club> getChallenge() {
+	     return cDao.getChallenge(sqlSession);
+	}
+
+	@Override
+	public int getReviewCount(int clubNo) {
+		return cDao.getReviewCount(sqlSession, clubNo);
+	}
+	    
+	@Override
+	public int getPickedCount(int clubNo) {
+		return cDao.getPickedCount(sqlSession, clubNo);
 	}
 }

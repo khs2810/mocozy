@@ -9,6 +9,8 @@
 <!-- 공용 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/jo/js/categories_js/cateViewAjax.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/jo/css/common_css/style.css">
 <link rel="stylesheet" type="text/css"
@@ -41,9 +43,9 @@
 
 					<div class="rightlistTitle">
 						<div class="rightlistContent">
-							<span id="cateRecent"> 최근순 </span>
-							<p id="cateDibs">추천순</p>
-							<p id="cateViews">인기순</p>
+							<p id="cateRecent"><a href="cateLove.ct">최신순</a></p>
+							<p id="cateDibs"><a href="cateLovePick.ct">인기순</a></p>
+							<span id="cateViews"><a href="cateLoveView.ct">조회순</a></span>
 						</div>
 					</div>
 				</div>

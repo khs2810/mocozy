@@ -9,6 +9,7 @@
 <%-- 공용 --%>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="icon" href="/favicon.ico" type="image/x-icon">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <script
@@ -83,9 +84,9 @@
 											<h3 class="getName">인기</h3>
 											<div class="getTitle">
 												<div class="cateL">
-													<a href="cateBest20.ct" class="cateT">따끈따끈 신규 모임</a> <a
-														href="cateHOT.ct" class="cateT">HOT 클래스</a> <a
-														href="cateReview.ct" class="cateT">리뷰순 모임</a>
+													<a href="cateRecent.ct" class="cateT">따끈따끈 신규 모임</a> <a
+														href="cateHot.ct" class="cateT">HOT 클래스</a> <a
+														href="cateBest.ct" class="cateT">조회순 모임</a>
 												</div>
 											</div>
 										</li>
@@ -148,13 +149,13 @@
 
 						<div class="studio">
 							<div class="stu">
-								<a href="cateHot.ct">실시간 HOT 🔥</a>
+								<a href="cateHot.ct">HOT 클래스 🔥</a>
 							</div>
 
 							<div class="studioBorder"></div>
 
 							<div class="stubutton">
-								<a href="cateBest20.ct">주간베스트</a>
+								<a href="cateRecent.ct">신규모임</a>
 							</div>
 						</div>
 
@@ -305,7 +306,7 @@
 									<div class="Toggleborder"></div>
 
 									<!--  관리자페이지 -->
-									<a class="Togglelink" id="Togglelink" href="_blank"> <svg
+									<a class="Togglelink" id="Togglelink" href="admin.ad"> <svg
 											class="Toggleimg" xmlns="http://www.w3.org/2000/svg" width="16"
 											height="16" fill="currentColor" class="bi bi-person-fill"
 											viewBox="0 0 16 16">

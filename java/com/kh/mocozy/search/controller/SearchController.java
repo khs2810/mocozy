@@ -23,7 +23,7 @@ public class SearchController {
 
     @Autowired
     private SearchService sService;
-    
+     
     //검색
     @GetMapping("searchForm.sc")
     public String searchForm(@RequestParam("keyword") String keyword, @RequestParam("rpage") int currentPage, Model model) {
@@ -45,11 +45,11 @@ public class SearchController {
 		    c.setProfileImg(imgs);    
 		}
 		
-		//Club의 count 높은 순으로 정렬
+	    // 클럽 리스트를 createDate가 최신인 순으로 정렬
 	    Collections.sort(clist, new Comparator<Club>() {
 	        @Override
 	        public int compare(Club c1, Club c2) {
-	            return Integer.compare(c2.getCount(), c1.getCount());
+	            return c2.getCreateDate().compareTo(c1.getCreateDate());
 	        }
 	    });
 	    
@@ -60,7 +60,7 @@ public class SearchController {
         if (clubCount == 0) { //검색결과 없음
         	return "search/searchError";
 		} else { //검색결과있음
-			return "search/searchMain";
+			return "search/searchRecent/searchMain";
 		}
     }
 }

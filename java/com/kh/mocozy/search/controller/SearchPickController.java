@@ -26,7 +26,7 @@ public class SearchPickController {
     
     //검색
     @GetMapping("searchFormPick.sc")
-    public String searchForm(@RequestParam("keyword") String keyword, @RequestParam("rpage") int currentPage, Model model) {
+    public String searchFormPick(@RequestParam("keyword") String keyword, @RequestParam("rpage") int currentPage, Model model) {
         HashMap<String, String> map = new HashMap<>();
         map.put("keyword", keyword);
         
@@ -45,11 +45,11 @@ public class SearchPickController {
 		    c.setProfileImg(imgs);    
 		}
 		
-		//Club의 count 높은 순으로 정렬
+		  //Club의 pickcount 높은 순으로 정렬
 	    Collections.sort(clist, new Comparator<Club>() {
 	        @Override
 	        public int compare(Club c1, Club c2) {
-	            return Integer.compare(c2.getCount(), c1.getCount());
+	            return Integer.compare(c2.getPickCount(), c1.getPickCount());
 	        }
 	    });
 	    
@@ -60,7 +60,7 @@ public class SearchPickController {
         if (clubCount == 0) { //검색결과 없음
         	return "search/searchError";
 		} else { //검색결과있음
-			return "searchPick/searchMainPick";
+			return "search/searchPick/searchMainPick";
 		}
     }
 }

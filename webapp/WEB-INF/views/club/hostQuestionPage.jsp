@@ -28,8 +28,8 @@
 	            </div>
 	            <div class="host_question_q" >
 	                <div>
-	                    <div class="club_profile_img"><img src="${pageContext.request.contextPath}/resources/teo/img/profile_img.jpg" alt="프로필 사진"></div>
-	                    <div align="center">이름</div>
+	                    <div class="club_profile_img"><img src="${pageContext.request.contextPath}${c.profile_img}" alt="프로필 사진"></div>
+	                    <div align="center">${c.nickname}</div>
 	                </div>
 	                <div class="host_question_question" >
 	                    <p>${c.question}</p>

@@ -7,6 +7,8 @@
 <!-- 공용 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="${pageContext.request.contextPath}/resources/jo/js/search_js/searchAjax.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/jo/css/common_css/style.css">
 <link rel="stylesheet" type="text/css"
@@ -31,9 +33,15 @@
 
 					<div class="rightlistTitle">
 						<div class="rightlistContent">
-							<span id="cateRecent"> 최근순 </span>
-							<p id="cateDibs">추천순</p>
-							<p id="cateViews">인기순</p>
+							<span id="cateRecent">
+								<a href="searchForm.sc?rpage=1&keyword=${keyword}">최신순</a>
+							</span>
+							<p id="cateDibs">
+								<a href="searchFormPick.sc?rpage=1&keyword=${keyword}">인기순</a>
+							</p>
+							<p id="cateViews">
+								<a href="searchFormView.sc?rpage=1&keyword=${keyword}">조회순</a>
+							</p>
 						</div>
 					</div>
 				</div>
@@ -94,13 +102,10 @@
 											</div>
 
 											<div class="socialmember">
-												<svg xmlns="http://www.w3.org/2000/svg" width="16"
-													height="16" fill="currentColor" class="bi bi-eye-fill"
-													viewBox="0 0 16 16" style="color: gray">
-											  <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
-											  <path
-														d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
-											</svg>
+													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16" style="color: gray;">
+													  <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+													  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
+													</svg>
 												<div class="count">${club.count}</div>
 											</div>
 										</div>
