@@ -447,4 +447,11 @@
 		 WHERE CLUB_NO = #{cno}
 		   AND CLUB_TYPE = '챌린지'
 	</update>
+	
+	<update id="quitClub" parameterType="HashMap">
+		UPDATE REQUEST
+		   SET STATUS = 'Q'
+		 WHERE CLUB_NO = #{cno, jdbcType=BIGINT}
+		   AND USER_NO = #{uno, jdbcType=BIGINT}
+	</update>
 </mapper>

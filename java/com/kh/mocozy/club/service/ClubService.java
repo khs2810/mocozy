@@ -70,4 +70,6 @@ public interface ClubService {
 	int finishChallenge(int cno);
 
 	int cancleFinishChallenge(int cno);
+
+	int quitClub(HashMap<String, Integer> map);
 }
