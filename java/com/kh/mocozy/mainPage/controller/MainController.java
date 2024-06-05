@@ -66,7 +66,7 @@ public class MainController {
 	            imgs.add(m.getProfileImg());
 	        }
 	        c.setProfileImg(imgs);   
-	        c.setReviewCount(mService.getReviewCount(c.getClubNo()));
+	        c.setPickCount(mService.getPickedCount(c.getClubNo()));
 	    }
 	    
 		  //Club의 pickcount 높은 순으로 정렬
@@ -94,7 +94,6 @@ public class MainController {
 	            imgs.add(m.getProfileImg());
 	        }
 	        c.setProfileImg(imgs); 
-	        c.setPickCount(mService.getPickedCount(c.getClubNo()));
 	    }
 	    
 	    // 클럽 리스트를 count가 높은 순으로 정렬
@@ -159,7 +158,6 @@ public class MainController {
 	            imgs.add(m.getProfileImg());
 	        }
 	        c.setProfileImg(imgs);   
-	        c.setReviewCount(mService.getReviewCount(c.getClubNo()));
 	    }
 	    
 		  //Club의 pickcount 높은 순으로 정렬

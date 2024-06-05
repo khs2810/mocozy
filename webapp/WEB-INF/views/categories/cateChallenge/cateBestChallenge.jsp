@@ -37,7 +37,7 @@
 												<path fill-rule="evenodd"
 								d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671" />
 											</svg>
-						<span> 주간 베스트 20
+						<span> 조회순 모임
 							</p>
 					</div>
 
@@ -104,13 +104,10 @@
 												</c:choose>
 											</div>
 											<div class="socialmember">
-												<svg xmlns="http://www.w3.org/2000/svg" width="16"
-													height="16" fill="currentColor" class="bi bi-eye-fill"
-													viewBox="0 0 16 16" style="color: gray">
-											  <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0" />
-											  <path
-														d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
-											</svg>
+													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16" style="color: gray;">
+													  <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+													  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
+													</svg>
 												<div class="count">${club.count}</div>
 											</div>
 										</div>
