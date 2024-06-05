@@ -140,8 +140,8 @@
                 </div>
             </div>
             <div class="buttons">
-                <button type="button" class="chatBtn">채팅방</button>
-                <button type="button" class="finishBtn">챌린지 종료</button>
+                <button type="button" class="chatBtn">저장</button>
+                <!-- <button type="button" class="finishBtn">챌린지 종료</button> -->
             </div>
         </div>
 

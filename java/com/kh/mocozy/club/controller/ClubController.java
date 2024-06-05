@@ -193,11 +193,11 @@ public class ClubController {
         	int result1 = clubService.cancleFinishSocial(c.getClubNo());
         	int result2 = clubService.clubRequestReset(c.getClubNo());
         	
-        	if (result1 * result2 > 0) {
+        	if (result1 > 0) {
         		session.setAttribute("alertMsg", "모임 수정 성공");
         		return "redirect:detail.cl?cno=" + c.getClubNo();
         	} else {
-        		model.addAttribute("errorMsg", "게시글 수정 실패");
+        		model.addAttribute("errorMsg", "게시글 수정 실패1");
         		return "common/errorPage";
         	}
         } else {        	
@@ -207,7 +207,7 @@ public class ClubController {
         		session.setAttribute("alertMsg", "모임 수정 성공");
         		return "redirect:detail.cl?cno=" + c.getClubNo();
         	} else {
-        		model.addAttribute("errorMsg", "게시글 수정 실패");
+        		model.addAttribute("errorMsg", "게시글 수정 실패2");
         		return "common/errorPage";
         	}
         }

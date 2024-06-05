@@ -176,4 +176,9 @@ public class ClubServiceImpl implements ClubService {
 	public int cancleFinishChallenge(int cno) {
 		return clubDao.cancleFinishChallenge(sqlSession, cno);
 	}
+
+	@Override
+	public int quitClub(HashMap<String, Integer> map) {
+		return clubDao.quitClub(sqlSession, map);
+	}
 }

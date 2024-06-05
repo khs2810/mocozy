@@ -144,4 +144,8 @@ public class ClubDao {
 	public int cancleFinishChallenge(SqlSessionTemplate sqlSession, int cno) {
 		return sqlSession.update("clubMapper.cancleFinishChallenge", cno);
 	}
+
+	public int quitClub(SqlSessionTemplate sqlSession, HashMap<String, Integer> map) {
+		return sqlSession.update("clubMapper.quitClub", map);
+	}
 }

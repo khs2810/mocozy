@@ -69,6 +69,9 @@
 			                		</div>
 			                	</c:when>
 			                </c:choose>
+			                <div class="btn">
+		                        <button class="btn-style btn-color2" onclick="location.href='http://localhost:8890/mocozy/quitSocial.me?cno=${c.clubNo}'">탈퇴</button>
+		                    </div>
 		                </div>
 		            </div>
 	            </c:forEach>

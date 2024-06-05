@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -154,10 +155,38 @@ public class ChallengeController {
         
         return "myPage/goChallenge";
 	}
+	
+	// 챌린지 탈퇴
+    @RequestMapping("quitChallenge.me")
+    public String quitSocial(HttpSession session, int cno, Model model) {
+    	Member m = (Member)session.getAttribute("loginUser");
+    	int uno = m.getUserNo();
+    	
+    	HashMap<String, Integer> map = new HashMap<>();
+		map.put("cno", cno);
+		map.put("uno", uno);
+    	
+    	int result = clubService.quitClub(map);
+    	
+    	if (result > 0) {
+    		return "myPage/myChallenge";
+    	} else {
+    		model.addAttribute("errorMsg", "챌린지 탈퇴 실패");
+			return "common/errorPage";
+    	}
+    }
     
     // Timestamp를 String으로 바꾸는 메소드
     public static String convertTimestampToString(Timestamp timestamp) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return timestamp.toLocalDateTime().format(formatter);
+    }
+    
+    @RequestMapping("challengeManage.me")
+    public String challengeManageView(HttpSession session, int cno, Model model) {
+    	Member m = (Member)session.getAttribute("loginUser");
+    	int uno = m.getUserNo();
+    	
+    	return "myPage/challengeManagePage";
     }
 }
