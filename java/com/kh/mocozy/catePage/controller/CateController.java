@@ -101,7 +101,7 @@ public class CateController {
 	/* --------------------- */
 
 	//카테고리별 페이지
-	@RequestMapping("catekey.ct")
+	@RequestMapping("cateKey.ct")
 	public String selectArt(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model, String key, String order) { 
 		//페이지네이션
 		int cateAllList = cService.getClublist(); 
@@ -144,13 +144,13 @@ public class CateController {
 	    model.addAttribute("key", key);
 		model.addAttribute("catelist", catelist);
 	    
-	    return "categories/cateView/cateArt";
+	    return "categories/cateView/cateKey";
 
     }
 
 	//카테고리별 ajax
 	@ResponseBody
-	@RequestMapping(value="catekeyAjax.ct", produces="application/json; charset=UTF-8")
+	@RequestMapping(value="cateKeyAjax.ct", produces="application/json; charset=UTF-8")
 	public String cateArtAjax(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model, String key, String order) {      
 		//페이지네이션
 		int cateAllList = cService.getClublist(); 
@@ -177,6 +177,9 @@ public class CateController {
 		    c.setProfileImg(imgs);    
 		}
 	    
+	    model.addAttribute("key", key);
+		model.addAttribute("catelist", catelist);
+		
 	    return new Gson().toJson(catelist);
 
     }

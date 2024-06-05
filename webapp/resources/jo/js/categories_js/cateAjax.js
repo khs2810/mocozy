@@ -1,5 +1,6 @@
 // 스크롤 이벤트 감지
 let cpage = 2;
+let order = new URLSearchParams(window.location.search).get('order');
 
 window.onscroll = function() {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
@@ -47,9 +48,7 @@ function drawClublist(list){
                     }  
                 }
 
-                  str += `</div>
-                                </a>
-                            </div> `;
+            str += `</div>`;
         document.querySelector(".display").appendChild(div).innerHTML += str;
     }
 }
@@ -57,7 +56,7 @@ function drawClublist(list){
 function cateAllAjax() {
     $.ajax({
         url: "cateAllAjax.ct",
-        data: {cpage: cpage++},
+        data: {cpage: cpage++, order: order},
         success: function(list) {
             console.log(list);
 
@@ -74,7 +73,7 @@ function cateAllAjax() {
 function cateKeyAjax() {
     $.ajax({
         url: "cateKeyAjax.ct",
-        data: {cpage: cpage++},
+        data: {cpage: cpage++, order: order},
         success: function(list) {
             console.log(list);
 
@@ -94,7 +93,7 @@ $(document).ready(function() {
 
     if (order === 'club_no') {
         $('#cateRecent').addClass('highlight');
-    } else if (order === 'pickcount'){
+    } else if (order === 'pickCount'){
         $('#cateDibs').addClass('highlight');
     } else if (order === 'count'){
         $('#cateViews').addClass('highlight');
