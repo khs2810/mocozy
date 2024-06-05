@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.http.HttpSession;
 
@@ -156,6 +157,26 @@ public class SocialingController {
         model.addAttribute("dlist", dlist);
 
         return "myPage/goSocial";
+    }
+    
+    // 소셜링 탈퇴
+    @RequestMapping("quitSocial.me")
+    public String quitSocial(HttpSession session, int cno, Model model) {
+    	Member m = (Member)session.getAttribute("loginUser");
+    	int uno = m.getUserNo();
+    	
+    	HashMap<String, Integer> map = new HashMap<>();
+		map.put("cno", cno);
+		map.put("uno", uno);
+    	
+    	int result = clubService.quitClub(map);
+    	
+    	if (result > 0) {
+    		return "myPage/mySocial";
+    	} else {
+    		model.addAttribute("errorMsg", "소셜링 탈퇴 실패");
+			return "common/errorPage";
+    	}
     }
     
     // Timestamp를 String으로 바꾸는 메소드

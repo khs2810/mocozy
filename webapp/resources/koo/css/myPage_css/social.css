@@ -150,6 +150,18 @@ button:active{
     box-shadow: 2px 2px 2px black;
     transition-duration: 0.1s;
 }
+.btn-color3{
+    background-color: #9BCFFF;
+    box-sizing: border-box;
+    border-radius: 10px;
+    border-style: none;
+    width: 70px;
+    height: 30px;
+    font-size: medium;
+    font-weight: 800;
+    box-shadow: 2px 2px 2px black;
+    transition-duration: 0.1s;
+}
 
 .club-content {
     background: none;

@@ -1,366 +1,699 @@
-let currentPage = 1;  // 현재 페이지 번호 초기화
-const size = 10;  // 한 페이지에 로드할 아이템의 수
+function cateAllAjax(list){
+    const topBody = document.querySelector(".display");
+    $(topBody).empty();
+    
+    for(let club of list) {
+        const div = document.createElement("div");
+        div.className = "contentcard";
+        let str = "";
+        str = `
+        <div class="socialing">
+            <a class="cardlink" href="detail.cl?cno=${club.boardNo}">
+                <img class="img" src="${club.thumbnailImg}" />
+                <div class="info">
+                    <div class="subject">
+                        <div class="tag">${club.clubType}</div>
+                        <div class="tagone">${club.categoryName1}</div>
+                        <div class="tagtwo">${club.categoryName2}</div>
+                    </div>
+                    <div class="infotitle">${club.boardTitle}</div>
+                    <div class="describe">
+                        <svg class="image" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+                        </svg>
+                        ${club.address} · ${club.eventDate}
+                    </div>
+                    <div class="participant">`;
+            if(club.profileImg && club.profileImg.length > 0){
+                        str += `<img class="people" src="${club.profileImg[0]}" />`;
+                    }
+                }
+                        str += `<div class="profileimglist">`;
+            if(club.profileImg && club.profileImg.length >= 5){
+                    for(let profileImg of club.profileImg){
+                        str += `<img class="cardImg" src="${profileImg}" />`;
+                    }
+                }
 
-/* --------- */
-$(window).scroll(function() {
-    if($(window).scrollTop() + $(window).height() == $(document).height()) {
-        cateAllajax({page: currentPage, size: size}, function() {
-            console.log("데이터 로드 성공");
-            currentPage++;  // 다음 페이지로 이동
-        });
+            if(club.profileImg && club.profileImg.length > 1 && club.profileImg.length < 5){
+                    for(let profileImg of club.profileImg){
+                        str += `<img class="cardImg" src="${profileImg}" />`;
+                    }  
+                }
+
+                  str += ` </div>
+                    <div class="socialmember">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16" style="color: gray;">
+                             <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+                             <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
+                         </svg>
+                         <div class="count">${club.count}</div>
+                     </div>
+                </div>
+             </div>
+        </a>
+    </div> `;
+        div.innerHTML = str;
+        topBody.appendChild(div);
     }
-});
 
-function cateAllajax(data, callback) {
+//페이지네이션 처리해서 가져와야함....
+function cateAllAjax(callback){
     $.ajax({
-        url: `cateAll.ct`,
-        method: 'GET',
-        data: data,
-        success: function (data) {
-                        let $data = $(data); 
-            let $contentcards = $data.find('.contentcard'); 
-
-            $contentcards.each(function() {
-                let str = $(this).prop('outerHTML');  // 찾은 div의 HTML 가져오기
-                $('.display').append(str);  // 화면에 추가
-            });
-
-            if(callback) callback();
-        },
-
-        error: function () {
-            console.error("데이터 요청 ajax 실패");
+        url: "cateAllAjax.ct",
+        success : callback,
+        error: function(){
+            console.log("ajax실패")
         }
-    });
+    })
 }
 
-/* --------- */
-$(window).scroll(function() {
-    if($(window).scrollTop() + $(window).height() == $(document).height()) {
-        cateActivityajax({page: currentPage, size: size}, function() {
-            console.log("데이터 로드 성공");
-            currentPage++;  // 다음 페이지로 이동
-        });
+function cateActivityAjax(list){
+    const topBody = document.querySelector(".display");
+    $(topBody).empty();
+    
+    for(let club of list) {
+        const div = document.createElement("div");
+        div.className = "contentcard";
+        let str = "";
+        str = `
+        <div class="socialing">
+            <a class="cardlink" href="detail.cl?cno=${club.boardNo}">
+                <img class="img" src="${club.thumbnailImg}" />
+                <div class="info">
+                    <div class="subject">
+                        <div class="tag">${club.clubType}</div>
+                        <div class="tagone">${club.categoryName1}</div>
+                        <div class="tagtwo">${club.categoryName2}</div>
+                    </div>
+                    <div class="infotitle">${club.boardTitle}</div>
+                    <div class="describe">
+                        <svg class="image" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+                        </svg>
+                        ${club.address} · ${club.eventDate}
+                    </div>
+                    <div class="participant">`;
+            if(club.profileImg && club.profileImg.length > 0){
+                        str += `<img class="people" src="${club.profileImg[0]}" />`;
+                    }
+                }
+                        str += `<div class="profileimglist">`;
+            if(club.profileImg && club.profileImg.length >= 5){
+                    for(let profileImg of club.profileImg){
+                        str += `<img class="cardImg" src="${profileImg}" />`;
+                    }
+                }
+
+            if(club.profileImg && club.profileImg.length > 1 && club.profileImg.length < 5){
+                    for(let profileImg of club.profileImg){
+                        str += `<img class="cardImg" src="${profileImg}" />`;
+                    }  
+                }
+
+                  str += ` </div>
+                    <div class="socialmember">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16" style="color: gray;">
+                             <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+                             <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
+                         </svg>
+                         <div class="count">${club.count}</div>
+                     </div>
+                </div>
+             </div>
+        </a>
+    </div> `;
+        div.innerHTML = str;
+        topBody.appendChild(div);
     }
-});
 
-function cateActivityajax(data, callback) {
+//페이지네이션 처리해서 가져와야함....
+function cateActivityAjax(callback){
     $.ajax({
-        url: `cateActivity.ct`,
-        method: 'GET',
-        data: data,
-        success: function (data) {
-                        let $data = $(data); 
-            let $contentcards = $data.find('.contentcard'); 
-
-            $contentcards.each(function() {
-                let str = $(this).prop('outerHTML');  // 찾은 div의 HTML 가져오기
-                $('.display').append(str);  // 화면에 추가
-            });
-
-            if(callback) callback();
-        },
-
-        error: function () {
-            console.error("데이터 요청 ajax 실패");
+        url: "cateActivityAjax.ct",
+        success : callback,
+        error: function(){
+            console.log("ajax실패")
         }
-    });
+    })
 }
 
-/* --------- */
-$(window).scroll(function() {
-    if($(window).scrollTop() + $(window).height() == $(document).height()) {
-        cateArtajax({page: currentPage, size: size}, function() {
-            console.log("데이터 로드 성공");
-            currentPage++;  // 다음 페이지로 이동
-        });
+function cateDevelopeAjax(list){
+    const topBody = document.querySelector(".display");
+    $(topBody).empty();
+    
+    for(let club of list) {
+        const div = document.createElement("div");
+        div.className = "contentcard";
+        let str = "";
+        str = `
+        <div class="socialing">
+            <a class="cardlink" href="detail.cl?cno=${club.boardNo}">
+                <img class="img" src="${club.thumbnailImg}" />
+                <div class="info">
+                    <div class="subject">
+                        <div class="tag">${club.clubType}</div>
+                        <div class="tagone">${club.categoryName1}</div>
+                        <div class="tagtwo">${club.categoryName2}</div>
+                    </div>
+                    <div class="infotitle">${club.boardTitle}</div>
+                    <div class="describe">
+                        <svg class="image" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+                        </svg>
+                        ${club.address} · ${club.eventDate}
+                    </div>
+                    <div class="participant">`;
+            if(club.profileImg && club.profileImg.length > 0){
+                        str += `<img class="people" src="${club.profileImg[0]}" />`;
+                    }
+                }
+                        str += `<div class="profileimglist">`;
+            if(club.profileImg && club.profileImg.length >= 5){
+                    for(let profileImg of club.profileImg){
+                        str += `<img class="cardImg" src="${profileImg}" />`;
+                    }
+                }
+
+            if(club.profileImg && club.profileImg.length > 1 && club.profileImg.length < 5){
+                    for(let profileImg of club.profileImg){
+                        str += `<img class="cardImg" src="${profileImg}" />`;
+                    }  
+                }
+
+                  str += ` </div>
+                    <div class="socialmember">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16" style="color: gray;">
+                             <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+                             <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
+                         </svg>
+                         <div class="count">${club.count}</div>
+                     </div>
+                </div>
+             </div>
+        </a>
+    </div> `;
+        div.innerHTML = str;
+        topBody.appendChild(div);
     }
-});
 
-function cateArtajax(data, callback) {
+//페이지네이션 처리해서 가져와야함....
+function cateDevelopeAjax(callback){
     $.ajax({
-        url: `cateArt.ct`,
-        method: 'GET',
-        data: data,
-        success: function (data) {
-                        let $data = $(data); 
-            let $contentcards = $data.find('.contentcard'); 
-
-            $contentcards.each(function() {
-                let str = $(this).prop('outerHTML');  // 찾은 div의 HTML 가져오기
-                $('.display').append(str);  // 화면에 추가
-            });
-
-            if(callback) callback();
-        },
-
-        error: function () {
-            console.error("데이터 요청 ajax 실패");
+        url: "cateDevelopeAjax.ct",
+        success : callback,
+        error: function(){
+            console.log("ajax실패")
         }
-    });
+    })
 }
 
-/* --------- */
-$(window).scroll(function() {
-    if($(window).scrollTop() + $(window).height() == $(document).height()) {
-        cateDevelopeajax({page: currentPage, size: size}, function() {
-            console.log("데이터 로드 성공");
-            currentPage++;  // 다음 페이지로 이동
-        });
+function cateFoodAjax(list){
+    const topBody = document.querySelector(".display");
+    $(topBody).empty();
+    
+    for(let club of list) {
+        const div = document.createElement("div");
+        div.className = "contentcard";
+        let str = "";
+        str = `
+        <div class="socialing">
+            <a class="cardlink" href="detail.cl?cno=${club.boardNo}">
+                <img class="img" src="${club.thumbnailImg}" />
+                <div class="info">
+                    <div class="subject">
+                        <div class="tag">${club.clubType}</div>
+                        <div class="tagone">${club.categoryName1}</div>
+                        <div class="tagtwo">${club.categoryName2}</div>
+                    </div>
+                    <div class="infotitle">${club.boardTitle}</div>
+                    <div class="describe">
+                        <svg class="image" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+                        </svg>
+                        ${club.address} · ${club.eventDate}
+                    </div>
+                    <div class="participant">`;
+            if(club.profileImg && club.profileImg.length > 0){
+                        str += `<img class="people" src="${club.profileImg[0]}" />`;
+                    }
+                }
+                        str += `<div class="profileimglist">`;
+            if(club.profileImg && club.profileImg.length >= 5){
+                    for(let profileImg of club.profileImg){
+                        str += `<img class="cardImg" src="${profileImg}" />`;
+                    }
+                }
+
+            if(club.profileImg && club.profileImg.length > 1 && club.profileImg.length < 5){
+                    for(let profileImg of club.profileImg){
+                        str += `<img class="cardImg" src="${profileImg}" />`;
+                    }  
+                }
+
+                  str += ` </div>
+                    <div class="socialmember">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16" style="color: gray;">
+                             <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+                             <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
+                         </svg>
+                         <div class="count">${club.count}</div>
+                     </div>
+                </div>
+             </div>
+        </a>
+    </div> `;
+        div.innerHTML = str;
+        topBody.appendChild(div);
     }
-});
 
-function cateDevelopeajax(data, callback) {
+//페이지네이션 처리해서 가져와야함....
+function cateFoodAjax(callback){
     $.ajax({
-        url: `cateDevelope.ct`,
-        method: 'GET',
-        data: data,
-        success: function (data) {
-                        let $data = $(data); 
-            let $contentcards = $data.find('.contentcard'); 
-
-            $contentcards.each(function() {
-                let str = $(this).prop('outerHTML');  // 찾은 div의 HTML 가져오기
-                $('.display').append(str);  // 화면에 추가
-            });
-
-            if(callback) callback();
-        },
-
-        error: function () {
-            console.error("데이터 요청 ajax 실패");
+        url: "cateFoodAjax.ct",
+        success : callback,
+        error: function(){
+            console.log("ajax실패")
         }
-    });
+    })
 }
 
-/* --------- */
-$(window).scroll(function() {
-    if($(window).scrollTop() + $(window).height() == $(document).height()) {
-        cateFoodajax({page: currentPage, size: size}, function() {
-            console.log("데이터 로드 성공");
-            currentPage++;  // 다음 페이지로 이동
-        });
+function cateForeignAjax(list){
+    const topBody = document.querySelector(".display");
+    $(topBody).empty();
+    
+    for(let club of list) {
+        const div = document.createElement("div");
+        div.className = "contentcard";
+        let str = "";
+        str = `
+        <div class="socialing">
+            <a class="cardlink" href="detail.cl?cno=${club.boardNo}">
+                <img class="img" src="${club.thumbnailImg}" />
+                <div class="info">
+                    <div class="subject">
+                        <div class="tag">${club.clubType}</div>
+                        <div class="tagone">${club.categoryName1}</div>
+                        <div class="tagtwo">${club.categoryName2}</div>
+                    </div>
+                    <div class="infotitle">${club.boardTitle}</div>
+                    <div class="describe">
+                        <svg class="image" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+                        </svg>
+                        ${club.address} · ${club.eventDate}
+                    </div>
+                    <div class="participant">`;
+            if(club.profileImg && club.profileImg.length > 0){
+                        str += `<img class="people" src="${club.profileImg[0]}" />`;
+                    }
+                }
+                        str += `<div class="profileimglist">`;
+            if(club.profileImg && club.profileImg.length >= 5){
+                    for(let profileImg of club.profileImg){
+                        str += `<img class="cardImg" src="${profileImg}" />`;
+                    }
+                }
+
+            if(club.profileImg && club.profileImg.length > 1 && club.profileImg.length < 5){
+                    for(let profileImg of club.profileImg){
+                        str += `<img class="cardImg" src="${profileImg}" />`;
+                    }  
+                }
+
+                  str += ` </div>
+                    <div class="socialmember">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16" style="color: gray;">
+                             <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+                             <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
+                         </svg>
+                         <div class="count">${club.count}</div>
+                     </div>
+                </div>
+             </div>
+        </a>
+    </div> `;
+        div.innerHTML = str;
+        topBody.appendChild(div);
     }
-});
 
-function cateFoodajax(data, callback) {
+//페이지네이션 처리해서 가져와야함....
+function cateForeignAjax(callback){
     $.ajax({
-        url: `cateFood.ct`,
-        method: 'GET',
-        data: data,
-        success: function (data) {
-                        let $data = $(data); 
-            let $contentcards = $data.find('.contentcard'); 
-
-            $contentcards.each(function() {
-                let str = $(this).prop('outerHTML');  // 찾은 div의 HTML 가져오기
-                $('.display').append(str);  // 화면에 추가
-            });
-
-            if(callback) callback();
-        },
-
-        error: function () {
-            console.error("데이터 요청 ajax 실패");
+        url: "cateForeignAjax.ct",
+        success : callback,
+        error: function(){
+            console.log("ajax실패")
         }
-    });
+    })
 }
 
-/* --------- */
-$(window).scroll(function() {
-    if($(window).scrollTop() + $(window).height() == $(document).height()) {
-        cateForeignajax({page: currentPage, size: size}, function() {
-            console.log("데이터 로드 성공");
-            currentPage++;  // 다음 페이지로 이동
-        });
+function cateGameAjax(list){
+    const topBody = document.querySelector(".display");
+    $(topBody).empty();
+    
+    for(let club of list) {
+        const div = document.createElement("div");
+        div.className = "contentcard";
+        let str = "";
+        str = `
+        <div class="socialing">
+            <a class="cardlink" href="detail.cl?cno=${club.boardNo}">
+                <img class="img" src="${club.thumbnailImg}" />
+                <div class="info">
+                    <div class="subject">
+                        <div class="tag">${club.clubType}</div>
+                        <div class="tagone">${club.categoryName1}</div>
+                        <div class="tagtwo">${club.categoryName2}</div>
+                    </div>
+                    <div class="infotitle">${club.boardTitle}</div>
+                    <div class="describe">
+                        <svg class="image" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+                        </svg>
+                        ${club.address} · ${club.eventDate}
+                    </div>
+                    <div class="participant">`;
+            if(club.profileImg && club.profileImg.length > 0){
+                        str += `<img class="people" src="${club.profileImg[0]}" />`;
+                    }
+                }
+                        str += `<div class="profileimglist">`;
+            if(club.profileImg && club.profileImg.length >= 5){
+                    for(let profileImg of club.profileImg){
+                        str += `<img class="cardImg" src="${profileImg}" />`;
+                    }
+                }
+
+            if(club.profileImg && club.profileImg.length > 1 && club.profileImg.length < 5){
+                    for(let profileImg of club.profileImg){
+                        str += `<img class="cardImg" src="${profileImg}" />`;
+                    }  
+                }
+
+                  str += ` </div>
+                    <div class="socialmember">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16" style="color: gray;">
+                             <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+                             <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
+                         </svg>
+                         <div class="count">${club.count}</div>
+                     </div>
+                </div>
+             </div>
+        </a>
+    </div> `;
+        div.innerHTML = str;
+        topBody.appendChild(div);
     }
-});
 
-function cateForeignajax(data, callback) {
+//페이지네이션 처리해서 가져와야함....
+function cateGameAjax(callback){
     $.ajax({
-        url: `cateForeign.ct`,
-        method: 'GET',
-        data: data,
-        success: function (data) {
-                        let $data = $(data); 
-            let $contentcards = $data.find('.contentcard'); 
-
-            $contentcards.each(function() {
-                let str = $(this).prop('outerHTML');  // 찾은 div의 HTML 가져오기
-                $('.display').append(str);  // 화면에 추가
-            });
-
-            if(callback) callback();
-        },
-
-        error: function () {
-            console.error("데이터 요청 ajax 실패");
+        url: "cateGameAjax.ct",
+        success : callback,
+        error: function(){
+            console.log("ajax실패")
         }
-    });
+    })
 }
 
-/* --------- */
-$(window).scroll(function() {
-    if($(window).scrollTop() + $(window).height() == $(document).height()) {
-        cateGameajax({page: currentPage, size: size}, function() {
-            console.log("데이터 로드 성공");
-            currentPage++;  // 다음 페이지로 이동
-        });
+function cateHobbyAjax(list){
+    const topBody = document.querySelector(".display");
+    $(topBody).empty();
+    
+    for(let club of list) {
+        const div = document.createElement("div");
+        div.className = "contentcard";
+        let str = "";
+        str = `
+        <div class="socialing">
+            <a class="cardlink" href="detail.cl?cno=${club.boardNo}">
+                <img class="img" src="${club.thumbnailImg}" />
+                <div class="info">
+                    <div class="subject">
+                        <div class="tag">${club.clubType}</div>
+                        <div class="tagone">${club.categoryName1}</div>
+                        <div class="tagtwo">${club.categoryName2}</div>
+                    </div>
+                    <div class="infotitle">${club.boardTitle}</div>
+                    <div class="describe">
+                        <svg class="image" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+                        </svg>
+                        ${club.address} · ${club.eventDate}
+                    </div>
+                    <div class="participant">`;
+            if(club.profileImg && club.profileImg.length > 0){
+                        str += `<img class="people" src="${club.profileImg[0]}" />`;
+                    }
+                }
+                        str += `<div class="profileimglist">`;
+            if(club.profileImg && club.profileImg.length >= 5){
+                    for(let profileImg of club.profileImg){
+                        str += `<img class="cardImg" src="${profileImg}" />`;
+                    }
+                }
+
+            if(club.profileImg && club.profileImg.length > 1 && club.profileImg.length < 5){
+                    for(let profileImg of club.profileImg){
+                        str += `<img class="cardImg" src="${profileImg}" />`;
+                    }  
+                }
+
+                  str += ` </div>
+                    <div class="socialmember">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16" style="color: gray;">
+                             <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+                             <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
+                         </svg>
+                         <div class="count">${club.count}</div>
+                     </div>
+                </div>
+             </div>
+        </a>
+    </div> `;
+        div.innerHTML = str;
+        topBody.appendChild(div);
     }
-});
 
-function cateGameajax(data, callback) {
+//페이지네이션 처리해서 가져와야함....
+function cateHobbyAjax(callback){
     $.ajax({
-        url: `cateGame.ct`,
-        method: 'GET',
-        data: data,
-        success: function (data) {
-                        let $data = $(data); 
-            let $contentcards = $data.find('.contentcard'); 
-
-            $contentcards.each(function() {
-                let str = $(this).prop('outerHTML');  // 찾은 div의 HTML 가져오기
-                $('.display').append(str);  // 화면에 추가
-            });
-
-            if(callback) callback();
-        },
-
-        error: function () {
-            console.error("데이터 요청 ajax 실패");
+        url: "cateHobbyAjax.ct",
+        success : callback,
+        error: function(){
+            console.log("ajax실패")
         }
-    });
+    })
 }
 
-/* --------- */
-$(window).scroll(function() {
-    if($(window).scrollTop() + $(window).height() == $(document).height()) {
-        cateHobbyAjax({page: currentPage, size: size}, function() {
-            console.log("데이터 로드 성공");
-            currentPage++;  // 다음 페이지로 이동
-        });
+function cateInvestAjax(list){
+    const topBody = document.querySelector(".display");
+    $(topBody).empty();
+    
+    for(let club of list) {
+        const div = document.createElement("div");
+        div.className = "contentcard";
+        let str = "";
+        str = `
+        <div class="socialing">
+            <a class="cardlink" href="detail.cl?cno=${club.boardNo}">
+                <img class="img" src="${club.thumbnailImg}" />
+                <div class="info">
+                    <div class="subject">
+                        <div class="tag">${club.clubType}</div>
+                        <div class="tagone">${club.categoryName1}</div>
+                        <div class="tagtwo">${club.categoryName2}</div>
+                    </div>
+                    <div class="infotitle">${club.boardTitle}</div>
+                    <div class="describe">
+                        <svg class="image" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+                        </svg>
+                        ${club.address} · ${club.eventDate}
+                    </div>
+                    <div class="participant">`;
+            if(club.profileImg && club.profileImg.length > 0){
+                        str += `<img class="people" src="${club.profileImg[0]}" />`;
+                    }
+                }
+                        str += `<div class="profileimglist">`;
+            if(club.profileImg && club.profileImg.length >= 5){
+                    for(let profileImg of club.profileImg){
+                        str += `<img class="cardImg" src="${profileImg}" />`;
+                    }
+                }
+
+            if(club.profileImg && club.profileImg.length > 1 && club.profileImg.length < 5){
+                    for(let profileImg of club.profileImg){
+                        str += `<img class="cardImg" src="${profileImg}" />`;
+                    }  
+                }
+
+                  str += ` </div>
+                    <div class="socialmember">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16" style="color: gray;">
+                             <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+                             <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
+                         </svg>
+                         <div class="count">${club.count}</div>
+                     </div>
+                </div>
+             </div>
+        </a>
+    </div> `;
+        div.innerHTML = str;
+        topBody.appendChild(div);
     }
-});
 
-function cateHobbyAjax(data, callback) {
+//페이지네이션 처리해서 가져와야함....
+function cateInvestAjax(callback){
     $.ajax({
-        url: `cateHobby.ct`,
-        method: 'GET',
-        data: data,
-        success: function (data) {
-                        let $data = $(data); 
-            let $contentcards = $data.find('.contentcard'); 
-
-            $contentcards.each(function() {
-                let str = $(this).prop('outerHTML');  // 찾은 div의 HTML 가져오기
-                $('.display').append(str);  // 화면에 추가
-            });
-
-            if(callback) callback();
-        },
-
-        error: function () {
-            console.error("데이터 요청 ajax 실패");
+        url: "cateInvestAjax.ct",
+        success : callback,
+        error: function(){
+            console.log("ajax실패")
         }
-    });
+    })
 }
 
-/* --------- */
-$(window).scroll(function() {
-    if($(window).scrollTop() + $(window).height() == $(document).height()) {
-        cateInvestajax({page: currentPage, size: size}, function() {
-            console.log("데이터 로드 성공");
-            currentPage++;  // 다음 페이지로 이동
-        });
+function cateLoveAjax(list){
+    const topBody = document.querySelector(".display");
+    $(topBody).empty();
+    
+    for(let club of list) {
+        const div = document.createElement("div");
+        div.className = "contentcard";
+        let str = "";
+        str = `
+        <div class="socialing">
+            <a class="cardlink" href="detail.cl?cno=${club.boardNo}">
+                <img class="img" src="${club.thumbnailImg}" />
+                <div class="info">
+                    <div class="subject">
+                        <div class="tag">${club.clubType}</div>
+                        <div class="tagone">${club.categoryName1}</div>
+                        <div class="tagtwo">${club.categoryName2}</div>
+                    </div>
+                    <div class="infotitle">${club.boardTitle}</div>
+                    <div class="describe">
+                        <svg class="image" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+                        </svg>
+                        ${club.address} · ${club.eventDate}
+                    </div>
+                    <div class="participant">`;
+            if(club.profileImg && club.profileImg.length > 0){
+                        str += `<img class="people" src="${club.profileImg[0]}" />`;
+                    }
+                }
+                        str += `<div class="profileimglist">`;
+            if(club.profileImg && club.profileImg.length >= 5){
+                    for(let profileImg of club.profileImg){
+                        str += `<img class="cardImg" src="${profileImg}" />`;
+                    }
+                }
+
+            if(club.profileImg && club.profileImg.length > 1 && club.profileImg.length < 5){
+                    for(let profileImg of club.profileImg){
+                        str += `<img class="cardImg" src="${profileImg}" />`;
+                    }  
+                }
+
+                  str += ` </div>
+                    <div class="socialmember">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16" style="color: gray;">
+                             <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+                             <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
+                         </svg>
+                         <div class="count">${club.count}</div>
+                     </div>
+                </div>
+             </div>
+        </a>
+    </div> `;
+        div.innerHTML = str;
+        topBody.appendChild(div);
     }
-});
 
-function cateInvestajax(data, callback) {
+//페이지네이션 처리해서 가져와야함....
+function cateLoveAjax(callback){
     $.ajax({
-        url: `cateInvest.ct`,
-        method: 'GET',
-        data: data,
-        success: function (data) {
-                        let $data = $(data); 
-            let $contentcards = $data.find('.contentcard'); 
-
-            $contentcards.each(function() {
-                let str = $(this).prop('outerHTML');  // 찾은 div의 HTML 가져오기
-                $('.display').append(str);  // 화면에 추가
-            });
-
-            if(callback) callback();
-        },
-
-        error: function () {
-            console.error("데이터 요청 ajax 실패");
+        url: "cateLoveAjax.ct",
+        success : callback,
+        error: function(){
+            console.log("ajax실패")
         }
-    });
+    })
 }
 
-/* --------- */
-$(window).scroll(function() {
-    if($(window).scrollTop() + $(window).height() == $(document).height()) {
-        cateLoveajax({page: currentPage, size: size}, function() {
-            console.log("데이터 로드 성공");
-            currentPage++;  // 다음 페이지로 이동
-        });
+function cateTravelAjax(list){
+    const topBody = document.querySelector(".display");
+    $(topBody).empty();
+    
+    for(let club of list) {
+        const div = document.createElement("div");
+        div.className = "contentcard";
+        let str = "";
+        str = `
+        <div class="socialing">
+            <a class="cardlink" href="detail.cl?cno=${club.boardNo}">
+                <img class="img" src="${club.thumbnailImg}" />
+                <div class="info">
+                    <div class="subject">
+                        <div class="tag">${club.clubType}</div>
+                        <div class="tagone">${club.categoryName1}</div>
+                        <div class="tagtwo">${club.categoryName2}</div>
+                    </div>
+                    <div class="infotitle">${club.boardTitle}</div>
+                    <div class="describe">
+                        <svg class="image" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
+                        </svg>
+                        ${club.address} · ${club.eventDate}
+                    </div>
+                    <div class="participant">`;
+            if(club.profileImg && club.profileImg.length > 0){
+                        str += `<img class="people" src="${club.profileImg[0]}" />`;
+                    }
+                }
+                        str += `<div class="profileimglist">`;
+            if(club.profileImg && club.profileImg.length >= 5){
+                    for(let profileImg of club.profileImg){
+                        str += `<img class="cardImg" src="${profileImg}" />`;
+                    }
+                }
+
+            if(club.profileImg && club.profileImg.length > 1 && club.profileImg.length < 5){
+                    for(let profileImg of club.profileImg){
+                        str += `<img class="cardImg" src="${profileImg}" />`;
+                    }  
+                }
+
+                  str += ` </div>
+                    <div class="socialmember">
+                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16" style="color: gray;">
+                             <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
+                             <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
+                         </svg>
+                         <div class="count">${club.count}</div>
+                     </div>
+                </div>
+             </div>
+        </a>
+    </div> `;
+        div.innerHTML = str;
+        topBody.appendChild(div);
     }
-});
 
-function cateLoveajax(data, callback) {
+//페이지네이션 처리해서 가져와야함....
+function cateTravelAjax(callback){
     $.ajax({
-        url: `cateLove.ct`,
-        method: 'GET',
-        data: data,
-        success: function (data) {
-                        let $data = $(data); 
-            let $contentcards = $data.find('.contentcard'); 
-
-            $contentcards.each(function() {
-                let str = $(this).prop('outerHTML');  // 찾은 div의 HTML 가져오기
-                $('.display').append(str);  // 화면에 추가
-            });
-
-            if(callback) callback();
-        },
-
-        error: function () {
-            console.error("데이터 요청 ajax 실패");
+        url: "cateArtAjax.ct",
+        success : callback,
+        error: function(){
+            console.log("ajax실패")
         }
-    });
+    })
 }
-
-/* --------- */
-$(window).scroll(function() {
-    if($(window).scrollTop() + $(window).height() == $(document).height()) {
-        cateTravelajax({page: currentPage, size: size}, function() {
-            console.log("데이터 로드 성공");
-            currentPage++;  // 다음 페이지로 이동
-        });
-    }
-});
-
-function cateTravelajax(data, callback) {
-    $.ajax({
-        url: `cateTravel.ct`,
-        method: 'GET',
-        data: data,
-        success: function (data) {
-                        let $data = $(data); 
-            let $contentcards = $data.find('.contentcard'); 
-
-            $contentcards.each(function() {
-                let str = $(this).prop('outerHTML');  // 찾은 div의 HTML 가져오기
-                $('.display').append(str);  // 화면에 추가
-            });
-
-            if(callback) callback();
-        },
-
-        error: function () {
-            console.error("데이터 요청 ajax 실패");
-        }
-    });
-}
-

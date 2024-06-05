@@ -178,14 +178,18 @@
 	<select id="getSocialing" resultMap="clubResult">
 	    SELECT *
 		FROM club
-		WHERE club_type = '소셜링';
+		WHERE club_type = '소셜링' 
+			AND public.CLUB.STATUS = 'Y'
+		ORDER BY CLUB_NO DESC;
 	</select>
 	
 	<!-- 챌린지 필터 -->
 	<select id="getChallenge" resultMap="clubResult">
 	    SELECT *
 		FROM club
-		WHERE club_type = '챌린지';
+		WHERE club_type = '챌린지'
+			AND public.CLUB.STATUS = 'Y'
+		ORDER BY CLUB_NO DESC;
 	</select>
 	
 	<!-- 찜 개수 가져오기 -->
@@ -193,12 +197,5 @@
 		SELECT COUNT(*) 
 		FROM picked 
 		WHERE CLUB_NO = #{clubNo};
-	</select>
-	
-	<!-- 리뷰 개수 가져오기 -->
-	<select id="getReviewCount" resultType="int">
-	    SELECT COUNT(*) 
-	    FROM club_review
-	    WHERE CLUB_NO = #{clubNo};
 	</select>
 </mapper>

@@ -10,3 +10,14 @@ function counter(){
 
 };
 counter();
+
+
+function deleteMember() {
+    const userPwd = document.getElementById('userPwd').value;
+
+    if (userPwd === "") {
+        alert("비밀번호를 입력해주세요.");
+        return;
+    }
+
+}
