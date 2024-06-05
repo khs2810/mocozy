@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/jo/js/categories_js/catePickAjax.js"></script>
+<script src="${pageContext.request.contextPath}/resources/jo/js/categories_js/cateAjax.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/jo/css/common_css/style.css">
 <link rel="stylesheet" type="text/css"
@@ -27,24 +27,17 @@
 		<div class="screen">
 			<div class="box">
 				<!-- 카테고리 -->
+
 				<div class="catelistTitle">
 					<div class="leftlistTitle">
-						<p>스포츠</p>
-						<svg class="cateRanklisticon" xmlns="http://www.w3.org/2000/svg"
-							width="16" height="16" fill="currentColor"
-							class="bi bi-chevron-compact-right" viewBox="0 0 16 16">
-												<path fill-rule="evenodd"
-								d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671" />
-											</svg>
-						<span> 액티비티
-							</p>
+						<span> 전체 </span>
 					</div>
 
 					<div class="rightlistTitle">
 						<div class="rightlistContent">
-							<p id="cateRecent"><a href="cateActivity.ct">최신순</a></p>
-							<span id="cateDibs"><a href="cateActivityPick.ct">인기순</a></span>
-							<p id="cateViews"><a href="cateActivityView.ct">조회순</a></p>
+							<p id="cateRecent"><a href="cateAll.ct?order=club_no">최신순</a></p>
+							<p id="cateDibs"><a href="cateAll.ct?order=pickCount">인기순</a></p>
+							<p id="cateViews"><a href="cateAll.ct?order=count">조회순</a></p>
 						</div>
 					</div>
 				</div>
@@ -102,13 +95,6 @@
 														</c:forEach>
 													</c:when>
 												</c:choose>
-											</div>
-
-											<div class="socialmember">
-													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" style="color: gray;" viewBox="0 0 16 16">
-													  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
-													</svg>
-												<div class="count">${club.pickCount}</div>
 											</div>
 										</div>
 									</div>

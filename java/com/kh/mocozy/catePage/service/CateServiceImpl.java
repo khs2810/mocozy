@@ -1,6 +1,7 @@
 package com.kh.mocozy.catePage.service;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,60 +20,10 @@ public class CateServiceImpl implements CateService{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	@Override
-    public ArrayList<Club> selectcatelist() {
-    	return cDao.selectcatelist(sqlSession);
+    @Override
+    public ArrayList<Club> selectcatelist(PageInfo pi, String order) {
+        return cDao.selectcatelist(sqlSession, pi, order);
     }
-	
-	@Override
-    public ArrayList<Club> selectArt() {
-    	return cDao.selectArt(sqlSession);
-    }
-	
-	@Override
-    public ArrayList<Club> selectActivity() {
-    	return cDao.selectActivity(sqlSession);
-    }
-	
-	@Override
-    public ArrayList<Club> selectFood() {
-    	return cDao.selectFood(sqlSession);
-    }
-	
-	@Override
-    public ArrayList<Club> selectHobby() {
-    	return cDao.selectHobby(sqlSession);
-    }
-	
-	@Override
-    public ArrayList<Club> selectTravel() {
-    	return cDao.selectTravel(sqlSession);
-    }
-	
-	@Override
-    public ArrayList<Club> selectDevelope() {
-    	return cDao.selectDevelope(sqlSession);
-    }
-	
-	@Override
-    public ArrayList<Club> selectLove() {
-    	return cDao.selectLove(sqlSession);
-    }
-	
-	@Override
-	public ArrayList<Club> selectInvest() {
-		return cDao.selectInvest(sqlSession);
-	}
-	
-	@Override
-	public ArrayList<Club> selectForeign() {
-		return cDao.selectForeign(sqlSession);
-	}
-	
-	@Override
-	public ArrayList<Club> selectGame() {
-		return cDao.selectGame(sqlSession);
-	}
 	
 	@Override
 	public ArrayList<Member> MemberList(int clubNo) {
@@ -103,5 +54,10 @@ public class CateServiceImpl implements CateService{
 	@Override
 	public int getClublist() {
 		return cDao.getClublist(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Club> selectCateFilter(Map<String, String> map, PageInfo pi) {
+		return cDao.selectCateFilter(sqlSession, map, pi);
 	}
 }
