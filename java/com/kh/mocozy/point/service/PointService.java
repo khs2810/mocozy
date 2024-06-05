@@ -18,4 +18,16 @@ public interface PointService {
 
 	int totalChargePoint(int uno);
 
+	ArrayList<Point> selectPointWithDrawList(Map<String, Object> map);
+
+	int totalWithdrawPoint(int userNo);
+
+	int sumWithdrawPointMonth(Map<String, Object> map);
+
+	ArrayList<Point> selectPointUseList(Map<String, Object> map);
+
+	int useTotalPoint(int userNo);
+
+	int sumUsePoint(Map<String, Object> map);
+
 }
