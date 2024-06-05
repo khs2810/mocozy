@@ -28,4 +28,8 @@ public class PointDao {
 		return sqlSession.selectOne("pointMapper.sumPointMonth", map);
 	}
 
+	public int totalChargePoint(SqlSessionTemplate sqlSession, int uno) {
+		return sqlSession.selectOne("pointMapper.totalChargePoint", uno);
+	}
+
 }

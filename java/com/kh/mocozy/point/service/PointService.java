@@ -16,4 +16,6 @@ public interface PointService {
 
 	int sumPointMonth(Map<String, Object> map);
 
+	int totalChargePoint(int uno);
+
 }

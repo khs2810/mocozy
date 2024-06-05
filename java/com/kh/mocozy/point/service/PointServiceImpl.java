@@ -41,5 +41,10 @@ public class PointServiceImpl implements PointService {
 	public int sumPointMonth(Map<String, Object> map) {
 		return pointDao.sumPointMonth(sqlSession, map);
 	}
+
+	@Override
+	public int totalChargePoint(int uno) {
+		return pointDao.totalChargePoint(sqlSession, uno);
+	}
 	
 }
