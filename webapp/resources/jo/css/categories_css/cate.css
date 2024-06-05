@@ -56,7 +56,9 @@ li {
 }
 
 .catePage .leftlistTitle > span {
+	position: relative;
 	font-weight: 700;
+	bottom: 3px;
 }
 
 .catePage .cateRanklisticon{

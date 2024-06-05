@@ -1,14 +1,23 @@
-function eventArtAjax(list){
-    const topBody = document.querySelector(".display");
-    $(topBody).empty();
-    
+// 스크롤 이벤트 감지
+let rpage = 2;
+let order = new URLSearchParams(window.location.search).get('order');
+
+
+window.onscroll = function() {
+    if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
+        // 페이지의 끝에 도달하면 AJAX 요청을 보냅니다.
+        eventTravelAjax();
+    }
+};
+
+function drawClublist(list){    
     for(let club of list) {
         const div = document.createElement("div");
         div.className = "contentcard";
         let str = "";
         str = `
         <div class="socialing">
-            <a class="cardlink" href="detail.cl?cno=${club.boardNo}">
+            <a class="cardlink" href="detail.cl?cno=${club.clubNo}">
                 <img class="img" src="${club.thumbnailImg}" />
                 <div class="info">
                     <div class="subject">
@@ -16,7 +25,7 @@ function eventArtAjax(list){
                         <div class="tagone">${club.categoryName1}</div>
                         <div class="tagtwo">${club.categoryName2}</div>
                     </div>
-                    <div class="infotitle">${club.boardTitle}</div>
+                    <div class="infotitle">${club.clubTitle}</div>
                     <div class="describe">
                         <svg class="image" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
                             <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
@@ -25,535 +34,164 @@ function eventArtAjax(list){
                     </div>
                     <div class="participant">`;
             if(club.profileImg && club.profileImg.length > 0){
-                        str += `<img class="people" src="${club.profileImg[0]}" />`;
+                        str += `<img class="people" src="${pageContext.request.contextPath}${club.profileImg[0]}" />`;
                     }
-                }
                         str += `<div class="profileimglist">`;
             if(club.profileImg && club.profileImg.length >= 5){
                     for(let profileImg of club.profileImg){
-                        str += `<img class="cardImg" src="${profileImg}" />`;
+                        str += `<img class="cardImg" src="${pageContext.request.contextPath}${profileImg}" />`;
                     }
                 }
 
             if(club.profileImg && club.profileImg.length > 1 && club.profileImg.length < 5){
                     for(let profileImg of club.profileImg){
-                        str += `<img class="cardImg" src="${profileImg}" />`;
+                        str += `<img class="cardImg" src="${pageContext.request.contextPath}${profileImg}" />`;
                     }  
                 }
 
-                  str += ` </div>
-                    <div class="socialmember">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16" style="color: gray;">
-                             <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
-                             <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
-                         </svg>
-                         <div class="count">${club.count}</div>
-                     </div>
-                </div>
-             </div>
-        </a>
-    </div> `;
-        div.innerHTML = str;
-        topBody.appendChild(div);
+            str += `</div>`;
+        document.querySelector(".display").appendChild(div).innerHTML += str;
     }
+}
 
-//페이지네이션 처리해서 가져와야함....
-function eventArtAjax(callback){
+function eventTravelAjax() {
+    $.ajax({
+        url: "eventTravelAjax.ev",
+        data: {rpage: rpage++, order: order},
+        success: function(list) {
+            console.log(list);
+
+        drawClublist(list);    
+            // 서버에서 반환된 데이터를 사용하여 새로운 'contentcard'를 생성하고 페이지에 추가.
+            console.log("AJAX 요청 성공");
+        },
+        error: function() {
+            console.log("AJAX 요청 실패");
+        }
+    });
+}
+
+function eventArtAjax() {
     $.ajax({
         url: "eventArtAjax.ev",
-        success : callback,
-        error: function(){
-            console.log("ajax실패")
+        data: {rpage: rpage++, order: order},
+        success: function(list) {
+            console.log(list);
+
+        drawClublist(list);    
+            // 서버에서 반환된 데이터를 사용하여 새로운 'contentcard'를 생성하고 페이지에 추가.
+            console.log("AJAX 요청 성공");
+        },
+        error: function() {
+            console.log("AJAX 요청 실패");
         }
-    })
+    });
 }
 
-function eventDessertAjax(list){
-    const topBody = document.querySelector(".display");
-    $(topBody).empty();
-    
-    for(let club of list) {
-        const div = document.createElement("div");
-        div.className = "contentcard";
-        let str = "";
-        str = `
-        <div class="socialing">
-            <a class="cardlink" href="detail.cl?cno=${club.boardNo}">
-                <img class="img" src="${club.thumbnailImg}" />
-                <div class="info">
-                    <div class="subject">
-                        <div class="tag">${club.clubType}</div>
-                        <div class="tagone">${club.categoryName1}</div>
-                        <div class="tagtwo">${club.categoryName2}</div>
-                    </div>
-                    <div class="infotitle">${club.boardTitle}</div>
-                    <div class="describe">
-                        <svg class="image" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
-                        </svg>
-                        ${club.address} · ${club.eventDate}
-                    </div>
-                    <div class="participant">`;
-            if(club.profileImg && club.profileImg.length > 0){
-                        str += `<img class="people" src="${club.profileImg[0]}" />`;
-                    }
-                }
-                        str += `<div class="profileimglist">`;
-            if(club.profileImg && club.profileImg.length >= 5){
-                    for(let profileImg of club.profileImg){
-                        str += `<img class="cardImg" src="${profileImg}" />`;
-                    }
-                }
 
-            if(club.profileImg && club.profileImg.length > 1 && club.profileImg.length < 5){
-                    for(let profileImg of club.profileImg){
-                        str += `<img class="cardImg" src="${profileImg}" />`;
-                    }  
-                }
-
-                  str += ` </div>
-                    <div class="socialmember">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16" style="color: gray;">
-                             <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
-                             <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
-                         </svg>
-                         <div class="count">${club.count}</div>
-                     </div>
-                </div>
-             </div>
-        </a>
-    </div> `;
-        div.innerHTML = str;
-        topBody.appendChild(div);
-    }
-
-//페이지네이션 처리해서 가져와야함....
-function eventDessertAjax(callback){
+function eventFoodAjax() {
     $.ajax({
-        url: "eventDessertAjax.ev",
-        success : callback,
-        error: function(){
-            console.log("ajax실패")
+        url: "eventFoodAjax.ev",
+        data: {rpage: rpage++, order: order},
+        success: function(list) {
+            console.log(list);
+
+        drawClublist(list);    
+            // 서버에서 반환된 데이터를 사용하여 새로운 'contentcard'를 생성하고 페이지에 추가.
+            console.log("AJAX 요청 성공");
+        },
+        error: function() {
+            console.log("AJAX 요청 실패");
         }
-    })
+    });
 }
 
-function eventGameAjax(list){
-    const topBody = document.querySelector(".display");
-    $(topBody).empty();
-    
-    for(let club of list) {
-        const div = document.createElement("div");
-        div.className = "contentcard";
-        let str = "";
-        str = `
-        <div class="socialing">
-            <a class="cardlink" href="detail.cl?cno=${club.boardNo}">
-                <img class="img" src="${club.thumbnailImg}" />
-                <div class="info">
-                    <div class="subject">
-                        <div class="tag">${club.clubType}</div>
-                        <div class="tagone">${club.categoryName1}</div>
-                        <div class="tagtwo">${club.categoryName2}</div>
-                    </div>
-                    <div class="infotitle">${club.boardTitle}</div>
-                    <div class="describe">
-                        <svg class="image" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
-                        </svg>
-                        ${club.address} · ${club.eventDate}
-                    </div>
-                    <div class="participant">`;
-            if(club.profileImg && club.profileImg.length > 0){
-                        str += `<img class="people" src="${club.profileImg[0]}" />`;
-                    }
-                }
-                        str += `<div class="profileimglist">`;
-            if(club.profileImg && club.profileImg.length >= 5){
-                    for(let profileImg of club.profileImg){
-                        str += `<img class="cardImg" src="${profileImg}" />`;
-                    }
-                }
 
-            if(club.profileImg && club.profileImg.length > 1 && club.profileImg.length < 5){
-                    for(let profileImg of club.profileImg){
-                        str += `<img class="cardImg" src="${profileImg}" />`;
-                    }  
-                }
-
-                  str += ` </div>
-                    <div class="socialmember">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16" style="color: gray;">
-                             <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
-                             <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
-                         </svg>
-                         <div class="count">${club.count}</div>
-                     </div>
-                </div>
-             </div>
-        </a>
-    </div> `;
-        div.innerHTML = str;
-        topBody.appendChild(div);
-    }
-
-//페이지네이션 처리해서 가져와야함....
-function eventGameAjax(callback){
-    $.ajax({
-        url: "eventGameAjax.ev",
-        success : callback,
-        error: function(){
-            console.log("ajax실패")
-        }
-    })
-}
-
-function eventPhotoAjax(list){
-    const topBody = document.querySelector(".display");
-    $(topBody).empty();
-    
-    for(let club of list) {
-        const div = document.createElement("div");
-        div.className = "contentcard";
-        let str = "";
-        str = `
-        <div class="socialing">
-            <a class="cardlink" href="detail.cl?cno=${club.boardNo}">
-                <img class="img" src="${club.thumbnailImg}" />
-                <div class="info">
-                    <div class="subject">
-                        <div class="tag">${club.clubType}</div>
-                        <div class="tagone">${club.categoryName1}</div>
-                        <div class="tagtwo">${club.categoryName2}</div>
-                    </div>
-                    <div class="infotitle">${club.boardTitle}</div>
-                    <div class="describe">
-                        <svg class="image" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
-                        </svg>
-                        ${club.address} · ${club.eventDate}
-                    </div>
-                    <div class="participant">`;
-            if(club.profileImg && club.profileImg.length > 0){
-                        str += `<img class="people" src="${club.profileImg[0]}" />`;
-                    }
-                }
-                        str += `<div class="profileimglist">`;
-            if(club.profileImg && club.profileImg.length >= 5){
-                    for(let profileImg of club.profileImg){
-                        str += `<img class="cardImg" src="${profileImg}" />`;
-                    }
-                }
-
-            if(club.profileImg && club.profileImg.length > 1 && club.profileImg.length < 5){
-                    for(let profileImg of club.profileImg){
-                        str += `<img class="cardImg" src="${profileImg}" />`;
-                    }  
-                }
-
-                  str += ` </div>
-                    <div class="socialmember">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16" style="color: gray;">
-                             <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
-                             <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
-                         </svg>
-                         <div class="count">${club.count}</div>
-                     </div>
-                </div>
-             </div>
-        </a>
-    </div> `;
-        div.innerHTML = str;
-        topBody.appendChild(div);
-    }
-
-//페이지네이션 처리해서 가져와야함....
-function eventPhotoAjax(callback){
+function eventPhotoAjax() {
     $.ajax({
         url: "eventPhotoAjax.ev",
-        success : callback,
-        error: function(){
-            console.log("ajax실패")
+        data: {rpage: rpage++, order: order},
+        success: function(list) {
+            console.log(list);
+
+        drawClublist(list);    
+            // 서버에서 반환된 데이터를 사용하여 새로운 'contentcard'를 생성하고 페이지에 추가.
+            console.log("AJAX 요청 성공");
+        },
+        error: function() {
+            console.log("AJAX 요청 실패");
         }
-    })
+    });
 }
 
-function showeventStudy(list){
-    const topBody = document.querySelector(".display");
-    $(topBody).empty();
-    
-    for(let club of list) {
-        const div = document.createElement("div");
-        div.className = "contentcard";
-        let str = "";
-        str = `
-        <div class="socialing">
-            <a class="cardlink" href="detail.cl?cno=${club.boardNo}">
-                <img class="img" src="${club.thumbnailImg}" />
-                <div class="info">
-                    <div class="subject">
-                        <div class="tag">${club.clubType}</div>
-                        <div class="tagone">${club.categoryName1}</div>
-                        <div class="tagtwo">${club.categoryName2}</div>
-                    </div>
-                    <div class="infotitle">${club.boardTitle}</div>
-                    <div class="describe">
-                        <svg class="image" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
-                        </svg>
-                        ${club.address} · ${club.eventDate}
-                    </div>
-                    <div class="participant">`;
-            if(club.profileImg && club.profileImg.length > 0){
-                        str += `<img class="people" src="${club.profileImg[0]}" />`;
-                    }
-                }
-                        str += `<div class="profileimglist">`;
-            if(club.profileImg && club.profileImg.length >= 5){
-                    for(let profileImg of club.profileImg){
-                        str += `<img class="cardImg" src="${profileImg}" />`;
-                    }
-                }
 
-            if(club.profileImg && club.profileImg.length > 1 && club.profileImg.length < 5){
-                    for(let profileImg of club.profileImg){
-                        str += `<img class="cardImg" src="${profileImg}" />`;
-                    }  
-                }
-
-                  str += ` </div>
-                    <div class="socialmember">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16" style="color: gray;">
-                             <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
-                             <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
-                         </svg>
-                         <div class="count">${club.count}</div>
-                     </div>
-                </div>
-             </div>
-        </a>
-    </div> `;
-        div.innerHTML = str;
-        topBody.appendChild(div);
-    }
-
-//페이지네이션 처리해서 가져와야함....
-function showeventStudy(callback){
+function eventStudyAjax() {
     $.ajax({
-        url: "showeventStudy.ev",
-        success : callback,
-        error: function(){
-            console.log("ajax실패")
+        url: "eventStudyAjax.ev",
+        data: {rpage: rpage++, order: order},
+        success: function(list) {
+            console.log(list);
+
+        drawClublist(list);    
+            // 서버에서 반환된 데이터를 사용하여 새로운 'contentcard'를 생성하고 페이지에 추가.
+            console.log("AJAX 요청 성공");
+        },
+        error: function() {
+            console.log("AJAX 요청 실패");
         }
-    })
+    });
 }
 
-function eventTravel(list){
-    const topBody = document.querySelector(".display");
-    $(topBody).empty();
-    
-    for(let club of list) {
-        const div = document.createElement("div");
-        div.className = "contentcard";
-        let str = "";
-        str = `
-        <div class="socialing">
-            <a class="cardlink" href="detail.cl?cno=${club.boardNo}">
-                <img class="img" src="${club.thumbnailImg}" />
-                <div class="info">
-                    <div class="subject">
-                        <div class="tag">${club.clubType}</div>
-                        <div class="tagone">${club.categoryName1}</div>
-                        <div class="tagtwo">${club.categoryName2}</div>
-                    </div>
-                    <div class="infotitle">${club.boardTitle}</div>
-                    <div class="describe">
-                        <svg class="image" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
-                        </svg>
-                        ${club.address} · ${club.eventDate}
-                    </div>
-                    <div class="participant">`;
-            if(club.profileImg && club.profileImg.length > 0){
-                        str += `<img class="people" src="${club.profileImg[0]}" />`;
-                    }
-                }
-                        str += `<div class="profileimglist">`;
-            if(club.profileImg && club.profileImg.length >= 5){
-                    for(let profileImg of club.profileImg){
-                        str += `<img class="cardImg" src="${profileImg}" />`;
-                    }
-                }
 
-            if(club.profileImg && club.profileImg.length > 1 && club.profileImg.length < 5){
-                    for(let profileImg of club.profileImg){
-                        str += `<img class="cardImg" src="${profileImg}" />`;
-                    }  
-                }
-
-                  str += ` </div>
-                    <div class="socialmember">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16" style="color: gray;">
-                             <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
-                             <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
-                         </svg>
-                         <div class="count">${club.count}</div>
-                     </div>
-                </div>
-             </div>
-        </a>
-    </div> `;
-        div.innerHTML = str;
-        topBody.appendChild(div);
-    }
-
-//페이지네이션 처리해서 가져와야함....
-function eventTravel(callback){
+function eventGameAjax() {
     $.ajax({
-        url: "eventTravel.ev",
-        success : callback,
-        error: function(){
-            console.log("ajax실패")
+        url: "eventGameAjax.ev",
+        data: {rpage: rpage++, order: order},
+        success: function(list) {
+            console.log(list);
+
+        drawClublist(list);    
+            // 서버에서 반환된 데이터를 사용하여 새로운 'contentcard'를 생성하고 페이지에 추가.
+            console.log("AJAX 요청 성공");
+        },
+        error: function() {
+            console.log("AJAX 요청 실패");
         }
-    })
+    });
 }
 
-function cateTravelPickAjax(list){
-    const topBody = document.querySelector(".display");
-    $(topBody).empty();
-    
-    for(let club of list) {
-        const div = document.createElement("div");
-        div.className = "contentcard";
-        let str = "";
-        str = `
-        <div class="socialing">
-            <a class="cardlink" href="detail.cl?cno=${club.boardNo}">
-                <img class="img" src="${club.thumbnailImg}" />
-                <div class="info">
-                    <div class="subject">
-                        <div class="tag">${club.clubType}</div>
-                        <div class="tagone">${club.categoryName1}</div>
-                        <div class="tagtwo">${club.categoryName2}</div>
-                    </div>
-                    <div class="infotitle">${club.boardTitle}</div>
-                    <div class="describe">
-                        <svg class="image" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
-                        </svg>
-                        ${club.address} · ${club.eventDate}
-                    </div>
-                    <div class="participant">`;
-            if(club.profileImg && club.profileImg.length > 0){
-                        str += `<img class="people" src="${club.profileImg[0]}" />`;
-                    }
-                }
-                        str += `<div class="profileimglist">`;
-            if(club.profileImg && club.profileImg.length >= 5){
-                    for(let profileImg of club.profileImg){
-                        str += `<img class="cardImg" src="${profileImg}" />`;
-                    }
-                }
 
-            if(club.profileImg && club.profileImg.length > 1 && club.profileImg.length < 5){
-                    for(let profileImg of club.profileImg){
-                        str += `<img class="cardImg" src="${profileImg}" />`;
-                    }  
-                }
-
-                  str += ` </div>
-                    <div class="socialmember">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16" style="color: gray;">
-                             <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
-                             <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
-                         </svg>
-                         <div class="count">${club.count}</div>
-                     </div>
-                </div>
-             </div>
-        </a>
-    </div> `;
-        div.innerHTML = str;
-        topBody.appendChild(div);
-    }
-
-//페이지네이션 처리해서 가져와야함....
-function cateTravelPickAjax(callback){
+function eventPartyAjax() {
     $.ajax({
-        url: "cateTravelPickAjax.ev",
-        success : callback,
-        error: function(){
-            console.log("ajax실패")
+        url: "eventPartyAjax.ev",
+        data: {rpage: rpage++, order: order},
+        success: function(list) {
+            console.log(list);
+
+        drawClublist(list);    
+            // 서버에서 반환된 데이터를 사용하여 새로운 'contentcard'를 생성하고 페이지에 추가.
+            console.log("AJAX 요청 성공");
+        },
+        error: function() {
+            console.log("AJAX 요청 실패");
         }
-    })
+    });
 }
 
-function eventLoveAjax(list){
-    const topBody = document.querySelector(".display");
-    $(topBody).empty();
-    
-    for(let club of list) {
-        const div = document.createElement("div");
-        div.className = "contentcard";
-        let str = "";
-        str = `
-        <div class="socialing">
-            <a class="cardlink" href="detail.cl?cno=${club.boardNo}">
-                <img class="img" src="${club.thumbnailImg}" />
-                <div class="info">
-                    <div class="subject">
-                        <div class="tag">${club.clubType}</div>
-                        <div class="tagone">${club.categoryName1}</div>
-                        <div class="tagtwo">${club.categoryName2}</div>
-                    </div>
-                    <div class="infotitle">${club.boardTitle}</div>
-                    <div class="describe">
-                        <svg class="image" xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
-                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
-                        </svg>
-                        ${club.address} · ${club.eventDate}
-                    </div>
-                    <div class="participant">`;
-            if(club.profileImg && club.profileImg.length > 0){
-                        str += `<img class="people" src="${club.profileImg[0]}" />`;
-                    }
-                }
-                        str += `<div class="profileimglist">`;
-            if(club.profileImg && club.profileImg.length >= 5){
-                    for(let profileImg of club.profileImg){
-                        str += `<img class="cardImg" src="${profileImg}" />`;
-                    }
-                }
 
-            if(club.profileImg && club.profileImg.length > 1 && club.profileImg.length < 5){
-                    for(let profileImg of club.profileImg){
-                        str += `<img class="cardImg" src="${profileImg}" />`;
-                    }  
-                }
-
-                  str += ` </div>
-                    <div class="socialmember">
-                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock" viewBox="0 0 16 16" style="color: gray;">
-                             <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
-                             <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
-                         </svg>
-                         <div class="count">${club.count}</div>
-                     </div>
-                </div>
-             </div>
-        </a>
-    </div> `;
-        div.innerHTML = str;
-        topBody.appendChild(div);
-    }
-
-//페이지네이션 처리해서 가져와야함....
-function eventLoveAjax(callback){
+function eventLoveAjax() {
     $.ajax({
         url: "eventLoveAjax.ev",
-        success : callback,
-        error: function(){
-            console.log("ajax실패")
+        data: {rpage: rpage++, order: order},
+        success: function(list) {
+            console.log(list);
+
+        drawClublist(list);    
+            // 서버에서 반환된 데이터를 사용하여 새로운 'contentcard'를 생성하고 페이지에 추가.
+            console.log("AJAX 요청 성공");
+        },
+        error: function() {
+            console.log("AJAX 요청 실패");
         }
-    })
+    });
 }

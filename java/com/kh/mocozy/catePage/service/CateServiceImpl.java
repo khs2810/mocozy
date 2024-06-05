@@ -30,26 +30,6 @@ public class CateServiceImpl implements CateService{
 		ArrayList<Member> result = cDao.MemberList(sqlSession, clubNo);
 		return result;
 	}
-	
-	@Override
-	public ArrayList<Club> getSocialing() {
-	     return cDao.getSocialing(sqlSession);
-	}
-
-	@Override
-	public ArrayList<Club> getChallenge() {
-	     return cDao.getChallenge(sqlSession);
-	}
-
-	@Override
-	public int getReviewCount(int clubNo) {
-		return cDao.getReviewCount(sqlSession, clubNo);
-	}
-	    
-	@Override
-	public int getPickedCount(int clubNo) {
-		return cDao.getPickedCount(sqlSession, clubNo);
-	}
 
 	@Override
 	public int getClublist() {
@@ -59,5 +39,20 @@ public class CateServiceImpl implements CateService{
 	@Override
 	public ArrayList<Club> selectCateFilter(Map<String, String> map, PageInfo pi) {
 		return cDao.selectCateFilter(sqlSession, map, pi);
+	}
+	
+	@Override
+	public ArrayList<Club> catePick(Map<String, String> map, PageInfo pi) {
+		return cDao.catePick(sqlSession, map, pi);
+	}
+	
+	@Override
+	public ArrayList<Club> cateRecent(Map<String, String> map, PageInfo pi) {
+		return cDao.cateRecent(sqlSession, map, pi);
+	}
+	
+	@Override
+	public ArrayList<Club> cateView(Map<String, String> map, PageInfo pi) {
+		return cDao.cateView(sqlSession, map, pi);
 	}
 }

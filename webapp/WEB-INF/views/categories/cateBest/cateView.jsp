@@ -10,7 +10,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-<script src="${pageContext.request.contextPath}/resources/jo/js/categories_js/cateSocialAjax.js"></script>
+<script src="${pageContext.request.contextPath}/resources/jo/js/categories_js/cateOrderAjax.js"></script>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/jo/css/common_css/style.css">
 <link rel="stylesheet" type="text/css"
@@ -37,14 +37,13 @@
 												<path fill-rule="evenodd"
 								d="M6.776 1.553a.5.5 0 0 1 .671.223l3 6a.5.5 0 0 1 0 .448l-3 6a.5.5 0 1 1-.894-.448L9.44 8 6.553 2.224a.5.5 0 0 1 .223-.671" />
 											</svg>
-						<span> 조회순 모임
-							</p>
+						<span> 조회순 모임 </span>
 					</div>
 
 					<div class="rightlistTitle">
 						<div class="rightlistContent">
-							<span id="cateRecent"><a href="cateBest.ct">소셜링</a></span>
-							<p id="cateDibs"><a href="cateBestChallenge.ct">챌린지</a></p>
+							<p id="cateRecent"><a href="cateView.ct?key=${'소셜링'}">소셜링</a></p>
+							<p id="cateDibs"><a href="cateView.ct?key=${'챌린지'}">챌린지</a></p>
 						</div>
 					</div>
 				</div>

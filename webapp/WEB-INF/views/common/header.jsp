@@ -84,9 +84,9 @@
 											<h3 class="getName">인기</h3>
 											<div class="getTitle">
 												<div class="cateL">
-													<a href="cateRecent.ct" class="cateT">따끈따끈 신규 모임</a> <a
-														href="cateHot.ct" class="cateT">HOT 클래스</a> <a
-														href="cateBest.ct" class="cateT">조회순 모임</a>
+													<a href="cateRecent.ct?key=${'소셜링'}" class="cateT">따끈따끈 신규 모임</a> <a
+														href="catePick.ct?key=${'소셜링'}" class="cateT">HOT 클래스</a> <a
+														href="cateView.ct?key=${'소셜링'}" class="cateT">조회순 모임</a>
 												</div>
 											</div>
 										</li>
@@ -95,8 +95,8 @@
 											<h3 class="getName">문화생활</h3>
 											<div class="getTitle">
 												<div class="cateL">
-													<a href="cateArt.ct" class="cateT">문화 · 예술</a> <a
-														href="cateFood.ct" class="cateT">푸드 · 드링크</a>
+													<a href="cateKey.ct?key=${'문화, 예술'}&order=club_no" class="cateT">문화 · 예술</a> <a
+														href="cateKey.ct?key=${'푸드, 드링크'}&order=club_no" class="cateT">푸드 · 드링크</a>
 												</div>
 											</div>
 										</li>
@@ -105,9 +105,9 @@
 											<h3 class="getName">미래발전</h3>
 											<div class="getTitle">
 												<div class="cateL">
-													<a href="cateDevelope.ct" class="cateT">자기계발</a> <a
-														href="cateInvest.ct" class="cateT">재테크</a> <a
-														href="cateForeign.ct" class="cateT">외국어</a>
+													<a href="cateKey.ct?key=${'자기계발'}&order=club_no" class="cateT">자기계발</a> <a
+														href="cateKey.ct?key=${'재테크'}&order=club_no" class="cateT">재테크</a> <a
+														href="cateKey.ct?key=${'외국어'}&order=club_no" class="cateT">외국어</a>
 												</div>
 											</div>
 										</li>
@@ -116,8 +116,8 @@
 											<h3 class="getName">스포츠</h3>
 											<div class="getTitle">
 												<div class="cateL">
-													<a href="cateActivity.ct" class="cateT">액비티비</a> <a
-														href="cateTravel.ct" class="cateT">여행 · 동행</a>
+													<a href="cateKey.ct?key=${'액티비티'}&order=club_no" class="cateT">액비티비</a> <a
+														href="cateKey.ct?key=${'여행, 동행'}&order=club_no" class="cateT">여행 · 동행</a>
 												</div>
 											</div>
 										</li>
@@ -126,9 +126,9 @@
 											<h3 class="getName">취미</h3>
 											<div class="getTitle">
 												<div class="cateL">
-													<a href="cateHobby.ct" class="cateT">취미</a> <a
-														href="cateGame.ct" class="cateT">파티 · 게임</a> <a
-														href="cateLove.ct" class="cateT">연애 · 사랑</a>
+													<a href="cateKey.ct?key=${'취미'}&order=club_no" class="cateT">취미</a> <a
+														href="cateKey.ct?key=${'파티, 게임'}&order=club_no" class="cateT">파티 · 게임</a> <a
+														href="cateKey.ct?key=${'연애'}&order=club_no" class="cateT">연애 · 사랑</a>
 												</div>
 											</div>
 										</li>
@@ -149,13 +149,13 @@
 
 						<div class="studio">
 							<div class="stu">
-								<a href="cateHot.ct">HOT 클래스 🔥</a>
+								<a href="catePick.ct?key=${'소셜링'}">HOT 클래스 🔥</a>
 							</div>
 
 							<div class="studioBorder"></div>
 
 							<div class="stubutton">
-								<a href="cateRecent.ct">신규모임</a>
+								<a href="cateRecent.ct?key=${'소셜링'}">신규모임</a>
 							</div>
 						</div>
 
@@ -173,10 +173,9 @@
 						<%-- 로그인바 - 검색바 --%>
 							<div class="search">
 								<form class="searchForm" action="searchForm.sc" method="GET">
-									<input type="hidden" name="rpage" value="1"> <input type="text"
-										name="keyword" class="searchInput" id="search-box"
+									<input type="hidden" name="rpage" value="1"> 
+									<input type="text" name="keyword" class="searchInput" id="search-box"
 										value="${keyword}" placeholder="원하는 모임을 검색해보세요.">
-
 									<button type="submit" value="검색">
 										<svg class="searchIcon" xmlns="http://www.w3.org/2000/svg"
 											width="16" height="16" fill="currentColor" class="bi bi-search"

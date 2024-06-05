@@ -1,6 +1,8 @@
 // 스크롤 이벤트 감지
+let urlParams = new URLSearchParams(window.location.search);
 let cpage = 2;
-let order = new URLSearchParams(window.location.search).get('order');
+let key = urlParams.get('key');
+let order = urlParams.get('order');
 
 window.onscroll = function() {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
@@ -73,7 +75,58 @@ function cateAllAjax() {
 function cateKeyAjax() {
     $.ajax({
         url: "cateKeyAjax.ct",
-        data: {cpage: cpage++, order: order},
+        data: {cpage: cpage++, order: order, key: key},
+        success: function(list) {
+            console.log(list);
+
+        drawClublist(list);    
+            // 서버에서 반환된 데이터를 사용하여 새로운 'contentcard'를 생성하고 페이지에 추가.      
+            console.log("AJAX 요청 성공");
+        },
+        error: function() {
+            console.log("AJAX 요청 실패");
+        }
+    });
+}
+
+function cateViewAjax() {
+    $.ajax({
+        url: "cateViewAjax.ct",
+        data: {cpage: cpage++, key: key},
+        success: function(list) {
+            console.log(list);
+
+        drawClublist(list);    
+            // 서버에서 반환된 데이터를 사용하여 새로운 'contentcard'를 생성하고 페이지에 추가.      
+            console.log("AJAX 요청 성공");
+        },
+        error: function() {
+            console.log("AJAX 요청 실패");
+        }
+    });
+}
+
+function catePickAjax() {
+    $.ajax({
+        url: "catePickAjax.ct",
+        data: {cpage: cpage++, key: key},
+        success: function(list) {
+            console.log(list);
+
+        drawClublist(list);    
+            // 서버에서 반환된 데이터를 사용하여 새로운 'contentcard'를 생성하고 페이지에 추가.      
+            console.log("AJAX 요청 성공");
+        },
+        error: function() {
+            console.log("AJAX 요청 실패");
+        }
+    });
+}
+
+function cateRecentAjax() {
+    $.ajax({
+        url: "cateRecentAjax.ct",
+        data: {cpage: cpage++, key: key},
         success: function(list) {
             console.log(list);
 
@@ -97,5 +150,14 @@ $(document).ready(function() {
         $('#cateDibs').addClass('highlight');
     } else if (order === 'count'){
         $('#cateViews').addClass('highlight');
+    }
+});
+
+$(document).ready(function() {
+    // .leftlistTitle p의 텍스트 값이 없는지 확인
+    if (!$('.leftlistTitle p').text().trim()) {
+        // 'cname'이 없다면, 해당 클래스와 
+        //'cateRanklisticon' 클래스의 CSS를 'color: #fff'으로 설정
+        $('.leftlistTitle p, .cateRanklisticon').css('color', '#fff');
     }
 });

@@ -27,7 +27,7 @@
 				<div class="screenheader">
 					<h1 class="title">따끈따끈한 신규 모임 🌈 </h1>
 					<div class="selectBox">
-						<a href="cateBest.ct">모두보기</a>
+						<a href="cateRecent.ct?key=${'소셜링'}">모두보기</a>
 					</div>
 				</div>
 				<div class="display">
@@ -111,7 +111,7 @@
 				<div class="screenheader">
 					<h1 class="title">조회수 인기 모임</h1>
 					<div class="selectBox">
-						<a href="cateHot.ct">모두보기</a>
+						<a href="cateView.ct?key=${'소셜링'}">모두보기</a>
 					</div>
 				</div>
 

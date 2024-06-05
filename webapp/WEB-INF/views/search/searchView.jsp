@@ -15,11 +15,11 @@
 	href="${pageContext.request.contextPath}/resources/jo/css/search_css/search.css">
 </head>
 
-<%@ include file="../../common/header.jsp"%>
-<%@ include file="../../mainPage/banner.jsp"%>
+<%@ include file="../common/header.jsp"%>
+<%@ include file="../mainPage/banner.jsp"%>
 <body>
 	<div class="searchPage">
-		<%@ include file="../../mainPage/cateButton.jsp"%>
+		<%@ include file="../mainPage/cateButton.jsp"%>
 
 		<div class="screen">
 			<div class="box">
@@ -33,15 +33,15 @@
 
 					<div class="rightlistTitle">
 						<div class="rightlistContent">
-							<span id="cateRecent">
+							<p id="cateRecent">
 								<a href="searchForm.sc?rpage=1&keyword=${keyword}">최신순</a>
-							</span>
+							</p>
 							<p id="cateDibs">
-								<a href="searchFormPick.sc?rpage=1&keyword=${keyword}">인기순</a>
+								<a href="searcPick.sc?rpage=1&keyword=${keyword}">인기순</a>
 							</p>
-							<p id="cateViews">
-								<a href="searchFormView.sc?rpage=1&keyword=${keyword}">조회순</a>
-							</p>
+							<span id="cateViews">
+								<a href="searchCount.sc?rpage=1&keyword=${keyword}">조회순</a>
+							</span>
 						</div>
 					</div>
 				</div>
@@ -119,8 +119,8 @@
 			</div>
 		</div>
 
-		<%@ include file="../../common/footer.jsp"%>
+		<%@ include file="../common/footer.jsp"%>
 </body>
-<%@ include file="../../common/topButton.jsp"%>
+<%@ include file="../common/topButton.jsp"%>
 
 </html>

@@ -1,6 +1,8 @@
 package com.kh.mocozy.event.model.dao;
 
 import java.util.ArrayList;
+
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -10,76 +12,70 @@ import com.kh.mocozy.member.model.vo.Member;
 
 @Repository
 public class EventDao {
-	    public ArrayList<Club> selecteventlist(SqlSessionTemplate sqlSession) {
-	        return (ArrayList)sqlSession.selectList("eventMapper.selecteventlist");
-	    }
-	    
-		public ArrayList<Member> MemberList(SqlSessionTemplate sqlSession, int clubNo) {
-			ArrayList<Member> result = (ArrayList)sqlSession.selectList("eventMapper.MemberList", clubNo);
-			return result;
-		}
-		
-	    public ArrayList<Club> selectcatelist(SqlSessionTemplate sqlSession) {
-	        return (ArrayList)sqlSession.selectList("cateMapper.selectcatelist");
-	    }
-	    
-	    public ArrayList<Club> selectArt(SqlSessionTemplate sqlSession) {
-	        return (ArrayList)sqlSession.selectList("cateMapper.selectArt");
-	    }
-	    
-	    public ArrayList<Club> selectActivity(SqlSessionTemplate sqlSession) {
-	        return (ArrayList)sqlSession.selectList("cateMapper.selectActivity");
-	    }
-	    
-	    public ArrayList<Club> selectFood(SqlSessionTemplate sqlSession) {
-	        return (ArrayList)sqlSession.selectList("cateMapper.selectFood");
-	    }
-	    
-	    public ArrayList<Club> selectHobby(SqlSessionTemplate sqlSession) {
-	        return (ArrayList)sqlSession.selectList("cateMapper.selectHobby");
-	    }
-	    
-	    public ArrayList<Club> selectTravel(SqlSessionTemplate sqlSession) {
-	        return (ArrayList)sqlSession.selectList("cateMapper.selectTravel");
-	    }
-	    
-	    public ArrayList<Club> selectDevelope(SqlSessionTemplate sqlSession) {
-	        return (ArrayList)sqlSession.selectList("cateMapper.selectDevelope");
-	    }
-	    
-	    public ArrayList<Club> selectInvest(SqlSessionTemplate sqlSession) {
-	        return (ArrayList)sqlSession.selectList("cateMapper.selectInvest");
-	    }
-	    
-	    public ArrayList<Club> selectLove(SqlSessionTemplate sqlSession) {
-	        return (ArrayList)sqlSession.selectList("cateMapper.selectLove");
-	    }
-	    
-		public ArrayList<Club> selectForeign(SqlSessionTemplate sqlSession) {
-			 return (ArrayList)sqlSession.selectList("cateMapper.selectForeign");
-		}
+	public ArrayList<Member> MemberList(SqlSessionTemplate sqlSession, int clubNo) {
+		ArrayList<Member> result = (ArrayList)sqlSession.selectList("eventMapper.MemberList", clubNo);
+		return result;
+	}
 
-		public ArrayList<Club> selectGame(SqlSessionTemplate sqlSession) {
-			 return (ArrayList)sqlSession.selectList("cateMapper.selectGame");
-		}
-		
-	    public ArrayList<Club> getSocialing(SqlSessionTemplate sqlSession, PageInfo pi) {
-	        return (ArrayList)sqlSession.selectList("mainPageMapper.getSocialing", pi);
-	    }
+	public int getEventlist(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("mainPageMapper.selectSocialList");
+	}
 
-	    public ArrayList<Club> getChallenge(SqlSessionTemplate sqlSession, PageInfo pi) {
-	        return (ArrayList)sqlSession.selectList("mainPageMapper.getChallenge", pi);
-	    }
+	public ArrayList<Club> eventArt(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 
-		public int getReviewCount(SqlSessionTemplate sqlSession, int clubNo) {
-			return sqlSession.selectOne("mainPageMapper.getReviewCount", clubNo);
-		}
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("eventMapper.eventArt", null, rowBounds);
+	}
 
-		public int getPickedCount(SqlSessionTemplate sqlSession, int clubNo) {
-			return sqlSession.selectOne("mainPageMapper.getPickedCount", clubNo);
-		}
+	public ArrayList<Club> eventFood(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 
-		public int getEventlist(SqlSessionTemplate sqlSession) {
-			return sqlSession.selectOne("mainPageMapper.selectSocialList");
-		}
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("eventMapper.eventFood", null, rowBounds);
+	}
+
+	public ArrayList<Club> eventGame(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("eventMapper.eventGame", null, rowBounds);
+	}
+
+	public ArrayList<Club> eventParty(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("eventMapper.eventParty", null, rowBounds);
+	}
+
+	public ArrayList<Club> eventPhoto(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("eventMapper.eventPhoto", null, rowBounds);
+	}
+
+	public ArrayList<Club> eventStudy(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("eventMapper.eventStudy", null, rowBounds);
+	}
+
+	public ArrayList<Club> eventTravel(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("eventMapper.eventTravel", null, rowBounds);
+	}
+
+	public ArrayList<Club> eventLove(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("eventMapper.eventLove", null, rowBounds);
+	}
+
+
 }
