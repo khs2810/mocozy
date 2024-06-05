@@ -99,4 +99,9 @@ public class EventServiceImpl implements EventService{
 	public int getPickedCount(int clubNo) {
 		return eDao.getPickedCount(sqlSession, clubNo);
 	}
+
+	@Override
+	public int getEventlist() {
+		return eDao.getEventlist(sqlSession);
+	}
 }

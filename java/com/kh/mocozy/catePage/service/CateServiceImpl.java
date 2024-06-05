@@ -99,4 +99,9 @@ public class CateServiceImpl implements CateService{
 	public int getPickedCount(int clubNo) {
 		return cDao.getPickedCount(sqlSession, clubNo);
 	}
+
+	@Override
+	public int getClublist() {
+		return cDao.getClublist(sqlSession);
+	}
 }

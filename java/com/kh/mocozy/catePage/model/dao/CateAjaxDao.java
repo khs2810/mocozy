@@ -1,4 +1,4 @@
-package com.kh.mocozy.event.model.dao;
+package com.kh.mocozy.catePage.model.dao;
 
 import java.util.ArrayList;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -9,16 +9,7 @@ import com.kh.mocozy.common.model.vo.PageInfo;
 import com.kh.mocozy.member.model.vo.Member;
 
 @Repository
-public class EventDao {
-	    public ArrayList<Club> selecteventlist(SqlSessionTemplate sqlSession) {
-	        return (ArrayList)sqlSession.selectList("eventMapper.selecteventlist");
-	    }
-	    
-		public ArrayList<Member> MemberList(SqlSessionTemplate sqlSession, int clubNo) {
-			ArrayList<Member> result = (ArrayList)sqlSession.selectList("eventMapper.MemberList", clubNo);
-			return result;
-		}
-		
+public class CateAjaxDao {
 	    public ArrayList<Club> selectcatelist(SqlSessionTemplate sqlSession) {
 	        return (ArrayList)sqlSession.selectList("cateMapper.selectcatelist");
 	    }
@@ -63,12 +54,17 @@ public class EventDao {
 			 return (ArrayList)sqlSession.selectList("cateMapper.selectGame");
 		}
 		
-	    public ArrayList<Club> getSocialing(SqlSessionTemplate sqlSession, PageInfo pi) {
-	        return (ArrayList)sqlSession.selectList("mainPageMapper.getSocialing", pi);
+		public ArrayList<Member> MemberList(SqlSessionTemplate sqlSession, int clubNo) {
+			ArrayList<Member> result = (ArrayList)sqlSession.selectList("cateMapper.MemberList", clubNo);
+			return result;
+		}
+		
+	    public ArrayList<Club> getSocialing(SqlSessionTemplate sqlSession) {
+	        return (ArrayList)sqlSession.selectList("mainPageMapper.getSocialing");
 	    }
 
-	    public ArrayList<Club> getChallenge(SqlSessionTemplate sqlSession, PageInfo pi) {
-	        return (ArrayList)sqlSession.selectList("mainPageMapper.getChallenge", pi);
+	    public ArrayList<Club> getChallenge(SqlSessionTemplate sqlSession) {
+	        return (ArrayList)sqlSession.selectList("mainPageMapper.getChallenge");
 	    }
 
 		public int getReviewCount(SqlSessionTemplate sqlSession, int clubNo) {
@@ -78,8 +74,4 @@ public class EventDao {
 		public int getPickedCount(SqlSessionTemplate sqlSession, int clubNo) {
 			return sqlSession.selectOne("mainPageMapper.getPickedCount", clubNo);
 		}
-
-		public int getEventlist(SqlSessionTemplate sqlSession) {
-			return sqlSession.selectOne("mainPageMapper.selectSocialList");
-		}
-}
+	}

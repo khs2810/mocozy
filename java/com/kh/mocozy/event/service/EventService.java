@@ -40,4 +40,6 @@ public interface EventService {
     int getReviewCount(int clubNo);
 
 	int getPickedCount(int clubNo);
+
+	public int getEventlist();
 }
