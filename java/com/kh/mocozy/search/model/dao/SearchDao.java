@@ -13,44 +13,37 @@ import com.kh.mocozy.member.model.vo.Member;
 
 @Repository
 public class SearchDao {
-		/* searchListCount() */
-	    public int searchCount(SqlSessionTemplate sqlSession) {
-	    	return sqlSession.selectOne("searchMapper.searchCount");
-		}
-	    
-		/* selectSearchList */
-	    public ArrayList<Club> selectSearchList(SqlSessionTemplate sqlSession, HashMap<String, String> map, PageInfo re) {
-	    	int offset = (re.getCurrentPage() - 1) * re.getBoardLimit();
-			int limit = re.getBoardLimit();
-			
-			RowBounds rowBounds = new RowBounds(offset, limit);
-			return (ArrayList)sqlSession.selectList("searchMapper.selectSearchList", map, rowBounds);
-	    }
-	    
-	    // 순수 검색
-		public int searchForm(SqlSessionTemplate sqlSession, HashMap<String, String> map){
-			return sqlSession.selectOne("searchMapper.searchForm", map);
-		}
-		  
-		public ArrayList<Member> MemberList(SqlSessionTemplate sqlSession, int clubNo) {
-			ArrayList<Member> result = (ArrayList)sqlSession.selectList("searchMapper.MemberList", clubNo);
-			return result;
-		}
+	public ArrayList<Member> MemberList(SqlSessionTemplate sqlSession, int clubNo) {
+		ArrayList<Member> result = (ArrayList)sqlSession.selectList("searchMapper.MemberList", clubNo);
+		return result;
+	}
+
+	public int searchForm(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		return sqlSession.selectOne("searchMapper.searchForm", map);
+	}
+
+	public ArrayList<Club> selectSearchList(SqlSessionTemplate sqlSession, HashMap<String, String> map,
+			PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("searchMapper.selectSearchList", map, rowBounds);
+	}
+	
+	public ArrayList<Club> selectSearchPick(SqlSessionTemplate sqlSession, HashMap<String, String> map,
+			PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 		
-	    public ArrayList<Club> getSocialing(SqlSessionTemplate sqlSession, PageInfo pi) {
-	        return (ArrayList)sqlSession.selectList("mainPageMapper.getSocialing", pi);
-	    }
-
-	    public ArrayList<Club> getChallenge(SqlSessionTemplate sqlSession, PageInfo pi) {
-	        return (ArrayList)sqlSession.selectList("mainPageMapper.getChallenge", pi);
-	    }
-
-		public int getReviewCount(SqlSessionTemplate sqlSession, int clubNo) {
-			return sqlSession.selectOne("mainPageMapper.getReviewCount", clubNo);
-		}
-
-		public int getPickedCount(SqlSessionTemplate sqlSession, int clubNo) {
-			return sqlSession.selectOne("mainPageMapper.getPickedCount", clubNo);
-		}
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("searchMapper.selectSearchPick", map, rowBounds);
+	}
+	
+	public ArrayList<Club> selectSearchView(SqlSessionTemplate sqlSession, HashMap<String, String> map,
+			PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("searchMapper.selectSearchView", map, rowBounds);
+	}
 }
 

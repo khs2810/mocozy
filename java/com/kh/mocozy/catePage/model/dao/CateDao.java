@@ -18,22 +18,6 @@ public class CateDao {
 			ArrayList<Member> result = (ArrayList)sqlSession.selectList("cateMapper.MemberList", clubNo);
 			return result;
 		}
-		
-	    public ArrayList<Club> getSocialing(SqlSessionTemplate sqlSession) {
-	        return (ArrayList)sqlSession.selectList("mainPageMapper.getSocialing");
-	    }
-
-	    public ArrayList<Club> getChallenge(SqlSessionTemplate sqlSession) {
-	        return (ArrayList)sqlSession.selectList("mainPageMapper.getChallenge");
-	    }
-
-		public int getReviewCount(SqlSessionTemplate sqlSession, int clubNo) {
-			return sqlSession.selectOne("mainPageMapper.getReviewCount", clubNo);
-		}
-
-		public int getPickedCount(SqlSessionTemplate sqlSession, int clubNo) {
-			return sqlSession.selectOne("mainPageMapper.getPickedCount", clubNo);
-		}
 
 		public int getClublist(SqlSessionTemplate sqlSession) {
 			return sqlSession.selectOne("mainPageMapper.selectSocialList");
@@ -51,5 +35,26 @@ public class CateDao {
 			
 			RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
 			return (ArrayList)sqlSession.selectList("cateMapper.selectCateFilter", map, rowBounds);
+		}
+
+		public ArrayList<Club> catePick(SqlSessionTemplate sqlSession, Map<String, String> map, PageInfo pi) {
+			int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+			
+			RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+			return (ArrayList)sqlSession.selectList("cateMapper.catePick", map, rowBounds);
+		}
+		
+		public ArrayList<Club> cateRecent(SqlSessionTemplate sqlSession, Map<String, String> map, PageInfo pi) {
+			int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+			
+			RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+			return (ArrayList)sqlSession.selectList("cateMapper.cateRecent", map, rowBounds);
+		}
+		
+		public ArrayList<Club> cateView(SqlSessionTemplate sqlSession, Map<String, String> map, PageInfo pi) {
+			int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+			
+			RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+			return (ArrayList)sqlSession.selectList("cateMapper.cateView", map, rowBounds);
 		}
 	}

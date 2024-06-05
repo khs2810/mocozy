@@ -13,20 +13,17 @@ public interface CateService {
 	
 	//프로필 사진 가져오기
 	ArrayList<Member> MemberList(int clubNo);
-	
-	//챌린지, 클럽
-	ArrayList<Club> getSocialing();
-	
-	ArrayList<Club> getChallenge();
-
-    int getReviewCount(int clubNo);
-
-	int getPickedCount(int clubNo);
 
 	public int getClublist();
 	
 	public ArrayList<Club> selectcatelist(PageInfo pi, String order);
 	
 	ArrayList<Club> selectCateFilter(Map<String, String> map, PageInfo pi);
+
+	ArrayList<Club> catePick(Map<String, String> map, PageInfo pi);
+	
+	ArrayList<Club> cateRecent(Map<String, String> map, PageInfo pi);
+	
+	ArrayList<Club> cateView(Map<String, String> map, PageInfo pi);
 
 }

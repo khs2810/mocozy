@@ -23,14 +23,17 @@
 <body>
 	<div class="bannerbox"></div>
 	<!-- 상단배너 -->
-	<section class="eventbanner" id="eventsection8">
+	<section class="eventbanner" id="eventsection2">
 		<div class="eventbannerdiv">
-			<h1>연애 기획전</h1>
+			<h1>{$ename} 기획전</h1>
 			<h3>
-				이번년도엔 절대로 솔로탈출 <br> 초고속 고효율로 반갑게 만나요
+				관객의 참여와 체험으로 완성되는 <br> 특별한 전시회 지금 만나러 가봐요
 			</h3>
 			<a href="javascript:void(0);" class="scrolldown"> <!-- scroll 애니메이션 -->
-				<span></span> <span></span> <span></span> <!-- --> Scroll
+				<span></span> 
+				<span></span> 
+				<span></span> 
+				<!-- --> Scroll down
 			</a>
 		</div>
 	</section>
@@ -89,7 +92,7 @@
 											</c:when>
 										</c:choose>
 									</div>
-									
+
 									<div class="socialmember">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 											fill="currentColor" class="bi bi-eye-fill"
@@ -98,7 +101,7 @@
 											  <path
 												d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8m8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7" />
 											</svg>
-										<div class="count">${club.count}</div>
+										<div class="count">${club.clubNo}</div>
 									</div>
 								</div>
 							</div>
