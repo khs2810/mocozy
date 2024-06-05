@@ -165,7 +165,8 @@
 			   PROFILE_IMG
 		FROM MEMBER M 
 		JOIN REQUEST R USING (USER_NO)
-		WHERE R.CLUB_NO = #{cno}
+		WHERE R.CLUB_NO = #{cno} 
+			AND R.STATUS != 'F'
 		ORDER BY CREATE_DATE ASC;
 	</select>
 	

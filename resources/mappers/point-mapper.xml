@@ -91,4 +91,10 @@
 		AND USER_NO = #{userNo}
 	</select>
 	
+	<select id="totalChargePoint" resultType="_int">
+		SELECT sum(point)
+		FROM POINT
+		WHERE (STATUS = 'D' OR STATUS = 'C')
+		AND USER_NO = #{userNo}
+	</select>
 </mapper>

@@ -13,6 +13,7 @@
 	<script src="${pageContext.request.contextPath}/resources/jun/js/pointChargeHistoryPage.js"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css" />
+    <script src="${pageContext.request.contextPath}/resources/teo/js/AjaxPointChargeHistory.js"></script>
 
 </head>
 <body>
@@ -27,19 +28,30 @@
             </div>
             <div class="total-box">
                 <div class="month-select">
-                    <button type="button">&lt;</button>
+                    <button id="month_before_btn" type="button" data-month="${month - 1}" data-uno="${loginUser.userNo}">&lt;</button>
                     <span style="padding: 0 20px; margin-bottom: 7px;">${strMonth}</span>
-                    <button type="button">&gt;</button>
+                    <div><b style="cursor: default;">&gt;</b></div>
                 </div>
                 <div class="total-area">
-                    <h2>총 액</h2>
+                    <h3 id="total-area-month">${month}월</h3>
                     <div class="amount-area">
                         <h2 id="total-amount">${sumPoint}</h2>
                         <h2>pt</h2>
                     </div>
                 </div>
+                <div class="total-area">
+                    <h3>총액</h3>
+                    <div class="amount-area">
+                        <h2>${totalPoint}</h2>
+                        <h2>pt</h2>
+                    </div>
+                </div>
             </div>
             <div class="history-list-area">
+                <c:if test="${empty plist}">
+                    <br><br><br><br>
+                    <h3 align="center">충전 내역이 없습니다.</h3>
+                </c:if>
                 <c:forEach var="p" items="${plist}">
                     <div class="history-list">
                         <div class="history-list-main">
