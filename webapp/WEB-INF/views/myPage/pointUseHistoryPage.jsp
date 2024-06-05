@@ -23,87 +23,98 @@
         
         <form class="main-content">
             <div class="main-content-head">
-                <h2 style="font-size: 36px; margin-top: 0;">사용 내역</h2>
+                <h2 align="center" style="font-size: 30px; margin-top: 0;">사용 내역</h2>
             </div>
-            <div class="total-box">
+            <div class="total-box" style="border-radius: 20px;">
                 <div class="month-select">
-                    <button type="button">&lt;</button>
-                    <span style="padding: 0 20px; margin-bottom: 7px;">2024. 04</span>
-                    <button type="button">&gt;</button>
+                    <button id="month_before_btn" type="button" data-month="${month - 1}" data-uno="${loginUser.userNo}">&lt;</button>
+                    <span style="padding: 0 20px; margin-bottom: 7px;">${strMonth}</span>
+                    <div><b style="cursor: default;">&gt;</b></div>
                 </div>
-                <div class="simple-area">
-                    <span>총 액</span>
+                <div class="total-area">
+                    <h3 id="total-area-month">${month}월</h3>
                     <div class="amount-area">
-                        <span id="origin-total-amount">1620000</span>
-                        <span>pt</span>
-                    </div>
-                </div>
-                <div class="simple-area">
-                    <span>이용수수료(-10%)</span>
-                    <div class="amount-area">
-                        <span id="use-amount">-1620000</span>
-                        <span>pt</span>
+                        <h3 id="total-amount">${sumUsePoint}</h3>
+                        <h3>pt</h3>
                     </div>
                 </div>
                 <div class="total-area">
-                    <h2>총 액</h2>
+                    <h3>총액</h3>
                     <div class="amount-area">
-                        <h2 id="total-amount">1620000</h2>
-                        <h2>pt</h2>
+                        <h3>${useTotalPoint}</h3>
+                        <h3>pt</h3>
                     </div>
                 </div>
             </div>
             <div class="history-list-area">
-                <div class="history-list">
-                    <div class="history-list-main">
-                        <span class="history-detail">챌린지 실패 벌금</span>
-                        <div class="history-point">
-                            <span id="history-point-num">-30000</span>
-                            <span>pt</span>
+                <c:if test="${empty ulist}">
+                    <br><br><br><br>
+                    <h3 align="center">사용 내역이 없습니다.</h3>
+                </c:if>
+                <c:forEach var="p" items="${ulist}">
+                    <div class="history-list">
+                        <div class="history-list-main">
+                            <c:choose>
+                                <c:when test="${p.status eq 'Y'}">
+                                    <span class="history-detail">${p.club_title}</span>
+                                </c:when>
+                                <c:otherwise>
+                                    <span class="history-detail">챌린지 상금</span>
+                                </c:otherwise>
+                            </c:choose>
+                            <div class="history-point">
+                                <span id="history-point-num">${p.point}</span>
+                                <span>pt</span>
+                            </div>
                         </div>
+                        <span class="history-date">${p.paymentDate}</span>
                     </div>
-                    <span class="history-date">2024.4.7</span>
+                </c:forEach>
+            </div>
+
+            <div class="main-content-head">
+                <h2 align="center" style="font-size: 30px; margin-top: 0;">출금 내역</h2>
+            </div>
+            <div class="total-box" style="border-radius: 20px;">
+                <div class="total-area">
+                    <h3 id="total-area-month">${month}월</h3>
+                    <div class="amount-area">
+                        <h3 id="total-amount">${sumWithdrawPoint}</h3>
+                        <h3>pt</h3>
+                    </div>
                 </div>
-                <div class="history-list">
-                    <div class="history-list-main">
-                        <span class="history-detail">선착순 10분!! 상품은...함정카드 발동!</span>
-                        <div class="history-point">
-                            <span id="history-point-num">-30000</span>
-                            <span>pt</span>
+                <div class="total-area">
+                    <h3>총액</h3>
+                    <div class="amount-area">
+                        <h3>${withdrawTotalPoint}</h3>
+                        <h3>pt</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="history-list-area">
+                <c:if test="${empty wlist}">
+                    <br><br><br><br>
+                    <h3 align="center">출금 내역이 없습니다.</h3>
+                </c:if>
+                <c:forEach var="p" items="${wlist}">
+                    <div class="history-list">
+                        <div class="history-list-main">
+                            <c:choose>
+                                <c:when test="${p.status eq 'W'}">
+                                    <span class="history-detail">포인트 출금</span>
+                                </c:when>
+                                <c:otherwise>
+                                    <span class="history-detail">챌린지 상금</span>
+                                </c:otherwise>
+                            </c:choose>
+                            <div class="history-point">
+                                <span id="history-point-num">${p.point}</span>
+                                <span>pt</span>
+                            </div>
                         </div>
+                        <span class="history-date">${p.createDate}</span>
                     </div>
-                    <span class="history-date">2024.4.7</span>
-                </div>
-                <div class="history-list">
-                    <div class="history-list-main">
-                        <span class="history-detail">리액트 때려부셔버리겠어 으아아아아아</span>
-                        <div class="history-point">
-                            <span id="history-point-num">-30000</span>
-                            <span>pt</span>
-                        </div>
-                    </div>
-                    <span class="history-date">2024.4.10</span>
-                </div>
-                <div class="history-list">
-                    <div class="history-list-main">
-                        <span class="history-detail">발로 개발</span>
-                        <div class="history-point">
-                            <span id="history-point-num">-50000</span>
-                            <span>pt</span>
-                        </div>
-                    </div>
-                    <span class="history-date">2024.4.12</span>
-                </div>
-                <div class="history-list">
-                    <div class="history-list-main">
-                        <span class="history-detail">발로 개발</span>
-                        <div class="history-point">
-                            <span id="history-point-num">-30000</span>
-                            <span>pt</span>
-                        </div>
-                    </div>
-                     <span class="history-date">2024.4.24</span>
-                </div>
+                </c:forEach>
             </div>
         </form>
     </div>

@@ -46,5 +46,35 @@ public class PointServiceImpl implements PointService {
 	public int totalChargePoint(int uno) {
 		return pointDao.totalChargePoint(sqlSession, uno);
 	}
+
+	@Override
+	public ArrayList<Point> selectPointWithDrawList(Map<String, Object> map) {
+		return pointDao.selectPointWithDrawList(sqlSession, map);
+	}
+
+	@Override
+	public int totalWithdrawPoint(int userNo) {
+		return pointDao.totalWithdrawPoint(sqlSession, userNo);
+	}
+
+	@Override
+	public int sumWithdrawPointMonth(Map<String, Object> map) {
+		return pointDao.sumWithdrawPointMonth(sqlSession, map);
+	}
+
+	@Override
+	public ArrayList<Point> selectPointUseList(Map<String, Object> map) {
+		return pointDao.selectPointUseList(sqlSession, map);
+	}
+
+	@Override
+	public int useTotalPoint(int userNo) {
+		return pointDao.useTotalPoint(sqlSession, userNo);
+	}
+
+	@Override
+	public int sumUsePoint(Map<String, Object> map) {
+		return pointDao.sumUsePoint(sqlSession, map);
+	}
 	
 }
