@@ -19,7 +19,7 @@
 		<div class="catescreen">
 			<div class="grid">
 				<div class="icon" id="cateAll">
-					<a href="cateAll.ct">
+					<a href="cateAll.ct?order=club_no">
 						<div class="img">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-balloon-fill" viewBox="0 0 16 16">
 								  <path fill-rule="evenodd" d="M8.48 10.901C11.211 10.227 13 7.837 13 5A5 5 0 0 0 3 5c0 2.837 1.789 5.227 
@@ -34,8 +34,8 @@
 					<div class="name">전체</div>
 				</div>
 
-				<div class="icon" id="cateart">
-					<a href="cateArt.ct">
+				<div class="icon" id="cateKey">
+					<a href="cateKey.ct?key=${'문화, 예술'}&order=club_no">
 						<div class="img">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-palette-fill" viewBox="0 0 16 16">
 						  <path d="M12.433 10.07C14.133 10.585 16 11.15 16 8a8 8 0 1 0-8 8c1.996 0 1.826-1.504 1.649-3.08-.124-1.101-.252-2.237.351-2.92.465-.527 1.42-.237 2.433.07M8 5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3m4.5 3a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3M5 6.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m.5 6.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/>
@@ -46,7 +46,7 @@
 				</div>
 
 				<div class="icon" id="catesports">
-					<a href="cateActivity.ct">
+					<a href="cateKey.ct?key=${'액티비티'}&order=club_no">
 					<div class="img">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-person-arms-up" viewBox="0 0 16 16">
 						  <path d="M8 3a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3"/>
@@ -58,7 +58,7 @@
 				</div>
 
 				<div class="icon" id="catefood">
-					<a href="cateFood.ct">
+					<a href="cateKey.ct?key=${'푸드, 드링크'}&order=club_no">
 						<div class="img">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cake-fill" viewBox="0 0 16 16">
 							  <path d="m7.399.804.595-.792.598.79A.747.747 0 0 1 8.5 1.806V4H11a2 2 0 0 1 2 2v3h1a2 2 0 0 1 2 2v4a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1v-4a2 2 0 0 1 2-2h1V6a2 2 0 0 1 2-2h2.5V1.813a.747.747 0 0 1-.101-1.01ZM12 6.414a.9.9 0 0 1-.646-.268 1.914 1.914 0 0 0-2.708 0 .914.914 0 0 1-1.292 0 1.914 1.914 0 0 0-2.708 0A.9.9 0 0 1 4 6.414v1c.49 0 .98-.187 1.354-.56a.914.914 0 0 1 1.292 0c.748.747 1.96.747 2.708 0a.914.914 0 0 1 1.292 0c.374.373.864.56 1.354.56zm2.646 5.732a.914.914 0 0 1-1.293 0 1.914 1.914 0 0 0-2.707 0 .914.914 0 0 1-1.292 0 1.914 1.914 0 0 0-2.708 0 .914.914 0 0 1-1.292 0 1.914 1.914 0 0 0-2.708 0 .914.914 0 0 1-1.292 0L1 11.793v1.34c.737.452 1.715.36 2.354-.28a.914.914 0 0 1 1.292 0c.748.748 1.96.748 2.708 0a.914.914 0 0 1 1.292 0c.748.748 1.96.748 2.707 0a.914.914 0 0 1 1.293 0 1.915 1.915 0 0 0 2.354.28v-1.34z"/>
@@ -69,7 +69,7 @@
 				</div>
 
 				<div class="icon" id="catehobby">
-					<a href="cateHobby.ct">
+					<a href="cateKey.ct?key=${'취미'}&order=club_no">
 					<div class="img">
 						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-joystick" viewBox="0 0 16 16">
 						  <path d="M10 2a2 2 0 0 1-1.5 1.937v5.087c.863.083 1.5.377 1.5.726 0 .414-.895.75-2 .75s-2-.336-2-.75c0-.35.637-.643 1.5-.726V3.937A2 2 0 1 1 10 2"/>
@@ -81,7 +81,7 @@
 				</div>
 
 				<div class="icon" id="catetravel">
-					<a href="cateTravel.ct">
+					<a href="cateKey.ct?key=${'여행, 동행'}&order=club_no">
 						<div class="img">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-luggage-fill" viewBox="0 0 16 16">
 							  <path d="M2 1.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V5h.5A1.5 1.5 0 0 1 8 6.5V7H7v-.5a.5.5 0 0 0-.5-.5h-5a.5.5 0 0 0-.5.5v7a.5.5 0 0 0 .5.5H4v1H2.5v.25a.75.75 0 0 1-1.5 0v-.335A1.5 1.5 0 0 1 0 13.5v-7A1.5 1.5 0 0 1 1.5 5H2zM3 5h2V2H3z"/>
@@ -93,7 +93,7 @@
 				</div>
 
 				<div class="icon" id="catestudy">
-					<a href="cateDevelope.ct">
+					<a href="cateKey.ct?key=${'자기개발'}&order=club_no">
 						<div class="img">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-book-fill" viewBox="0 0 16 16">
 							  <path d="M8 1.783C7.015.936 5.587.81 4.287.94c-1.514.153-3.042.672-3.994 1.105A.5.5 0 0 0 0 2.5v11a.5.5 0 0 0 .707.455c.882-.4 2.303-.881 3.68-1.02 1.409-.142 2.59.087 3.223.877a.5.5 0 0 0 .78 0c.633-.79 1.814-1.019 3.222-.877 1.378.139 2.8.62 3.681 1.02A.5.5 0 0 0 16 13.5v-11a.5.5 0 0 0-.293-.455c-.952-.433-2.48-.952-3.994-1.105C10.413.809 8.985.936 8 1.783"/>
@@ -104,7 +104,7 @@
 				</div>
 
 				<div class="icon" id="categame">
-					<a href="cateGame.ct">
+					<a href="cateKey.ct?key=${'파티, 게임'}&order=club_no">
 						<div class="img">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-dice-5-fill" viewBox="0 0 16 16">
 							  <path d="M3 0a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V3a3 3 0 0 0-3-3zm2.5 4a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0m8 0a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0M12 13.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3M5.5 12a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0M8 9.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3"/>
@@ -115,7 +115,7 @@
 				</div>
 
 				<div class="icon" id="catemoney">
-					<a href="cateInvest.ct">
+					<a href="cateKey.ct?key=${'재테크'}&order=club_no">
 						<div class="img">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-cash-coin" viewBox="0 0 16 16">
 								  <path fill-rule="evenodd" d="M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8m5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0"/>
@@ -129,7 +129,7 @@
 				</div>
 
 				<div class="icon" id="catelove">
-					<a href="cateLove.ct">
+					<a href="cateKey.ct?key=${'연애'}&order=club_no">
 						<div class="img">
 							<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="currentColor" class="bi bi-hearts" viewBox="0 0 16 16">
 							  <path fill-rule="evenodd" d="M4.931.481c1.627-1.671 5.692 1.254 0 5.015-5.692-3.76-1.626-6.686 0-5.015m6.84 1.794c1.084-1.114 3.795.836 0 3.343-3.795-2.507-1.084-4.457 0-3.343M7.84 7.642c2.71-2.786 9.486 2.09 0 8.358-9.487-6.268-2.71-11.144 0-8.358"/>

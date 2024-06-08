@@ -19,7 +19,7 @@
 		<div class="slide" id="slide">
 			<div class="item1" id="item"><a href="eventTravel.ev"></a></div>
 			<div class="item2" id="item"><a href="eventArt.ev"></a></div>
-			<div class="item3" id="item"><a href="eventDessert.ev"></a></div>
+			<div class="item3" id="item"><a href="eventFood.ev"></a></div>
 			<div class="item4" id="item"><a href="eventPhoto.ev"></a></div>
 			<div class="item5" id="item"><a href="eventStudy.ev"></a></div>
 			<div class="item6" id="item"><a href="eventGame.ev"></a></div>

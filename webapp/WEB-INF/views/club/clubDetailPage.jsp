@@ -232,10 +232,10 @@
 							<div disabled>취소된 모임</div>
 						</c:when>
 					    <c:when test="${isUserFound}">
-					        <div disabled>참여 신청하기</div>
+					        <div disabled>이미 신청한 모임</div>
 					    </c:when>
                         <c:when test="${loginUser.userNo eq c.userNo}">
-                            <div disabled>참여 신청하기</div>
+                            <button id="join_club_btn" class="background_color_green" value="${c.clubType}" onclick="finishClub(${c.clubNo})">모임 종료하기</button>
                         </c:when>
 					    <c:otherwise>
 					        <button id="join_club_btn" class="background_color_green" value="${loginUser.userNo}" onclick="joinClub(${c.clubNo})">참여 신청하기</button>

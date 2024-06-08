@@ -21,5 +21,6 @@ public class Payment {
 	private int point;
 	private Date paymentDate;
 	private String status;
+	private String club_title;
 	
 }

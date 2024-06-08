@@ -1,5 +1,6 @@
 package com.kh.mocozy.member.controller;
 
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
@@ -12,7 +13,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.google.gson.Gson;
+import com.kh.mocozy.board.model.vo.NoticeReply;
 import com.kh.mocozy.member.model.vo.Member;
 import com.kh.mocozy.member.service.MemberService;
 import com.kh.mocozy.point.model.vo.Point;
@@ -41,20 +45,30 @@ public class MemberPointController {
 			LocalDate now = LocalDate.now();
 			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM");
 			String strMonth = formatter.format(now);
-			System.out.println(strMonth);
+			String[] tmp = strMonth.split("-");
+			
+			int month = Integer.parseInt(tmp[1]);
+			
 			
 			Map <String, Object> map = new HashMap<>();
 			
 			map.put("userNo", m.getUserNo());
 			map.put("strMonth", strMonth);
 			
+			//userNo의 한달 충전 리스트 및 총액
 			ArrayList<Point> plist = pointService.selectPointChargeList(map);
 			
-			int sumPoint = pointService.sumPointMonth(map);
+			int totalPoint = pointService.totalChargePoint(m.getUserNo());
+			int sumPoint = 0;
+			if (!plist.isEmpty()) {
+				sumPoint = pointService.sumPointMonth(map);
+			} 
 			
 			model.addAttribute("plist", plist);
 			model.addAttribute("sumPoint", sumPoint);
 			model.addAttribute("strMonth", strMonth);
+			model.addAttribute("month", month);
+			model.addAttribute("totalPoint", totalPoint);
 			
 			return "myPage/pointChargeHistoryPage";
 			
@@ -65,8 +79,57 @@ public class MemberPointController {
 	}
 	
 	@RequestMapping("useHistory.po")
-	public String userHistory() {
-		return "myPage/pointUseHistoryPage";
+	public String userHistory(HttpSession session, Model model) {
+		Member m = (Member) session.getAttribute("loginUser");
+		
+		if (m != null) {
+			LocalDate now = LocalDate.now();
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM");
+			String strMonth = formatter.format(now);
+			String[] tmp = strMonth.split("-");
+			
+			int month = Integer.parseInt(tmp[1]);
+			
+			Map <String, Object> map = new HashMap<>();
+			
+			map.put("userNo", m.getUserNo());
+			map.put("strMonth", strMonth);
+			
+			//userNo의 한달 출금 리스트 및 총액
+			ArrayList<Point> wlist = pointService.selectPointWithDrawList(map);
+			int withdrawTotalPoint = pointService.totalWithdrawPoint(m.getUserNo());
+			
+			int sumWithdrawPoint = 0;
+			if (!wlist.isEmpty()) {
+				sumWithdrawPoint = pointService.sumWithdrawPointMonth(map);
+			} 
+			
+			//userNo의 사용 리스트
+			ArrayList<Point> ulist = pointService.selectPointUseList(map);
+			int useTotalPoint = pointService.useTotalPoint(m.getUserNo());
+			
+			int sumUsePoint = 0;
+			if (!ulist.isEmpty()) {
+				sumUsePoint = pointService.sumUsePoint(map);
+			} 
+			
+			System.out.println(ulist);
+			
+			model.addAttribute("wlist", wlist);
+			model.addAttribute("sumWithdrawPoint", sumWithdrawPoint);
+			model.addAttribute("strMonth", strMonth);
+			model.addAttribute("month", month);
+			model.addAttribute("withdrawTotalPoint", withdrawTotalPoint);
+			model.addAttribute("ulist", ulist);
+			model.addAttribute("useTotalPoint", useTotalPoint);
+			model.addAttribute("sumUsePoint", sumUsePoint);
+			
+			return "myPage/pointUseHistoryPage";
+		
+		}  else {
+			model.addAttribute("errorMsg", "로그인 후에 이용가능한 기능입니다.");
+			return "common/errorPage";
+		}
 	} 
 	
 	@RequestMapping("charge.pt")
@@ -112,7 +175,41 @@ public class MemberPointController {
 				return "common/errorPage";
 			}
 		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "ajaxPointChargeHistory.pt", produces = "application/json; charset-UTF-8")
+	public String ajaxPointChargeBefore(int month, int uno) {
 		
+		String strMonth = "";
+		if (month < 10) {
+			strMonth = "2024-0" + month;
+		} else {
+			strMonth = "2024-" + month;
+		}
 		
+		Map <String, Object> map = new HashMap<>();
+		
+		map.put("userNo", uno);
+		map.put("strMonth", strMonth);
+		
+		ArrayList<Point> plist = pointService.selectPointChargeList(map);
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        
+		for (Point p : plist) {
+			p.setDateFormat(dateFormat.format(p.getCreateDate()));
+		}
+		
+		int sumPoint = 0;
+		if (!plist.isEmpty()) {
+			sumPoint = pointService.sumPointMonth(map);
+		} 
+		
+		map.put("plist", plist);
+		map.put("sumPoint", sumPoint);
+		map.put("month", month);
+		
+		return new Gson().toJson(map);
 	}
 }

@@ -20,14 +20,20 @@ public class SearchServiceImpl implements SearchService{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	@Override
-	public int searchCount() {
-		return sDao.searchCount(sqlSession);
-	}
 	
 	@Override
 	public ArrayList<Club> selectSearchList(HashMap<String, String> map, PageInfo re) {
 		return sDao.selectSearchList(sqlSession, map, re);
+	}
+	
+	@Override
+	public ArrayList<Club> selectSearchPick(HashMap<String, String> map, PageInfo re) {
+		return sDao.selectSearchPick(sqlSession, map, re);
+	}
+	
+	@Override
+	public ArrayList<Club> selectSearchView(HashMap<String, String> map, PageInfo re) {
+		return sDao.selectSearchView(sqlSession, map, re);
 	}
 	
 	//검색
@@ -40,25 +46,5 @@ public class SearchServiceImpl implements SearchService{
 	public ArrayList<Member> MemberList(int clubNo) {
 		ArrayList<Member> result = sDao.MemberList(sqlSession, clubNo);
 		return result;
-	}
-	
-	@Override
-	public ArrayList<Club> getSocialing(PageInfo pi) {
-	     return sDao.getSocialing(sqlSession, pi);
-	}
-
-	@Override
-	public ArrayList<Club> getChallenge(PageInfo pi) {
-	     return sDao.getChallenge(sqlSession, pi);
-	}
-
-	@Override
-	public int getReviewCount(int clubNo) {
-		return sDao.getReviewCount(sqlSession, clubNo);
-	}
-	    
-	@Override
-	public int getPickedCount(int clubNo) {
-		return sDao.getPickedCount(sqlSession, clubNo);
 	}
 }

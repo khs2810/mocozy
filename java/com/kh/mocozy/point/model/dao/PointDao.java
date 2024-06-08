@@ -28,4 +28,32 @@ public class PointDao {
 		return sqlSession.selectOne("pointMapper.sumPointMonth", map);
 	}
 
+	public int totalChargePoint(SqlSessionTemplate sqlSession, int uno) {
+		return sqlSession.selectOne("pointMapper.totalChargePoint", uno);
+	}
+
+	public ArrayList<Point> selectPointWithDrawList(SqlSessionTemplate sqlSession, Map<String, Object> map) {
+		return (ArrayList)sqlSession.selectList("pointMapper.selectPointWithDrawList", map);
+	}
+
+	public int totalWithdrawPoint(SqlSessionTemplate sqlSession, int userNo) {
+		return sqlSession.selectOne("pointMapper.totalWithdrawPoint", userNo);
+	}
+
+	public int sumWithdrawPointMonth(SqlSessionTemplate sqlSession, Map<String, Object> map) {
+		return sqlSession.selectOne("pointMapper.sumWithdrawPointMonth", map);
+	}
+
+	public ArrayList<Point> selectPointUseList(SqlSessionTemplate sqlSession, Map<String, Object> map) {
+		return (ArrayList)sqlSession.selectList("pointMapper.selectPointUseList", map);
+	}
+
+	public int useTotalPoint(SqlSessionTemplate sqlSession, int userNo) {
+		return sqlSession.selectOne("pointMapper.useTotalPoint", userNo);
+	}
+
+	public int sumUsePoint(SqlSessionTemplate sqlSession, Map<String, Object> map) {
+		return sqlSession.selectOne("pointMapper.sumUsePoint", map);
+	}
+
 }

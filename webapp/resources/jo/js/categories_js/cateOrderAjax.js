@@ -1,12 +1,12 @@
 // 스크롤 이벤트 감지
-let rpage = 2;
-let keyword = new URLSearchParams(window.location.search).get('keyword');
-
+let urlParams = new URLSearchParams(window.location.search);
+let cpage = 2;
+let key = urlParams.get('key');
 
 window.onscroll = function() {
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
         // 페이지의 끝에 도달하면 AJAX 요청을 보냅니다.
-        searchFormAjax();
+        cateViewAjax();
     }
 };
 
@@ -54,15 +54,15 @@ function drawClublist(list){
     }
 }
 
-function searchFormAjax() {
+function cateViewAjax() {
     $.ajax({
-        url: "searchFormAjax.sc",
-        data: {rpage: rpage++, keyword: keyword},
+        url: "cateViewAjax.ct",
+        data: {cpage: cpage++, key: key},
         success: function(list) {
             console.log(list);
 
         drawClublist(list);    
-            // 서버에서 반환된 데이터를 사용하여 새로운 'contentcard'를 생성하고 페이지에 추가.
+            // 서버에서 반환된 데이터를 사용하여 새로운 'contentcard'를 생성하고 페이지에 추가.      
             console.log("AJAX 요청 성공");
         },
         error: function() {
@@ -71,15 +71,15 @@ function searchFormAjax() {
     });
 }
 
-function searchPickAjax() {
+function catePickAjax() {
     $.ajax({
-        url: "searchPickAjax.sc",
-        data: {rpage: rpage++, keyword: keyword},
+        url: "catePickAjax.ct",
+        data: {cpage: cpage++, key: key},
         success: function(list) {
             console.log(list);
 
         drawClublist(list);    
-            // 서버에서 반환된 데이터를 사용하여 새로운 'contentcard'를 생성하고 페이지에 추가.
+            // 서버에서 반환된 데이터를 사용하여 새로운 'contentcard'를 생성하고 페이지에 추가.      
             console.log("AJAX 요청 성공");
         },
         error: function() {
@@ -88,15 +88,15 @@ function searchPickAjax() {
     });
 }
 
-function searchViewAjax() {
+function cateRecentAjax() {
     $.ajax({
-        url: "searchViewAjax.sc",
-        data: {rpage: rpage++, keyword: keyword},
+        url: "cateRecentAjax.ct",
+        data: {cpage: cpage++, key: key},
         success: function(list) {
             console.log(list);
 
         drawClublist(list);    
-            // 서버에서 반환된 데이터를 사용하여 새로운 'contentcard'를 생성하고 페이지에 추가.
+            // 서버에서 반환된 데이터를 사용하여 새로운 'contentcard'를 생성하고 페이지에 추가.      
             console.log("AJAX 요청 성공");
         },
         error: function() {
@@ -105,3 +105,13 @@ function searchViewAjax() {
     });
 }
 
+$(document).ready(function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const key = urlParams.get('key');
+
+    if (key === '소셜링') {
+        $('#cateRecent').addClass('highlight');
+    } else if (key === '챌린지'){
+        $('#cateDibs').addClass('highlight');
+    } 
+});

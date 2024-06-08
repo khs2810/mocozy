@@ -3,119 +3,171 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
  
-<mapper namespace="searchMapper"> 
+<mapper namespace="searchMapper">
 	<resultMap type="Club" id="clubResult">
-		<result column="CLUB_NO" property="clubNo"/>
-		<result column="USER_NO" property="userNo"/>
-		<result column="CLUB_TITLE" property="clubTitle"/>
-		<result column="CLUB_TYPE" property="clubType"/>
-		<result column="CLUB_CONTENT" property="clubContent"/>
-		<result column="ADDRESS" property="address"/>
-		<result column="ADDRESS_DETAIL" property="addressDetail"/>
-		<result column="EVENT_DATE" property="eventDate"/>
-		<result column="COST" property="cost"/>
-		<result column="COST_INFO" property="costInfo"/>
-		<result column="TOTAL_POINT" property="totalPoint"/>
-		<result column="CAPACITY" property="capacity"/>
-		<result column="ONLINE" property="online"/>
-		<result column="QUESTION" property="question"/>
-		<result column="THUMBNAIL_IMG" property="thumbnailImg"/>
-		<result column="CREATE_DATE" property="createDate"/>
-		<result column="MODIFY_DATE" property="modifyDate"/>
-		<result column="STATUS" property="status"/>
-		<result column="COUNT" property="count"/>
-		<result column="CATEGORY_NAME1" property="categoryName1"/>
-		<result column="CATEGORY_NAME2" property="categoryName2"/>
+		<result column="CLUB_NO" property="clubNo" />
+		<result column="USER_NO" property="userNo" />
+		<result column="CLUB_TITLE" property="clubTitle" />
+		<result column="CLUB_TYPE" property="clubType" />
+		<result column="CLUB_CONTENT" property="clubContent" />
+		<result column="ADDRESS" property="address" />
+		<result column="ADDRESS_DETAIL" property="addressDetail" />
+		<result column="EVENT_DATE" property="eventDate" />
+		<result column="COST" property="cost" />
+		<result column="COST_INFO" property="costInfo" />
+		<result column="TOTAL_POINT" property="totalPoint" />
+		<result column="CAPACITY" property="capacity" />
+		<result column="ONLINE" property="online" />
+		<result column="QUESTION" property="question" />
+		<result column="THUMBNAIL_IMG" property="thumbnailImg" />
+		<result column="CREATE_DATE" property="createDate" />
+		<result column="MODIFY_DATE" property="modifyDate" />
+		<result column="STATUS" property="status" />
+		<result column="COUNT" property="count" />
+		<result column="CATEGORY_NAME1" property="categoryName1" />
+		<result column="CATEGORY_NAME2" property="categoryName2" />
+	</resultMap>
+	<resultMap type="Member" id="memberResult">
+		<result column="USER_NO" property="userNo" />
+		<result column="USER_ID" property="userId" />
+		<result column="USER_PWD" property="userPwd" />
+		<result column="USER_NAME" property="userName" />
+		<result column="GENDER" property="gender" />
+		<result column="NICKNAME" property="nickname" />
+		<result column="BIRTH" property="birth" />
+		<result column="ENROLL_DATE" property="enrollDate" />
+		<result column="MODIFY_DATE" property="modifyDate" />
+		<result column="INTRODUCE" property="introduce" />
+		<result column="PROFILE_IMG" property="profileImg" />
+		<result column="POINT" property="point" />
+		<result column="STATUS" property="status" />
+		<result column="ADMIN" property="admin" />
 	</resultMap>
 
-	<resultMap type="Member" id="memberResult">
-		<result column="USER_NO" property="userNo"/>
-		<result column="USER_ID" property="userId"/>
-		<result column="USER_PWD" property="userPwd"/>
-		<result column="USER_NAME" property="userName"/>
-		<result column="GENDER" property="gender"/>
-		<result column="NICKNAME" property="nickname"/>
-		<result column="BIRTH" property="birth"/>
-		<result column="ENROLL_DATE" property="enrollDate"/>
-		<result column="MODIFY_DATE" property="modifyDate"/>
-		<result column="INTRODUCE" property="introduce"/>
-		<result column="PROFILE_IMG" property="profileImg"/>
-		<result column="POINT" property="point"/>
-		<result column="STATUS" property="status"/>
-		<result column="ADMIN" property="admin"/>
-	</resultMap>
-	
-	<insert id="insertAttachment">
-		INSERT INTO attachment (
-								file_no,
-								origin_name,
-								change_name,
-								file_path,
-								file_level,
-								ref_club_no)
-						VALUES (
-								NEXTVAL('SEQ_ATNO'),
-								#{originName},
-								#{changeName},
+	<insert id="insertAttachment"> 
+		INSERT 	INTO attachment ( file_no,
+	 							origin_name,
+								change_name, 
+								file_path, 
+								file_level, 
+								ref_club_no) VALUES (NEXTVAL('SEQ_ATNO'),
+								#{originName}, 
+								#{changeName}, 
 								#{filePath},
-								#{fileLevel},
+								#{fileLevel}, 
 								CURRVAL('SEQ_CNO'));
 	</insert>
-	
-	<select id="searchCount" resultType="_int">
-			SELECT COUNT(*)
-			FROM public.CLUB
-			WHERE public.CLUB.STATUS = 'Y'
+
+	<select id="searchForm" resultType="_int"> 
+		SELECT COUNT(*) 
+		FROM public.CLUB 
+		WHERE public.CLUB.STATUS = 'Y';
 	</select>
-	
-	<select id="selectSearchList" resultMap="clubResult">
-			SELECT CLUB_NO,
-				USER_NO,
-				CLUB_TITLE,
-				CLUB_TYPE,
-				CLUB_CONTENT,
-				ADDRESS,
+
+	<select id="selectSearchList" resultMap="clubResult"> 
+	SELECT CLUB_NO,
+				USER_NO, 
+				CLUB_TITLE, 
+				CLUB_TYPE, 
+				CLUB_CONTENT, 
+				ADDRESS, 
 				ADDRESS_DETAIL,
 				EVENT_DATE, 
-				COST,
+				COST, 
 				COST_INFO, 
 				TOTAL_POINT, 
 				CAPACITY, 
-				ONLINE,
+				ONLINE, 
 				QUESTION,
-				THUMBNAIL_IMG,
+				THUMBNAIL_IMG, 
 				CREATE_DATE,
-				CLUB.MODIFY_DATE,
-				COUNT,
+				CLUB.MODIFY_DATE, 
+				COUNT, 
 				NICKNAME,
-				category_name1,
-				category_name2
-			FROM public.CLUB
-			join MEMBER USING (USER_NO)
-			WHERE public.CLUB.STATUS = 'Y'
-			AND (CLUB_TITLE LIKE '%' || #{keyword} || '%'
-			OR category_name1 LIKE '%' || #{keyword} || '%'
-			OR category_name2 LIKE '%' || #{keyword} || '%')
+				category_name1, 
+				category_name2 
+				FROM public.CLUB 
+				join MEMBER USING (USER_NO) 
+				WHERE public.CLUB.STATUS = 'Y' 
+				AND (CLUB_TITLE LIKE '%' || #{keyword} || '%' 
+				OR category_name1 LIKE '%' || #{keyword} || '%' 
+				OR category_name2 LIKE '%' || #{keyword} || '%')
+				ORDER BY CLUB_NO;
+	</select>
+
+
+	<select id="selectSearchPick" resultMap="clubResult"> 
+	SELECT CLUB_NO,
+				USER_NO, 
+				CLUB_TITLE, 
+				CLUB_TYPE, 
+				CLUB_CONTENT, 
+				ADDRESS, 
+				ADDRESS_DETAIL,
+				EVENT_DATE, 
+				COST, 
+				COST_INFO, 
+				TOTAL_POINT, 
+				CAPACITY, 
+				ONLINE, 
+				QUESTION,
+				THUMBNAIL_IMG, 
+				CREATE_DATE,
+				CLUB.MODIFY_DATE, 
+				COUNT, 
+				NICKNAME,
+				category_name1, 
+				category_name2,
+				(SELECT COUNT(*) FROM picked WHERE CLUB_NO = CLUB.CLUB_NO) AS pickCount
+				FROM public.CLUB 
+				join MEMBER USING (USER_NO) 
+				WHERE public.CLUB.STATUS = 'Y' 
+				AND (CLUB_TITLE LIKE '%' || #{keyword} || '%' 
+				OR category_name1 LIKE '%' || #{keyword} || '%' 
+				OR category_name2 LIKE '%' || #{keyword} || '%')
+				ORDER BY pickCount;
 	</select>
 	
-	<!-- map에서 keyword가 포함된 값을 가져옴 -->
-	<select id="searchForm" resultType="_int">
-			SELECT COUNT(*)
-			FROM public.CLUB
-			WHERE public.CLUB.STATUS = 'Y'
-			AND (CLUB_TITLE LIKE '%' || #{keyword} || '%'
-			OR category_name1 LIKE '%' || #{keyword} || '%'
-			OR category_name2 LIKE '%' || #{keyword} || '%')
+	<select id="selectSearchView" resultMap="clubResult"> 
+	SELECT CLUB_NO,
+				USER_NO, 
+				CLUB_TITLE, 
+				CLUB_TYPE, 
+				CLUB_CONTENT, 
+				ADDRESS, 
+				ADDRESS_DETAIL,
+				EVENT_DATE, 
+				COST, 
+				COST_INFO, 
+				TOTAL_POINT, 
+				CAPACITY, 
+				ONLINE, 
+				QUESTION,
+				THUMBNAIL_IMG, 
+				CREATE_DATE,
+				CLUB.MODIFY_DATE, 
+				COUNT, 
+				NICKNAME,
+				category_name1, 
+				category_name2 
+				FROM public.CLUB 
+				join MEMBER USING (USER_NO) 
+				WHERE public.CLUB.STATUS = 'Y' 
+				AND (CLUB_TITLE LIKE '%' || #{keyword} || '%' 
+				OR category_name1 LIKE '%' || #{keyword} || '%' 
+				OR category_name2 LIKE '%' || #{keyword} || '%')
+				ORDER BY count;
 	</select>
 	
-	<select id="MemberList" resultMap="memberResult">
-		SELECT USER_NO,
-			   NICKNAME,
-			   INTRODUCE,
-			   PROFILE_IMG
-		FROM public.MEMBER 
-		JOIN public.REQUEST USING (USER_NO)
-		WHERE public.REQUEST.STATUS = 'Y'
+	<select id="MemberList" resultMap="memberResult"> 
+	SELECT USER_NO, 
+		NICKNAME,
+			INTRODUCE, 
+			PROFILE_IMG 
+			FROM public.MEMBER 
+			JOIN public.REQUEST USING (USER_NO) 
+			WHERE public.REQUEST.STATUS = 'Y' 
 			AND public.request.CLUB_NO = #{clubNo};
 	</select>
+
 </mapper>

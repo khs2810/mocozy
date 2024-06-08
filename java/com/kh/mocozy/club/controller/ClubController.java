@@ -58,7 +58,6 @@ public class ClubController {
 			model.addAttribute("reviewList", reviewList);
 			model.addAttribute("memberList", memberList);
 			model.addAttribute("rqMemberList", rqMemberList);
-			
 			// Timestamp -> (xxxx년 x월 x일(x) 오전 xx시 xx분) 
 	        LocalDateTime dateTime = c.getEventDate().toLocalDateTime();
 	        // 날짜 형식 변환을 위한 포매터

@@ -19,89 +19,64 @@ public class EventServiceImpl implements EventService{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	@Override
-    public ArrayList<Club> selecteventlist() {
-    	return eDao.selectcatelist(sqlSession);
-    }
-	
-	@Override
-    public ArrayList<Club> selectArt() {
-    	return eDao.selectArt(sqlSession);
-    }
-	
-	@Override
-    public ArrayList<Club> selectActivity() {
-    	return eDao.selectActivity(sqlSession);
-    }
-	
-	@Override
-    public ArrayList<Club> selectFood() {
-    	return eDao.selectFood(sqlSession);
-    }
-	
-	@Override
-    public ArrayList<Club> selectHobby() {
-    	return eDao.selectHobby(sqlSession);
-    }
-	
-	@Override
-    public ArrayList<Club> selectTravel() {
-    	return eDao.selectTravel(sqlSession);
-    }
-	
-	@Override
-    public ArrayList<Club> selectDevelope() {
-    	return eDao.selectDevelope(sqlSession);
-    }
-	
-	@Override
-    public ArrayList<Club> selectLove() {
-    	return eDao.selectLove(sqlSession);
-    }
-	
-	@Override
-	public ArrayList<Club> selectInvest() {
-		return eDao.selectInvest(sqlSession);
-	}
-	
-	@Override
-	public ArrayList<Club> selectForeign() {
-		return eDao.selectForeign(sqlSession);
-	}
-	
-	@Override
-	public ArrayList<Club> selectGame() {
-		return eDao.selectGame(sqlSession);
-	}
 	
 	@Override
 	public ArrayList<Member> MemberList(int clubNo) {
 		ArrayList<Member> result = eDao.MemberList(sqlSession, clubNo);
 		return result;
 	}
-	
-	@Override
-	public ArrayList<Club> getSocialing(PageInfo pi) {
-	     return eDao.getSocialing(sqlSession, pi);
-	}
 
-	@Override
-	public ArrayList<Club> getChallenge(PageInfo pi) {
-	     return eDao.getChallenge(sqlSession, pi);
-	}
-
-	@Override
-	public int getReviewCount(int clubNo) {
-		return eDao.getReviewCount(sqlSession, clubNo);
-	}
-	    
-	@Override
-	public int getPickedCount(int clubNo) {
-		return eDao.getPickedCount(sqlSession, clubNo);
-	}
 
 	@Override
 	public int getEventlist() {
 		return eDao.getEventlist(sqlSession);
+	}
+
+
+	@Override
+	public ArrayList<Club> eventArt(PageInfo pi) {
+		return eDao.eventArt(sqlSession, pi);
+	}
+
+
+	@Override
+	public ArrayList<Club> eventFood(PageInfo pi) {
+		return eDao.eventFood(sqlSession, pi);
+	}
+
+
+	@Override
+	public ArrayList<Club> eventGame(PageInfo pi) {
+		return eDao.eventGame(sqlSession, pi);
+	}
+
+
+	@Override
+	public ArrayList<Club> eventParty(PageInfo pi) {
+		return eDao.eventParty(sqlSession, pi);
+	}
+
+
+	@Override
+	public ArrayList<Club> eventPhoto(PageInfo pi) {
+		return eDao.eventPhoto(sqlSession, pi);
+	}
+
+
+	@Override
+	public ArrayList<Club> eventStudy(PageInfo pi) {
+		return eDao.eventStudy(sqlSession, pi);
+	}
+
+
+	@Override
+	public ArrayList<Club> eventTravel(PageInfo pi) {
+		return eDao.eventTravel(sqlSession, pi);
+	}
+
+
+	@Override
+	public ArrayList<Club> eventLove(PageInfo pi) {
+		return eDao.eventLove(sqlSession, pi);
 	}
 }

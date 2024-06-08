@@ -119,3 +119,26 @@ function modalMap(address) {
         })
     setTimeout(function(){ map.relayout(); }, 100);  
 }
+
+function finishClub(cno){
+
+    const type = $('#join_club_btn').val();
+
+    if (type === '소셜링'){
+        if (confirm('정말 소셜링을 종료하시겠습니까?')) {
+            location.href='finishSocial.me=' + cno;
+        } else {
+            alert("클럽 종료 취소")
+        }
+    } else {
+        if (confirm('정말 챌린지를 종료하시겠습니까?')) {
+            //챌린지 취소 주소로 변경
+            location.href='' + cno; 
+        } else {
+            alert("클럽 종료 취소")
+        }
+    }
+
+    
+    
+}
