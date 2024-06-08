@@ -1,10 +1,11 @@
 package com.kh.mocozy.myPage.service;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import com.kh.mocozy.myPage.model.vo.MyPageClub;
 
 public interface MyPageClubService {
-	//클럽 조회
-	ArrayList<MyPageClub> selectClubList(int uno);
+	
+//	마이페이지 최근 활동 모임 리스트
+	List<MyPageClub> myPageClub(MyPageClub myPageClub);
 }

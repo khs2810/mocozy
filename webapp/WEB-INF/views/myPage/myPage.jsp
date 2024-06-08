@@ -12,12 +12,11 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jun/css/challengeManagePage.css">
+	<!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jun/css/challengeManagePage.css"> -->
 	<script src="${pageContext.request.contextPath}/resources/jun/js/challengeManagePage.js"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/MyPage.css" />
-    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/myPage.css" />
 
 </head>
 <body>
@@ -34,14 +33,14 @@
                 <div class="content-title">
                     <h5>내 최근 모임</h5>
                 </div>
-                <c:forEach var="c" items="${clist}">
+                <c:forEach var="myPageClub" items="${list}">
                     <div class="club-content">
-                        <div class="club-img" onclick="location.href='http://localhost:8890/mocozy/detail.cl?cno=${c.clubNo}';">
-                            <img src="${pageContext.request.contextPath}/${c.thumbnailImg}">
+                        <div class="club-img" onclick="location.href='http://localhost:8890/mocozy/detail.cl?cno=${myPageClub.clubNo}';">
+                            <img src="${pageContext.request.contextPath}/${myPageClub.thumbnailImg}">
                         </div>
                         <div class="wrap">
-                            <p class="club-title club-text" onclick="location.href='http://localhost:8890/mocozy/detail.cl?cno=${c.clubNo}';">
-                                ${c.clubTitle}
+                            <p class="club-title club-text" onclick="location.href='http://localhost:8890/mocozy/detail.cl?cno=${myPageClub.clubNo}';">
+                                ${myPageClub.clubTitle}
                             </p>
                         </div>
                     </div>

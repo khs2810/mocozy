@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- namespace: 해당 mapper파일의 고유한 별칭 -->
+<mapper namespace="myPageClubMapper">
+	<resultMap type="MyPageClub" id="myPageClubResult">
+		<result column="USER_NO" property="userNo"/>
+		<result column="CLUB_NO" property="clubNo"/>
+		<result column="CLUB_TITLE" property="clubTitle"/>
+		<result column="STATUS" property="status"/>
+		<result column="THUMBNAIL_IMG" property="thumbnailImg"/>
+	</resultMap>
+	
+	<select id="myPageClub" parameterType="MyPageClub" resultMap="myPageClubResult">
+		SELECT c.club_no, c.club_title, c.thumbnail_img
+		  FROM club AS c
+		 inner join request AS r on c.club_no = r.club_no
+		 WHERE r.user_no = #{userNo}
+		   AND r.status = 'Y'
+	  order by c.event_date desc
+		 LIMIT 4
+	</select> 
+	
+</mapper>
