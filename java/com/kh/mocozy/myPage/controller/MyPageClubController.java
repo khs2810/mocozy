@@ -24,16 +24,19 @@ public class MyPageClubController {
 	@Autowired
 	private MemberService memberService;
 	
-//	마이페이지 모임 목록
+//	마이페이지 모임(소셜링, 찜) 목록
 	@RequestMapping("myPage.me")
 	public String myPageClub(HttpSession session, Model model) {
 		
 		MyPageClub myPageClub = new MyPageClub();
 		myPageClub.setUserNo(((Member)session.getAttribute("loginUser")).getUserNo());
 		
+		
 		List<MyPageClub> list = (List<MyPageClub>) myPageClubService.myPageClub(myPageClub);
+		List<MyPageClub> plist = (List<MyPageClub>) myPageClubService.myPageClubPicked(myPageClub);
 		
 		model.addAttribute("list", list);
+		model.addAttribute("plist", plist);
 		
 		return "myPage/myPage";
 		

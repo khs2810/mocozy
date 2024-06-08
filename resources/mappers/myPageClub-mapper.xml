@@ -23,4 +23,13 @@
 		 LIMIT 4
 	</select> 
 	
+	<select id="myPageClubPicked" parameterType="MyPageClub" resultMap="myPageClubResult">
+		SELECT c.club_no, c.club_title, c.thumbnail_img
+		  FROM club AS c
+		 inner join picked AS p on c.club_no = p.club_no
+		 WHERE p.user_no = #{userNo}
+	  order by p.picked_no desc
+		LIMIT 4
+	</select>
+	
 </mapper>

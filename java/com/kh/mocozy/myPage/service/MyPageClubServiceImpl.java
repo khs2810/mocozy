@@ -23,5 +23,10 @@ public class MyPageClubServiceImpl implements MyPageClubService {
 		return myPageClubDao.myPageClub(sqlSession, myPageClub);
 	}
 	
+	@Override
+	public List<MyPageClub> myPageClubPicked(MyPageClub myPageClub) {
+		return myPageClubDao.myPageClubPicked(sqlSession, myPageClub);
+	}
+	
 	
 }

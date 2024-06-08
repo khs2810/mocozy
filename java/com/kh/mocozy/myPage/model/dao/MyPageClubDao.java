@@ -13,4 +13,10 @@ public class MyPageClubDao {
 	public List<MyPageClub> myPageClub(SqlSessionTemplate sqlSession, MyPageClub myPageClub) {
 		return sqlSession.selectList("myPageClubMapper.myPageClub", myPageClub);
 	}
+	
+//	마이페이지  최근 찜 목록
+	public List<MyPageClub> myPageClubPicked(SqlSessionTemplate sqlSession, MyPageClub myPageClub) {
+		return sqlSession.selectList("myPageClubMapper.myPageClubPicked", myPageClub);
+	}
+	
 }
