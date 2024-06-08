@@ -34,38 +34,18 @@
                 <div class="content-title">
                     <h5>내 최근 모임</h5>
                 </div>
-                <div class="club-content" onclick="location.href='이동할 링크주소(URL)';">
-                    <div class="club-img">
-                        <img src="${pageContext.request.contextPath}/resources/koo/upfile/club_img/clubImg1.png" href="(해당 클럽상세)" alt="">
+                <c:forEach var="c" items="${clist}">
+                    <div class="club-content">
+                        <div class="club-img" onclick="location.href='http://localhost:8890/mocozy/detail.cl?cno=${c.clubNo}';">
+                            <img src="${pageContext.request.contextPath}/${c.thumbnailImg}">
+                        </div>
+                        <div class="wrap">
+                            <p class="club-title club-text" onclick="location.href='http://localhost:8890/mocozy/detail.cl?cno=${c.clubNo}';">
+                                ${c.clubTitle}
+                            </p>
+                        </div>
                     </div>
-                    <div class="wrap">
-                        <p class="club-title club-text">♥블랙라이어♥:: with.하이볼 무제한🍺</p>
-                    </div>
-                </div>
-                <div class="club-content" onclick="location.href='이동할 링크주소(URL)';">
-                    <div class="club-img">
-                        <img src="./img/image 19.png" alt="">
-                    </div>
-                    <div class="wrap">
-                        <p class="club-title club-text">밥을 먹는 사람들</p>
-                    </div>
-                </div>
-                <div class="club-content" onclick="location.href='이동할 링크주소(URL)';">
-                    <div class="club-img">
-                        <img src="./img/image 22.png" alt="">
-                    </div>
-                    <div class="wrap">
-                        <p class="club-title club-text">선착순 10분!! 상품은</p>
-                    </div>
-                </div>
-                <div class="club-content" onclick="location.href='이동할 링크주소(URL)';">
-                    <div class="club-img">
-                        <img src="./img/image 21.png" alt="">
-                    </div>
-                    <div class="wrap">
-                        <p class="club-title club-text">리액트 때려부셔버리겠어 으아아아아아</p>
-                    </div>
-                </div>
+                </c:forEach>
             </div>
             <hr>
 
