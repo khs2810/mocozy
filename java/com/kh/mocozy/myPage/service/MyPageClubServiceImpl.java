@@ -1,12 +1,11 @@
 package com.kh.mocozy.myPage.service;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.myPage.model.dao.MyPageClubDao;
 import com.kh.mocozy.myPage.model.vo.MyPageClub;
 
@@ -14,13 +13,15 @@ import com.kh.mocozy.myPage.model.vo.MyPageClub;
 public class MyPageClubServiceImpl implements MyPageClubService {
 	
 	@Autowired
-	private MyPageClub myPageClubDao;
+	private MyPageClubDao myPageClubDao;
 	
 	@Autowired
 	private SqlSessionTemplate sqlSession;
-	
+
 	@Override
-	public ArrayList<MyPageClub> selectClubList(int uno) {
-		return myPageClubDao.selectClubList(sqlSession, uno);
+	public List<MyPageClub> myPageClub(MyPageClub myPageClub) {
+		return myPageClubDao.myPageClub(sqlSession, myPageClub);
 	}
+	
+	
 }
