@@ -2,6 +2,7 @@ package com.kh.mocozy.club.model.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
@@ -147,5 +148,13 @@ public class ClubDao {
 
 	public int quitClub(SqlSessionTemplate sqlSession, HashMap<String, Integer> map) {
 		return sqlSession.update("clubMapper.quitClub", map);
+	}
+
+	public int insertMemberChallengeStatus(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		return sqlSession.insert("challengeMapper.insertStatus", map);
+	}
+
+	public Map<Integer, String> getMemberStatusForDate(SqlSessionTemplate sqlSession, Map<String, Object> paramMap) {
+		return sqlSession.selectOne("challengeMapper.getMemberStatusForDate", paramMap);
 	}
 }

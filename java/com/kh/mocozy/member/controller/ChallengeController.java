@@ -1,17 +1,24 @@
 package com.kh.mocozy.member.controller;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.club.service.ClubService;
@@ -183,10 +190,42 @@ public class ChallengeController {
     }
     
     @RequestMapping("challengeManage.me")
-    public String challengeManageView(HttpSession session, int cno, Model model) {
+    public String challengeManageView(HttpSession session, int cno, @RequestParam("challengeDate") @DateTimeFormat(pattern = "yyyy-MM-dd") Date date, Model model) {
+        System.out.println("0");
     	Member m = (Member)session.getAttribute("loginUser");
-    	int uno = m.getUserNo();
-    	
-    	return "myPage/challengeManagePage";
+        int uno = m.getUserNo();
+        System.out.println("1");
+        ArrayList<Member> clubMemberList = memberService.participatedMemberList(cno);
+        Member clubLeader = memberService.selectClubLeader(cno);
+        System.out.println("2");
+        Map<Integer, String> memberStatus = clubService.getMemberStatusForDate(cno, date);
+        System.out.println("3");
+        model.addAttribute("clubMemberList", clubMemberList);
+        model.addAttribute("clubLeader", clubLeader);
+        model.addAttribute("selectedDate", date);
+        model.addAttribute("memberStatus", memberStatus);
+        
+        return "myPage/challengeManagePage";
     }
+
+    
+//    @PostMapping("saveChallenge.me")
+//    @ResponseBody
+//    public Map<String, String> saveChallenge(@RequestBody Map<String, Object> data) {
+//        String date = (String) data.get("challengeDate");
+//        Map<String, String> memberStatus = (Map<String, String>) data.get("memberStatus");
+//
+//        memberStatus.forEach((memberId, status) -> {
+//        	HashMap<String, String> map = new HashMap<>();
+//        	map.put("memberId", memberId);
+//        	map.put("date", date);
+//        	map.put("status", status);
+//            clubService.insertMemberChallengeStatus(map);
+//        });
+//
+//        Map<String, String> response = new HashMap<>();
+//        response.put("status", "success");
+//        return response;
+//    }
+
 }

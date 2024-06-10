@@ -181,4 +181,13 @@
 		WHERE USER_NO = #{userNo}
 	</update>
 	
+	<select id="selectClubLeader" resultMap="memberResult">
+		SELECT DISTINCT M.USER_NO,
+			   NICKNAME,
+			   INTRODUCE,
+			   PROFILE_IMG
+		FROM MEMBER M
+		JOIN CLUB C USING (USER_NO)
+		WHERE C.CLUB_NO = #{cno}
+	</select>
 </mapper>
