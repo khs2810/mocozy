@@ -12,14 +12,14 @@ import com.kh.mocozy.member.model.vo.Member;
 @Repository
 public class AdminManagerDao {
 
-	public ArrayList<Member> MemberList(SqlSessionTemplate sqlSession, PageInfo pi) {
-		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+	public ArrayList<Member> MemberList(SqlSessionTemplate sqlSession, PageInfo mi) {
+		int offset = (mi.getCurrentPage() - 1) * mi.getBoardLimit();
 		
-		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("adminMapper.getUserAllList", null, rowBounds);
+		RowBounds rowBounds = new RowBounds(offset, mi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("adminMapper.getManagerAllList", null, rowBounds);
 	}
 
 	public int getMemberlist(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("adminMapper.getUserlist");
+		return sqlSession.selectOne("adminMapper.getManagerlist");
 	}
 }

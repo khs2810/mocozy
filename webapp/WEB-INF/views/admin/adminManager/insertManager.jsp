@@ -173,8 +173,8 @@
 
                                                                 <tbody id="prod-list-body"
                                                                     class="-prod-list-body ui-sortable">
-                                                                    <tr class="content -prodListItem"
-                                                                        id="prod-list-s20240516ae197a3da7242">
+                                                                    <c:forEach var="user" items="${mlist}">
+                                                                    <tr class="content -prodListItem">
                                                                         <td class="checkhead">
                                                                             <div
                                                                                 class="drag -showcase-handle ui-sortable-handle">
@@ -189,11 +189,11 @@
                                                                             </div>
                                                                         </td>
 
-                                                                        <td class="no text-12">4</td>
+                                                                        <td class="no text-12">${user.userNo}</td>
 
                                                                         <td class="image">
                                                                             <a href="_blank">
-                                                                                <img src="_blank" width="49" height="49"
+                                                                                <img src="${pageContext.request.contextPath}${user.profileImg}" width="49" height="49"
                                                                                     class="item-thumb">
                                                                             </a>
                                                                         </td>
@@ -201,7 +201,7 @@
                                                                         <td class="title" style="width: 100px;">
                                                                             <div>
                                                                                 <div class="item-tit inline-blocked">
-                                                                                    <a href="_blank">빵마니아</a>
+                                                                                    <a href="_blank">${user.nickname}</a>
                                                                                     <a href="_blank"
                                                                                         class="im-icon im-ico-new-tab vertical-middle tab-icon"
                                                                                         style="margin-left: 4px;"></a>
@@ -214,26 +214,15 @@
                                                                         <td class="state on-click">
                                                                             <a data-toggle="dropdown"
                                                                                 style="margin-right: -1px;">
-                                                                                <span>진행중</span>
+                                                                                <span>${user.status}</span>
                                                                             </a>
-                                                                            <ul class="dropdown-menu"
-                                                                                style="top: 50px;">
-                                                                                <li
-                                                                                    id="mixpanel-bo-shopping-item-list-status-sale">
-                                                                                    <a href="_blank">진행중</a>
-                                                                                </li>
-                                                                                <li
-                                                                                    id="mixpanel-bo-shopping-item-list-status-soldout">
-                                                                                    <a href="_blank">종료</a>
-                                                                                </li>
-                                                                            </ul>
                                                                         </td>
 
-                                                                        <td class="r-date text-12">2024-04-01</td>
+                                                                        <td class="r-date text-12">${user.enrollDate}</td>
                                                                         <td class="purchase text-center hidden-xs hidden-sm"
                                                                             style="width: 100px;"><a
                                                                                 href="adminPoint.ad"
-                                                                                style="text-decoration: underline;">20,000</a>
+                                                                                style="text-decoration: underline;">${user.point}</a>
                                                                         </td>
                                                                         <td class="more">
                                                                             <div class="dropdown">
@@ -241,6 +230,7 @@
                                                                             </div>
                                                                         </td>
                                                                     </tr>
+                                                                    </c:forEach>
                                                                 </tbody>
                                                             </table>
                                                         </div>

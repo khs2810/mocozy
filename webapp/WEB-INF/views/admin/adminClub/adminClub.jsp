@@ -235,7 +235,7 @@
 																		</ul>
 																	</td>
 	
-																	<td class="r-date text-12">${club.createDate}</td>
+																	<td class="r-date text-12">${club.modifyDate}</td>
 																	<td class="more">
 																		<div class="dropdown">
 																			<button class="btn btn-primary-btn" id="acceptBtn">승인</button>

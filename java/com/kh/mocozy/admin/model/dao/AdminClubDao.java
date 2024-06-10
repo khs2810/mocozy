@@ -24,10 +24,10 @@ public class AdminClubDao {
 		return sqlSession.selectOne("adminMapper.getClubList");
 	}
 	
-	public ArrayList<Club> selectClublist(SqlSessionTemplate sqlSession, String key, PageInfo pi) {
-		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+	public ArrayList<Club> selectClublist(SqlSessionTemplate sqlSession, PageInfo ci) {
+		int offset = (ci.getCurrentPage() - 1) * ci.getBoardLimit();
 		
-		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("adminMapper.selectClublist", key, rowBounds);
+		RowBounds rowBounds = new RowBounds(offset, ci.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("adminMapper.selectClublist", null, rowBounds);
 	}
 }

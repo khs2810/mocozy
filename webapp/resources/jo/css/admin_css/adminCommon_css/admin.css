@@ -638,6 +638,8 @@ section {
 .list-preview.list .tile .tile-icon, 
 .list-preview.list .tile .tile-text {
     padding: 0;
+    display: flex;
+    justify-content: space-between;
 }
 
 .list .tile .tile-text {
@@ -857,4 +859,13 @@ textarea.form-control {
 
 #memo-writer{
     margin-left: 1rem;
+}
+
+.tile-content {
+	overflow-y: hidden;
+	max-height: 200px;
+}
+
+.tile-content img {
+	display: none;
 }
