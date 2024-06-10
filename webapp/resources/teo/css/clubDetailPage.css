@@ -604,3 +604,9 @@ button{
 #club_address_btn {
     cursor: pointer;
 }
+
+#charge_btn {
+    padding: 3px 10px;
+    background-color: #9BCFFF;
+    border-radius: 8px;
+}
