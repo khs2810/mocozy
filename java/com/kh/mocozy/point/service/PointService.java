@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Map;
 
 import com.kh.mocozy.member.model.vo.Member;
+import com.kh.mocozy.point.model.vo.Payment;
 import com.kh.mocozy.point.model.vo.Point;
 
 public interface PointService {
@@ -24,7 +25,7 @@ public interface PointService {
 
 	int sumWithdrawPointMonth(Map<String, Object> map);
 
-	ArrayList<Point> selectPointUseList(Map<String, Object> map);
+	ArrayList<Payment> selectPointUseList(Map<String, Object> map);
 
 	int useTotalPoint(int userNo);
 

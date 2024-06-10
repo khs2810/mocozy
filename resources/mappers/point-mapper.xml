@@ -84,7 +84,7 @@
 	</select>
 	
 	<select id="sumPointMonth" resultType="_int">
-		SELECT sum(point)
+		SELECT COALESCE(SUM(point), 0)
 		FROM POINT
 		WHERE (STATUS = 'D' OR STATUS = 'C')
 		AND DATE_TRUNC('month', CREATE_DATE) = DATE_TRUNC('month', TO_DATE(#{strMonth}, 'YYYY-MM'))
@@ -92,7 +92,7 @@
 	</select>
 	
 	<select id="totalChargePoint" resultType="_int">
-		SELECT sum(point)
+		SELECT COALESCE(SUM(point), 0)
 		FROM POINT
 		WHERE (STATUS = 'D' OR STATUS = 'C')
 		AND USER_NO = #{userNo}
@@ -111,14 +111,14 @@
 	</select>
 	
 	<select id="totalWithdrawPoint" resultType="_int">
-		SELECT sum(point)
+		SELECT COALESCE(SUM(point), 0)
 		FROM POINT
 		WHERE (STATUS = 'W')
 		AND USER_NO = #{userNo}
 	</select>
 	
 	<select id="sumWithdrawPointMonth" resultType="_int">
-		SELECT sum(point)
+		SELECT COALESCE(SUM(point), 0)
 		FROM POINT
 		WHERE (STATUS = 'W')
 		AND DATE_TRUNC('month', CREATE_DATE) = DATE_TRUNC('month', TO_DATE(#{strMonth}, 'YYYY-MM'))
@@ -131,7 +131,8 @@
 		       POINT,
 		       PAYMENT_DATE,
 		       P.STATUS,
-		       CLUB_TITLE
+		       CLUB_TITLE,
+		       CLUB_TYPE
 		FROM PAYMENT P
 		JOIN CLUB USING (CLUB_NO)
 		WHERE P.STATUS = 'Y'
@@ -141,14 +142,14 @@
 	</select>
 	
 	<select id="useTotalPoint" resultType="_int">
-		SELECT sum(point)
+		SELECT COALESCE(SUM(point), 0)
 		FROM PAYMENT
 		WHERE (STATUS = 'Y')
 		AND USER_NO = #{userNo}
 	</select>
 	
 	<select id="sumUsePoint" resultType="_int">
-		SELECT sum(point)
+		SELECT COALESCE(SUM(point), 0)
 		FROM PAYMENT
 		WHERE (STATUS = 'Y')
 		AND DATE_TRUNC('month', PAYMENT_DATE) = DATE_TRUNC('month', TO_DATE(#{strMonth}, 'YYYY-MM'))

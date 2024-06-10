@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.mocozy.member.model.vo.Member;
+import com.kh.mocozy.point.model.vo.Payment;
 import com.kh.mocozy.point.model.vo.Point;
 
 @Repository
@@ -44,7 +45,7 @@ public class PointDao {
 		return sqlSession.selectOne("pointMapper.sumWithdrawPointMonth", map);
 	}
 
-	public ArrayList<Point> selectPointUseList(SqlSessionTemplate sqlSession, Map<String, Object> map) {
+	public ArrayList<Payment> selectPointUseList(SqlSessionTemplate sqlSession, Map<String, Object> map) {
 		return (ArrayList)sqlSession.selectList("pointMapper.selectPointUseList", map);
 	}
 

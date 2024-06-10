@@ -22,5 +22,7 @@ public class Payment {
 	private Date paymentDate;
 	private String status;
 	private String club_title;
-	
+	private String club_type;
+	private String dateFormat;
+	private String pointFormat;
 }

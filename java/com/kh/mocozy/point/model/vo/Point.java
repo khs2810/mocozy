@@ -21,4 +21,5 @@ public class Point {
 	private Date createDate;
 	private String status;
 	private String dateFormat;
+	private String pointFormat;
 }

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,7 +14,7 @@
 	<script src="${pageContext.request.contextPath}/resources/jun/js/pointChargeHistoryPage.js"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css" />
-    <script src="${pageContext.request.contextPath}/resources/teo/js/AjaxPointChargeHistory.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/teo/js/ajaxPointChargeHistory.js"></script>
 
 </head>
 <body>
@@ -35,14 +36,14 @@
                 <div class="total-area">
                     <h3 id="total-area-month">${month}월</h3>
                     <div class="amount-area">
-                        <h3 id="total-amount">${sumPoint}</h3>
+                        <h3 id="total-amount"><fmt:formatNumber value="${sumPoint}" pattern="#,###"/></h3>
                         <h3>pt</h3>
                     </div>
                 </div>
                 <div class="total-area">
                     <h3>총액</h3>
                     <div class="amount-area">
-                        <h3>${totalPoint}</h3>
+                        <h3><fmt:formatNumber value="${totalPoint}" pattern="#,###"/></h3>
                         <h3>pt</h3>
                     </div>
                 </div>
@@ -64,7 +65,7 @@
                                 </c:otherwise>
                             </c:choose>
                             <div class="history-point">
-                                <span id="history-point-num">${p.point}</span>
+                                <span id="history-point-num"><fmt:formatNumber value="${p.point}" pattern="#,###"/></span>
                                 <span>pt</span>
                             </div>
                         </div>
