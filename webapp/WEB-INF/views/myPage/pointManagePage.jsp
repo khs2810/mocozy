@@ -15,6 +15,8 @@
 	<script src="${pageContext.request.contextPath}/resources/jun/js/pointManagePage.js"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css" />
+
+    
     
 </head>
 <body>
