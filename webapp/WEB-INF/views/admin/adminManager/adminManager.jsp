@@ -73,97 +73,6 @@
 				</div>
 			</header>
 
-			<header class="top-header control-fixed" id="select-header" style="display: none;">
-				<div class="headerbar">
-					<div class="headerbar-left">
-						<ul class="header-nav">
-							<li class="header-nav-brand">
-								<div class="brand-holder ">
-									<a class="btn btn-flat btn-default-white no-padding-x margin-right-xl" href="_blank">
-										<svg style="border: 1px solid black; height: 16px; width: 16px;"><!-- 아이콘 --></svg>
-									</a>
-								</div>
-
-								<div class="brand-holder">
-									<div class="dropdown">
-										<button class="btn btn-flat btn-default-white no-padding-x margin-right-xl text-lg tw-whitespace-nowrap" type="button" id="dLabel">
-											<span id="select-cnt"></span>명 선택됨 
-											<svg style="border: 1px solid black; height: 16px; width: 16px;"><!-- 아이콘 --></svg>
-										</button>
-
-										<ul class="dropdown-menu animation-dock">
-											<li>
-												<a href="_blank">모두 선택</a>
-											</li>
-											<li>
-												<a href="_blank">선택 안함</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-
-					<div class="headerbar-right">
-						<ul class="header-nav header-nav-options">
-							<li>
-								<div class="btn-group">
-									<div class="btn-group">
-										<a class="btn btn-default-bright">그룹
-											<span class="hidden-xs">지정</span> 
-											<svg style="border: 1px solid black; height: 16px; width: 16px;"><!-- 아이콘 --></svg>
-										</a>
-
-										<ul class="dropdown-menu animation-dock check">
-											<div class="select-group -check-drop-group-list"></div>
-											<div class="footer">
-												<li class="divider"></li>
-												<li><a href="_blank">새 그룹</a></li>
-											</div>
-										</ul>
-									</div>
-
-									<a class="btn btn-default-bright">
-										<span class="hidden-xs">가입</span> 승인 
-									</a>
-
-									<div class="btn-group">
-										<a class="btn btn-default-bright">메시지 
-											<svg style="border: 1px solid black; height: 16px; width: 16px;"><!-- 아이콘 --></svg>
-										</a>
-
-										<ul class="dropdown-menu animation-dock check">
-											<li>
-												<a href="_blank">SMS</a>
-											</li>
-
-											<li>
-												<a href="_blank">알림</a>
-											</li>
-										</ul>
-									</div>
-									<div class="btn-group">
-										<a class="btn btn-default-bright border-radius-right">기타 
-											<svg style="border: 1px solid black; height: 16px; width: 16px;"><!-- 아이콘 --></svg>
-										</a>
-
-										<ul class="dropdown-menu animation-dock check">
-											<li>
-												<a href="_blank">적립금 지급/차감</a>
-											</li>
-											<li>
-												<a href="_blank">사용자 삭제</a>
-											</li>
-										</ul>
-									</div>
-								</div>
-							</li>
-						</ul>
-					</div>
-				</div>
-			</header>
-
 <!-- BEGIN CONTENT-->
 <div id="content">
 	<section class="no-padding-bottom section">
@@ -178,7 +87,7 @@
 										<ul class="owl-nav-tabs">
 											<li class="active -all">
 												<a href="_blank">전체
-													<span class="_count text-primary">4</span>
+													<span class="_count text-primary">${manageCount}</span>
 												</a>
 											</li>
 										</ul>
@@ -188,7 +97,7 @@
 										<ul class="owl-nav-tabs">
 											<li class="sale">
 												<a href="_blank">활동중
-													<span class="_count text-primary">4</span>
+													<span class="_count text-primary">0</span>
 												</a>
 											</li>
 										</ul>

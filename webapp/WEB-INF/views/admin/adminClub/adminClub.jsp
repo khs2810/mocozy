@@ -85,7 +85,7 @@
 														<ul class="owl-nav-tabs">
 															<li class="active -all">
 																<a href="_blank">전체
-																	<span class="_count text-primary">5</span>
+																	<span class="_count text-primary">${clubCount}</span>
 																</a>
 															</li>
 														</ul>
@@ -95,7 +95,7 @@
 														<ul class="owl-nav-tabs">
 															<li class="sale">
 																<a href="_blank">진행중
-																	<span class="_count text-primary">5</span>
+																	<span class="_count text-primary">0</span>
 																</a>
 															</li>
 														</ul>

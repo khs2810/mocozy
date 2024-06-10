@@ -34,4 +34,9 @@ public class AdminClubServiceImpl implements AdminClubService{
 	public ArrayList<Club> selectClublist(PageInfo ci) {
 		return acDao.selectClublist(sqlSession, ci);
 	}
+
+	@Override
+	public ArrayList<Club> getClubAllList() {
+		return acDao.getClubAllList(sqlSession);
+	}
 }

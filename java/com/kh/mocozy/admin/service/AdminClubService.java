@@ -17,4 +17,6 @@ public interface AdminClubService {
 	public int getClublist();
 	
 	public ArrayList<Club> selectClublist(PageInfo ci);
+
+	ArrayList<Club> getClubAllList();
 }

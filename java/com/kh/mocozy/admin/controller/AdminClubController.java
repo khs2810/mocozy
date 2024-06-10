@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.mocozy.admin.service.AdminClubService;
+import com.kh.mocozy.board.model.vo.Notice;
 import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.common.model.vo.PageInfo;
 import com.kh.mocozy.common.template.Pagination;
@@ -20,7 +21,7 @@ public class AdminClubController {
     @Autowired
     private AdminClubService acService;
     
-	 //10개씩 클럽목록 보기
+	 //클럽목록 보기
 	@RequestMapping("adminClub.ad")
 	public String showAdminClub10(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) {  
 
@@ -43,8 +44,13 @@ public class AdminClubController {
 		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
 		    c.setProfileImg(imgs);    
 		}
-	    
+		
+		ArrayList<Club> getClist = acService.getClubAllList();
+		int clubCount = getClist.size();
+				
+		model.addAttribute("clubCount", clubCount);
 		model.addAttribute("clist", clist);
+		model.addAttribute("getClist", getClist);
 	    
 	    return "admin/adminClub/adminClub";
 	}

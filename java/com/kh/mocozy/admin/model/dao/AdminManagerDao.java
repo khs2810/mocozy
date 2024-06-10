@@ -22,4 +22,8 @@ public class AdminManagerDao {
 	public int getMemberlist(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("adminMapper.getManagerlist");
 	}
+
+	public ArrayList<Member> MemberAllList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("adminMapper.getManagerAllList");
+	}
 }

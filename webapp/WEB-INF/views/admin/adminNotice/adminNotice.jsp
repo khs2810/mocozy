@@ -85,7 +85,7 @@
 														<ul class="owl-nav-tabs">
 															<li class="active -all">
 																<a href="_blank">전체
-																	<span class="_count text-primary">0</span>
+																	<span class="_count text-primary">${noticeCount}</span>
 																</a>
 															</li>
 														</ul>

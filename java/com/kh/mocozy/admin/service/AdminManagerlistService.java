@@ -14,4 +14,6 @@ public interface AdminManagerlistService {
 	ArrayList<Member> MemberList(PageInfo mi);
 	
 	public int getMemberlist();
+
+	ArrayList<Member> MemberAllList();
 }

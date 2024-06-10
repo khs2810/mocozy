@@ -18,13 +18,19 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
-	@Override
-	public ArrayList<Notice> getNoticeAllList(PageInfo ni) {
-		return anDao.getNoticeAllList(sqlSession, ni);
-	}
 	
 	@Override
 	public int getNoticeCount() {
 		return anDao.getNoticeCount(sqlSession);
+	}
+
+	@Override
+	public ArrayList<Notice> getNoticeList(PageInfo ni) {
+		return anDao.getNoticeList(sqlSession, ni);
+	}
+
+	@Override
+	public ArrayList<Notice> getNoticeAllList() {
+		return anDao.getNoticeAllList(sqlSession);
 	}
 }

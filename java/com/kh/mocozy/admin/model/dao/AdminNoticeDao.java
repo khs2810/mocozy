@@ -12,7 +12,7 @@ import com.kh.mocozy.common.model.vo.PageInfo;
 @Repository
 public class AdminNoticeDao {
 
-	public ArrayList<Notice> getNoticeAllList(SqlSessionTemplate sqlSession, PageInfo ni) {
+	public ArrayList<Notice> getNoticeList(SqlSessionTemplate sqlSession, PageInfo ni) {
 		int offset = (ni.getCurrentPage() - 1) * ni.getBoardLimit();
 		
 		RowBounds rowBounds = new RowBounds(offset, ni.getBoardLimit());
@@ -21,5 +21,9 @@ public class AdminNoticeDao {
 
 	public int getNoticeCount(SqlSessionTemplate sqlSession) {
 		return sqlSession.selectOne("adminMapper.getNoticeCount");
+	}
+
+	public ArrayList<Notice> getNoticeAllList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("adminMapper.getNoticeAllList");
 	}
 }

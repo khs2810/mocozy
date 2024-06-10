@@ -30,7 +30,11 @@ public class AdminUserlistController {
 		
 		//멤버 리스트 불러오기
 		ArrayList<Member> mlist = auService.MemberList(mi);
-		    
+		ArrayList<Member> getMlist = auService.MemberAllList();
+		int userCount = getMlist.size();
+		
+	    model.addAttribute("userCount", userCount);
+	    model.addAttribute("getMlist", getMlist);
 		model.addAttribute("mlist", mlist);
 		return "admin/adminUserlist/adminUserlist";
     }	

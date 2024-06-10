@@ -29,6 +29,11 @@ public class AdminUserlistServiceImpl implements AdminUserlistService{
 	public int getMemberlist() {
 		return auDao.getMemberlist(sqlSession);
 	}
+
+	@Override
+	public ArrayList<Member> MemberAllList() {
+		return auDao.MemberAllList(sqlSession);
+	}
 	
 
 	

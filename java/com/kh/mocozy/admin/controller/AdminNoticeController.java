@@ -12,6 +12,7 @@ import com.kh.mocozy.admin.service.AdminNoticeService;
 import com.kh.mocozy.board.model.vo.Notice;
 import com.kh.mocozy.common.model.vo.PageInfo;
 import com.kh.mocozy.common.template.Pagination;
+import com.kh.mocozy.member.model.vo.Member;
 
 @Controller
 public class AdminNoticeController {
@@ -29,9 +30,13 @@ public class AdminNoticeController {
 		PageInfo ni = Pagination.getPageInfo(NoticeAllList, currentPage, 5, 5);
 		
 		//리스트 불러오기
-		ArrayList<Notice> nlist = anService.getNoticeAllList(ni);
-		    
+		ArrayList<Notice> nlist = anService.getNoticeList(ni);
+		ArrayList<Notice> getNlist = anService.getNoticeAllList();
+		int noticeCount = getNlist.size();
+		
+	    model.addAttribute("noticeCount", noticeCount);
 		model.addAttribute("nlist", nlist);
+		model.addAttribute("getNlist", getNlist);
 		return "admin/adminNotice/adminNotice";
     }		
 }

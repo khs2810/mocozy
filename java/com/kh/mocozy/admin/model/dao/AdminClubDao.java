@@ -30,4 +30,8 @@ public class AdminClubDao {
 		RowBounds rowBounds = new RowBounds(offset, ci.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("adminMapper.selectClublist", null, rowBounds);
 	}
+
+	public ArrayList<Club> getClubAllList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("adminMapper.selectClublist");
+	}
 }

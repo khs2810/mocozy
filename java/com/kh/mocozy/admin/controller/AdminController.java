@@ -41,7 +41,7 @@ public class AdminController {
 		PageInfo ni = Pagination.getPageInfo(NoticeAllList, currentPage, 5, 5);
 		
 		ArrayList<Member> mlist = auService.MemberList(mi);
-		ArrayList<Notice> nlist = anService.getNoticeAllList(ni);
+		ArrayList<Notice> nlist = anService.getNoticeList(ni);
 	    ArrayList<Club> clist = acService.selectClublist(ci);
 	    
 		for (Club c : clist){

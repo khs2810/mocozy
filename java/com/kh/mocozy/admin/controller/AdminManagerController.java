@@ -30,8 +30,12 @@ public class AdminManagerController {
 		
 		//멤버 리스트 불러오기
 		ArrayList<Member> mlist = amService.MemberList(mi);
-		    
+		ArrayList<Member> getmlist = amService.MemberAllList();
+		int manageCount = getmlist.size();
+		
+	    model.addAttribute("manageCount", manageCount);
 		model.addAttribute("mlist", mlist);
+		model.addAttribute("getmlist", getmlist);
 		return "admin/adminManager/adminManager";
     }		
 }
