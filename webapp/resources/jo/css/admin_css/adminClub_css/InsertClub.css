@@ -1,0 +1,412 @@
+section {
+    position: relative;
+    padding: 35px;
+    font-weight: 300;
+}
+
+#base {
+    overflow: hidden;
+    padding-left: 0;
+    width: 100%;
+    min-height: 100%;
+    font-size: 13px;
+}
+
+@media (min-width: 992px) {
+    .menubar-pin #base {
+        padding-left: 224px;
+    }
+}
+
+@media (max-width: 768px) {
+    #base {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+header {
+    font-size: 16px;
+    font-weight: 800;
+}
+
+#base input,
+#base .subject > li {
+    color: #757575;
+}
+
+/* ----------------------------------- */
+
+.top-header {
+    position: absolute;
+    top: 0;
+    left: 224px;
+    right: 0;
+    min-height: 48px;
+    z-index: 1003;
+    background: #fff;
+}
+
+.header-fixed .top-header {
+    position: fixed;
+}
+
+@media (max-width: 992px) {
+    .top-header {
+        left: 0 !important;
+    }
+
+    @media (max-width: 992px) {
+        .header-fixed .top-header {
+            z-index: 1003;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .header-fixed .top-header {
+            left: 0 !important;
+        }
+    }
+}
+
+.headerbar {
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.headerbar-left .header-nav {
+    margin-left: 30px;
+    margin-bottom: 0;
+}
+
+@media (min-width: 769px) {
+    .headerbar-left .header-nav {
+        margin-left: 24px;
+    }
+}
+
+.header-nav {
+    padding-left: 0;
+    list-style: none;
+}
+
+.headerbar-right{
+    margin-right: 30px;
+}
+
+@media (max-width: 768px) {
+    .headerbar-right .header-nav:last-child {
+        margin-right: 12px;
+    }
+}
+
+.header-nav > li {
+    position: relative;
+    display: block;
+    float: left;
+}
+
+.headerbar-right .header-nav > li {
+    margin-left: 5px;
+}
+
+.header-nav > li:first-child {
+    padding-left: 0;
+}
+
+.header-nav > li > a {
+    position: relative;
+    display: block;
+}
+
+.btn {
+    font-size: 13px;
+    padding: 8px 20px;
+    word-break: break-word;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.btn-default-bright {
+    color: #313534;
+    background-color: #ffffff;
+    border-color: #e5e6e6;
+}
+
+.btn-primary {
+    color: #ffffff;
+    background-color: #1A6DFF;
+    border-color: #1A6DFF;
+}
+
+.btn.disabled, .btn[disabled], fieldset[disabled] .btn {
+    border-color: transparent;
+    background: rgba(0, 0, 0, 0.15);
+    color: #313534;
+    opacity: 0.4;
+}
+
+.btn-flat, .btn-icon-toggle {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.btn-icon-toggle {
+    border-radius: 999px !important;
+}
+
+/* ----------------------------------- */
+
+#content {
+    position: relative;
+    width: 100%;
+    left: 0;
+    padding-top: 50px;
+}
+
+@media (max-width: 992px) {
+    #content {
+        padding-top: 50px;
+    }
+}
+
+section {
+    padding-top: 0;
+}
+
+.section-body:first-child {
+    margin-top: 24px;
+}
+
+@media (max-width: 768px) {
+    .section-body:first-child {
+        margin-top: 16px;
+    }
+}
+
+.row {
+    margin-right: -15px;
+    margin-left: -15px;
+}
+
+/* ----------------------------------- */
+
+.margin-bottom-xxl {
+    margin-bottom: 30px;
+}
+
+.flexed {
+    display: flex;
+}
+
+@media (max-width: 991px) {
+    .sm-flex-direction-column {
+        flex-direction: column;
+    }
+}
+
+.card {
+    position: relative;
+    margin-bottom: 20px;
+    background-color: #ffffff;
+    color: #212121;
+    border-radius: 2px;
+    box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.10);
+}
+
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 16px;
+    }
+}
+
+.card-head {
+    position: relative;
+    line-height: 50px;
+    min-height: 50px;
+    vertical-align: middle;
+    border-radius: 2px 2px 0 0;
+}
+
+.card-head header {
+    display: inline-block;
+    padding: 12px 24px;
+    vertical-align: middle;
+    line-height: 1.2;
+    font-size: 14px;
+    font-weight: 400;
+}
+
+@media (max-width: 768px) {
+    .card-head header {
+        padding: 11px 16px;
+    }
+}
+
+.card-body {
+    padding: 24px;
+    position: relative;
+}
+
+@media (max-width: 768px) {
+    .card-body {
+        padding: 16px;
+    }
+}
+
+.card-body:last-child {
+    border-radius: 0 0 2px 2px;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.text-xl {
+    font-size: 180% !important;
+}
+
+.text-default-light {
+    color: #BDBDBD;
+}
+
+.inline-blocked {
+    display: inline-block;
+}
+
+.prod-image-upload {
+    position: relative;
+}
+
+.text-default-light {
+    color: #BDBDBD;
+}
+
+/* ----------------------------------- */
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.form .form-group, 
+.form-inline .form-group {
+    padding-top: 15px;
+}
+
+.form-group > label, 
+.form-group .control-label {
+    font-size: 13px;
+    color: #757575;
+}
+
+.label-add {
+    padding-bottom: 10px;
+}
+
+.form-control, 
+.phonenumber-wrap .chosen-container-single .chosen-single {
+    padding: 0;
+    height: 29px;
+    line-height: 29px;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom-color: rgba(12, 12, 12, 0.12);
+    background: transparent;
+    color: #0c0c0c;
+    font-size: 14px;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+    border-radius: 0 !important;
+}
+
+.no-margin {
+    margin: 0 !important;
+}
+
+.control-label {
+    font-size: 13px;
+    color: #7F7F7F;
+    margin-bottom: 10px;
+}
+
+.form-group > label, 
+.form-group .control-label {
+    font-size: 13px;
+    color: #757575;
+}
+
+/* ----------------------------------- */
+
+.margin-bottom-40.sm {
+    margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+    .padding-top-10.sm {
+        padding-top: 10px;
+    }
+}
+
+.prod_image_upload {
+    position: relative;
+}
+
+.shop-img-up {
+    width: 90px;
+    height: 39px;
+    position: absolute;
+    top: 11px;
+    left: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 10;
+}
+
+input[type="file"] {
+    display: block;
+}
+
+.shop-img-up.ico_active {
+    width: 100%;
+    height: 100%;
+    top: 0;
+}
+
+.summernote-div, #summernote-div {
+    overflow-x: hidden;
+}
+
+@media (max-width: 992px) {
+    .m-margin-bottom-xl {
+        margin-bottom: 10px;
+    }
+}
+
+/* ----------------------------------- */
+
+.textarea-insert{
+    clear: both;
+    width: 100%;
+    height: 500px;
+    border: 1px solid rgba(12, 12, 12, 0.12);
+    background: transparent;
+    color: #0c0c0c;
+    font-size: 14px;
+    box-shadow: none;
+}
+
+.textarea-insert:focus {
+    outline: none;
+}
+
+.padding-leftnone{
+    padding-left: 0 !important;
+}

@@ -36,11 +36,11 @@
         src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
     <!-- -->
 
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/jo/css/common_css/adminstyle.css">
-    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/jo/css/admin_css/admin.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/jo/css/admin_css/adminCommon_css/adminStyle.css">
+    <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/jo/css/admin_css/adminCommon_css/admin.css">
 </head>
 
-<%@ include file="../common/sideBar.jsp"%>
+<%@ include file="./sideBar.jsp"%>
 <body>
     <div class="menubar-hoverable header-fixed menubar-pin">
         <div id="base">
@@ -70,7 +70,9 @@
                         <div class="section-body float-l">
                             <div class="dashboard-section-header dashboard-stats-header">
                                 <div>
-                                    <svg style="border: 1px solid black; height: 16px; width: 16px;"><!-- 아이콘 --></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="svgicon" fill="currentColor" class="bi bi-bar-chart-line" viewBox="0 0 16 16">
+                                        <path d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1zm1 12h2V2h-2zm-3 0V7H7v7zm-5 0v-3H2v3z"/>
+                                      </svg>
                                     <span>통계</span>
                                 </div>
                             </div>
@@ -218,7 +220,9 @@
                             <!-- 컨텐츠 -->
                             <div class="dashboard-section-header">
                                 <div>
-                                    <svg style="border: 1px solid black; height: 16px; width: 16px;"><!-- 아이콘 --></svg>
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="svgicon" fill="currentColor" class="bi bi-paragraph" viewBox="0 0 16 16">
+                                        <path d="M10.5 15a.5.5 0 0 1-.5-.5V2H9v12.5a.5.5 0 0 1-1 0V9H7a4 4 0 1 1 0-8h5.5a.5.5 0 0 1 0 1H11v12.5a.5.5 0 0 1-.5.5"/>
+                                      </svg>
                                     <span>컨텐츠</span>
                                 </div>
                             </div>
@@ -228,7 +232,7 @@
                                     <div class="card flex-card no-padding-left">
                                         <!-- // 예약 또는 쇼핑 사용 -->
                                         <div class="card-head">
-                                            <header>모임 리뷰</header>
+                                            <header>신규 이용자</header>
                                             <a href="_blank" class="dashboard-card-anchor">더보기</a>
                                         </div>
                                         <div class="card-body border-top no-data-card-body">
@@ -236,7 +240,7 @@
                                                 <li class="tile">
                                                     <div class="no-data-container">
                                                         <img src="_blank"> <!-- 프로필 이미지-->
-                                                        <p>리뷰가 없어요</p>
+                                                        <p>신규 이용자가 없어요</p>
                                                     </div>
                                                 </li>
                                             </ul>
@@ -247,8 +251,7 @@
                                 <div class="ma-item col-md-6 col-sm-6 col-xs-12 answers-list shopping-qna no-padding-left">
                                     <div class="card flex-card">
                                         <div class="card-head">
-                                            <header>1:1 문의
-                                            </header>
+                                            <header> 신규 문의</header>
                                             <a href="_blank" class="dashboard-card-anchor">더보기</a>
                                         </div>
                                         <div class="card-body border-top no-data-card-body">
@@ -267,7 +270,7 @@
                                 <div class="ma-item col-md-6 col-sm-6 col-xs-12 contents-list !tw-mb-0 no-padding">
                                     <div class="card flex-card"><!-- // 예약 또는 쇼핑 사용 -->
                                         <div class="card-head">
-                                            <header>공지사항 반응</header>
+                                            <header>신규 공지사항</header>
                                             <a href="_blank" class="dashboard-card-anchor">더보기</a>
                                         </div>
                                         <div class="card-body border-top">

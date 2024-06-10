@@ -1,0 +1,567 @@
+.btn, .btn--toggle span, .btn--toggle {
+    display: inline-block;
+}
+
+.modal-open {
+    width: 100%;
+}
+
+h3, h4, h5, h6 {
+    font-weight: 500;
+}
+
+h3, .h3 {
+    font-size: 20px;
+    color: black;
+}
+
+svg { 
+    border: 1px solid black;
+    width: 16px;
+    height: 16px;
+}
+
+.btn:hover, .btn:focus, .btn:active{
+    background-color: #f8f8f8;
+    border: transparent;
+}
+
+.btn, .btn--toggle span, .btn--toggle {
+    display: inline-block;
+}
+
+.modal {
+    right: -15px;
+}
+
+.modal {
+    color: #000000;
+    overflow-y: scroll;
+}
+
+.modal {
+    text-align: center;
+}
+
+@media (max-width: 768px) {
+    .modal {
+        right: 0;
+    }
+}
+
+.modal-open .modal {
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+@media (max-width: 768px) {
+    .modal.modal-admin {
+        margin: 10px;
+        right: 0;
+    }
+}
+
+.modal-dialog {
+    position: relative;
+    width: 30%;
+    margin: 10px;
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+
+@media (max-width: 768px) {
+    .modal.modal-admin .modal-dialog {
+        width: 100%;
+        margin: 0;
+    }
+}
+
+@media (max-width: 768px) {
+    .modal.in .modal-dialog {
+        width: 100%;
+        padding: 10px;
+        margin: 14px 0 0;
+        max-width: 100%;
+    }
+}
+
+.modal-content {
+    position: relative;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #999;
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    border-radius: 6px;
+    box-shadow: 0 3px 9px rgba(0, 0, 0, 0.5);
+    outline: 0;
+}
+
+.modal-content {
+    border-radius: 2px;
+}
+
+.modal-header {
+    border: none;
+    padding: 24px 24px 12px 24px;
+}
+
+.close {
+    color: #212121;
+    opacity: 0.5;
+    font-size: 14px;
+}
+
+button.close {
+    padding: 0;
+    background: transparent;
+    border: 0;
+}
+
+.modal-header .close {
+    margin-top: 0;
+}
+
+.modal-title {
+    margin: 0;
+    line-height: 1.42857143;
+}
+
+input {
+    border-width: 1px;
+}
+
+.modal-body {
+    padding: 12px 24px 12px 24px;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.form .form-group, .form-inline .form-group {
+    padding-top: 15px;
+}
+
+.form-control, .chosen-single {
+    padding: 0;
+    height: 29px;
+    line-height: 29px;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    border-bottom-color: rgba(12, 12, 12, 0.12);
+    background: transparent;
+    color: #0c0c0c;
+    font-size: 14px;
+    box-shadow: none;
+    border-radius: 0 !important;
+}
+
+.form-group > label, .form-group .control-label {
+    font-size: 13px;
+    color: #757575;
+}
+
+.modal-dialog {
+    display: inline-block;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.form .form-group > label, 
+.form-inline .form-group > label {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.form-group .form-control ~ label, 
+.form-group .form-control ~ .form-control-line {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    pointer-events: none;
+}
+
+.form-group .form-control ~ label {
+    top: 0;
+    margin-bottom: 0;
+    font-size: 13px;
+}
+
+.floating-label .form-control ~ label {
+    top: 19px;
+    font-size: 14px;
+    color: #bdbdbd;
+}
+
+.form-group .form-control:not(.static) ~ label, 
+.form-group .form-control:not(.static) ~ .form-control-line {
+    -webkit-transition: 0.2s ease all;
+    -o-transition: 0.2s ease all;
+    transition: 0.2s ease all;
+}
+
+.floating-label .form-control:focus ~ label, 
+.floating-label .form-control.dirty ~ label, 
+.form-group .form-control-static ~ label {
+    top: 0px;
+    font-size: 13px !important;
+    color: #757575;
+}
+
+.modal-footer {
+    border: none;
+    padding: 12px 24px 12px 24px;
+}
+
+.btn {
+    font-size: 13px;
+    padding: 4px 20px;
+    word-break: break-word;
+    word-wrap: break-word;
+    white-space: normal;
+}
+
+.btn-flat, .btn-icon-toggle {
+    background-color: transparent;
+    border-color: transparent;
+}
+
+.btn-default.btn-flat, 
+.btn-default.btn-icon-toggle {
+    color: #757575;
+}
+
+.btn-danger.btn-flat, 
+.btn-danger.btn-icon-toggle {
+    color: #f44336;
+}
+
+.btn-primary.btn-flat, 
+.btn-primary.btn-icon-toggle {
+    color: #1A6DFF;
+}
+
+.category-header {
+    padding: 16px 15px;
+    position: relative;
+    border-bottom: 1px solid #ccc;
+}
+
+.category_menu_add {
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+.category-header .header-tit h5 {
+    margin: 0;
+    display: inline-block;
+}
+
+.text-12 {
+    font-size: 12px !important;
+}
+
+.text-gray-bright, a.text-gray-bright {
+    color: #888 !important;
+}
+
+.category-header .header-btn {
+    display: inline-block;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+}
+
+.category-header .header-btn .btn {
+    padding: 4px 16px;
+}
+
+.dd {
+    position: relative;
+    display: block;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.category-body.dd {
+    max-height: 600px;
+    padding: 5px 0;
+    overflow-y: auto;
+}
+
+.modal_admin_category .modal-content .category-body {
+    width: 50%;
+    float: left;
+}
+
+.dropdown-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.dd-list {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.dd-item, .dd-empty {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    min-height: 20px;
+    line-height: 20px;
+}
+
+.dropdown-handle {
+    display: block;
+    text-decoration: none;
+    height: 30px;
+    line-height: 31px;
+    padding-left: 26px;
+    font-size: 14px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.dd-handle {
+    display: block;
+    text-decoration: none;
+    height: 30px;
+    line-height: 31px;
+    padding-left: 26px;
+    font-size: 13px;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+}
+
+.category-body .dropdown-handle {
+    position: relative;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 45px;
+}
+
+.dd-handle.active {
+    background: rgba(26, 109, 255, 0.1) !important;
+    color: #1A6DFF !important;
+    font-weight: bold;
+}
+
+.category-body .dropdown-handle.active, 
+.nav-category .dropdown-handle.active {
+    color: #fff;
+    background: #1A6DFF;
+}
+
+.category-body .dropdown-item.top-leaf .dropdown-handle {
+    padding-left: 15px;
+}
+
+.category-body .dropdown-handle > span {
+    pointer-events: none;
+}
+
+.category-body .dropdown-handle .i-group {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    display: none;
+    color: #000;
+    font-size: 15px;
+}
+
+.category-body .dropdown-handle.active .i-group {
+    color: #fff;
+    display: block;
+}
+
+.category-body .dropdown-handle .i-group a:first-child {
+    margin-right: 5px;
+}
+
+.btl {
+    font-weight: 200;
+}
+
+.dd-item, .dd-empty {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    min-height: 20px;
+    line-height: 20px;
+}
+
+.category-body .dropdown-handle {
+    position: relative;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 45px;
+}
+
+.category-body .dropdown-item.top-leaf .dropdown-handle {
+    padding-left: 15px;
+}
+
+.category-body .dropdown-handle > span {
+    pointer-events: none;
+}
+
+.category-body .dropdown-handle .i-group {
+    position: absolute;
+    top: 0;
+    right: 5px;
+    display: none;
+    color: #000;
+    font-size: 15px;
+}
+
+.dd-item, .dd-empty {
+    display: block;
+    position: relative;
+    margin: 0;
+    padding: 0;
+    min-height: 20px;
+    line-height: 20px;
+}
+
+.dd-dummy {
+    min-height: 20px;
+    background-color: #fff;
+}
+
+.modal_admin_category .modal-content .category-body {
+    width: 50%;
+    float: left;
+}
+
+.force-padding {
+    padding: 15px 24px;
+}
+
+.form .form-group, .form-inline .form-group {
+    padding-top: 15px;
+}
+
+.form-group {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.form .form-group > label, .form-inline .form-group > label {
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.form-group > label, .form-group .control-label {
+    font-size: 13px;
+    color: #757575;
+}
+
+.text-13 {
+    font-size: 13px;
+}
+
+.text-gray-bright, a.text-gray-bright {
+    color: #888 !important;
+}
+
+.prod-title-holder {
+    position: relative;
+    margin: 10px 0 15px;
+}
+
+.category-body .form-group img {
+    position: absolute;
+}
+
+.prod-title-holder img {
+    margin-right: 10px;
+}
+
+.prod-title-holder input.form-control {
+    width: 89%;
+    display: inline-block;
+}
+
+.category-body .form-group input {
+    padding: 0 0 10px 30px;
+}
+
+select.form-control, .select-style.form-control {
+    background-size: 24px 24px;
+    padding-right: 24px;
+}
+
+.modal-admin-category .modal-content {
+    overflow: hidden;
+}
+
+.modal-admin-category .modal-content {
+    min-height: 500px;
+}
+
+.category-menu-add {
+    font-size: 15px;
+    margin-right: 5px;
+}
+
+.btn-default-bright {
+    color: #313534;
+    background-color: #ffffff;
+    border-color: #e5e6e6;
+}
+
+.btn {
+    border-radius: 2px;
+    line-height: 1.846153846;
+    padding: 6px 16px;
+}
+
+.btn-primary-button {
+    color: #ffffff;
+    background-color: #1A6DFF;
+    border-color: #1A6DFF;
+}
+
+.modal-admin-category .modal-content .category-body {
+    width: 50%;
+    float: left;
+}
+
+.category-body .dropdown-handle {
+    position: relative;
+    height: 30px;
+    line-height: 30px;
+    padding-left: 45px;
+}
+
+.modal-admin-category .modal-content:before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 50%;
+    margin-left: -0.5px;
+    top: 54px;
+    height: 100%;
+    width: 1px;
+    background: #eee;
+    z-index: 99;
+}

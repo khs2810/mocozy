@@ -1,3 +1,12 @@
+.svg-icon{
+    display: flex;
+    background-color: #e2e2e2;
+    border-radius: 20%;
+    text-align: center;
+    width: 24px;
+    height: 24px;
+}
+
 .admin-sidebar{
     font-size: 10px;
 }
@@ -37,8 +46,8 @@ body:not(.admin-sidebar) #sidebar .sidebar-nav-menu.active:hover {
 }
 
 #sidebar:not(:hover) svg {
-    width: 30px;
-    height: 30px;
+    width: 24px;
+    height: 24px;
 }
 
 #sidebar:not(:hover) .gui-mini-icon {

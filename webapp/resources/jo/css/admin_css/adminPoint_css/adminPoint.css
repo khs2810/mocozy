@@ -39,6 +39,10 @@ header {
     color: #757575;
 }
 
+#basecontent {
+	padding: 5%;
+	padding-top: 0;
+}
 /* ----------------------------------- */
 
 .top-header {
@@ -487,16 +491,12 @@ nav #prod_list_category_ > a {
 }
 
 .flex-box .ma-item {
-    -ms-flex: 1;
-    -webkit-flex: 1;
     flex: 1;
     margin-bottom: 10px;
 }
 
 @media (max-width: 992px) {
     .flex-box .ma-item {
-        -ms-flex: none;
-        -webkit-flex: none;
         flex: none;
         width: 100%;
     }
@@ -521,21 +521,26 @@ nav #prod_list_category_ > a {
     color: #3f3f3f;
     border-radius: 2px;
     overflow: hidden;
-    -webkit-box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.10);
     box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.10);
+    padding: 15px;
+    padding-left: 40px;
+    padding-right: 40px;
 }
 
-.card:not(:last-child) {
-    margin-bottom: 5px;
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 16px;
+    }
 }
 
 .card-head header.small {
     font-size: 14px;
 }
 
-@media screen and (max-width: 767px) {
+@media (max-width: 767px) {
     .table-responsive {
-        margin-bottom: 0px;
+        border: 0px;
+        margin: 0px;
     }
 }
 
@@ -550,17 +555,25 @@ nav #prod_list_category_ > a {
 }
 
 .card-head {
-    padding: 15px 20px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+    position: relative;
+    line-height: 50px;
+    min-height: 50px;
+    vertical-align: middle;
+    border-radius: 2px 2px 0 0;
 }
 
 .card-head header {
+    display: inline-block;
+    padding: 12px 24px;
+    vertical-align: middle;
+    line-height: 1.2;
     font-size: 14px;
-    font-weight: 400;
-    line-height: 20px;
-    color: #000;
+}
+
+@media (max-width: 768px) {
+    .card-head header {
+        padding: 11px 16px;
+    }
 }
 
 .dashboard-card-anchor {
@@ -568,6 +581,14 @@ nav #prod_list_category_ > a {
     font-size: 12px;
     line-height: 16px;
     display: inline-block;
+}
+
+.form-horizontal .control-label {
+    padding-top: 5px;
+}
+
+.width-3, .size-3 {
+    width: 120px;
 }
 
 .card-body {
@@ -883,6 +904,32 @@ nav #prod_list_category_ > a {
     border-radius: 2px 2px 0 0;
 }
 
+.form-horizontal .form-control ~ .form-control-line {
+    left: 12px;
+    right: 12px;
+    width: auto;
+}
+
+.form-group .form-control ~ label, 
+.form-group .form-control ~ .form-control-line {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    pointer-events: none;
+}
+
+.width-6, .size-6 {
+    width: 240px;
+}
+
+.input-group-content {
+    position: relative;
+    display: table-cell;
+    vertical-align: top;
+    min-width: 40px;
+}
+
 /* ----------------------------------- */
 
 .flex-card {
@@ -1094,10 +1141,6 @@ nav #prod_list_category_ > a {
     position: absolute;
     right: 12px;
     top: 50%;
-    -moz-transform: translateY(-50%);
-    -ms-transform: translateY(-50%);
-    -webkit-transform: translateY(-50%);
-    transform: translateY(-50%);
 }
 
 /* ----------------------------------- */
@@ -1417,7 +1460,6 @@ textarea.form-control {
     background: transparent;
     color: #0c0c0c;
     font-size: 14px;
-    -webkit-box-shadow: none;
     box-shadow: none;
     border-radius: 0 !important;
 }
@@ -1486,6 +1528,48 @@ textarea.form-control {
     width: 100%;
     display: table;
     transform: translate3d(0, 0, 0);
+}
+
+@media (max-width: 768px) {
+    .li-table {
+        width: 100%;
+        display: block;
+    }
+}
+
+@media (max-width: 768px) {
+    .table-responsive .li-table {
+        display: table;
+    }
+}
+
+@media (max-width: 768px) {
+    .li-table > ul:first-child {
+        border: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .li-table > ul:first-child {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+    .li-table > ul > li {
+        border: none;
+        padding: 4px 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .li-table > ul > li {
+        display: block;
+    }
+}
+
+.li-table > ul > li:first-child {
+    padding-left: 24px;
 }
 
 .li-table > ul {
@@ -1652,6 +1736,15 @@ textarea.form-control {
     vertical-align: middle;
 }
 
-.card:not(:last-child) {
-    margin-bottom: 5px;
+.btn-primary-button {
+    color: #ffffff;
+    background-color: #1A6DFF;
+    border-color: #1A6DFF;
+}
+
+.btn-primary-button:hover,
+.btn-primary-button:active  {
+    color: #ffffff;
+    background-color: #195bcc;
+    border-color: #195bcc;
 }

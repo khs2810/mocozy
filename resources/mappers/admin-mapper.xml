@@ -28,6 +28,7 @@
 		<result column="CATEGORY_NAME1" property="categoryName1"/>
 		<result column="CATEGORY_NAME2" property="categoryName2"/>
 	</resultMap>
+	
 	<resultMap type="ClubReview" id="clubReviewResult">
 		<result column="CLUB_REVIEW_NO" property="clubReviewNo"/>
 		<result column="REVIEW_CONTENT" property="reviewContent"/>
@@ -38,6 +39,7 @@
 		<result column="CLUB_NO" property="clubNo"/>
 		<result column="USER_NO" property="userNo"/>
 	</resultMap>
+	
 	<resultMap type="Request" id="requestResult">
 		<result column="REQUEST_NO" property="requestNo"/>
 		<result column="USER_NO" property="userNo"/>
@@ -47,6 +49,23 @@
 		<result column="STATUS" property="status"/>
 	</resultMap>
 	
+	<resultMap type="Member" id="memberResult">
+		<result column="USER_NO" property="userNo"/>
+		<result column="USER_ID" property="userId"/>
+		<result column="USER_PWD" property="userPwd"/>
+		<result column="USER_NAME" property="userName"/>
+		<result column="GENDER" property="gender"/>
+		<result column="NICKNAME" property="nickname"/>
+		<result column="BIRTH" property="birth"/>
+		<result column="ENROLL_DATE" property="enrollDate"/>
+		<result column="MODIFY_DATE" property="modifyDate"/>
+		<result column="INTRODUCE" property="introduce"/>
+		<result column="PROFILE_IMG" property="profileImg"/>
+		<result column="POINT" property="point"/>
+		<result column="STATUS" property="status"/>
+		<result column="ADMIN" property="admin"/>
+	</resultMap>
+	
 	<update id="increaseCount">
 		UPDATE CLUB 
 		SET COUNT = COUNT + 1
@@ -54,4 +73,45 @@
 			CLUB_NO = #{cno}
 			AND STATUS = 'Y';
 	</update>
+	
+	<select id="getClubList" resultType="int">
+		    SELECT COUNT(*)
+		      FROM CLUB;
+	</select>
+	
+		<select id="selectClublist" resultMap="clubResult">
+		SELECT CLUB_NO,
+			   USER_NO,
+			   CLUB_TITLE,
+			   CLUB_TYPE,
+			   CLUB_CONTENT,
+			   ADDRESS,
+			   ADDRESS_DETAIL,
+			   EVENT_DATE, 
+			   COST,
+			   COST_INFO, 
+			   TOTAL_POINT, 
+			   CAPACITY, 
+			   ONLINE,
+			   QUESTION,
+			   THUMBNAIL_IMG,
+			   CREATE_DATE,
+			   CLUB.MODIFY_DATE,
+			   COUNT,
+			   NICKNAME,
+			   category_name1,
+			   category_name2
+	FROM public.CLUB
+	join MEMBER USING (USER_NO);
+	</select>
+	
+	<select id="MemberList" resultMap="memberResult">
+		SELECT USER_NO,
+			   NICKNAME,
+			   INTRODUCE,
+			   PROFILE_IMG
+		FROM public.MEMBER 
+		JOIN public.REQUEST USING (USER_NO);
+	</select>
+	
 </mapper>
