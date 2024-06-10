@@ -1,7 +1,9 @@
 package com.kh.mocozy.club.service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -180,5 +182,19 @@ public class ClubServiceImpl implements ClubService {
 	@Override
 	public int quitClub(HashMap<String, Integer> map) {
 		return clubDao.quitClub(sqlSession, map);
+	}
+
+	@Override
+	public int insertMemberChallengeStatus(HashMap<String, String> map) {
+		return clubDao.insertMemberChallengeStatus(sqlSession, map);
+	}
+
+	@Override
+	public Map<Integer, String> getMemberStatusForDate(int cno, Date date) {
+		Map<String, Object> paramMap = new HashMap<>();
+		paramMap.put("cno", cno);
+		paramMap.put("date", date);
+		
+		return clubDao.getMemberStatusForDate(sqlSession, paramMap);
 	}
 }

@@ -20,10 +20,23 @@
 								user_no,
 								club_no,
 								master_no)
-						VALUES (
+					   VALUES (
 								NEXTVAL('SEQ_CHNO'),
 								1,
 								CURRVAL('SEQ_CNO'),
 								1);
 	</insert>
+	
+	<select id="getMemberStatusForDate" resultType="java.util.Map" parameterType="java.util.Map">
+		SELECT CHALLENGE_NO,
+		       USER_NO,
+		       CLUB_NO,
+		       DETAIL_DATE,
+		       DAILY_STATUS,
+		       STATUS,
+		       MASTER_NO
+		  FROM CHALLENGE
+		 WHERE cno = #{cno}
+		   AND date = #{date}
+	</select>
 </mapper>

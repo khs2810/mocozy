@@ -20,130 +20,81 @@
     <div class="MyPage-body">
         <!-- 마이페이지 공용 코드 -->
         <%@ include file="myPageCommon.jsp" %>
-        
-        <div class="main-content">
+        <form class="main-content" id="challenge-form" action="challnegManage.me" method="get">
+        	<input type="hidden" name="cno", value="${cno}">
             <div class="main-content-head">
                 <div class="main-content-head-left">
                     <h2>챌린지 관리</h2>
                     <p>발로 개발</p>
                 </div>
                 <div class="main-content-head-right">
-                    <input type="date" id="challengeDate">
+                	<label for="challengeDate">조회날짜 : </label>
+                    <input type="date" id="challengeDate" name="challengeDate" value="${selectedDate}" min="" max="">
                 </div>
             </div>
             <hr style="background: lightgray; height: 1px; border: 0;">
+            
             <div class="member-list">
+            	<c:set var="l" value="${clubLeader}"/>
                 <div class="member">
                     <div class="member-profile">
                         <img class="profile-img" src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
                         <img src="${pageContext.request.contextPath}/resources/jun/img/crown.png">
-                        <p>파티장</p>
+                        <p>${l.nickname}</p>
                     </div>
                     <div class="introduction">
-                        <p>사랑둥이 셔니의 우당탕탕 모꼬지 생활 🎀이지롱 오고싶지?</p>
+                        <p>${l.introduce}</p>
                     </div>
                     <div class="status">
                         <button type="button" class="status-done">완료</button>
                         <button type="button" class="status-undone">미완료</button>
                     </div>
                 </div>
-                <div class="member">
-                    <div class="member-profile">
-                        <img class="profile-img" src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
-                        <p>파티원1</p>
-                    </div>
-                    <div class="introduction">
-                        <p>사랑둥이 셔니의 우당탕탕 모꼬지 생활 🎀</p>
-                    </div>
-                    <div class="status">
-                        <button type="button" class="status-done">완료</button>
-                        <button type="button" class="status-undone">미완료</button>
-                    </div>
-                </div>
-                <div class="member">
-                    <div class="member-profile">
-                        <img class="profile-img" src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
-                        <p>파티원2</p>
-                    </div>
-                    <div class="introduction">
-                        <p>사랑둥이 셔니의 우당탕탕 모꼬지 생활 🎀</p>
-                    </div>
-                    <div class="status">
-                        <button type="button" class="status-done">완료</button>
-                        <button type="button" class="status-undone">미완료</button>
-                    </div>
-                </div>
-                <div class="member">
-                    <div class="member-profile">
-                        <img class="profile-img" src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
-                        <p>파티원3</p>
-                    </div>
-                    <div class="introduction">
-                        <p>사랑둥이 셔니의 우당탕탕 모꼬지 생활 🎀</p>
-                    </div>
-                    <div class="status">
-                        <button type="button" class="status-done">완료</button>
-                        <button type="button" class="status-undone">미완료</button>
-                    </div>
-                </div>
-                <div class="member">
-                    <div class="member-profile">
-                        <img class="profile-img" src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
-                        <p>파티원4</p>
-                    </div>
-                    <div class="introduction">
-                        <p>사랑둥이 셔니의 우당탕탕 모꼬지 생활 🎀</p>
-                    </div>
-                    <div class="status">
-                        <button type="button" class="status-done">완료</button>
-                        <button type="button" class="status-undone">미완료</button>
-                    </div>
-                </div>
-                <div class="member">
-                    <div class="member-profile">
-                        <img class="profile-img" src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
-                        <p>파티원5</p>
-                    </div>
-                    <div class="introduction">
-                        <p>사랑둥이 셔니의 우당탕탕 모꼬지 생활 🎀</p>
-                    </div>
-                    <div class="status">
-                        <button type="button" class="status-done">완료</button>
-                        <button type="button" class="status-undone">미완료</button>
-                    </div>
-                </div>
-                <div class="member">
-                    <div class="member-profile">
-                        <img class="profile-img" src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
-                        <p>파티원6</p>
-                    </div>
-                    <div class="introduction">
-                        <p>사랑둥이 셔니의 우당탕탕 모꼬지 생활 🎀</p>
-                    </div>
-                    <div class="status">
-                        <button type="button" class="status-done">완료</button>
-                        <button type="button" class="status-undone">미완료</button>
-                    </div>
-                </div>
-                <div class="member">
-                    <div class="member-profile">
-                        <img class="profile-img" src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
-                        <p>파티원7</p>
-                    </div>
-                    <div class="introduction">
-                        <p>사랑둥이 셔니의 우당탕탕 모꼬지 생활 🎀</p>
-                    </div>
-                    <div class="status">
-                        <button type="button" class="status-done">완료</button>
-                        <button type="button" class="status-undone">미완료</button>
-                    </div>
-                </div>
+                
+                <%-- <c:forEach var="m" items="${clubMemberList}">
+                	<div class="member">
+	                    <div class="member-profile">
+	                        <img class="profile-img" src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
+	                        <p>${m.nickname}</p>
+	                    </div>
+	                    <div class="introduction">
+	                        <p>${m.introduce}</p>
+	                    </div>
+	                    <div class="status">
+	                        <button type="button" class="status-done">완료</button>
+	                        <button type="button" class="status-undone">미완료</button>
+	                    </div>
+	                </div>
+                </c:forEach> --%>
+                <c:forEach var="m" items="${clubMemberList}">
+				    <div class="member" data-user-id="${m.userNo}">
+				        <div class="member-profile">
+				            <img class="profile-img" src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
+				            <p>${m.nickname}</p>
+				        </div>
+				        <div class="introduction">
+				            <p>${m.introduce}</p>
+				        </div>
+				        <div class="status">
+				            <c:choose>
+				                <c:when test="${memberStatus[m.userNo] == 'done'}">
+				                    <button type="button" class="status-done" style="background-color: green;">완료</button>
+				                    <button type="button" class="status-undone">미완료</button>
+				                </c:when>
+				                <c:otherwise>
+				                    <button type="button" class="status-done">완료</button>
+				                    <button type="button" class="status-undone" style="background-color: red;">미완료</button>
+				                </c:otherwise>
+				            </c:choose>
+				        </div>
+				    </div>
+				</c:forEach>
             </div>
+            
             <div class="buttons">
-                <button type="button" class="chatBtn">저장</button>
-                <!-- <button type="button" class="finishBtn">챌린지 종료</button> -->
+                <button type="button" class="saveBtn">저장</button>
             </div>
-        </div>
+        </form>
 
         <!-- 프로필 모달 -->
         <%@ include file="../member/profileModal.jsp" %>

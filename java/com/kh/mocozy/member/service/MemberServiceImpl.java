@@ -119,5 +119,10 @@ public class MemberServiceImpl implements MemberService {
 	public int withdrawPoint(Member m) {
 		return memberDao.withdrawPoint(sqlSession, m);
 	}
+
+	@Override
+	public Member selectClubLeader(int cno) {
+		return memberDao.selectClubLeader(sqlSession, cno);
+	}
 	
 }

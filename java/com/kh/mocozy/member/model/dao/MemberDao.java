@@ -76,6 +76,10 @@ public class MemberDao {
 	public Attachment insertAttachment(SqlSessionTemplate sqlSession, int uno) {
 		return null;
 	}
+
+	public Member selectClubLeader(SqlSessionTemplate sqlSession, int cno) {
+		return sqlSession.selectOne("memberMapper.selectClubLeader", cno);
+	}
 	
 	
 }

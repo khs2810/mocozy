@@ -15,4 +15,9 @@ $(document).ready(function(){
 });
 
 
-// 마이페이지 최근 활동 모임 리스트
+/* 마이페이지 프로필영역 안 포인트 */
+$(document).ready(function() {
+  var moneyValue = $("#money").text();
+  var formattedValue = parseFloat(moneyValue).toLocaleString();
+  $("#money").text(formattedValue);
+});

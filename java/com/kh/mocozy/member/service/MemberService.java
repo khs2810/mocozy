@@ -1,6 +1,8 @@
 package com.kh.mocozy.member.service;
 
+import java.sql.Date;
 import java.util.ArrayList;
+import java.util.Map;
 
 import com.kh.mocozy.club.model.vo.Request;
 import com.kh.mocozy.common.model.vo.Attachment;
@@ -53,6 +55,8 @@ public interface MemberService {
 	
 	//포인트 출금
 	int withdrawPoint(Member m);
+
+	Member selectClubLeader(int cno);
 
 	
 

@@ -14,10 +14,8 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jun/css/pointManagePage.css">
 	<script src="${pageContext.request.contextPath}/resources/jun/js/pointManagePage.js"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css" />
-
-    
-    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jun/css/challengeManagePage.css">
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>

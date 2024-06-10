@@ -20,7 +20,6 @@
     <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
 	<script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/myChallenge.js"></script>
-
 </head>
 <body>
     <%@ include file="../common/header.jsp"%>
@@ -72,7 +71,8 @@
 			                </c:choose>
 		                    <div class="btn">
 		                        <button class="btn-style btn-color1" onclick="location.href='http://localhost:8890/mocozy/list.re?cno=${c.clubNo}'">요청목록</button>
-		                        <button class="btn-style btn-color3" onclick="location.href='http://localhost:8890/mocozy/challengeManage.me?cno=${c.clubNo}'">관리</button>
+		                        <%-- <button class="btn-style btn-color3" onclick="location.href='http://localhost:8890/mocozy/challengeManage.me?cno=${c.clubNo}'">관리</button> --%>
+		                        <button class="btn-style btn-color3" onclick="redirectToChallengeManage('${c.clubNo}')">관리</button>
 		                        <button class="btn-style btn-color2" onclick="location.href='http://localhost:8890/mocozy/finishChallenge.me?cno=${c.clubNo}'">종료</button>
 		                    </div>
 		                </div>
