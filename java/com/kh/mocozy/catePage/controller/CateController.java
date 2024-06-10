@@ -36,7 +36,7 @@ public class CateController {
 		PageInfo pi = Pagination.getPageInfo(cateAllList, currentPage, 4, 4);
 		
 		//클럽 리스트 불러오기
-	    ArrayList<Club> catelist = cService.selectcatelist(pi, order);
+	    ArrayList<Club> catelist = cService.selectcateAll(pi, order);
 		for (Club c : catelist){
 			//현재 클럽(c) 의 회원 목록 호출하여 memberList에 저장
 		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
@@ -81,7 +81,7 @@ public class CateController {
 		PageInfo pi = Pagination.getPageInfo(cateAllList, currentPage, 4, 4);
 		
 		//카테고리 조건 건 클럽 불러오기
-	    ArrayList<Club> catelist = cService.selectcatelist(pi, order);
+	    ArrayList<Club> catelist = cService.selectcateAll(pi, order);
 		for (Club c : catelist){
 			//현재 클럽(c) 의 회원 목록 호출하여 memberList에 저장
 		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
