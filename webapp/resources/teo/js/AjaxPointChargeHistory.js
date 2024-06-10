@@ -70,7 +70,7 @@ function drawPointChargeHistory(data) {
                 str += `<span class="history-detail">챌린지 상금</span>\n`
             }
             str += `<div class="history-point">\n
-                        <span id="history-point-num">${p.point}</span>\n
+                        <span id="history-point-num">${p.pointFormat}</span>\n
                         <span>pt</span>\n
                     </div>\n
                     </div>\n
@@ -80,3 +80,4 @@ function drawPointChargeHistory(data) {
     }
     $('.history-list-area').html(str);
 }
+

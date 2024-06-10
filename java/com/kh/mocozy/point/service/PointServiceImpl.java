@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.mocozy.member.model.vo.Member;
 import com.kh.mocozy.point.model.dao.PointDao;
+import com.kh.mocozy.point.model.vo.Payment;
 import com.kh.mocozy.point.model.vo.Point;
 
 
@@ -63,7 +64,7 @@ public class PointServiceImpl implements PointService {
 	}
 
 	@Override
-	public ArrayList<Point> selectPointUseList(Map<String, Object> map) {
+	public ArrayList<Payment> selectPointUseList(Map<String, Object> map) {
 		return pointDao.selectPointUseList(sqlSession, map);
 	}
 
