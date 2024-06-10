@@ -26,7 +26,7 @@
 
                 <!-- 포인트 -->
                 <div class="account point">
-                    ${loginUser.point }pt
+                    <span id="money">${loginUser.point }</span><span>pt</span>
                     <button type="button" class="btn-style" data-toggle="modal" data-target="#chargeWindow">충전</button>
                 </div>
             </div>
