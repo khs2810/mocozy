@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -151,7 +152,7 @@
                 		</tr>
                 		<tr>
                 			<td><i class="fa-solid fa-coins"></i> </td>
-                			<td> ${c.cost}pt</td>
+                			<td><fmt:formatNumber value="${c.cost}" pattern="#,###"/>pt</td>
                 		</tr>
                 		<tr>
                 			<td><i class="fa-solid fa-circle-info"></i></td>

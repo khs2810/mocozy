@@ -5,9 +5,9 @@ $(document).ready(function(){
             month : btn.dataset.month,
             uno : btn.dataset.uno
         }
-        
+        console.log(1)
         ajaxPointChargeHistory(data, function(res){
-            
+            console.log(res)
             const plist = res.plist;
             const month = res.month;
             const strMonth = res.strMonth;
