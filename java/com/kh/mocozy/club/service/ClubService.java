@@ -1,12 +1,15 @@
 package com.kh.mocozy.club.service;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.club.model.vo.ClubReview;
 import com.kh.mocozy.club.model.vo.Request;
 import com.kh.mocozy.common.model.vo.Attachment;
+import com.kh.mocozy.member.model.vo.Member;
 
 public interface ClubService {
 	
@@ -72,4 +75,8 @@ public interface ClubService {
 	int cancleFinishChallenge(int cno);
 
 	int quitClub(HashMap<String, Integer> map);
+
+	int insertMemberChallengeStatus(HashMap<String, String> map);
+
+	Map<Integer, String> getMemberStatusForDate(int cno, Date date);
 }

@@ -140,7 +140,7 @@
             <button type="reset" id="resetBtn">초기화</button>
             <button type="submit" id="submitBtn">등록하기</button>
         </div>
-        <input type="text" name="userNo" id="userNo" value="2" hidden>
+        <input type="hidden" name="userNo" id="userNo" value="${loginUser.userNo}">
     </form><br>
 </body>
 </html>
