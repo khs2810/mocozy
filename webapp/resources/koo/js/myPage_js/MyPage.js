@@ -15,3 +15,4 @@ $(document).ready(function(){
 });
 
 
+// 마이페이지 최근 활동 모임 리스트

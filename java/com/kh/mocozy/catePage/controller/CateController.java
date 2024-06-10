@@ -3,20 +3,15 @@ package com.kh.mocozy.catePage.controller;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Map;
-
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.kh.mocozy.catePage.service.CateService;
@@ -33,672 +28,386 @@ public class CateController {
     
     //전체
 	@RequestMapping("cateAll.ct")
-	public String showcateAll(Model model) {    
-		ArrayList<Club> catelist = cService.selectcatelist();
+	public String showcateAll(@RequestParam(value="cpage", defaultValue="1") int currentPage, String order, Model model) {  
+
+		//페이지네이션
+		int cateAllList = cService.getClublist(); 
+		//총 클럽수, 현재 페이지 번호, 한 페이지에 표시할 클럽 수, 페이지 번호 수 설정
+		PageInfo pi = Pagination.getPageInfo(cateAllList, currentPage, 4, 4);
+		
+		//클럽 리스트 불러오기
+	    ArrayList<Club> catelist = cService.selectcatelist(pi, order);
 		for (Club c : catelist){
+			//현재 클럽(c) 의 회원 목록 호출하여 memberList에 저장
 		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    //회원 목록의 프로필 이미지 url를 arraylist에 저장
 		    ArrayList<String> imgs = new ArrayList<String>();
 		    for (Member m : memberList) {
+		    	//현재 회원의 프로필 이미지 url을 img리스트에 추가
 		    	imgs.add(m.getProfileImg());
 		    }
+		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
 		    c.setProfileImg(imgs);    
 		}
 	    
-	    // 클럽 리스트를 createDate가 최신인 순으로 정렬
-	    Collections.sort(catelist, new Comparator<Club>() {
-	        @Override
-	        public int compare(Club c1, Club c2) {
-	            return c2.getCreateDate().compareTo(c1.getCreateDate());
-	        }
-	    });
+	    String orderby = "";
+	    if (order.equals("club_no")) {
+	    	orderby = "클럽번호";
+	    } else if(order.equals("pickCount"))  {
+	    	orderby = "찜수";
+	    } else if(order.equals("count")) {
+	    	orderby= "조회수";
+	    } 
 	    
+	    model.addAttribute("orderby", orderby);
+	    model.addAttribute("order", order);
 		model.addAttribute("catelist", catelist);
 	    
-	    return "categories/cateRecent/cateAll";
-
+		if (cateAllList == 0) {
+			return "common/errorPage";
+		} else {
+	    return "categories/cateView/cateAll";
+		}
     }
 
 	//전체Ajax
+	@ResponseBody
 	@RequestMapping(value="cateAllAjax.ct", produces="application/json; charset=UTF-8")
-	public String cateAllAjax(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) {      
-		int cateAllList = cService.getClublist(); 
-
-		PageInfo ci = Pagination.getPageInfo(cateAllList, currentPage, 12, 4);
-
-			ArrayList<Club> catelist = cService.selectcatelist();
-			for (Club c : catelist){
-				ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-				ArrayList<String> imgs = new ArrayList<String>();
-				for (Member m : memberList) {
-					imgs.add(m.getProfileImg());
-				}
-				c.setProfileImg(imgs);    
-			}
-			
-			// 클럽 리스트를 createDate가 최신인 순으로 정렬
-			Collections.sort(catelist, new Comparator<Club>() {
-				@Override
-				public int compare(Club c1, Club c2) {
-					return c2.getCreateDate().compareTo(c1.getCreateDate());
-				}
-			});
-			
-			model.addAttribute("ci", ci);
-			model.addAttribute("catelist", catelist);
-
-			return new Gson().toJson(catelist);
-		}
-
-
-	/* --------------------- */
-
-	//액티비티
-	@RequestMapping("cateActivity.ct")
-	public String selectActivity(Model model) {    
-		ArrayList<Club> catelist = cService.selectActivity();
-		for (Club c : catelist){
-		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	imgs.add(m.getProfileImg());
-		    }
-		    c.setProfileImg(imgs);    
-		}
-	    
-	    // 클럽 리스트를 createDate가 최신인 순으로 정렬
-	    Collections.sort(catelist, new Comparator<Club>() {
-	        @Override
-	        public int compare(Club c1, Club c2) {
-	            return c2.getCreateDate().compareTo(c1.getCreateDate());
-	        }
-	    });
-	    
-		model.addAttribute("catelist", catelist);
-
-	    return "categories/cateRecent/cateActivity";
-
-    }
-
-	//액티비티Ajax
-	@RequestMapping(value="cateActivityAjax.ct", produces="application/json; charset=UTF-8")
-	public String cateActivityAjax(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) {      
-		int cateAllList = cService.getClublist(); 
-
-		PageInfo ci = Pagination.getPageInfo(cateAllList, currentPage, 12, 4);
-
-		ArrayList<Club> catelist = cService.selectActivity();
-		for (Club c : catelist){
-		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	imgs.add(m.getProfileImg());
-		    }
-		    c.setProfileImg(imgs);    
-		}
-	    
-	    // 클럽 리스트를 createDate가 최신인 순으로 정렬
-	    Collections.sort(catelist, new Comparator<Club>() {
-	        @Override
-	        public int compare(Club c1, Club c2) {
-	            return c2.getCreateDate().compareTo(c1.getCreateDate());
-	        }
-	    });
-	    
-		model.addAttribute("ci", ci);
-		model.addAttribute("catelist", catelist);
-
-	    return new Gson().toJson(catelist);
-
-    }
-
-	/* --------------------- */
-
-	//문화
-	@RequestMapping("cateArt.ct")
-	public String selectArt(Model model) {    
-		ArrayList<Club> catelist = cService.selectArt();
-		for (Club c : catelist){
-		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	imgs.add(m.getProfileImg());
-		    }
-		    c.setProfileImg(imgs);    
-		}
-	    
-	    // 클럽 리스트를 createDate가 최신인 순으로 정렬
-	    Collections.sort(catelist, new Comparator<Club>() {
-	        @Override
-	        public int compare(Club c1, Club c2) {
-	            return c2.getCreateDate().compareTo(c1.getCreateDate());
-	        }
-	    });
-	    
-	    
-		model.addAttribute("catelist", catelist);
-	    
-	    return "categories/cateRecent/cateArt";
-
-    }
-
-	//문화Ajax
-	@RequestMapping(value="cateArtAjax.ct", produces="application/json; charset=UTF-8")
-	public String cateArtAjax(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) {      
-		int cateAllList = cService.getClublist(); 
-
-		PageInfo ci = Pagination.getPageInfo(cateAllList, currentPage, 12, 4);
-
-		ArrayList<Club> catelist = cService.selectArt();
-		for (Club c : catelist){
-		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	imgs.add(m.getProfileImg());
-		    }
-		    c.setProfileImg(imgs);    
-		}
-	    
-	    // 클럽 리스트를 createDate가 최신인 순으로 정렬
-	    Collections.sort(catelist, new Comparator<Club>() {
-	        @Override
-	        public int compare(Club c1, Club c2) {
-	            return c2.getCreateDate().compareTo(c1.getCreateDate());
-	        }
-	    });
-	    
-		model.addAttribute("ci", ci);
-		model.addAttribute("catelist", catelist);
-	    
-	    return new Gson().toJson(catelist);
-
-    }
-
-	/* --------------------- */
-
-	//자기개발
-	@RequestMapping("cateDevelope.ct")
-	public String selectDevelope(Model model) {    
-		ArrayList<Club> catelist = cService.selectDevelope();
-		for (Club c : catelist){
-		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	imgs.add(m.getProfileImg());
-		    }
-		    c.setProfileImg(imgs);    
-		}
-	    
-	    // 클럽 리스트를 createDate가 최신인 순으로 정렬
-	    Collections.sort(catelist, new Comparator<Club>() {
-	        @Override
-	        public int compare(Club c1, Club c2) {
-	            return c2.getCreateDate().compareTo(c1.getCreateDate());
-	        }
-	    });
-	    
-	    
-		model.addAttribute("catelist", catelist);
-	    
-	    return "categories/cateRecent/cateDevelope";
-
-    }
-
-	//자기개발Ajax
-	@RequestMapping(value="cateDevelopeAjax.ct", produces="application/json; charset=UTF-8")
-	public String cateDevelopeAjax(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) {      
-		int cateAllList = cService.getClublist(); 
-
-		PageInfo ci = Pagination.getPageInfo(cateAllList, currentPage, 12, 4);
-  
-		ArrayList<Club> catelist = cService.selectDevelope();
-		for (Club c : catelist){
-		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	imgs.add(m.getProfileImg());
-		    }
-		    c.setProfileImg(imgs);    
-		}
-	    
-	    // 클럽 리스트를 createDate가 최신인 순으로 정렬
-	    Collections.sort(catelist, new Comparator<Club>() {
-	        @Override
-	        public int compare(Club c1, Club c2) {
-	            return c2.getCreateDate().compareTo(c1.getCreateDate());
-	        }
-	    });
-	    
-		model.addAttribute("ci", ci);
-		model.addAttribute("catelist", catelist);
-	    
-	    return new Gson().toJson(catelist);
-
-    }
-
-	/* --------------------- */
-
-	//푸드 드링크
-	@RequestMapping("cateFood.ct")
-	public String selectFood(Model model) {    
-		ArrayList<Club> catelist = cService.selectFood();
-		for (Club c : catelist){
-		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	imgs.add(m.getProfileImg());
-		    }
-		    c.setProfileImg(imgs);    
-		}
-	    
-	    // 클럽 리스트를 createDate가 최신인 순으로 정렬
-	    Collections.sort(catelist, new Comparator<Club>() {
-	        @Override
-	        public int compare(Club c1, Club c2) {
-	            return c2.getCreateDate().compareTo(c1.getCreateDate());
-	        }
-	    });
-	    
-		model.addAttribute("catelist", catelist);
-	    
-	    return "categories/cateRecent/cateFood";
-
-    }
-
-	//푸드 드링크Ajax
-	@RequestMapping(value="cateFoodAjax.ct", produces="application/json; charset=UTF-8")
-	public String cateFoodAjax(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) {      
-		int cateAllList = cService.getClublist(); 
-
-		PageInfo ci = Pagination.getPageInfo(cateAllList, currentPage, 12, 4);
-
-		ArrayList<Club> catelist = cService.selectFood();
-		for (Club c : catelist){
-		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	imgs.add(m.getProfileImg());
-		    }
-		    c.setProfileImg(imgs);    
-		}
-	    
-	    // 클럽 리스트를 createDate가 최신인 순으로 정렬
-	    Collections.sort(catelist, new Comparator<Club>() {
-	        @Override
-	        public int compare(Club c1, Club c2) {
-	            return c2.getCreateDate().compareTo(c1.getCreateDate());
-	        }
-	    });
-	    
-		model.addAttribute("ci", ci);
-		model.addAttribute("catelist", catelist);
-	    
-	    return new Gson().toJson(catelist);
-
-    }
-	
-	/* --------------------- */
-
-	//외국어
-	@RequestMapping("cateForeign.ct")
-	public String selectForeign(Model model) {    
-		ArrayList<Club> catelist = cService.selectForeign();
-		for (Club c : catelist){
-		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	imgs.add(m.getProfileImg());
-		    }
-		    c.setProfileImg(imgs);    
-		}
-	    
-	    // 클럽 리스트를 createDate가 최신인 순으로 정렬
-	    Collections.sort(catelist, new Comparator<Club>() {
-	        @Override
-	        public int compare(Club c1, Club c2) {
-	            return c2.getCreateDate().compareTo(c1.getCreateDate());
-	        }
-	    });
-	    
-		model.addAttribute("catelist", catelist);
-	    
-	    return "categories/cateRecent/cateForeign";
-
-    }
-
-	//외국어Ajax
-	@RequestMapping(value="cateForeignAjax.ct", produces="application/json; charset=UTF-8")
-	public String cateForeignAjax(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) {      
-		int cateAllList = cService.getClublist(); 
-
-		PageInfo ci = Pagination.getPageInfo(cateAllList, currentPage, 12, 4);
-  
-		ArrayList<Club> catelist = cService.selectForeign();
-		for (Club c : catelist){
-		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	imgs.add(m.getProfileImg());
-		    }
-		    c.setProfileImg(imgs);    
-		}
-	    
-	    // 클럽 리스트를 createDate가 최신인 순으로 정렬
-	    Collections.sort(catelist, new Comparator<Club>() {
-	        @Override
-	        public int compare(Club c1, Club c2) {
-	            return c2.getCreateDate().compareTo(c1.getCreateDate());
-	        }
-	    });
-	    
-		model.addAttribute("ci", ci);
-		model.addAttribute("catelist", catelist);
-	    
-	    return new Gson().toJson(catelist);
-
-    }
+	public String cateAllAjax(@RequestParam(value="cpage", defaultValue="1") int currentPage, String order, Model model) {    
 		
-	/* --------------------- */
-
-	//게임
-	@RequestMapping("cateGame.ct")
-	public String selectGame(Model model) {    
-		ArrayList<Club> catelist = cService.selectGame();
-		for (Club c : catelist){
-		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	imgs.add(m.getProfileImg());
-		    }
-		    c.setProfileImg(imgs);    
-		}
-	    
-	    // 클럽 리스트를 createDate가 최신인 순으로 정렬
-	    Collections.sort(catelist, new Comparator<Club>() {
-	        @Override
-	        public int compare(Club c1, Club c2) {
-	            return c2.getCreateDate().compareTo(c1.getCreateDate());
-	        }
-	    });
-	    
-		model.addAttribute("catelist", catelist);
-	    
-	    return "categories/cateRecent/cateGame";
-
-    }
-
-	//게임Ajax
-	@RequestMapping(value="cateGameAjax.ct", produces="application/json; charset=UTF-8")
-	public String cateGameAjax(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) {      
+		//페이지네이션
 		int cateAllList = cService.getClublist(); 
-
-		PageInfo ci = Pagination.getPageInfo(cateAllList, currentPage, 12, 4);
-   
-		ArrayList<Club> catelist = cService.selectGame();
+		//총 클럽수, 현재 페이지 번호, 한 페이지에 표시할 클럽 수, 페이지 번호 수 설정
+		PageInfo pi = Pagination.getPageInfo(cateAllList, currentPage, 4, 4);
+		
+		//카테고리 조건 건 클럽 불러오기
+	    ArrayList<Club> catelist = cService.selectcatelist(pi, order);
 		for (Club c : catelist){
+			//현재 클럽(c) 의 회원 목록 호출하여 memberList에 저장
 		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    //회원 목록의 프로필 이미지 url를 arraylist에 저장
 		    ArrayList<String> imgs = new ArrayList<String>();
 		    for (Member m : memberList) {
+		    	//현재 회원의 프로필 이미지 url을 img리스트에 추가
 		    	imgs.add(m.getProfileImg());
 		    }
+		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
 		    c.setProfileImg(imgs);    
 		}
 	    
-	    // 클럽 리스트를 createDate가 최신인 순으로 정렬
-	    Collections.sort(catelist, new Comparator<Club>() {
-	        @Override
-	        public int compare(Club c1, Club c2) {
-	            return c2.getCreateDate().compareTo(c1.getCreateDate());
-	        }
-	    });
-	    
-		model.addAttribute("ci", ci);
-		model.addAttribute("catelist", catelist);
-	    
-	    return new Gson().toJson(catelist);
+		return new Gson().toJson(catelist);
+	}
 
-    }
-		
+
 	/* --------------------- */
 
-	//취미
-	@RequestMapping("cateHobby.ct")
-	public String selectHobby(Model model) {    
-		ArrayList<Club> catelist = cService.selectHobby();
+	//카테고리별 페이지
+	@RequestMapping("cateKey.ct")
+	public String cateKey(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model, String key, String order) { 
+		//페이지네이션
+		int cateAllList = cService.getClublist(); 
+		//총 클럽수, 현재 페이지 번호, 한 페이지에 표시할 클럽 수, 페이지 번호 수 설정
+		PageInfo pi = Pagination.getPageInfo(cateAllList, currentPage, 4, 4);
+		
+	    //map으로 key=카테고리와 order=정렬 값 불러오기
+		Map<String, String> map = new HashMap<>();
+		map.put("key", key);
+		map.put("order", order);
+		
+		//클럽 리스트 불러오기
+		ArrayList<Club> catelist = cService.selectCateFilter(map, pi);
 		for (Club c : catelist){
-		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+			//현재 클럽(c) 의 회원 목록 호출하여 memberList에 저장
+			ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+			//회원 목록의 프로필 이미지 url를 arraylist에 저장
 		    ArrayList<String> imgs = new ArrayList<String>();
 		    for (Member m : memberList) {
+		    	//현재 회원의 프로필 이미지 url을 img리스트에 추가
 		    	imgs.add(m.getProfileImg());
 		    }
+		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
 		    c.setProfileImg(imgs);    
 		}
 	    
-	    // 클럽 리스트를 createDate가 최신인 순으로 정렬
-	    Collections.sort(catelist, new Comparator<Club>() {
-	        @Override
-	        public int compare(Club c1, Club c2) {
-	            return c2.getCreateDate().compareTo(c1.getCreateDate());
-	        }
-	    });
+	    String cname = "";
+	    if (key.equals("문화, 예술") || key.equals("푸드, 드링크")) {
+	    	cname = "문화생활";
+	    } else if(key.equals("자기계발") || key.equals("재테크") || key.equals("외국어"))  {
+	    	cname = "미래발전";
+	    } else if(key.equals("액티비티") || key.equals("여행 · 동행")) {
+	    	cname= "스포츠";
+	    } else if(key.equals("취미") || key.equals("파티  · 게임")) {
+	    	cname="취미";
+	    }
+	    
 	   
+	    model.addAttribute("cname", cname);
+	    model.addAttribute("key", key);
 		model.addAttribute("catelist", catelist);
-
-	    return "categories/cateRecent/cateHobby";
-
-    }
-	
-	//취미Ajax
-	@RequestMapping(value="cateHobbyAjax.ct", produces="application/json; charset=UTF-8")
-	public String cateHobbyAjax(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) {      
-		int cateAllList = cService.getClublist(); 
-
-		PageInfo ci = Pagination.getPageInfo(cateAllList, currentPage, 12, 4);
- 
-		ArrayList<Club> catelist = cService.selectHobby();
-		for (Club c : catelist){
-		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	imgs.add(m.getProfileImg());
-		    }
-		    c.setProfileImg(imgs);    
-		}
 	    
-	    // 클럽 리스트를 createDate가 최신인 순으로 정렬
-	    Collections.sort(catelist, new Comparator<Club>() {
-	        @Override
-	        public int compare(Club c1, Club c2) {
-	            return c2.getCreateDate().compareTo(c1.getCreateDate());
-	        }
-	    });
-	   
-		model.addAttribute("ci", ci);
-		model.addAttribute("catelist", catelist);
-
-	    return new Gson().toJson(catelist);
-
-    }
-	
-	/* --------------------- */
-
-	//재테크
-	@RequestMapping("cateInvest.ct")
-	public String showcateInvest(Model model) {    
-		ArrayList<Club> catelist = cService.selectInvest();
-		for (Club c : catelist){
-		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	imgs.add(m.getProfileImg());
-		    }
-		    c.setProfileImg(imgs);    
+		if (cateAllList == 0) {
+			return "common/errorPage";
+		} else {
+			return "categories/cateView/cateKey";
 		}
+    }
+
+	//카테고리별 ajax
+	@ResponseBody
+	@RequestMapping(value="cateKeyAjax.ct", produces="application/json; charset=UTF-8")
+	public String cateKeyAjax(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model, String key, String order) {      
+		//페이지네이션
+		int cateAllList = cService.getClublist(); 
+		//총 클럽수, 현재 페이지 번호, 한 페이지에 표시할 클럽 수, 페이지 번호 수 설정
+		PageInfo pi = Pagination.getPageInfo(cateAllList, currentPage, 4, 4);
 		
-	    // 클럽 리스트를 createDate가 최신인 순으로 정렬
-	    Collections.sort(catelist, new Comparator<Club>() {
-	        @Override
-	        public int compare(Club c1, Club c2) {
-	            return c2.getCreateDate().compareTo(c1.getCreateDate());
-	        }
-	    });
-	    
-		model.addAttribute("catelist", catelist);
-	    
-	    return "categories/cateRecent/cateInvest";
-
-    }
-	
-	//재테크Ajax
-	@RequestMapping(value="cateInvestAjax.ct", produces="application/json; charset=UTF-8")
-	public String cateInvestAjax(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) {      
-		int cateAllList = cService.getClublist(); 
-
-		PageInfo ci = Pagination.getPageInfo(cateAllList, currentPage, 12, 4);
-
-		ArrayList<Club> catelist = cService.selectInvest();
-		for (Club c : catelist){
-		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	imgs.add(m.getProfileImg());
-		    }
-		    c.setProfileImg(imgs);    
-		}
+	    //map으로 key=카테고리와 order=정렬 값 불러오기
+		Map<String, String> map = new HashMap<>();
+		map.put("key", key);
+		map.put("order", order);
 		
-	    // 클럽 리스트를 createDate가 최신인 순으로 정렬
-	    Collections.sort(catelist, new Comparator<Club>() {
-	        @Override
-	        public int compare(Club c1, Club c2) {
-	            return c2.getCreateDate().compareTo(c1.getCreateDate());
-	        }
-	    });
+		//클럽 리스트 불러오기
+		ArrayList<Club> catelist = cService.selectCateFilter(map, pi);
+		for (Club c : catelist){
+			//현재 클럽(c) 의 회원 목록 호출하여 memberList에 저장
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    //회원 목록의 프로필 이미지 url를 arraylist에 저장
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	//현재 회원의 프로필 이미지 url을 img리스트에 추가
+		    	imgs.add(m.getProfileImg());
+		    }
+		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
+		    c.setProfileImg(imgs);    
+		}
 	    
-		model.addAttribute("ci", ci);
+	    model.addAttribute("key", key);
 		model.addAttribute("catelist", catelist);
-	    
+		
 	    return new Gson().toJson(catelist);
 
     }
 	
 	/* --------------------- */
-
-	//연애
-	@RequestMapping("cateLove.ct")
-	public String showcateLove(Model model) {    
-		ArrayList<Club> catelist = cService.selectLove();
-		for (Club c : catelist){
-		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	imgs.add(m.getProfileImg());
-		    }
-		    c.setProfileImg(imgs);    
-		}
-	    
-	    // 클럽 리스트를 createDate가 최신인 순으로 정렬
-	    Collections.sort(catelist, new Comparator<Club>() {
-	        @Override
-	        public int compare(Club c1, Club c2) {
-	            return c2.getCreateDate().compareTo(c1.getCreateDate());
-	        }
-	    });
-	    
-		model.addAttribute("catelist", catelist);
-	    
-	    return "categories/cateRecent/cateLove";
-
-    }
-
-	//연애Ajax
-	@RequestMapping(value="cateLoveAjax.ct", produces="application/json; charset=UTF-8")
-	public String cateLoveAjax(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) {      
+	
+	//인기순별 페이지
+	@RequestMapping("catePick.ct")
+	public String catePick(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model, String key) { 
+		//페이지네이션
 		int cateAllList = cService.getClublist(); 
-
-		PageInfo ci = Pagination.getPageInfo(cateAllList, currentPage, 12, 4);
-
-		ArrayList<Club> catelist = cService.selectLove();
+		//총 클럽수, 현재 페이지 번호, 한 페이지에 표시할 클럽 수, 페이지 번호 수 설정
+		PageInfo pi = Pagination.getPageInfo(cateAllList, currentPage, 4, 4);
+		
+	    //map으로 key=카테고리와 order=정렬 값 불러오기
+		Map<String, String> map = new HashMap<>();
+		map.put("key", key);
+		
+		//클럽 리스트 불러오기
+		ArrayList<Club> catelist = cService.catePick(map, pi);
 		for (Club c : catelist){
-		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+			//현재 클럽(c) 의 회원 목록 호출하여 memberList에 저장
+			ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+			//회원 목록의 프로필 이미지 url를 arraylist에 저장
 		    ArrayList<String> imgs = new ArrayList<String>();
 		    for (Member m : memberList) {
+		    	//현재 회원의 프로필 이미지 url을 img리스트에 추가
 		    	imgs.add(m.getProfileImg());
 		    }
+		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
 		    c.setProfileImg(imgs);    
 		}
 	    
-	    // 클럽 리스트를 createDate가 최신인 순으로 정렬
-	    Collections.sort(catelist, new Comparator<Club>() {
-	        @Override
-	        public int compare(Club c1, Club c2) {
-	            return c2.getCreateDate().compareTo(c1.getCreateDate());
-	        }
-	    });
-	    
-		model.addAttribute("ci", ci);
+	    model.addAttribute("key", key);
 		model.addAttribute("catelist", catelist);
 	    
+		if (cateAllList == 0) {
+			return "common/errorPage";
+		} else {
+			return "categories/cateBest/catePick";
+		}
+    }
+	
+	//인기순별 ajax
+	@ResponseBody
+	@RequestMapping(value="catePickAjax.ct", produces="application/json; charset=UTF-8")
+	public String catePickAjax(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model, String key) {      
+		//페이지네이션
+		int cateAllList = cService.getClublist(); 
+		//총 클럽수, 현재 페이지 번호, 한 페이지에 표시할 클럽 수, 페이지 번호 수 설정
+		PageInfo pi = Pagination.getPageInfo(cateAllList, currentPage, 4, 4);
+		
+	    //map으로 key=카테고리와 order=정렬 값 불러오기
+		Map<String, String> map = new HashMap<>();
+		map.put("key", key);
+		
+		//클럽 리스트 불러오기
+		ArrayList<Club> catelist = cService.catePick(map, pi);
+		for (Club c : catelist){
+			//현재 클럽(c) 의 회원 목록 호출하여 memberList에 저장
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    //회원 목록의 프로필 이미지 url를 arraylist에 저장
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	//현재 회원의 프로필 이미지 url을 img리스트에 추가
+		    	imgs.add(m.getProfileImg());
+		    }
+		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
+		    c.setProfileImg(imgs);    
+		}
+	    model.addAttribute("key", key);
+		model.addAttribute("catelist", catelist);
+		
 	    return new Gson().toJson(catelist);
 
-    }
-
+	}
+	
 	/* --------------------- */
-
-	//여행
-	@RequestMapping("cateTravel.ct")
-	public String showcateTravel(Model model) {    
-		ArrayList<Club> catelist = cService.selectTravel();
-		for (Club c : catelist){
-		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	imgs.add(m.getProfileImg());
-		    }
-		    c.setProfileImg(imgs);    
-		}
-	    
-	    // 클럽 리스트를 createDate가 최신인 순으로 정렬
-	    Collections.sort(catelist, new Comparator<Club>() {
-	        @Override
-	        public int compare(Club c1, Club c2) {
-	            return c2.getCreateDate().compareTo(c1.getCreateDate());
-	        }
-	    });
-	    
-		model.addAttribute("catelist", catelist);
-	    
-	    return "categories/cateRecent/cateTravel";
-
-    }
-
-	//여행Ajax
-	@RequestMapping(value="cateTravelAjax.ct", produces="application/json; charset=UTF-8")
-	public String cateTravelAjax(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) {      
+	
+	//최신별 페이지
+	@RequestMapping("cateRecent.ct")
+	public String cateRecent(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model, String key) { 
+		//페이지네이션
 		int cateAllList = cService.getClublist(); 
-
-		PageInfo ci = Pagination.getPageInfo(cateAllList, currentPage, 12, 4);
-
-		ArrayList<Club> catelist = cService.selectTravel();
+		//총 클럽수, 현재 페이지 번호, 한 페이지에 표시할 클럽 수, 페이지 번호 수 설정
+		PageInfo pi = Pagination.getPageInfo(cateAllList, currentPage, 4, 4);
+		
+	    //map으로 key=카테고리와 order=정렬 값 불러오기
+		Map<String, String> map = new HashMap<>();
+		map.put("key", key);
+		
+		//클럽 리스트 불러오기
+		ArrayList<Club> catelist = cService.cateRecent(map, pi);
 		for (Club c : catelist){
-		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+			//현재 클럽(c) 의 회원 목록 호출하여 memberList에 저장
+			ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+			//회원 목록의 프로필 이미지 url를 arraylist에 저장
 		    ArrayList<String> imgs = new ArrayList<String>();
 		    for (Member m : memberList) {
+		    	//현재 회원의 프로필 이미지 url을 img리스트에 추가
 		    	imgs.add(m.getProfileImg());
 		    }
+		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
 		    c.setProfileImg(imgs);    
 		}
 	    
-	    // 클럽 리스트를 createDate가 최신인 순으로 정렬
-	    Collections.sort(catelist, new Comparator<Club>() {
-	        @Override
-	        public int compare(Club c1, Club c2) {
-	            return c2.getCreateDate().compareTo(c1.getCreateDate());
-	        }
-	    });
-	    
-		model.addAttribute("ci", ci);
+	    model.addAttribute("key", key);
 		model.addAttribute("catelist", catelist);
 	    
+		if (cateAllList == 0) {
+			return "common/errorPage";
+		} else {
+			return "categories/cateBest/cateRecent";
+		}
+    }
+	
+	//최신순별 ajax
+	@ResponseBody
+	@RequestMapping(value="cateRecentAjax.ct", produces="application/json; charset=UTF-8")
+	public String cateRecentAjax(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model, String key) {      
+		//페이지네이션
+		int cateAllList = cService.getClublist(); 
+		//총 클럽수, 현재 페이지 번호, 한 페이지에 표시할 클럽 수, 페이지 번호 수 설정
+		PageInfo pi = Pagination.getPageInfo(cateAllList, currentPage, 4, 4);
+		
+	    //map으로 key=카테고리와 order=정렬 값 불러오기
+		Map<String, String> map = new HashMap<>();
+		map.put("key", key);
+		
+		//클럽 리스트 불러오기
+		ArrayList<Club> catelist = cService.cateRecent(map, pi);
+		for (Club c : catelist){
+			//현재 클럽(c) 의 회원 목록 호출하여 memberList에 저장
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    //회원 목록의 프로필 이미지 url를 arraylist에 저장
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	//현재 회원의 프로필 이미지 url을 img리스트에 추가
+		    	imgs.add(m.getProfileImg());
+		    }
+		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
+		    c.setProfileImg(imgs);    
+		}
+	    
+	    model.addAttribute("key", key);
+		model.addAttribute("catelist", catelist);
+		
 	    return new Gson().toJson(catelist);
 
+	}
+	
+	/* --------------------- */
+	
+	//조회순별 페이지
+	@RequestMapping("cateView.ct")
+	public String cateView(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model, String key) { 
+		//페이지네이션
+		int cateAllList = cService.getClublist(); 
+		//총 클럽수, 현재 페이지 번호, 한 페이지에 표시할 클럽 수, 페이지 번호 수 설정
+		PageInfo pi = Pagination.getPageInfo(cateAllList, currentPage, 4, 4);
+		
+	    //map으로 key=카테고리와 order=정렬 값 불러오기
+		Map<String, String> map = new HashMap<>();
+		map.put("key", key);
+		
+		//클럽 리스트 불러오기
+		ArrayList<Club> catelist = cService.cateView(map, pi);
+		for (Club c : catelist){
+			//현재 클럽(c) 의 회원 목록 호출하여 memberList에 저장
+			ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+			//회원 목록의 프로필 이미지 url를 arraylist에 저장
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	//현재 회원의 프로필 이미지 url을 img리스트에 추가
+		    	imgs.add(m.getProfileImg());
+		    }
+		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
+		    c.setProfileImg(imgs);    
+		}
+	    
+	    model.addAttribute("key", key);
+		model.addAttribute("catelist", catelist);
+	    
+		if (cateAllList == 0) {
+			return "common/errorPage";
+		} else {
+			return "categories/cateBest/cateView";
+		}
     }
+	
+	//조회순별 ajax
+	@ResponseBody
+	@RequestMapping(value="cateViewAjax.ct", produces="application/json; charset=UTF-8")
+	public String cateViewAjax(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model, String key) {      
+		//페이지네이션
+		int cateAllList = cService.getClublist(); 
+		//총 클럽수, 현재 페이지 번호, 한 페이지에 표시할 클럽 수, 페이지 번호 수 설정
+		PageInfo pi = Pagination.getPageInfo(cateAllList, currentPage, 4, 4);
+		
+	    //map으로 key=카테고리와 order=정렬 값 불러오기
+		Map<String, String> map = new HashMap<>();
+		map.put("key", key);
+		
+		//클럽 리스트 불러오기
+		ArrayList<Club> catelist = cService.cateView(map, pi);
+		for (Club c : catelist){
+			//현재 클럽(c) 의 회원 목록 호출하여 memberList에 저장
+		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
+		    //회원 목록의 프로필 이미지 url를 arraylist에 저장
+		    ArrayList<String> imgs = new ArrayList<String>();
+		    for (Member m : memberList) {
+		    	//현재 회원의 프로필 이미지 url을 img리스트에 추가
+		    	imgs.add(m.getProfileImg());
+		    }
+		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
+		    c.setProfileImg(imgs);    
+		}
+	    
+	    model.addAttribute("key", key);
+		model.addAttribute("catelist", catelist);
+		
+	    return new Gson().toJson(catelist);
+
+	}
+	
+	/* --------------------- */
 }	

@@ -9,21 +9,16 @@ import com.kh.mocozy.member.model.vo.Member;
 
 @Service
 public interface SearchService {
-	public int searchCount();
+
+	ArrayList<Club> selectSearchList(HashMap<String, String> map, PageInfo re);
 	
-	public ArrayList<Club> selectSearchList(HashMap<String, String> map, PageInfo re);
+	ArrayList<Club> selectSearchView(HashMap<String, String> map, PageInfo re);
 	
-	public int searchForm(HashMap<String, String> map);
+	ArrayList<Club> selectSearchPick(HashMap<String, String> map, PageInfo re);
 	
-	//프로필 사진 가져오기
+	int searchForm(HashMap<String, String> map);
+
 	ArrayList<Member> MemberList(int clubNo);
 	
-	//챌린지, 클럽
-	ArrayList<Club> getSocialing(PageInfo pi);
 	
-	ArrayList<Club> getChallenge(PageInfo pi);
-
-    int getReviewCount(int clubNo);
-
-	int getPickedCount(int clubNo);
 }

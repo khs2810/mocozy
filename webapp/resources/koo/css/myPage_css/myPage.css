@@ -28,6 +28,8 @@
     box-shadow: 2px 2px 2px #6d6d6d;
     transition-duration: 0.1s;
     cursor: pointer;
+    width: 125px;
+    height: 125px;
 }
 
 .club-title{

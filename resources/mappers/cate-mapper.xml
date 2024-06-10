@@ -63,30 +63,32 @@
 	</insert>
 	
 	<select id="selectcatelist" resultMap="clubResult">
-		SELECT CLUB_NO,
-			   USER_NO,
-			   CLUB_TITLE,
-			   CLUB_TYPE,
-			   CLUB_CONTENT,
-			   ADDRESS,
-			   ADDRESS_DETAIL,
-			   EVENT_DATE, 
-			   COST,
-			   COST_INFO, 
-			   TOTAL_POINT, 
-			   CAPACITY, 
-			   ONLINE,
-			   QUESTION,
-			   THUMBNAIL_IMG,
-			   CREATE_DATE,
-			   CLUB.MODIFY_DATE,
-			   COUNT,
-			   NICKNAME,
-			   category_name1,
-			   category_name2
-	FROM public.CLUB
-		join MEMBER USING (USER_NO)
-	WHERE public.CLUB.STATUS = 'Y';
+			SELECT CLUB_NO,
+		           USER_NO,
+		           CLUB_TITLE,
+		           CLUB_TYPE,
+		           CLUB_CONTENT,
+		           ADDRESS,
+		           ADDRESS_DETAIL,
+		           EVENT_DATE, 
+		           COST,
+		           COST_INFO, 
+		           TOTAL_POINT, 
+		           CAPACITY, 
+		           ONLINE,
+		           QUESTION,
+		           THUMBNAIL_IMG,
+		           CREATE_DATE,
+		           CLUB.MODIFY_DATE,
+		           COUNT,
+		           NICKNAME,
+		           category_name1,
+		           category_name2,
+		    (SELECT COUNT(*) FROM picked WHERE CLUB_NO = CLUB.CLUB_NO) AS pickCount
+		    FROM public.CLUB
+			JOIN MEMBER USING (USER_NO)
+			WHERE public.CLUB.STATUS = 'Y' AND CATEGORY_NAME2 = #{key}
+	    	Order by ${order} DESC;
 	</select>
 	
 	<select id="MemberList" resultMap="memberResult">
@@ -100,9 +102,8 @@
 			AND public.request.CLUB_NO = #{clubNo};
 	</select>
 	
-	<!-- 카테고리 가져오기 -->
-	<select id="selectArt" resultMap="clubResult">
-	    SELECT CLUB_NO,
+	<select id="selectCateFilter" resultMap="clubResult">
+	   SELECT CLUB_NO,
 	           USER_NO,
 	           CLUB_TITLE,
 	           CLUB_TYPE,
@@ -122,252 +123,98 @@
 	           COUNT,
 	           NICKNAME,
 	           category_name1,
-	           category_name2
+	           category_name2,
+	    (SELECT COUNT(*) FROM picked WHERE CLUB_NO = CLUB.CLUB_NO) AS pickCount
 	    FROM public.CLUB
 	    join MEMBER USING (USER_NO)
-	    WHERE public.CLUB.STATUS = 'Y' AND CATEGORY_NAME2 = '문화, 예술';
+	    WHERE public.CLUB.STATUS = 'Y' AND CATEGORY_NAME2 = #{key}
+	    Order by ${order} DESC;
 	</select>
 	
-	<select id="selectActivity" resultMap="clubResult">
-	    SELECT CLUB_NO,
-	           USER_NO,
-	           CLUB_TITLE,
-	           CLUB_TYPE,
-	           CLUB_CONTENT,
-	           ADDRESS,
-	           ADDRESS_DETAIL,
-	           EVENT_DATE, 
-	           COST,
-	           COST_INFO, 
-	           TOTAL_POINT, 
-	           CAPACITY, 
-	           ONLINE,
-	           QUESTION,
-	           THUMBNAIL_IMG,
-	           CREATE_DATE,
-	           CLUB.MODIFY_DATE,
-	           COUNT,
-	           NICKNAME,
-	           category_name1,
-	           category_name2
-	    FROM public.CLUB
-	    join MEMBER USING (USER_NO)
-	    WHERE public.CLUB.STATUS = 'Y' AND CATEGORY_NAME2 = '액티비티';
+	<select id="catePick" resultMap="clubResult">
+			   SELECT CLUB_NO,
+		       USER_NO,
+		       CLUB_TITLE,
+		       CLUB_TYPE,
+		       CLUB_CONTENT,
+		       ADDRESS,
+		       ADDRESS_DETAIL,
+		       EVENT_DATE, 
+		       COST,
+		       COST_INFO, 
+		       TOTAL_POINT, 
+		       CAPACITY, 
+		       ONLINE,
+		       QUESTION,
+		       THUMBNAIL_IMG,
+		       CREATE_DATE,
+		       CLUB.MODIFY_DATE,
+		       COUNT,
+		       NICKNAME,
+		       category_name1,
+		       category_name2,
+		       (SELECT COUNT(*) FROM picked WHERE CLUB_NO = CLUB.CLUB_NO) AS pickCount
+		FROM public.CLUB
+		JOIN MEMBER USING (USER_NO)
+		WHERE public.CLUB.STATUS = 'Y' AND club_type = #{key}
+		ORDER BY pickCount DESC;
 	</select>
 	
-	<select id="selectFood" resultMap="clubResult">
-		SELECT CLUB_NO,
-	           USER_NO,
-	           CLUB_TITLE,
-	           CLUB_TYPE,
-	           CLUB_CONTENT,
-	           ADDRESS,
-	           ADDRESS_DETAIL,
-	           EVENT_DATE, 
-	           COST,
-	           COST_INFO, 
-	           TOTAL_POINT, 
-	           CAPACITY, 
-	           ONLINE,
-	           QUESTION,
-	           THUMBNAIL_IMG,
-	           CREATE_DATE,
-	           CLUB.MODIFY_DATE,
-	           COUNT,
-	           NICKNAME,
-	           category_name1,
-	           category_name2
-	    FROM public.CLUB
-	    join MEMBER USING (USER_NO)
-	    WHERE public.CLUB.STATUS = 'Y' AND CATEGORY_NAME2 = '푸드, 드링크';
+		<select id="cateRecent" resultMap="clubResult">
+			   SELECT CLUB_NO,
+		       USER_NO,
+		       CLUB_TITLE,
+		       CLUB_TYPE,
+		       CLUB_CONTENT,
+		       ADDRESS,
+		       ADDRESS_DETAIL,
+		       EVENT_DATE, 
+		       COST,
+		       COST_INFO, 
+		       TOTAL_POINT, 
+		       CAPACITY, 
+		       ONLINE,
+		       QUESTION,
+		       THUMBNAIL_IMG,
+		       CREATE_DATE,
+		       CLUB.MODIFY_DATE,
+		       COUNT,
+		       NICKNAME,
+		       category_name1,
+		       category_name2,
+		       (SELECT COUNT(*) FROM picked WHERE CLUB_NO = CLUB.CLUB_NO) AS pickCount
+		FROM public.CLUB
+		JOIN MEMBER USING (USER_NO)
+		WHERE public.CLUB.STATUS = 'Y' AND club_type = #{key}
+		ORDER BY club_no DESC;
 	</select>
 	
-	<select id="selectHobby" resultMap="clubResult">
-	    SELECT CLUB_NO,
-	           USER_NO,
-	           CLUB_TITLE,
-	           CLUB_TYPE,
-	           CLUB_CONTENT,
-	           ADDRESS,
-	           ADDRESS_DETAIL,
-	           EVENT_DATE, 
-	           COST,
-	           COST_INFO, 
-	           TOTAL_POINT, 
-	           CAPACITY, 
-	           ONLINE,
-	           QUESTION,
-	           THUMBNAIL_IMG,
-	           CREATE_DATE,
-	           CLUB.MODIFY_DATE,
-	           COUNT,
-	           NICKNAME,
-	           category_name1,
-	           category_name2
-	    FROM public.CLUB
-	    join MEMBER USING (USER_NO)
-	    WHERE public.CLUB.STATUS = 'Y' AND CATEGORY_NAME2 = '취미';
-	</select>
-	
-	<select id="selectTravel" resultMap="clubResult">
-		SELECT CLUB_NO,
-	           USER_NO,
-	           CLUB_TITLE,
-	           CLUB_TYPE,
-	           CLUB_CONTENT,
-	           ADDRESS,
-	           ADDRESS_DETAIL,
-	           EVENT_DATE, 
-	           COST,
-	           COST_INFO, 
-	           TOTAL_POINT, 
-	           CAPACITY, 
-	           ONLINE,
-	           QUESTION,
-	           THUMBNAIL_IMG,
-	           CREATE_DATE,
-	           CLUB.MODIFY_DATE,
-	           COUNT,
-	           NICKNAME,
-	           category_name1,
-	           category_name2
-	    FROM public.CLUB
-	    join MEMBER USING (USER_NO)
-	    WHERE public.CLUB.STATUS = 'Y' AND CATEGORY_NAME2 = '여행, 동행';
-	</select>
-	
-	<select id="selectDevelope" resultMap="clubResult">
-	    SELECT CLUB_NO,
-	           USER_NO,
-	           CLUB_TITLE,
-	           CLUB_TYPE,
-	           CLUB_CONTENT,
-	           ADDRESS,
-	           ADDRESS_DETAIL,
-	           EVENT_DATE, 
-	           COST,
-	           COST_INFO, 
-	           TOTAL_POINT, 
-	           CAPACITY, 
-	           ONLINE,
-	           QUESTION,
-	           THUMBNAIL_IMG,
-	           CREATE_DATE,
-	           CLUB.MODIFY_DATE,
-	           COUNT,
-	           NICKNAME,
-	           category_name1,
-	           category_name2
-	    FROM public.CLUB
-	    join MEMBER USING (USER_NO)
-	    WHERE public.CLUB.STATUS = 'Y' AND CATEGORY_NAME2 = '자기계발';
-	</select>
-	
-	<select id="selectInvest" resultMap="clubResult">
-		SELECT CLUB_NO,
-	           USER_NO,
-	           CLUB_TITLE,
-	           CLUB_TYPE,
-	           CLUB_CONTENT,
-	           ADDRESS,
-	           ADDRESS_DETAIL,
-	           EVENT_DATE, 
-	           COST,
-	           COST_INFO, 
-	           TOTAL_POINT, 
-	           CAPACITY, 
-	           ONLINE,
-	           QUESTION,
-	           THUMBNAIL_IMG,
-	           CREATE_DATE,
-	           CLUB.MODIFY_DATE,
-	           COUNT,
-	           NICKNAME,
-	           category_name1,
-	           category_name2
-	    FROM public.CLUB
-	    join MEMBER USING (USER_NO)
-	    WHERE public.CLUB.STATUS = 'Y' AND CATEGORY_NAME2 = '재테크';
-	</select>
-	
-	<select id="selectLove" resultMap="clubResult">
-	    SELECT CLUB_NO,
-	           USER_NO,
-	           CLUB_TITLE,
-	           CLUB_TYPE,
-	           CLUB_CONTENT,
-	           ADDRESS,
-	           ADDRESS_DETAIL,
-	           EVENT_DATE, 
-	           COST,
-	           COST_INFO, 
-	           TOTAL_POINT, 
-	           CAPACITY, 
-	           ONLINE,
-	           QUESTION,
-	           THUMBNAIL_IMG,
-	           CREATE_DATE,
-	           CLUB.MODIFY_DATE,
-	           COUNT,
-	           NICKNAME,
-	           category_name1,
-	           category_name2
-	    FROM public.CLUB
-	    join MEMBER USING (USER_NO)
-	    WHERE public.CLUB.STATUS = 'Y' AND CATEGORY_NAME2 = '연애, 사랑';
-	</select>
-	
-	<select id="selectForeign" resultMap="clubResult">
-	    SELECT CLUB_NO,
-	           USER_NO,
-	           CLUB_TITLE,
-	           CLUB_TYPE,
-	           CLUB_CONTENT,
-	           ADDRESS,
-	           ADDRESS_DETAIL,
-	           EVENT_DATE, 
-	           COST,
-	           COST_INFO, 
-	           TOTAL_POINT, 
-	           CAPACITY, 
-	           ONLINE,
-	           QUESTION,
-	           THUMBNAIL_IMG,
-	           CREATE_DATE,
-	           CLUB.MODIFY_DATE,
-	           COUNT,
-	           NICKNAME,
-	           category_name1,
-	           category_name2
-	    FROM public.CLUB
-	    join MEMBER USING (USER_NO)
-	    WHERE public.CLUB.STATUS = 'Y' AND CATEGORY_NAME2 = '외국어';
-	</select>
-	
-	<select id="selectGame" resultMap="clubResult">
-	    SELECT CLUB_NO,
-	           USER_NO,
-	           CLUB_TITLE,
-	           CLUB_TYPE,
-	           CLUB_CONTENT,
-	           ADDRESS,
-	           ADDRESS_DETAIL,
-	           EVENT_DATE, 
-	           COST,
-	           COST_INFO, 
-	           TOTAL_POINT, 
-	           CAPACITY, 
-	           ONLINE,
-	           QUESTION,
-	           THUMBNAIL_IMG,
-	           CREATE_DATE,
-	           CLUB.MODIFY_DATE,
-	           COUNT,
-	           NICKNAME,
-	           category_name1,
-	           category_name2
-	    FROM public.CLUB
-	    join MEMBER USING (USER_NO)
-	    WHERE public.CLUB.STATUS = 'Y' AND CATEGORY_NAME2 = '파티, 게임';
+		<select id="cateView" resultMap="clubResult">
+			   SELECT CLUB_NO,
+		       USER_NO,
+		       CLUB_TITLE,
+		       CLUB_TYPE,
+		       CLUB_CONTENT,
+		       ADDRESS,
+		       ADDRESS_DETAIL,
+		       EVENT_DATE, 
+		       COST,
+		       COST_INFO, 
+		       TOTAL_POINT, 
+		       CAPACITY, 
+		       ONLINE,
+		       QUESTION,
+		       THUMBNAIL_IMG,
+		       CREATE_DATE,
+		       CLUB.MODIFY_DATE,
+		       COUNT,
+		       NICKNAME,
+		       category_name1,
+		       category_name2,
+		       (SELECT COUNT(*) FROM picked WHERE CLUB_NO = CLUB.CLUB_NO) AS pickCount
+		FROM public.CLUB
+		JOIN MEMBER USING (USER_NO)
+		WHERE public.CLUB.STATUS = 'Y' AND club_type = #{key}
+		ORDER BY count DESC;
 	</select>
 </mapper>
