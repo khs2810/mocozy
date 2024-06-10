@@ -6,28 +6,25 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.kh.mocozy.admin.model.dao.AdminManagerDao;
+import com.kh.mocozy.admin.model.dao.AdminNoticeDao;
+import com.kh.mocozy.board.model.vo.Notice;
 import com.kh.mocozy.common.model.vo.PageInfo;
-import com.kh.mocozy.member.model.vo.Member;
 
 @Service
-public class AdminManagerlistServiceImpl implements AdminManagerlistService{
+public class AdminNoticeServiceImpl implements AdminNoticeService{
 	
 	@Autowired
-	private AdminManagerDao auDao;
+	private AdminNoticeDao anDao;
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public ArrayList<Member> MemberList(PageInfo mi) {
-		return auDao.MemberList(sqlSession, mi);
+	public ArrayList<Notice> getNoticeAllList(PageInfo ni) {
+		return anDao.getNoticeAllList(sqlSession, ni);
 	}
 	
 	@Override
-	public int getMemberlist() {
-		return auDao.getMemberlist(sqlSession);
+	public int getNoticeCount() {
+		return anDao.getNoticeCount(sqlSession);
 	}
-	
-
-	
 }

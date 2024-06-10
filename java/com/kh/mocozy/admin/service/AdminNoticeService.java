@@ -4,14 +4,13 @@ import java.util.ArrayList;
 
 import org.springframework.stereotype.Service;
 
-import com.kh.mocozy.club.model.vo.Club;
+import com.kh.mocozy.board.model.vo.Notice;
 import com.kh.mocozy.common.model.vo.PageInfo;
-import com.kh.mocozy.member.model.vo.Member;
 
 @Service
-public interface AdminUserlistService {
+public interface AdminNoticeService {
 	//프로필 사진 가져오기
-	ArrayList<Member> MemberList(PageInfo mi);
+	ArrayList<Notice> getNoticeAllList(PageInfo ni);
 	
-	public int getMemberlist();
+	public int getNoticeCount();
 }

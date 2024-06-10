@@ -29,15 +29,16 @@
 		<result column="CATEGORY_NAME2" property="categoryName2"/>
 	</resultMap>
 	
-	<resultMap type="ClubReview" id="clubReviewResult">
-		<result column="CLUB_REVIEW_NO" property="clubReviewNo"/>
-		<result column="REVIEW_CONTENT" property="reviewContent"/>
+	<resultMap type="Notice" id="noticeResult">
+		<result column="NOTICE_NO" property="noticeNo"/>
+		<result column="NOTICE_TITLE" property="noticeTitle"/>
+		<result column="NOTICE_TYPE" property="noticeType"/>
+		<result column="USER_NO" property="userNo"/>
+		<result column="NOTICE_CONTENT" property="noticeContent"/>
+		<result column="COUNT" property="count"/>
 		<result column="CREATE_DATE" property="createDate"/>
 		<result column="MODIFY_DATE" property="modifyDate"/>
-		<result column="GRADE" property="grade"/>
 		<result column="STATUS" property="status"/>
-		<result column="CLUB_NO" property="clubNo"/>
-		<result column="USER_NO" property="userNo"/>
 	</resultMap>
 	
 	<resultMap type="Request" id="requestResult">
@@ -143,5 +144,18 @@
 		SELECT COUNT(*)
 		FROM MEMBER
 		WHERE ADMIN = 'Y';
+	</select>
+	
+	<!--  adminNotice -->
+	<select id="getNoticeAllList" resultMap="noticeResult">
+		SELECT *
+		FROM NOTICE N
+		JOIN MEMBER USING (USER_NO)
+		Order by NOTICE_NO DESC;
+	</select>
+	
+	<select id="getNoticeCount" resultType="int">
+		SELECT COUNT(*)
+		FROM NOTICE;
 	</select>
 </mapper>

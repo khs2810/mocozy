@@ -11,7 +11,7 @@ import com.kh.mocozy.member.model.vo.Member;
 @Service
 public interface AdminManagerlistService {
 	//프로필 사진 가져오기
-	ArrayList<Member> MemberList(PageInfo pi);
+	ArrayList<Member> MemberList(PageInfo mi);
 	
 	public int getMemberlist();
 }

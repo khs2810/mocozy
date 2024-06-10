@@ -21,8 +21,8 @@ public class AdminUserlistServiceImpl implements AdminUserlistService{
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public ArrayList<Member> MemberList(PageInfo pi) {
-		return auDao.MemberList(sqlSession, pi);
+	public ArrayList<Member> MemberList(PageInfo mi) {
+		return auDao.MemberList(sqlSession, mi);
 	}
 	
 	@Override

@@ -22,15 +22,15 @@ public class AdminClubController {
     
 	 //10개씩 클럽목록 보기
 	@RequestMapping("adminClub.ad")
-	public String showAdminClub10(@RequestParam(value="cpage", defaultValue="1") int currentPage, String key, Model model) {  
+	public String showAdminClub10(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) {  
 
 		//페이지네이션
 		int clubAllList = acService.getClublist(); 
 		//총 클럽수, 현재 페이지 번호, 한 페이지에 표시할 클럽 수, 페이지 번호 수 설정
-		PageInfo pi = Pagination.getPageInfo(clubAllList, currentPage, 5, 5);
+		PageInfo ci = Pagination.getPageInfo(clubAllList, currentPage, 5, 5);
 		
 		//클럽 리스트 불러오기
-	    ArrayList<Club> clist = acService.selectClublist(pi, key);
+	    ArrayList<Club> clist = acService.selectClublist(ci);
 		for (Club c : clist){
 			//현재 클럽(c) 의 회원 목록 호출하여 memberList에 저장
 		    ArrayList<Member> memberList = acService.MemberList(c.getClubNo());
@@ -44,13 +44,8 @@ public class AdminClubController {
 		    c.setProfileImg(imgs);    
 		}
 	    
-	    model.addAttribute("key", key);
 		model.addAttribute("clist", clist);
 	    
-		if (clubAllList == 0) {
-			return "common/errorPage";
-		} else {
 	    return "admin/adminClub/adminClub";
-		}
-    }		
-}
+	}
+}		

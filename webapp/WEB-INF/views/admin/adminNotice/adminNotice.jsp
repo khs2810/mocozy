@@ -169,7 +169,7 @@
 															<tr>
 																<th class="check checkhead"></th>
 																<th class="no">No</th>
-																<th class="image" style="width: 220px;">게시글</th>
+																<th class="image" style="width: 150px;">게시글</th>
 																<th class="group" style="width: 110px;">카테고리</th>
 																<th class="state">상태</th>
 																<th class="r-date">등록일</th>
@@ -178,7 +178,8 @@
 														</thead>
 
 														<tbody id="prod-list-body" class="-prod-list-body ui-sortable">
-																<tr class="content -prodListItem" id="prod-list-s20240516ae197a3da7242">
+																<c:forEach var="notice" items="${nlist}">
+																<tr class="content -prodListItem">
 																	<td class="checkhead">
 																		<div class="drag -showcase-handle ui-sortable-handle"></div>
 																		<div class="checkbox checkbox-styled no-margin">
@@ -189,25 +190,19 @@
 																		</div>
 																	</td>
 	
-																	<td class="no text-12">4</td>
-	
-																	<td class="image">
-																		<a href="_blank">
-																			<img src="_blank" width="49" height="49" class="item-thumb">
-																		</a>
-																	</td>
+																	<td class="no text-12">${notice.noticeNo}</td>
 	
 																	<td class="title" style="width: 150px">
 																		<div>
 																			<div class="item-tit inline-blocked">
-																				<a href="_blank">언뇨=ㅇㅇㅇㅇㅇ</a>
+																				<a href="_blank">${notice.noticeTitle}</a>
 																				<a href="_blank" class="im-icon im-ico-new-tab vertical-middle tab-icon" style="margin-left: 4px;"></a>
 																			</div>
 																			<span class="btn-sm text-gray-bright"></span>
 																		</div>
 																	</td>
 	
-																	<td class="group" style="text-decoration: underline;">이벤트</td>
+																	<td class="group" style="text-decoration: underline;">${notice.noticeType}</td>
 															
 																	<td class="state on-click">
 																		<a data-toggle="dropdown" style="margin-right: -1px;">
@@ -223,14 +218,15 @@
 																		</ul>
 																	</td>
 	
-																	<td class="r-date text-12">2024-04-01</td>
+																	<td class="r-date text-12">${notice.modifyDate}</td>
 																	<td class="more">
 																		<div class="dropdown">
-																			<button class="btn btn-primary-btn" id="noticeBtn">설정</button>
-																			<button class="btn btn-flat" id="deleteBtn">삭제</button>
+																			<!-- <button class="btn btn-primary-btn" id="noticeBtn">노출</button> -->
+																			<button class="btn btn-flat" id="deleteBtn">종료</button>
 																		</div>
 																	</td>
 																</tr>
+																</c:forEach>
 														</tbody>
 													</table>
 												</div>
