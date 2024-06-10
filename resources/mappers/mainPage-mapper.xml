@@ -77,9 +77,9 @@
 	</insert>
 	
 	<select id="selectSocialList" resultType="int">
-		SELECT COUNT(*)
-		  FROM CLUB
-		 WHERE public.CLUB.STATUS = 'Y';
+		    SELECT COUNT(*)
+		      FROM CLUB
+		     WHERE public.CLUB.STATUS = 'Y'
 	</select>
 	
 	<select id="selectClist" resultMap="clubResult">

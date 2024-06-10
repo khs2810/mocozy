@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +34,7 @@
                     <p style="font-size: 24px; margin-left: 5px; font-weight: 650;">잔여 포인트</p>
                 </div>
                 <div class="pointBox-mid">
-                    <p class="point-level">${loginUser.point} pt</p>
+                    <p class="point-level"><fmt:formatNumber value="${loginUser.point}" pattern="#,###"/>pt</p>
                 </div>
                 <div class="pointBox-foot">
                     <button type="button" class="chargeBtn" data-toggle="modal" data-target="#chargeWindow">충 전</button>
@@ -47,15 +49,19 @@
             <hr style="background: lightgray; height: 1px; border: 0;" ><br>
             <div class="currentHistory">
                 <div class="dateArea">
-                    <span>2024.04</span>
+                    <span>${strMonth}</span>
                 </div>
-                <div class="chargeArea">
+                <div class="useArea">
                     <span class="area-left">충전 내역</span>
-                    <span class="area-right">1,620,000pt</span>
+                    <span class="area-right"><fmt:formatNumber value="${sumPoint}" pattern="#,###"/>pt</span>
                 </div><br>
                 <div class="useArea">
                     <span class="area-left">사용 내역</span>
-                    <span class="area-right">-1,620,000pt</span>
+                    <span class="area-right">-<fmt:formatNumber value="${sumUsePoint}" pattern="#,###"/>pt</span>
+                </div><br>
+                <div class="useArea">
+                    <span class="area-left">출금 내역</span>
+                    <span class="area-right">-<fmt:formatNumber value="${sumWithdrawPoint}" pattern="#,###"/>pt</span>
                 </div>
             </div>
         </div>

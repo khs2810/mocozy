@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.kh.mocozy.member.model.vo.Member;
+import com.kh.mocozy.point.model.vo.Payment;
 import com.kh.mocozy.point.model.vo.Point;
 
 @Repository
@@ -26,6 +27,34 @@ public class PointDao {
 
 	public int sumPointMonth(SqlSessionTemplate sqlSession, Map<String, Object> map) {
 		return sqlSession.selectOne("pointMapper.sumPointMonth", map);
+	}
+
+	public int totalChargePoint(SqlSessionTemplate sqlSession, int uno) {
+		return sqlSession.selectOne("pointMapper.totalChargePoint", uno);
+	}
+
+	public ArrayList<Point> selectPointWithDrawList(SqlSessionTemplate sqlSession, Map<String, Object> map) {
+		return (ArrayList)sqlSession.selectList("pointMapper.selectPointWithDrawList", map);
+	}
+
+	public int totalWithdrawPoint(SqlSessionTemplate sqlSession, int userNo) {
+		return sqlSession.selectOne("pointMapper.totalWithdrawPoint", userNo);
+	}
+
+	public int sumWithdrawPointMonth(SqlSessionTemplate sqlSession, Map<String, Object> map) {
+		return sqlSession.selectOne("pointMapper.sumWithdrawPointMonth", map);
+	}
+
+	public ArrayList<Payment> selectPointUseList(SqlSessionTemplate sqlSession, Map<String, Object> map) {
+		return (ArrayList)sqlSession.selectList("pointMapper.selectPointUseList", map);
+	}
+
+	public int useTotalPoint(SqlSessionTemplate sqlSession, int userNo) {
+		return sqlSession.selectOne("pointMapper.useTotalPoint", userNo);
+	}
+
+	public int sumUsePoint(SqlSessionTemplate sqlSession, Map<String, Object> map) {
+		return sqlSession.selectOne("pointMapper.sumUsePoint", map);
 	}
 
 }

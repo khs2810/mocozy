@@ -221,6 +221,7 @@ width: 905px;
 height: 100%;
 border-radius: 15px;
 padding: 20px;
+min-height: 607px;
 }
 
 /* 콘텐츠 타이틀 */

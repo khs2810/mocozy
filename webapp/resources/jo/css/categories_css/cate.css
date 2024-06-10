@@ -56,7 +56,9 @@ li {
 }
 
 .catePage .leftlistTitle > span {
+	position: relative;
 	font-weight: 700;
+	bottom: 3px;
 }
 
 .catePage .cateRanklisticon{
@@ -85,14 +87,17 @@ li {
   top: 5px;
 }
 
-.rightlistTitle > p > a:hover{
+.rightlistTitle .rightlistContent > p {
+	font-weight: 600;
+}
+
+.rightlistTitle .rightlistContent > p > a:hover {
 	color: rgb(255 0 69); 
 }
 
-.catePage .rightlistContent > span {
-  line-height: 1.25rem;
-	color: rgb(255 0 69);
-  font-weight: 700;
+.highlight {
+    color: red;
+    font-weight: bold;
 }
 
 .catePage .screen {

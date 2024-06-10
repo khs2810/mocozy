@@ -16,8 +16,6 @@ $(document).ready(function(){
             }
         });
     })
-    
-
 })
 
 function ajaxSearchNotice(data, callback){
@@ -57,6 +55,7 @@ function drawNoticePi(pData, keyData) {
         str += pData.currentPage - 1
         str += `)'><i class="fa-solid fa-angle-left"></i></button>`;
     }
+    
     for (let p = pData.startPage; p <= pData.endPage; p++){
         if (p == pData.currentPage) {
             str += `<div class="notice_cpage">${p}</div>\n`;

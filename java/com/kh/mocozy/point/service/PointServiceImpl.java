@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.mocozy.member.model.vo.Member;
 import com.kh.mocozy.point.model.dao.PointDao;
+import com.kh.mocozy.point.model.vo.Payment;
 import com.kh.mocozy.point.model.vo.Point;
 
 
@@ -40,6 +41,41 @@ public class PointServiceImpl implements PointService {
 	@Override
 	public int sumPointMonth(Map<String, Object> map) {
 		return pointDao.sumPointMonth(sqlSession, map);
+	}
+
+	@Override
+	public int totalChargePoint(int uno) {
+		return pointDao.totalChargePoint(sqlSession, uno);
+	}
+
+	@Override
+	public ArrayList<Point> selectPointWithDrawList(Map<String, Object> map) {
+		return pointDao.selectPointWithDrawList(sqlSession, map);
+	}
+
+	@Override
+	public int totalWithdrawPoint(int userNo) {
+		return pointDao.totalWithdrawPoint(sqlSession, userNo);
+	}
+
+	@Override
+	public int sumWithdrawPointMonth(Map<String, Object> map) {
+		return pointDao.sumWithdrawPointMonth(sqlSession, map);
+	}
+
+	@Override
+	public ArrayList<Payment> selectPointUseList(Map<String, Object> map) {
+		return pointDao.selectPointUseList(sqlSession, map);
+	}
+
+	@Override
+	public int useTotalPoint(int userNo) {
+		return pointDao.useTotalPoint(sqlSession, userNo);
+	}
+
+	@Override
+	public int sumUsePoint(Map<String, Object> map) {
+		return pointDao.sumUsePoint(sqlSession, map);
 	}
 	
 }

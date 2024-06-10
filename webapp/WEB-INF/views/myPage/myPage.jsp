@@ -16,8 +16,7 @@
 	<script src="${pageContext.request.contextPath}/resources/jun/js/challengeManagePage.js"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/MyPage.css" />
-    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/myPage.css" />
 
 </head>
 <body>
@@ -34,38 +33,18 @@
                 <div class="content-title">
                     <h5>내 최근 모임</h5>
                 </div>
-                <div class="club-content" onclick="location.href='이동할 링크주소(URL)';">
-                    <div class="club-img">
-                        <img src="${pageContext.request.contextPath}/resources/koo/upfile/club_img/clubImg1.png" href="(해당 클럽상세)" alt="">
+                <c:forEach var="myPageClub" items="${list}">
+                    <div class="club-content">
+                        <div class="club-img" onclick="location.href='http://localhost:8890/mocozy/detail.cl?cno=${myPageClub.clubNo}';">
+                            <img src="${pageContext.request.contextPath}/${myPageClub.thumbnailImg}">
+                        </div>
+                        <div class="wrap">
+                            <p class="club-title club-text" onclick="location.href='http://localhost:8890/mocozy/detail.cl?cno=${myPageClub.clubNo}';">
+                                ${myPageClub.clubTitle}
+                            </p>
+                        </div>
                     </div>
-                    <div class="wrap">
-                        <p class="club-title club-text">♥블랙라이어♥:: with.하이볼 무제한🍺</p>
-                    </div>
-                </div>
-                <div class="club-content" onclick="location.href='이동할 링크주소(URL)';">
-                    <div class="club-img">
-                        <img src="./img/image 19.png" alt="">
-                    </div>
-                    <div class="wrap">
-                        <p class="club-title club-text">밥을 먹는 사람들</p>
-                    </div>
-                </div>
-                <div class="club-content" onclick="location.href='이동할 링크주소(URL)';">
-                    <div class="club-img">
-                        <img src="./img/image 22.png" alt="">
-                    </div>
-                    <div class="wrap">
-                        <p class="club-title club-text">선착순 10분!! 상품은</p>
-                    </div>
-                </div>
-                <div class="club-content" onclick="location.href='이동할 링크주소(URL)';">
-                    <div class="club-img">
-                        <img src="./img/image 21.png" alt="">
-                    </div>
-                    <div class="wrap">
-                        <p class="club-title club-text">리액트 때려부셔버리겠어 으아아아아아</p>
-                    </div>
-                </div>
+                </c:forEach>
             </div>
             <hr>
 
@@ -74,38 +53,16 @@
                     <div class="content-title">
                         <h5>찜</h5>
                     </div>
-                    <div class="club-content" onclick="location.href='이동할 링크주소(URL)';">
-                        <div class="club-img">
-                            <img src="./img/image 18.png" alt="">
+                    <c:forEach var="myPageClub" items="${plist}">
+                        <div class="club-content">
+                            <div class="club-img" onclick="location.href='http://localhost:8890/mocozy/detail.cl?cno=${myPageClub.clubNo}';">
+                                <img src="${pageContext.request.contextPath}/${myPageClub.thumbnailImg}" alt="">
+                            </div>
+                            <div class="wrap">
+                                <div class="club-title">${myPageClub.clubTitle}</div>
+                            </div>
                         </div>
-                        <div class="wrap">
-                            <div class="club-title" data-hover="♥블랙라이어♥:: with.하이볼 무제한🍺">♥블랙라이어♥:: with.하이볼 무제한🍺</div>
-                        </div>
-                    </div>
-                    <div class="club-content" onclick="location.href='이동할 링크주소(URL)';">
-                        <div class="club-img">
-                            <img src="./img/image 19.png" alt="">
-                        </div>
-                        <div class="wrap">
-                            <p class="club-title club-text">밥을 먹는 사람들</p>
-                        </div>
-                    </div>
-                    <div class="club-content" onclick="location.href='이동할 링크주소(URL)';">
-                        <div class="club-img">
-                            <img src="./img/image 22.png" alt="">
-                        </div>
-                        <div class="wrap">
-                            <p class="club-title club-text">선착순 10분!! 상품은</p>
-                        </div>
-                    </div>
-                    <div class="club-content" onclick="location.href='이동할 링크주소(URL)';">
-                        <div class="club-img">
-                            <img src="./img/image 21.png" alt="">
-                        </div>
-                        <div class="wrap">
-                            <p class="club-title club-text">리액트 때려부셔버리겠어 으아아아아아</p>
-                        </div>
-                    </div>
+                    </c:forEach>
                 </div>
             </div>
             <hr>

@@ -129,12 +129,6 @@ public class MemberController {
 		// return memberService.idCheck(checkId) > 0 ? "NNNNN" : "NNNNY";
 	}
 
-//	마이페이지 
-	@RequestMapping("myPage.me")
-	public String myPageView() {
-		return "myPage/myPage";
-	}
-
 //	회원정보 수정
 	@RequestMapping("update.me")
 	public String updateMember(Member m, MultipartFile upfile, HttpSession session, Model model) {
