@@ -41,7 +41,6 @@
         <!-- 메인 컨텐츠 부 전체-->
         <div class="main-content">
             <!-- 메인컨텐츠 타이틀 -->
-            <div class="title">
                 <h1>내 프로필</h1>
                 <!-- <h3>부제목</h3> -->
 
@@ -54,7 +53,6 @@
                         <option value="">종료됨</option>
                     </select>
                 </div>  -->
-            </div>
             <hr>
 
             <!-- 컨텐츠 내용 -->

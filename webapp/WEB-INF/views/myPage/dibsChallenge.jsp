@@ -11,7 +11,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-    
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jun/css/challengeManagePage.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/dibs.css" />
 
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
@@ -24,9 +25,18 @@
         <%@ include file="myPageCommon.jsp" %>
         
         <div class="main-content">
-            <div class="main-content-head">
-                <h2 style="margin-right: 30px;">리뷰</h2>
-                <h5>참여한 모임</h5>
+             <!-- 메인컨텐츠 타이틀 -->
+             <div class="title">
+                <h1>찜</h1>
+                <h3>소셜링</h3>
+                
+                <!-- 셀렉버튼 -->
+                <!-- <div class="title-select">
+                    <select name="" id="">
+                        <option value="">진행중</option>
+                        <option value="">종료됨</option>
+                    </select>
+                </div>  -->
             </div>
             <hr style="background: lightgray; height: 1px; border: 0;">
             <div class="reviewList">
