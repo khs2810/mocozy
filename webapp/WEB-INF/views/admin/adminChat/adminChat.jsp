@@ -59,6 +59,15 @@
 								</li>
 							</ul>
 						</div>
+
+						<div class="headerbar-right">
+							<ul class="header-nav header-nav-options">
+								<li class="hidden-xs">
+									<a class="clay-button black exit-btn" style="margin-right: 50px;" href="admin.ad">뒤로가기</a>
+								</li>
+							</ul><!--end .header-nav-options -->
+						</div><!--끝 #header-navbar-collapse -->
+						<!--끝 #header-navbar-collapse -->
 					</div>
 				</header>
 
@@ -67,30 +76,6 @@
 					<section class="section">
 						<div class="section-body">
 							<div class="tab-pane" id="daily">
-								
-						<div class="row no-margin">
-							<div class="hidden-xs hidden-md">
-									<div class="card">
-										<div class="card-body no-padding">
-											<ul class="nav nav-pills nav-stacked sortable-list -sortable-list ui-sortable">
-												<li class="active">
-													<a href="_blank">전체 채팅</a>
-												</li>
-												<li>
-													<a href="_blank">
-														<img src="_blank" width="20">1:1 관리자 채팅
-													</a>
-												</li>
-												<li id="board-item-b202405169c294be1ca714">
-													<a href="_blank">
-														<img src="_blank" width="20">모임 채팅
-													</a>
-												</li>
-											</ul>
-										</div><!--end.card-body-->
-									</div><!--end.card-->
-								</div><!--end.col-->
-							</div>
 
 						<div class="col-md-9 no-padding">
 										<div class="row">
@@ -122,7 +107,7 @@
 													</div>
 
 													<div class="card-body no-padding">
-														<div class="li-table" id="UI-TABLE">
+														<div class="li-table">
 															<ul class="subject">
 																<li class="check">
 																	<div class="checkbox checkbox-styled no-margin">
@@ -133,10 +118,9 @@
 																	</div>
 																</li>
 																<li class="lang-icon width20"></li>
-																<li class="category hidden-xs hidden-sm"> 카테고리</li>
 																<li class="title">제목</li>
-																<li class="author">작성자</li>
-																<li class="date">작성일</li>
+																<li class="author">유저명</li>
+																<li class="date">문의일</li>
 																<li class="action"></li>
 															</ul>
 
@@ -153,8 +137,6 @@
 																<li class="lang-icon">
 																	<img src="_blank" style="width:20px">
 																</li>
-																
-																<li class="based">관리자 1:1 채팅</li>
 
 																<li class="title">
 																	<span class="-icon-notice-p20240521492f0349dfaec" style="display:none">
@@ -190,8 +172,6 @@
 																<li class="lang-icon">
 																	<img src="_blank" style="width:20px">
 																</li>
-																
-																<li class="based">유저 모임 채팅</li>
 
 																<li class="title">
 																	<span class="-icon-notice-p20240521492f0349dfaec" style="display:none">
@@ -256,4 +236,5 @@
 			</div>
 		</div>
 </body>
+<%@ include file="../../common/topButton.jsp"%>
 </html>

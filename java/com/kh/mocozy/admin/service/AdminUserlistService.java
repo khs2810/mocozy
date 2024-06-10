@@ -9,12 +9,9 @@ import com.kh.mocozy.common.model.vo.PageInfo;
 import com.kh.mocozy.member.model.vo.Member;
 
 @Service
-public interface AdminClubService {
-	
+public interface AdminUserlistService {
 	//프로필 사진 가져오기
-	ArrayList<Member> MemberList(int userNo);
-
-	public int getClublist();
+	ArrayList<Member> MemberList(PageInfo pi);
 	
-	public ArrayList<Club> selectClublist(PageInfo pi, String key);
+	public int getMemberlist();
 }

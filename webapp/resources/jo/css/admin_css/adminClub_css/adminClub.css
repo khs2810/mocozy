@@ -150,12 +150,6 @@ header {
     background-color: #1A6DFF1A;
 }
 
-.btn-primary {
-    color: #ffffff;
-    background-color: #1A6DFF;
-    border-color: #1A6DFF;
-}
-
 .btn-flat, .btn-icon-toggle {
     background-color: transparent;
     border-color: transparent;
@@ -290,14 +284,6 @@ nav #prod_list_category_ > a {
     line-height: 50px;
     width: 36px;
     height: auto;
-}
-
-.btn-primary:hover, 
-.btn-primary:focus, 
-.open .dropdown-toggle.btn-primary {
-    color: #ffffff;
-    background-color: #0053D9;
-    border-color: #0053D9;
 }
 
 .header-nav .header-nav-brand {
@@ -752,12 +738,6 @@ nav #prod_list_category_ > a {
     align-items: center;
 }
 
-.card table > thead > tr > td > div,
-.card table > tbody > tr > td > div,
-.card table > tfoot > tr > td > div {
-    width: 170px;
-}
-
 .shop-table .checkhead,
 .table-responsive .checkhead {
     display: flex;
@@ -857,7 +837,7 @@ nav #prod_list_category_ > a {
     display: flex;
     justify-content: left;
     align-items: center;
-    width: 170px;
+    width: 350px;
 }
 
 @media (max-width: 1320px) {
@@ -1658,4 +1638,43 @@ textarea.form-control {
 
 .card:not(:last-child) {
     margin-bottom: 5px;
+}
+
+.btn-primary-button {
+    color: #fff;
+    background-color: #1A6DFF;
+    border-color: #1A6DFF;
+}
+
+.btn-primary-button:hover,
+.btn-primary-button:active  {
+    color: #fff;
+    background-color: #195bcc;
+    border-color: #195bcc;
+}
+
+.btn-primary-btn {
+    color: #1A6DFF;
+    background-color: none;
+    border-color: none;
+}
+
+.btn-primary-btn:hover,
+.btn-primary-btn:active  {
+    color: #195bcc;
+    background-color: none;
+    border-color: none;
+}
+
+.btn-danger-button {
+    color: #ff1a39;
+    background-color: none;
+    border-color: none;
+}
+
+.btn-danger-button:hover,
+.btn-danger-button:active  {
+    color: #8f2323;
+    background-color: none;
+    border-color: none;
 }

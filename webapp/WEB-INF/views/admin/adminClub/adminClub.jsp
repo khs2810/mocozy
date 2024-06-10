@@ -61,24 +61,9 @@
 						</div>
 
 						<div class="headerbar-right">
-							<ul class="header-nav header-nav-options -option-list">
+							<ul class="header-nav header-nav-options">
 								<li class="hidden-xs">
-									<a class="btn btn-primary" href="insertClub.ad">클럽 추가</a>
-								</li>
-
-								<li class="hidden-md hidden-lg hidden-sm">
-									<button class="btn btn-flat" id="dLabel" style="padding: 4px 8px;">
-										<svg style="border: 1px solid black; height: 16px; width: 16px;"><!-- 아이콘 --></svg>
-									</button>
-
-									<ul class="dropdown-menu animation-dock">
-										<li>
-											<a href="_blank">상품 추가</a>
-										</li>
-										<li>
-											<a href="_blank">상품 일괄 추가</a>
-										</li>
-									</ul>
+									<a class="clay-button black exit-btn" style="margin-right: 50px;" href="admin.ad">뒤로가기</a>
 								</li>
 							</ul><!--end .header-nav-options -->
 						</div><!--끝 #header-navbar-collapse -->
@@ -91,7 +76,7 @@
 					<section class="no-padding-bottom section">
 						<div class="section-body">
 							<div class="row">
-								<div class="col-md-9 col-lg-10 col-xl-10">
+								<div>
 									<ul class="nav nav-tabs tw-flex nav nav-tabs tw-mb24" id="prod-status-tab">
 										<li class="owl-dashboard -owl-dashboard owl-carousel owl-theme owl-loaded">
 											<div class="owl-stage-outer">
@@ -100,7 +85,7 @@
 														<ul class="owl-nav-tabs">
 															<li class="active -all">
 																<a href="_blank">전체
-																	<span class="_count text-primary">4</span>
+																	<span class="_count text-primary">5</span>
 																</a>
 															</li>
 														</ul>
@@ -110,7 +95,7 @@
 														<ul class="owl-nav-tabs">
 															<li class="sale">
 																<a href="_blank">진행중
-																	<span class="_count text-primary">4</span>
+																	<span class="_count text-primary">5</span>
 																</a>
 															</li>
 														</ul>
@@ -125,11 +110,11 @@
 															</li>
 														</ul>
 													</div>
-
+													
 													<div class="owl-item owl-itemitem active">
 														<ul class="owl-nav-tabs">
-															<li class="nosale">
-																<a href="_blank">숨김
+															<li class="soldout">
+																<a href="_blank">미승인
 																	<span class="_count text-primary">0</span>
 																</a>
 															</li>
@@ -141,16 +126,14 @@
 
 										<li class="hidden-xs hidden-sm">
 											<select class="tw-relative tw-bg-transparent tw-appearance-none tw-pr13 tw-text-right">
-												<option value="10">10개씩 보기</option>
-												<option value="20">20개씩 보기</option>
-												<option value="50">50개씩 보기</option>
-												<option value="100">100개씩 보기</option>
+												<option value="DESC">내림차순</option>
+												<option value="ASC">오름차순</option>
 											</select>
 										</li>
 									</ul>
 
 									<div class="row">
-										<div class="col-md-12">
+										<div>
 											<div class="clearfix search-form">
 												<div class="card">
 													<div class="card-body no-padding">
@@ -188,7 +171,7 @@
 											</div>
 										</div>
 
-										<div class="col-md-12">
+										<div>
 											<div class="card">
 												<div class="table-responsive shop-table check" id="prod-list">
 													<table class="table no-margin">
@@ -218,11 +201,11 @@
 																		</div>
 																	</td>
 	
-																	<td class="no text-12">4</td>
+																	<td class="no text-12">${club.clubNo}</td>
 	
 																	<td class="image">
 																		<a href="_blank">
-																			<img src="_blank" width="49" height="49" class="item-thumb">
+																			<img src="${club.thumbnailImg}" width="49" height="49" class="item-thumb">
 																		</a>
 																	</td>
 	
@@ -236,11 +219,11 @@
 																		</div>
 																	</td>
 	
-																	<td class="group">임시</td>
+																	<td class="group">${club.categoryName2}</td>
 															
 																	<td class="state on-click">
 																		<a data-toggle="dropdown" style="margin-right: -1px;">
-																			<span>진행중</span>
+																			<span>${club.status}</span>
 																		</a>
 																		<ul class="dropdown-menu" style="top: 50px;">
 																			<li id="mixpanel-bo-shopping-item-list-status-sale">
@@ -249,17 +232,15 @@
 																			<li id="mixpanel-bo-shopping-item-list-status-soldout">
 																				<a href="_blank">종료</a>
 																			</li>
-																			<li id="mixpanel-bo-shopping-item-list-status-nosale">
-																				<a href="_blank">숨김</a>
-																			</li>
 																		</ul>
 																	</td>
 	
-																	<td class="r-date text-12">2024-04-01</td>
+																	<td class="r-date text-12">${club.createDate}</td>
 																	<td class="more">
 																		<div class="dropdown">
-																			<button class="btn btn-primary-button"><a href="../privateChat.jsp">이동</a></button>
-																			<button class="btn btn-flat" id="deleteBtn">삭제</button>
+																			<button class="btn btn-primary-btn" id="acceptBtn">승인</button>
+																			<button class="btn btn-danger-button" id="deleteBtn">종료</button>
+																			<button class="btn btn-flat" id="startBtn">시작</button>
 																		</div>
 																	</td>
 																</tr>
@@ -291,18 +272,64 @@
 								<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
 							</svg>
 						</button>
-						<h3 class="modal-title">삭제</h3>
+						<h3 class="modal-title">종료</h3>
 					</div>
 					<div class="modal-body"> 
-							선택한 모임을 삭제하시겠습니까? <br>
-							삭제된 기록은 복구할 수 없습니다. 
+							선택한 모임을 종료하시겠습니까? 
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default btn-flat" data-dismiss="modal">취소</button>
-						<button type="button" class="btn btn-primary btn-flat" id="board-save">삭제</button>
+						<button type="button" class="btn btn-primary btn-flat" id="board-save">종료</button>
+					</div>                        
+				</div>
+			</div>
+		</div>
+
+		<!-- 모달창 -->
+		<div id="cocoaModal" class="modal in modal-admin accessModal" data-backdrop="true" data-keyboard="true" style="display: none;">
+			<div class="modal-dialog ui-draggable">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+								<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+							</svg>
+						</button>
+						<h3 class="modal-title">승인</h3>
+					</div>
+					<div class="modal-body"> 
+							선택한 모임을 승인하시겠습니까? 
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default btn-flat" data-dismiss="modal">취소</button>
+						<button type="button" class="btn btn-primary btn-flat" id="board-save">승인</button>
+					</div>                        
+				</div>
+			</div>
+		</div>
+
+		<!-- 모달창 -->
+		<div id="cocoaModal" class="modal in modal-admin startModal" data-backdrop="true" data-keyboard="true" style="display: none;">
+			<div class="modal-dialog ui-draggable">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+							<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+								<path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708"/>
+							</svg>
+						</button>
+						<h3 class="modal-title">진행</h3>
+					</div>
+					<div class="modal-body"> 
+							선택한 모임을 진행하시겠습니까? 
+					</div>
+					<div class="modal-footer">
+						<button type="button" class="btn btn-default btn-flat" data-dismiss="modal">취소</button>
+						<button type="button" class="btn btn-primary btn-flat" id="board-save">승인</button>
 					</div>                        
 				</div>
 			</div>
 		</div>
 </body>
+<%@ include file="../../common/topButton.jsp"%>
 </html>

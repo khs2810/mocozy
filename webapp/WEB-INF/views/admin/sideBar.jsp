@@ -106,7 +106,7 @@
                                               </svg>
                                         </div>
 
-                                        <span class="title title-controls">전체 채팅 관리</span>
+                                        <span class="title title-controls">채팅 관리</span>
                                     </a>
                                 </li>
 

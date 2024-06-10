@@ -30,6 +30,13 @@ public class CateDao {
 			return (ArrayList)sqlSession.selectList("cateMapper.selectcatelist", order, rowBounds);
 		}
 		
+		public ArrayList<Club> selectcateAll(SqlSessionTemplate sqlSession, PageInfo pi, String order) {
+			int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+			
+			RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+			return (ArrayList)sqlSession.selectList("cateMapper.selectcateAll", order, rowBounds);
+		}
+		
 		public ArrayList<Club> selectCateFilter(SqlSessionTemplate sqlSession, Map<String, String> map, PageInfo pi) {
 			int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 			

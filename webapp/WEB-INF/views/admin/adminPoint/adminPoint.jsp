@@ -60,12 +60,14 @@
 
 					<div class="headerbar-right">
 						<ul class="header-nav header-nav-options">
-							<li>
+							<li class="hidden-xs">
+								<a class="clay-button black exit-btn" style="margin-right: 50px;" href="admin.ad">뒤로가기</a>
 							</li>
 						</ul><!--end .header-nav-options -->
 					</div><!--끝 #header-navbar-collapse -->
 					<!--끝 #header-navbar-collapse -->
 				</div>
+
 			</header>
 
 			<!-- BEGIN CONTENT-->
@@ -88,7 +90,7 @@
 														style="padding-right: 15px;width: 115px;">
 														<select class="form-control static dirty" id="target-type" name="target-type">
 															<option value="member">회원</option>
-															<option value="group">그룹</option>
+															<option value="group">관리자</option>
 														</select>
 														<div class="form-control-line"></div>
 													</div>
@@ -179,8 +181,8 @@
 													<li class="nick">이름(닉네임)</li>
 													<li class="data">사유/내용</li>
 													<li class="order">가입한 클럽</li>
-													<li class="stz text-right">증감</li>
-													<li class="balance text-right">지급/회수자</li>
+													<li class="stz text-right">지급/회수자</li>
+													<li class="balance text-right"></li>
 												</ul>
 
 											</div><!--end.li-table-->
@@ -198,4 +200,5 @@
 		</div>
 	</div>
 </body>
+<%@ include file="../../common/topButton.jsp"%>
 </html>

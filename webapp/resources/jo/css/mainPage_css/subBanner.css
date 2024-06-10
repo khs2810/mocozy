@@ -73,6 +73,12 @@ li {
   right: 5rem;
 }
 
+.Subbanner #subitem a{
+	position: relative;
+	width: 50%;
+	height: 100%;	
+}
+
 /*이미지 넣기*/
 .Subbanner .subitem1 {
   width: 1250px;

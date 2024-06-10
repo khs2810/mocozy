@@ -27,7 +27,7 @@ public class AdminClubController {
 		//페이지네이션
 		int clubAllList = acService.getClublist(); 
 		//총 클럽수, 현재 페이지 번호, 한 페이지에 표시할 클럽 수, 페이지 번호 수 설정
-		PageInfo pi = Pagination.getPageInfo(clubAllList, currentPage, 10, 10);
+		PageInfo pi = Pagination.getPageInfo(clubAllList, currentPage, 5, 5);
 		
 		//클럽 리스트 불러오기
 	    ArrayList<Club> clist = acService.selectClublist(pi, key);
