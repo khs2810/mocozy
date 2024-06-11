@@ -44,7 +44,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/jo/css/admin_css/adminClub_css/adminClub.css">
 <script
-	src="${pageContext.request.contextPath}/resources/jo/js/admin_js/adminManager_js/adminManager.js"></script>
+	src="${pageContext.request.contextPath}/resources/jo/js/admin_js/adminClub_js/adminClub.js"></script>
 </head>
 
 <%@ include file="../sideBar.jsp"%>
@@ -52,27 +52,23 @@
 	<div class="menubar-hoverable header-fixed menubar-pin sidebar-mini">
 		<div id="base">
 			<div id="basecontent">
-				<header class="top-header" id="default-header">
+				<header class="top-header" id="header">
 					<div class="headerbar">
 						<div class="headerbar-left">
 							<ul class="header-nav header-nav-options">
 								<li class="header-nav-brand">
 									<div class="brand-holder">
-										<span class="location-text"> <a href="_blank">관리자</a></span>
+										<span class="location-text"> <a href="_blank">클럽</a>
+										</span>
 									</div>
 								</li>
 							</ul>
 						</div>
 
-						<div class="headerbar-right" style="margin-right: 80px !important">
+						<div class="headerbar-right">
 							<ul class="header-nav header-nav-options">
-								<li class="hidden-xs" style="margin-right: 10px !important">
-									<a class="clay-button black exit-btn" href="admin.ad">뒤로가기</a>
-								</li>
-								<li class="hidden-xs" style="margin-right: 10px !important">
-									<a class="clay-button btn-primary-button"
-									href="insertManager.ad">관리자 추가</a>
-								</li>
+								<li class="hidden-xs"><a class="clay-button black exit-btn"
+									style="margin-right: 50px;" href="admin.ad">뒤로가기</a></li>
 							</ul>
 							<!--end .header-nav-options -->
 						</div>
@@ -86,34 +82,48 @@
 					<section class="no-padding-bottom section">
 						<div class="section-body">
 							<div class="row">
-								<div class="col-md-9 col-lg-10 col-xl-10">
-									<ul class="nav nav-tabs tw-flex nav nav-tabs tw-mb24"
-										id="prod-status-tab">
-										<li
-											class="owl-dashboard -owl-dashboard owl-carousel owl-theme owl-loaded">
+								<div>
+									<ul class="nav nav-tabs tw-flex nav nav-tabs tw-mb24" id="prod-status-tab">
+										<li class="owl-dashboard -owl-dashboard owl-carousel owl-theme owl-loaded">
 											<div class="owl-stage-outer">
 												<div class="owl-stage">
 													<div class="owl-item owl-itemitem active">
 														<ul class="owl-nav-tabs">
-															<li class="active -all"><a href="adminManager.ad">전체
-																	<span class="_count text-primary">${manageCount}</span>
-															</a></li>
+															<li class="soldout" id="club-All">
+																<a href="adminClub.ad">전체
+																	<span class="_count text-primary">${clubAllCount}</span>
+																</a>
+															</li>
 														</ul>
 													</div>
 
 													<div class="owl-item owl-itemitem active">
 														<ul class="owl-nav-tabs">
-															<li class="sale"><a href="adminManagerActive.ad">활동중
-																	<span class="_count text-primary">${manageActiveCount}</span>
-															</a></li>
+															<li class="soldout" id="club-process">
+																<a href="adminProcess.ad">진행중
+																	<span class="_count text-primary">${clubProcessCount}</span>
+																</a>
+															</li>
 														</ul>
 													</div>
 
 													<div class="owl-item owl-itemitem active">
 														<ul class="owl-nav-tabs">
-															<li class="soldout"><a href="adminManagerEnd.ad">종료
-																	<span class="_count text-primary">${manageEndCount}</span>
-															</a></li>
+															<li class="active -all" id="club-end">
+																<a href="adminEnd.ad">종료
+																	<span class="_count text-primary">${clubEndCount}</span>
+																</a>
+															</li>
+														</ul>
+													</div>
+													
+													<div class="owl-item owl-itemitem active">
+														<ul class="owl-nav-tabs">
+															<li class="soldout" id="club-approve">
+																<a href="adminApprove.ad">미승인
+																	<span class="_count text-primary">${clubApproveCount}</span>
+																</a>
+															</li>
 														</ul>
 													</div>
 												</div>
@@ -124,12 +134,11 @@
 										<select class="tw-relative tw-bg-transparent tw-appearance-none tw-pr13 tw-text-right" id="sortBtn">
 												<option value="DESC">내림차순</option>
 												<option value="ASC">오름차순</option>
-										</select>
-										</li>
+										</select></li>
 									</ul>
 
 									<div class="row">
-										<div class="col-md-12">
+										<div>
 											<div class="clearfix search-form">
 												<div class="card">
 													<div class="card-body no-padding">
@@ -148,7 +157,7 @@
 																			class="search-keyword-type" id="search-keyword-type">
 																	</div> <input type="text" id="keyword-search-input"
 																	class="keyword-search keysearch-input form-control typeahead tt-input"
-																	placeholder="유저 닉네임, 유저 아이디 검색">
+																	placeholder="모임명, 모임 카테고리 검색">
 																</span>
 															</div>
 
@@ -158,9 +167,9 @@
 																			xmlns="http://www.w3.org/2000/svg" class="svgicon"
 																			fill="currentColor" class="bi bi-search"
 																			viewBox="0 0 16 16">
-															<path
+																			<path
 																				d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-														  </svg>
+																		  </svg>
 																	</label>
 																</div>
 														</form>
@@ -170,29 +179,28 @@
 										</div>
 									</div>
 
-									<div class="col-md-12">
+									<div>
 										<div class="card">
 											<div class="table-responsive shop-table check" id="prod-list">
 												<table class="table no-margin">
-													<thead class="subject -prodListHeaderDeselected"
-														id="prod-list-header-deselected">
-														<tr>
-															<th class="check checkhead"></th>
-															<th class="no" style="margin-left: 5px;">No</th>
-															<th class="image" style="width: 165px;">유저명</th>
-															<th class="state">상태</th>
-															<th class="r-date" style="margin-left: 10px;">가입일</th>
-															<th class="group">누적 포인트</th>
-															<th class="more"></th>
-														</tr>
-													</thead>
+													<thead class="subject -prodListHeaderDeselected" id="prod-list-header-deselected">
+															<tr>
+																<th class="check checkhead"></th>
+																<th class="no" style="margin-left: 5px">No</th>
+																<th class="image" style="width: 250px">클럽명</th>
+																<th class="group" style="margin-left: 5px">카테고리</th>
+																<th class="state">상태</th>
+																<th class="request">승인</th>
+																<th class="r-date" style="margin-left: 20px">등록일</th>
+																<th class="more"></th>
+															</tr>
+														</thead>
 
 													<tbody id="prod-list-body"
 														class="-prod-list-body ui-sortable">
-														<c:forEach var="user" items="${mlist}">
+														<c:forEach var="club" items="${clist}">
 															<tr class="content -prodListItem">
 																<td class="checkhead">
-																	<div class="drag -showcase-handle ui-sortable-handle"></div>
 																	<div class="checkbox checkbox-styled no-margin">
 																		<label> <input type="checkbox"
 																			class="-prodListCheck"> <span></span>
@@ -200,17 +208,17 @@
 																	</div>
 																</td>
 
-																<td class="no text-12">${user.userNo}</td>
+																<td class="no text-12">${club.clubNo}</td>
 
 																<td class="image"><a href="_blank"> <img
-																		src="${pageContext.request.contextPath}${user.profileImg}"
-																		width="49" height="49" class="item-thumb">
+																		src="${club.thumbnailImg}" width="49" height="49"
+																		class="item-thumb">
 																</a></td>
 
-																<td class="title" style="width: 100px;">
+																<td class="title">
 																	<div>
 																		<div class="item-tit inline-blocked">
-																			<a href="_blank">${user.nickname}</a> <a
+																			<a href="_blank">${club.clubTitle}</a> <a
 																				href="_blank"
 																				class="im-icon im-ico-new-tab vertical-middle tab-icon"
 																				style="margin-left: 4px;"></a>
@@ -219,19 +227,26 @@
 																	</div>
 																</td>
 
+																<td class="group">${club.categoryName2}</td>
+
 																<td class="state on-click"><a
 																	data-toggle="dropdown" style="margin-right: -1px;">
-																		<span>${user.status}</span>
-																</a></td>
+																		<span>${club.status}</span>
+																</a>
+																</td>		
+																					
+																<td class="state on-click"><a
+																	data-toggle="dropdown" style="margin-right: -1px;">
+																		<span>${club.request_status}</span>
+																</a>
+																</td>	
 
-																<td class="r-date text-12">${user.enrollDate}</td>
-																<td class="purchase text-center hidden-xs hidden-sm"
-																	style="width: 100px;"><a href="adminPoint.ad"
-																	style="text-decoration: underline;">${user.point}</a></td>
+																<td class="r-date text-12">${club.modifyDate}</td>
 																<td class="more">
 																	<div class="dropdown">
-																		<button class="btn btn-primary-btn" id="startBtn">재시작</button>
-																		<button class="btn btn-flat" id="deleteBtn">종료</button>
+																		<button class="btn btn-primary-btn" id="acceptBtn">승인</button>
+																		<button class="btn btn-danger-button" id="deleteBtn">종료</button>
+																		<button class="btn btn-flat" id="startBtn">시작</button>
 																	</div>
 																</td>
 															</tr>
@@ -264,18 +279,45 @@
 						aria-hidden="true">
 						<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
 							fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-				<path
+								<path
 								d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
-			</svg>
+							</svg>
 					</button>
 					<h3 class="modal-title">종료</h3>
 				</div>
-				<div class="modal-body">선택한 관리자의 권한을 종료하시겠습니까?</div>
+				<div class="modal-body">선택한 모임을 종료하시겠습니까?</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default btn-flat"
 						data-dismiss="modal">취소</button>
 					<button type="button" class="btn btn-primary btn-flat"
 						id="board-save">종료</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 모달창 -->
+	<div id="cocoaModal" class="modal in modal-admin accessModal"
+		data-backdrop="true" data-keyboard="true" style="display: none;">
+		<div class="modal-dialog ui-draggable">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"
+						aria-hidden="true">
+						<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
+							fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
+								<path
+								d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
+							</svg>
+					</button>
+					<h3 class="modal-title">승인</h3>
+				</div>
+				<div class="modal-body">선택한 모임을 승인하시겠습니까?</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default btn-flat"
+						data-dismiss="modal">취소</button>
+					<button type="button" class="btn btn-primary btn-flat"
+						id="board-save">승인</button>
 				</div>
 			</div>
 		</div>
@@ -291,18 +333,18 @@
 						aria-hidden="true">
 						<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
 							fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-					<path
+								<path
 								d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
-				</svg>
+							</svg>
 					</button>
-					<h3 class="modal-title">재시작</h3>
+					<h3 class="modal-title">진행</h3>
 				</div>
-				<div class="modal-body">선택한 관리자의 권한을 다시 부여하시겠습니까?</div>
+				<div class="modal-body">선택한 모임을 진행하시겠습니까?</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default btn-flat"
 						data-dismiss="modal">취소</button>
 					<button type="button" class="btn btn-primary btn-flat"
-						id="board-save">재시작</button>
+						id="board-save">승인</button>
 				</div>
 			</div>
 		</div>

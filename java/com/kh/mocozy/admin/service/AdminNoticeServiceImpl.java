@@ -24,13 +24,38 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 		return anDao.getNoticeCount(sqlSession);
 	}
 
+	//전체
 	@Override
-	public ArrayList<Notice> getNoticeList(PageInfo ni) {
-		return anDao.getNoticeList(sqlSession, ni);
+	public ArrayList<Notice> getNoticeAll(PageInfo ni) {
+		return anDao.getNoticeAll(sqlSession, ni);
 	}
 
 	@Override
 	public ArrayList<Notice> getNoticeAllList() {
 		return anDao.getNoticeAllList(sqlSession);
 	}
+
+	//이벤트
+	@Override
+	public ArrayList<Notice> getNoticeEvent(PageInfo ni) {
+		return anDao.getNoticeEvent(sqlSession, ni);
+	}
+
+	@Override
+	public ArrayList<Notice> getNoticeEventList() {
+		return anDao.getNoticeEventList(sqlSession);
+	}
+
+	//공지
+	@Override
+	public ArrayList<Notice> getNoticeBoard(PageInfo ni) {
+		return anDao.getNoticeBoard(sqlSession, ni);
+	}
+
+	@Override
+	public ArrayList<Notice> getNoticeBoardList() {
+		return anDao.getNoticeBoardList(sqlSession);
+	}
+
+	
 }

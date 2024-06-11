@@ -10,10 +10,23 @@ import com.kh.mocozy.member.model.vo.Member;
 
 @Service
 public interface AdminManagerlistService {
-	//프로필 사진 가져오기
-	ArrayList<Member> MemberList(PageInfo mi);
-	
-	public int getMemberlist();
 
-	ArrayList<Member> MemberAllList();
+	public int getManagerlist();
+	
+	//전체
+	ArrayList<Member> ManagerAll(PageInfo mi);
+
+	public ArrayList<Member> MemberAllList();
+	
+	//활동중
+	public ArrayList<Member> ManagerActive(PageInfo mi);
+
+	public ArrayList<Member> MemberActiveList();
+	
+	//종료
+	public ArrayList<Member> ManagerEnd(PageInfo mi);
+
+	public ArrayList<Member> MemberEndList();
+	
+	
 }

@@ -11,19 +11,44 @@ import com.kh.mocozy.member.model.vo.Member;
 
 @Repository
 public class AdminUserlistDao {
+	
+	public int getMemberlist(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("adminMapper.getMemberlist");
+	}
 
+	//전체
 	public ArrayList<Member> MemberList(SqlSessionTemplate sqlSession, PageInfo mi) {
 		int offset = (mi.getCurrentPage() - 1) * mi.getBoardLimit();
 		
 		RowBounds rowBounds = new RowBounds(offset, mi.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("adminMapper.getUserAllList", null, rowBounds);
-	}
-
-	public int getMemberlist(SqlSessionTemplate sqlSession) {
-		return sqlSession.selectOne("adminMapper.getUserlist");
+		return (ArrayList)sqlSession.selectList("adminMapper.MemberAll", null, rowBounds);
 	}
 
 	public ArrayList<Member> MemberAllList(SqlSessionTemplate sqlSession) {
-		return (ArrayList)sqlSession.selectList("adminMapper.getUserAllList");
+		return (ArrayList)sqlSession.selectList("adminMapper.MemberAll");
+	}
+	
+	//진행중
+	public ArrayList<Member> MemberActive(SqlSessionTemplate sqlSession, PageInfo mi) {
+		int offset = (mi.getCurrentPage() - 1) * mi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, mi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("adminMapper.MemberActive", null, rowBounds);
+	}
+
+	public ArrayList<Member> MemberActiveList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("adminMapper.MemberActive");
+	}
+	
+	//종료
+	public ArrayList<Member> MemberEnd(SqlSessionTemplate sqlSession, PageInfo mi) {
+		int offset = (mi.getCurrentPage() - 1) * mi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, mi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("adminMapper.MemberEnd", null, rowBounds);
+	}
+
+	public ArrayList<Member> MemberEndList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("adminMapper.MemberEnd");
 	}
 }

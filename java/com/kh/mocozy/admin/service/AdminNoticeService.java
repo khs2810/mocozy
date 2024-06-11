@@ -9,11 +9,21 @@ import com.kh.mocozy.common.model.vo.PageInfo;
 
 @Service
 public interface AdminNoticeService {
-	//프로필 사진 가져오기
-	ArrayList<Notice> getNoticeList(PageInfo ni);
 	
 	public int getNoticeCount();
-
+	
+	//전체
+	public ArrayList<Notice> getNoticeAll(PageInfo ni);
 	ArrayList<Notice> getNoticeAllList();
 
+	//이벤트
+	public ArrayList<Notice> getNoticeEvent(PageInfo ni);
+	public ArrayList<Notice> getNoticeEventList();
+	
+	//공지사항
+	public ArrayList<Notice> getNoticeBoard(PageInfo ni);
+	public ArrayList<Notice> getNoticeBoardList();
+
+	
+	
 }

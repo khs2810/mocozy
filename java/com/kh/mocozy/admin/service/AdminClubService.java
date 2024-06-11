@@ -16,7 +16,24 @@ public interface AdminClubService {
 
 	public int getClublist();
 	
-	public ArrayList<Club> selectClublist(PageInfo ci);
+	//전체
+	public ArrayList<Club> selectClublist(PageInfo ci, String sortType);
 
 	ArrayList<Club> getClubAllList();
+	
+	//진행중
+	ArrayList<Club> selectClubProcess(PageInfo ci, String sortType);
+
+	ArrayList<Club> getClubProcessList();
+
+	//종료
+	ArrayList<Club> selectClubEnd(PageInfo ci, String sortType);
+
+	ArrayList<Club> getClubEndList();
+	
+	//미승인
+	ArrayList<Club> selectClubApprove(PageInfo ci, String sortType);
+
+	ArrayList<Club> getClubApproveList();
+
 }
