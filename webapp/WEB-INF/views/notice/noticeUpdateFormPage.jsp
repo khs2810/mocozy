@@ -56,6 +56,19 @@
 	                    <input id="input_notice_writer" name="nickname" type="text" value="${n.nickname}" readonly>
 	                </div>
 	            </div>
+				<div >
+					<div class="notice_div_second_banner" >
+						<span>배너</span>
+						<input style="font-size: 17.5px; margin-left: 10px;" type="file" name="reupfile" value="배너등록">
+					</div>
+					<c:if test="${not empty n.bannerPath}">
+						<div>
+							<span>현재 배너 </span>
+							<a id="banner_download" href="${n.bannerPath}" download="${n.bannerPath}"><i class="fa-solid fa-file-arrow-down"></i></i></a>
+							<input type="hidden" name="bannerPath" value="${n.bannerPath}">
+						</div>
+					</c:if>
+				</div>
 	        </div>
 	        <div class="summernote_div">
 	            <textarea id="summernote" name="noticeContent" required>${n.noticeContent}</textarea>

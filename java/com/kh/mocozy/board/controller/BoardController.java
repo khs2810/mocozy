@@ -40,7 +40,11 @@ public class BoardController {
 
 		PageInfo pi = Pagination.getPageInfo(noticeListCount, currentPage, 5, 5);
 		ArrayList<Notice> list = boardService.selectNoticeList(pi);
-
+		
+		for (Notice n : list) {
+			n.setReplys(boardService.replyListCount(n.getNoticeNo()));
+		}
+		
 		model.addAttribute("pi", pi);
 		model.addAttribute("list", list);
 
@@ -87,7 +91,7 @@ public class BoardController {
 		for (MultipartFile f : fileList) {
 			String changeName = saveFile(f, session, "/resources/teo/tempImg/");
 
-			changeNameList.add("/resources/teo/tempImg/" + changeName);
+			changeNameList.add("resources/teo/tempImg/" + changeName);
 		}
 
 		return new Gson().toJson(changeNameList);
@@ -125,29 +129,47 @@ public class BoardController {
 	}
 
 	@RequestMapping("insert.no")
-	public String insertNotice(Notice n, Model model) {
-
+	public String insertNotice(Notice n, MultipartFile upfile, Model model, HttpSession session) {
+		
+		if(!upfile.getOriginalFilename().equals("")) {
+			String changeName = saveFile(upfile, session);
+		
+			n.setBannerPath("resources/teo/img/banner/" + changeName);
+		}
+		
 		int result = boardService.insertNotice(n);
 
 		if (result > 0) {
+			session.setAttribute("alertMsg", "게시글 등록 성공");
 			return "redirect:list.no";
 		} else {
-			model.addAttribute("errorMsg", "공지사항 등록 실패");
+			model.addAttribute("errorMsg", "게시글 등록 실패");
 			return "common/errorPage";
 		}
-
 	}
 
 	@RequestMapping("updateForm.no")
 	public String updateFormNotice(int nno, Model model) {
 		Notice n = boardService.selectNotice(nno);
+		
 		model.addAttribute("n", n);
 
 		return "notice/noticeUpdateFormPage";
 	}
 
 	@RequestMapping("update.no")
-	public String updateNotice(Notice n, Model model) {
+	public String updateNotice(Notice n, MultipartFile reupfile, Model model, HttpSession session) {
+		//새로운 첨부파일이 넘어온 경우
+		if(!reupfile.getOriginalFilename().equals("")) {
+			if(n.getBannerPath() != null) {	//기존 첨부파일이 있다 => 기존파일을 삭제
+				new File(session.getServletContext().getRealPath(n.getBannerPath())).delete();
+			}
+			
+			String changeName = saveFile(reupfile, session);
+		
+			n.setBannerPath("resources/teo/img/banner/" + changeName);
+		}
+		
 		int result = boardService.updateNotice(n);
 
 		if (result > 0) {
@@ -251,6 +273,10 @@ public class BoardController {
 		PageInfo pi = Pagination.getPageInfo(noticeListCount, currentPage, 5, 5);
 		ArrayList<Notice> list = boardService.selectNoticeListKeyword(map, pi);
 		
+		for (Notice n : list) {
+			n.setReplys(boardService.replyListCount(n.getNoticeNo()));
+		}
+		
 		Map<String, Object> data = new HashMap<>();
 		data.put("pi", pi);
 		data.put("list", list);
@@ -292,4 +318,36 @@ public class BoardController {
 		
 		return rlist;
 	}
+	
+	//실제 넘어온 파일의 이름을 변경해서 서버에 저장하는 메소드
+		public String saveFile(MultipartFile upfile, HttpSession session) {
+			//파일명 수정 후 서버에 업로드하기("imgFile.jpg => 2024042310043054884.jpg)
+			String originName = upfile.getOriginalFilename();
+			
+			//년월일시분초
+			String currentTime = new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+			
+			//랜덤 5자리 값
+			int ranNum = (int)(Math.random()*90000) + 10000;
+			
+			//확장자
+			String ext =originName.substring(originName.lastIndexOf("."));
+			
+			//수정된 첨부파일명
+			String changeName = currentTime + ranNum + ext;
+			
+			//첨부파일을 저장할 폴더의 물리적 경로(session)
+			String savePath = session.getServletContext().getRealPath("/resources/teo/img/banner/");	
+			
+			//경로 또는 url넣어주면 입력한 경로 이름으로 파일을 만들어줌
+			try {
+				upfile.transferTo(new File(savePath + changeName));
+			} catch (IllegalStateException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
+			return changeName;
+		}
 }

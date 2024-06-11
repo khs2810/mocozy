@@ -255,6 +255,10 @@
     display: flex;
     justify-content: space-between;
 }
+.notice_div_second_banner{
+    display: flex;
+    align-items: end;
+}
 
 #input_notice_title {
     width: 740px;
@@ -317,4 +321,10 @@
     margin-top: 15px;
     cursor: pointer;
     margin: 0 auto;
+}
+
+#banner_download {
+    
+    font-size: 20px;
+    
 }

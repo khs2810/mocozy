@@ -36,7 +36,7 @@ function drawNoticeList(data) {
     for(let n of data) {
         str += `<tr>\n` 
                + `<td>${n.noticeNo}</td>\n`
-               + `<td class="notice_title" ><p onclick="location.href = 'detail.no?nno=${n.noticeNo}'">[${n.noticeType}] ${n.noticeTitle}</p></td>`
+               + `<td class="notice_title" ><p onclick="location.href = 'detail.no?nno=${n.noticeNo}'">[${n.noticeType}] ${n.noticeTitle} (${n.replys})</p></td>`
                + `<td>${n.count}</td>`
                + `<td>${n.nickname}</td>`
                + `<td>${n.modifyDate}</td>`
