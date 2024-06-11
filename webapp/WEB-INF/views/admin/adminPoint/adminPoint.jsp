@@ -37,10 +37,21 @@
 		
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jo/css/admin_css/adminCommon_css/adminStyle.css">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jo/css/admin_css/adminPoint_css/adminPoint.css">
+	
+		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/teo/css/noticePage.css">
+	
+		<!-- font awesome -->
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 	</head>
 
 	<%@ include file="../sideBar.jsp"%>
 	<body>
+		<c:if test="${not empty alertMsg}">
+			<script>
+				alert("${alertMsg}");
+			</script>
+			<c:remove var="alertMsg" scope="session"/>
+		</c:if>
 		<div class="menubar-hoverable header-fixed menubar-pin sidebar-mini">
 		<div id="base">
 			<div id="basecontent">
@@ -82,40 +93,42 @@
 										<header>포인트 지급/차감</header>
 									</div>
 									<div class="card-body">
-										<form id="shop-member-point" class="form-horizontal form-validate">
+										<form id="shop-member-point" class="form-horizontal form-validate" action="point.ad" method="POST">
+											
 											<div class="form-group">
 												<label class="col-sm-2 control-label">조정 대상</label>
 												<div class="col-sm-8">
-													<div class="input-group-content width-3"
+													<!-- <div class="input-group-content width-3"
 														style="padding-right: 15px;width: 115px;">
 														<select class="form-control static dirty" id="target-type" name="target-type">
 															<option value="member">회원</option>
 															<option value="group">관리자</option>
 														</select>
 														<div class="form-control-line"></div>
-													</div>
+													</div> -->
 
 													<div id="target-member-wrap" class="input-group-content width-6">
-														<input type="text" name="member-id" class="form-control" placeholder="회원 아이디 또는 이메일 입력">
+														<input type="text" name="userId" class="form-control" placeholder="회원 아이디 또는 이메일 입력" required>
 														<div class="form-control-line"></div>
 													</div>
 
-													<div id="target-group-wrap" class="input-group-content width-6" style="display: none;">
+													<!-- <div id="target-group-wrap" class="input-group-content width-6" style="display: none;">
 														<select class="form-control static dirty" id="group-list" name="group-list">
 															<option value="no-group">그룹이 존재하지 않습니다.</option>
 															<option value="no-member">그룹 내에 포함되어있는 회원이 존재하지 않습니다.</option>
 														</select>
 														<div class="form-control-line"></div>
-													</div>
+													</div> -->
 												</div>
 											</div>
 
 											<div class="form-group">
+												<input type="hidden" name="adminNo" value="${loginUser.userNo}">
 												<label class="col-sm-2 control-label">포인트액</label>
 												<div class="col-sm-8">
 													<div class="input-group" style="line-height: 2;">
 														<div class="input-group-content width-3" style="padding-right: 15px;">
-															<select class="form-control static dirty" name="point-type">
+															<select class="form-control static dirty" name="pointType">
 																<option value="plus">지급</option>
 																<option value="minus">회수</option>
 															</select>
@@ -123,16 +136,15 @@
 														</div>
 
 														<div class="input-group-content width-3" style="padding-right: 15px;">
-															<input type="text" class="form-control -point" placeholder="금액" name="point">
+															<input type="text" class="form-control -point" placeholder="금액" name="point" required>
 															<div class="form-control-line"></div>
 														</div>
 
 														<div class="input-group-content width-6">
-															<input type="text" class="form-control" placeholder="사유 / 내용 입력" name="reason">
+															<input type="text" class="form-control" placeholder="사유 / 내용 입력" name="pointInfo" required>
 															<div class="form-control-line"></div>
 														</div>
-
-														<a class="btn margin-left-lg btn-primary-button" href="_blank">확인</a>
+														<button class="btn margin-left-lg btn-primary-button" type="submit">확인</button>
 														<div class="input-group-content" style="text-align: right; top: -10px;"></div>
 													</div>
 												</div>
@@ -145,7 +157,7 @@
 
 						<div class="row">
 							<div class="col-md-12">
-								<div class="card">
+								<!-- <div class="card">
 									<div class="card-body no-padding">
 										<form class="prod-search" id="point-search-form">
 											<div class="twitter-wrap">
@@ -166,7 +178,7 @@
 											</div>
 										</form>
 									</div>
-								</div>
+								</div> -->
 
 								<div class="card">
 									<div class="card-head">
@@ -180,16 +192,51 @@
 													<li class="date">일자</li>
 													<li class="nick">이름(닉네임)</li>
 													<li class="data">사유/내용</li>
-													<li class="order">가입한 클럽</li>
+													<li class="order">포인트</li>
 													<li class="stz text-right">지급/회수자</li>
 													<li class="balance text-right"></li>
 												</ul>
+												<c:forEach var="p" items="${list}">
+													<ul class="subject ">
+														<li class="date">${p.createDate}</li>
+														<li class="nick">${p.userNickname}</li>
+														<li class="data">${p.pointInfo}</li>
+														<c:choose>
+															<c:when test="${p.status eq 'P'}">
+																<li style="color: blue;" class="order">+${p.point}</li>
+															</c:when>
+															<c:when test="${p.status eq 'M'}">
+																<li style="color: red;" class="order">-${p.point}</li>
+															</c:when>
+														</c:choose>
+														<li class="stz text-right">${p.adminNickname}</li>
+														<li class="balance text-right"></li>
+													</ul>
+												</c:forEach>
 
 											</div><!--end.li-table-->
 										</div>
 										<nav class="text-center">
 											<ul class="pagination"></ul>
 										</nav>
+									</div>
+									<div class="paging_bar">
+										<c:if test="${pi.currentPage ne 1}">
+											<button class="page_btn"><i class="fa-solid fa-angle-left" onclick="location.href='adminPoint.ad?cpage=${pi.currentPage - 1}'"></i></button>
+										</c:if>
+										<c:forEach var="p" begin="${pi.startPage}" end="${pi.endPage}">
+											<c:choose>
+												<c:when test="${p eq pi.currentPage }">
+													<div class="notice_cpage">${p}</div>
+												</c:when>
+												<c:otherwise>
+													<button class="page_btn" onclick="location.href='adminPoint.ad?cpage=${p}'">${p}</button>
+												</c:otherwise>
+											</c:choose>
+										</c:forEach>
+										<c:if test="${pi.currentPage ne pi.maxPage}">
+											<button class="page_btn" onclick="location.href='adminPoint.ad?cpage=${pi.currentPage + 1}'"><i class="fa-solid fa-angle-right"></i></button>
+										</c:if>
 									</div>
 								</div>
 							</div>

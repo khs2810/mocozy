@@ -80,6 +80,14 @@ public class MemberDao {
 	public Member selectClubLeader(SqlSessionTemplate sqlSession, int cno) {
 		return sqlSession.selectOne("memberMapper.selectClubLeader", cno);
 	}
+
+	public int getUserNoByUserId(SqlSessionTemplate sqlSession, String userId) {
+		return sqlSession.selectOne("memberMapper.getUserNoByUserId", userId);
+	}
+
+	public String selectNicknameByUserNo(SqlSessionTemplate sqlSession, int userNo) {
+		return sqlSession.selectOne("selectNicknameByUserNo", userNo);
+	}
 	
 	
 }
