@@ -3,9 +3,11 @@ package com.kh.mocozy.point.model.dao;
 import java.util.ArrayList;
 import java.util.Map;
 
+import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.mocozy.common.model.vo.PageInfo;
 import com.kh.mocozy.member.model.vo.Member;
 import com.kh.mocozy.point.model.vo.Payment;
 import com.kh.mocozy.point.model.vo.Point;
@@ -55,6 +57,21 @@ public class PointDao {
 
 	public int sumUsePoint(SqlSessionTemplate sqlSession, Map<String, Object> map) {
 		return sqlSession.selectOne("pointMapper.sumUsePoint", map);
+	}
+
+	public int insertPointAdmin(SqlSessionTemplate sqlSession, Point p) {
+		return sqlSession.update("insertPointAdmin", p);
+	}
+
+	public ArrayList<Point> selectListPointAdmin(SqlSessionTemplate sqlSession, PageInfo pi) {
+		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("selectListPointAdmin", null, rowBounds);
+	}
+
+	public int selectPointAdminListCount(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("selectPointAdminListCount");
 	}
 
 }

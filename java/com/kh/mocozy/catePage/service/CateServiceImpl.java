@@ -25,6 +25,11 @@ public class CateServiceImpl implements CateService{
         return cDao.selectcatelist(sqlSession, pi, order);
     }
 	
+    @Override
+    public ArrayList<Club> selectcateAll(PageInfo pi, String order) {
+        return cDao.selectcateAll(sqlSession, pi, order);
+    }
+    
 	@Override
 	public ArrayList<Member> MemberList(int clubNo) {
 		ArrayList<Member> result = cDao.MemberList(sqlSession, clubNo);

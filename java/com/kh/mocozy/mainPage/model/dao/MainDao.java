@@ -19,7 +19,6 @@ public class MainDao {
 
 	public ArrayList<Club> selectClist(SqlSessionTemplate sqlSession, PageInfo ci) {
 		int offset = (ci.getCurrentPage() - 1) * ci.getBoardLimit();
-		
 		RowBounds rowBounds = new RowBounds(offset, ci.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("mainPageMapper.selectClist", null, rowBounds);
 	}

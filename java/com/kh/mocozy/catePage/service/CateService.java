@@ -18,6 +18,8 @@ public interface CateService {
 	
 	public ArrayList<Club> selectcatelist(PageInfo pi, String order);
 	
+	public ArrayList<Club> selectcateAll(PageInfo pi, String order);
+	
 	ArrayList<Club> selectCateFilter(Map<String, String> map, PageInfo pi);
 
 	ArrayList<Club> catePick(Map<String, String> map, PageInfo pi);

@@ -23,4 +23,6 @@ public class Point {
 	private String status;
 	private String dateFormat;
 	private String pointFormat;
+	private int adminNo;
+	private String pointInfo;
 }

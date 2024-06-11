@@ -48,11 +48,9 @@
 
 								<div class="teacher">
 									<div class="tutor">${club.clubTitle}</div>
-									<div class="class">
-										<span>${club.clubContent}</span>
-									</div>
+									<div class="class">${club.clubContent}</div>
 								</div>
-
+								
 							</div>
 						</div>
 

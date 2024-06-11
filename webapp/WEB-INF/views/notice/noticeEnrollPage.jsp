@@ -47,6 +47,12 @@
 	                    <input id="input_notice_writer" name="nickname" type="text" value="${loginUser.nickname}" readonly>
 	                </div>
 	            </div>
+				<div >
+					<div class="notice_div_second_banner" >
+						<span>배너</span>
+						<input style="font-size: 17.5px; margin-left: 10px;" type="file" name="upfile" value="배너등록">
+					</div>
+				</div>
 	        </div>
 	        <div class="summernote_div">
 	            <textarea id="summernote" name="noticeContent" required></textarea>

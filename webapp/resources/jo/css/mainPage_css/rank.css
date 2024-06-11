@@ -242,6 +242,12 @@ li {
 .rank .slide .class{
   margin-top: 1px;
   font-size: 1.2rem;
+  overflow-y: hidden; 
+  max-height: 20px;
+}
+
+.rank .slide .class img{
+	display: none;
 }
 
 .rank .pluslink{

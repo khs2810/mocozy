@@ -12,6 +12,8 @@
 		<result column="POINT" property="point"/>
 		<result column="CREATE_DATE" property="createDate"/>
 		<result column="STATUS" property="status"/>
+		<result column="ADMIN_NO" property="adminNo"/>
+		<result column="POINT_INFO" property="pointInfo"/>
 	</resultMap>
 	
 	<resultMap type="Payment" id="paymentResult">
@@ -154,6 +156,45 @@
 		WHERE (STATUS = 'Y')
 		AND DATE_TRUNC('month', PAYMENT_DATE) = DATE_TRUNC('month', TO_DATE(#{strMonth}, 'YYYY-MM'))
 		AND USER_NO = #{userNo}
+	</select>
+	
+	<insert id="insertPointAdmin">
+		INSERT INTO
+			POINT (
+					 point_no,
+					 user_no,
+					 point,
+					 status,
+					 admin_no,
+					 point_info
+					 )
+			VALUES (
+					NEXTVAL('SEQ_PNO'),
+					#{userNo},
+					#{point},
+					#{status},
+					#{adminNo},
+					#{pointInfo}
+					)
+	</insert>
+	
+	<select id="selectListPointAdmin" resultMap="pointResult">
+		SELECT POINT_NO,
+			   USER_NO,
+			   POINT,
+			   CREATE_DATE,
+			   STATUS,
+			   ADMIN_NO,
+			   POINT_INFO
+		FROM POINT
+		WHERE STATUS = 'P' OR STATUS = 'M'
+		ORDER BY POINT_NO DESC
+	</select>
+	
+	<select id="selectPointAdminListCount" resultType="_int">
+		SELECT COUNT(*)
+		FROM POINT
+		WHERE STATUS = 'P' OR STATUS = 'M'
 	</select>
 	
 </mapper>

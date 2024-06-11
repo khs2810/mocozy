@@ -14,7 +14,7 @@
 	<script src="${pageContext.request.contextPath}/resources/jun/js/pointChargeHistoryPage.js"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css" />
-    <script src="${pageContext.request.contextPath}/resources/teo/js/ajaxPointChargeHistory.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/teo/js/AjaxPointChargeHistory.js"></script>
 
 </head>
 <body>
