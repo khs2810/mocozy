@@ -95,7 +95,7 @@
 												<div class="owl-stage">
 													<div class="owl-item owl-itemitem active">
 														<ul class="owl-nav-tabs">
-															<li class="active -all"><a href="adminManager.ad">전체
+															<li class="soldout"><a href="adminManager.ad">전체
 																	<span class="_count text-primary">${manageCount}</span>
 															</a></li>
 														</ul>
@@ -103,8 +103,9 @@
 
 													<div class="owl-item owl-itemitem active">
 														<ul class="owl-nav-tabs">
-															<li class="sale"><a href="adminManagerActive.ad">활동중
-																	<span class="_count text-primary">${manageActiveCount}</span>
+															<li class="active -all"><a
+																href="adminManagerActive.ad">활동중 <span
+																	class="_count text-primary">${manageActiveCount}</span>
 															</a></li>
 														</ul>
 													</div>

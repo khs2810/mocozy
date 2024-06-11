@@ -717,7 +717,6 @@ nav #prod_list_category_ > a {
 .card table > tbody > tr,
 .card table > tfoot > tr  {
     display: flex;
-    justify-content: center;
     border-bottom: 1px solid #e6e6e6;
 }
 
@@ -814,7 +813,7 @@ nav #prod_list_category_ > a {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 120px;
+    width: 100px;
 }
 
 .shop-table .r-date,
@@ -841,14 +840,6 @@ nav #prod_list_category_ > a {
 }
 
 @media (max-width: 1320px) {
-    .table-responsive .subject .title  {
-        display: none;
-    }
-
-    .table-responsive .subject .group  {
-        margin-right: 60px;
-    }
-
     .table-responsive .subject .showcase  {
         margin-left: 50px;
     }
@@ -1677,4 +1668,11 @@ textarea.form-control {
     color: #8f2323;
     background-color: none;
     border-color: none;
+}
+
+.request {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 80px;
 }

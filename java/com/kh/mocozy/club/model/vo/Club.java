@@ -36,6 +36,7 @@ public class Club {
 	private Date createDate;
 	private Date modifyDate;
 	private String status;
+	private String request_status;
 	private int count;
 	private String nickname;
 	private String categoryName1;
@@ -49,6 +50,7 @@ public class Club {
 	public int reviewCount;
 	public int PickCount;
 }
+
 
 
 

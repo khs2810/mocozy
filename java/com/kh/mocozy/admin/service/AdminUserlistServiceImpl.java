@@ -21,13 +21,14 @@ public class AdminUserlistServiceImpl implements AdminUserlistService{
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public ArrayList<Member> MemberList(PageInfo mi) {
-		return auDao.MemberList(sqlSession, mi);
-	}
-	
-	@Override
 	public int getMemberlist() {
 		return auDao.getMemberlist(sqlSession);
+	}
+	
+	//전체
+	@Override
+	public ArrayList<Member> MemberList(PageInfo mi) {
+		return auDao.MemberList(sqlSession, mi);
 	}
 
 	@Override
@@ -35,6 +36,26 @@ public class AdminUserlistServiceImpl implements AdminUserlistService{
 		return auDao.MemberAllList(sqlSession);
 	}
 	
+	//진행중
+	@Override
+	public ArrayList<Member> MemberActive(PageInfo mi) {
+		return auDao.MemberActive(sqlSession, mi);
+	}
 
+	@Override
+	public ArrayList<Member> MemberActiveList() {
+		return auDao.MemberActiveList(sqlSession);
+	}
+	
+	//종료
+	@Override
+	public ArrayList<Member> MemberEnd(PageInfo mi) {
+		return auDao.MemberEnd(sqlSession, mi);
+	}
+
+	@Override
+	public ArrayList<Member> MemberEndList() {
+		return auDao.MemberEndList(sqlSession);
+	}
 	
 }

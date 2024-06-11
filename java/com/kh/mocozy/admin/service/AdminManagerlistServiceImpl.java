@@ -14,25 +14,47 @@ import com.kh.mocozy.member.model.vo.Member;
 public class AdminManagerlistServiceImpl implements AdminManagerlistService{
 	
 	@Autowired
-	private AdminManagerDao auDao;
+	private AdminManagerDao amDao;
 	@Autowired
 	private SqlSessionTemplate sqlSession;
 	
 	@Override
-	public ArrayList<Member> MemberList(PageInfo mi) {
-		return auDao.MemberList(sqlSession, mi);
+	public int getManagerlist() {
+		return amDao.getManagerlist(sqlSession);
 	}
 	
+	//전체
 	@Override
-	public int getMemberlist() {
-		return auDao.getMemberlist(sqlSession);
+	public ArrayList<Member> ManagerAll(PageInfo mi) {
+		return amDao.ManagerAll(sqlSession, mi);
 	}
 
 	@Override
 	public ArrayList<Member> MemberAllList() {
-		return auDao.MemberAllList(sqlSession);
+		return amDao.MemberAllList(sqlSession);
 	}
 	
+	//활동중
+	@Override
+	public ArrayList<Member> ManagerActive(PageInfo mi) {
+		return amDao.ManagerActive(sqlSession, mi);
+	}
 
+	@Override
+	public ArrayList<Member> MemberActiveList() {
+		return amDao.MemberActiveList(sqlSession);
+	}
+	
+	//종료
+	@Override
+	public ArrayList<Member> ManagerEnd(PageInfo mi) {
+		return amDao.ManagerEnd(sqlSession, mi);
+	}
+
+	@Override
+	public ArrayList<Member> MemberEndList() {
+		return amDao.MemberEndList(sqlSession);
+	}
+	
 	
 }
