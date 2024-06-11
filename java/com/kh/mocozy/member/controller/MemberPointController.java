@@ -352,4 +352,64 @@ public class MemberPointController {
 		}
 	}
 	
+	@RequestMapping("point.ad")
+	public String pointUpdateAdmin(Member m, String pointType,Point p, Model model, HttpSession session) {
+		
+		int userNo = 0;
+		userNo = memberService.getUserNoByUserId(m.getUserId());
+		
+		if (userNo > 0) {
+			m.setUserNo(userNo);
+			p.setUserNo(userNo);
+			
+			switch (pointType) {
+			
+			case "plus":
+				p.setStatus("P");
+				int result1 = memberService.chargePoint(m);
+				if (result1 > 0) {
+					int result2 = pointService.insertPointAdmin(p);
+					
+					if (result2 > 0) {
+						session.setAttribute("alertMsg", "포인트 지급 성공!");
+						return "redirect:adminPoint.ad";
+					} else {
+						model.addAttribute("errorMsg", "포인트 지급 기록 실패");
+						return "common/errorPage";
+					}
+					
+				} else {
+					model.addAttribute("errorMsg", "포인트 지급 실패");
+					return "common/errorPage";
+				}
+				
+			case "minus":
+				p.setStatus("M");
+				int result3 = pointService.withdrawPoint(m);
+		
+				if (result3 > 0) {
+					int result4 = pointService.insertPointAdmin(p);
+					
+					if (result4 > 0) {
+						session.setAttribute("alertMsg", "포인트 회수 성공!");
+						return "redirect:adminPoint.ad";
+					} else {
+						model.addAttribute("errorMsg", "포인트 회수 기록 실패");
+						return "common/errorPage";
+					}
+				} else {
+					model.addAttribute("errorMsg", "포인트 회수 실패");
+					return "common/errorPage";
+				}
+			}
+		
+		} else {
+			session.setAttribute("alertMsg", "존재하지 않는 아이디입니다.");
+			return "redirect:adminPoint.ad";
+		}
+
+		return "redirect:adminPoint.ad";
+	}
+	
+	
 }

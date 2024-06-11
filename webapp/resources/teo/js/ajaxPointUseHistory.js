@@ -28,7 +28,7 @@ $(document).ready(function(){
         }
         
         ajaxPointWithdrawHistory(data, function(res){
-            console.log(res)
+            
             const wlist = res.wlist;
             const month = res.month;
             const strMonth = res.strMonth;

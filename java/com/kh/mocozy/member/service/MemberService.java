@@ -58,6 +58,10 @@ public interface MemberService {
 
 	Member selectClubLeader(int cno);
 
+	int getUserNoByUserId(String userId);
+
+	String selectNicknameByUserNo(int userNo);
+
 	
 
 	
