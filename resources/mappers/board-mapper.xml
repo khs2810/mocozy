@@ -14,6 +14,7 @@
 		<result column="CREATE_DATE" property="createDate"/>
 		<result column="MODIFY_DATE" property="modifyDate"/>
 		<result column="STATUS" property="status"/>
+		<result column="BANNER_PATH" property="bannerPath"/>
 	</resultMap>
 	<resultMap type="NoticeReply" id="noticeReplyResult">
 		<result column="REPLY_NO" property="replyNo"/>
@@ -61,7 +62,8 @@
 	   			USER_NO,
 				COUNT,
 				N.MODIFY_DATE,
-				NICKNAME
+				NICKNAME,
+				BANNER_PATH
 		FROM NOTICE N
 		JOIN MEMBER USING (USER_NO)
 		WHERE N.STATUS = 'Y'
@@ -95,14 +97,16 @@
 				notice_title,
 				notice_type,
 				user_no,
-				notice_content
+				notice_content,
+				banner_path
 				)
 		VALUES (
 				NEXTVAL('SEQ_NNO'),
 				#{noticeTitle},
 				#{noticeType},
 				#{userNo},
-				#{noticeContent}
+				#{noticeContent},
+				#{bannerPath}
 				)
 	</insert>
 	
@@ -111,7 +115,8 @@
 			SET notice_title = '${noticeTitle}',
 				notice_type = '${noticeType}',
 				notice_content = '${noticeContent}',
-				modify_date = CURRENT_DATE
+				modify_date = CURRENT_DATE,
+				banner_path = #{bannerPath}
 		WHERE notice_no = ${noticeNo}
 	</update>
 	
