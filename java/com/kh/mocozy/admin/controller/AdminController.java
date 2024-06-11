@@ -16,6 +16,10 @@ import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.common.model.vo.PageInfo;
 import com.kh.mocozy.common.template.Pagination;
 import com.kh.mocozy.member.model.vo.Member;
+import com.kh.mocozy.member.service.MemberService;
+import com.kh.mocozy.point.model.vo.Point;
+import com.kh.mocozy.point.model.vo.PointDTO;
+import com.kh.mocozy.point.service.PointService;
 
 @Controller
 public class AdminController {
@@ -28,6 +32,12 @@ public class AdminController {
     
     @Autowired
     private AdminNoticeService anService;
+    
+    @Autowired
+    private PointService pointService;
+    
+    @Autowired
+    private MemberService memberService;
     
 	@RequestMapping("admin.ad")
 	public String showAdmin(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) {  
@@ -75,7 +85,24 @@ public class AdminController {
     }
 	
 	@RequestMapping("adminPoint.ad")
-	public String showAdminPoint(Model model) {    
+	public String showAdminPoint(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, Model model) {    
+		int pointListCount = pointService.selectPointAdminListCount();
+		
+		PageInfo pi = Pagination.getPageInfo(pointListCount, currentPage, 10, 5);
+		
+		ArrayList<Point> plist = pointService.selectListPointAdmin(pi);
+		ArrayList<PointDTO> list = new ArrayList<>();
+		
+		for(Point p : plist) {
+			PointDTO pd = new PointDTO(p);
+			pd.setUserNickname(memberService.selectNicknameByUserNo(p.getUserNo()));
+			pd.setAdminNickname(memberService.selectNicknameByUserNo(p.getAdminNo()));
+			list.add(pd);
+		}
+		
+		model.addAttribute("pi", pi);
+		model.addAttribute("list", list);
+		
 	    return "admin/adminPoint/adminPoint";
     }
 }
