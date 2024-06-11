@@ -155,4 +155,5 @@
 		AND DATE_TRUNC('month', PAYMENT_DATE) = DATE_TRUNC('month', TO_DATE(#{strMonth}, 'YYYY-MM'))
 		AND USER_NO = #{userNo}
 	</select>
+	
 </mapper>
