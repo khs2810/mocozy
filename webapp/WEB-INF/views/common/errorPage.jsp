@@ -11,6 +11,7 @@
 	href="${pageContext.request.contextPath}/resources/jo/css/common_css/errorPage.css">
 </head>
 
+<%@ include file="./header.jsp"%>
 <body>
 	<div class="errorpage">
 		<div class="wrapper">
