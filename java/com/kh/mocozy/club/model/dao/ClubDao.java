@@ -2,16 +2,17 @@ package com.kh.mocozy.club.model.dao;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.mocozy.club.model.vo.Challenge;
 import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.club.model.vo.ClubReview;
 import com.kh.mocozy.club.model.vo.Request;
 import com.kh.mocozy.common.model.vo.Attachment;
-import com.kh.mocozy.member.model.vo.Member;
 
 @Repository
 public class ClubDao {
@@ -154,7 +155,20 @@ public class ClubDao {
 		return sqlSession.insert("challengeMapper.insertStatus", map);
 	}
 
-	public Map<Integer, String> getMemberStatusForDate(SqlSessionTemplate sqlSession, Map<String, Object> paramMap) {
-		return sqlSession.selectOne("challengeMapper.getMemberStatusForDate", paramMap);
+	public ArrayList<Map<String, Object>> getMemberStatusForDate(SqlSessionTemplate sqlSession, Map<String, Object> paramMap) {
+		return (ArrayList)sqlSession.selectList("challengeMapper.getMemberStatusForDate", paramMap);
+	}
+
+	public int selectChallengeCount(SqlSessionTemplate sqlSession, Challenge challenge) {
+	    List<Integer> counts = sqlSession.selectList("challengeMapper.selectChallengeCount", challenge);
+	    if (!counts.isEmpty()) {
+	        return counts.get(0);
+	    } else {
+	        return 0;
+	    }
+	}
+
+	public int insertMemberChallengeStatus(SqlSessionTemplate sqlSession, Challenge challenge) {
+		return sqlSession.insert("challengeMapper.insertChallenge", challenge);
 	}
 }
