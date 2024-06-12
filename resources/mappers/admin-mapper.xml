@@ -116,16 +116,49 @@
 			NICKNAME,
 			category_name1,
 			category_name2,
-		    REQUEST.STATUS as request_status,
 			NICKNAME,
 			category_name1,
 			category_name2
 		    FROM public.CLUB
 	    join MEMBER ON CLUB.USER_NO = MEMBER.USER_NO
-	    join REQUEST ON CLUB.CLUB_NO = REQUEST.CLUB_NO
 	    Order by CLUB.CLUB_NO ${sortType};
 	</select>
-
+	
+	<select id="selectClubSearchlist" resultMap="clubResult">
+		SELECT CLUB.CLUB_NO,
+			CLUB.USER_NO,
+			CLUB_TITLE,
+			CLUB_TYPE,
+			CLUB_CONTENT,
+			ADDRESS,
+			ADDRESS_DETAIL,
+			EVENT_DATE,
+			COST,
+			COST_INFO,
+			TOTAL_POINT,
+			CAPACITY,
+			ONLINE,
+			QUESTION,
+			THUMBNAIL_IMG,
+			CLUB.CREATE_DATE,
+			CLUB.MODIFY_DATE,
+			COUNT,
+			CLUB.STATUS,
+			NICKNAME,
+			category_name1,
+			category_name2,
+			NICKNAME,
+			category_name1,
+			category_name2
+		    FROM public.CLUB
+	    join MEMBER ON CLUB.USER_NO = MEMBER.USER_NO
+		WHERE (CLUB_NO LIKE '%' || #{keyword} || '%' 
+			OR	CLUB_TITLE LIKE '%' || #{keyword} || '%' 
+			OR category_name1 LIKE '%' || #{keyword} || '%' 
+			OR category_name2 LIKE '%' || #{keyword} || '%')
+	    Order by CLUB.CLUB_NO ${sortType};
+	</select>
+	
 	<!-- 진행중 -->
 	<select id="selectClubProcess" resultMap="clubResult">
 		SELECT CLUB.CLUB_NO,
@@ -147,17 +180,48 @@
 			CLUB.MODIFY_DATE,
 			COUNT,
 	        CLUB.STATUS,
-	        REQUEST.STATUS as request_status,
 			NICKNAME,
 			category_name1,
 			category_name2
     FROM public.CLUB
     join MEMBER ON CLUB.USER_NO = MEMBER.USER_NO
-    join REQUEST ON CLUB.CLUB_NO = REQUEST.CLUB_NO
     WHERE CLUB.STATUS = 'Y'
     Order by CLUB.CLUB_NO ${sortType};
 	</select>
-
+	
+	<select id="selectClubSearchProcess" resultMap="clubResult">
+		SELECT CLUB.CLUB_NO,
+			CLUB.USER_NO,
+			CLUB_TITLE,
+			CLUB_TYPE,
+			CLUB_CONTENT,
+			ADDRESS,
+			ADDRESS_DETAIL,
+			EVENT_DATE,
+			COST,
+			COST_INFO,
+			TOTAL_POINT,
+			CAPACITY,
+			ONLINE,
+			QUESTION,
+			THUMBNAIL_IMG,
+			CLUB.CREATE_DATE,
+			CLUB.MODIFY_DATE,
+			COUNT,
+	        CLUB.STATUS,
+			NICKNAME,
+			category_name1,
+			category_name2
+    FROM public.CLUB
+    join MEMBER ON CLUB.USER_NO = MEMBER.USER_NO
+    WHERE CLUB.STATUS = 'Y'
+   		AND (CLUB_NO LIKE '%' || #{keyword} || '%' 
+   			OR CLUB_TITLE LIKE '%' || #{keyword} || '%' 
+			OR category_name1 LIKE '%' || #{keyword} || '%' 
+			OR category_name2 LIKE '%' || #{keyword} || '%')
+    Order by CLUB.CLUB_NO ${sortType};
+	</select>
+	
 	<!-- 종료됨 -->
 	<select id="selectClubEnd" resultMap="clubResult">
 		SELECT CLUB.CLUB_NO,
@@ -179,19 +243,16 @@
 			CLUB.MODIFY_DATE,
 			COUNT,
 	        CLUB.STATUS,
-        	REQUEST.STATUS as request_status,
 			NICKNAME,
 			category_name1,
 			category_name2
     FROM public.CLUB
     join MEMBER ON CLUB.USER_NO = MEMBER.USER_NO
-    join REQUEST ON CLUB.CLUB_NO = REQUEST.CLUB_NO
     WHERE CLUB.STATUS = 'E'
     Order by CLUB.CLUB_NO ${sortType};
 	</select>
-
-	<!-- 미승인 -->
-	<select id="selectClubApprove" resultMap="clubResult">
+	
+	<select id="selectClubSearchEnd" resultMap="clubResult">
 		SELECT CLUB.CLUB_NO,
 			CLUB.USER_NO,
 			CLUB_TITLE,
@@ -211,16 +272,19 @@
 			CLUB.MODIFY_DATE,
 			COUNT,
 	        CLUB.STATUS,
-        	REQUEST.STATUS as request_status,
 			NICKNAME,
 			category_name1,
 			category_name2
-		    FROM public.CLUB
-	    join MEMBER ON CLUB.USER_NO = MEMBER.USER_NO
-	    join REQUEST ON CLUB.CLUB_NO = REQUEST.CLUB_NO
-	    WHERE REQUEST.STATUS = 'W'
-	    Order by CLUB.CLUB_NO ${sortType};
+    FROM public.CLUB
+    join MEMBER ON CLUB.USER_NO = MEMBER.USER_NO
+    WHERE CLUB.STATUS = 'E'
+       	AND (CLUB_NO LIKE '%' || #{keyword} || '%' 
+	       	OR	CLUB_TITLE LIKE '%' || #{keyword} || '%' 
+			OR category_name1 LIKE '%' || #{keyword} || '%' 
+			OR category_name2 LIKE '%' || #{keyword} || '%')
+    Order by CLUB.CLUB_NO ${sortType};
 	</select>
+	
 	<!-- -->
 
 	<!-- adminUserlist -->
@@ -235,7 +299,16 @@
 		SELECT *
 		FROM MEMBER
 		WHERE ADMIN = 'N'
-		Order by USER_NO DESC;
+		Order by USER_NO ${sortType};
+	</select>
+	
+	<select id="MemberSearchAll" resultMap="memberResult">
+		SELECT *
+		FROM MEMBER
+		WHERE ADMIN = 'N'
+			AND (USER_NAME LIKE '%' || #{keyword} || '%' 
+			OR 	USER_ID LIKE '%' || #{keyword} || '%')
+		Order by USER_NO ${sortType};
 	</select>
 	
 	<!-- 진행중 -->
@@ -244,7 +317,18 @@
 		FROM MEMBER
 		WHERE ADMIN = 'N'
 		AND STATUS = 'Y'
-		Order by USER_NO DESC;
+		Order by USER_NO ${sortType};
+	</select>
+	
+	<select id="MemberSearchActive" resultMap="memberResult">
+		SELECT *
+		FROM MEMBER
+		WHERE ADMIN = 'N'
+		AND STATUS = 'Y'
+			AND (USER_NO LIKE '%' || #{keyword} || '%'
+			OR	USER_NAME LIKE '%' || #{keyword} || '%' 
+			OR 	USER_ID LIKE '%' || #{keyword} || '%')
+		Order by USER_NO ${sortType};
 	</select>
 	
 	<!-- 종료 -->
@@ -253,15 +337,36 @@
 		FROM MEMBER
 		WHERE ADMIN = 'N'
 		AND STATUS = 'N'
-		Order by USER_NO DESC;
+		Order by USER_NO ${sortType};
 	</select>
-
+	
+	<select id="MemberSearchEnd" resultMap="memberResult">
+		SELECT *
+		FROM MEMBER
+		WHERE ADMIN = 'N'
+		AND STATUS = 'N'
+			AND (USER_NO LIKE '%' || #{keyword} || '%'
+			OR USER_NAME LIKE '%' || #{keyword} || '%' 
+			OR USER_ID LIKE '%' || #{keyword} || '%')
+		Order by USER_NO ${sortType};
+	</select>
+	
 	<!-- adminManager -->
 	<select id="getManagerlist" resultType="int">
 		SELECT COUNT(*)
-		FROM
-		MEMBER
+		FROM MEMBER
 		WHERE ADMIN = 'Y';
+	</select>
+	
+	<!-- insertManager검색 -->
+	<select id="MemberSearchList" resultType="int">
+		SELECT COUNT(*)
+		FROM MEMBER
+		WHERE ADMIN = 'N'
+			AND (USER_NO LIKE '%' || #{keyword} || '%'
+			OR USER_NAME LIKE '%' || #{keyword} || '%' 
+			OR USER_ID LIKE '%' || #{keyword} || '%')
+		Order by USER_NO ${sortType};	
 	</select>
 	
 	<!-- 전체 -->
@@ -269,7 +374,17 @@
 		SELECT *
 		FROM MEMBER
 		WHERE ADMIN = 'Y'
-		Order by USER_NO DESC;
+		Order by USER_NO ${sortType};
+	</select>
+	
+	<select id="ManagerSearchAll" resultMap="memberResult">
+		SELECT *
+		FROM MEMBER
+		WHERE ADMIN = 'Y'
+			AND (USER_NO LIKE '%' || #{keyword} || '%' 
+			OR USER_NAME LIKE '%' || #{keyword} || '%' 
+			OR USER_ID LIKE '%' || #{keyword} || '%')
+		Order by USER_NO ${sortType};
 	</select>
 	
 	<!-- 진행중 -->
@@ -278,7 +393,18 @@
 		FROM MEMBER
 		WHERE ADMIN = 'Y'
 		AND STATUS = 'Y'
-		Order by USER_NO DESC;
+		Order by USER_NO ${sortType};
+	</select>
+	
+	<select id="ManagerSearchActive" resultMap="memberResult">
+		SELECT *
+		FROM MEMBER
+		WHERE ADMIN = 'Y'
+		AND STATUS = 'Y'
+			AND (USER_NO LIKE '%' || #{keyword} || '%' 
+			OR USER_NAME LIKE '%' || #{keyword} || '%' 
+			OR USER_ID LIKE '%' || #{keyword} || '%')
+		Order by USER_NO ${sortType};
 	</select>
 	
 	<!-- 종료 -->
@@ -287,9 +413,20 @@
 		FROM MEMBER
 		WHERE ADMIN = 'Y'
 		AND STATUS = 'N'
-		Order by USER_NO DESC;
+		Order by USER_NO ${sortType};
 	</select>
-
+	
+	<select id="ManagerSearchEnd" resultMap="memberResult">
+		SELECT *
+		FROM MEMBER
+		WHERE ADMIN = 'Y'
+		AND STATUS = 'N'
+			AND (USER_NO LIKE '%' || #{keyword} || '%' 
+			OR USER_NAME LIKE '%' || #{keyword} || '%' 
+			OR USER_ID LIKE '%' || #{keyword} || '%')
+		Order by USER_NO ${sortType};
+	</select>
+	
 	<!-- adminNotice -->
 	<select id="getNoticeCount" resultType="int">
 		SELECT COUNT(*)
@@ -301,16 +438,35 @@
 		SELECT *
 		FROM NOTICE N
 		JOIN MEMBER USING (USER_NO)
-		Order by NOTICE_NO DESC;
+		Order by USER_NO ${sortType};
 	</select>
 	
+	<select id="getNoticeSearchAll" resultMap="noticeResult">
+		SELECT *
+		FROM NOTICE N
+		JOIN MEMBER USING (USER_NO)
+		WHERE (NOTICE_NO LIKE '%' || #{keyword} || '%' 
+				OR NOTICE_TITLE LIKE '%' || #{keyword} || '%')
+		Order by USER_NO ${sortType};
+	</select>
+		
 	<!-- 이벤트 -->
 	<select id="getNoticeEvent" resultMap="noticeResult">
 		SELECT *
 		FROM NOTICE N
 		JOIN MEMBER USING (USER_NO)
 		WHERE NOTICE_TYPE = '이벤트'
-		Order by NOTICE_NO DESC;
+		Order by USER_NO ${sortType};
+	</select>
+	
+	<select id="getNoticeSearchEvent" resultMap="noticeResult">
+		SELECT *
+		FROM NOTICE N
+		JOIN MEMBER USING (USER_NO)
+		WHERE NOTICE_TYPE = '이벤트'
+			AND (NOTICE_NO LIKE '%' || #{keyword} || '%' 
+			OR NOTICE_TITLE LIKE '%' || #{keyword} || '%')
+		Order by USER_NO ${sortType};
 	</select>
 	
 	<!-- 공지사항 -->
@@ -319,6 +475,16 @@
 		FROM NOTICE N
 		JOIN MEMBER USING (USER_NO)
 		WHERE NOTICE_TYPE = '공지'
-		Order by NOTICE_NO DESC;
+		Order by USER_NO ${sortType};
+	</select>
+	
+	<select id="getNoticeSearchBoard" resultMap="noticeResult">
+		SELECT *
+		FROM NOTICE N
+		JOIN MEMBER USING (USER_NO)
+		WHERE NOTICE_TYPE = '공지'
+			AND (NOTICE_NO LIKE '%' || #{keyword} || '%' 
+			OR NOTICE_TITLE LIKE '%' || #{keyword} || '%')
+		Order by USER_NO ${sortType};
 	</select>
 </mapper>

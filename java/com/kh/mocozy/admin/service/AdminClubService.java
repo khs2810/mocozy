@@ -1,6 +1,7 @@
 package com.kh.mocozy.admin.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.springframework.stereotype.Service;
 
@@ -31,9 +32,17 @@ public interface AdminClubService {
 
 	ArrayList<Club> getClubEndList();
 	
-	//미승인
-	ArrayList<Club> selectClubApprove(PageInfo ci, String sortType);
-
-	ArrayList<Club> getClubApproveList();
-
+	//검색 개수
+	int getClubSearchlist(HashMap<String, String> map);
+	
+	//전체 검색
+	ArrayList<Club> selectSearchClublist(HashMap<String, String> map, PageInfo ci);
+	
+	//진행중 검색
+	ArrayList<Club> selectClubSearchProcess(HashMap<String, String> map, PageInfo ci);
+	
+	//종료 검색
+	ArrayList<Club> selectClubSearchEnd(HashMap<String, String> map, PageInfo ci);
+	
+	
 }

@@ -1,6 +1,7 @@
 package com.kh.mocozy.admin.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,20 +58,33 @@ public class AdminClubServiceImpl implements AdminClubService{
 	public ArrayList<Club> selectClubEnd(PageInfo ci, String sortType) {
 		return acDao.selectClubEnd(sqlSession, ci, sortType);
 	}
-
+	
 	@Override
 	public ArrayList<Club> getClubEndList() {
 		return acDao.getClubEndList(sqlSession);
 	}
-	
-	//미승인
-	@Override
-	public ArrayList<Club> selectClubApprove(PageInfo ci, String sortType) {
-		return acDao.selectClubApprove(sqlSession, ci, sortType);
-	}
 
+	//검색 개수
 	@Override
-	public ArrayList<Club> getClubApproveList() {
-		return acDao.getClubApproveList(sqlSession);
+	public int getClubSearchlist(HashMap<String, String> map) {
+		return acDao.getClubSearchlist(sqlSession, map);
+	}
+	
+	//전체 개수
+	@Override
+	public ArrayList<Club> selectSearchClublist(HashMap<String, String> map, PageInfo ci) {
+		return acDao.selectSearchClublist(sqlSession, map, ci);
+	}
+	
+	//진행중 검색
+	@Override
+	public ArrayList<Club> selectClubSearchProcess(HashMap<String, String> map, PageInfo ci) {
+		return acDao.selectClubSearchProcess(sqlSession, map, ci);
+	}
+	
+	//종료 검색
+	@Override
+	public ArrayList<Club> selectClubSearchEnd(HashMap<String, String> map, PageInfo ci) {
+		return acDao.selectClubSearchEnd(sqlSession, map, ci);
 	}
 }
