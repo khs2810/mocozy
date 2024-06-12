@@ -104,11 +104,11 @@
 																		id="prod-list-header-deselected">
 																		<tr style="justify-content: left;">
 																			<th class="check checkhead"></th>
-																			<th class="no">No</th>
+																			<th class="no" style="margin-left: 5px;">No</th>
 																			<th class="image" style="width: 260px;">클럽명</th>
 																			<th class="group" style="width: 80px;">카테고리</th>
 																			<th class="state">상태</th>
-																			<th class="r-date">등록일</th>
+																			<th class="r-date" style="margin-left: 15px;">등록일</th>
 																		</tr>
 																	</thead>
 
@@ -213,11 +213,10 @@
 																		id="prod-list-header-deselected">
 																		<tr>
 																			<th class="check checkhead"></th>
-																			<th class="no">No</th>
-																			<th class="image">유저명</th>
-																			<th class="title" style="width: 85px;"></th>
+																			<th class="no" style="margin-left: 5px;">No</th>
+																			<th class="image" style="width: 165px;">유저명</th>
 																			<th class="state">상태</th>
-																			<th class="r-date">가입일</th>
+																			<th class="r-date" Style="margin-left: 10px;">가입일</th>
 																			<th class="group">누적 포인트</th>
 																			<th class="more"></th>
 																		</tr>
@@ -266,9 +265,6 @@
 																					style="width: 100px;"><a href="adminPoint.ad"
 																					style="text-decoration: underline;">${user.point}</a></td>
 																				<td class="more">
-																					<div class="dropdown">
-																						<button class="btn btn-primary-btn" id="startBtn">시작</button>
-																						<button class="btn btn-flat" id="deleteBtn">종료</button>
 																			</tr>
 																		</c:forEach>
 																	</tbody>
