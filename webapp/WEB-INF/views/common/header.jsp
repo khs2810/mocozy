@@ -205,7 +205,7 @@
 								<c:otherwise>
 									<!-- 로그인 후 -->
 									<div class="profile">
-										<img class="profileImg" src="${pageContext.request.contextPath}${loginUser.profileImg}" alt="image" />
+										<img class="profileImg" src="${loginUser.profileImg}" alt="image" />
 									</div>
 									<div class="alarm">+99</div>
 									<button class="userName" id="userName" type="button">
