@@ -16,7 +16,7 @@
     <!--Get your code at fontawesome.com-->
     <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
 
-    <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPageCommon.js"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/mySocial.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/social.css" />    

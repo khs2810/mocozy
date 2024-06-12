@@ -20,7 +20,7 @@
             <!-- Modal body -->
             <div class="profile-modal-body">
                 <div class="m-userProfile">
-                    <img src="${pageContext.request.contextPath}${loginUser.profileImg}" class="m-profileImg">
+                    <img src="${loginUser.profileImg}" class="m-profileImg">
                     <span class="nickname">${loginUser.nickname}</span>
                     <span> 님</span>
                 </div>

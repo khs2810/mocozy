@@ -17,13 +17,17 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    
     <!--Get your code at fontawesome.com-->
     <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
 
-    <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/dibsSocialPage.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPageCommon.js"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/mySocial.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/teo/css/clubDetailPage.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/social.css" />
+    
     
     
 
@@ -53,7 +57,7 @@
 
             <!-- 컨텐츠 내용 -->
             <!-- 찜한 진행중인 소셜링 목록 -->
-            <div class="club-ing">
+            <div id="club-ing">
                 <c:forEach var="c" items="${clist}">
                     <div class="club-content">
                         <div class="club-img" onclick="location.href='http://localhost:8890/mocozy/detail.cl?cno=${c.clubNo}';">
@@ -66,9 +70,10 @@
                         </div>
                         <div class="status">
                             <!-- 찜 -->
-                            <div class="dibs" style="display: flex; justify-content: flex-end;">
-                                <!-- <button class="btn" onclick="toggleAct(this)">찜하기</button> -->
-                                <div class="club_picked"><i class="fa-regular fa-heart" style="color: red;"></i></div>
+                            <div class="dibs">
+                                <div class="club_picked" data-cno="${c.clubNo}" data-uno="${loginUser.userNo}"></div>
+                                <i class="fa-regular fa-heart" style="color: red; display: flex; justify-content: flex-end;"></i>
+                                
                             </div>
                             <c:choose>
                                 <c:when test="${c.memberCnt eq c.capacity}">
@@ -87,32 +92,8 @@
                 </c:forEach>
             </div>
 
-            <!-- 종료된 소셜링 목록 -->
-            <div id="club-done" style="display: none;">
-	            <c:forEach var="d" items="${dlist}">
-		            <div class="club-content">
-		                <div class="club-img" onclick="location.href='http://localhost:8890/mocozy/detail.cl?cno=${d.clubNo}';">
-		                    <img src="${pageContext.request.contextPath}/${d.thumbnailImg}">
-		                </div>
-		                <div class="club-title" onclick="location.href='http://localhost:8890/mocozy/detail.cl?cno=${d.clubNo}';">
-		                    <h4>${d.clubTitle}</h4>
-		                    <p>카테고리 : ${d.categoryName1} > ${d.categoryName2}</p>
-		                    <P>모임 날짜 : ${d.eventDate}</P>
-		                </div>
-		                <div class="status">
-		                    <!-- 찜 -->
-                            <div class="dibs" style="display: flex; justify-content: flex-end;">
-                                <!-- <button class="btn" onclick="toggleAct(this)">찜하기</button> -->
-                                <div class="club_picked"><i class="fa-regular fa-heart" style="color: red;"></i></div>
-                            </div>
-                            <div class="done">
-			                	<p>모임종료</p>
-			                </div>
-		                </div>
-		            </div>
-	            </c:forEach>
-            </div>
             
+        
         </div>
     </div>
 
