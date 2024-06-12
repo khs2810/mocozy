@@ -13,10 +13,10 @@
     <!-- 유저 프로필 섹션 -->
     <div class="user-profile">
         <div class="profile-box">
-            <button class="btn-style">
+            <button class="btn-style" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
                 <!-- 프로필사진 -->
                 <div class="profile-box1" style="background: #BDBDBD;">
-                    <img class="profile profile-img" src="${loginUser.profileImg}" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
+                    <img class="profile-img" src="${loginUser.profileImg}">
                 </div>
             </button>
             <!-- 닉네임 및 계정이메일 -->

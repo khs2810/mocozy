@@ -106,7 +106,7 @@
                                 </c:when>
                                 <c:otherwise>
                                     <div id="hidden_club_members" class="club_members">
-                                        <div class="club_profile_img"><img src="${pageContext.request.contextPath}${m.profileImg}" alt="프로필사진"></div>
+                                        <div class="club_profile_img"><img src="${m.profileImg}" alt="프로필사진"></div>
                                         <div class="club_member_div">
                                             <div><b>${m.nickname}</b></div> 
                                             <div class="club_member_intro">${m.introduce}</div>
