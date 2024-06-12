@@ -24,6 +24,7 @@
  		<typeAlias type="com.kh.mocozy.point.model.vo.Point" alias="Point" />
  		<typeAlias type="com.kh.mocozy.point.model.vo.Payment" alias="Payment" />
  		<typeAlias type="com.kh.mocozy.myPage.model.vo.MyPageClub" alias="MyPageClub" />
+ 		<typeAlias type="com.kh.mocozy.myPage.model.vo.Charge" alias="Charge" />
  	</typeAliases>
  	
  	<!-- 
@@ -42,9 +43,9 @@
  		<mapper resource="/mappers/mainPage-mapper.xml"/>
  		<mapper resource="/mappers/cate-mapper.xml"/>
  		<mapper resource="/mappers/search-mapper.xml"/>
- 		<mapper resource="/mappers/event-mapper.xml"/>
  		<mapper resource="/mappers/point-mapper.xml"/>
  		<mapper resource="/mappers/myPageClub-mapper.xml"/>
+ 		<mapper resource="/mappers/chart-mapper.xml"/>
  	</mappers>
 
  	

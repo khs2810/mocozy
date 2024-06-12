@@ -56,12 +56,7 @@
       const mainOffset = mainSlideWidth * mainCurrSlide;
       mainSlideItems.forEach((i) => {
         i.setAttribute("style", `left: ${-mainOffset}px`);
-      });
-
-      //active 클래스 초기화 active = 현재 슬라이드
-      mainPaginationItems.forEach((i) => i.classList.remove("active"));
-      // 현재 슬라이드에 해당하는 페이징 항목에 active 클래스 추가
-      mainPaginationItems[mainCurrSlide - 1].classList.add("active");
+      });      
     } else {
       // 무한 슬라이드 기능
       mainCurrSlide = 0;

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  
+<!-- namespace: 해당 mapper파일의 고유한 별칭 -->
+<mapper namespace="chartMapper">
+	
+	<resultMap type="Charge" id="map">
+		<result column="MONTH" property="month"/>
+		<result column="TOTAL_CHARGE" property="totalCharge"/>
+		<result column="TOTAL_AMOUNT" property="totalAmount"/>
+	</resultMap>
+	
+	<!-- 6개월간 충전금액, 사용금액 -->
+	<select id="sumPointMonth" parameterType="Charge" resultMap="map" >
+		select A.month
+		     , COALESCE(total_charge, 0) AS total_charge
+		     , COALESCE(total_amount, 0) AS total_amount
+	      from (  SELECT TO_CHAR(p.create_date, 'YYYY-MM') AS month
+	                   , SUM(p.point) AS total_charge
+		            FROM point as p
+		           WHERE p.create_date >= (CURRENT_DATE - INTERVAL '6 months')
+		             AND p.status = 'D'
+		             AND user_no = #{userNo}
+		           GROUP BY TO_CHAR(p.create_date, 'YYYY-MM') 
+	            )as A
+	      FULL OUTER JOIN (SELECT
+			    TO_CHAR(p.payment_date, 'YYYY-MM') AS month,
+			    SUM(p.point) AS total_amount
+			FROM
+			    payment as p
+			WHERE
+			    p.payment_date >= (CURRENT_DATE - INTERVAL '6 months')
+				AND p.status = 'Y'
+				AND user_no = #{userNo}
+			GROUP BY
+			    TO_CHAR(p.payment_date, 'YYYY-MM')
+	) as B on A.month = B.month
+	order by A.month
+
+	</select>
+	
+</mapper>

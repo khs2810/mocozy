@@ -124,5 +124,15 @@ public class MemberServiceImpl implements MemberService {
 	public Member selectClubLeader(int cno) {
 		return memberDao.selectClubLeader(sqlSession, cno);
 	}
+
+	@Override
+	public int getUserNoByUserId(String userId) {
+		return memberDao.getUserNoByUserId(sqlSession, userId);
+	}
+
+	@Override
+	public String selectNicknameByUserNo(int userNo) {
+		return memberDao.selectNicknameByUserNo(sqlSession, userNo);
+	}
 	
 }

@@ -91,7 +91,6 @@ public class ClubController {
 	@RequestMapping("hostQuestion.cl")
 	public String hostQuestion(int cno, Model model) {
 		Club c = clubService.selectClub(cno);
-		System.out.println(c);
 		if (c != null) {
 			model.addAttribute("c", c);
 			return "club/hostQuestionPage";

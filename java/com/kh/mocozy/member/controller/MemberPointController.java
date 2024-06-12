@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.kh.mocozy.club.model.vo.Club;
+import com.kh.mocozy.club.service.ClubService;
 import com.kh.mocozy.member.model.vo.Member;
 import com.kh.mocozy.member.service.MemberService;
 import com.kh.mocozy.point.model.vo.Payment;
@@ -31,6 +33,8 @@ public class MemberPointController {
 	private MemberService memberService;
 	@Autowired
 	private PointService pointService;
+	@Autowired
+	private ClubService clubService;
 	
 	@RequestMapping("manage.po")
 	public String managePoint(HttpSession session, Model model) {
@@ -319,4 +323,93 @@ public class MemberPointController {
 		
 		return new Gson().toJson(map);
 	}
+	
+	@RequestMapping("chargeInClub.pt")
+	public String chargePointInClub(Member m, int cno, String dDay, String evDate, String answer, Model model, HttpSession session) {
+		int result1 = pointService.chargePoint(m);
+		Club c = clubService.selectClub(cno);
+		
+		if (result1 > 0 && c != null) {
+			int result2 = memberService.chargePoint(m);
+			
+			if (result2 > 0) {
+				session.setAttribute("loginUser", memberService.loginMember(m));
+				session.setAttribute("alertMsg", "포인트가 충전되었습니다.");
+				
+				model.addAttribute("dDay", dDay);	        
+		        model.addAttribute("evDate", evDate);
+				model.addAttribute("c", c);
+				model.addAttribute("answer", answer);
+				
+				return "club/clubPaymentPage";
+			} else {
+				model.addAttribute("errorMsg", "포인트 충전 실패");
+				return "common/errorPage";
+			}
+		} else {
+			model.addAttribute("errorMsg", "포인트 충전 실패");
+			return "common/errorPage";
+		}
+	}
+	
+	@RequestMapping("point.ad")
+	public String pointUpdateAdmin(Member m, String pointType,Point p, Model model, HttpSession session) {
+		
+		int userNo = 0;
+		userNo = memberService.getUserNoByUserId(m.getUserId());
+		
+		if (userNo > 0) {
+			m.setUserNo(userNo);
+			p.setUserNo(userNo);
+			
+			switch (pointType) {
+			
+			case "plus":
+				p.setStatus("P");
+				int result1 = memberService.chargePoint(m);
+				if (result1 > 0) {
+					int result2 = pointService.insertPointAdmin(p);
+					
+					if (result2 > 0) {
+						session.setAttribute("alertMsg", "포인트 지급 성공!");
+						return "redirect:adminPoint.ad";
+					} else {
+						model.addAttribute("errorMsg", "포인트 지급 기록 실패");
+						return "common/errorPage";
+					}
+					
+				} else {
+					model.addAttribute("errorMsg", "포인트 지급 실패");
+					return "common/errorPage";
+				}
+				
+			case "minus":
+				p.setStatus("M");
+				int result3 = pointService.withdrawPoint(m);
+		
+				if (result3 > 0) {
+					int result4 = pointService.insertPointAdmin(p);
+					
+					if (result4 > 0) {
+						session.setAttribute("alertMsg", "포인트 회수 성공!");
+						return "redirect:adminPoint.ad";
+					} else {
+						model.addAttribute("errorMsg", "포인트 회수 기록 실패");
+						return "common/errorPage";
+					}
+				} else {
+					model.addAttribute("errorMsg", "포인트 회수 실패");
+					return "common/errorPage";
+				}
+			}
+		
+		} else {
+			session.setAttribute("alertMsg", "존재하지 않는 아이디입니다.");
+			return "redirect:adminPoint.ad";
+		}
+
+		return "redirect:adminPoint.ad";
+	}
+	
+	
 }

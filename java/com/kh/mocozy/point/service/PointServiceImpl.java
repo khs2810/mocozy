@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.kh.mocozy.common.model.vo.PageInfo;
 import com.kh.mocozy.member.model.vo.Member;
 import com.kh.mocozy.point.model.dao.PointDao;
 import com.kh.mocozy.point.model.vo.Payment;
@@ -76,6 +77,21 @@ public class PointServiceImpl implements PointService {
 	@Override
 	public int sumUsePoint(Map<String, Object> map) {
 		return pointDao.sumUsePoint(sqlSession, map);
+	}
+
+	@Override
+	public int insertPointAdmin(Point p) {
+		return pointDao.insertPointAdmin(sqlSession, p);
+	}
+
+	@Override
+	public ArrayList<Point> selectListPointAdmin(PageInfo pi) {
+		return pointDao.selectListPointAdmin(sqlSession, pi);
+	}
+
+	@Override
+	public int selectPointAdminListCount() {
+		return pointDao.selectPointAdminListCount(sqlSession);
 	}
 	
 }

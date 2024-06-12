@@ -191,4 +191,18 @@
 		JOIN CLUB C USING (USER_NO)
 		WHERE C.CLUB_NO = #{cno}
 	</select>
+	
+	<select id="getUserNoByUserId" resultType="_int">
+		SELECT COALESCE(
+		    (SELECT USER_NO
+		     FROM MEMBER
+		     WHERE USER_ID = #{userId}),
+		    0) AS USER_NO
+	</select>
+	
+	<select id="selectNicknameByUserNo" resultType="string">
+		SELECT NICKNAME
+		FROM MEMBER
+		WHERE USER_NO = #{userNo}
+	</select>
 </mapper>

@@ -59,7 +59,7 @@
             	</c:choose>
             </table>
             <div class="notice_more_reply_div">
-                <c:if test="${pi.currentPage ne pi.maxPage}">
+                <c:if test="${pi.listCount ne 0 && pi.currentPage ne pi.maxPage}">
                     <div class="notice_more_reply" data-nno="${n.noticeNo}" data-cpage="${pi.currentPage + 1}"> 더보기 ></div>
                 </c:if>
             </div>
