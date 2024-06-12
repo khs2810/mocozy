@@ -1,6 +1,7 @@
 package com.kh.mocozy.admin.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -17,11 +18,11 @@ public class AdminManagerDao {
 	}
 	
 	//전체
-	public ArrayList<Member> ManagerAll(SqlSessionTemplate sqlSession, PageInfo mi) {
+	public ArrayList<Member> ManagerAll(SqlSessionTemplate sqlSession, PageInfo mi, String sortType) {
 		int offset = (mi.getCurrentPage() - 1) * mi.getBoardLimit();
 		
 		RowBounds rowBounds = new RowBounds(offset, mi.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("adminMapper.ManagerAll", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("adminMapper.ManagerAll", sortType, rowBounds);
 	}
 
 	public ArrayList<Member> MemberAllList(SqlSessionTemplate sqlSession) {
@@ -29,11 +30,11 @@ public class AdminManagerDao {
 	}
 	
 	//진행중
-	public ArrayList<Member> ManagerActive(SqlSessionTemplate sqlSession, PageInfo mi) {
+	public ArrayList<Member> ManagerActive(SqlSessionTemplate sqlSession, PageInfo mi, String sortType) {
 		int offset = (mi.getCurrentPage() - 1) * mi.getBoardLimit();
 		
 		RowBounds rowBounds = new RowBounds(offset, mi.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("adminMapper.ManagerActive", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("adminMapper.ManagerActive", sortType, rowBounds);
 	}
 
 	public ArrayList<Member> MemberActiveList(SqlSessionTemplate sqlSession) {
@@ -41,16 +42,43 @@ public class AdminManagerDao {
 	}
 	
 	//종료
-	public ArrayList<Member> ManagerEnd(SqlSessionTemplate sqlSession, PageInfo mi) {
+	public ArrayList<Member> ManagerEnd(SqlSessionTemplate sqlSession, PageInfo mi, String sortType) {
 		int offset = (mi.getCurrentPage() - 1) * mi.getBoardLimit();
 		
 		RowBounds rowBounds = new RowBounds(offset, mi.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("adminMapper.ManagerEnd", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("adminMapper.ManagerEnd", sortType, rowBounds);
 	}
 
 	public ArrayList<Member> MemberEndList(SqlSessionTemplate sqlSession) {
 		return (ArrayList)sqlSession.selectList("adminMapper.ManagerEnd");
 	}
-
 	
+	//검색 리스트
+	public int getManagerSearchlist(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		return sqlSession.selectOne("adminMapper.getManagerlist", map);
+	}
+	
+	//전체
+	public ArrayList<Member> ManagerSearchAll(SqlSessionTemplate sqlSession, HashMap<String, String> map, PageInfo mi) {
+		int offset = (mi.getCurrentPage() - 1) * mi.getBoardLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, mi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("adminMapper.ManagerSearchAll", map, rowBounds);
+	}
+	
+	//진행중
+	public ArrayList<Member> ManagerSearchActive(SqlSessionTemplate sqlSession, HashMap<String, String> map, PageInfo mi) {
+		int offset = (mi.getCurrentPage() - 1) * mi.getBoardLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, mi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("adminMapper.ManagerSearchActive", map, rowBounds);
+	}
+	
+	//종료됨
+	public ArrayList<Member> ManagerSearchEnd(SqlSessionTemplate sqlSession, HashMap<String, String> map, PageInfo mi) {
+		int offset = (mi.getCurrentPage() - 1) * mi.getBoardLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, mi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("adminMapper.ManagerSearchEnd", map, rowBounds);
+	}
 }

@@ -44,13 +44,16 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/jo/css/admin_css/adminClub_css/adminClub.css">
 <script
-	src="${pageContext.request.contextPath}/resources/jo/js/admin_js/adminManager_js/adminManager.js"></script>
+	src="${pageContext.request.contextPath}/resources/jo/js/admin_js/adminUserlist_js/insertUserlist.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/jo/js/admin_js/adminUserlist_js/insertUserlistAjax.js"></script>	
 </head>
 
 <%@ include file="../sideBar.jsp"%>
 <body>
 	<div class="menubar-hoverable header-fixed menubar-pin sidebar-mini">
 		<div id="base">
+		<input type="hidden" value="${status}" id="status">
 			<div id="basecontent">
 				<header class="top-header" id="header">
 					<div class="headerbar">
@@ -129,7 +132,7 @@
 											<div class="clearfix search-form">
 												<div class="card">
 													<div class="card-body no-padding">
-														<form class="prod-search" id="prod-search-form">
+														<form class="prod-search" id="prod-search-form" action="adminUserlistSearchAjax.ad" method="GET">
 															<div class="twitter-wrap no-margin-left">
 																<span class="twitter-typeahead twitter-relative">
 																	<div class="on-click">
@@ -140,11 +143,11 @@
 																			<li><a href="_blank">기본</a></li>
 																			<li><a href="_blank">옵션 클럽번호</a></li>
 																		</ul>
-																		<input type="hidden" name="search-keyword-type"
-																			class="search-keyword-type" id="search-keyword-type">
-																	</div> <input type="text" id="keyword-search-input"
+																	</div>																															</div>
+																	<input type="hidden" name="cpage" value="1"> 
+																	 <input type="text" id="keyword-search-input" name="keyword" value="${keyword}"
 																	class="keyword-search keysearch-input form-control typeahead tt-input"
-																	placeholder="유저 닉네임, 유저 아이디 검색">
+																	placeholder="유저명 검색">
 																</span>
 															</div>
 

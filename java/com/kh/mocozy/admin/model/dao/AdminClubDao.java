@@ -1,12 +1,12 @@
 package com.kh.mocozy.admin.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.common.model.vo.PageInfo;
@@ -59,16 +59,37 @@ public class AdminClubDao {
 	public ArrayList<Club> getClubEndList(SqlSessionTemplate sqlSession) {
 		return (ArrayList)sqlSession.selectList("adminMapper.selectClubEnd");
 	}
-
-	//미승인
-	public ArrayList<Club> selectClubApprove(SqlSessionTemplate sqlSession, PageInfo ci, String sortType) {
+	
+	//검색 리스트
+	public int getClubSearchlist(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		return sqlSession.selectOne("adminMapper.getClubList", map);
+	}
+	
+	//전체 개수
+	public ArrayList<Club> selectSearchClublist(SqlSessionTemplate sqlSession, HashMap<String, String> map, PageInfo ci) {
 		int offset = (ci.getCurrentPage() - 1) * ci.getBoardLimit();
 
 		RowBounds rowBounds = new RowBounds(offset, ci.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("adminMapper.selectClubApprove", sortType, rowBounds);
+		return (ArrayList)sqlSession.selectList("adminMapper.selectSearchClublist", map, rowBounds);
 	}
+	
+	//진행중
+	public ArrayList<Club> selectClubSearchProcess(SqlSessionTemplate sqlSession, HashMap<String, String> map, PageInfo ci) {
+		int offset = (ci.getCurrentPage() - 1) * ci.getBoardLimit();
 
-	public ArrayList<Club> getClubApproveList(SqlSessionTemplate sqlSession) {
-		return (ArrayList)sqlSession.selectList("adminMapper.selectClubApprove");
+		RowBounds rowBounds = new RowBounds(offset, ci.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("adminMapper.selectClubSearchProcess", map, rowBounds);
 	}
+	
+	//종료
+	public ArrayList<Club> selectClubSearchEnd(SqlSessionTemplate sqlSession, HashMap<String, String> map, PageInfo ci) {
+		int offset = (ci.getCurrentPage() - 1) * ci.getBoardLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, ci.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("adminMapper.selectClubSearchEnd", map, rowBounds);
+	}
+	
+	
+	
+	
 }
