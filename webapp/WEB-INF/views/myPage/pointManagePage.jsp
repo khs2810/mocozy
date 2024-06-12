@@ -16,6 +16,7 @@
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jun/css/challengeManagePage.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css">
+    <script src="${pageContext.request.contextPath}/resources/teo/js/pointManagePage.js"></script>
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>
@@ -71,7 +72,7 @@
     <div class="modal" id="chargeWindow">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form type="POST" action="charge.pt">
+                <form type="POST" action="charge.pt" id="charge_form">
                     <input type="hidden" name="userNo" value="${loginUser.userNo}">
                     <input type="hidden" name="userId" value="${loginUser.userId}">
                     <input type="hidden" name="userPwd" value="${loginUser.userPwd}">
@@ -94,7 +95,8 @@
                     
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">충전하기</button>
+                        <button type="button" onclick="submitCharge('cash')" class="btn btn-primary">충전하기</button>
+                        <button type="button" onclick="submitCharge('kakao')" class="btn btn-primary">카카오페이</button>
                     </div>
                 </form>
             </div>
