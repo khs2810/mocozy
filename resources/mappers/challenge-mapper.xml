@@ -14,17 +14,21 @@
 		<result column="MASTER_NO" property="masterNo"/>
 	</resultMap>
 	
-	<insert id="insertChMember">
+	<insert id="insertChallenge">
 		INSERT INTO challenge (
 								challenge_no,
 								user_no,
 								club_no,
+								detail_date,
+								daily_status,
 								master_no)
 					   VALUES (
 								NEXTVAL('SEQ_CHNO'),
-								1,
-								CURRVAL('SEQ_CNO'),
-								1);
+								#{userNo},
+								#{clubNo},
+								#{detailDate},
+								#{dailyStatus},
+								#{masterNo});
 	</insert>
 	
 	<select id="getMemberStatusForDate" resultType="java.util.Map" parameterType="java.util.Map">
@@ -36,7 +40,16 @@
 		       STATUS,
 		       MASTER_NO
 		  FROM CHALLENGE
-		 WHERE cno = #{cno}
-		   AND date = #{date}
+		 WHERE CLUB_NO = #{cno}
+		   AND DETAIL_DATE = #{challengeDateTimestamp}
+	</select>
+	
+	<select id="selectChallengeCount" resultType="int" parameterType="Challenge">
+		SELECT COUNT(*)
+		  FROM CHALLENGE
+		 WHERE USER_NO = #{userNo}
+		   AND CLUB_NO = #{clubNo}
+		   AND DETAIL_DATE = #{detailDate}
+		   AND DAILY_STATUS = #{dailyStatus}
 	</select>
 </mapper>

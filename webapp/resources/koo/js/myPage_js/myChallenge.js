@@ -10,11 +10,16 @@ $(document).ready(function() {
             $('#club-done').show();
         }
     })
-    });
+});
 
-    function redirectToChallengeManage(cno) {
-        console.log('함수 실행됨');
-        const challengeDate = new Date().toISOString().split('T')[0];
-        const url = `http://localhost:8890/mocozy/challengeManage.me?cno=${cno}&challengeDate=${challengeDate}`;
-        window.location.href = url;
-}
+function redirectToChallengeManage(cno) {
+    const challengeDate = new Date().toISOString().split('T')[0];
+    const url = `http://localhost:8890/mocozy/challengeManage.me?cno=${cno}&challengeDate=${challengeDate}`;
+    window.location.href = url;
+};
+
+function redirectToChallengeCheck(cno) {
+    const challengeDate = new Date().toISOString().split('T')[0];
+    const url = `http://localhost:8890/mocozy/challengeCheck.me?cno=${cno}&challengeDate=${challengeDate}`;
+    window.location.href = url;
+};

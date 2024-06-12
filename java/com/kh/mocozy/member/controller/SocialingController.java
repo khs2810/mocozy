@@ -32,28 +32,26 @@ public class SocialingController {
     // 내가 만든 소셜링
     @RequestMapping("mySocial.me")
     public String mySocialView(HttpSession session, Model model) {
-    	Member m = (Member)session.getAttribute("loginUser");
-		int uno = m.getUserNo();
-		
-        ArrayList<Club> clist = clubService.selectMySocialList(uno);
-        ArrayList<Club> dlist = clubService.selectMySocialListDone(uno);
-
-        for (int i = 0; i < clist.size(); i++) {
-            ArrayList<Member> memberList = memberService.participatedMemberList(clist.get(i).getClubNo());
-            clist.get(i).setMemberCnt(memberList.size());
-
-            // Timestamp를 LocalDateTime으로 변환
-            LocalDateTime dateTime = clist.get(i).getEventDate().toLocalDateTime();
-
-            // 밀리초 부분 제거
-            dateTime = dateTime.withNano(0);
-
-            // LocalDateTime을 Timestamp로 변환하여 저장
-            clist.get(i).setEventDate(Timestamp.valueOf(dateTime));
-        }
-
-        model.addAttribute("clist", clist);
-        model.addAttribute("dlist", dlist);
+//    	Member m = (Member)session.getAttribute("loginUser");
+//		int uno = m.getUserNo();
+//		
+//        ArrayList<Club> clist = clubService.selectMySocialList(uno);
+//
+//        for (int i = 0; i < clist.size(); i++) {
+//            ArrayList<Member> memberList = memberService.participatedMemberList(clist.get(i).getClubNo());
+//            clist.get(i).setMemberCnt(memberList.size());
+//
+//            // Timestamp를 LocalDateTime으로 변환
+//            LocalDateTime dateTime = clist.get(i).getEventDate().toLocalDateTime();
+//
+//            // 밀리초 부분 제거
+//            dateTime = dateTime.withNano(0);
+//
+//            // LocalDateTime을 Timestamp로 변환하여 저장
+//            clist.get(i).setEventDate(Timestamp.valueOf(dateTime));
+//        }
+//
+//        model.addAttribute("clist", clist);
 
         return "myPage/mySocial";
     }

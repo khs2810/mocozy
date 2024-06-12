@@ -1,6 +1,7 @@
 package com.kh.mocozy.club.service;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -10,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kh.mocozy.club.model.dao.ClubDao;
+import com.kh.mocozy.club.model.vo.Challenge;
 import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.club.model.vo.ClubReview;
 import com.kh.mocozy.club.model.vo.Request;
@@ -190,11 +192,20 @@ public class ClubServiceImpl implements ClubService {
 	}
 
 	@Override
-	public Map<Integer, String> getMemberStatusForDate(int cno, Date date) {
+	public ArrayList<Map<String, Object>> getMemberStatusForDate(int cno, Timestamp challengeDateTimestamp) {
 		Map<String, Object> paramMap = new HashMap<>();
 		paramMap.put("cno", cno);
-		paramMap.put("date", date);
-		
+		paramMap.put("challengeDateTimestamp", challengeDateTimestamp);
 		return clubDao.getMemberStatusForDate(sqlSession, paramMap);
+	}
+
+	@Override
+	public boolean checkChallengeExists(Challenge Challenge) {
+		return clubDao.selectChallengeCount(sqlSession, Challenge) > 0;
+	}
+
+	@Override
+	public int saveChallenge(Challenge Challenge) {
+		return clubDao.insertMemberChallengeStatus(sqlSession, Challenge);
 	}
 }
