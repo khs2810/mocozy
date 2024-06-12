@@ -95,13 +95,13 @@
                 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <input type="radio" name="point" id="btn100" value="1000000"><label for="btn100">100만원</label><br>
-                    <input type="radio" name="point" id="btn50" value="500000"><label for="btn50">50만원</label><br>
-                    <input type="radio" name="point" id="btn20" value="200000"><label for="btn20">20만원</label><br>
-                    <input type="radio" name="point" id="btn10" value="100000"><label for="btn10">10만원</label><br>
-                    <input type="radio" name="point" id="btn1" value="10000"><label for="btn1">1만원</label><br>
-                    <input type="radio" name="point" id="directInput"><label for="directInput">직접 입력하기</label><br>
-                    <input type="number" id="directAmount" placeholder="숫자만 입력해주세요" disabled>
+                    <input type="radio" name="pointOpt" id="btn100" value="1000000"><label for="btn100">100만원</label><br>
+                    <input type="radio" name="pointOpt" id="btn50" value="500000"><label for="btn50">50만원</label><br>
+                    <input type="radio" name="pointOpt" id="btn20" value="200000"><label for="btn20">20만원</label><br>
+                    <input type="radio" name="pointOpt" id="btn10" value="100000"><label for="btn10">10만원</label><br>
+                    <input type="radio" name="pointOpt" id="btn1" value="10000"><label for="btn1">1만원</label><br>
+                    <input type="radio" name="pointOpt" id="directInput"><label for="directInput">직접 입력하기</label><br>
+                    <input type="number" name="point" id="directAmount" placeholder="숫자만 입력해주세요" readonly>
                 </div>
                 
                 <!-- Modal footer -->

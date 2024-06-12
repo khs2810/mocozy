@@ -4,13 +4,13 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>챌린지 관리페이지</title>
+	<title>챌린지 확인페이지</title>
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jun/css/challengeManagePage.css">
-	<script src="${pageContext.request.contextPath}/resources/jun/js/challengeManagePage.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/jun/js/challengeCheckPage.js"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/MyPage.css" />
@@ -20,7 +20,7 @@
     <div class="MyPage-body">
         <!-- 마이페이지 공용 코드 -->
         <%@ include file="myPageCommon.jsp" %>
-        <form class="main-content" id="challenge-form" action="challengeManage.me" method="get">
+        <form class="main-content" id="challenge-form" action="challengeCheck.me" method="get">
         	<input type="hidden" name="cno" value="${cno}">
             <div class="main-content-head">
                 <div class="main-content-head-left">
@@ -37,7 +37,7 @@
             <input type="hidden" name="cno" value="${cno}">
             <input type="hidden" name="challengeDate" value="${challengeDate}">
             <input type="hidden" id="challengeData" name="challengeData">
-
+            
             <!-- 파티원 리스트 -->
             <div class="member-list">
 	            <!-- 파티장 정보 -->
@@ -88,10 +88,6 @@
                         </div>
                     </div>
                 </c:forEach>
-            </div>
-
-            <div class="buttons">
-                <button type="button" class="saveBtn">저장</button>
             </div>
         </form>
 
