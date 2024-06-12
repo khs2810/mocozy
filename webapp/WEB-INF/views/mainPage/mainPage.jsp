@@ -60,7 +60,7 @@
 										<div class="participant">
 											<c:if test="${not empty club.profileImg}">
 												<img class="people"
-													src="${pageContext.request.contextPath}${club.profileImg[0]}" />
+													src="${club.profileImg[0]}" />
 											</c:if>
 
 											<div class="profileimglist">
