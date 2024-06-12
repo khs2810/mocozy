@@ -30,13 +30,47 @@ public class AdminClubServiceImpl implements AdminClubService{
 		return acDao.getClublist(sqlSession);
 	}
 	
+	//전체
 	@Override
-	public ArrayList<Club> selectClublist(PageInfo ci) {
-		return acDao.selectClublist(sqlSession, ci);
+	public ArrayList<Club> selectClublist(PageInfo ci, String sortType) {
+		return acDao.selectClublist(sqlSession, ci, sortType);
 	}
 
 	@Override
 	public ArrayList<Club> getClubAllList() {
 		return acDao.getClubAllList(sqlSession);
+	}
+	
+	//진행중
+	@Override
+	public ArrayList<Club> selectClubProcess(PageInfo ci, String sortType) {
+		return acDao.selectClubProcess(sqlSession, ci, sortType);
+	}
+
+	@Override
+	public ArrayList<Club> getClubProcessList() {
+		return acDao.getClubProcessList(sqlSession);
+	}
+	
+	//종료됨
+	@Override
+	public ArrayList<Club> selectClubEnd(PageInfo ci, String sortType) {
+		return acDao.selectClubEnd(sqlSession, ci, sortType);
+	}
+
+	@Override
+	public ArrayList<Club> getClubEndList() {
+		return acDao.getClubEndList(sqlSession);
+	}
+	
+	//미승인
+	@Override
+	public ArrayList<Club> selectClubApprove(PageInfo ci, String sortType) {
+		return acDao.selectClubApprove(sqlSession, ci, sortType);
+	}
+
+	@Override
+	public ArrayList<Club> getClubApproveList() {
+		return acDao.getClubApproveList(sqlSession);
 	}
 }

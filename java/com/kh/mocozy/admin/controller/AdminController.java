@@ -40,7 +40,7 @@ public class AdminController {
     private MemberService memberService;
     
 	@RequestMapping("admin.ad")
-	public String showAdmin(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) {  
+	public String showAdmin(@RequestParam(value="cpage", defaultValue="1") int currentPage, String sortType, Model model) {  
 		//페이지네이션
 		int NoticeAllList = anService.getNoticeCount(); 
 		int clubAllList = acService.getClublist(); 
@@ -51,8 +51,8 @@ public class AdminController {
 		PageInfo ni = Pagination.getPageInfo(NoticeAllList, currentPage, 5, 5);
 		
 		ArrayList<Member> mlist = auService.MemberList(mi);
-		ArrayList<Notice> nlist = anService.getNoticeList(ni);
-	    ArrayList<Club> clist = acService.selectClublist(ci);
+		ArrayList<Notice> nlist = anService.getNoticeAll(ni);
+	    ArrayList<Club> clist = acService.selectClublist(ci, sortType);
 	    
 		for (Club c : clist){
 			//현재 클럽(c) 의 회원 목록 호출하여 memberList에 저장

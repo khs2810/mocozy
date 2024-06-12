@@ -12,6 +12,8 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jun/css/challengeManagePage.css">
 	<script src="${pageContext.request.contextPath}/resources/jun/js/challengeManagePage.js"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
@@ -72,7 +74,7 @@
                     <h5>포인트 이용 내역</h5>
                 </div>
                 <div class="line-chart">
-                    여긴 그래프 넣을거임
+                    <canvas id="myChart" width="600" height="180"></canvas>
                 </div>
             </div>
             
