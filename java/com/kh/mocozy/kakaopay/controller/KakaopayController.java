@@ -18,6 +18,7 @@ import org.springframework.web.client.RestClientException;
 import org.springframework.web.client.RestTemplate;
 
 import com.kh.mocozy.kakaopay.vo.KakaoPayDTO;
+import com.kh.mocozy.member.model.vo.Member;
 
 @Controller
 public class KakaopayController {
@@ -29,7 +30,9 @@ public class KakaopayController {
 	private KakaoPayDTO kakaoPayDTO;
 	
 	@RequestMapping("kakaopay.pt")
-	public String kakaopayPayment(HttpSession session, Model model) {
+	public String kakaopayPayment(Member m, HttpSession session, Model model) {
+		
+		System.out.println(m);
 
 		RestTemplate restTemplate = new RestTemplate();
         restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory()); // 정확한 에러 파악을 위해 생성
@@ -61,13 +64,12 @@ public class KakaopayController {
             kakaoPayDTO = restTemplate.postForObject(new URI(Host + "/v1/payment/ready"), body, KakaoPayDTO.class);
 
             return kakaoPayDTO.getNext_redirect_pc_url();
-
         } catch (RestClientException e) {
             e.printStackTrace();
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
         
-        return "/pay";
+        return "redirect:/manage.po";
 	}
 }
