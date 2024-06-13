@@ -2,6 +2,7 @@
 let selectValue;
 let sortType;
 let cpage = 1;
+let keyword = new URLSearchParams(window.location.search).get('keyword');
 
 document.addEventListener('DOMContentLoaded', function () {
   let orderSelect = document.getElementById("sortBtn");
@@ -15,7 +16,7 @@ document.addEventListener('DOMContentLoaded', function () {
     //페이지가 처음 로드될때 ajax 요청
     const status = document.querySelector('#status').value;
     console.log("status: ", status);
-    adminManagerAjax(status);
+    adminManagerSearchAjax(status);
 
     //sortBtn의 값이 바뀔 때마다 sortType에 저장
     orderSelect.onchange = function (e) {
@@ -28,7 +29,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
       //sortType 값이 변경될 때마다 ajax요청을 보냄
       const status = document.querySelector('#status').value;
-      adminManagerAjax(status);
+      adminManagerSearchAjax(status);
 
     }
   }
@@ -38,7 +39,7 @@ document.addEventListener('DOMContentLoaded', function () {
 window.onscroll = function () {
   if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
     const status = document.querySelector('#status').value;
-    adminManagerAjax(status);
+    adminManagerSearchAjax(status);
   }
 };
 
@@ -97,12 +98,12 @@ function renderManagerlist(mlist) {
 }
 
 // AJAX 요청을 처리하는 함수
-function adminManagerAjax(status) {
+function adminManagerSearchAjax(status) {
   console.log("sortType: ", sortType);
   $.ajax({
-    url: 'adminManagerAjax.ad',
+    url: 'adminManagerSearchAjax.ad',
     //cpage와 sortType을 같이 보내줌
-    data: { cpage: cpage++, sortType: sortType, status: status},
+    data: { cpage: cpage++, sortType: sortType, status: status, keyword: keyword},
     success: function (mlist) {
       console.log(mlist);
 

@@ -1,9 +1,9 @@
 package com.kh.mocozy.club.service;
 
-import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
@@ -16,7 +16,6 @@ import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.club.model.vo.ClubReview;
 import com.kh.mocozy.club.model.vo.Request;
 import com.kh.mocozy.common.model.vo.Attachment;
-import com.kh.mocozy.member.model.vo.Member;
 
 @Service
 public class ClubServiceImpl implements ClubService { 
@@ -207,5 +206,10 @@ public class ClubServiceImpl implements ClubService {
 	@Override
 	public int saveChallenge(Challenge Challenge) {
 		return clubDao.insertMemberChallengeStatus(sqlSession, Challenge);
+	}
+//	찜 소셜링 리스트
+	@Override
+	public List<Club> selectMyDibsSocialList(Club club) {
+		return clubDao.selectMyDibsSocialList(sqlSession, club);
 	}
 }

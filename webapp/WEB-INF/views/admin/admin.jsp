@@ -104,11 +104,11 @@
 																		id="prod-list-header-deselected">
 																		<tr style="justify-content: left;">
 																			<th class="check checkhead"></th>
-																			<th class="no">No</th>
+																			<th class="no" style="margin-left: 5px;">No</th>
 																			<th class="image" style="width: 260px;">클럽명</th>
 																			<th class="group" style="width: 80px;">카테고리</th>
 																			<th class="state">상태</th>
-																			<th class="r-date">등록일</th>
+																			<th class="r-date" style="margin-left: 15px;">등록일</th>
 																		</tr>
 																	</thead>
 
@@ -185,12 +185,10 @@
 
 								<div class="dashboard-section-header dashboard-stats-header">
 									<div>
-										<svg xmlns="http://www.w3.org/2000/svg" class="svgicon"
-											fill="currentColor" class="bi bi-bar-chart-line"
-											viewBox="0 0 16 16">
-                                                        <path
-												d="M11 2a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v12h.5a.5.5 0 0 1 0 1H.5a.5.5 0 0 1 0-1H1v-3a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v3h1V7a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v7h1zm1 12h2V2h-2zm-3 0V7H7v7zm-5 0v-3H2v3z" />
-                                                    </svg>
+										<svg xmlns="http://www.w3.org/2000/svg" class="svgicon" fill="currentColor" class="bi bi-person-add" viewBox="0 0 16 16">
+										  <path d="M12.5 16a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7m.5-5v1h1a.5.5 0 0 1 0 1h-1v1a.5.5 0 0 1-1 0v-1h-1a.5.5 0 0 1 0-1h1v-1a.5.5 0 0 1 1 0m-2-6a3 3 0 1 1-6 0 3 3 0 0 1 6 0M8 7a2 2 0 1 0 0-4 2 2 0 0 0 0 4"/>
+										  <path d="M8.256 14a4.5 4.5 0 0 1-.229-1.004H3c.001-.246.154-.986.832-1.664C4.484 10.68 5.711 10 8 10q.39 0 .74.025c.226-.341.496-.65.804-.918Q8.844 9.002 8 9c-5 0-6 3-6 4s1 1 1 1z"/>
+										</svg>
 										<span>신규 유저</span>
 									</div>
 									<div>
@@ -215,11 +213,10 @@
 																		id="prod-list-header-deselected">
 																		<tr>
 																			<th class="check checkhead"></th>
-																			<th class="no">No</th>
-																			<th class="image">유저명</th>
-																			<th class="title" style="width: 85px;"></th>
+																			<th class="no" style="margin-left: 5px;">No</th>
+																			<th class="image" style="width: 165px;">유저명</th>
 																			<th class="state">상태</th>
-																			<th class="r-date">가입일</th>
+																			<th class="r-date" Style="margin-left: 10px;">가입일</th>
 																			<th class="group">누적 포인트</th>
 																			<th class="more"></th>
 																		</tr>
@@ -242,7 +239,7 @@
 																				<td class="no text-12">${user.userNo}</td>
 
 																				<td class="image"><a href="_blank"> <img
-																						src="${pageContext.request.contextPath}${user.profileImg}"
+																						src="${user.profileImg}"
 																						width="49" height="49" class="item-thumb">
 																				</a></td>
 
@@ -268,9 +265,6 @@
 																					style="width: 100px;"><a href="adminPoint.ad"
 																					style="text-decoration: underline;">${user.point}</a></td>
 																				<td class="more">
-																					<div class="dropdown">
-																						<button class="btn btn-primary-btn" id="startBtn">시작</button>
-																						<button class="btn btn-flat" id="deleteBtn">종료</button>
 																			</tr>
 																		</c:forEach>
 																	</tbody>

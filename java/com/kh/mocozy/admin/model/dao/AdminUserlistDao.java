@@ -1,6 +1,7 @@
 package com.kh.mocozy.admin.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -16,24 +17,32 @@ public class AdminUserlistDao {
 		return sqlSession.selectOne("adminMapper.getMemberlist");
 	}
 
-	//전체
-	public ArrayList<Member> MemberList(SqlSessionTemplate sqlSession, PageInfo mi) {
+	//insertManager
+	public ArrayList<Member> MemberList(SqlSessionTemplate sqlSession, PageInfo mi, String sortType) {
 		int offset = (mi.getCurrentPage() - 1) * mi.getBoardLimit();
 		
 		RowBounds rowBounds = new RowBounds(offset, mi.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("adminMapper.MemberAll", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("adminMapper.MemberAll", sortType, rowBounds);
 	}
-
+	
+	//전체
+	public ArrayList<Member> MemberAll(SqlSessionTemplate sqlSession, PageInfo mi, String sortType) {
+		int offset = (mi.getCurrentPage() - 1) * mi.getBoardLimit();
+			
+		RowBounds rowBounds = new RowBounds(offset, mi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("adminMapper.MemberAll", sortType, rowBounds);
+	}
+		
 	public ArrayList<Member> MemberAllList(SqlSessionTemplate sqlSession) {
 		return (ArrayList)sqlSession.selectList("adminMapper.MemberAll");
 	}
 	
 	//진행중
-	public ArrayList<Member> MemberActive(SqlSessionTemplate sqlSession, PageInfo mi) {
+	public ArrayList<Member> MemberActive(SqlSessionTemplate sqlSession, PageInfo mi, String sortType) {
 		int offset = (mi.getCurrentPage() - 1) * mi.getBoardLimit();
 		
 		RowBounds rowBounds = new RowBounds(offset, mi.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("adminMapper.MemberActive", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("adminMapper.MemberActive", sortType, rowBounds);
 	}
 
 	public ArrayList<Member> MemberActiveList(SqlSessionTemplate sqlSession) {
@@ -41,14 +50,51 @@ public class AdminUserlistDao {
 	}
 	
 	//종료
-	public ArrayList<Member> MemberEnd(SqlSessionTemplate sqlSession, PageInfo mi) {
+	public ArrayList<Member> MemberEnd(SqlSessionTemplate sqlSession, PageInfo mi, String sortType) {
 		int offset = (mi.getCurrentPage() - 1) * mi.getBoardLimit();
 		
 		RowBounds rowBounds = new RowBounds(offset, mi.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("adminMapper.MemberEnd", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("adminMapper.MemberEnd", sortType, rowBounds);
 	}
 
 	public ArrayList<Member> MemberEndList(SqlSessionTemplate sqlSession) {
 		return (ArrayList)sqlSession.selectList("adminMapper.MemberEnd");
+	}
+	
+	//검색 리스트
+	public int getMemberSearchlist(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		return sqlSession.selectOne("adminMapper.getMemberlist", map);
+	}
+	
+	//전체 검색
+	public ArrayList<Member> MemberSearchAll(SqlSessionTemplate sqlSession, HashMap<String, String> map, PageInfo mi) {
+		int offset = (mi.getCurrentPage() - 1) * mi.getBoardLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, mi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("adminMapper.MemberSearchActive", map, rowBounds);
+	}
+	
+	//진행중
+	public ArrayList<Member> MemberSearchActive(SqlSessionTemplate sqlSession, HashMap<String, String> map, PageInfo mi) {
+		int offset = (mi.getCurrentPage() - 1) * mi.getBoardLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, mi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("adminMapper.MemberSearchActive", map, rowBounds);
+	}
+	
+	//종료됨
+	public ArrayList<Member> MemberSearchEnd(SqlSessionTemplate sqlSession, HashMap<String, String> map, PageInfo mi) {
+		int offset = (mi.getCurrentPage() - 1) * mi.getBoardLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, mi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("adminMapper.MemberSearchEnd", map, rowBounds);
+	}
+	
+	//insertManager 검색
+	public ArrayList<Member> MemberSearchList(SqlSessionTemplate sqlSession, HashMap<String, String> map, PageInfo mi) {
+		int offset = (mi.getCurrentPage() - 1) * mi.getBoardLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, mi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("adminMapper.MemberSearchList", map, rowBounds);
 	}
 }

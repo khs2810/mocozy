@@ -86,7 +86,7 @@
 													<c:forEach var="clubMember" items="${club.profileImg}"
 														begin="2" end="4">
 														<img class="cardImg"
-															src="${pageContext.request.contextPath}${clubMember}" />
+															src="${clubMember}" />
 													</c:forEach>
 												</c:if>
 												<c:choose>
@@ -97,7 +97,7 @@
 														<c:forEach var="clubMember" items="${club.profileImg}"
 															begin="2" end="${club.profileImg.size() - 1}">
 															<img class="cardImg"
-																src="${pageContext.request.contextPath}${clubMember}" />
+																src="${clubMember}" />
 														</c:forEach>
 													</c:when>
 												</c:choose>

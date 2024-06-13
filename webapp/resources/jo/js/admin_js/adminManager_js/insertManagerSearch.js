@@ -1,15 +1,8 @@
-/* 권한 모달창 띄우기 */
-$(document).ready(function(){
-  $("#adminBtn").click(function(){
-    $(".adminModal").modal('show');
-  });
-});
-
-/* -------------------------------------------------------------------------- */
 let selectValue;
 let sortType;
 let cpage = 1;
-  
+let keyword = new URLSearchParams(window.location.search).get('keyword');
+
 document.addEventListener('DOMContentLoaded', function() {
     let orderSelect = document.getElementById("sortBtn");
     console.log(orderSelect.id);
@@ -20,7 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
       sortType = selectValue;
       
       //페이지가 처음 로드될때 ajax 요청
-      insertManagerAjax();
+      insertManagerSearchAjax();
 
       //sortBtn의 값이 바뀔 때마다 sortType에 저장
       orderSelect.onchange = function(e) {  
@@ -32,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
         cpage = 1;
 
         //sortType 값이 변경될 때마다 ajax요청을 보냄
-        insertManagerAjax();
+        insertManagerSearchAjax();
 
       }
     }
@@ -41,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function() {
 //페이지의 끝에 도달하면 AJAX 요청을 보냄
    window.onscroll = function() {
     if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
-        insertManagerAjax();
+        insertManagerSearchAjax();
        }
   };
 
@@ -101,11 +94,11 @@ function renderinsertManagerlist(mlist) {
 }
 
 // AJAX 요청을 처리하는 함수
-function insertManagerAjax() {
+function insertManagerSearchAjax() {
   $.ajax({
-      url: 'insertManagerAjax.ad',
+      url: 'insertManagerSearchAjax.ad',
       //cpage를 보내줌
-      data : {cpage: cpage++, sortType: sortType},
+      data : {cpage: cpage++, sortType: sortType, keyword: keyword},
       success: function(mlist){
         console.log(mlist);
 

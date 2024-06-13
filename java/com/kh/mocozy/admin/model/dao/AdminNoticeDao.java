@@ -1,6 +1,7 @@
 package com.kh.mocozy.admin.model.dao;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
@@ -17,11 +18,11 @@ public class AdminNoticeDao {
 	}
 	
 	//전체
-	public ArrayList<Notice> getNoticeAll(SqlSessionTemplate sqlSession, PageInfo ni) {
+	public ArrayList<Notice> getNoticeAll(SqlSessionTemplate sqlSession, PageInfo ni, String sortType) {
 		int offset = (ni.getCurrentPage() - 1) * ni.getBoardLimit();
 		
 		RowBounds rowBounds = new RowBounds(offset, ni.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("adminMapper.getNoticeAll", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("adminMapper.getNoticeAll", sortType, rowBounds);
 	}
 
 	public ArrayList<Notice> getNoticeAllList(SqlSessionTemplate sqlSession) {
@@ -29,11 +30,11 @@ public class AdminNoticeDao {
 	}
 	
 	//이벤트
-	public ArrayList<Notice> getNoticeEvent(SqlSessionTemplate sqlSession, PageInfo ni) {
+	public ArrayList<Notice> getNoticeEvent(SqlSessionTemplate sqlSession, PageInfo ni, String sortType) {
 		int offset = (ni.getCurrentPage() - 1) * ni.getBoardLimit();
 		
 		RowBounds rowBounds = new RowBounds(offset, ni.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("adminMapper.getNoticeEvent", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("adminMapper.getNoticeEvent", sortType, rowBounds);
 	}
 
 	public ArrayList<Notice> getNoticeEventList(SqlSessionTemplate sqlSession) {
@@ -41,14 +42,43 @@ public class AdminNoticeDao {
 	}
 	
 	//공지
-	public ArrayList<Notice> getNoticeBoard(SqlSessionTemplate sqlSession, PageInfo ni) {
+	public ArrayList<Notice> getNoticeBoard(SqlSessionTemplate sqlSession, PageInfo ni, String sortType) {
 		int offset = (ni.getCurrentPage() - 1) * ni.getBoardLimit();
 		
 		RowBounds rowBounds = new RowBounds(offset, ni.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("adminMapper.getNoticeBoard", null, rowBounds);
+		return (ArrayList)sqlSession.selectList("adminMapper.getNoticeBoard", sortType, rowBounds);
 	}
 
 	public ArrayList<Notice> getNoticeBoardList(SqlSessionTemplate sqlSession) {
 		return (ArrayList)sqlSession.selectList("adminMapper.getNoticeBoard");
+	}
+	
+	//검색리스트
+	public int getNoticeSearchCount(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
+		return sqlSession.selectOne("adminMapper.getNoticeCount", map);
+	}
+	
+	//전체 검색
+	public ArrayList<Notice> getNoticeSearchAll(SqlSessionTemplate sqlSession, HashMap<String, String> map, PageInfo ni) {
+		int offset = (ni.getCurrentPage() - 1) * ni.getBoardLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, ni.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("adminMapper.getNoticeSearchAll", map, rowBounds);
+	}
+	
+	//공지 검색
+	public ArrayList<Notice> getNoticeSearchBoard(SqlSessionTemplate sqlSession, HashMap<String, String> map, PageInfo ni) {
+		int offset = (ni.getCurrentPage() - 1) * ni.getBoardLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, ni.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("adminMapper.getNoticeSearchBoard", map, rowBounds);
+	}
+	
+	//이벤트 검색
+	public ArrayList<Notice> getNoticeSearchEvent(SqlSessionTemplate sqlSession, HashMap<String, String> map, PageInfo ni) {
+		int offset = (ni.getCurrentPage() - 1) * ni.getBoardLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, ni.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("adminMapper.getNoticeSearchEvent", map, rowBounds);
 	}
 }

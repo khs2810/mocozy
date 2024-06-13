@@ -45,12 +45,15 @@
 	href="${pageContext.request.contextPath}/resources/jo/css/admin_css/adminClub_css/adminClub.css">
 <script
 	src="${pageContext.request.contextPath}/resources/jo/js/admin_js/adminClub_js/adminClub.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/jo/js/admin_js/adminClub_js/adminClubSearch.js"></script>		
 </head>
 
 <%@ include file="../sideBar.jsp"%>
 <body>
 	<div class="menubar-hoverable header-fixed menubar-pin sidebar-mini">
 		<div id="base">
+		<input type="hidden" value="${status}" id="status">
 			<div id="basecontent">
 				<header class="top-header" id="header">
 					<div class="headerbar">
@@ -115,15 +118,6 @@
 															</a></li>
 														</ul>
 													</div>
-
-													<div class="owl-item owl-itemitem active">
-														<ul class="owl-nav-tabs">
-															<li class="soldout" id="club-approve"><a
-																href="adminApprove.ad">미승인 <span
-																	class="_count text-primary">${clubApproveCount}</span>
-															</a></li>
-														</ul>
-													</div>
 												</div>
 											</div>
 										</li>
@@ -140,20 +134,16 @@
 											<div class="clearfix search-form">
 												<div class="card">
 													<div class="card-body no-padding">
-														<form class="prod-search" id="prod-search-form">
+														<form class="prod-search" id="prod-search-form" action="adminClubSearchAjax.ad" method="GET">
 															<div class="twitter-wrap no-margin-left">
 																<span class="twitter-typeahead twitter-relative">
 																	<div class="on-click">
 																		<a class="on-click-ahref"> <span
 																			id="search-keyword-type-text">기본</span>
 																		</a>
-																		<ul class="dropdown-menu top36">
-																			<li><a href="_blank">기본</a></li>
-																			<li><a href="_blank">옵션 클럽번호</a></li>
-																		</ul>
-																		<input type="hidden" name="search-keyword-type"
-																			class="search-keyword-type" id="search-keyword-type">
-																	</div> <input type="text" id="keyword-search-input"
+																	</div>
+																			<input type="hidden" name="cpage" value="1"> 
+																	 <input type="text" id="keyword-search-input" name="keyword" value="${keyword}"
 																	class="keyword-search keysearch-input form-control typeahead tt-input"
 																	placeholder="모임명, 모임 카테고리 검색">
 																</span>
@@ -189,7 +179,6 @@
 															<th class="image" style="width: 250px">클럽명</th>
 															<th class="group" style="margin-left: 5px">카테고리</th>
 															<th class="state">상태</th>
-															<th class="request">승인</th>
 															<th class="r-date" style="margin-left: 20px">등록일</th>
 															<th class="more"></th>
 														</tr>
@@ -242,7 +231,6 @@
 																<td class="r-date text-12">${club.modifyDate}</td>
 																<td class="more">
 																	<div class="dropdown">
-																		<button class="btn btn-primary-btn" id="acceptBtn">승인</button>
 																		<button class="btn btn-danger-button" id="deleteBtn">종료</button>
 																		<button class="btn btn-flat" id="startBtn">시작</button>
 																	</div>
@@ -289,33 +277,6 @@
 						data-dismiss="modal">취소</button>
 					<button type="button" class="btn btn-primary btn-flat"
 						id="board-save">종료</button>
-				</div>
-			</div>
-		</div>
-	</div>
-
-	<!-- 모달창 -->
-	<div id="cocoaModal" class="modal in modal-admin accessModal"
-		data-backdrop="true" data-keyboard="true" style="display: none;">
-		<div class="modal-dialog ui-draggable">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal"
-						aria-hidden="true">
-						<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
-							fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-								<path
-								d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
-							</svg>
-					</button>
-					<h3 class="modal-title">승인</h3>
-				</div>
-				<div class="modal-body">선택한 모임을 승인하시겠습니까?</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default btn-flat"
-						data-dismiss="modal">취소</button>
-					<button type="button" class="btn btn-primary btn-flat"
-						id="board-save">승인</button>
 				</div>
 			</div>
 		</div>

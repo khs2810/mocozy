@@ -58,15 +58,15 @@
             <!-- 컨텐츠 내용 -->
             <!-- 찜한 진행중인 소셜링 목록 -->
             <div id="club-ing">
-                <c:forEach var="c" items="${clist}">
+                <c:forEach var="Club" items="${dibsclist}">
                     <div class="club-content">
-                        <div class="club-img" onclick="location.href='http://localhost:8890/mocozy/detail.cl?cno=${c.clubNo}';">
-                            <img src="${pageContext.request.contextPath}/${c.thumbnailImg}">
+                        <div class="club-img" onclick="location.href='http://localhost:8890/mocozy/detail.cl?cno=${Club.clubNo}';">
+                            <img src="${pageContext.request.contextPath}/${Club.thumbnailImg}">
                         </div>
-                        <div class="club-title" onclick="location.href='http://localhost:8890/mocozy/detail.cl?cno=${c.clubNo}';">
-                            <h4>${c.clubTitle}</h4>
-                            <p>카테고리 : ${c.categoryName1} > ${c.categoryName2}</p>
-                            <P>모임 날짜 : ${c.eventDate}</P>
+                        <div class="club-title" onclick="location.href='http://localhost:8890/mocozy/detail.cl?cno=${Club.clubNo}';">
+                            <h4>${Club.clubTitle}</h4>
+                            <p>카테고리 : ${Club.categoryName1} > ${Club.categoryName2}</p>
+                            <P>모임 날짜 : ${Club.eventDate}</P>
                         </div>
                         <div class="status">
                             <!-- 찜 -->
