@@ -3,6 +3,7 @@ package com.kh.mocozy.club.service;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.kh.mocozy.club.model.vo.Challenge;
@@ -10,6 +11,7 @@ import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.club.model.vo.ClubReview;
 import com.kh.mocozy.club.model.vo.Request;
 import com.kh.mocozy.common.model.vo.Attachment;
+import com.kh.mocozy.myPage.model.vo.MyPageClub;
 
 public interface ClubService {
 	
@@ -83,4 +85,7 @@ public interface ClubService {
 	boolean checkChallengeExists(Challenge Challenge);
 
 	int saveChallenge(Challenge Challenge);
+	
+//	내가 찜한 소셜링 리스트
+	List<Club> selectMyDibsSocialList(Club club);
 }

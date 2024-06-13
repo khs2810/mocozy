@@ -13,6 +13,7 @@ import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.club.model.vo.ClubReview;
 import com.kh.mocozy.club.model.vo.Request;
 import com.kh.mocozy.common.model.vo.Attachment;
+import com.kh.mocozy.myPage.model.vo.MyPageClub;
 
 @Repository
 public class ClubDao {
@@ -170,5 +171,10 @@ public class ClubDao {
 
 	public int insertMemberChallengeStatus(SqlSessionTemplate sqlSession, Challenge challenge) {
 		return sqlSession.insert("challengeMapper.insertChallenge", challenge);
+	}
+	
+//	최근 찜 소셜링 리스트
+	public List<Club> selectMyDibsSocialList(SqlSessionTemplate sqlSession, Club club) {
+		return sqlSession.selectList("clubMapper.selectMyDibsSocialList", club);
 	}
 }
