@@ -5,6 +5,7 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -12,14 +13,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.google.gson.Gson;
 import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.club.service.ClubService;
 import com.kh.mocozy.member.model.vo.Member;
 import com.kh.mocozy.member.service.MemberService;
+import com.kh.mocozy.myPage.model.vo.MyPageClub;
 
 @Controller
 public class SocialingController {
@@ -182,4 +181,7 @@ public class SocialingController {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
         return timestamp.toLocalDateTime().format(formatter);
     }
+    
+
+    
 }

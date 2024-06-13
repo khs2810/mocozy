@@ -284,7 +284,7 @@
 	     	 WHERE R.CLUB_NO = #{cno, jdbcType=BIGINT}
 	     	   AND R.USER_NO = #{uno, jdbcType=BIGINT}
 	</select>
-	
+	<!-- 내가 만든 소셜링 리스트 -->
 	<select id="selectMySocialList" resultMap="clubResult">
 		SELECT CLUB_NO,
 			   USER_NO,
@@ -303,7 +303,7 @@
 		   AND STATUS = 'Y'
 	  ORDER BY CREATE_DATE DESC;
 	</select>
-	
+	<!-- 내가 만든 소셜링 종료된 리스트 -->
 	<select id="selectMySocialListDone" resultMap="clubResult">
 		SELECT CLUB_NO,
 			   USER_NO,
@@ -322,7 +322,7 @@
 		   AND STATUS = 'E'
 	  ORDER BY CREATE_DATE DESC;
 	</select>
-	
+	<!-- 내가 만든 소셜링 종료 -->
 	<update id="finishSocial">
 		UPDATE CLUB
 		   SET STATUS = 'E'
@@ -454,4 +454,26 @@
 		 WHERE CLUB_NO = #{cno, jdbcType=BIGINT}
 		   AND USER_NO = #{uno, jdbcType=BIGINT}
 	</update>
+	
+	<!-- 찜한 소셜링 리스트 -->
+	<select id="selectMyDibsSocialList" parameterType="Club" resultMap="clubResult">
+		SELECT c.CLUB_NO,
+			   c.USER_NO,
+			   c.CLUB_TITLE,
+			   c.CLUB_TYPE,
+			   c.EVENT_DATE,
+			   c.CAPACITY,
+			   c.THUMBNAIL_IMG,
+			   c.CREATE_DATE,
+			   c.MODIFY_DATE,
+			   c.category_name1,
+			   c.category_name2
+		  FROM club AS c
+		 inner join picked AS p on c.club_no = p.club_no
+		  where p.user_no = #{userNo}
+			AND c.status = 'Y'
+			AND c.club_type = '소셜링'
+	   order by c.event_date desc
+	</select>
+	
 </mapper>
