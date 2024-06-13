@@ -76,14 +76,14 @@
                                 
                             </div>
                             <c:choose>
-                                <c:when test="${c.memberCnt eq c.capacity}">
+                                <c:when test="${Club.memberCnt eq Club.capacity}">
                                     <div class="done">
-                                        <p>모집완료(${c.memberCnt}/${c.capacity})</p>
+                                        <p>모집완료(${Club.memberCnt}/${Club.capacity})</p>
                                     </div>
                                 </c:when>
-                                <c:when test="${c.memberCnt ne c.capacity}">
+                                <c:when test="${Club.memberCnt ne Club.capacity}">
                                     <div class="ing">
-                                        <p>모집중(${c.memberCnt}/${c.capacity})</p>
+                                        <p>모집중(${Club.memberCnt}/${Club.capacity})</p>
                                     </div>
                                 </c:when>
                             </c:choose>

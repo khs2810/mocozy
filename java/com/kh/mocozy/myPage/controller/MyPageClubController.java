@@ -1,5 +1,6 @@
 package com.kh.mocozy.myPage.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -32,11 +33,28 @@ public class MyPageClubController {
 	@RequestMapping("dibsSocial.me")
 	public String myDibsSocialView(HttpSession session, Model model) {
     	
-    	Club club = new Club();
-    	club.setUserNo(((Member)session.getAttribute("loginUser")).getUserNo());
+		Member loginUser = (Member) session.getAttribute("loginUser");
+	    if (loginUser == null) {
+	        // 로그인한 사용자가 없을 경우
+	        return "redirect:/loginPage"; // 로그인 페이지로 리다이렉트
+	    }
+
+	    Club club = new Club();
+	    // 로그인한 사용자의 UserNo를 Club 객체에 설정
+	    club.setUserNo(loginUser.getUserNo());
 		
         List<Club> dibsclist = (List<Club>)clubService.selectMyDibsSocialList(club);
 
+        if (dibsclist == null) {
+            // dibsclist가 null일 경우 빈 리스트로 초기화
+            dibsclist = new ArrayList<>();
+        }
+     // 각 Club 객체에 대해 참여한 멤버 리스트를 가져오고 멤버 수를 설정
+        for (Club c : dibsclist) {
+            ArrayList<Member> memberList = memberService.participatedMemberList(c.getClubNo());
+            c.setMemberCnt(memberList.size());
+        }
+        
         model.addAttribute("dibsclist", dibsclist);
 
         return "myPage/dibsSocial";
