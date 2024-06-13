@@ -1,7 +1,10 @@
 package com.kh.mocozy.search.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -16,6 +19,7 @@ import com.kh.mocozy.common.model.vo.PageInfo;
 import com.kh.mocozy.common.template.Pagination;
 import com.kh.mocozy.member.model.vo.Member;
 import com.kh.mocozy.search.service.SearchService;
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 @Controller
 public class SearchController {
@@ -42,7 +46,17 @@ public class SearchController {
 				imgs.add(m.getProfileImg());
 			}
 			c.setProfileImg(imgs);    
-		}
+		    
+		    // createDate 형식 변경
+	        SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+	        try {
+	            Date date = originalFormat.parse(c.getCreateDate().toString());
+	            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+	            c.setCreateDate(sqlDate);
+	        } catch (ParseException | java.text.ParseException e) {
+	            e.printStackTrace();
+	        }
+		 }
 
 		model.addAttribute("clist", clist);
 		model.addAttribute("re", re);
@@ -76,7 +90,17 @@ public class SearchController {
 				imgs.add(m.getProfileImg());
 			}
 			c.setProfileImg(imgs);    
-		}
+		    
+		    // createDate 형식 변경
+	        SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+	        try {
+	            Date date = originalFormat.parse(c.getCreateDate().toString());
+	            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+	            c.setCreateDate(sqlDate);
+	        } catch (ParseException | java.text.ParseException e) {
+	            e.printStackTrace();
+	        }
+		 }
 
 		model.addAttribute("clist", clist);
 		model.addAttribute("re", re);

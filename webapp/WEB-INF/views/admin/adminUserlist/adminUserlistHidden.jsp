@@ -8,6 +8,7 @@
 <!-- 공용 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>관리자 페이지</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <link
@@ -44,9 +45,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/jo/css/admin_css/adminClub_css/adminClub.css">
 <script
-	src="${pageContext.request.contextPath}/resources/jo/js/admin_js/adminManager_js/adminManager.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/jo/js/admin_js/adminClub_js/adminManagerSearch.js"></script>	
+	src="${pageContext.request.contextPath}/resources/jo/js/admin_js/adminUserlist_js/insertUserlist.js"></script>>	
 </head>
 
 <%@ include file="../sideBar.jsp"%>
@@ -55,33 +54,30 @@
 		<div id="base">
 		<input type="hidden" value="${status}" id="status">
 			<div id="basecontent">
-				<header class="top-header" id="default-header">
+				<header class="top-header" id="header">
 					<div class="headerbar">
 						<div class="headerbar-left">
 							<ul class="header-nav header-nav-options">
 								<li class="header-nav-brand">
 									<div class="brand-holder">
-										<span class="location-text"> <a href="_blank">관리자</a></span>
+										<span class="location-text"> <a href="javascript:void(0);">사용자</a>
+										</span>
 									</div>
 								</li>
 							</ul>
 						</div>
 
-						<div class="headerbar-right" style="margin-right: 80px !important">
+						<div class="headerbar-right">
 							<ul class="header-nav header-nav-options">
-								<li class="hidden-xs" style="margin-right: 10px !important">
-									<a class="clay-button black exit-btn" href="admin.ad">뒤로가기</a>
-								</li>
-								<li class="hidden-xs" style="margin-right: 10px !important">
-									<a class="clay-button btn-primary-button"
-									href="insertManager.ad">관리자 추가</a>
-								</li>
+								<li class="hidden-xs"><a class="clay-button black exit-btn"
+									style="margin-right: 50px;" href="admin.ad">뒤로가기</a></li>
 							</ul>
 							<!--end .header-nav-options -->
 						</div>
 						<!--끝 #header-navbar-collapse -->
 						<!--끝 #header-navbar-collapse -->
 					</div>
+
 				</header>
 
 				<!-- BEGIN CONTENT-->
@@ -98,25 +94,32 @@
 												<div class="owl-stage">
 													<div class="owl-item owl-itemitem active">
 														<ul class="owl-nav-tabs">
-															<li class="soldout"><a href="adminManager.ad">전체
-																	<span class="_count text-primary">${manageCount}</span>
+															<li class="soldout"><a href="adminUserlist.ad">전체
+																	<span class="_count text-primary">${userCount}</span>
 															</a></li>
 														</ul>
 													</div>
 
 													<div class="owl-item owl-itemitem active">
 														<ul class="owl-nav-tabs">
-															<li class="active -all"><a
-																href="adminManagerActive.ad">활동중 <span
-																	class="_count text-primary">${manageActiveCount}</span>
+															<li class="soldout"><a href="adminUserActive.ad">활동중
+																	<span class="_count text-primary">${activeCount}</span>
 															</a></li>
 														</ul>
 													</div>
 
 													<div class="owl-item owl-itemitem active">
 														<ul class="owl-nav-tabs">
-															<li class="soldout"><a href="adminManagerEnd.ad">종료
-																	<span class="_count text-primary">${manageEndCount}</span>
+															<li class="active -all"><a href="adminUserHidden.ad">숨김
+																	<span class="_count text-primary">${hiddenCount}</span>
+															</a></li>
+														</ul>
+													</div>
+
+													<div class="owl-item owl-itemitem active">
+														<ul class="owl-nav-tabs">
+															<li class="soldout"><a href="adminUserEnd.ad">종료
+																	<span class="_count text-primary">${endCount}</span>
 															</a></li>
 														</ul>
 													</div>
@@ -125,11 +128,10 @@
 										</li>
 
 										<li class="hidden-xs hidden-sm">
-										<select class="tw-relative tw-bg-transparent tw-appearance-none tw-pr13 tw-text-right" id="sortBtn">
+										<select class="tw-relative tw-bg-transparent tw-appearance-none tw-pr13 tw-text-right" id="sortBtn" onchange="orderSelect()">
 												<option value="DESC">내림차순</option>
 												<option value="ASC">오름차순</option>
-										</select>
-										</li>
+										</select></li>
 									</ul>
 
 									<div class="row">
@@ -137,14 +139,14 @@
 											<div class="clearfix search-form">
 												<div class="card">
 													<div class="card-body no-padding">
-														<form class="prod-search" id="prod-search-form" action="adminManagerSearchAjax.ad" method="GET">
+														<div class="prod-search" id="prod-search-form">
 															<div class="twitter-wrap no-margin-left">
 																<span class="twitter-typeahead twitter-relative">
 																	<div class="on-click">
 																		<a class="on-click-ahref"> <span
-																			id="search-keyword-type-text">기본</span>
+																			id="search-keyword-type-text">검색어 입력</span>
 																		</a>
-																	</div>
+																	</div>																														
 																	<input type="hidden" name="cpage" value="1"> 
 																	 <input type="text" id="keyword-search-input" name="keyword" value="${keyword}"
 																	class="keyword-search keysearch-input form-control typeahead tt-input"
@@ -158,12 +160,12 @@
 																			xmlns="http://www.w3.org/2000/svg" class="svgicon"
 																			fill="currentColor" class="bi bi-search"
 																			viewBox="0 0 16 16">
-															<path
+																			<path
 																				d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0" />
-														  </svg>
+																		  </svg>
 																	</label>
 																</div>
-														</form>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -192,6 +194,7 @@
 														<c:forEach var="user" items="${mlist}">
 															<tr class="content -prodListItem">
 																<td class="checkhead">
+																	<div class="drag -showcase-handle ui-sortable-handle"></div>
 																	<div class="checkbox checkbox-styled no-margin">
 																		<label> <input type="checkbox"
 																			class="-prodListCheck"> <span></span>
@@ -201,16 +204,16 @@
 
 																<td class="no text-12">${user.userNo}</td>
 
-																<td class="image"><a href="_blank"> <img
-																		src="${pageContext.request.contextPath}${user.profileImg}"
+																<td class="image"><a href="javascript:void(0);"> <img
+																		src="${user.profileImg}"
 																		width="49" height="49" class="item-thumb">
 																</a></td>
 
 																<td class="title" style="width: 100px;">
 																	<div>
 																		<div class="item-tit inline-blocked">
-																			<a href="_blank">${user.nickname}</a> <a
-																				href="_blank"
+																			<a href="javascript:void(0);">${user.nickname}</a> <a
+																				href="javascript:void(0);"
 																				class="im-icon im-ico-new-tab vertical-middle tab-icon"
 																				style="margin-left: 4px;"></a>
 																		</div>
@@ -229,7 +232,7 @@
 																	style="text-decoration: underline;">${user.point}</a></td>
 																<td class="more">
 																	<div class="dropdown">
-																		<button class="btn btn-primary-btn" id="startBtn">재시작</button>
+																		<button class="btn btn-primary-btn" id="startBtn">시작</button>
 																		<button class="btn btn-flat" id="deleteBtn">종료</button>
 																	</div>
 																</td>
@@ -263,18 +266,18 @@
 						aria-hidden="true">
 						<svg xmlns="http://www.w3.org/2000/svg" width="36" height="36"
 							fill="currentColor" class="bi bi-x" viewBox="0 0 16 16">
-				<path
+								<path
 								d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
-			</svg>
+							</svg>
 					</button>
 					<h3 class="modal-title">종료</h3>
 				</div>
-				<div class="modal-body">선택한 관리자의 권한을 종료하시겠습니까?</div>
+				<div class="modal-body">선택한 사용자를 종료하시겠습니까?</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default btn-flat"
 						data-dismiss="modal">취소</button>
 					<button type="button" class="btn btn-primary btn-flat"
-						id="board-save">종료</button>
+						id="board-save">삭제</button>
 				</div>
 			</div>
 		</div>
@@ -294,14 +297,14 @@
 								d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708" />
 				</svg>
 					</button>
-					<h3 class="modal-title">재시작</h3>
+					<h3 class="modal-title">시작</h3>
 				</div>
-				<div class="modal-body">선택한 관리자의 권한을 다시 부여하시겠습니까?</div>
+				<div class="modal-body">선택한 유저의 활동을 시작하시겠습니까?</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default btn-flat"
 						data-dismiss="modal">취소</button>
 					<button type="button" class="btn btn-primary btn-flat"
-						id="board-save">재시작</button>
+						id="board-save">시작</button>
 				</div>
 			</div>
 		</div>

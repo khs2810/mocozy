@@ -48,6 +48,18 @@ public class AdminClubDao {
 		return (ArrayList)sqlSession.selectList("adminMapper.selectClubProcess");
 	}
 
+	//숨김
+	public ArrayList<Club> selectClubHidden(SqlSessionTemplate sqlSession, PageInfo ci, String sortType) {
+		int offset = (ci.getCurrentPage() - 1) * ci.getBoardLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, ci.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("adminMapper.selectClubHidden", sortType, rowBounds);
+	}
+	
+	public ArrayList<Club> getClubHiddenList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("adminMapper.selectClubHidden");
+	}
+	
 	//종료
 	public ArrayList<Club> selectClubEnd(SqlSessionTemplate sqlSession, PageInfo ci, String sortType) {
 		int offset = (ci.getCurrentPage() - 1) * ci.getBoardLimit();
@@ -68,9 +80,8 @@ public class AdminClubDao {
 	//전체 개수
 	public ArrayList<Club> selectSearchClublist(SqlSessionTemplate sqlSession, HashMap<String, String> map, PageInfo ci) {
 		int offset = (ci.getCurrentPage() - 1) * ci.getBoardLimit();
-
 		RowBounds rowBounds = new RowBounds(offset, ci.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("adminMapper.selectSearchClublist", map, rowBounds);
+		return (ArrayList)sqlSession.selectList("adminMapper.selectClubSearchlist", map, rowBounds);
 	}
 	
 	//진행중
@@ -88,6 +99,16 @@ public class AdminClubDao {
 		RowBounds rowBounds = new RowBounds(offset, ci.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("adminMapper.selectClubSearchEnd", map, rowBounds);
 	}
+	
+	//숨김
+	public ArrayList<Club> selectClubSearchHidden(SqlSessionTemplate sqlSession, HashMap<String, String> map,
+			PageInfo ci) {
+		int offset = (ci.getCurrentPage() - 1) * ci.getBoardLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, ci.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("adminMapper.selectClubSearchHidden", map, rowBounds);
+	}
+	
 	
 	
 	
