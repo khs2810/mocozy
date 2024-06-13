@@ -48,10 +48,10 @@
             </div>
         </div>
         <div class="chatPage">
-            <h2 class="title">【D-2🐥어른이날】 천지방축 운동회</h2>
+            <h2 class="title">모꼬지 상담요원</h2>
             <hr style="background: lightgray; height: 1px; border: 0;" >
-            <div class="chatDetail">
-                
+            <div class="chatDetail" id="chatDetail">
+                <!-- 여기에 메시지 추가됨 -->
             </div>
             <div class="chatInput">
                 <textarea id="textArea" placeholder="메세지를 입력해주세요"></textarea>

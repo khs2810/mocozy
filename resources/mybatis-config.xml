@@ -12,19 +12,21 @@
  	
  	<!-- typeAlias : VO/DTO 클래스들의 풀클래스명을 단순한 클래스명(별칭)으로 사용하기위한 별칭을 등록하는 영역-->
 	<typeAliases>
- 		<typeAlias type="com.kh.mocozy.member.model.vo.Member" alias="Member" />
- 		<typeAlias type="com.kh.mocozy.club.model.vo.Club" alias="Club" />
+ 		<typeAlias type="com.kh.mocozy.member.model.vo.Member" alias="Member"/>
+ 		<typeAlias type="com.kh.mocozy.club.model.vo.Club" alias="Club"/>
  		<typeAlias type="com.kh.mocozy.club.model.vo.ClubReview" alias="ClubReview" />
  		<typeAlias type="com.kh.mocozy.common.model.vo.Attachment" alias="Attachment"/>
  		<typeAlias type="com.kh.mocozy.board.model.vo.Notice" alias="Notice"/>
  		<typeAlias type="com.kh.mocozy.board.model.vo.NoticeReply" alias="NoticeReply"/>
- 		<typeAlias type="com.kh.mocozy.club.model.vo.Challenge" alias="Challenge" />
+ 		<typeAlias type="com.kh.mocozy.club.model.vo.Challenge" alias="Challenge"/>
  		<typeAlias type="com.kh.mocozy.club.model.vo.Request" alias="Request"/>
- 		<typeAlias type="com.kh.mocozy.member.model.vo.Picked" alias="Picked" />
- 		<typeAlias type="com.kh.mocozy.point.model.vo.Point" alias="Point" />
- 		<typeAlias type="com.kh.mocozy.point.model.vo.Payment" alias="Payment" />
- 		<typeAlias type="com.kh.mocozy.myPage.model.vo.MyPageClub" alias="MyPageClub" />
- 		<typeAlias type="com.kh.mocozy.myPage.model.vo.Charge" alias="Charge" />
+ 		<typeAlias type="com.kh.mocozy.member.model.vo.Picked" alias="Picked"/>
+ 		<typeAlias type="com.kh.mocozy.point.model.vo.Point" alias="Point"/>
+ 		<typeAlias type="com.kh.mocozy.point.model.vo.Payment" alias="Payment"/>
+ 		<typeAlias type="com.kh.mocozy.myPage.model.vo.MyPageClub" alias="MyPageClub"/>
+ 		<typeAlias type="com.kh.mocozy.myPage.model.vo.Charge" alias="Charge"/>
+ 		<typeAlias type="com.kh.mocozy.club.model.vo.ChatRoom" alias="ChatRoom"/>
+ 		<typeAlias type="com.kh.mocozy.club.model.vo.Message" alias="Message"/>
  	</typeAliases>
  	
  	<!-- 
@@ -46,6 +48,7 @@
  		<mapper resource="/mappers/point-mapper.xml"/>
  		<mapper resource="/mappers/myPageClub-mapper.xml"/>
  		<mapper resource="/mappers/chart-mapper.xml"/>
+ 		<mapper resource="/mappers/chat-mapper.xml"/>
  	</mappers>
 
  	

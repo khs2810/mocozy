@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="chatMapper"> 
+	<resultMap type="ChatRoom" id="chatRoomResult">
+		<result column="CHAT_NO" property="chatNo"/>
+		<result column="CREATE_DATE" property="createDate"/>
+		<result column="CLUB_NO" property="clubNo"/>
+		<result column="MASTER_NO" property="masterNo"/>
+		<result column="LAST_MESSAGE" property="lastMessage"/>
+		<result column="TARGET_NO" property="targetNo"/>
+		<result column="TARGET_NICKNAME" property="targetNickname"/>
+		<result column="TARGET_PROFILE" property="targetProfile"/>
+		<result column="NOT_READ_COUNT" property="notReadCount"/>
+	</resultMap>
+	
+	<resultMap type="Message" id="messageResult">
+		<result column="MESSAGE_NO" property="messageNo"/>
+		<result column="MESSAGE_CONTENT" property="messageContent"/>
+		<result column="SEND_TIME" property="sendTime"/>
+		<result column="SENDER_NO" property="senderNo"/>
+		<result column="CHATROOM_NO" property="chatroomNo"/>
+		<result column="TARGET_NO" property="targetNo"/>
+	</resultMap>
+	
+	<select id="selectRoomList" resultMap="chatRoomResult"></select>
+</mapper>
