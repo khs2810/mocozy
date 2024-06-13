@@ -28,6 +28,11 @@ public class PointServiceImpl implements PointService {
 	public int chargePoint(Member m) {
 		return pointDao.chargePoint(sqlSession, m);
 	}
+	
+	@Override
+	public int chargePoint(Map<String, Object> map) {
+		return pointDao.chargePoint(sqlSession, map);
+	}
 
 	@Override
 	public int withdrawPoint(Member m) {

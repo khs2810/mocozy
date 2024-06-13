@@ -62,6 +62,7 @@ public class MemberPointController {
 		}
 		
 		return "myPage/pointManagePage";
+
 	}
 	
 	@RequestMapping("chargeHistory.po")
@@ -162,14 +163,25 @@ public class MemberPointController {
 	} 
 	
 	@RequestMapping("charge.pt")
-	public String chargePoint(Member m, Model model, HttpSession session) {
+	public String chargePoint(Member m, Model model, String pg_token, HttpSession session) {
 		
-		int result1 = pointService.chargePoint(m);
+		Map<String, Object> map = new HashMap<>();
+		
+		if (pg_token != null) {
+			map.put("m", m);
+			map.put("pointType", "kakao");
+		} else {
+			map.put("m", m);
+			map.put("pointType", "cash");
+		}
+		
+		int result1 = pointService.chargePoint(map);
 		
 		if (result1 > 0) {
 			int result2 = memberService.chargePoint(m);
 			
 			if (result2 > 0) {
+				session.setAttribute("alertMsg", "포인트 충전 성공!");
 				session.setAttribute("loginUser", memberService.loginMember(m));
 				return "redirect:manage.po";
 			} else {
@@ -325,14 +337,26 @@ public class MemberPointController {
 	}
 	
 	@RequestMapping("chargeInClub.pt")
-	public String chargePointInClub(Member m, int cno, String dDay, String evDate, String answer, Model model, HttpSession session) {
+	public String chargePointInClub(Member m, int cno, String dDay, String evDate, String answer, String pg_token, Model model, HttpSession session) {
 		int result1 = pointService.chargePoint(m);
 		Club c = clubService.selectClub(cno);
 		
 		if (result1 > 0 && c != null) {
-			int result2 = memberService.chargePoint(m);
 			
-			if (result2 > 0) {
+			Map<String, Object> map = new HashMap<>();
+			
+			if (pg_token != null) {
+				map.put("m", m);
+				map.put("pointType", "kakao");
+			} else {
+				map.put("m", m);
+				map.put("pointType", "cash");
+			}
+			int result2 = pointService.chargePoint(map);
+			int result3 = memberService.chargePoint(m);
+			
+			if (result2 * result3 > 0) {
+				
 				session.setAttribute("loginUser", memberService.loginMember(m));
 				session.setAttribute("alertMsg", "포인트가 충전되었습니다.");
 				
@@ -340,8 +364,9 @@ public class MemberPointController {
 		        model.addAttribute("evDate", evDate);
 				model.addAttribute("c", c);
 				model.addAttribute("answer", answer);
+				model.addAttribute("cno", cno);
 				
-				return "club/clubPaymentPage";
+				return "redirect:payment.cl";
 			} else {
 				model.addAttribute("errorMsg", "포인트 충전 실패");
 				return "common/errorPage";
@@ -350,6 +375,7 @@ public class MemberPointController {
 			model.addAttribute("errorMsg", "포인트 충전 실패");
 			return "common/errorPage";
 		}
+		
 	}
 	
 	@RequestMapping("point.ad")

@@ -235,6 +235,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 .modal-footer{
     display: flex;
     justify-content: center;
+    flex-direction: column;
 }
 .modal-footer > button{
     width: 70%;
@@ -336,4 +337,8 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 .m-introduction:focus{
     outline: none;
     border: none;
+}
+
+#modal_pay_img {
+    display: flex;
 }

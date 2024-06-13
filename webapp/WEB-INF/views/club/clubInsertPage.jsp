@@ -111,7 +111,7 @@
                             </td>
                             <td class="column2">
                                 &nbsp;<b>인원수</b><br>
-                                <input type="number" name="capacity" id="maxPeople" placeholder="최대 인원수를 설정해주세요">
+                                <input type="number" name="capacity" id="maxPeople" placeholder="파티원 수를 설정해주세요(파티장 제외)">
                             </td>
                         </tr>
                         <tr class="row4">
