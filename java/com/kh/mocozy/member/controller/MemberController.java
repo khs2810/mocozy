@@ -35,6 +35,13 @@ public class MemberController {
 
 	@Autowired
 	private BCryptPasswordEncoder bcryptPasswordEncoder;
+	
+	@RequestMapping("login")
+	public String login(HttpSession session, String nick) {
+		// 로그인할 때 정보를 받아서 세션에 저장하고 chat창으로 보냄
+		session.setAttribute("nick", nick);
+		return "chatPage";
+	}
 
 //	로그인 페이지
 	@RequestMapping("loginPage.me")
