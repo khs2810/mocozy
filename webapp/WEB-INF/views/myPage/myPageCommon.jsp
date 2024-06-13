@@ -27,7 +27,7 @@
                 <!-- 포인트 -->
                 <div class="account point">
                     <span id="money">${loginUser.point}</span><span>pt</span>
-                    <button type="button" class="btn-style" data-toggle="modal" data-target="#chargeWindow">충전</button>
+                    <button type="button" onclick="location.href='manage.po'" class="btn-style" >충전</button>
                 </div>
             </div>
         </div>
@@ -76,40 +76,6 @@
                 <li class="main_menu1"><a class="main_menu2" href="list.ch">채팅</a></li>
             </ul>
         </nav>
-    </div>
-</div>
-
-<!-- The Modal -->
-<div class="modal" id="chargeWindow">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <form type="POST" action="charge.pt">
-                <input type="hidden" name="userNo" value="${loginUser.userNo}">
-                <input type="hidden" name="userId" value="${loginUser.userId}">
-                <input type="hidden" name="userPwd" value="${loginUser.userPwd}">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                <h4 class="modal-title">얼마나 충전할까요?</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <input type="radio" name="pointOpt" id="btn100" value="1000000"><label for="btn100">100만원</label><br>
-                    <input type="radio" name="pointOpt" id="btn50" value="500000"><label for="btn50">50만원</label><br>
-                    <input type="radio" name="pointOpt" id="btn20" value="200000"><label for="btn20">20만원</label><br>
-                    <input type="radio" name="pointOpt" id="btn10" value="100000"><label for="btn10">10만원</label><br>
-                    <input type="radio" name="pointOpt" id="btn1" value="10000"><label for="btn1">1만원</label><br>
-                    <input type="radio" name="pointOpt" id="directInput"><label for="directInput">직접 입력하기</label><br>
-                    <input type="number" name="point" id="directAmount" placeholder="숫자만 입력해주세요" readonly>
-                </div>
-                
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="submit" class="btn btn-primary" >충전하기</button>
-                </div>
-            </form>
-        </div>
     </div>
 </div>
 

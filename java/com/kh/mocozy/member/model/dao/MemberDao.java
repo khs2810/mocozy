@@ -12,30 +12,38 @@ import com.kh.mocozy.member.model.vo.Picked;
 
 @Repository
 public class MemberDao {
+	
+	//로그인
 	public Member loginMember(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.selectOne("memberMapper.loginMember", m);
 	}
 	
+	//id 중복체크
 	public int idCheck(SqlSessionTemplate sqlSession, String checkId) {
 		return sqlSession.selectOne("memberMapper.idCheck", checkId);
 	}
 	
+	//회원가입
 	public int insertMember(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.insert("memberMapper.insertMember", m);
 	}
 	
+	//회원정보 수정
 	public int updateMember(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.update("memberMapper.updateMember", m);
 	}
 	
+//	비밀번호 중복체크
 	public String pwdCheck(SqlSessionTemplate sqlSession, String userPwd) {
 		return sqlSession.selectOne("memberMapper.pwdCheck", userPwd);
 	}
 	
+//	비밀번호 변경
 	public int updatePassword(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.update("memberMapper.updatePassword", m);
 	}
 	
+//	회원탈퇴
 	public int deleteMember(SqlSessionTemplate sqlSession, String userId) {
 		return sqlSession.update("memberMapper.deleteMember", userId );
 	}

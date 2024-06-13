@@ -1,6 +1,9 @@
 package com.kh.mocozy.admin.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,6 +23,7 @@ import com.kh.mocozy.member.service.MemberService;
 import com.kh.mocozy.point.model.vo.Point;
 import com.kh.mocozy.point.model.vo.PointDTO;
 import com.kh.mocozy.point.service.PointService;
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 @Controller
 public class AdminController {
@@ -40,7 +44,7 @@ public class AdminController {
     private MemberService memberService;
     
 	@RequestMapping("admin.ad")
-	public String showAdmin(@RequestParam(value="cpage", defaultValue="1") int currentPage, String sortType, Model model) {  
+	public String showAdmin(@RequestParam(value="cpage", defaultValue="1") int currentPage, String sortType, Model model) throws java.text.ParseException {  
 		//페이지네이션
 		int NoticeAllList = anService.getNoticeCount(); 
 		int clubAllList = acService.getClublist(); 
@@ -50,23 +54,29 @@ public class AdminController {
 		PageInfo mi = Pagination.getPageInfo(memberAllList, currentPage, 5, 5);
 		PageInfo ni = Pagination.getPageInfo(NoticeAllList, currentPage, 5, 5);
 		
-		ArrayList<Member> mlist = auService.MemberList(mi);
-		ArrayList<Notice> nlist = anService.getNoticeAll(ni);
+		ArrayList<Member> mlist = auService.MemberAll(mi, sortType);
+		ArrayList<Notice> nlist = anService.getNoticeAll(ni, sortType);
 	    ArrayList<Club> clist = acService.selectClublist(ci, sortType);
 	    
-		for (Club c : clist){
-			//현재 클럽(c) 의 회원 목록 호출하여 memberList에 저장
-		    ArrayList<Member> memberList = acService.MemberList(c.getClubNo());
-		    //회원 목록의 프로필 이미지 url를 arraylist에 저장
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	//현재 회원의 프로필 이미지 url을 img리스트에 추가
-		    	imgs.add(m.getProfileImg());
-		    }
-		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
-		    c.setProfileImg(imgs);    
-		}
-		
+	    for (Club c : clist){
+            ArrayList<Member> memberList = acService.MemberList(c.getClubNo());
+            ArrayList<String> imgs = new ArrayList<String>();
+            for (Member m : memberList) {
+                imgs.add(m.getProfileImg());
+            }
+            c.setProfileImg(imgs);
+
+            // modifyDate 형식 변경
+            SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+            try {
+                Date date = originalFormat.parse(c.getModifyDate().toString());
+                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+                c.setModifyDate(sqlDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        
 		model.addAttribute("nlist", nlist);
 		model.addAttribute("mlist", mlist);
 		model.addAttribute("clist", clist);

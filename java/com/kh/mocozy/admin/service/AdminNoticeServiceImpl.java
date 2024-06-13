@@ -1,6 +1,7 @@
 package com.kh.mocozy.admin.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,8 +27,8 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 
 	//전체
 	@Override
-	public ArrayList<Notice> getNoticeAll(PageInfo ni) {
-		return anDao.getNoticeAll(sqlSession, ni);
+	public ArrayList<Notice> getNoticeAll(PageInfo ni, String sortType) {
+		return anDao.getNoticeAll(sqlSession, ni, sortType);
 	}
 
 	@Override
@@ -37,8 +38,8 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 
 	//이벤트
 	@Override
-	public ArrayList<Notice> getNoticeEvent(PageInfo ni) {
-		return anDao.getNoticeEvent(sqlSession, ni);
+	public ArrayList<Notice> getNoticeEvent(PageInfo ni, String sortType) {
+		return anDao.getNoticeEvent(sqlSession, ni, sortType);
 	}
 
 	@Override
@@ -48,13 +49,37 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 
 	//공지
 	@Override
-	public ArrayList<Notice> getNoticeBoard(PageInfo ni) {
-		return anDao.getNoticeBoard(sqlSession, ni);
+	public ArrayList<Notice> getNoticeBoard(PageInfo ni, String sortType) {
+		return anDao.getNoticeBoard(sqlSession, ni, sortType);
 	}
 
 	@Override
 	public ArrayList<Notice> getNoticeBoardList() {
 		return anDao.getNoticeBoardList(sqlSession);
+	}
+	
+	//검색 리스트
+	@Override
+	public int getNoticeSearchCount(HashMap<String, String> map) {
+		return anDao.getNoticeSearchCount(sqlSession, map);
+	}
+	
+	//전체 검색
+	@Override
+	public ArrayList<Notice> getNoticeSearchAll(HashMap<String, String> map, PageInfo ni) {
+		return anDao.getNoticeSearchAll(sqlSession, map, ni);
+	}
+	
+	//이벤트 검색
+	@Override
+	public ArrayList<Notice> getNoticeSearchEvent(HashMap<String, String> map, PageInfo ni) {
+		return anDao.getNoticeSearchEvent(sqlSession, map, ni);
+	}
+	
+	//공지 검색
+	@Override
+	public ArrayList<Notice> getNoticeSearchBoard(HashMap<String, String> map, PageInfo ni) {
+		return anDao.getNoticeSearchBoard(sqlSession, map, ni);
 	}
 
 	

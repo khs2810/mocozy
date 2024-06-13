@@ -314,11 +314,6 @@ public class MemberController {
 		return "myPage/dibsChallenge";
 	}
 
-//		찜한 소셜
-	@RequestMapping("dibsSocial.me")
-	public String dibsSocialView() {
-		return "myPage/dibsSocial";
-	}
 	
 	//찜 ajax 확인
 	@ResponseBody

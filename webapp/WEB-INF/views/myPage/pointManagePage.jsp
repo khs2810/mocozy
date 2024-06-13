@@ -16,6 +16,7 @@
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jun/css/challengeManagePage.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css">
+    <script src="${pageContext.request.contextPath}/resources/teo/js/pointManagePage.js"></script>
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>
@@ -71,7 +72,7 @@
     <div class="modal" id="chargeWindow">
         <div class="modal-dialog">
             <div class="modal-content">
-                <form type="POST" action="charge.pt">
+                <form type="POST" action="charge.pt" id="charge_form">
                     <input type="hidden" name="userNo" value="${loginUser.userNo}">
                     <input type="hidden" name="userId" value="${loginUser.userId}">
                     <input type="hidden" name="userPwd" value="${loginUser.userPwd}">
@@ -89,12 +90,17 @@
                         <input type="radio" name="pointOpt" id="btn10" value="100000"><label for="btn10">10만원</label><br>
                         <input type="radio" name="pointOpt" id="btn1" value="10000"><label for="btn1">1만원</label><br>
                         <input type="radio" name="pointOpt" id="directInput"><label for="directInput">직접 입력하기</label><br>
-                        <input type="number" name="point" id="directAmount" placeholder="숫자만 입력해주세요" readonly>
+                        <input type="number" name="point" id="directAmount" placeholder="숫자만 입력해주세요" readonly required>
                     </div>
                     
                     <!-- Modal footer -->
                     <div class="modal-footer">
-                        <button type="submit" class="btn btn-primary">충전하기</button>
+                        <button type="button" onclick="submitCharge('cash')" class="btn btn-primary">충전하기</button>
+                        <div id="modal_pay_img">
+                            <img onclick="submitCharge('kakao')" src="${pageContext.request.contextPath}/resources/teo/img/kakao_small.png" alt="">
+                            <div style="width: 30px;"></div>
+                            <img width="97px" onclick="submitCharge('naver')" src="${pageContext.request.contextPath}/resources/teo/img/badge_npay.svg" alt="">
+                        </div>
                     </div>
                 </form>
             </div>

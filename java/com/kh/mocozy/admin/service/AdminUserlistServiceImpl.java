@@ -1,6 +1,7 @@
 package com.kh.mocozy.admin.service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,10 +26,16 @@ public class AdminUserlistServiceImpl implements AdminUserlistService{
 		return auDao.getMemberlist(sqlSession);
 	}
 	
+	//insertAdmin
+	@Override
+	public ArrayList<Member> MemberList(PageInfo mi, String sortType) {
+		return auDao.MemberList(sqlSession, mi, sortType);
+	}
+	
 	//전체
 	@Override
-	public ArrayList<Member> MemberList(PageInfo mi) {
-		return auDao.MemberList(sqlSession, mi);
+	public ArrayList<Member> MemberAll(PageInfo mi, String sortType) {
+		return auDao.MemberAll(sqlSession, mi, sortType);
 	}
 
 	@Override
@@ -38,8 +45,8 @@ public class AdminUserlistServiceImpl implements AdminUserlistService{
 	
 	//진행중
 	@Override
-	public ArrayList<Member> MemberActive(PageInfo mi) {
-		return auDao.MemberActive(sqlSession, mi);
+	public ArrayList<Member> MemberActive(PageInfo mi, String sortType) {
+		return auDao.MemberActive(sqlSession, mi, sortType);
 	}
 
 	@Override
@@ -49,8 +56,8 @@ public class AdminUserlistServiceImpl implements AdminUserlistService{
 	
 	//종료
 	@Override
-	public ArrayList<Member> MemberEnd(PageInfo mi) {
-		return auDao.MemberEnd(sqlSession, mi);
+	public ArrayList<Member> MemberEnd(PageInfo mi, String sortType) {
+		return auDao.MemberEnd(sqlSession, mi, sortType);
 	}
 
 	@Override
@@ -58,4 +65,34 @@ public class AdminUserlistServiceImpl implements AdminUserlistService{
 		return auDao.MemberEndList(sqlSession);
 	}
 	
+	//검색 리스트
+	@Override
+	public int getMemberSearchlist(HashMap<String, String> map) {
+		return auDao.getMemberSearchlist(sqlSession, map);
+	}
+	
+	//전체 검색
+	@Override
+	public ArrayList<Member> MemberSearchAll(HashMap<String, String> map, PageInfo mi) {
+		return auDao.MemberSearchAll(sqlSession, map, mi);
+	}
+	
+	//진행중 검색
+	@Override
+	public ArrayList<Member> MemberSearchActive(HashMap<String, String> map, PageInfo mi) {
+		return auDao.MemberSearchActive(sqlSession, map, mi);
+	}
+	
+	//종료된 검색
+	@Override
+	public ArrayList<Member> MemberSearchEnd(HashMap<String, String> map, PageInfo mi) {
+		return auDao.MemberSearchEnd(sqlSession, map, mi);
+	}
+
+	//insertManager 검색
+	@Override
+	public ArrayList<Member> MemberSearchList(HashMap<String, String> map, PageInfo mi) {
+		return auDao.MemberSearchList(sqlSession, map, mi);
+	}
 }
+

@@ -45,12 +45,15 @@
 	href="${pageContext.request.contextPath}/resources/jo/css/admin_css/adminClub_css/adminClub.css">
 <script
 	src="${pageContext.request.contextPath}/resources/jo/js/admin_js/adminNotice_js/adminNotice.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/jo/js/admin_js/adminNotice_js/adminNoticeSearch.js"></script>	
 </head>
 
 <%@ include file="../sideBar.jsp"%>
 <body>
 	<div class="menubar-hoverable header-fixed menubar-pin sidebar-mini">
 		<div id="base">
+		<input type="hidden" value="${noticeType}" id="noticeType">
 			<div id="basecontent">
 				<header class="top-header" id="header">
 					<div class="headerbar">
@@ -117,7 +120,7 @@
 										</li>
 
 										<li class="hidden-xs hidden-sm">
-										<select class="tw-relative tw-bg-transparent tw-appearance-none tw-pr13 tw-text-right" id="sortBtn">
+										<select class="tw-relative tw-bg-transparent tw-appearance-none tw-pr13 tw-text-right" id="sortBtn" onchange="orderSelect()">
 												<option value="DESC">내림차순</option>
 												<option value="ASC">오름차순</option>
 										</select></li>
@@ -128,17 +131,18 @@
 											<div class="clearfix search-form">
 												<div class="card">
 													<div class="card-body no-padding">
-														<form class="prod-search" id="prod-search-form">
+														<form class="prod-search" id="prod-search-form" action="adminNoticeSearchAjax.ad" method="GET">
 															<div class="twitter-wrap no-margin-left">
 																<span class="twitter-typeahead twitter-relative">
 																	<div class="on-click">
 																		<a class="on-click-ahref"> <span
 																			id="search-keyword-type-text">기본</span>
-																		</a> <input type="hidden" name="search-keyword-type"
-																			class="search-keyword-type" id="search-keyword-type">
-																	</div> <input type="text" id="keyword-search-input"
+																		</a> 	
+																	</div>																											
+																	<input type="hidden" name="cpage" value="1"> 
+																	 <input type="text" id="keyword-search-input" name="keyword" value="${keyword}"
 																	class="keyword-search keysearch-input form-control typeahead tt-input"
-																	placeholder="모임명, 모임 카테고리 검색">
+																	placeholder="글 제목 검색">
 																</span>
 															</div>
 
@@ -182,7 +186,6 @@
 														<c:forEach var="notice" items="${nlist}">
 															<tr class="content -prodListItem">
 																<td class="checkhead">
-																	<div class="drag -showcase-handle ui-sortable-handle"></div>
 																	<div class="checkbox checkbox-styled no-margin">
 																		<label> <input type="checkbox"
 																			class="-prodListCheck"> <span></span>

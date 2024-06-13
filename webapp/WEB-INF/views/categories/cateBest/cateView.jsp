@@ -78,7 +78,7 @@
 										<div class="participant">
 											<c:if test="${not empty club.profileImg}">
 												<img class="people"
-													src="${pageContext.request.contextPath}${club.profileImg[0]}" />
+													src="${club.profileImg[0]}" />
 											</c:if>
 
 											<div class="profileimglist">
@@ -86,7 +86,7 @@
 													<c:forEach var="clubMember" items="${club.profileImg}"
 														begin="2" end="4">
 														<img class="cardImg"
-															src="${pageContext.request.contextPath}${clubMember}" />
+															src="${clubMember}" />
 													</c:forEach>
 												</c:if>
 												<c:choose>
@@ -97,7 +97,7 @@
 														<c:forEach var="clubMember" items="${club.profileImg}"
 															begin="2" end="${club.profileImg.size() - 1}">
 															<img class="cardImg"
-																src="${pageContext.request.contextPath}${clubMember}" />
+																src="${clubMember}" />
 														</c:forEach>
 													</c:when>
 												</c:choose>

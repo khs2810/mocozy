@@ -37,14 +37,9 @@
 
 						<div class="fullscreen">
 							<div class="items">
-
-								<div class="rankcontentcard">
 									<a href="detail.cl?cno=${club.clubNo}">
-										<div class="aspect">
-											<img class="aspectimg" src="${club.thumbnailImg}"/>
-										</div>
+											<img class="aspectimg" src="${club.thumbnailImg}" width="60px;" height="60px;" style="border-radius: 8%;"/>
 									</a>
-								</div>
 
 								<div class="teacher">
 									<div class="tutor">${club.clubTitle}</div>
