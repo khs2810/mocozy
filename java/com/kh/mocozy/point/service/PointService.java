@@ -11,6 +11,8 @@ import com.kh.mocozy.point.model.vo.Point;
 public interface PointService {
 
 	int chargePoint(Member m);
+	
+	int chargePoint(Map<String, Object> map);
 
 	int withdrawPoint(Member m);
 

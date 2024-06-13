@@ -18,6 +18,10 @@ public class PointDao {
 	public int chargePoint(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.insert("pointMapper.chargePoint", m);
 	}
+	
+	public int chargePoint(SqlSessionTemplate sqlSession, Map<String, Object> map) {
+		return sqlSession.insert("pointMapper.chargePointType", map);
+	}
 
 	public int withdrawPoint(SqlSessionTemplate sqlSession, Member m) {
 		return sqlSession.insert("pointMapper.withdrawPoint", m);

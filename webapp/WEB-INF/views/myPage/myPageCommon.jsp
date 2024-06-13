@@ -27,7 +27,7 @@
                 <!-- 포인트 -->
                 <div class="account point">
                     <span id="money">${loginUser.point}</span><span>pt</span>
-                    <button type="button" class="btn-style">충전</button>
+                    <button type="button" onclick="location.href='manage.po'" class="btn-style" >충전</button>
                 </div>
             </div>
         </div>

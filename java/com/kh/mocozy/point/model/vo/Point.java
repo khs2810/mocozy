@@ -21,8 +21,10 @@ public class Point {
 	private int point;
 	private Date createDate;
 	private String status;
+	private String pointType;
 	private String dateFormat;
 	private String pointFormat;
 	private int adminNo;
 	private String pointInfo;
+	
 }

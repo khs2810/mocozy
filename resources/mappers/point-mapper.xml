@@ -12,6 +12,7 @@
 		<result column="POINT" property="point"/>
 		<result column="CREATE_DATE" property="createDate"/>
 		<result column="STATUS" property="status"/>
+		<result column="POINT_TYPE" property="pointType"/>
 		<result column="ADMIN_NO" property="adminNo"/>
 		<result column="POINT_INFO" property="pointInfo"/>
 	</resultMap>
@@ -197,4 +198,21 @@
 		WHERE STATUS = 'P' OR STATUS = 'M'
 	</select>
 	
+	<insert id="chargePointType">
+		INSERT INTO
+			POINT (
+					 point_no,
+					 user_no,
+					 point,
+					 status,
+					 point_type
+					 )
+			VALUES (
+					NEXTVAL('SEQ_PNO'),
+					#{m.userNo},
+					#{m.point},
+					'D',
+					#{pointType}
+					)
+	</insert>
 </mapper>

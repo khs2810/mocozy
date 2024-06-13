@@ -90,13 +90,17 @@
                         <input type="radio" name="pointOpt" id="btn10" value="100000"><label for="btn10">10만원</label><br>
                         <input type="radio" name="pointOpt" id="btn1" value="10000"><label for="btn1">1만원</label><br>
                         <input type="radio" name="pointOpt" id="directInput"><label for="directInput">직접 입력하기</label><br>
-                        <input type="number" name="point" id="directAmount" placeholder="숫자만 입력해주세요" readonly>
+                        <input type="number" name="point" id="directAmount" placeholder="숫자만 입력해주세요" readonly required>
                     </div>
                     
                     <!-- Modal footer -->
                     <div class="modal-footer">
                         <button type="button" onclick="submitCharge('cash')" class="btn btn-primary">충전하기</button>
-                        <button type="button" onclick="submitCharge('kakao')" class="btn btn-primary">카카오페이</button>
+                        <div id="modal_pay_img">
+                            <img onclick="submitCharge('kakao')" src="${pageContext.request.contextPath}/resources/teo/img/kakao_small.png" alt="">
+                            <div style="width: 30px;"></div>
+                            <img width="97px" onclick="submitCharge('naver')" src="${pageContext.request.contextPath}/resources/teo/img/badge_npay.svg" alt="">
+                        </div>
                     </div>
                 </form>
             </div>
