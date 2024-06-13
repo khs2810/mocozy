@@ -29,19 +29,10 @@ public class AdminManagerController {
 		
 		//카테고리별로 사이즈 구하기
 		ArrayList<Member> getmlist = amService.MemberAllList();
-		ArrayList<Member> getActivelist = amService.MemberActiveList();
-		ArrayList<Member> getEndlist = amService.MemberEndList();
 		int manageCount = getmlist.size();
-		int manageActiveCount = getActivelist.size();
-		int manageEndCount = getEndlist.size();
 		
 		model.addAttribute("getmlist", getmlist);
-		model.addAttribute("getActivelist", getActivelist);
-		model.addAttribute("getEndlist", getEndlist);
 		model.addAttribute("manageCount", manageCount);
-		model.addAttribute("manageActiveCount", manageActiveCount);
-		model.addAttribute("manageEndCount", manageEndCount);
-		model.addAttribute("status", "D");
 
 		return "admin/adminManager/adminManager";
     }		
@@ -53,7 +44,6 @@ public class AdminManagerController {
        
 		ArrayList<Member> mlist = new ArrayList<>();
         
-    	if (status.equals("D")) {
         	//페이지네이션
         	int memberAllList = amService.getManagerlist();
         	PageInfo mi = Pagination.getPageInfo(memberAllList, currentPage, 10, 10);
@@ -61,25 +51,6 @@ public class AdminManagerController {
         	//클럽 리스트 불러오기
         	mlist = amService.ManagerAll(mi, sortType);
         	
-        } else if (status.equals("Y")) {
-        	//페이지네이션
-            int memberAllList = amService.getManagerlist(); 
-            PageInfo mi = Pagination.getPageInfo(memberAllList, currentPage, 10, 10);
-            
-            //클럽 리스트 불러오기
-            mlist = amService.ManagerActive(mi, sortType);
-        	
-        } else {
-        	//페이지네이션
-            int memberAllList = amService.getManagerlist(); 
-            PageInfo mi = Pagination.getPageInfo(memberAllList, currentPage, 10, 10);
-            
-            //클럽 리스트 불러오기
-            mlist = amService.ManagerEnd(mi, sortType);
-        }
-    	
-        System.out.println(currentPage);	
-		
 		return new Gson().toJson(mlist);
    }	
 	
@@ -94,82 +65,14 @@ public class AdminManagerController {
 		
 		ArrayList<Member> mlist = new ArrayList<>();
         
-    	if (status.equals("D")) {
-        	//페이지네이션
-        	int memberAllList = amService.getManagerSearchlist(map);
-        	PageInfo mi = Pagination.getPageInfo(memberAllList, currentPage, 10, 10);
+        //페이지네이션
+        int memberAllList = amService.getManagerSearchlist(map);
+        PageInfo mi = Pagination.getPageInfo(memberAllList, currentPage, 50, 50);
         	
-        	//클럽 리스트 불러오기
-        	mlist = amService.ManagerSearchAll(map, mi);
-        	
-        } else if (status.equals("Y")) {
-        	//페이지네이션
-            int memberAllList = amService.getManagerSearchlist(map); 
-            PageInfo mi = Pagination.getPageInfo(memberAllList, currentPage, 10, 10);
-            
-            //클럽 리스트 불러오기
-            mlist = amService.ManagerSearchActive(map, mi);
-        	
-        } else {
-        	//페이지네이션
-            int memberAllList = amService.getManagerSearchlist(map); 
-            PageInfo mi = Pagination.getPageInfo(memberAllList, currentPage, 10, 10);
-            
-            //클럽 리스트 불러오기
-            mlist = amService.ManagerSearchEnd(map, mi);
-        }
-    	
-        System.out.println(currentPage);	
-		
+        //클럽 리스트 불러오기
+        mlist = amService.ManagerSearchAll(map, mi);
+   	
 		return new Gson().toJson(mlist);
    }
-	
-	/* -------------------------- */
-	
-	 //활동중
-	@RequestMapping("adminManagerActive.ad")
-	public String showManagerActive(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) {  
-		
-		ArrayList<Member> getmlist = amService.MemberAllList();
-		ArrayList<Member> getActivelist = amService.MemberActiveList();
-		ArrayList<Member> getEndlist = amService.MemberEndList();
-		int manageCount = getmlist.size();
-		int manageActiveCount = getActivelist.size();
-		int manageEndCount = getEndlist.size();
-		
-		model.addAttribute("getmlist", getmlist);
-		model.addAttribute("getActivelist", getActivelist);
-		model.addAttribute("getEndlist", getEndlist);
-		model.addAttribute("manageCount", manageCount);
-		model.addAttribute("manageActiveCount", manageActiveCount);
-		model.addAttribute("manageEndCount", manageEndCount);
-		model.addAttribute("status", "Y");
-		
-		return "admin/adminManager/adminManagerActive";
-   }	
-	
-	/* ---------------------------- */
-	
-	 //종료
-	@RequestMapping("adminManagerEnd.ad")
-	public String showManagerEnd(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) {  
-
-		ArrayList<Member> getmlist = amService.MemberAllList();
-		ArrayList<Member> getActivelist = amService.MemberActiveList();
-		ArrayList<Member> getEndlist = amService.MemberEndList();
-		int manageCount = getmlist.size();
-		int manageActiveCount = getActivelist.size();
-		int manageEndCount = getEndlist.size();
-		
-		model.addAttribute("getmlist", getmlist);
-		model.addAttribute("getActivelist", getActivelist);
-		model.addAttribute("getEndlist", getEndlist);
-		model.addAttribute("manageCount", manageCount);
-		model.addAttribute("manageActiveCount", manageActiveCount);
-		model.addAttribute("manageEndCount", manageEndCount);
-		model.addAttribute("status", "N");
-		
-		return "admin/adminManager/adminManagerEnd";
-  }		
 
 }

@@ -65,6 +65,17 @@ public class AdminUserlistServiceImpl implements AdminUserlistService{
 		return auDao.MemberEndList(sqlSession);
 	}
 	
+	//숨김
+	@Override
+	public ArrayList<Member> MemberHidden(PageInfo mi, String sortType) {
+		return auDao.MemberHidden(sqlSession, mi, sortType);
+	}
+	
+	@Override
+	public ArrayList<Member> MemberHiddenList() {
+		return auDao.MemberHiddenList(sqlSession);
+	}
+	
 	//검색 리스트
 	@Override
 	public int getMemberSearchlist(HashMap<String, String> map) {
@@ -94,5 +105,12 @@ public class AdminUserlistServiceImpl implements AdminUserlistService{
 	public ArrayList<Member> MemberSearchList(HashMap<String, String> map, PageInfo mi) {
 		return auDao.MemberSearchList(sqlSession, map, mi);
 	}
+
+	//숨김 검색
+	@Override
+	public ArrayList<Member> MemberSearchHidden(HashMap<String, String> map, PageInfo mi) {
+		return auDao.MemberSearchHidden(sqlSession, map, mi);
+	}
+	
 }
 

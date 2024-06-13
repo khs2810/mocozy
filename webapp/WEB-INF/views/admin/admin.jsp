@@ -8,6 +8,7 @@
 <!-- 공용 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>관리자 페이지</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <link
@@ -55,7 +56,7 @@
 					<div class="headerbar">
 						<div class="headerbar-left">
 							<div>
-								<a href="_blank" class="site-name">mo-cozy</a>
+								<a href="javascript:void(0);" class="site-name">mo-cozy</a>
 							</div>
 						</div>
 						<div class="headerbar-right">
@@ -128,7 +129,7 @@
 
 																				<td class="no text-12">${club.clubNo}</td>
 
-																				<td class="image"><a href="_blank"> <img
+																				<td class="image"><a href="detail.cl?cno=${club.clubNo}"> <img
 																						src="${club.thumbnailImg}" width="49" height="49"
 																						class="item-thumb">
 																				</a></td>
@@ -136,8 +137,8 @@
 																				<td class="title">
 																					<div>
 																						<div class="item-tit inline-blocked">
-																							<a href="_blank">${club.clubTitle}</a> <a
-																								href="_blank"
+																							<a href="detail.cl?cno=${club.clubNo}">${club.clubTitle}</a> <a
+																								href="detail.cl?cno=${club.clubNo}"
 																								class="im-icon im-ico-new-tab vertical-middle tab-icon"
 																								style="margin-left: 4px;"></a>
 																						</div>
@@ -151,16 +152,7 @@
 																					data-toggle="dropdown" style="margin-right: -1px;">
 																						<span>${club.status}</span>
 																				</a>
-																					<ul class="dropdown-menu" style="top: 50px;">
-																						<li
-																							id="mixpanel-bo-shopping-item-list-status-sale">
-																							<a href="_blank">진행중</a>
-																						</li>
-																						<li
-																							id="mixpanel-bo-shopping-item-list-status-soldout">
-																							<a href="_blank">종료</a>
-																						</li>
-																					</ul></td>
+																				</td>
 
 																				<td class="r-date text-12">${club.modifyDate}</td>
 																				<td class="more"></td>
@@ -238,7 +230,7 @@
 
 																				<td class="no text-12">${user.userNo}</td>
 
-																				<td class="image"><a href="_blank"> <img
+																				<td class="image"><a href="javascript:void(0);"> <img
 																						src="${user.profileImg}"
 																						width="49" height="49" class="item-thumb">
 																				</a></td>
@@ -246,8 +238,8 @@
 																				<td class="title" style="width: 100px;">
 																					<div>
 																						<div class="item-tit inline-blocked">
-																							<a href="_blank">${user.nickname}</a> <a
-																								href="_blank"
+																							<a href="javascript:void(0);">${user.nickname}</a> <a
+																								href="javascript:void(0);""
 																								class="im-icon im-ico-new-tab vertical-middle tab-icon"
 																								style="margin-left: 4px;"></a>
 																						</div>
@@ -333,7 +325,7 @@
 												<ul class="list list-preview">
 													<c:if test="${not empty nlist}">
 														<li class="tile"><a
-															class="tile-content contents-item" href="_blank">
+															class="tile-content contents-item" href="detail.no?nno=${notice.noticeNo}">
 																<div class="tile-text">
 																	<div>
 																		<strong>${nlist[0].noticeTitle}</strong> <span
