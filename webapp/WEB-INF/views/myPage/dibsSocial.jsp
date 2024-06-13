@@ -24,7 +24,7 @@
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/dibsSocialPage.js"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPageCommon.js"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/mySocial.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/teo/css/clubDetailPage.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/dibs.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/social.css" />
     
@@ -71,9 +71,9 @@
                         <div class="status">
                             <!-- 찜 -->
                             <div class="dibs">
-                                <div class="club_picked" data-cno="${c.clubNo}" data-uno="${loginUser.userNo}"></div>
-                                <i class="fa-regular fa-heart" style="color: red; display: flex; justify-content: flex-end;"></i>
-                                
+                                <div class="club_picked" onclick="clickedPicked(${Club.clubNo}, ${loginUser.userNo})">
+                                    <i class="fa-regular fa-heart" style="color: red; display: flex; justify-content: flex-end;"></i>
+                                </div>
                             </div>
                             <c:choose>
                                 <c:when test="${Club.memberCnt eq Club.capacity}">

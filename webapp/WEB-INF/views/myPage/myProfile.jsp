@@ -78,7 +78,7 @@
                     <div>
                         <!-- 프로필이미지 -->
                         <div class="profile-box1" style="">
-                            <img class="profile-img" src="${pageContext.request.contextPath}${loginUser.profileImg}" id="fileImg" onclick="chooseFile(1)" alt="">
+                            <img class="profile-img" src="${loginUser.profileImg}" id="fileImg" onclick="chooseFile(1)" alt="">
                             <input type="file" style="display: none;" name="upfile" id="file1" required onchange="loadImg(this, 1, '${pageContext.request.contextPath}')">
                         </div>
                     </div>
