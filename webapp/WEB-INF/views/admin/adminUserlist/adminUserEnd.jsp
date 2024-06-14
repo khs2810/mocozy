@@ -8,6 +8,7 @@
 <!-- 공용 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>관리자 페이지</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <link
@@ -45,8 +46,6 @@
 	href="${pageContext.request.contextPath}/resources/jo/css/admin_css/adminClub_css/adminClub.css">
 <script
 	src="${pageContext.request.contextPath}/resources/jo/js/admin_js/adminUserlist_js/insertUserlist.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/jo/js/admin_js/adminUserlist_js/insertUserlistAjax.js"></script>	
 </head>
 
 <%@ include file="../sideBar.jsp"%>
@@ -61,7 +60,7 @@
 							<ul class="header-nav header-nav-options">
 								<li class="header-nav-brand">
 									<div class="brand-holder">
-										<span class="location-text"> <a href="_blank">사용자</a>
+										<span class="location-text"> <a href="javascript:void(0);">사용자</a>
 										</span>
 									</div>
 								</li>
@@ -111,6 +110,14 @@
 
 													<div class="owl-item owl-itemitem active">
 														<ul class="owl-nav-tabs">
+															<li class="soldout"><a href="adminUserHidden.ad">숨김
+																	<span class="_count text-primary">${hiddenCount}</span>
+															</a></li>
+														</ul>
+													</div>
+
+													<div class="owl-item owl-itemitem active">
+														<ul class="owl-nav-tabs">
 															<li class="active -all"><a href="adminUserEnd.ad">종료
 																	<span class="_count text-primary">${endCount}</span>
 															</a></li>
@@ -132,18 +139,14 @@
 											<div class="clearfix search-form">
 												<div class="card">
 													<div class="card-body no-padding">
-														<form class="prod-search" id="prod-search-form" action="adminUserlistSearchAjax.ad" method="GET">
+														<div class="prod-search" id="prod-search-form">
 															<div class="twitter-wrap no-margin-left">
 																<span class="twitter-typeahead twitter-relative">
 																	<div class="on-click">
 																		<a class="on-click-ahref"> <span
-																			id="search-keyword-type-text">기본</span>
+																			id="search-keyword-type-text">검색어 입력</span>
 																		</a>
-																		<ul class="dropdown-menu top36">
-																			<li><a href="_blank">기본</a></li>
-																			<li><a href="_blank">옵션 클럽번호</a></li>
-																		</ul>
-																	</div>																															</div>
+																	</div>																															
 																	<input type="hidden" name="cpage" value="1"> 
 																	 <input type="text" id="keyword-search-input" name="keyword" value="${keyword}"
 																	class="keyword-search keysearch-input form-control typeahead tt-input"
@@ -162,7 +165,7 @@
 																		  </svg>
 																	</label>
 																</div>
-														</form>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -201,16 +204,16 @@
 
 																<td class="no text-12">${user.userNo}</td>
 
-																<td class="image"><a href="_blank"> <img
-																		src="${pageContext.request.contextPath}${user.profileImg}"
+																<td class="image"><a href="javascript:void(0);"> <img
+																		src="${user.profileImg}"
 																		width="49" height="49" class="item-thumb">
 																</a></td>
 
 																<td class="title" style="width: 100px;">
 																	<div>
 																		<div class="item-tit inline-blocked">
-																			<a href="_blank">${user.nickname}</a> <a
-																				href="_blank"
+																			<a href="javascript:void(0);">${user.nickname}</a> <a
+																				href="javascript:void(0);"
 																				class="im-icon im-ico-new-tab vertical-middle tab-icon"
 																				style="margin-left: 4px;"></a>
 																		</div>

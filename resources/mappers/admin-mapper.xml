@@ -68,6 +68,10 @@
 		<result column="ADMIN" property="admin" />
 	</resultMap>
 
+<!-- psql에서 user_no like 절을 쓰려면 
+	user_no는 bigint 형태기 때문에
+	cast를 사용하여 문자열로 변환해야한다 -->
+	
 	<update id="increaseCount">
 		UPDATE CLUB
 		SET COUNT = COUNT + 1
@@ -126,37 +130,37 @@
 	
 	<select id="selectClubSearchlist" resultMap="clubResult">
 		SELECT CLUB.CLUB_NO,
-			CLUB.USER_NO,
-			CLUB_TITLE,
-			CLUB_TYPE,
-			CLUB_CONTENT,
-			ADDRESS,
-			ADDRESS_DETAIL,
-			EVENT_DATE,
-			COST,
-			COST_INFO,
-			TOTAL_POINT,
-			CAPACITY,
-			ONLINE,
-			QUESTION,
-			THUMBNAIL_IMG,
-			CLUB.CREATE_DATE,
-			CLUB.MODIFY_DATE,
-			COUNT,
-			CLUB.STATUS,
-			NICKNAME,
-			category_name1,
-			category_name2,
-			NICKNAME,
-			category_name1,
-			category_name2
-		    FROM public.CLUB
-	    join MEMBER ON CLUB.USER_NO = MEMBER.USER_NO
-		WHERE (CLUB_NO LIKE '%' || #{keyword} || '%' 
-			OR	CLUB_TITLE LIKE '%' || #{keyword} || '%' 
-			OR category_name1 LIKE '%' || #{keyword} || '%' 
-			OR category_name2 LIKE '%' || #{keyword} || '%')
-	    Order by CLUB.CLUB_NO ${sortType};
+        CLUB.USER_NO,
+        CLUB_TITLE,
+        CLUB_TYPE,
+        CLUB_CONTENT,
+        ADDRESS,
+        ADDRESS_DETAIL,
+        EVENT_DATE,
+        COST,
+        COST_INFO,
+        TOTAL_POINT,
+        CAPACITY,
+        ONLINE,
+        QUESTION,
+        THUMBNAIL_IMG,
+        CLUB.CREATE_DATE,
+        CLUB.MODIFY_DATE,
+        COUNT,
+        CLUB.STATUS,
+        NICKNAME,
+        category_name1,
+        category_name2,
+        NICKNAME,
+        category_name1,
+        category_name2
+        FROM public.CLUB
+    join MEMBER ON CLUB.USER_NO = MEMBER.USER_NO
+    WHERE (CAST(CLUB_NO AS TEXT) LIKE '%' || #{keyword} || '%' 
+        OR  CLUB_TITLE LIKE '%' || #{keyword} || '%' 
+        OR category_name1 LIKE '%' || #{keyword} || '%' 
+        OR category_name2 LIKE '%' || #{keyword} || '%')
+    Order by CLUB.CLUB_NO ${sortType};
 	</select>
 	
 	<!-- 진행중 -->
@@ -215,10 +219,73 @@
     FROM public.CLUB
     join MEMBER ON CLUB.USER_NO = MEMBER.USER_NO
     WHERE CLUB.STATUS = 'Y'
-   		AND (CLUB_NO LIKE '%' || #{keyword} || '%' 
-   			OR CLUB_TITLE LIKE '%' || #{keyword} || '%' 
-			OR category_name1 LIKE '%' || #{keyword} || '%' 
-			OR category_name2 LIKE '%' || #{keyword} || '%')
+   		AND (CAST(CLUB_NO AS TEXT) LIKE '%' || #{keyword} || '%' 
+        OR  CLUB_TITLE LIKE '%' || #{keyword} || '%' 
+        OR category_name1 LIKE '%' || #{keyword} || '%' 
+        OR category_name2 LIKE '%' || #{keyword} || '%')
+    Order by CLUB.CLUB_NO ${sortType};
+	</select>
+	
+	<!-- 숨김 -->
+	<select id="selectClubHidden" resultMap="clubResult">
+		SELECT CLUB.CLUB_NO,
+			CLUB.USER_NO,
+			CLUB_TITLE,
+			CLUB_TYPE,
+			CLUB_CONTENT,
+			ADDRESS,
+			ADDRESS_DETAIL,
+			EVENT_DATE,
+			COST,
+			COST_INFO,
+			TOTAL_POINT,
+			CAPACITY,
+			ONLINE,
+			QUESTION,
+			THUMBNAIL_IMG,
+			CLUB.CREATE_DATE,
+			CLUB.MODIFY_DATE,
+			COUNT,
+	        CLUB.STATUS,
+			NICKNAME,
+			category_name1,
+			category_name2
+    FROM public.CLUB
+    join MEMBER ON CLUB.USER_NO = MEMBER.USER_NO
+    WHERE CLUB.STATUS = 'H'
+    Order by CLUB.CLUB_NO ${sortType};
+	</select>
+	
+	<select id="selectClubSearchHidden" resultMap="clubResult">
+		SELECT CLUB.CLUB_NO,
+			CLUB.USER_NO,
+			CLUB_TITLE,
+			CLUB_TYPE,
+			CLUB_CONTENT,
+			ADDRESS,
+			ADDRESS_DETAIL,
+			EVENT_DATE,
+			COST,
+			COST_INFO,
+			TOTAL_POINT,
+			CAPACITY,
+			ONLINE,
+			QUESTION,
+			THUMBNAIL_IMG,
+			CLUB.CREATE_DATE,
+			CLUB.MODIFY_DATE,
+			COUNT,
+	        CLUB.STATUS,
+			NICKNAME,
+			category_name1,
+			category_name2
+    FROM public.CLUB
+    join MEMBER ON CLUB.USER_NO = MEMBER.USER_NO
+    WHERE CLUB.STATUS = 'H'
+   		AND (CAST(CLUB_NO AS TEXT) LIKE '%' || #{keyword} || '%' 
+        OR  CLUB_TITLE LIKE '%' || #{keyword} || '%' 
+        OR category_name1 LIKE '%' || #{keyword} || '%' 
+        OR category_name2 LIKE '%' || #{keyword} || '%')
     Order by CLUB.CLUB_NO ${sortType};
 	</select>
 	
@@ -278,10 +345,10 @@
     FROM public.CLUB
     join MEMBER ON CLUB.USER_NO = MEMBER.USER_NO
     WHERE CLUB.STATUS = 'E'
-       	AND (CLUB_NO LIKE '%' || #{keyword} || '%' 
-	       	OR	CLUB_TITLE LIKE '%' || #{keyword} || '%' 
-			OR category_name1 LIKE '%' || #{keyword} || '%' 
-			OR category_name2 LIKE '%' || #{keyword} || '%')
+       	AND (CAST(CLUB_NO AS TEXT) LIKE '%' || #{keyword} || '%' 
+        OR  CLUB_TITLE LIKE '%' || #{keyword} || '%' 
+        OR category_name1 LIKE '%' || #{keyword} || '%' 
+        OR category_name2 LIKE '%' || #{keyword} || '%')
     Order by CLUB.CLUB_NO ${sortType};
 	</select>
 	
@@ -306,8 +373,9 @@
 		SELECT *
 		FROM MEMBER
 		WHERE ADMIN = 'N'
-			AND (USER_NAME LIKE '%' || #{keyword} || '%' 
-			OR 	USER_ID LIKE '%' || #{keyword} || '%')
+			AND (NICKNAME LIKE '%' || #{keyword} || '%' 
+			OR USER_ID LIKE '%' || #{keyword} || '%'
+			OR CAST(USER_NO AS TEXT) LIKE '%' || #{keyword} || '%')
 		Order by USER_NO ${sortType};
 	</select>
 	
@@ -325,9 +393,29 @@
 		FROM MEMBER
 		WHERE ADMIN = 'N'
 		AND STATUS = 'Y'
-			AND (USER_NO LIKE '%' || #{keyword} || '%'
-			OR	USER_NAME LIKE '%' || #{keyword} || '%' 
-			OR 	USER_ID LIKE '%' || #{keyword} || '%')
+			AND (NICKNAME LIKE '%' || #{keyword} || '%' 
+			OR USER_ID LIKE '%' || #{keyword} || '%'
+			OR CAST(USER_NO AS TEXT) LIKE '%' || #{keyword} || '%')
+		Order by USER_NO ${sortType};
+	</select>
+	
+	<!-- 숨김 -->
+	<select id="MemberHidden" resultMap="memberResult">
+		SELECT *
+		FROM MEMBER
+		WHERE ADMIN = 'N'
+		AND STATUS = 'H'
+		Order by USER_NO ${sortType};
+	</select>
+	
+	<select id="MemberSearchHidden" resultMap="memberResult">
+		SELECT *
+		FROM MEMBER
+		WHERE ADMIN = 'N'
+		AND STATUS = 'H'
+			AND (NICKNAME LIKE '%' || #{keyword} || '%' 
+			OR USER_ID LIKE '%' || #{keyword} || '%'
+			OR CAST(USER_NO AS TEXT) LIKE '%' || #{keyword} || '%')
 		Order by USER_NO ${sortType};
 	</select>
 	
@@ -345,9 +433,9 @@
 		FROM MEMBER
 		WHERE ADMIN = 'N'
 		AND STATUS = 'N'
-			AND (USER_NO LIKE '%' || #{keyword} || '%'
-			OR USER_NAME LIKE '%' || #{keyword} || '%' 
-			OR USER_ID LIKE '%' || #{keyword} || '%')
+			AND (NICKNAME LIKE '%' || #{keyword} || '%' 
+			OR USER_ID LIKE '%' || #{keyword} || '%'
+			OR CAST(USER_NO AS TEXT) LIKE '%' || #{keyword} || '%')
 		Order by USER_NO ${sortType};
 	</select>
 	
@@ -359,14 +447,14 @@
 	</select>
 	
 	<!-- insertManager검색 -->
-	<select id="MemberSearchList" resultType="int">
-		SELECT COUNT(*)
+	<select id="MemberSearchList" resultMap="memberResult">
+		SELECT *
 		FROM MEMBER
 		WHERE ADMIN = 'N'
-			AND (USER_NO LIKE '%' || #{keyword} || '%'
-			OR USER_NAME LIKE '%' || #{keyword} || '%' 
-			OR USER_ID LIKE '%' || #{keyword} || '%')
-		Order by USER_NO ${sortType};	
+			AND (NICKNAME LIKE '%' || #{keyword} || '%' 
+			OR USER_ID LIKE '%' || #{keyword} || '%'
+			OR CAST(USER_NO AS TEXT) LIKE '%' || #{keyword} || '%')
+		Order by USER_NO ${sortType};
 	</select>
 	
 	<!-- 전체 -->
@@ -381,53 +469,13 @@
 		SELECT *
 		FROM MEMBER
 		WHERE ADMIN = 'Y'
-			AND (USER_NO LIKE '%' || #{keyword} || '%' 
-			OR USER_NAME LIKE '%' || #{keyword} || '%' 
-			OR USER_ID LIKE '%' || #{keyword} || '%')
+			AND (NICKNAME LIKE '%' || #{keyword} || '%' 
+			OR USER_ID LIKE '%' || #{keyword} || '%'
+			OR CAST(USER_NO AS TEXT) LIKE '%' || #{keyword} || '%')
 		Order by USER_NO ${sortType};
 	</select>
 	
-	<!-- 진행중 -->
-	<select id="ManagerActive" resultMap="memberResult">
-		SELECT *
-		FROM MEMBER
-		WHERE ADMIN = 'Y'
-		AND STATUS = 'Y'
-		Order by USER_NO ${sortType};
-	</select>
-	
-	<select id="ManagerSearchActive" resultMap="memberResult">
-		SELECT *
-		FROM MEMBER
-		WHERE ADMIN = 'Y'
-		AND STATUS = 'Y'
-			AND (USER_NO LIKE '%' || #{keyword} || '%' 
-			OR USER_NAME LIKE '%' || #{keyword} || '%' 
-			OR USER_ID LIKE '%' || #{keyword} || '%')
-		Order by USER_NO ${sortType};
-	</select>
-	
-	<!-- 종료 -->
-	<select id="ManagerEnd" resultMap="memberResult">
-		SELECT *
-		FROM MEMBER
-		WHERE ADMIN = 'Y'
-		AND STATUS = 'N'
-		Order by USER_NO ${sortType};
-	</select>
-	
-	<select id="ManagerSearchEnd" resultMap="memberResult">
-		SELECT *
-		FROM MEMBER
-		WHERE ADMIN = 'Y'
-		AND STATUS = 'N'
-			AND (USER_NO LIKE '%' || #{keyword} || '%' 
-			OR USER_NAME LIKE '%' || #{keyword} || '%' 
-			OR USER_ID LIKE '%' || #{keyword} || '%')
-		Order by USER_NO ${sortType};
-	</select>
-	
-	<!-- adminNotice -->
+	<!-- 공지사항 -->
 	<select id="getNoticeCount" resultType="int">
 		SELECT COUNT(*)
 		FROM NOTICE;
@@ -445,8 +493,8 @@
 		SELECT *
 		FROM NOTICE N
 		JOIN MEMBER USING (USER_NO)
-		WHERE (NOTICE_NO LIKE '%' || #{keyword} || '%' 
-				OR NOTICE_TITLE LIKE '%' || #{keyword} || '%')
+		WHERE CAST(NOTICE_NO AS TEXT) LIKE '%' || #{keyword} || '%' 
+				OR NOTICE_TITLE LIKE '%' || #{keyword} || '%'
 		Order by USER_NO ${sortType};
 	</select>
 		
@@ -464,7 +512,7 @@
 		FROM NOTICE N
 		JOIN MEMBER USING (USER_NO)
 		WHERE NOTICE_TYPE = '이벤트'
-			AND (NOTICE_NO LIKE '%' || #{keyword} || '%' 
+			AND (CAST(NOTICE_NO AS TEXT) LIKE '%' || #{keyword} || '%' 
 			OR NOTICE_TITLE LIKE '%' || #{keyword} || '%')
 		Order by USER_NO ${sortType};
 	</select>
@@ -483,7 +531,7 @@
 		FROM NOTICE N
 		JOIN MEMBER USING (USER_NO)
 		WHERE NOTICE_TYPE = '공지'
-			AND (NOTICE_NO LIKE '%' || #{keyword} || '%' 
+			AND (CAST(NOTICE_NO AS TEXT) LIKE '%' || #{keyword} || '%' 
 			OR NOTICE_TITLE LIKE '%' || #{keyword} || '%')
 		Order by USER_NO ${sortType};
 	</select>

@@ -88,13 +88,15 @@ public class AdminNoticeController {
         
 		HashMap<String, String> map = new HashMap<>();
 		map.put("keyword", keyword);
+		map.put("sortType", sortType);
 		
+		System.out.println(noticeType);
 		ArrayList<Notice> nlist = new ArrayList<>();
         
     	if (noticeType.equals("D")) {
         	//페이지네이션
         	int notice = anService.getNoticeSearchCount(map);
-        	PageInfo ni = Pagination.getPageInfo(notice, currentPage, 15, 15);
+        	PageInfo ni = Pagination.getPageInfo(notice, currentPage, 60, 60);
         	
         	//클럽 리스트 불러오기
         	nlist = anService.getNoticeSearchAll(map, ni);
@@ -102,7 +104,7 @@ public class AdminNoticeController {
         } else if (noticeType.equals("이벤트")) {
         	//페이지네이션
             int notice = anService.getNoticeSearchCount(map); 
-            PageInfo ni = Pagination.getPageInfo(notice, currentPage, 15, 15);
+            PageInfo ni = Pagination.getPageInfo(notice, currentPage, 60, 60);
             
             //클럽 리스트 불러오기
             nlist = anService.getNoticeSearchEvent(map, ni);
@@ -110,7 +112,7 @@ public class AdminNoticeController {
         } else if (noticeType.equals("공지")){
         	//페이지네이션
             int notice = anService.getNoticeSearchCount(map); 
-            PageInfo ni = Pagination.getPageInfo(notice, currentPage, 15, 15);
+            PageInfo ni = Pagination.getPageInfo(notice, currentPage, 60, 60);
             
             //클럽 리스트 불러오기
             nlist = anService.getNoticeSearchBoard(map, ni);

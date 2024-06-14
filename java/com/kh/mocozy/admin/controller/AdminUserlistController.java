@@ -52,6 +52,7 @@ public class AdminUserlistController {
 			
 			HashMap<String, String> map = new HashMap<>();
 			map.put("keyword", keyword);
+			map.put("sortType", sortType);
 			
 			//페이지네이션
 			int memberAllList = auService.getMemberSearchlist(map); 
@@ -60,7 +61,7 @@ public class AdminUserlistController {
 			
 			//멤버 리스트 불러오기
 			ArrayList<Member> mlist = auService.MemberSearchList(map, mi);
-	    	
+	    	System.out.println("mlist: " + mlist);
 			return new Gson().toJson(mlist);
 	    }	
 		
@@ -68,21 +69,25 @@ public class AdminUserlistController {
 	
 	//전체
 	@RequestMapping("adminUserlist.ad")
-	public String adminUserlist(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) {  
+	public String adminUserlist(@RequestParam(value="cpage", defaultValue="1") int currentPage, String sortType, Model model) {  
 		
 		ArrayList<Member> getMlist = auService.MemberAllList();
 		ArrayList<Member> getActivelist = auService.MemberActiveList();
 		ArrayList<Member> getEndlist = auService.MemberEndList();
+		ArrayList<Member> getHiddenlist = auService.MemberHiddenList();
 		int userCount = getMlist.size();
 		int activeCount = getActivelist.size();
 		int endCount = getEndlist.size();
+		int hiddenCount = getHiddenlist.size();
 		
 	    model.addAttribute("userCount", userCount);
 	    model.addAttribute("activeCount", activeCount);
 	    model.addAttribute("endCount", endCount);
+	    model.addAttribute("hiddenCount", hiddenCount);
 	    model.addAttribute("getMlist", getMlist);
 	    model.addAttribute("getActivelist", getActivelist);
 	    model.addAttribute("getEndlist", getEndlist);
+	    model.addAttribute("getHiddenlist", getHiddenlist);
 	    model.addAttribute("status", "D");
 		
 		return "admin/adminUserlist/adminUserlist";
@@ -110,6 +115,14 @@ public class AdminUserlistController {
             
             //클럽 리스트 불러오기
             mlist = auService.MemberActive(mi, sortType);
+            
+        } else if (status.equals("H")) {
+        	//페이지네이션
+            int userlist = auService.getMemberlist(); 
+            PageInfo mi = Pagination.getPageInfo(userlist, currentPage, 10, 10);
+            
+            //클럽 리스트 불러오기
+            mlist = auService.MemberHidden(mi, sortType);
         	
         } else {
         	//페이지네이션
@@ -125,18 +138,18 @@ public class AdminUserlistController {
 	
 	//검색 Ajax
 	@ResponseBody
-	@RequestMapping(value="adminUserSearchlistAjax.ad", produces="application/json; charset=UTF-8")
-	public String adminUserlistSearchAjax(@RequestParam("keyword") String keyword, @RequestParam("cpage") int currentPage, String sortType, String status, Model model) {  
+	@RequestMapping(value="adminUserlistSearchAjax.ad", produces="application/json; charset=UTF-8")
+	public String adminUserlistSearchAjax(@RequestParam("keyword") String keyword, @RequestParam("cpage") int currentPage, String sortType, String status, Model model) throws java.text.ParseException {  
         
 		HashMap<String, String> map = new HashMap<>();
 		map.put("keyword", keyword);
+		map.put("sortType", sortType);
 		
 		ArrayList<Member> mlist = new ArrayList<>();
-        
-    	if (status.equals("N")) {
+    	if (status.equals("D")) {
         	//페이지네이션
         	int userlist = auService.getMemberSearchlist(map);
-        	PageInfo mi = Pagination.getPageInfo(userlist, currentPage, 10, 10);
+        	PageInfo mi = Pagination.getPageInfo(userlist, currentPage, 50, 50);
         	
         	//유저 리스트 불러오기
         	mlist = auService.MemberSearchAll(map, mi);
@@ -144,15 +157,23 @@ public class AdminUserlistController {
         } else if (status.equals("Y")) {
         	//페이지네이션
             int userlist = auService.getMemberSearchlist(map); 
-            PageInfo mi = Pagination.getPageInfo(userlist, currentPage, 10, 10);
+            PageInfo mi = Pagination.getPageInfo(userlist, currentPage, 50, 50);
             
             //유저 리스트 불러오기
             mlist = auService.MemberSearchActive(map, mi);
         	
+        } else if (status.equals("H")) {
+        	//페이지네이션
+            int userlist = auService.getMemberSearchlist(map); 
+            PageInfo mi = Pagination.getPageInfo(userlist, currentPage, 50, 50);
+            
+            //유저 리스트 불러오기
+            mlist = auService.MemberSearchHidden(map, mi);
+            
         } else {
         	//페이지네이션
             int userlist = auService.getMemberSearchlist(map); 
-            PageInfo mi = Pagination.getPageInfo(userlist, currentPage, 10, 10);
+            PageInfo mi = Pagination.getPageInfo(userlist, currentPage, 50, 50);
             
             //유저 리스트 불러오기
             mlist = auService.MemberSearchEnd(map, mi);
@@ -170,16 +191,20 @@ public class AdminUserlistController {
 		ArrayList<Member> getMlist = auService.MemberAllList();
 		ArrayList<Member> getActivelist = auService.MemberActiveList();
 		ArrayList<Member> getEndlist = auService.MemberEndList();
+		ArrayList<Member> getHiddenlist = auService.MemberHiddenList();
 		int userCount = getMlist.size();
 		int activeCount = getActivelist.size();
 		int endCount = getEndlist.size();
+		int hiddenCount = getHiddenlist.size();
 		
 	    model.addAttribute("userCount", userCount);
 	    model.addAttribute("activeCount", activeCount);
 	    model.addAttribute("endCount", endCount);
+	    model.addAttribute("hiddenCount", hiddenCount);
 	    model.addAttribute("getMlist", getMlist);
 	    model.addAttribute("getActivelist", getActivelist);
 	    model.addAttribute("getEndlist", getEndlist);
+	    model.addAttribute("getHiddenlist", getHiddenlist);
 	    model.addAttribute("status", "Y");
 		
 		return "admin/adminUserlist/adminUserActive";
@@ -192,18 +217,48 @@ public class AdminUserlistController {
 		ArrayList<Member> getMlist = auService.MemberAllList();
 		ArrayList<Member> getActivelist = auService.MemberActiveList();
 		ArrayList<Member> getEndlist = auService.MemberEndList();
+		ArrayList<Member> getHiddenlist = auService.MemberHiddenList();
 		int userCount = getMlist.size();
 		int activeCount = getActivelist.size();
 		int endCount = getEndlist.size();
+		int hiddenCount = getHiddenlist.size();
 		
 	    model.addAttribute("userCount", userCount);
 	    model.addAttribute("activeCount", activeCount);
 	    model.addAttribute("endCount", endCount);
+	    model.addAttribute("hiddenCount", hiddenCount);
 	    model.addAttribute("getMlist", getMlist);
 	    model.addAttribute("getActivelist", getActivelist);
 	    model.addAttribute("getEndlist", getEndlist);
+	    model.addAttribute("getHiddenlist", getHiddenlist);
 	    model.addAttribute("status", "N");
 		
 		return "admin/adminUserlist/adminUserEnd";
     }	
+	
+	//숨김
+	@RequestMapping("adminUserHidden.ad")
+	public String adminUserHidden(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) {  
+		
+		ArrayList<Member> getMlist = auService.MemberAllList();
+		ArrayList<Member> getActivelist = auService.MemberActiveList();
+		ArrayList<Member> getEndlist = auService.MemberEndList();
+		ArrayList<Member> getHiddenlist = auService.MemberHiddenList();
+		int userCount = getMlist.size();
+		int activeCount = getActivelist.size();
+		int endCount = getEndlist.size();
+		int hiddenCount = getHiddenlist.size();
+		
+	    model.addAttribute("userCount", userCount);
+	    model.addAttribute("activeCount", activeCount);
+	    model.addAttribute("endCount", endCount);
+	    model.addAttribute("hiddenCount", hiddenCount);
+	    model.addAttribute("getMlist", getMlist);
+	    model.addAttribute("getActivelist", getActivelist);
+	    model.addAttribute("getEndlist", getEndlist);
+	    model.addAttribute("getHiddenlist", getHiddenlist);
+	    model.addAttribute("status", "H");
+		
+		return "admin/adminUserlist/adminUserlistHidden";
+    }
 }

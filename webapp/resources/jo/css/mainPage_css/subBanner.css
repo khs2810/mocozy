@@ -45,6 +45,16 @@ li {
   transition: left 0.15s;
 }
 
+.Subbanner .subitem1 a,
+.Subbanner .subitem2 a  {
+	width: 80%;
+	height: 100%;
+	display: flex;
+	position: relative;
+  	align-items: center;
+  	justify-content: center;
+}
+
 .Subbanner .subprev {
   display: flex;
   justify-content: center;
@@ -71,12 +81,6 @@ li {
   border-radius: 100%;
   cursor: pointer;
   right: 5rem;
-}
-
-.Subbanner #subitem a{
-	position: relative;
-	width: 50%;
-	height: 100%;	
 }
 
 /*이미지 넣기*/

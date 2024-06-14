@@ -1,20 +1,29 @@
-/* 삭제 모달창 띄우기 */
-$(document).ready(function(){
-    $("#deleteBtn").click(function(){
-      $(".deleteModal").modal('show');
-    });
+// /* 삭제 모달창 띄우기 */
+// $(document).ready(function(){
+//     $("#deleteBtn").click(function(){
+//       $(".deleteModal").modal('show');
+//     });
 
-  /* 시작 모달창 띄우기 */
-  $("#startBtn").click(function(){
-    $(".startModal").modal('show');
-  });
-});
+//   /* 시작 모달창 띄우기 */
+//   $("#startBtn").click(function(){
+//     $(".startModal").modal('show');
+//   });
+// });
+
+// document.getElementById('deleteBtn').addEventListener('click', function() {
+//   confirm('정말로 숨기시겠습니까?');
+// });
+
+// document.getElementById('startBtn').addEventListener('click', function() {
+//   confirm('정말로 노출시키시겠습니까?');
+// });
 
 /* -------------------------------------------------------------------------- */
   //select html요소의 sortBtn이라는 객체를 가져옴
   let selectValue;
   let sortType;
   let cpage = 1;
+  let keyword = new URLSearchParams(window.location.search).get('keyword');
 
   document.addEventListener('DOMContentLoaded', function() {
     let orderSelect = document.getElementById("sortBtn");
@@ -38,11 +47,17 @@ $(document).ready(function(){
         document.querySelector("#prod-list-body").innerHTML = '';
         cpage = 1;
 
-        //sortType 값이 변경될 때마다 ajax요청을 보냄
-        const status = document.querySelector('#status').value; 
+      //sortType 값이 변경될 때마다 ajax요청을 보냄
+      const status = document.querySelector('#status').value;
+              
+      // 키워드가 있을 경우 adminuserSearchAjax 함수를 호출
+      if (keyword) {
+        adminUserlistSearchAjax(keyword, sortType, status);
+      } else {
         adminUserlistAjax(status);
-
       }
+    }
+
     }
   });
 
@@ -50,13 +65,48 @@ $(document).ready(function(){
    window.onscroll = function() {
     if (window.innerHeight + window.scrollY >= document.body.scrollHeight) {
         const status = document.querySelector('#status').value; 
-        adminUserlistAjax(status);
-       }
-  };
+        if (keyword) {
+          adminUserlistSearchAjax(keyword, sortType, status);
+        } else {
+          adminUserlistAjax(status);
+      } 
+    };
+   }
+
+// 검색 버튼을 실행하면 검색 기능을 위한 AJAX 요청을 실행
+$(document).ready(function(){
+  $(".serach-wrap.big-search").click(function(){
+    keyword = $('#keyword-search-input').val();
+    const status = document.querySelector('#status').value; 
+    if (keyword) {
+      adminUserlistSearchAjax(keyword, sortType, status);
+    } else {
+      adminUserlistAjax(status);
+  }
+  });
+});
 
 // 페이지를 그리는 함수
 function renderUserlist(mlist) {
-  for (let user of mlist) {
+  for (let i = 0; i < mlist.length; i++) {
+    let user = mlist[i];
+
+    //BtnStyle 변수를 생성
+    let deleteBtnStyle = '';
+    let startBtnStyle = '';
+
+    //status에 따라 버튼을 보여주거나 숨김
+    if (user.status === 'N') {
+      deleteBtnStyle = 'style="display: none;"';
+      startBtnStyle = 'style="display: none;"';
+    } else if (user.status === 'H') {
+      deleteBtnStyle = 'style="display: none;"';
+      startBtnStyle = 'style="display: block;"';
+    } else if (user.status === 'Y') {
+      startBtnStyle = 'style="display: none;"';
+      deleteBtnStyle = 'style="display: block;"';
+    }
+
     let str = "";
     str = `<tr class="content -prodListItem">
 																<td class="checkhead">
@@ -97,8 +147,8 @@ function renderUserlist(mlist) {
 																	style="text-decoration: underline;">${user.point}</a></td>
 																<td class="more">
 																	<div class="dropdown">
-																		<button class="btn btn-primary-btn" id="startBtn">시작</button>
-																		<button class="btn btn-flat" id="deleteBtn">종료</button>
+																		<button class="btn btn-primary-btn" id="startBtn"${startBtnStyle}>시작</button>
+																		<button class="btn btn-flat" id="deleteBtn"${deleteBtnStyle}>종료</button>
 																	</div>
 																</td>
 															</tr>`
@@ -115,12 +165,39 @@ function adminUserlistAjax(status) {
       //cpage와 sortType을 같이 보내줌
       data : {cpage: cpage++, sortType: sortType, status: status},
       success: function(mlist){
-        console.log(mlist);
 
           // AJAX 요청이 성공하면 페이지를 그리는 함수를 호출
           renderUserlist(mlist);   
           console.log("AJAX 요청 성공, 응답 데이터:", mlist);
       },
+      error: function(){
+        console.log("ajax 실패");
+        alert("요청이 실패했습니다");
+      }
+    });
+  }
+
+    // AJAX 요청을 처리하는 함수
+function adminUserlistSearchAjax(keyword, sortType, status) {
+  console.log("sortType: ", sortType); 
+  $.ajax({
+      url: 'adminUserlistSearchAjax.ad',
+      //cpage와 sortType을 같이 보내줌
+      data : {cpage: 1, sortType: sortType, status: status, keyword: keyword},
+      success: function(mlist){
+        console.log(mlist);
+          // 페이지의 내용을 비움
+          document.querySelector("#prod-list-body").innerHTML = '';
+
+          // mlist의 길이가 0이면 검색 결과가 없다는 알림을 표시
+          if (mlist.length === 0) {
+            alert("검색 결과가 없습니다");
+          } else {
+            // AJAX 요청이 성공하면 페이지를 그리는 함수를 호출
+          renderUserlist(mlist);   
+          console.log("AJAX 요청 성공, 응답 데이터:", mlist);
+      }
+    },
       error: function(){
         console.log("ajax 실패");
         alert("요청이 실패했습니다");
