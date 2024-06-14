@@ -342,3 +342,7 @@ input::-webkit-outer-spin-button, input::-webkit-inner-spin-button {
 #modal_pay_img {
     display: flex;
 }
+
+#modal_pay_img img {
+    cursor: pointer;
+}

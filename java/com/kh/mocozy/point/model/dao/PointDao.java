@@ -78,4 +78,16 @@ public class PointDao {
 		return sqlSession.selectOne("selectPointAdminListCount");
 	}
 
+	public Payment selectPayment(SqlSessionTemplate sqlSession, int paymentNo) {
+		return sqlSession.selectOne("pointMapper.selectPayment", paymentNo);
+	}
+
+	public int returnPoint(SqlSessionTemplate sqlSession, Payment p) {
+		return sqlSession.update("pointMapper.returnPoint", p);
+	}
+
+	public int cancelPayment(SqlSessionTemplate sqlSession, Payment p) {
+		return sqlSession.update("pointMapper.cancelPayment", p);
+	}
+
 }
