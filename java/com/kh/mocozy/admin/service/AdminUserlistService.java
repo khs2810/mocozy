@@ -27,6 +27,10 @@ public interface AdminUserlistService {
 	ArrayList<Member> MemberEnd(PageInfo mi, String sortType);
 	public ArrayList<Member> MemberEndList();
 	
+	//숨김
+	public ArrayList<Member> MemberHidden(PageInfo mi, String sortType);
+	public ArrayList<Member> MemberHiddenList();
+	
 	//검색리스트
 	public int getMemberSearchlist(HashMap<String, String> map);
 
@@ -41,6 +45,12 @@ public interface AdminUserlistService {
 	
 	//insertManager 검색
 	public ArrayList<Member> MemberSearchList(HashMap<String, String> map, PageInfo mi);
+	
+	//숨김 검색
+	public ArrayList<Member> MemberSearchHidden(HashMap<String, String> map, PageInfo mi);
+
+
+
 	
 	
 	

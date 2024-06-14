@@ -65,7 +65,7 @@ function updateAjaxPicked(data, callback) {
 function deleteClub(cno){
     const conf = confirm("정말 클럽을 삭제하시겠습니까?");
     if (conf) {
-    	console.log(cno);
+        window.location.href = `delete.cl?cno=${cno}`;
     } else {
     	alert("클럽 삭제를 취소했습니다.")
     }

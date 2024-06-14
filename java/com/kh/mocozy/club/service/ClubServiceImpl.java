@@ -212,4 +212,14 @@ public class ClubServiceImpl implements ClubService {
 	public ArrayList<Club> selectMyDibsSocialList(Club club) {
 		return clubDao.selectMyDibsSocialList(sqlSession, club);
 	}
+
+	@Override
+	public ArrayList<Request> selectListRequestNotF(int cno) {
+		return clubDao.selectListRequestNotF(sqlSession, cno);
+	}
+
+	@Override
+	public int deleteClub(int cno) {
+		return clubDao.deleteClub(sqlSession, cno);
+	}
 }

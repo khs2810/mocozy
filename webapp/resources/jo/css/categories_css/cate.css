@@ -310,6 +310,7 @@ li {
 .catePage .participant .count{
   font-weight: 400;
   font-size: 10px;
+  margin-left: 0.5rem;
   line-height: 12px;
   letter-spacing: -.4px;
   color: #999696;
@@ -373,6 +374,7 @@ li {
 
   .catePage .participant .count {
       font-size: 15px;
+      margin-left: 0.5rem;
       line-height: 12px;
   }
 }
@@ -424,6 +426,7 @@ li {
 
  .catePage .participant .count {
       font-size: 12px;
+      margin-left: 0.5rem;
       line-height: 19px;
   }
 }

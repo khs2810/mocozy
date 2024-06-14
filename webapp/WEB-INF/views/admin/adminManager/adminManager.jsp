@@ -8,6 +8,7 @@
 <!-- 공용 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>관리자 페이지</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <link
@@ -44,9 +45,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/jo/css/admin_css/adminClub_css/adminClub.css">
 <script
-	src="${pageContext.request.contextPath}/resources/jo/js/admin_js/adminManager_js/adminManager.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/jo/js/admin_js/adminClub_js/adminManagerSearch.js"></script>		
+	src="${pageContext.request.contextPath}/resources/jo/js/admin_js/adminManager_js/adminManager.js"></script>	
 </head>
 
 <%@ include file="../sideBar.jsp"%>
@@ -61,7 +60,7 @@
 							<ul class="header-nav header-nav-options">
 								<li class="header-nav-brand">
 									<div class="brand-holder">
-										<span class="location-text"> <a href="_blank">관리자</a></span>
+										<span class="location-text"> <a href="javascript:void(0);">관리자</a></span>
 									</div>
 								</li>
 							</ul>
@@ -103,23 +102,6 @@
 															</a></li>
 														</ul>
 													</div>
-
-													<div class="owl-item owl-itemitem active">
-														<ul class="owl-nav-tabs">
-															<li class="sale"><a href="adminManagerActive.ad">활동중
-																	<span class="_count text-primary">${manageActiveCount}</span>
-															</a></li>
-														</ul>
-													</div>
-
-													<div class="owl-item owl-itemitem active">
-														<ul class="owl-nav-tabs">
-															<li class="soldout"><a href="adminManagerEnd.ad">종료
-																	<span class="_count text-primary">${manageEndCount}</span>
-															</a></li>
-														</ul>
-													</div>
-												</div>
 											</div>
 										</li>
 
@@ -136,13 +118,12 @@
 											<div class="clearfix search-form">
 												<div class="card">
 													<div class="card-body no-padding">
-														<form class="prod-search" id="prod-search-form"
-															action="adminManagerSearchAjax.ad" method="GET">
+														<div class="prod-search" id="prod-search-form">
 															<div class="twitter-wrap no-margin-left">
 																<span class="twitter-typeahead twitter-relative">
 																	<div class="on-click">
 																		<a class="on-click-ahref"> <span
-																			id="search-keyword-type-text">기본</span>
+																			id="search-keyword-type-text">검색어 입력</span>
 																		</a>
 																	</div> <input type="hidden" name="cpage" value="1"> <input
 																	type="text" id="keyword-search-input" name="keyword"
@@ -163,7 +144,7 @@
 														  </svg>
 																	</label>
 																</div>
-														</form>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -202,16 +183,16 @@
 
 																<td class="no text-12">${user.userNo}</td>
 
-																<td class="image"><a href="_blank"> <img
-																		src="${pageContext.request.contextPath}${user.profileImg}"
+																<td class="image"><a href="javascript:void(0);"> <img
+																		src="${user.profileImg}"
 																		width="49" height="49" class="item-thumb">
 																</a></td>
 
 																<td class="title" style="width: 100px;">
 																	<div>
 																		<div class="item-tit inline-blocked">
-																			<a href="_blank">${user.nickname}</a> <a
-																				href="_blank"
+																			<a href="javascript:void(0);">${user.nickname}</a> <a
+																				href="javascript:void(0);"
 																				class="im-icon im-ico-new-tab vertical-middle tab-icon"
 																				style="margin-left: 4px;"></a>
 																		</div>
@@ -257,6 +238,7 @@
 	<!-- 모달창 -->
 	<div id="cocoaModal" class="modal in modal-admin deleteModal"
 		data-backdrop="true" data-keyboard="true" style="display: none;">
+		<input type="hidden" name="adminNo" value="${loginUser.userNo}">
 		<div class="modal-dialog ui-draggable">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -272,9 +254,9 @@
 				</div>
 				<div class="modal-body">선택한 관리자의 권한을 종료하시겠습니까?</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default btn-flat"
+					<button type="submit" class="btn btn-default btn-flat"
 						data-dismiss="modal">취소</button>
-					<button type="button" class="btn btn-primary btn-flat"
+					<button type="submit" class="btn btn-primary btn-flat"
 						id="board-save">종료</button>
 				</div>
 			</div>
@@ -284,6 +266,7 @@
 	<!-- 모달창 -->
 	<div id="cocoaModal" class="modal in modal-admin startModal"
 		data-backdrop="true" data-keyboard="true" style="display: none;">
+		<input type="hidden" name="adminNo" value="${loginUser.userNo}">
 		<div class="modal-dialog ui-draggable">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -299,9 +282,9 @@
 				</div>
 				<div class="modal-body">선택한 관리자의 권한을 다시 부여하시겠습니까?</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default btn-flat"
+					<button type="submit" class="btn btn-default btn-flat"
 						data-dismiss="modal">취소</button>
-					<button type="button" class="btn btn-primary btn-flat"
+					<button type="submit" class="btn btn-primary btn-flat"
 						id="board-save">재시작</button>
 				</div>
 			</div>

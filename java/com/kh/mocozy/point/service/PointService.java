@@ -40,4 +40,10 @@ public interface PointService {
 
 	int selectPointAdminListCount();
 
+	Payment selectPayment(int paymentNo);
+
+	int returnPoint(Payment p);
+
+	int cancelPayment(Payment p);
+
 }

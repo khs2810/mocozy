@@ -177,4 +177,12 @@ public class ClubDao {
 	public ArrayList<Club> selectMyDibsSocialList(SqlSessionTemplate sqlSession, Club club) {
 		return (ArrayList)sqlSession.selectList("clubMapper.selectMyDibsSocialList", club);
 	}
+
+	public ArrayList<Request> selectListRequestNotF(SqlSessionTemplate sqlSession, int cno) {
+		return (ArrayList)sqlSession.selectList("clubMapper.selectListRequestNotF", cno);
+	}
+
+	public int deleteClub(SqlSessionTemplate sqlSession, int cno) {
+		return sqlSession.update("clubMapper.deleteClub", cno);
+	}
 }

@@ -7,6 +7,7 @@
 <head>
 <!-- 공용 -->
 <meta charset="utf-8">
+<title>관리자 페이지</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -45,8 +46,6 @@
 	href="${pageContext.request.contextPath}/resources/jo/css/admin_css/adminClub_css/adminClub.css">
 <script
 	src="${pageContext.request.contextPath}/resources/jo/js/admin_js/adminClub_js/adminClub.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/jo/js/admin_js/adminClub_js/adminClubSearch.js"></script>		
 </head>
 
 <%@ include file="../sideBar.jsp"%>
@@ -61,7 +60,7 @@
 							<ul class="header-nav header-nav-options">
 								<li class="header-nav-brand">
 									<div class="brand-holder">
-										<span class="location-text"> <a href="_blank">클럽</a>
+										<span class="location-text"> <a href="javascript:void(0);">클럽</a>
 										</span>
 									</div>
 								</li>
@@ -103,10 +102,19 @@
 													<div class="owl-item owl-itemitem active">
 														<ul class="owl-nav-tabs">
 															<li class="soldout" id="club-process">
-																<a href="adminProcess.ad">진행중
+																<a href="adminProcess.ad">노출
 																	<span class="_count text-primary">${clubProcessCount}</span>
 																</a>
 															</li>
+														</ul>
+													</div>
+
+													<div class="owl-item owl-itemitem active">
+														<ul class="owl-nav-tabs">
+															<li class="soldout" id="club-process"><a
+																href="adminHidden.ad">숨김 <span
+																	class="_count text-primary">${clubHiddenCount}</span>
+															</a></li>
 														</ul>
 													</div>
 
@@ -135,12 +143,12 @@
 											<div class="clearfix search-form">
 												<div class="card">
 													<div class="card-body no-padding">
-														<form class="prod-search" id="prod-search-form" action="adminClubSearchAjax.ad" method="GET">
+														<div class="prod-search" id="prod-search-form">
 															<div class="twitter-wrap no-margin-left">
 																<span class="twitter-typeahead twitter-relative">
 																	<div class="on-click">
 																		<a class="on-click-ahref"> <span
-																			id="search-keyword-type-text">기본</span>
+																			id="search-keyword-type-text">검색어 입력</span>
 																		</a>
 																	</div>
 																			<input type="hidden" name="cpage" value="1"> 
@@ -161,7 +169,7 @@
 																		  </svg>
 																	</label>
 																</div>
-														</form>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -198,7 +206,7 @@
 
 																<td class="no text-12">${club.clubNo}</td>
 
-																<td class="image"><a href="_blank"> <img
+																<td class="image"><a href="detail.cl?cno=${club.clubNo}"> <img
 																		src="${club.thumbnailImg}" width="49" height="49"
 																		class="item-thumb">
 																</a></td>
@@ -206,8 +214,8 @@
 																<td class="title">
 																	<div>
 																		<div class="item-tit inline-blocked">
-																			<a href="_blank">${club.clubTitle}</a> <a
-																				href="_blank"
+																			<a href="detail.cl?cno=${club.clubNo}">${club.clubTitle}</a> <a
+																				href="detail.cl?cno=${club.clubNo}"
 																				class="im-icon im-ico-new-tab vertical-middle tab-icon"
 																				style="margin-left: 4px;"></a>
 																		</div>
@@ -259,6 +267,7 @@
 	<!-- 모달창 -->
 	<div id="cocoaModal" class="modal in modal-admin deleteModal"
 		data-backdrop="true" data-keyboard="true" style="display: none;">
+		<input type="hidden" name="adminNo" value="${loginUser.userNo}">
 		<div class="modal-dialog ui-draggable">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -274,9 +283,9 @@
 				</div>
 				<div class="modal-body">선택한 모임을 종료하시겠습니까?</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default btn-flat"
+					<button type="submit" class="btn btn-default btn-flat"
 						data-dismiss="modal">취소</button>
-					<button type="button" class="btn btn-primary btn-flat"
+					<button type="submit" class="btn btn-primary btn-flat"
 						id="board-save">종료</button>
 				</div>
 			</div>
@@ -286,6 +295,7 @@
 	<!-- 모달창 -->
 	<div id="cocoaModal" class="modal in modal-admin startModal"
 		data-backdrop="true" data-keyboard="true" style="display: none;">
+		<input type="hidden" name="adminNo" value="${loginUser.userNo}">
 		<div class="modal-dialog ui-draggable">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -301,9 +311,9 @@
 				</div>
 				<div class="modal-body">선택한 모임을 진행하시겠습니까?</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-default btn-flat"
+					<button type="submit" class="btn btn-default btn-flat"
 						data-dismiss="modal">취소</button>
-					<button type="button" class="btn btn-primary btn-flat"
+					<button type="submit" class="btn btn-primary btn-flat"
 						id="board-save">승인</button>
 				</div>
 			</div>

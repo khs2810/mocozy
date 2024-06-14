@@ -35,28 +35,6 @@ public class AdminManagerlistServiceImpl implements AdminManagerlistService{
 		return amDao.MemberAllList(sqlSession);
 	}
 	
-	//활동중
-	@Override
-	public ArrayList<Member> ManagerActive(PageInfo mi, String sortType) {
-		return amDao.ManagerActive(sqlSession, mi, sortType);
-	}
-
-	@Override
-	public ArrayList<Member> MemberActiveList() {
-		return amDao.MemberActiveList(sqlSession);
-	}
-	
-	//종료
-	@Override
-	public ArrayList<Member> ManagerEnd(PageInfo mi, String sortType) {
-		return amDao.ManagerEnd(sqlSession, mi, sortType);
-	}
-
-	@Override
-	public ArrayList<Member> MemberEndList() {
-		return amDao.MemberEndList(sqlSession);
-	}
-	
 	//검색 리스트
 	@Override
 	public int getManagerSearchlist(HashMap<String, String> map) {
@@ -67,19 +45,5 @@ public class AdminManagerlistServiceImpl implements AdminManagerlistService{
 	@Override
 	public ArrayList<Member> ManagerSearchAll(HashMap<String, String> map, PageInfo mi) {
 		return amDao.ManagerSearchAll(sqlSession, map, mi);
-	}
-	
-	//진행중
-	@Override
-	public ArrayList<Member> ManagerSearchActive(HashMap<String, String> map, PageInfo mi) {
-		return amDao.ManagerSearchActive(sqlSession, map, mi);
-	}
-	
-	//종료됨
-	@Override
-	public ArrayList<Member> ManagerSearchEnd(HashMap<String, String> map, PageInfo mi) {
-		return amDao.ManagerSearchEnd(sqlSession, map, mi);
-	}
-	
-	
+	}	
 }
