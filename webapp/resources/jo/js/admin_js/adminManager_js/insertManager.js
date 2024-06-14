@@ -107,7 +107,7 @@ function renderinsertManagerlist(mlist) {
 
 																<td class="state on-click"><a
 																	data-toggle="dropdown" style="margin-right: -1px;">
-																		<span>${user.status}</span>
+																		<span>${user.admin}</span>
 																</a></td>
 
 																<td class="r-date text-12">${user.enrollDate}</td>
@@ -116,7 +116,7 @@ function renderinsertManagerlist(mlist) {
 																	style="text-decoration: underline;">${user.point}</a></td>
 																<td class="more">
 																	<div class="dropdown">
-																		<button class="btn btn-primary-btn" id="adminBtn">권한
+																		<button class="btn btn-primary-btn" id="adminBtn" onclick="insertManagerStatusAjax(${user.userNo}, 'Y')">권한
 																			부여</button>
 																	</div>
 																</td>
@@ -126,6 +126,10 @@ function renderinsertManagerlist(mlist) {
     }
 }
 
+//admin 변경
+function insertManagerStatusAjax(uno, admin) {
+  window.location.href = "insertManagerStatusAjax.ad?userNo=" + uno + "&admin=" + admin;
+}
 
 // AJAX 요청을 처리하는 함수
 function insertManagerAjax() {
@@ -173,4 +177,34 @@ function insertManagerSearchAjax(keyword, sortType) {
         alert("요청이 실패했습니다");
       }
     });
+}
+
+//status 변경
+function ManagerstatusAjax(uno){
+  //클럽 status 변경
+      console.log(1);
+      if (confirm("정말로 권한을 부여 하시겠습니까?")) {
+          console.log("deleteBtn clicked"); // 버튼 클릭 확인
+          $.ajax({
+              type : "POST",
+              url : "ManagerstatusAjax.ad",
+              data : {
+                admin : "Y", userNo : uno
+              },
+              success : function(response) {
+                  alert("성공적으로 처리되었습니다.");
+                  refreshManagerList();
+              },
+              error : function(xhr, status, error) {
+                  alert("오류가 발생했습니다.");
+              }
+          });
+      } else {
+          console.log("confirm returned false"); // confirm 취소 확인
+      }
+};
+
+//status hidden으로 변경
+function managerChangeStatus(uno, status) {
+  window.location.href = "managerChangeStatus.ad?userNo=" + uno + "&status=" + status;
 }

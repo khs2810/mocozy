@@ -151,7 +151,7 @@
 															<th class="no" style="margin-left: 5px;">No</th>
 															<th class="image">유저명</th>
 															<th class="title" style="width: 95px;"></th>
-															<th class="state">상태</th>
+															<th class="state">권한</th>
 															<th class="r-date" style="margin-left: 10px;">가입일</th>
 															<th class="group">누적 포인트</th>
 															<th class="more"></th>
