@@ -98,5 +98,20 @@ public class PointServiceImpl implements PointService {
 	public int selectPointAdminListCount() {
 		return pointDao.selectPointAdminListCount(sqlSession);
 	}
+
+	@Override
+	public Payment selectPayment(int paymentNo) {
+		return pointDao.selectPayment(sqlSession, paymentNo);
+	}
+
+	@Override
+	public int returnPoint(Payment p) {
+		return pointDao.returnPoint(sqlSession, p);
+	}
+
+	@Override
+	public int cancelPayment(Payment p) {
+		return pointDao.cancelPayment(sqlSession, p);
+	}
 	
 }

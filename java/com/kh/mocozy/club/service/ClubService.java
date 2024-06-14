@@ -88,4 +88,9 @@ public interface ClubService {
 	
 //	내가 찜한 소셜링 리스트
 	List<Club> selectMyDibsSocialList(Club club);
+
+	ArrayList<Request> selectListRequestNotF(int cno);
+
+	int deleteClub(int cno);
+	
 }
