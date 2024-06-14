@@ -6,7 +6,9 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.kh.mocozy.club.model.vo.Request;
 import com.kh.mocozy.common.model.vo.PageInfo;
 import com.kh.mocozy.member.model.vo.Member;
 import com.kh.mocozy.point.model.dao.PointDao;
