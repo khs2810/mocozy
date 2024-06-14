@@ -46,6 +46,8 @@
 	href="${pageContext.request.contextPath}/resources/jo/css/admin_css/adminClub_css/adminClub.css">
 <script
 	src="${pageContext.request.contextPath}/resources/jo/js/admin_js/adminClub_js/adminClub.js"></script>
+<script
+	src="${pageContext.request.contextPath}/resources/jo/js/admin_js/adminClub_js/clubConfirm.js"></script>
 </head>
 
 <%@ include file="../sideBar.jsp"%>

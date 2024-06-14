@@ -109,6 +109,10 @@ public class AdminClubDao {
 		return (ArrayList)sqlSession.selectList("adminMapper.selectClubSearchHidden", map, rowBounds);
 	}
 	
+	//숨김 처리
+	public int clubChangeStatus(SqlSessionTemplate sqlSession, HashMap<String, Object> map) {
+		return sqlSession.update("adminMapper.clubChangeStatus", map);
+	}
 	
 	
 	

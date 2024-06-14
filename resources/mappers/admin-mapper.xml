@@ -352,7 +352,12 @@
     Order by CLUB.CLUB_NO ${sortType};
 	</select>
 	
-	<!-- -->
+	<!-- club status 변경 -->
+	<update id="clubChangeStatus">
+    UPDATE CLUB
+	    SET STATUS = #{status}
+	    WHERE CLUB.CLUB_NO = #{clubNo};
+	</update>
 
 	<!-- adminUserlist -->
 	<select id="getMemberlist" resultType="int">
@@ -439,23 +444,44 @@
 		Order by USER_NO ${sortType};
 	</select>
 	
-	<!-- adminManager -->
+	<!-- 숨김 처리 -->
+	<update id="userChangeStatus">
+    UPDATE MEMBER
+	    SET STATUS = #{status}
+	    WHERE MEMBER.USER_NO = #{userNo};
+	</update>
+	
 	<select id="getManagerlist" resultType="int">
 		SELECT COUNT(*)
 		FROM MEMBER
 		WHERE ADMIN = 'Y';
 	</select>
 	
-	<!-- insertManager검색 -->
-	<select id="MemberSearchList" resultMap="memberResult">
+	<!-- insertManager -->
+	<select id="insertManagerList" resultMap="memberResult">
 		SELECT *
 		FROM MEMBER
-		WHERE ADMIN = 'N'
+		WHERE ADMIN = 'N' AND STATUS = 'Y'
+		Order by USER_NO ${sortType};
+	</select>
+	
+	<!-- insertManager검색 -->
+	<select id="insertManagerSearchList" resultMap="memberResult">
+		SELECT *
+		FROM MEMBER
+		WHERE ADMIN = 'N' AND STATUS = 'Y'
 			AND (NICKNAME LIKE '%' || #{keyword} || '%' 
 			OR USER_ID LIKE '%' || #{keyword} || '%'
 			OR CAST(USER_NO AS TEXT) LIKE '%' || #{keyword} || '%')
 		Order by USER_NO ${sortType};
 	</select>
+	
+	<!-- 권한 박탈 -->
+	<update id="adminstatusAjax">
+    UPDATE MEMBER
+	    SET ADMIN = #{admin}
+	    WHERE MEMBER.USER_NO = #{userNo};
+	</update>
 	
 	<!-- 전체 -->
 	<select id="ManagerAll" resultMap="memberResult">

@@ -3,6 +3,8 @@ package com.kh.mocozy.admin.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +14,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
 import com.kh.mocozy.admin.service.AdminUserlistService;
-import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.common.model.vo.PageInfo;
 import com.kh.mocozy.common.template.Pagination;
 import com.kh.mocozy.member.model.vo.Member;
@@ -40,7 +41,7 @@ public class AdminUserlistController {
 			PageInfo mi = Pagination.getPageInfo(memberAllList, currentPage, 10, 10);
 			
 			//멤버 리스트 불러오기
-			ArrayList<Member> mlist = auService.MemberList(mi, sortType);
+			ArrayList<Member> mlist = auService.insertManagerList(mi, sortType);
 	    	
 			return new Gson().toJson(mlist);
 	    }	
@@ -60,11 +61,35 @@ public class AdminUserlistController {
 			PageInfo mi = Pagination.getPageInfo(memberAllList, currentPage, 10, 10);
 			
 			//멤버 리스트 불러오기
-			ArrayList<Member> mlist = auService.MemberSearchList(map, mi);
+			ArrayList<Member> mlist = auService.insertManagerSearchList(map, mi);
 	    	System.out.println("mlist: " + mlist);
 			return new Gson().toJson(mlist);
 	    }	
 		
+		//권한 부여
+	    @RequestMapping("insertManagerStatusAjax.ad")
+	    public String insertManagerStatusAjax (String admin, int userNo, HttpSession session, Model model) {
+	        HashMap<String, Object> map = new HashMap<>();
+	        map.put("admin", admin);
+	        map.put("userNo", userNo);
+	        
+	        System.out.println(admin);
+	        System.out.println(userNo);
+	        
+	        int result = auService.ManagerstatusAjax(map); 
+	        
+	        if (result > 0) {
+	        	if (admin.equals("Y")) {
+	        		session.setAttribute("alertMsg", "관리자 권한 부여 성공");
+	        		return "redirect:insertManager.ad";
+	        	} else {
+	        		model.addAttribute("errorMsg", "관리자 권한 부여 실패");
+	        		return "common/errorPage";
+		    }    
+	     }
+	        return "admin/adminManager/insertManager";
+	    }
+
 	/* -------------------------------------- */
 	
 	//전체
@@ -260,5 +285,30 @@ public class AdminUserlistController {
 	    model.addAttribute("status", "H");
 		
 		return "admin/adminUserlist/adminUserlistHidden";
+    }
+	
+	 //status 새로고침
+    @RequestMapping("changeUserstatus.ad")
+    public String changeUserHstatus(String status, int userNo, Model model, HttpSession session) {
+    	    	
+    	HashMap<String, Object> map = new HashMap<>();
+        map.put("status", status);
+        map.put("userNo", userNo);
+
+        int result = auService.userChangeStatus(map); 
+        
+        if (result > 0) {
+        	
+        	if (status.equals("H")) {
+        		session.setAttribute("alertMsg", "회원 숨김처리 성공");
+        		return "redirect:adminUserHidden.ad";
+        	} else {
+        		session.setAttribute("alertMsg", "회원 노출처리 성공");
+        		return "redirect:adminUserActive.ad";
+        	}
+        } else {
+        	model.addAttribute("errorMsg", "회원 변경 실패");
+        	return "common/errorPage";
+        }    	
     }
 }

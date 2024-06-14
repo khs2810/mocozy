@@ -96,7 +96,7 @@ function renderClubList(clist) {
     let startBtnStyle = '';
 
     //status에 따라 버튼을 보여주거나 숨김
-    if (club.status === 'E') {
+    if (club.status === 'E' || club.status === 'N'){
       deleteBtnStyle = 'style="display: none;"';
       startBtnStyle = 'style="display: none;"';
     } else if (club.status === 'H') {
@@ -147,8 +147,8 @@ function renderClubList(clist) {
 					<td class="r-date text-12">${club.modifyDate}</td>
 						<td class="more">
 							<div class="dropdown">
-								<button class="btn btn-danger-button" id="deleteBtn"${deleteBtnStyle}>숨김</button>
-								<button class="btn btn-primary-btn" id="startBtn"${startBtnStyle}>노출</button>
+								<button class="btn btn-danger-button" id="deleteBtn" onclick="clubChangeStatus(${club.clubNo}, 'H')"${deleteBtnStyle}>숨김</button>
+								<button class="btn btn-primary-btn" id="startBtn" onclick="clubChangeStatus(${club.clubNo}, 'Y')"${startBtnStyle}>노출</button>
 						  </div>
 						</td>
             </tr>`
@@ -157,12 +157,17 @@ function renderClubList(clist) {
   }
 }
 
+//status hidden으로 변경
+function clubChangeStatus(cno, status) {
+  window.location.href = "clubChangeStatus.ad?clubNo=" + cno + "&status=" + status;
+}
+
 // AJAX 요청을 처리하는 함수
 function adminClubAjax(status) {
   $.ajax({
     url: 'adminClubAjax.ad',
     //cpage와 sortType을 같이 보내줌
-    data: { cpage: cpage++, sortType: sortType, status: status },
+    data: { cpage: cpage++, sortType: sortType, status: status},
     success: function (clist) {
       console.log(clist);
 
