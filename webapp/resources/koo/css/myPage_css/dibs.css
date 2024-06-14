@@ -45,13 +45,13 @@
     height: 30px;
 }
 /* 찜하기 하트 */
-.club_picked {
+#club_picked {
     right: 50px;
     z-index: 1;
     font-size: 25px;
 }
 
-.club_picked > i {
+#club_picked > i {
     cursor: pointer;
 }
 

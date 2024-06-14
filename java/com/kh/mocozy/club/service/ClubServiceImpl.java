@@ -209,7 +209,7 @@ public class ClubServiceImpl implements ClubService {
 	}
 //	찜 소셜링 리스트
 	@Override
-	public List<Club> selectMyDibsSocialList(Club club) {
+	public ArrayList<Club> selectMyDibsSocialList(Club club) {
 		return clubDao.selectMyDibsSocialList(sqlSession, club);
 	}
 }
