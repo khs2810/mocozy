@@ -30,8 +30,6 @@ public class KakaopayController {
 	@Value("${kakao.api.sc.key}")
 	private String kakaoScKey;
 	
-	private KakaoPayDTO kakaoPayDTO;
-	
 	@RequestMapping("kakaopay.pt")
 	public String kakaopayPayment(Member m, HttpSession session, Model model) throws RestClientException, URISyntaxException {
 
@@ -73,7 +71,7 @@ public class KakaopayController {
 	
 	@RequestMapping("kakaopayInClub.pt")
 	public String kakaopayPaymentInClub(Member m, int cno, String answer, String dDay, String evDate, HttpSession session, Model model) throws RestClientException, URISyntaxException {
-		System.out.println("1");
+		
 		RestTemplate restTemplate = new RestTemplate();
         restTemplate.setRequestFactory(new HttpComponentsClientHttpRequestFactory());
         

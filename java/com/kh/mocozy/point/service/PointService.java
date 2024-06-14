@@ -3,6 +3,7 @@ package com.kh.mocozy.point.service;
 import java.util.ArrayList;
 import java.util.Map;
 
+import com.kh.mocozy.club.model.vo.Request;
 import com.kh.mocozy.common.model.vo.PageInfo;
 import com.kh.mocozy.member.model.vo.Member;
 import com.kh.mocozy.point.model.vo.Payment;
@@ -39,5 +40,11 @@ public interface PointService {
 	ArrayList<Point> selectListPointAdmin(PageInfo pi);
 
 	int selectPointAdminListCount();
+
+	Payment selectPayment(int paymentNo);
+
+	int returnPoint(Payment p);
+
+	int cancelPayment(Payment p);
 
 }

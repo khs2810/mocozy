@@ -69,9 +69,9 @@
 	</context:component-scan>
 	
 	<bean id="transactionManager"
-      class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-      <constructor-arg ref="dataSource" />
-   </bean>
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<constructor-arg ref="dataSource" />
+	</bean>
 
-   <tx:annotation-driven />
+	<tx:annotation-driven />
 </beans>
