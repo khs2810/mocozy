@@ -173,6 +173,7 @@ public class BoardController {
 		int result = boardService.updateNotice(n);
 
 		if (result > 0) {
+			session.setAttribute("alertMsg", "게시글 수정 성공");
 			return "redirect:list.no";
 		} else {
 			model.addAttribute("errorMsg", "공지사항 수정 실패");
@@ -182,10 +183,11 @@ public class BoardController {
 	}
 
 	@RequestMapping("delete.no")
-	public String deleteNotice(int nno, Model model) {
+	public String deleteNotice(int nno, Model model, HttpSession session) {
 		int result = boardService.deleteNotice(nno);
 
 		if (result > 0) {
+			session.setAttribute("alertMsg", "게시글 삭제 성공");
 			return "redirect:list.no";
 		} else {
 			model.addAttribute("errorMsg", "공지사항 삭제 실패");

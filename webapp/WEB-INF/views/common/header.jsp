@@ -204,10 +204,9 @@
 								</c:when>
 								<c:otherwise>
 									<!-- 로그인 후 -->
-									<div class="profile">
+									<div class="profile" style="margin-right: 10px;">
 										<img class="profileImg" src="${loginUser.profileImg}" alt="image" />
 									</div>
-									<div class="alarm">+99</div>
 									<button class="userName" id="userName" type="button">
 										${loginUser.nickname} 님
 									</button>

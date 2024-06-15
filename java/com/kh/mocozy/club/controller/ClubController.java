@@ -334,6 +334,7 @@ public class ClubController {
 				Member loginUser = memberService.loginMember(m);
 				session.setAttribute("loginUser", loginUser);
 				
+				session.setAttribute("alertMsg", "모임 참가 성공");
 				return "redirect:/";
 			} else {
 				model.addAttribute("errorMsg", "모임 참가 신청 실패");
@@ -357,46 +358,40 @@ public class ClubController {
 		//삭제할 클럽의 리퀘스트 목록 가져오기
 		ArrayList<Request> rlist = clubService.selectListRequestNotF(cno); 
 		
-		boolean isTrue = false;
+		int result = clubService.deleteClub(rlist, cno);
 		
-		if (rlist.size() > 0) {
-			isTrue = false;
-			for (Request r : rlist) {
-				//리퀘스트의 페이먼트 정보 가져오기
-				Payment p = pointService.selectPayment(r.getPaymentNo());
-				//페이먼트  취소 (status C)처리
-				int result1 = pointService.cancelPayment(p);
-				if (result1 > 0) {
-					//취소한 페이먼트 포인트 유저한테 돌려주기
-					int result2 = pointService.returnPoint(p);
-					if (result2 > 0) {
-						isTrue = true;
-					}
-				} else {
-					model.addAttribute("errorMsg", "모임 삭제 실패1_1");
-					return "common/errorPage";
-				}
-			}
-			if (!isTrue) {
-				model.addAttribute("errorMsg", "모임 삭제 실패1_2");
-				return "common/errorPage";
-			}
-		}
-		
-		int result3 = 0;
-		
-		if (isTrue) {
-			//클럽삭제
-			result3 = clubService.deleteClub(cno);
-		}
-		
-		if (result3 > 0) {
+		if (result > 0) {
 			session.setAttribute("alertMsg", "모임이 삭제되었습니다");
 			return "redirect:/";
 		} else {
 			model.addAttribute("errorMsg", "모임 삭제 실패2");
 			return "common/errorPage";
 		}
+		
+//		if (rlist.size() > 0) {
+//			isTrue = false;
+//			for (Request r : rlist) {
+//				//리퀘스트의 페이먼트 정보 가져오기
+//				Payment p = pointService.selectPayment(r.getPaymentNo());
+//				//페이먼트  취소 (status C)처리
+//				int result1 = pointService.cancelPayment(p);
+//				if (result1 > 0) {
+//					//취소한 페이먼트 포인트 유저한테 돌려주기
+//					int result2 = pointService.returnPoint(p);
+//					if (result2 > 0) {
+//						isTrue = true;
+//					}
+//				} else {
+//					model.addAttribute("errorMsg", "모임 삭제 실패1_1");
+//					return "common/errorPage";
+//				}
+//			}
+//			if (!isTrue) {
+//				model.addAttribute("errorMsg", "모임 삭제 실패1_2");
+//				return "common/errorPage";
+//			}
+//		}
+		
 	}
 	
 }

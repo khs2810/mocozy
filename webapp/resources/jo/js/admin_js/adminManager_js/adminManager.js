@@ -93,18 +93,26 @@ function renderManagerlist(mlist) {
 
 																<td class="state on-click"><a
 																	data-toggle="dropdown" style="margin-right: -1px;">
-																		<span>${user.status}</span>
+																		<span>${user.admin}</span>
 																</a></td>
-
 																<td class="r-date text-12">${user.enrollDate}</td>
 																<td class="purchase text-center hidden-xs hidden-sm"
 																	style="width: 100px;"><a href="adminPoint.ad"
 																	style="text-decoration: underline;">${user.point}</a>
-                                </td>
+                                <td class="more">
+																	<div class="dropdown">
+																		<button class="btn btn-danger-btn" id="adminBtn" onclick="adminstatusAjax(${user.userNo},'N')">강등</button>
+																	</div>
+																</td>
 															</tr>`
 
     document.querySelector("#prod-list-body").innerHTML += str;
   }
+}
+
+//admin no로 변경
+function adminstatusAjax(uno, admin) {
+  window.location.href = "adminstatusAjax.ad?userNo=" + uno + "&admin=" + admin;
 }
 
 // AJAX 요청을 처리하는 함수
@@ -148,6 +156,7 @@ function adminManagerSearchAjax(keyword, sortType) {
           console.log("AJAX 요청 성공, 응답 데이터:", mlist);
       }
     },
+    
       error: function(){
         console.log("ajax 실패");
         alert("요청이 실패했습니다");

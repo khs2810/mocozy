@@ -41,4 +41,9 @@ public class AdminManagerDao {
 		RowBounds rowBounds = new RowBounds(offset, mi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("adminMapper.ManagerSearchAll", map, rowBounds);
 	}
+	
+	//권한 박탈
+	public int adminstatusAjax(SqlSessionTemplate sqlSession, HashMap<String, Object> map) {
+		return sqlSession.update("adminMapper.adminstatusAjax", map);
+	}
 }

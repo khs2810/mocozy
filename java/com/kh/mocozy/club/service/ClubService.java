@@ -92,5 +92,7 @@ public interface ClubService {
 	ArrayList<Request> selectListRequestNotF(int cno);
 
 	int deleteClub(int cno);
+
+	int deleteClub(ArrayList<Request> rlist, int cno);
 	
 }

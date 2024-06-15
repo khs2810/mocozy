@@ -23,6 +23,9 @@ public interface AdminManagerlistService {
 
 	//전체
 	public ArrayList<Member> ManagerSearchAll(HashMap<String, String> map, PageInfo mi);
+	
+	//권한 박탈
+	int adminstatusAjax(HashMap<String, Object> map);
 
 
 	

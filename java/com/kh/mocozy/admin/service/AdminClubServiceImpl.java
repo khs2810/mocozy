@@ -105,6 +105,9 @@ public class AdminClubServiceImpl implements AdminClubService{
 		return acDao.selectClubSearchHidden(sqlSession, map, ci);
 	}
 	
-	
-
+	//status y 처리
+	@Override
+	public int clubChangeStatus(HashMap<String, Object> map){
+		return acDao.clubChangeStatus(sqlSession, map);
+	}
 }
