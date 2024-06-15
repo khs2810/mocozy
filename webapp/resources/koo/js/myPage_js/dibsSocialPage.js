@@ -18,21 +18,17 @@ function getAjaxPicked(data, callback) {
     })
 }
 // 찜 하트 색칠하기.
-function drawPickedHeart(res) {
-    const pick = $('#club_picked')
-    pick.empty();
+function drawPickedHeart(res, heart) {
+    $(heart).empty();
     if (res === 'YYY') {
-        pick.append('<i class="fa-solid fa-heart" style="color: red; display: flex; justify-content: flex-end;"></i>');
+        $(heart).html('<i class="fa-solid fa-heart" style="color: red; display: flex; justify-content: flex-end;"></i>');
         
     } else {
-        pick.append('<i class="fa-regular fa-heart" style="color: red; display: flex; justify-content: flex-end;"></i>');
+        $(heart).html('<i class="fa-regular fa-heart" style="color: red; display: flex; justify-content: flex-end;"></i>');
     }
 }
 
-function clickedPicked(cno, uno){
-    console.log('1')
-    console.log(cno)
-    console.log(uno)
+function clickedPicked(cno, uno, heart){
 
     if (uno){
         const data = {
@@ -40,7 +36,7 @@ function clickedPicked(cno, uno){
             userNo : uno
         }
         updateAjaxPicked(data, function(res){
-            drawPickedHeart(res);
+            drawPickedHeart(res, heart);
             console.log(res)
         });
     } else {

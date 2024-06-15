@@ -71,8 +71,8 @@
                         <div class="status">
                             <!-- 찜 -->
                             <div class="dibs">
-                                <div id="club_picked" onclick="clickedPicked(this)">
-                                    <i class="fa-regular fa-heart" style="color: red; display: flex; justify-content: flex-end;"></i>
+                                <div class="club_picked" onclick="clickedPicked('${Club.clubNo}', '${loginUser.userNo}', this)">
+                                    <i class="fa-solid fa-heart" style="color: red; display: flex; justify-content: flex-end;"></i>
                                 </div>
                             </div>
                             <c:choose>
