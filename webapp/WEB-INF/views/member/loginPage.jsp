@@ -54,7 +54,12 @@
             <div class="line">또는</div>
 
             <div class="select-login">
-                <img src="${pageContext.request.contextPath}/resources/koo/upfile/loginPage_img/kakao_login_medium_wide.png" alt="">
+                <img src="${pageContext.request.contextPath}/resources/koo/upfile/loginPage_img/kakao_login_large_narrow.png" alt="">
+            </div>
+            <br>
+
+            <div class="select-login naver-login">
+                <img src="${pageContext.request.contextPath}/resources/koo/upfile/loginPage_img/btnG_완성형.png" style="box-sizing: border-box;" alt="">
             </div>
         </div>
 
