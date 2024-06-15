@@ -174,8 +174,8 @@ public class ClubDao {
 	}
 	
 //	최근 찜 소셜링 리스트
-	public List<Club> selectMyDibsSocialList(SqlSessionTemplate sqlSession, Club club) {
-		return sqlSession.selectList("clubMapper.selectMyDibsSocialList", club);
+	public ArrayList<Club> selectMyDibsSocialList(SqlSessionTemplate sqlSession, Club club) {
+		return (ArrayList)sqlSession.selectList("clubMapper.selectMyDibsSocialList", club);
 	}
 
 	public ArrayList<Request> selectListRequestNotF(SqlSessionTemplate sqlSession, int cno) {

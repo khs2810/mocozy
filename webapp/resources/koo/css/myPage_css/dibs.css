@@ -46,7 +46,6 @@
 }
 /* 찜하기 하트 */
 .club_picked {
-    position: absolute;
     right: 50px;
     z-index: 1;
     font-size: 25px;

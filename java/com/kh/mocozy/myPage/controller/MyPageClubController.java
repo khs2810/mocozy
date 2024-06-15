@@ -1,5 +1,6 @@
 package com.kh.mocozy.myPage.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -32,14 +33,38 @@ public class MyPageClubController {
 	@RequestMapping("dibsSocial.me")
 	public String myDibsSocialView(HttpSession session, Model model) {
     	
-    	Club club = new Club();
-    	club.setUserNo(((Member)session.getAttribute("loginUser")).getUserNo());
-		
-        List<Club> dibsclist = (List<Club>)clubService.selectMyDibsSocialList(club);
+		// 세션에서 로그인한 사용자 정보를 가져옴
+	    Member loginUser = (Member) session.getAttribute("loginUser");
+	    if (loginUser == null) {
+	        // 로그인한 사용자가 없을 경우
+	        return "redirect:/loginPage"; // 로그인 페이지로 리다이렉트
+	    }
 
-        model.addAttribute("dibsclist", dibsclist);
+	    // 새로운 Club 객체를 생성
+	    Club club = new Club();
+	    // 로그인한 사용자의 UserNo를 Club 객체에 설정
+	    club.setUserNo(loginUser.getUserNo());
+	    System.out.println("club : " + club);
+	    // ClubService를 호출하여 로그인한 사용자가 찜한 소셜링 리스트가져오기
+	    List<Club> dibsclist = (List<Club>)clubService.selectMyDibsSocialList(club);
+	    System.out.println("dibsclist1 : " + dibsclist);
+	    if (dibsclist == null) {
+	        // dibsclist가 null일 경우 빈 리스트로 초기화
+	        dibsclist = new ArrayList<>();
+	    }
 
-        return "myPage/dibsSocial";
+	    // 각 Club 객체에 대해 참여한 멤버 리스트를 가져오고 멤버 수를 설정
+	    for (Club c : dibsclist) {
+	        ArrayList<Member> memberList = memberService.participatedMemberList(c.getClubNo());
+	        c.setMemberCnt(memberList.size());
+	        System.out.println("memberList : " + memberList);
+	    }
+
+	    // 모델에 dibsclist 속성을 추가하여 뷰에 전달
+	    model.addAttribute("dibsclist", dibsclist);
+	    System.out.println("dibsclist2 : " + dibsclist);
+	    // 'myPage/dibsSocial' 뷰 이름을 반환
+	    return "myPage/dibsSocial";
     }
 
 	
