@@ -132,7 +132,6 @@ public class MainController {
 	    for (Notice notice : getnoticeBanner) {
 	        int noticeNo = notice.getNoticeNo();
 	        String bannerPath = notice.getBannerPath();
-	        // 여기서 noticeNo를 사용할 수 있습니다.
 	    }
 		
 	    model.addAttribute("ci", ci);
