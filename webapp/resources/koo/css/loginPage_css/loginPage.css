@@ -154,7 +154,6 @@ border: 0;
     box-sizing: border-box;
     display: flex;
     justify-content: center;
-    width: 300px;
     height: 44.72px;
     left: calc(50% - 300px/2 + 2px);
     top: calc(50% - 44.72px/2 + 171.36px);
@@ -164,10 +163,7 @@ border: 0;
     height: 100%;
 }
 
-.select-login>button{
-    border-style: none;
-}
-
 .select-login:hover{
     transform: scale(1.2);
+    cursor: pointer;
 }

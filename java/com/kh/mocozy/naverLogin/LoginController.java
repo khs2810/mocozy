@@ -14,24 +14,32 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.kh.mocozy.member.model.vo.Member;
+import com.kh.mocozy.member.service.MemberService;
 
 @Controller
 public class LoginController {
+	@Autowired
+	private MemberService memberService;
 	
+//	네이버 로그인 페이지
 	@RequestMapping("/naver-login")
-	public String naverLoginCallback(HttpServletRequest request) {
+	public String naverLoginCallback(Member m, HttpServletRequest request,HttpSession session) {
+		System.out.println(1);
+		Member loginUser = memberService.loginMember(m);
 		
-		String clientId = "clientId입력";
-		String clientSecret = "clientSecret입력";
+		String clientId = "bkMzl1hFtQzbR1kFgkTh";
+		String clientSecret = "rEGDkQ90pT";
 		String code = request.getParameter("code");
 		String state = request.getParameter("state");
 		
-		
+		System.out.println(2);
 		try {
 			String redirectURI = URLEncoder.encode("http://localhost:8890/mocozy/naver-login", "UTF-8");
 			String apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code";
@@ -66,10 +74,10 @@ public class LoginController {
 			if (responseCode == 200) {
 				//정상적으로 정보를 받아왔을 때 result에 정보를 저장
 				String result = res.toString();
-//				System.out.println(result);
+				System.out.println(result);
 				
 				JsonObject totalObj = JsonParser.parseString(result).getAsJsonObject();
-//				System.out.println(totalObj.get("access_token"));
+				System.out.println(totalObj.get("access_token"));
 				
 				String token = totalObj.get("access_token").getAsString(); //정보접근을 위한 토큰
 				String header = "Bearer " + token;
@@ -86,7 +94,7 @@ public class LoginController {
 				System.out.println(resObj);
 				//받아온 email과 데이터베이스의 email을 비교하여 가입유무 확인 후
 				//가입되어있다면 로그인, 아니라면 회원가입창으로 정보를 가지고 이동
-				
+				session.setAttribute("loginUser", loginUser);
 				
 			}
 			
@@ -94,7 +102,7 @@ public class LoginController {
 			e.printStackTrace();
 		}
 		
-		return "login";
+		return "redirect:/";
 		
 	}
 	

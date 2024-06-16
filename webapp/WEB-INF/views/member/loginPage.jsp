@@ -58,20 +58,35 @@
             </div>
             <br>
 
-            <div class="select-login naver-login">
-                <img src="${pageContext.request.contextPath}/resources/koo/upfile/loginPage_img/btnG_완성형.png" style="box-sizing: border-box;" alt="">
+            <div class="select-login">
+                <img src="${pageContext.request.contextPath}/resources/koo/upfile/loginPage_img/btnG_완성형.png" onclick="naverLogin()" alt="">
             </div>
         </div>
 
     </form>
 
     <script>
-        window.onload = function() {
-        const errorMsg = '<%= request.getAttribute("errorMsg") != null ? request.getAttribute("errorMsg") : "" %>';
-        if (errorMsg) {
-            alert(errorMsg);
-        }
-    };
+    //     window.onload = function() {
+    //     const errorMsg = '<%= request.getAttribute("errorMsg") != null ? request.getAttribute("errorMsg") : "" %>';
+    //     if (errorMsg) {
+    //         alert(errorMsg);
+    //     }
+    // };
+
+    //네이버로그인설정
+    function naverLogin(){
+        console.log(1);
+        const clientId = "bkMzl1hFtQzbR1kFgkTh";
+        console.log(clientId);
+        //리다이렉트 URI를 utf-8로 인코딩해서 저장
+        const redirectURI = encodeURIComponent("http://localhost:8890/mocozy/naver-login");
+
+        const state = Math.random().toString(36).substring(2);
+        
+        //로그인 api url
+        window.open('https://nid.naver.com/oauth2.0/authorize?response_type=code&'
+            + 'client_id=' + clientId + "&redirect_uri=" + redirectURI + '&state=' + state)
+    }
     </script>
 </body>
 </html>
