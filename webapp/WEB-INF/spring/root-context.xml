@@ -65,7 +65,6 @@
       <constructor-arg ref="dataSource" />
    </bean>
 
-   <tx:annotation-driven />
 	
 	<!-- @Aspect 및 하위 어노테이션 활성화 -->
 	<aop:aspectj-autoproxy/>
@@ -74,4 +73,7 @@
 	<context:component-scan base-package="com.kh.mocozy" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect"/>
 	</context:component-scan>
+
+	
+	<tx:annotation-driven />
 </beans>

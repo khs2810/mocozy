@@ -25,6 +25,10 @@ public interface AdminNoticeService {
 	public ArrayList<Notice> getNoticeBoard(PageInfo ni, String sortType);
 	public ArrayList<Notice> getNoticeBoardList();
 	
+	//배너 리스트
+	public ArrayList<Notice> getNoticeBanner(PageInfo ni);
+	public ArrayList<Notice> getNoticeBannerList();
+	
 	//검색 리스트
 	public int getNoticeSearchCount(HashMap<String, String> map);
 
@@ -36,6 +40,11 @@ public interface AdminNoticeService {
 
 	//공지 검색
 	public ArrayList<Notice> getNoticeSearchBoard(HashMap<String, String> map, PageInfo ni);
+	
+	//배너 설정
+	public int eventStatusAjax(HashMap<String, Object> map);
+
+	
 	
 	
 	

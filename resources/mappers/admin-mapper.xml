@@ -40,6 +40,8 @@
 		<result column="MODIFY_DATE" property="modifyDate" />
 		<result column="STATUS" property="status" />
 		 <result column="request_status" property="request_status" />
+		 <result column="BANNER_PATH" property="bannerPath"/>
+		 <result column="Banner" property="banner"/>
 	</resultMap>
 
 	<resultMap type="Request" id="requestResult">
@@ -561,4 +563,19 @@
 			OR NOTICE_TITLE LIKE '%' || #{keyword} || '%')
 		Order by USER_NO ${sortType};
 	</select>
+	
+	<!-- 배너 -->
+	<select id="getNoticeBanner" resultMap="noticeResult">
+		SELECT *
+		FROM NOTICE N
+		JOIN MEMBER USING (USER_NO)
+		WHERE NOTICE_TYPE = '이벤트' AND BANNER = 'Y' AND BANNER_PATH IS NOT NULL
+		Order by USER_NO DESC;
+	</select>
+	
+	<update id="eventStatusAjax">
+    UPDATE NOTICE
+	    SET Banner = #{banner}
+	    WHERE NOTICE.notice_no = #{noticeNo};
+	</update>
 </mapper>

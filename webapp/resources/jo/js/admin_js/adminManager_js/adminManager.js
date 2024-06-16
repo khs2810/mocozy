@@ -27,9 +27,9 @@ document.addEventListener('DOMContentLoaded', function () {
               
       // 키워드가 있을 경우 adminClubSearchAjax 함수를 호출
       if (keyword) {
-        adminClubSearchAjax(keyword, sortType);
+        adminManagerSearchAjax(keyword, sortType);
       } else {
-        adminClubAjax();
+        adminManagerAjax();
       }
     }
 
