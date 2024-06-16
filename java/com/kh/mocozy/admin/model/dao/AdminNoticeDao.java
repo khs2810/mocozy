@@ -53,6 +53,18 @@ public class AdminNoticeDao {
 		return (ArrayList)sqlSession.selectList("adminMapper.getNoticeBoard");
 	}
 	
+	//배너
+	public ArrayList<Notice> getNoticeBanner(SqlSessionTemplate sqlSession, PageInfo ni) {
+		int offset = (ni.getCurrentPage() - 1) * ni.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, ni.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("adminMapper.getNoticeBanner", rowBounds);
+	}
+	
+	public ArrayList<Notice> getNoticeBannerList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("adminMapper.getNoticeBanner");
+	}
+	
 	//검색리스트
 	public int getNoticeSearchCount(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
 		return sqlSession.selectOne("adminMapper.getNoticeCount", map);
@@ -81,4 +93,13 @@ public class AdminNoticeDao {
 		RowBounds rowBounds = new RowBounds(offset, ni.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("adminMapper.getNoticeSearchEvent", map, rowBounds);
 	}
+
+	public int eventStatusAjax(SqlSessionTemplate sqlSession, HashMap<String, Object> map) {
+		return sqlSession.update("adminMapper.eventStatusAjax", map);
+	}
+
+	public int eventBannerAjax(SqlSessionTemplate sqlSession, HashMap<String, Object> map) {
+		return sqlSession.update("adminMapper.eventBannerAjax", map);
+	}
+
 }

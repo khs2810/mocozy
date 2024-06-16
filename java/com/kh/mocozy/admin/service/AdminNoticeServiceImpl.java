@@ -58,6 +58,18 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 		return anDao.getNoticeBoardList(sqlSession);
 	}
 	
+	//배너 리스트
+	@Override
+	public ArrayList<Notice> getNoticeBanner(PageInfo ni) {
+		System.out.println("service: " + ni);
+		return anDao.getNoticeBanner(sqlSession, ni);
+	}
+	
+	@Override
+	public ArrayList<Notice> getNoticeBannerList() {
+		return anDao.getNoticeBannerList(sqlSession);
+	}
+	
 	//검색 리스트
 	@Override
 	public int getNoticeSearchCount(HashMap<String, String> map) {
@@ -81,6 +93,11 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 	public ArrayList<Notice> getNoticeSearchBoard(HashMap<String, String> map, PageInfo ni) {
 		return anDao.getNoticeSearchBoard(sqlSession, map, ni);
 	}
-
 	
+	//배너 설정
+	@Override
+	public int eventStatusAjax(HashMap<String, Object> map){
+		return anDao.eventStatusAjax(sqlSession, map);
+	}
+
 }

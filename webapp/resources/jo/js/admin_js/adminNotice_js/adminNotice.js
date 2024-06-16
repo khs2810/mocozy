@@ -48,9 +48,9 @@
               
       // 키워드가 있을 경우 adminClubSearchAjax 함수를 호출
       if (keyword) {
-        adminNoticeSearchAjax(keyword, sortType, status);
+        adminNoticeSearchAjax(keyword, sortType);
       } else {
-        adminNoticeAjax(status);
+        adminNoticeAjax();
       }
     }
 
@@ -91,12 +91,12 @@ function renderNoticelist(nlist) {
     let startBtnStyle = '';
 
     //noticeType 따라 버튼을 보여주거나 숨김
-    if (notice.noticeType === '이벤트') {
+    if (notice.noticeType === '이벤트' && notice.bannerPath != null){
       startBtnStyle = 'style="display: block;"';
     } else {
       startBtnStyle = 'style="display: none;"';
     }
-
+    
     let str = "";
     str = `										<tr class="content -prodListItem" height="50px;">
 																<td class="checkhead">
@@ -125,15 +125,26 @@ function renderNoticelist(nlist) {
 																<td class="group" style="text-decoration: underline;">${notice.noticeType}</td>
 
 																<td class="state on-click"><a
-																	data-toggle="dropdown"> <span
-																		style="text-align: left">${notice.status}</span>
+																	data-toggle="dropdown"> 
+                                  <span style="text-align: left">${notice.status}</span>
+																</a></td>
+
+                                <td class="state on-click"><a
+																	data-toggle="dropdown"> 
+                                  <span style="text-align: left">${notice.banner}</span>
+																</a></td>
+
+                                <td class="state on-click"><a
+																	data-toggle="dropdown"> 
+                                  <div style="text-align: left; width: 80px; overflow: hidden; text-overflow: ellipsis;
+                                    white-space: nowrap;">${notice.bannerPath}</div>
 																</a></td>
 
 																<td class="r-date text-12">${notice.modifyDate}</td>
                                 
                                 <td class="more">
 																	<div class="dropdown">
-																		<button class="btn btn-primary-btn" id="startBtn"${startBtnStyle}>노출</button>
+																		<button class="btn btn-primary-btn" id="startBtn" onclick="eventStatusAjax(${notice.noticeNo},'Y')"${startBtnStyle}>노출</button>
 																	</div>
 																</td>
 
@@ -141,6 +152,11 @@ function renderNoticelist(nlist) {
         
           document.querySelector("#prod-list-body").innerHTML += str;
     }
+}
+
+//변경
+function eventStatusAjax(nno, banner) {
+  window.location.href = "eventStatusAjax.ad?noticeNo=" + nno + "&banner=" + banner;
 }
 
 // AJAX 요청을 처리하는 함수

@@ -24,6 +24,7 @@ public class Notice {
 	private Date modifyDate;
 	private String status;
 	private String nickname;
+	private String banner;
 	private String bannerPath;
 	private int replys;
 }
