@@ -126,7 +126,6 @@ public class MainController {
 	    });
 	    
 	    //이벤트 가져오기
-
 	    ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
 	    // 각 Notice 객체에서 noticeNo 가져오기
 	    for (Notice notice : getnoticeBanner) {
@@ -230,6 +229,14 @@ public class MainController {
 	        c.setPickCount(mService.getPickedCount(c.getClubNo()));
 	    }
 	    
+	    //이벤트 가져오기
+	    ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
+	    // 각 Notice 객체에서 noticeNo 가져오기
+	    for (Notice notice : getnoticeBanner) {
+	        int noticeNo = notice.getNoticeNo();
+	        String bannerPath = notice.getBannerPath();
+	    }
+	    
 	    // 클럽 리스트를 count가 높은 순으로 정렬
 	    Collections.sort(flist, new Comparator<Club>() {
 	        @Override
@@ -245,6 +252,8 @@ public class MainController {
 	    model.addAttribute("clist", clist);
 	    model.addAttribute("rlist", rlist); 
 	    model.addAttribute("flist", flist);
+	    
+	    model.addAttribute("getnoticeBanner", getnoticeBanner);
 
 	    return "mainPage/challenge";
 	}

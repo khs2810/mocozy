@@ -18,12 +18,11 @@
 	<div class="banner">
 		<div class="slide" id="slide">
 		<c:forEach var="notice" items="${getnoticeBanner}">
-		    <div>
 		    	<div id="item">
-			    	<a href="detail.no?nno=${notice.noticeNo}"></a>
-			        <img src="${notice.bannerPath}" alt="Banner">
+					<a href="detail.no?nno=${notice.noticeNo}">
+						<img src="${notice.bannerPath}" alt="Banner">
+					</a>
 		        </div>
-		    </div>
 		</c:forEach>
 <%-- 			<div class="item1" id="item"><a href="detail.no?nno=${notice.noticeNo}"></a></div>
 			<div class="item2" id="item"><a href="detail.no?nno=${notice.noticeNo}"></a></div>

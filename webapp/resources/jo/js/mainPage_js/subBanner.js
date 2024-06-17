@@ -1,6 +1,6 @@
 // 슬라이드 너비 호출
 const subslide = document.querySelector(".subslide");
-const subslideWidth = subslide.clientWidth;
+let subslideWidth = subslide.clientWidth;
 
 // 버튼 엘리먼트 호출
 const subprevBtn = document.querySelector(".subprev");
