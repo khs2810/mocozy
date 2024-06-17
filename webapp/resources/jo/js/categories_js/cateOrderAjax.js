@@ -54,7 +54,7 @@ function drawClublist(list){
 								<path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
 								<path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
 							</svg>
-							<div class="count">${club.createDate}</div>
+							<div class="count">${formatDate(club.createDate)}</div>
                                 </div>
                             </div>
                         </div>
@@ -126,3 +126,20 @@ $(document).ready(function() {
         $('#cateDibs').addClass('highlight');
     } 
 });
+
+//정규식을 사용한 날짜 변환
+function formatDate(dateString) {
+    // (5월 23일, 2024) to YYYY-MM-DD format
+    const regex = /(\d+)월 (\d+)일, (\d+)/;
+    const match = regex.exec(dateString);
+    if (match) {
+        const year = match[3];
+        const month = match[1].length === 1 ? '0' + match[1] : match[1]; // 월이 한 자리수일 경우 앞에 0을 붙임
+        const day = match[2].length === 1 ? '0' + match[2] : match[2]; // 일이 한 자리수일 경우 앞에 0을 붙임
+        const formattedDate = `${year}-${month}-${day}`;
+        console.log("날짜 변환 = " + formattedDate);
+        return formattedDate;
+    }
+    console.error("올바르지 않은 날짜 형식: " + dateString);
+    throw new Error("올바르지 않은 날짜 형식: " + dateString);
+}

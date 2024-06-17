@@ -1,12 +1,15 @@
 // 스크롤 이벤트 감지
 let urlParams = new URLSearchParams(window.location.search);
+//페이지네이션
 let cpage = 2;
+//유저가 입력한 정보 (카테고리 키워드, 정렬)
 let key = urlParams.get('key');
 let order = urlParams.get('order');
 
 window.onscroll = function() {
+    //페이지 사이즈 구하기
     if ((window.innerHeight + window.scrollY) >= document.body.offsetHeight) {
-        // 페이지의 끝에 도달하면 AJAX 요청을 보냅니다.
+        // 페이지의 끝에 도달하면 AJAX 요청을 보냄.
         cateAllAjax();
     }
 };
@@ -172,3 +175,20 @@ $(document).ready(function() {
         $('.leftlistTitle p, .cateRanklisticon').css('color', '#fff');
     }
 });
+
+//정규식을 사용한 날짜 변환
+function formatDate(dateString) {
+    // (YYYY-MM-DDTHH:MM:SSZ) to DD/MM/YYYY format
+    const regex = /^(\d{4})-(\d{2})-(\d{2}).*$/;
+    const match = regex.exec(dateString);
+    if (match) {
+        const year = match[1];
+        const month = match[2];
+        const day = match[3];
+        const formattedDate = `${day}/${month}/${year}`;
+        console.log("날짜 변환 = " + formattedDate);
+        return `${day}/${month}/${year}`;
+    }
+    console.log("변환되지 않은 문자열: " + dateString);
+    return dateString; // 오류가 발생한 경우 원래 문자열 반환
+}

@@ -1,6 +1,6 @@
 // 슬라이드 너비 호출
   const mainSlide = document.querySelector(".slide");
-  const mainSlideWidth = mainSlide.clientWidth;
+  let mainSlideWidth = mainSlide.clientWidth;
 
   // 버튼 엘리먼트 호출
   const mainPrevBtn = document.querySelector(".prev");

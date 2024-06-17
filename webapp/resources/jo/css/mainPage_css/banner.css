@@ -48,12 +48,6 @@ li {
   transition: left 0.15s;
 }
 
-.banner #item a{
-	position: relative;
-	width: 50%;
-	height: 100%;	
-}
-
 .banner .prev {
   display: flex;
   justify-content: center;
@@ -80,105 +74,5 @@ li {
   border-radius: 100%;
   cursor: pointer;
   right: 5rem;
-}
-
-/*이미지 넣기*/
-.banner .item1 {
-  width: 1250px;
-  height: 370px;
-  background-image: url("../../upfile/mainPage_img/mainbanner01.jpg");
-}
-
-.banner .item2 {
-  width: 1250px;
-  height: 370px;
-  background-image: url("../../upfile/mainPage_img/mainbanner02.jpg");
-}
-
-.banner .item3 {
-  width: 1250px;
-  height: 370px;
-  background-image: url("../../upfile/mainPage_img/mainbanner03.jpg");
-}
-
-.banner .item4 {
-  width: 1250px;
-  height: 370px;
-  background-image: url("../../upfile/mainPage_img/mainbanner04.jpg");
-}
-
-.banner .item5 {
-  width: 1250px;
-  height: 370px;
-  background-image: url("../../upfile/mainPage_img/mainbanner05.jpg");
-}
-
-.banner .item6 {
-  width: 1250px;
-  height: 370px;
-  background-image: url("../../upfile/mainPage_img/mainbanner06.jpg");
-}
-
-.banner .item7 {
-  width: 1250px;
-  height: 370px;
-  background-image: url("../../upfile/mainPage_img/mainbanner07.jpg");
-}
-
-.banner .item8 {
-  width: 1250px;
-  height: 370px;
-  background-image: url("../../upfile/mainPage_img/mainbanner08.jpg");
-}
-
-@media (max-width: 706px) {
-  /* 화면이 706px 이하일 때 */
-  .banner .item1 {
-    min-width: 705px;
-    min-height: 500px;
-    background-image: url("../../upfile/mainPage_img/mobilebanner01.jpg")
-  }
-
-  .banner .item2 {
-    min-width: 705px;
-    min-height: 500px;
-    background-image: url("../../upfile/mainPage_img/mobilebanner02.jpg")
-  }
-
-  .banner .item3 {
-    min-width: 705px;
-    min-height: 500px;
-    background-image: url("../../upfile/mainPage_img/mobilebanner03.jpg")
-  }
-
-  .banner .item4 {
-    min-width: 705px;
-    min-height: 500px;
-    background-image: url("../../upfile/mainPage_img/mobilebanner04.jpg")
-  }
-
-  .banner .item5 {
-    min-width: 705px;
-    min-height: 500px;
-    background-image: url("../../upfile/mainPage_img/mobilebanner05.jpg")
-  }
-
-  .banner .item6 {
-    min-width: 705px;
-    min-height: 500px;
-    background-image: url("../../upfile/mainPage_img/mobilebanner06.jpg")
-  }
-
-  .banner .item7 {
-    min-width: 705px;
-    min-height: 500px;
-    background-image: url("../../upfile/mainPage_img/mobilebanner07.jpg")
-  }
-
-  .banner .item8 {
-    min-width: 705px;
-    min-height: 500px;
-    background-image: url("../../upfile/mainPage_img/mobilebanner08.jpg")
-  }
 }
 /* */
