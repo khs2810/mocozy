@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.kh.mocozy.admin.service.AdminNoticeService;
+import com.kh.mocozy.board.model.vo.Notice;
 import com.kh.mocozy.catePage.service.CateService;
 import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.common.model.vo.PageInfo;
@@ -29,6 +31,9 @@ public class CateController {
 
     @Autowired
     private CateService cService;
+    
+    @Autowired
+    private AdminNoticeService anService;
     
     //전체
 	@RequestMapping("cateAll.ct")
@@ -64,6 +69,14 @@ public class CateController {
 	        }
 		 }
 	    
+	    //이벤트 가져오기
+	    ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
+	    // 각 Notice 객체에서 noticeNo 가져오기
+	    for (Notice notice : getnoticeBanner) {
+	        int noticeNo = notice.getNoticeNo();
+	        String bannerPath = notice.getBannerPath();
+	    }
+	    
 	    String orderby = "";
 	    if (order.equals("club_no")) {
 	    	orderby = "클럽번호";
@@ -77,6 +90,8 @@ public class CateController {
 	    model.addAttribute("order", order);
 		model.addAttribute("catelist", catelist);
 	    
+		model.addAttribute("getnoticeBanner", getnoticeBanner);
+		
 		if (cateAllList == 0) {
 			return "common/errorPage";
 		} else {
@@ -163,6 +178,14 @@ public class CateController {
 	        }
 		 }
 	    
+	    //이벤트 가져오기
+	    ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
+	    // 각 Notice 객체에서 noticeNo 가져오기
+	    for (Notice notice : getnoticeBanner) {
+	        int noticeNo = notice.getNoticeNo();
+	        String bannerPath = notice.getBannerPath();
+	    }
+	    
 	    String cname = "";
 	    if (key.equals("문화, 예술") || key.equals("푸드, 드링크")) {
 	    	cname = "문화생활";
@@ -179,6 +202,8 @@ public class CateController {
 	    model.addAttribute("key", key);
 		model.addAttribute("catelist", catelist);
 	    
+		model.addAttribute("getnoticeBanner", getnoticeBanner);
+		
 		if (cateAllList == 0) {
 			return "common/errorPage";
 		} else {
@@ -502,15 +527,23 @@ public class CateController {
 		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
 		    c.setProfileImg(imgs);   
 		    
-		    // createDate 형식 변경
-	        SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-	        try {
-	            Date date = originalFormat.parse(c.getCreateDate().toString());
-	            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-	            c.setCreateDate(sqlDate);
-	        } catch (ParseException | java.text.ParseException e) {
-	            e.printStackTrace();
-	        }
+		 // createDate 형식 변경
+		    SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+		    SimpleDateFormat newFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREAN);
+		    try {
+		        Date date = null;
+				try {
+					date = originalFormat.parse(c.getCreateDate().toString());
+				} catch (java.text.ParseException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+		        String formattedDate = newFormat.format(date);
+		        java.sql.Date sqlDate = java.sql.Date.valueOf(formattedDate);
+		        c.setCreateDate(sqlDate);
+		    } catch (ParseException e) {
+		        e.printStackTrace();
+		    }
 		 }
 	    
 	    model.addAttribute("key", key);

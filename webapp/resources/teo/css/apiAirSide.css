@@ -1,0 +1,17 @@
+#air_side_bar { 
+    margin-top: 30px;
+    padding: 20px 0px;
+    width: 200px;
+    border-radius: 20px;
+    border: 1px solid rgb(129, 129, 129);
+    position: absolute;
+    z-index: 0;
+    right: 100px;
+}
+
+#air_info_side th, td {
+    text-align: center;
+    width: 100px;
+    height: 35px;
+    /* border: 1px solid black; */
+}
