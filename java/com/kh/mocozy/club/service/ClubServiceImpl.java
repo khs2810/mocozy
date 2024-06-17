@@ -252,4 +252,9 @@ public class ClubServiceImpl implements ClubService {
 		}
 		return clubDao.deleteClub(sqlSession, cno);
 	}
+
+	@Override
+	public List<Club> selectMyDibsChallengeList(Club club) {
+		return clubDao.selectMyDibsChallengeList(sqlSession, club);
+	}
 }

@@ -185,4 +185,8 @@ public class ClubDao {
 	public int deleteClub(SqlSessionTemplate sqlSession, int cno) {
 		return sqlSession.update("clubMapper.deleteClub", cno);
 	}
+
+	public List<Club> selectMyDibsChallengeList(SqlSessionTemplate sqlSession, Club club) {
+		return (ArrayList)sqlSession.selectList("clubMapper.selectMyDibsChallengeList", club);
+	}
 }

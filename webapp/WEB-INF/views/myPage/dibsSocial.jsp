@@ -46,12 +46,12 @@
                 <h3>소셜링</h3>
                 
                 <!-- 셀렉버튼 -->
-                <div class="title-select">
+                <!-- <div class="title-select">
                     <select id="optionSelect">
                         <option value="진행중" selected>진행중</option>
                         <option value="종료됨">종료됨</option>
                     </select>
-                </div> 
+                </div>  -->
             </div>
             <hr>
 
@@ -91,12 +91,10 @@
                     </div>
                 </c:forEach>
             </div>
-
             
         
         </div>
     </div>
-
 
     <!-- 프로필 모달 -->
     <%@ include file="../member/profileModal.jsp" %>

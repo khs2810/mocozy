@@ -151,19 +151,19 @@ border: 0;
 
 /* 카카오 로그인 */
 .select-login{
-
-    width: 300px;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
     height: 44.72px;
     left: calc(50% - 300px/2 + 2px);
     top: calc(50% - 44.72px/2 + 171.36px);
-    background: url(kakao_login_large_wide.png);
     filter: drop-shadow(2px 4px 4px rgba(0, 0, 0, 0.25));
 }
-
-.select-login>button{
-    border-style: none;
+.select-login>img{
+    height: 100%;
 }
 
 .select-login:hover{
     transform: scale(1.2);
+    cursor: pointer;
 }
