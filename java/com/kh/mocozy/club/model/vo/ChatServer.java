@@ -30,7 +30,7 @@ public class ChatServer extends TextWebSocketHandler {
 	
 	private final Map<String, WebSocketSession> userSessions = new ConcurrentHashMap<>();
 //	private Set<WebSocketSession> sessions = Collections.synchronizedSet(new HashSet<WebSocketSession>());
-
+	
 	// 클라이언트가 연결을 맺을 때 호출되는 메소드
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
@@ -38,7 +38,7 @@ public class ChatServer extends TextWebSocketHandler {
 		String nick = loginUser.getNickname();
 		log.info("{} 연결됨...", nick);
 	}
-
+	
 	// 클라이언트로부터 메세지를 받을 때 호출되는 메소드
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
@@ -51,18 +51,20 @@ public class ChatServer extends TextWebSocketHandler {
 		
 		Message msg = new Message();
 		msg.setMessageContent(obj.get("message").getAsString());
-		msg.setNick(nick);
+		msg.setSenderNo(Integer.parseInt(obj.get("message").getAsString()));
 		msg.setSendTime(new java.sql.Timestamp(new Date().getTime()));
-		
+		System.out.println("msg : " + msg);
 		sendMessageUser(obj.get("target").getAsString(), msg);
 	}
 	
 	// 특정 사용자에게 메세지를 전송하는 메소드
 	private void sendMessageUser(String targetNick, Message msg) {
 		WebSocketSession targetSession = userSessions.get(targetNick);
-		WebSocketSession mySession = userSessions.get(msg.getNick());
-		
+		WebSocketSession mySession = userSessions.get(msg.getSenderNo());
+		System.out.println("targetSEssion : " + targetSession);
+		System.out.println("mySession : " + mySession);
 		if (targetSession != null && targetSession.isOpen()) {
+			System.out.println("연결!");
 			String str = new Gson().toJson(msg);
 			TextMessage tmsg = new TextMessage(str);
 			
@@ -72,9 +74,11 @@ public class ChatServer extends TextWebSocketHandler {
 			} catch(IOException e) {
 				e.printStackTrace();
 			}
+		} else {
+			System.out.println("연결x");
 		}
 	}
-
+	
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
 		Member loginUser = (Member)session.getAttributes().get("loginUser");
