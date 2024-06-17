@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -14,61 +15,61 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.kh.mocozy.member.model.vo.Member;
+import com.kh.mocozy.member.service.MemberService;
 
 import lombok.extern.slf4j.Slf4j;
 
 @Slf4j
 @Component
 public class ChatServer extends TextWebSocketHandler {
+	
+	@Autowired
+	private MemberService memberService;
+//	private ChatService chatService;
+	
 	private final Map<String, WebSocketSession> userSessions = new ConcurrentHashMap<>();
+//	private Set<WebSocketSession> sessions = Collections.synchronizedSet(new HashSet<WebSocketSession>());
 
 	// 클라이언트가 연결을 맺을 때 호출되는 메소드
 	@Override
 	public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-		String nick = (String)session.getAttributes().get("nick");
+		Member loginUser = (Member)session.getAttributes().get("loginUser");
+		String nick = loginUser.getNickname();
 		log.info("{} 연결됨...", nick);
-		
-		userSessions.put(nick, session);
 	}
 
 	// 클라이언트로부터 메세지를 받을 때 호출되는 메소드
 	@Override
 	protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
-		// 내 세션에서 닉네임 가져옴
-		String nick = (String)session.getAttributes().get("nick");
-		// 메세지 payload를 json객체로 파싱
+		Member loginUser = (Member)session.getAttributes().get("loginUser");
+		String nick = loginUser.getNickname();
 		JsonObject obj = new JsonParser().parse(message.getPayload()).getAsJsonObject();
 		
 		log.info("message : {}", obj.get("message").getAsString());
 		log.info("target : {}", obj.get("target").getAsString());
 		
-		Message vo = new Message();
-		vo.setMessageContent(obj.get("message").getAsString());
-		vo.setNick(nick);
-		vo.setSendTime((java.sql.Date) new Date());
+		Message msg = new Message();
+		msg.setMessageContent(obj.get("message").getAsString());
+		msg.setNick(nick);
+		msg.setSendTime(new java.sql.Timestamp(new Date().getTime()));
 		
-		// 다른 사용자에게 메세지 전송
-		sendMessageUser(obj.get("target").getAsString(), vo);
+		sendMessageUser(obj.get("target").getAsString(), msg);
 	}
 	
 	// 특정 사용자에게 메세지를 전송하는 메소드
-	private void sendMessageUser(String targetNick, Message msgVo) {
-		// target의 세션을 세션목록으로부터 가져옴
+	private void sendMessageUser(String targetNick, Message msg) {
 		WebSocketSession targetSession = userSessions.get(targetNick);
+		WebSocketSession mySession = userSessions.get(msg.getNick());
 		
-		// 현재 사용자의 세션을 세션목록으로부터 가져옴
-		WebSocketSession mySession = userSessions.get(msgVo.getNick());
-		
-		// target의 세션이 유효한지 검사
-		if(targetSession != null && targetSession.isOpen()) {
-			String str = new Gson().toJson(msgVo);
-			// 웹소켓 텍스트 전송규격 메세지로 변환
-			TextMessage msg = new TextMessage(str);
+		if (targetSession != null && targetSession.isOpen()) {
+			String str = new Gson().toJson(msg);
+			TextMessage tmsg = new TextMessage(str);
 			
 			try {
-				mySession.sendMessage(msg);
-				targetSession.sendMessage(msg);
-			} catch (IOException e) {
+				mySession.sendMessage(tmsg);
+				targetSession.sendMessage(tmsg);
+			} catch(IOException e) {
 				e.printStackTrace();
 			}
 		}
@@ -76,7 +77,8 @@ public class ChatServer extends TextWebSocketHandler {
 
 	@Override
 	public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
-		String nick = (String)session.getAttributes().get("nick");
+		Member loginUser = (Member)session.getAttributes().get("loginUser");
+		String nick = loginUser.getNickname();
 		
 		log.info("{} 연결 끊김...", nick);
 		userSessions.remove(nick);

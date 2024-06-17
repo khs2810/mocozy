@@ -23,4 +23,5 @@ public class ChatRoom {
 	private String targetNickname;
 	private String targetProfile;
 	private int notReadCount;
+	private String roomTitle;
 }
