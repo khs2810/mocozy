@@ -22,30 +22,24 @@
                 <div class="profile">
                     <img src="${pageContext.request.contextPath}/resources/jun/img/타노스.png" class="profileImg">
                 </div>
-                <div class="chatSimple">
+                <div class="chatSimple chatWithAdmin" data-userNo="1" data-chattingNo="0">
                     <div class="chatTitle">모꼬지 상담요원</div>
                     <div class="chatContent">안녕하세요</div>
                 </div>
             </div>
             <p class="chatCategory">모임 채팅</p>
-            <div class="chatList">
-                <div class="profile">
-                    <img src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" class="profileImg">
-                </div>
-                <div class="chatSimple">
-                    <div class="chatTitle">♥블랙라이어♥...</div>
-                    <div class="chatContent">내일 봬요~!</div>
-                </div>
-            </div>
-            <div class="chatList">
-                <div class="profile">
-                    <img src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" class="profileImg">
-                </div>
-                <div class="chatSimple">
-                    <div class="chatTitle">【D-2🐥어른이날】...</div>
-                    <div class="chatContent">몇 살까지 어린이인줄 앎?</div>
-                </div>
-            </div>
+            
+           	<c:forEach var="c" items="${roomList}">
+           		<div class="chatList">
+           			<div class="profile">
+           				<img src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" class="profileImg">
+           			</div>
+           			<div class="chatSimple" data-userNo="${c.targetNo}" data-chattingNo="${c.chatNo}">
+           				<div class="chatTitle">${c.roomTitle}</div>
+           				<div class="chatContent">${c.lastMessage}</div>
+           			</div>
+           		</div>
+           	</c:forEach>
         </div>
         <div class="chatPage">
             <h2 class="title">모꼬지 상담요원</h2>
@@ -59,5 +53,16 @@
             </div>
         </div>
     </div><br>
+    
+   <!--------------------------------------- sockjs를 이용한 WebSocket 구현을 위해 라이브러리 추가 ---------------------------------------------->
+   
+   <!-- https://github.com/sockjs/sockjs-client -->
+   <script src="https://cdn.jsdelivr.net/npm/sockjs-client@1/dist/sockjs.min.js"></script>
+   <script>
+      // 로그인한 회원 번호
+      const loginUserNo = "${loginUser.userNo}";
+   </script>
+
+   <script src="/resources/js/chatting/chatting.js"></script>
 </body>
 </html>

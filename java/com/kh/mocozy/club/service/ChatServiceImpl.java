@@ -1,6 +1,7 @@
 package com.kh.mocozy.club.service;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.kh.mocozy.club.model.dao.ChatDao;
 import com.kh.mocozy.club.model.vo.ChatRoom;
+import com.kh.mocozy.club.model.vo.Message;
 
 @Service
 public class ChatServiceImpl implements ChatService {
@@ -20,6 +22,27 @@ public class ChatServiceImpl implements ChatService {
 	@Override
 	public List<ChatRoom> selectRoomList(int userNo) {
 		return chatDao.selectRoomList(sqlSession, userNo);
+	}
+
+	@Override
+	public int checkChattingNo(Map<String, Integer> map) {
+		return chatDao.checkChattingNo(sqlSession, map);
+	}
+	
+	@Override
+	public int insertMessage(Message msg) {
+		msg.setMessageContent(msg.getMessageContent());
+		return chatDao.insertMessage(sqlSession, msg);
 	} 
+
+	@Override
+	public List<Message> selectMessageList(int chattingNo) {
+		List<Message> messageList = chatDao.selectMessageList(sqlSession, chattingNo);
+		System.out.println("service : " + messageList);
+//		if(!messageList.isEmpty()) {
+//			int result = chatDao.updateReadFlag(sqlSession, paramMap);
+//		}
+		return messageList;
+	}
 	
 }

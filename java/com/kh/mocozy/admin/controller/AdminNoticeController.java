@@ -3,6 +3,8 @@ package com.kh.mocozy.admin.controller;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,16 +33,18 @@ public class AdminNoticeController {
 		ArrayList<Notice> getNlist = anService.getNoticeAllList();
 		ArrayList<Notice> getnoticeEvent = anService.getNoticeEventList();
 		ArrayList<Notice> getnoticeBoard = anService.getNoticeBoardList();
+		ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
 		int noticeCount = getNlist.size();
 		int noticeEventCount = getnoticeEvent.size();
 		int noticeBoardCount = getnoticeBoard.size();
+		int noticeBannerCount = getnoticeBanner.size();
 		
 		model.addAttribute("getNlist", getNlist);
 		model.addAttribute("getnoticeEvent", getnoticeEvent);
 		model.addAttribute("noticeBoardCount", noticeBoardCount);
 	    model.addAttribute("noticeCount", noticeCount);
 	    model.addAttribute("noticeEventCount", noticeEventCount);
-	    model.addAttribute("noticeBoardCount", noticeBoardCount);
+	    model.addAttribute("noticeBannerCount", noticeBannerCount);
 	    model.addAttribute("noticeType", "D");
 		
 		return "admin/adminNotice/adminNotice";
@@ -76,6 +80,7 @@ public class AdminNoticeController {
             
             //클럽 리스트 불러오기
             nlist = anService.getNoticeBoard(ni, sortType);
+            
         }
     	
 		return new Gson().toJson(nlist);
@@ -121,6 +126,46 @@ public class AdminNoticeController {
 		return new Gson().toJson(nlist);
     }	
 	
+	//배너 Ajax
+	@ResponseBody
+	@RequestMapping(value="adminNoticeBannerAjax.ad", produces="application/json; charset=UTF-8")
+	public String adminNoticeBannerAjax(@RequestParam(value="cpage", defaultValue="1") int currentPage, String noticeType, Model model) {  
+        
+		ArrayList<Notice> nlist = new ArrayList<>();
+        
+        int notice = anService.getNoticeCount(); 
+        PageInfo ni = Pagination.getPageInfo(notice, currentPage, 15, 15);
+            
+        //클럽 리스트 불러오기
+        nlist = anService.getNoticeBanner(ni);
+		return new Gson().toJson(nlist);
+    }	
+	
+	//배너 설정
+	@RequestMapping("eventbannerAjax.ad")
+	public String eventbannerAjax(String banner, int noticeNo, Model model, HttpSession session) {
+
+		HashMap<String, Object> map = new HashMap<>();
+        map.put("banner", banner);
+        map.put("noticeNo", noticeNo);
+        
+        System.out.println("banner=" + banner);
+        System.out.println("noticeNo=" + noticeNo);
+        
+		int result = anService.eventStatusAjax(map); 
+
+		if (result > 0) {	
+			if (banner.equals("N")) {
+				session.setAttribute("alertMsg", "배너 종료 성공");
+				return "redirect:adminNoticeEvent.ad";
+		} else {
+			model.addAttribute("errorMsg", "배너 종료  실패");
+			return "common/errorPage";
+        }
+	}
+		return "admin/adminNotice/adminNoticeBanner";
+	}
+	
 	/* ---------------------------------------- */
 	
 	 //이벤트
@@ -130,16 +175,18 @@ public class AdminNoticeController {
 		ArrayList<Notice> getNlist = anService.getNoticeAllList();
 		ArrayList<Notice> getnoticeEvent = anService.getNoticeEventList();
 		ArrayList<Notice> getnoticeBoard = anService.getNoticeBoardList();
+		ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
 		int noticeCount = getNlist.size();
 		int noticeEventCount = getnoticeEvent.size();
 		int noticeBoardCount = getnoticeBoard.size();
+		int noticeBannerCount = getnoticeBanner.size();
 		
 		model.addAttribute("getNlist", getNlist);
 		model.addAttribute("getnoticeEvent", getnoticeEvent);
 		model.addAttribute("noticeBoardCount", noticeBoardCount);
 	    model.addAttribute("noticeCount", noticeCount);
 	    model.addAttribute("noticeEventCount", noticeEventCount);
-	    model.addAttribute("noticeBoardCount", noticeBoardCount);
+	    model.addAttribute("noticeBannerCount", noticeBannerCount);
 	    model.addAttribute("noticeType", "이벤트");
 		
 		return "admin/adminNotice/adminNoticeEvent";
@@ -152,18 +199,76 @@ public class AdminNoticeController {
 		ArrayList<Notice> getNlist = anService.getNoticeAllList();
 		ArrayList<Notice> getnoticeEvent = anService.getNoticeEventList();
 		ArrayList<Notice> getnoticeBoard = anService.getNoticeBoardList();
+		ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
 		int noticeCount = getNlist.size();
 		int noticeEventCount = getnoticeEvent.size();
 		int noticeBoardCount = getnoticeBoard.size();
+		int noticeBannerCount = getnoticeBanner.size();
 		
 		model.addAttribute("getNlist", getNlist);
 		model.addAttribute("getnoticeEvent", getnoticeEvent);
 		model.addAttribute("noticeBoardCount", noticeBoardCount);
 	    model.addAttribute("noticeCount", noticeCount);
 	    model.addAttribute("noticeEventCount", noticeEventCount);
-	    model.addAttribute("noticeBoardCount", noticeBoardCount);
+	    model.addAttribute("noticeBannerCount", noticeBannerCount);
 	    model.addAttribute("noticeType", "공지");
 		
 		return "admin/adminNotice/adminNoticeBoard";
    }	
+	
+	//배너
+	@RequestMapping("adminNoticeBanner.ad")
+	public String adminNoticeBanner(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) {  
+		
+		ArrayList<Notice> getNlist = anService.getNoticeAllList();
+		ArrayList<Notice> getnoticeEvent = anService.getNoticeEventList();
+		ArrayList<Notice> getnoticeBoard = anService.getNoticeBoardList();
+		ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
+		int noticeCount = getNlist.size();
+		int noticeEventCount = getnoticeEvent.size();
+		int noticeBoardCount = getnoticeBoard.size();
+		int noticeBannerCount = getnoticeBanner.size();
+		
+		model.addAttribute("getNlist", getNlist);
+		model.addAttribute("getnoticeEvent", getnoticeEvent);
+		model.addAttribute("noticeBoardCount", noticeBoardCount);
+	    model.addAttribute("noticeCount", noticeCount);
+	    model.addAttribute("noticeEventCount", noticeEventCount);
+	    model.addAttribute("noticeBannerCount", noticeBannerCount);
+	    model.addAttribute("noticeType", "배너");
+		
+		return "admin/adminNotice/adminNoticeBanner";
+   }		
+	
+	//배너 설정
+		@RequestMapping("eventStatusAjax.ad")
+		public String eventStatusAjax(String banner, int noticeNo, String bannerPath, Model model, HttpSession session) {
+
+			HashMap<String, Object> map = new HashMap<>();
+	        map.put("banner", banner);
+	        map.put("noticeNo", noticeNo);
+	        
+	        // 현재 등록된 배너의 개수를 가져옵니다.
+	        ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
+	        int noticeBannerCount = getnoticeBanner.size();
+
+	        // 현재 등록된 배너의 개수가 8개 이상이면 등록을 거부합니다.
+	        if (noticeBannerCount >= 8) {
+	            model.addAttribute("errorMsg", "배너 등록 개수가 최대치에 도달했습니다.");
+	            return "redirect:adminNoticeEvent.ad";
+	        }
+	        
+			int result = anService.eventStatusAjax(map); 
+		    
+			if (result > 0) {	
+			    if (banner.equals("Y")) {
+			        session.setAttribute("alertMsg", "배너 설정 성공");
+			        return "redirect:adminNoticeBanner.ad";	
+			    }
+			} else {
+				model.addAttribute("errorMsg", "배너 설정  실패");
+				return "common/errorPage";
+	        }
+	        return "redirect:adminNoticeEvent.ad";
+		}
 }

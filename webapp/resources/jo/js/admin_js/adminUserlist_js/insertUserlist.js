@@ -147,14 +147,29 @@ function renderUserlist(mlist) {
 																	style="text-decoration: underline;">${user.point}</a></td>
 																<td class="more">
 																	<div class="dropdown">
-																		<button class="btn btn-primary-btn" id="startBtn"${startBtnStyle}>시작</button>
-																		<button class="btn btn-flat" id="deleteBtn"${deleteBtnStyle}>종료</button>
+																		<button class="btn btn-primary-btn" id="startBtn" onclick="userChangeStatus(${user.userNo}, 'Y')"${startBtnStyle}>노출</button>
+																		<button class="btn btn-flat" id="deleteBtn" onclick="userChangeStatus(${user.userNo}, 'H')"${deleteBtnStyle}>숨김</button>
 																	</div>
 																</td>
 															</tr>`
         
           document.querySelector("#prod-list-body").innerHTML += str;
     }
+}
+
+
+//status hidden으로 변경
+function userChangeStatus(uno, status) {
+  window.location.href = "changeUserstatus.ad?userNo=" + uno + "&status=" + status;
+}
+
+// 상태 변경 후 페이지를 새로 그리는 함수
+function refreshUserlist() {
+  if (keyword) {
+    adminUserlistSearchAjax(keyword, sortType, status);
+  } else {
+    adminUserlistAjax(status);
+  }
 }
 
 // AJAX 요청을 처리하는 함수
@@ -177,7 +192,7 @@ function adminUserlistAjax(status) {
     });
   }
 
-    // AJAX 요청을 처리하는 함수
+// AJAX 요청을 처리하는 함수
 function adminUserlistSearchAjax(keyword, sortType, status) {
   console.log("sortType: ", sortType); 
   $.ajax({
@@ -203,4 +218,9 @@ function adminUserlistSearchAjax(keyword, sortType, status) {
         alert("요청이 실패했습니다");
       }
     });
+  }
+
+
+  function drawUserTmp(uno) {
+
   }

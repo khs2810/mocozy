@@ -13,6 +13,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.kh.mocozy.admin.service.AdminNoticeService;
+import com.kh.mocozy.board.model.vo.Notice;
 import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.common.model.vo.PageInfo;
 import com.kh.mocozy.common.template.Pagination;
@@ -26,6 +28,9 @@ public class MainController {
 	
 	@Autowired
     private MainService mService;
+	
+	@Autowired
+	private AdminNoticeService anService;
 	
 	
 	@RequestMapping("/")
@@ -120,6 +125,15 @@ public class MainController {
 	        }
 	    });
 	    
+	    //이벤트 가져오기
+
+	    ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
+	    // 각 Notice 객체에서 noticeNo 가져오기
+	    for (Notice notice : getnoticeBanner) {
+	        int noticeNo = notice.getNoticeNo();
+	        String bannerPath = notice.getBannerPath();
+	    }
+		
 	    model.addAttribute("ci", ci);
 	    model.addAttribute("ri", ri); 
 	    model.addAttribute("fi", fi);
@@ -127,7 +141,9 @@ public class MainController {
 	    model.addAttribute("clist", clist);
 	    model.addAttribute("rlist", rlist); 
 	    model.addAttribute("flist", flist);
-
+	    
+	    model.addAttribute("getnoticeBanner", getnoticeBanner);
+	    
 	    return "mainPage/mainPage";
 	}
 

@@ -94,5 +94,8 @@ public interface ClubService {
 	int deleteClub(int cno);
 
 	int deleteClub(ArrayList<Request> rlist, int cno);
+
+//	내가 찜한 챌린지 리스트
+	List<Club> selectMyDibsChallengeList(Club club);
 	
 }

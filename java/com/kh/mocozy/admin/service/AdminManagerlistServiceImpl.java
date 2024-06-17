@@ -46,4 +46,10 @@ public class AdminManagerlistServiceImpl implements AdminManagerlistService{
 	public ArrayList<Member> ManagerSearchAll(HashMap<String, String> map, PageInfo mi) {
 		return amDao.ManagerSearchAll(sqlSession, map, mi);
 	}	
+	
+	//권한 박탈
+	@Override
+	public int adminstatusAjax(HashMap<String, Object> map) {
+		return amDao.adminstatusAjax(sqlSession, map);
+	}	
 }

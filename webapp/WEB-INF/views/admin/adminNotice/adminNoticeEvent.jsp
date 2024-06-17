@@ -107,6 +107,15 @@
 															</a></li>
 														</ul>
 													</div>
+				
+													<div class="owl-item owl-itemitem active">
+														<ul class="owl-nav-tabs">
+															<li class="soldout"><a
+																href="adminNoticeBanner.ad">노출중 <span
+																	class="_count text-primary">${noticeBannerCount}</span>
+															</a></li>
+														</ul>
+													</div>
 
 													<div class="owl-item owl-itemitem active">
 														<ul class="owl-nav-tabs">
@@ -176,6 +185,8 @@
 															<th class="image" style="width: 150px;">게시글</th>
 															<th class="group" style="width: 110px;">카테고리</th>
 															<th class="state">상태</th>
+															<th class="state">노출</th>
+															<th class="state">이미지</th>
 															<th class="r-date" style="margin-left: 20px;">등록일</th>
 															<th class="more"></th>
 														</tr>

@@ -17,14 +17,22 @@
 	<div class="bannerbox"></div>
 	<div class="banner">
 		<div class="slide" id="slide">
-			<div class="item1" id="item"><a href="detail.cl?cno=${club.clubNo}"></a></div>
-			<div class="item2" id="item"><a href="detail.cl?cno=${club.clubNo}"></a></div>
-			<div class="item3" id="item"><a href="detail.cl?cno=${club.clubNo}"></a></div>
-			<div class="item4" id="item"><a href="detail.cl?cno=${club.clubNo}"></a></div>
-			<div class="item5" id="item"><a href="detail.cl?cno=${club.clubNo}"></a></div>
-			<div class="item6" id="item"><a href="detail.cl?cno=${club.clubNo}"></a></div>
-			<div class="item7" id="item"><a href="detail.cl?cno=${club.clubNo}"></a></div>
-			<div class="item8" id="item"><a href="detail.cl?cno=${club.clubNo}"></a></div>
+		<c:forEach var="notice" items="${getnoticeBanner}">
+		    <div>
+		    	<div id="item">
+			    	<a href="detail.no?nno=${notice.noticeNo}"></a>
+			        <img src="${notice.bannerPath}" alt="Banner">
+		        </div>
+		    </div>
+		</c:forEach>
+<%-- 			<div class="item1" id="item"><a href="detail.no?nno=${notice.noticeNo}"></a></div>
+			<div class="item2" id="item"><a href="detail.no?nno=${notice.noticeNo}"></a></div>
+			<div class="item3" id="item"><a href="detail.no?nno=${notice.noticeNo}"></a></div>
+			<div class="item4" id="item"><a href="detail.no?nno=${notice.noticeNo}"></a></div>
+			<div class="item5" id="item"><a href="detail.no?nno=${notice.noticeNo}"></a></div>
+			<div class="item6" id="item"><a href="detail.no?nno=${notice.noticeNo}"></a></div>
+			<div class="item7" id="item"><a href="detail.no?nno=${notice.noticeNo}"></a></div>
+			<div class="item8" id="item"><a href="detail.no?nno=${notice.noticeNo}"></a></div> --%>
 			<div class="prev" id="prev"></div>
 			<div class="next" id="next"></div>
 		</div>

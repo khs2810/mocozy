@@ -49,7 +49,7 @@ public interface AdminClubService {
 	//숨김 검색
 	ArrayList<Club> selectClubSearchHidden(HashMap<String, String> map, PageInfo ci);
 
-
-	
-	
+	//상태 변경
+	int clubChangeStatus(HashMap<String, Object> map);
+		
 }

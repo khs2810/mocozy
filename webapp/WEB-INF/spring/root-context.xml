@@ -60,6 +60,12 @@
 		<property name="maxInMemorySize" value="100000000" />
 	</bean>
 	
+	<bean id="transactionManager"
+      class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+      <constructor-arg ref="dataSource" />
+   </bean>
+
+	
 	<!-- @Aspect 및 하위 어노테이션 활성화 -->
 	<aop:aspectj-autoproxy/>
 
@@ -67,12 +73,7 @@
 	<context:component-scan base-package="com.kh.mocozy" use-default-filters="false">
 		<context:include-filter type="annotation" expression="org.aspectj.lang.annotation.Aspect"/>
 	</context:component-scan>
-	
-	<bean id="transactionManager"
-		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<constructor-arg ref="dataSource" />
-	</bean>
 
-	<tx:annotation-driven />
 	
+	<tx:annotation-driven />
 </beans>
