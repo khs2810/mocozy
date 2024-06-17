@@ -7,15 +7,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>찜 - 챌린지</title>
 
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.0/font/bootstrap-icons.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jun/css/challengeManagePage.css">
+    
+
+    <!-- font awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jun/css/challengeManagePage.css">
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css" />
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/dibs.css" />
+    
+    <!--Get your code at fontawesome.com-->
+    <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
 
-    <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/dibsSocialPage.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPageCommon.js"></script>
+    <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/mySocial.js"></script>
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/dibs.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css" />
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/social.css" />
 
 </head>
 <body>
@@ -28,7 +40,7 @@
              <!-- 메인컨텐츠 타이틀 -->
              <div class="title">
                 <h1>찜</h1>
-                <h3>소셜링</h3>
+                <h3>챌린지</h3>
                 
                 <!-- 셀렉버튼 -->
                 <!-- <div class="title-select">
@@ -38,154 +50,43 @@
                     </select>
                 </div>  -->
             </div>
-            <hr style="background: lightgray; height: 1px; border: 0;">
-            <div class="reviewList">
-                <div class="review">
-                    <div class="leftPart">
-                        <img src="resources/clubImg1.png">
-                    </div>
-                    <div class="midPart">
-                        <div class="clubTitle">
-                            <span>♥블랙라이어♥:: with.하이볼 무제한🍺</span>
-                        </div>
-                        <div class="clubMsg">
-                            <pre>새로운 사람과 만나는 설렘과 도파민 터지는 시간 속
-라이어를 찾아내는 블랙라이어파티에
-일상에서 벗어나고픈 여러분들을 초대합니다 💌</pre>
-                        </div>
-                    </div>
-                    <div class="rightPart">
-                        <div class="scorePart">
-                            <img src="resources/star.png">
-                            <span class="score">4.5</span>
-                        </div>
-                        <div class="btnPart">
-                            <button type="button" class="writeBtn" data-toggle="modal" data-target="#reviewEnrollWindow">리뷰 작성</button>
-                        </div>
-                    </div>
-                </div>
+            <hr>
 
-                <div class="review">
-                    <div class="leftPart">
-                        <img src="resources/clubImg2.png">
-                    </div>
-                    <div class="midPart">
-                        <div class="clubTitle">
-                            <span>선착순 10분!! 상품은....함정카드 발동!</span>
+            <!-- 컨텐츠 내용 -->
+            <!-- 찜한 진행중인 소셜링 목록 -->
+            <div id="club-ing">
+                <c:forEach var="Club" items="${dibsclist}">
+                    <div class="club-content">
+                        <div class="club-img" onclick="location.href='http://localhost:8890/mocozy/detail.cl?cno=${Club.clubNo}';">
+                            <img src="${pageContext.request.contextPath}/${Club.thumbnailImg}">
                         </div>
-                        <div class="clubMsg">
-                            <pre>들어오지 않고는 못베길거야</pre>
+                        <div class="club-title" onclick="location.href='http://localhost:8890/mocozy/detail.cl?cno=${Club.clubNo}';">
+                            <h4>${Club.clubTitle}</h4>
+                            <p>카테고리 : ${Club.categoryName1} > ${Club.categoryName2}</p>
+                            <P>모임 날짜 : ${Club.eventDate}</P>
+                        </div>
+                        <div class="status">
+                            <!-- 찜 -->
+                            <div class="dibs">
+                                <div class="club_picked" onclick="clickedPicked('${Club.clubNo}', '${loginUser.userNo}', this)">
+                                    <i class="fa-solid fa-heart" style="color: red; display: flex; justify-content: flex-end;"></i>
+                                </div>
+                            </div>
+                            <c:choose>
+                                <c:when test="${Club.memberCnt eq Club.capacity}">
+                                    <div class="done">
+                                        <p>모집완료(${Club.memberCnt}/${Club.capacity})</p>
+                                    </div>
+                                </c:when>
+                                <c:when test="${Club.memberCnt ne Club.capacity}">
+                                    <div class="ing">
+                                        <p>모집중(${Club.memberCnt}/${Club.capacity})</p>
+                                    </div>
+                                </c:when>
+                            </c:choose>
                         </div>
                     </div>
-                    <div class="rightPart">
-                        <div class="scorePart">
-                            <img src="resources/star.png">
-                            <span class="score">4.5</span>
-                        </div>
-                        <div class="btnPart">
-                            <button type="button" class="detailBtn" data-toggle="modal" data-target="#reviewDetailWindow">리뷰 보기</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- The Modal -->
-    <div class="modal" id="reviewEnrollWindow">
-        <div class="modal-dialog">
-            <div class="modal-content" style="border: 4px solid black; border-bottom-right-radius: 30px;">
-            
-                <!-- Modal Header -->
-                <div class="modal-header">
-                <h4 class="modal-title">리뷰 작성하기</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="star-rating">
-                        <input type="radio" id="5-stars" name="rating" value="5" />
-                        <label for="5-stars" class="star">&#9733;</label>
-                        <input type="radio" id="4-stars" name="rating" value="4" />
-                        <label for="4-stars" class="star">&#9733;</label>
-                        <input type="radio" id="3-stars" name="rating" value="3" />
-                        <label for="3-stars" class="star">&#9733;</label>
-                        <input type="radio" id="2-stars" name="rating" value="2" />
-                        <label for="2-stars" class="star">&#9733;</label>
-                        <input type="radio" id="1-star" name="rating" value="1" />
-                        <label for="1-star" class="star">&#9733;</label>
-                    </div>
-                    <div class="review-write">
-                        <textarea name="" id="" placeholder="리뷰를 작성하세요"></textarea>
-                    </div>
-                </div>
-                
-                <!-- Modal footer -->
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal">리뷰 등록</button>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-    
-    <!-- <div class="reviewEnrollWindow">
-        <div class="review-head">
-            <p class="review-title">리뷰 작성하기</p>
-        </div>
-        <div>
-            <img class="closeBtn" src="resources/x.png">
-        </div>
-        <div class="star-rating">
-            <input type="radio" id="5-stars" name="rating" value="5" />
-            <label for="5-stars" class="star">&#9733;</label>
-            <input type="radio" id="4-stars" name="rating" value="4" />
-            <label for="4-stars" class="star">&#9733;</label>
-            <input type="radio" id="3-stars" name="rating" value="3" />
-            <label for="3-stars" class="star">&#9733;</label>
-            <input type="radio" id="2-stars" name="rating" value="2" />
-            <label for="2-stars" class="star">&#9733;</label>
-            <input type="radio" id="1-star" name="rating" value="1" />
-            <label for="1-star" class="star">&#9733;</label>
-        </div>
-        <div class="review-write">
-            <textarea name="" id="" placeholder="리뷰를 작성하세요"></textarea>
-        </div>
-        <div class="reviewEnrollBtn">
-            <button>리뷰 등록</button>
-        </div>
-    </div> -->
-    
-    <!-- The Modal -->
-    <div class="modal" id="reviewDetailWindow">
-        <div class="modal-dialog">
-            <div class="modal-content" style="padding-bottom: 20px; border: 4px solid black; border-bottom-right-radius: 30px;">
-            
-                <!-- Modal Header -->
-                <div class="modal-header">
-                <h4 class="modal-title">리뷰 보기</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-                </div>
-                
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <div class="star-rating">
-                        <input type="radio" id="5-stars" name="rating" value="5" />
-                        <label for="5-stars" class="star">&#9733;</label>
-                        <input type="radio" id="4-stars" name="rating" value="4" />
-                        <label for="4-stars" class="star">&#9733;</label>
-                        <input type="radio" id="3-stars" name="rating" value="3" />
-                        <label for="3-stars" class="star">&#9733;</label>
-                        <input type="radio" id="2-stars" name="rating" value="2" />
-                        <label for="2-stars" class="star">&#9733;</label>
-                        <input type="radio" id="1-star" name="rating" value="1" />
-                        <label for="1-star" class="star">&#9733;</label>
-                    </div>
-                    <div class="review-write">
-                        <textarea name="" id="">짐이 작성한 리뷰이니라. 소중하게 생각하도록.</textarea>
-                    </div>
-                </div>
+                </c:forEach>
             </div>
         </div>
     </div>
