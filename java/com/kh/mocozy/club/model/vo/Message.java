@@ -1,6 +1,6 @@
 package com.kh.mocozy.club.model.vo;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -16,7 +16,7 @@ import lombok.ToString;
 public class Message {
 	private int messageNo;
 	private String messageContent;
-	private Date sendTime;
+	private Timestamp sendTime;
 	private int senderNo;
 	private int chatroomNo;
 	private int targetNo;
