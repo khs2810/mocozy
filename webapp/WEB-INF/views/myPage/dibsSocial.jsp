@@ -24,7 +24,7 @@
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/dibsSocialPage.js"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPageCommon.js"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/mySocial.js"></script>
-    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/teo/css/clubDetailPage.css">
+    <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/dibs.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/basic.css" />
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/myPage_css/social.css" />
     
@@ -46,12 +46,12 @@
                 <h3>소셜링</h3>
                 
                 <!-- 셀렉버튼 -->
-                <div class="title-select">
+                <!-- <div class="title-select">
                     <select id="optionSelect">
                         <option value="진행중" selected>진행중</option>
                         <option value="종료됨">종료됨</option>
                     </select>
-                </div> 
+                </div>  -->
             </div>
             <hr>
 
@@ -71,19 +71,19 @@
                         <div class="status">
                             <!-- 찜 -->
                             <div class="dibs">
-                                <div class="club_picked" data-cno="${c.clubNo}" data-uno="${loginUser.userNo}"></div>
-                                <i class="fa-regular fa-heart" style="color: red; display: flex; justify-content: flex-end;"></i>
-                                
+                                <div class="club_picked" onclick="clickedPicked('${Club.clubNo}', '${loginUser.userNo}', this)">
+                                    <i class="fa-solid fa-heart" style="color: red; display: flex; justify-content: flex-end;"></i>
+                                </div>
                             </div>
                             <c:choose>
-                                <c:when test="${c.memberCnt eq c.capacity}">
+                                <c:when test="${Club.memberCnt eq Club.capacity}">
                                     <div class="done">
-                                        <p>모집완료(${c.memberCnt}/${c.capacity})</p>
+                                        <p>모집완료(${Club.memberCnt}/${Club.capacity})</p>
                                     </div>
                                 </c:when>
-                                <c:when test="${c.memberCnt ne c.capacity}">
+                                <c:when test="${Club.memberCnt ne Club.capacity}">
                                     <div class="ing">
-                                        <p>모집중(${c.memberCnt}/${c.capacity})</p>
+                                        <p>모집중(${Club.memberCnt}/${Club.capacity})</p>
                                     </div>
                                 </c:when>
                             </c:choose>
@@ -91,12 +91,10 @@
                     </div>
                 </c:forEach>
             </div>
-
             
         
         </div>
     </div>
-
 
     <!-- 프로필 모달 -->
     <%@ include file="../member/profileModal.jsp" %>

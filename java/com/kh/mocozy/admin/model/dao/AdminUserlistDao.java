@@ -18,11 +18,11 @@ public class AdminUserlistDao {
 	}
 
 	//insertManager
-	public ArrayList<Member> MemberList(SqlSessionTemplate sqlSession, PageInfo mi, String sortType) {
+	public ArrayList<Member> insertManagerList(SqlSessionTemplate sqlSession, PageInfo mi, String sortType) {
 		int offset = (mi.getCurrentPage() - 1) * mi.getBoardLimit();
 		
 		RowBounds rowBounds = new RowBounds(offset, mi.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("adminMapper.MemberAll", sortType, rowBounds);
+		return (ArrayList)sqlSession.selectList("adminMapper.insertManagerList", sortType, rowBounds);
 	}
 	
 	//전체
@@ -61,6 +61,18 @@ public class AdminUserlistDao {
 		return (ArrayList)sqlSession.selectList("adminMapper.MemberEnd");
 	}
 	
+	//숨김
+	public ArrayList<Member> MemberHidden(SqlSessionTemplate sqlSession, PageInfo mi, String sortType) {
+		int offset = (mi.getCurrentPage() - 1) * mi.getBoardLimit();
+		
+		RowBounds rowBounds = new RowBounds(offset, mi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("adminMapper.MemberHidden", sortType, rowBounds);
+	}
+	
+	public ArrayList<Member> MemberHiddenList(SqlSessionTemplate sqlSession) {
+		return (ArrayList)sqlSession.selectList("adminMapper.MemberHidden");
+	}
+	
 	//검색 리스트
 	public int getMemberSearchlist(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
 		return sqlSession.selectOne("adminMapper.getMemberlist", map);
@@ -96,5 +108,24 @@ public class AdminUserlistDao {
 
 		RowBounds rowBounds = new RowBounds(offset, mi.getBoardLimit());
 		return (ArrayList)sqlSession.selectList("adminMapper.MemberSearchList", map, rowBounds);
+	}
+
+	//숨김 검색
+	public ArrayList<Member> MemberSearchHidden(SqlSessionTemplate sqlSession, HashMap<String, String> map,
+			PageInfo mi) {
+		int offset = (mi.getCurrentPage() - 1) * mi.getBoardLimit();
+
+		RowBounds rowBounds = new RowBounds(offset, mi.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("adminMapper.MemberSearchHidden", map, rowBounds);
+	}
+		
+	//숨김 처리
+	public int userChangeStatus(SqlSessionTemplate sqlSession, HashMap<String, Object> map) {
+		return sqlSession.update("adminMapper.userChangeStatus", map);
+	}
+	
+	//권한 부여
+	public int ManagerstatusAjax(SqlSessionTemplate sqlSession, HashMap<String, Object> map) {
+		return sqlSession.update("adminMapper.adminstatusAjax", map);
 	}
 }

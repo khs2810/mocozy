@@ -7,6 +7,7 @@
 <head>
 <!-- 공용 -->
 <meta charset="utf-8">
+<title>관리자 페이지</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
@@ -238,9 +239,9 @@
 						선택한 채팅을 삭제하시겠습니까? <br> 삭제된 기록은 복구할 수 없습니다.
 					</div>
 					<div class="modal-footer">
-						<button type="button" class="btn btn-default btn-flat"
+						<button type="submit" class="btn btn-default btn-flat"
 							data-dismiss="modal">취소</button>
-						<button type="button" class="btn btn-primary btn-flat"
+						<button type="submit" class="btn btn-primary btn-flat"
 							id="board-save">삭제</button>
 					</div>
 				</div>

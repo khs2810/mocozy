@@ -19,18 +19,20 @@ public interface AdminClubService {
 	
 	//전체
 	public ArrayList<Club> selectClublist(PageInfo ci, String sortType);
-
 	ArrayList<Club> getClubAllList();
 	
 	//진행중
 	ArrayList<Club> selectClubProcess(PageInfo ci, String sortType);
-
 	ArrayList<Club> getClubProcessList();
 
 	//종료
 	ArrayList<Club> selectClubEnd(PageInfo ci, String sortType);
-
 	ArrayList<Club> getClubEndList();
+	
+	//숨김
+	ArrayList<Club> selectClubHidden(PageInfo ci, String sortType);
+	ArrayList<Club> getClubHiddenList();
+	
 	
 	//검색 개수
 	int getClubSearchlist(HashMap<String, String> map);
@@ -43,6 +45,11 @@ public interface AdminClubService {
 	
 	//종료 검색
 	ArrayList<Club> selectClubSearchEnd(HashMap<String, String> map, PageInfo ci);
-	
-	
+
+	//숨김 검색
+	ArrayList<Club> selectClubSearchHidden(HashMap<String, String> map, PageInfo ci);
+
+	//상태 변경
+	int clubChangeStatus(HashMap<String, Object> map);
+		
 }

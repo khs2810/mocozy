@@ -215,4 +215,26 @@
 					#{pointType}
 					)
 	</insert>
+	
+	<select id="selectPayment" resultMap="paymentResult">
+		select payment_no,
+			   user_no,
+			   point
+		from payment
+		where status = 'Y' and 
+			payment_no = #{paymentNo}
+	</select>
+	
+	<update id="returnPoint">
+		update member
+		set point = point + #{point}
+		where user_no = #{userNo}
+	</update>
+	
+	<update id="cancelPayment">
+		update payment
+		set status = 'C'
+		where payment_no = #{paymentNo}
+	</update>
+	
 </mapper>

@@ -18,26 +18,16 @@ public interface AdminManagerlistService {
 	ArrayList<Member> ManagerAll(PageInfo mi, String sortType);
 	public ArrayList<Member> MemberAllList();
 	
-	//활동중
-	public ArrayList<Member> ManagerActive(PageInfo mi, String sortType);
-	public ArrayList<Member> MemberActiveList();
-	
-	//종료
-	public ArrayList<Member> ManagerEnd(PageInfo mi, String sortType);
-	public ArrayList<Member> MemberEndList();
-	
 	//검색 리스트
 	public int getManagerSearchlist(HashMap<String, String> map);
 
 	//전체
 	public ArrayList<Member> ManagerSearchAll(HashMap<String, String> map, PageInfo mi);
-
-	//진행중
-	public ArrayList<Member> ManagerSearchActive(HashMap<String, String> map, PageInfo mi);
-
-	//종료됨
-	public ArrayList<Member> ManagerSearchEnd(HashMap<String, String> map, PageInfo mi);
 	
+	//권한 박탈
+	int adminstatusAjax(HashMap<String, Object> map);
+
+
 	
 	
 	

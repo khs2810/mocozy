@@ -8,6 +8,7 @@
 <!-- 공용 -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>관리자 페이지</title>
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <link
@@ -47,8 +48,6 @@
 	href="${pageContext.request.contextPath}/resources/jo/css/admin_css/adminClub_css/adminClub.css">
 <script
 	src="${pageContext.request.contextPath}/resources/jo/js/admin_js/adminManager_js/insertManager.js"></script>
-<script
-	src="${pageContext.request.contextPath}/resources/jo/js/admin_js/adminClub_js/insertManagerSearch.js"></script>		
 </head>
 
 <%@ include file="../sideBar.jsp"%>
@@ -63,7 +62,7 @@
 							<ul class="header-nav header-nav-options">
 								<li class="header-nav-brand">
 									<div class="brand-holder">
-										<span class="location-text"> <a href="_blank"
+										<span class="location-text"> <a href="javascript:void(0);"
 											class="site-name">편집 및 추가</a>
 										</span>
 									</div>
@@ -93,11 +92,10 @@
                                                     </svg> 리스트로 돌아가기
 									</a>
 								</header>
-								<li class="hidden-xs hidden-sm">
 								<select class="tw-relative tw-bg-transparent tw-appearance-none tw-pr13 tw-text-right" id="sortBtn" onchange="orderSelect()">
 										<option value="DESC">내림차순</option>
 										<option value="ASC">오름차순</option>
-								</select></li>
+								</select>
 							</div>
 						</div>
 
@@ -109,17 +107,13 @@
 											<div class="clearfix search-form">
 												<div class="card">
 													<div class="card-body no-padding">
-														<form class="prod-search" id="prod-search-form" action="insertManagerSearchAjax.ad" method="GET">
+														<div class="prod-search" id="prod-search-form">
 															<div class="twitter-wrap no-margin-left">
 																<span class="twitter-typeahead twitter-relative">
 																	<div class="on-click">
 																		<a class="on-click-ahref"> <span
-																			id="search-keyword-type-text">기본</span>
+																			id="search-keyword-type-text">검색어 입력</span>
 																		</a>
-																		<ul class="dropdown-menu top36">
-																			<li><a href="_blank">기본</a></li>
-																			<li><a href="_blank">옵션 클럽번호</a></li>
-																		</ul>
 																	</div>															
 																	<input type="hidden" name="cpage" value="1"> 
 																	 <input type="text" id="keyword-search-input" name="keyword" value="${keyword}"
@@ -139,7 +133,7 @@
                                                                                     </svg>
 																	</label>
 																</div>
-														</form>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -157,7 +151,7 @@
 															<th class="no" style="margin-left: 5px;">No</th>
 															<th class="image">유저명</th>
 															<th class="title" style="width: 95px;"></th>
-															<th class="state">상태</th>
+															<th class="state">권한</th>
 															<th class="r-date" style="margin-left: 10px;">가입일</th>
 															<th class="group">누적 포인트</th>
 															<th class="more"></th>
@@ -178,16 +172,16 @@
 
 																<td class="no text-12">${user.userNo}</td>
 
-																<td class="image"><a href="_blank"> <img
-																		src="${pageContext.request.contextPath}${user.profileImg}"
+																<td class="image"><a href="javascript:void(0);"> <img
+																		src="${user.profileImg}"
 																		width="49" height="49" class="item-thumb">
 																</a></td>
 
 																<td class="title" style="width: 100px;">
 																	<div>
 																		<div class="item-tit inline-blocked">
-																			<a href="_blank">${user.nickname}</a> <a
-																				href="_blank"
+																			<a href="javascript:void(0);">${user.nickname}</a> <a
+																				href="javascript:void(0);"
 																				class="im-icon im-ico-new-tab vertical-middle tab-icon"
 																				style="margin-left: 4px;"></a>
 																		</div>
@@ -233,6 +227,7 @@
 	<!-- 모달창 -->
 	<div id="cocoaModal" class="modal in modal-admin adminModal"
 		data-backdrop="true" data-keyboard="true" style="display: none;">
+		<input type="hidden" name="adminNo" value="${loginUser.userNo}">
 		<div class="modal-dialog ui-draggable">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -250,7 +245,7 @@
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default btn-flat"
 						data-dismiss="modal">취소</button>
-					<button type="button" class="btn btn-primary btn-flat"
+					<button type="submit" class="btn btn-primary btn-flat"
 						id="board-save">변경</button>
 				</div>
 			</div>

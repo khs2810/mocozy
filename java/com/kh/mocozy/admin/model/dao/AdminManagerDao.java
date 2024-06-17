@@ -29,30 +29,6 @@ public class AdminManagerDao {
 		return (ArrayList)sqlSession.selectList("adminMapper.ManagerAll");
 	}
 	
-	//진행중
-	public ArrayList<Member> ManagerActive(SqlSessionTemplate sqlSession, PageInfo mi, String sortType) {
-		int offset = (mi.getCurrentPage() - 1) * mi.getBoardLimit();
-		
-		RowBounds rowBounds = new RowBounds(offset, mi.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("adminMapper.ManagerActive", sortType, rowBounds);
-	}
-
-	public ArrayList<Member> MemberActiveList(SqlSessionTemplate sqlSession) {
-		return (ArrayList)sqlSession.selectList("adminMapper.ManagerActive");
-	}
-	
-	//종료
-	public ArrayList<Member> ManagerEnd(SqlSessionTemplate sqlSession, PageInfo mi, String sortType) {
-		int offset = (mi.getCurrentPage() - 1) * mi.getBoardLimit();
-		
-		RowBounds rowBounds = new RowBounds(offset, mi.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("adminMapper.ManagerEnd", sortType, rowBounds);
-	}
-
-	public ArrayList<Member> MemberEndList(SqlSessionTemplate sqlSession) {
-		return (ArrayList)sqlSession.selectList("adminMapper.ManagerEnd");
-	}
-	
 	//검색 리스트
 	public int getManagerSearchlist(SqlSessionTemplate sqlSession, HashMap<String, String> map) {
 		return sqlSession.selectOne("adminMapper.getManagerlist", map);
@@ -66,19 +42,8 @@ public class AdminManagerDao {
 		return (ArrayList)sqlSession.selectList("adminMapper.ManagerSearchAll", map, rowBounds);
 	}
 	
-	//진행중
-	public ArrayList<Member> ManagerSearchActive(SqlSessionTemplate sqlSession, HashMap<String, String> map, PageInfo mi) {
-		int offset = (mi.getCurrentPage() - 1) * mi.getBoardLimit();
-
-		RowBounds rowBounds = new RowBounds(offset, mi.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("adminMapper.ManagerSearchActive", map, rowBounds);
-	}
-	
-	//종료됨
-	public ArrayList<Member> ManagerSearchEnd(SqlSessionTemplate sqlSession, HashMap<String, String> map, PageInfo mi) {
-		int offset = (mi.getCurrentPage() - 1) * mi.getBoardLimit();
-
-		RowBounds rowBounds = new RowBounds(offset, mi.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("adminMapper.ManagerSearchEnd", map, rowBounds);
+	//권한 박탈
+	public int adminstatusAjax(SqlSessionTemplate sqlSession, HashMap<String, Object> map) {
+		return sqlSession.update("adminMapper.adminstatusAjax", map);
 	}
 }

@@ -20,8 +20,8 @@
 <body>
 	<div class="Subbanner">
 		<div class="subslide" id="subslide">
-			<div class="subitem1" id="subitem"><a href="detail.cl?cno=${club.clubNo}"></a></div>
-			<div class="subitem2" id="subitem"><a href="detail.cl?cno=${club.clubNo}"></a></div>
+			<div class="subitem1" id="subitem"><a href="detail.no?nno=47"></a></div>
+			<div class="subitem2" id="subitem"><a href="detail.no?nno=46"></a></div>
 			<div class="subprev" id="subprev"></div>
 			<div class="subnext" id="subnext"></div>
 		</div>

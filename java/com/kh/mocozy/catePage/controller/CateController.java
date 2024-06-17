@@ -1,9 +1,12 @@
 package com.kh.mocozy.catePage.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +22,7 @@ import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.common.model.vo.PageInfo;
 import com.kh.mocozy.common.template.Pagination;
 import com.kh.mocozy.member.model.vo.Member;
+import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 @Controller
 public class CateController {
@@ -48,7 +52,17 @@ public class CateController {
 		    }
 		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
 		    c.setProfileImg(imgs);    
-		}
+		    
+		    // createDate 형식 변경
+	        SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+	        try {
+	            Date date = originalFormat.parse(c.getCreateDate().toString());
+	            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+	            c.setCreateDate(sqlDate);
+	        } catch (ParseException | java.text.ParseException e) {
+	            e.printStackTrace();
+	        }
+		 }
 	    
 	    String orderby = "";
 	    if (order.equals("club_no")) {
@@ -93,7 +107,17 @@ public class CateController {
 		    }
 		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
 		    c.setProfileImg(imgs);    
-		}
+			 
+		    // createDate 형식 변경
+	        SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+	        try {
+	            Date date = originalFormat.parse(c.getCreateDate().toString());
+	            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+	            c.setCreateDate(sqlDate);
+	        } catch (ParseException | java.text.ParseException e) {
+	            e.printStackTrace();
+	        }
+		 }
 	    
 		return new Gson().toJson(catelist);
 	}
@@ -126,8 +150,18 @@ public class CateController {
 		    	imgs.add(m.getProfileImg());
 		    }
 		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
-		    c.setProfileImg(imgs);    
-		}
+		    c.setProfileImg(imgs);   
+		    
+		    // createDate 형식 변경
+	        SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+	        try {
+	            Date date = originalFormat.parse(c.getCreateDate().toString());
+	            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+	            c.setCreateDate(sqlDate);
+	        } catch (ParseException | java.text.ParseException e) {
+	            e.printStackTrace();
+	        }
+		 }
 	    
 	    String cname = "";
 	    if (key.equals("문화, 예술") || key.equals("푸드, 드링크")) {
@@ -178,9 +212,25 @@ public class CateController {
 		    	imgs.add(m.getProfileImg());
 		    }
 		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
-		    c.setProfileImg(imgs);    
+		    c.setProfileImg(imgs);  
+		    
+		    // createDate 형식 변경
+	        SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+	        try {
+	            Date date = originalFormat.parse(c.getCreateDate().toString());
+	            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+	            c.setCreateDate(sqlDate);
+	        } catch (ParseException | java.text.ParseException e) {
+	            e.printStackTrace();
+	        }
+	        
+		 //한번더 형식 변경
+		Date date = c.getCreateDate();
+		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
+		String formattedDate = formatter.format(date);
+		
 		}
-	    
+		
 	    model.addAttribute("key", key);
 		model.addAttribute("catelist", catelist);
 		
@@ -215,7 +265,17 @@ public class CateController {
 		    }
 		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
 		    c.setProfileImg(imgs);    
-		}
+		    
+		    // createDate 형식 변경
+	        SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+	        try {
+	            Date date = originalFormat.parse(c.getCreateDate().toString());
+	            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+	            c.setCreateDate(sqlDate);
+	        } catch (ParseException | java.text.ParseException e) {
+	            e.printStackTrace();
+	        }
+		 }
 	    
 	    model.addAttribute("key", key);
 		model.addAttribute("catelist", catelist);
@@ -252,8 +312,19 @@ public class CateController {
 		    	imgs.add(m.getProfileImg());
 		    }
 		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
-		    c.setProfileImg(imgs);    
-		}
+		    c.setProfileImg(imgs); 
+		    
+		    // createDate 형식 변경
+	        SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+	        try {
+	            Date date = originalFormat.parse(c.getCreateDate().toString());
+	            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+	            c.setCreateDate(sqlDate);
+	        } catch (ParseException | java.text.ParseException e) {
+	            e.printStackTrace();
+	        }
+		 }
+		
 	    model.addAttribute("key", key);
 		model.addAttribute("catelist", catelist);
 		
@@ -287,8 +358,18 @@ public class CateController {
 		    	imgs.add(m.getProfileImg());
 		    }
 		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
-		    c.setProfileImg(imgs);    
-		}
+		    c.setProfileImg(imgs);  
+		    
+		    // createDate 형식 변경
+	        SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+	        try {
+	            Date date = originalFormat.parse(c.getCreateDate().toString());
+	            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+	            c.setCreateDate(sqlDate);
+	        } catch (ParseException | java.text.ParseException e) {
+	            e.printStackTrace();
+	        }
+		 }
 	    
 	    model.addAttribute("key", key);
 		model.addAttribute("catelist", catelist);
@@ -323,7 +404,17 @@ public class CateController {
 		    for (Member m : memberList) {
 		    	//현재 회원의 프로필 이미지 url을 img리스트에 추가
 		    	imgs.add(m.getProfileImg());
-		    }
+		    	
+			    // createDate 형식 변경
+		        SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+		        try {
+		            Date date = originalFormat.parse(c.getCreateDate().toString());
+		            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+		            c.setCreateDate(sqlDate);
+		        } catch (ParseException | java.text.ParseException e) {
+		            e.printStackTrace();
+		        }
+			 }
 		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
 		    c.setProfileImg(imgs);    
 		}
@@ -362,7 +453,17 @@ public class CateController {
 		    }
 		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
 		    c.setProfileImg(imgs);    
-		}
+		    
+		    // createDate 형식 변경
+	        SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+	        try {
+	            Date date = originalFormat.parse(c.getCreateDate().toString());
+	            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+	            c.setCreateDate(sqlDate);
+	        } catch (ParseException | java.text.ParseException e) {
+	            e.printStackTrace();
+	        }
+		 }
 	    
 	    model.addAttribute("key", key);
 		model.addAttribute("catelist", catelist);
@@ -399,8 +500,18 @@ public class CateController {
 		    	imgs.add(m.getProfileImg());
 		    }
 		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
-		    c.setProfileImg(imgs);    
-		}
+		    c.setProfileImg(imgs);   
+		    
+		    // createDate 형식 변경
+	        SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+	        try {
+	            Date date = originalFormat.parse(c.getCreateDate().toString());
+	            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+	            c.setCreateDate(sqlDate);
+	        } catch (ParseException | java.text.ParseException e) {
+	            e.printStackTrace();
+	        }
+		 }
 	    
 	    model.addAttribute("key", key);
 		model.addAttribute("catelist", catelist);

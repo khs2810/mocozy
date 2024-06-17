@@ -9,6 +9,7 @@ import java.util.Map;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.kh.mocozy.club.model.dao.ClubDao;
 import com.kh.mocozy.club.model.vo.Challenge;
@@ -16,6 +17,8 @@ import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.club.model.vo.ClubReview;
 import com.kh.mocozy.club.model.vo.Request;
 import com.kh.mocozy.common.model.vo.Attachment;
+import com.kh.mocozy.point.model.dao.PointDao;
+import com.kh.mocozy.point.model.vo.Payment;
 
 @Service
 public class ClubServiceImpl implements ClubService { 
@@ -24,6 +27,8 @@ public class ClubServiceImpl implements ClubService {
 	private ClubDao clubDao;
 	@Autowired
 	private SqlSessionTemplate sqlSession;
+	@Autowired
+	private PointDao pointDao;
 
 	
 	@Override
@@ -209,7 +214,47 @@ public class ClubServiceImpl implements ClubService {
 	}
 //	찜 소셜링 리스트
 	@Override
-	public List<Club> selectMyDibsSocialList(Club club) {
+	public ArrayList<Club> selectMyDibsSocialList(Club club) {
 		return clubDao.selectMyDibsSocialList(sqlSession, club);
+	}
+
+	@Override
+	public ArrayList<Request> selectListRequestNotF(int cno) {
+		return clubDao.selectListRequestNotF(sqlSession, cno);
+	}
+
+	@Override
+	public int deleteClub(int cno) {
+		return clubDao.deleteClub(sqlSession, cno);
+	}
+	
+	@Transactional
+	@Override
+	public int deleteClub(ArrayList<Request> rlist, int cno) {
+		
+		if (!rlist.isEmpty()) {
+			int result1 = 0;
+			int result2 = 0;
+			
+			for (Request r : rlist) {
+				result1 = 0;
+				result2 = 0;
+				//리퀘스트의 페이먼트 정보 가져오기
+				Payment p = pointDao.selectPayment(sqlSession, r.getPaymentNo());
+				//페이먼트  취소 (status C)처리
+				result1 = pointDao.cancelPayment(sqlSession, p);
+				result2 = pointDao.returnPoint(sqlSession, p);
+				
+				if (result1 * result2 == 0) {
+					break;
+				}
+			}
+		}
+		return clubDao.deleteClub(sqlSession, cno);
+	}
+
+	@Override
+	public List<Club> selectMyDibsChallengeList(Club club) {
+		return clubDao.selectMyDibsChallengeList(sqlSession, club);
 	}
 }

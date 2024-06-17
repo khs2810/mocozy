@@ -36,7 +36,7 @@ public class AdminClubServiceImpl implements AdminClubService{
 	public ArrayList<Club> selectClublist(PageInfo ci, String sortType) {
 		return acDao.selectClublist(sqlSession, ci, sortType);
 	}
-
+	
 	@Override
 	public ArrayList<Club> getClubAllList() {
 		return acDao.getClubAllList(sqlSession);
@@ -47,10 +47,21 @@ public class AdminClubServiceImpl implements AdminClubService{
 	public ArrayList<Club> selectClubProcess(PageInfo ci, String sortType) {
 		return acDao.selectClubProcess(sqlSession, ci, sortType);
 	}
-
+	
 	@Override
 	public ArrayList<Club> getClubProcessList() {
 		return acDao.getClubProcessList(sqlSession);
+	}
+	
+	//숨김
+	@Override
+	public ArrayList<Club> selectClubHidden(PageInfo ci, String sortType) {
+		return acDao.selectClubHidden(sqlSession, ci, sortType);
+	}
+
+	@Override
+	public ArrayList<Club> getClubHiddenList() {
+		return acDao.getClubHiddenList(sqlSession);
 	}
 	
 	//종료됨
@@ -63,7 +74,7 @@ public class AdminClubServiceImpl implements AdminClubService{
 	public ArrayList<Club> getClubEndList() {
 		return acDao.getClubEndList(sqlSession);
 	}
-
+	
 	//검색 개수
 	@Override
 	public int getClubSearchlist(HashMap<String, String> map) {
@@ -86,5 +97,17 @@ public class AdminClubServiceImpl implements AdminClubService{
 	@Override
 	public ArrayList<Club> selectClubSearchEnd(HashMap<String, String> map, PageInfo ci) {
 		return acDao.selectClubSearchEnd(sqlSession, map, ci);
+	}
+
+	//숨김 검색
+	@Override
+	public ArrayList<Club> selectClubSearchHidden(HashMap<String, String> map, PageInfo ci) {
+		return acDao.selectClubSearchHidden(sqlSession, map, ci);
+	}
+	
+	//status y 처리
+	@Override
+	public int clubChangeStatus(HashMap<String, Object> map){
+		return acDao.clubChangeStatus(sqlSession, map);
 	}
 }

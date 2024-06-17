@@ -28,8 +28,8 @@ public class AdminUserlistServiceImpl implements AdminUserlistService{
 	
 	//insertAdmin
 	@Override
-	public ArrayList<Member> MemberList(PageInfo mi, String sortType) {
-		return auDao.MemberList(sqlSession, mi, sortType);
+	public ArrayList<Member> insertManagerList(PageInfo mi, String sortType) {
+		return auDao.insertManagerList(sqlSession, mi, sortType);
 	}
 	
 	//전체
@@ -65,6 +65,17 @@ public class AdminUserlistServiceImpl implements AdminUserlistService{
 		return auDao.MemberEndList(sqlSession);
 	}
 	
+	//숨김
+	@Override
+	public ArrayList<Member> MemberHidden(PageInfo mi, String sortType) {
+		return auDao.MemberHidden(sqlSession, mi, sortType);
+	}
+	
+	@Override
+	public ArrayList<Member> MemberHiddenList() {
+		return auDao.MemberHiddenList(sqlSession);
+	}
+	
 	//검색 리스트
 	@Override
 	public int getMemberSearchlist(HashMap<String, String> map) {
@@ -91,8 +102,27 @@ public class AdminUserlistServiceImpl implements AdminUserlistService{
 
 	//insertManager 검색
 	@Override
-	public ArrayList<Member> MemberSearchList(HashMap<String, String> map, PageInfo mi) {
+	public ArrayList<Member> insertManagerSearchList(HashMap<String, String> map, PageInfo mi) {
 		return auDao.MemberSearchList(sqlSession, map, mi);
 	}
+
+	//숨김 검색
+	@Override
+	public ArrayList<Member> MemberSearchHidden(HashMap<String, String> map, PageInfo mi) {
+		return auDao.MemberSearchHidden(sqlSession, map, mi);
+	}
+	
+	//숨김 처리
+	@Override
+	public int userChangeStatus(HashMap<String, Object> map) {
+		return auDao.userChangeStatus(sqlSession, map);
+	}
+	
+	//권한 부여
+	@Override
+	public int ManagerstatusAjax(HashMap<String, Object> map) {
+		return auDao.ManagerstatusAjax(sqlSession, map);
+	}
+	
 }
 

@@ -89,7 +89,7 @@ public class MemberServiceImpl implements MemberService {
 	public Member deleteMember(Member m) {
 		return null;
 	}
-
+//	club pick되었는지 확인
 	@Override
 	public Picked ajaxSelectPicked(Picked p) {
 		return memberDao.ajaxSelectPicked(sqlSession, p);

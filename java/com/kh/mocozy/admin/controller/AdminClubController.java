@@ -6,9 +6,12 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -30,13 +33,15 @@ public class AdminClubController {
     //전체
     @RequestMapping("adminClub.ad")
     public String adminClub(@RequestParam(value="cpage", defaultValue="1") int cpage, String sortType, Model model) {
-    	//카테고리별로 클럽의 사이즈 구하기
+		//카테고리별로 클럽의 사이즈 구하기
     	ArrayList<Club> getClist = acService.getClubAllList();
 		ArrayList<Club> getProcesslist = acService.getClubProcessList();
 		ArrayList<Club> getEndlist = acService.getClubEndList();
+		ArrayList<Club> getHiddenlist = acService.getClubHiddenList();
 		int clubAllCount = getClist.size();
 		int clubProcessCount = getProcesslist.size();
 		int clubEndCount = getEndlist.size();
+		int clubHiddenCount = getHiddenlist.size();
 		
 		model.addAttribute("getClist", getClist);
 		model.addAttribute("getProcesslist", getProcesslist);
@@ -44,6 +49,7 @@ public class AdminClubController {
 		model.addAttribute("clubAllCount", clubAllCount);
 		model.addAttribute("clubProcessCount", clubProcessCount);
 		model.addAttribute("clubEndCount", clubEndCount);
+	    model.addAttribute("clubHiddenCount", clubHiddenCount);
 		model.addAttribute("status", "D");
     	
     	return "admin/adminClub/adminClub";
@@ -69,6 +75,14 @@ public class AdminClubController {
             
             //클럽 리스트 불러오기
             clist = acService.selectClubProcess(ci, sortType);
+            
+        } else if (status.equals("H")) {
+        	//페이지네이션
+            int clubAllList = acService.getClublist(); 
+            PageInfo ci = Pagination.getPageInfo(clubAllList, currentPage, 10, 10);
+            
+            //클럽 리스트 불러오기
+            clist = acService.selectClubHidden(ci, sortType);    
         	
         } else {
         	//페이지네이션
@@ -78,8 +92,6 @@ public class AdminClubController {
             //클럽 리스트 불러오기
             clist = acService.selectClubEnd(ci, sortType);
         }
-    	
-        System.out.println(currentPage);	
        
         for (Club c : clist){
             ArrayList<Member> memberList = acService.MemberList(c.getClubNo());
@@ -101,70 +113,33 @@ public class AdminClubController {
         }
         return new Gson().toJson(clist);
     }
-    
-    //검색 Ajax 
-    @ResponseBody
-    @RequestMapping(value="adminClubSearchAjax.ad", produces="application/json; charset=UTF-8")
-	public String adminClubSearchAjax(@RequestParam("keyword") String keyword, @RequestParam("cpage") int currentPage, String sortType, String status, Model model) throws java.text.ParseException {  
-        
-    	HashMap<String, String> map = new HashMap<>();
-		map.put("keyword", keyword);
-		map.put("sortType", sortType);
-		
-    	ArrayList<Club> clist = new ArrayList<>();
-        System.out.println("keyword: " + keyword);
-        System.out.println("sortType: " + sortType);
-    	
-    	if (status.equals("D")) {
-        	//페이지네이션
-        	int clubAllList = acService.getClubSearchlist(map);
-        	PageInfo ci = Pagination.getPageInfo(clubAllList, currentPage, 10, 10);
-        	
-        	//클럽 리스트 불러오기
-        	clist = acService.selectSearchClublist(map, ci);
-        } else if (status.equals("Y")) {
-        	//페이지네이션
-            int clubAllList = acService.getClubSearchlist(map); 
-            PageInfo ci = Pagination.getPageInfo(clubAllList, currentPage, 10, 10);
-            
-            //클럽 리스트 불러오기
-            clist = acService.selectClubSearchProcess(map, ci);
-        	
-        } else {
-        	//페이지네이션
-            int clubAllList = acService.getClubSearchlist(map);
-            PageInfo ci = Pagination.getPageInfo(clubAllList, currentPage, 10, 10);
-            
-            //클럽 리스트 불러오기
-            clist = acService.selectClubSearchEnd(map, ci);
-        }
-    		  
-        for (Club c : clist){
-            ArrayList<Member> memberList = acService.MemberList(c.getClubNo());
-            ArrayList<String> imgs = new ArrayList<String>();
-            for (Member m : memberList) {
-                imgs.add(m.getProfileImg());
-            }
-            c.setProfileImg(imgs);
 
-            // modifyDate 형식 변경
-            SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-            try {
-                Date date = originalFormat.parse(c.getModifyDate().toString());
-                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-                c.setModifyDate(sqlDate);
-            } catch (ParseException e) {
-                e.printStackTrace();
-            }
-        }
+	//status 변경
+	@RequestMapping("clubChangeStatus.ad")
+	public String clubChangeStatus(String status, int clubNo, Model model, HttpSession session) {
+
+		HashMap<String, Object> map = new HashMap<>();
+        map.put("status", status);
+        map.put("clubNo", clubNo);
+
+        int result = acService.clubChangeStatus(map); 
         
-        if (keyword == null) { //검색결과 없음
-        	return new Gson().toJson("검색 결과가 없습니다.");
+        if (result > 0) {
+        	
+        	if (status.equals("H")) {
+        		session.setAttribute("alertMsg", "클럽 숨김처리 성공");
+        		return "redirect:adminClubHidden.ad";
+        	} else if (status.equals("Y")) {
+        		session.setAttribute("alertMsg", "클럽 노출처리 성공");
+        		return "redirect:adminProcess.ad";
+        	}
         } else {
-        	return new Gson().toJson(clist);
+        	model.addAttribute("errorMsg", "클럽 변경 실패");
+        	return "common/errorPage";
+        }    
+        return "redirect:adminClubHidden.ad";
     }
- }
-    
+
 	/* --------------------- */
 
 	//진행중 클럽목록
@@ -174,9 +149,11 @@ public class AdminClubController {
     	ArrayList<Club> getClist = acService.getClubAllList();
 		ArrayList<Club> getProcesslist = acService.getClubProcessList();
 		ArrayList<Club> getEndlist = acService.getClubEndList();
+		ArrayList<Club> getHiddenlist = acService.getClubHiddenList();
 		int clubAllCount = getClist.size();
 		int clubProcessCount = getProcesslist.size();
 		int clubEndCount = getEndlist.size();
+		int clubHiddenCount = getHiddenlist.size();
 		
 		model.addAttribute("getClist", getClist);
 		model.addAttribute("getProcesslist", getProcesslist);
@@ -184,6 +161,7 @@ public class AdminClubController {
 		model.addAttribute("clubAllCount", clubAllCount);
 		model.addAttribute("clubProcessCount", clubProcessCount);
 		model.addAttribute("clubEndCount", clubEndCount);
+	    model.addAttribute("clubHiddenCount", clubHiddenCount);
 		model.addAttribute("status", "Y");
 	    
 	    return "admin/adminClub/adminProcess";
@@ -198,17 +176,48 @@ public class AdminClubController {
     	ArrayList<Club> getClist = acService.getClubAllList();
 		ArrayList<Club> getProcesslist = acService.getClubProcessList();
 		ArrayList<Club> getEndlist = acService.getClubEndList();
+		ArrayList<Club> getHiddenlist = acService.getClubHiddenList();
 		int clubAllCount = getClist.size();
 		int clubProcessCount = getProcesslist.size();
 		int clubEndCount = getEndlist.size();
-
+		int clubHiddenCount = getHiddenlist.size();
+		
 		model.addAttribute("getClist", getClist);
 		model.addAttribute("getProcesslist", getProcesslist);
 		model.addAttribute("getEndlist", getEndlist);
 		model.addAttribute("clubAllCount", clubAllCount);
 		model.addAttribute("clubProcessCount", clubProcessCount);
 		model.addAttribute("clubEndCount", clubEndCount);
-	    
+	    model.addAttribute("clubHiddenCount", clubHiddenCount);
+		model.addAttribute("status", "N");
+		
 	    return "admin/adminClub/adminEnd";
+	}
+	
+	/* --------------------- */
+	
+	//숨김 클럽목록
+	@RequestMapping("adminHidden.ad")
+	public String adminHidden(@RequestParam(value="cpage", defaultValue="1") int currentPage, String sortType, Model model) throws java.text.ParseException {  
+		//카테고리별로 클럽의 사이즈 구하기
+    	ArrayList<Club> getClist = acService.getClubAllList();
+		ArrayList<Club> getProcesslist = acService.getClubProcessList();
+		ArrayList<Club> getEndlist = acService.getClubEndList();
+		ArrayList<Club> getHiddenlist = acService.getClubHiddenList();
+		int clubAllCount = getClist.size();
+		int clubProcessCount = getProcesslist.size();
+		int clubEndCount = getEndlist.size();
+		int clubHiddenCount = getHiddenlist.size();
+		
+		model.addAttribute("getClist", getClist);
+		model.addAttribute("getProcesslist", getProcesslist);
+		model.addAttribute("getEndlist", getEndlist);
+		model.addAttribute("clubAllCount", clubAllCount);
+		model.addAttribute("clubProcessCount", clubProcessCount);
+		model.addAttribute("clubEndCount", clubEndCount);
+	    model.addAttribute("clubHiddenCount", clubHiddenCount);
+	    model.addAttribute("status", "H");
+	    
+	    return "admin/adminClub/adminClubHidden";
 	}
 }		

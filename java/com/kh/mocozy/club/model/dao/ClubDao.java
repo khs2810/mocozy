@@ -174,7 +174,19 @@ public class ClubDao {
 	}
 	
 //	최근 찜 소셜링 리스트
-	public List<Club> selectMyDibsSocialList(SqlSessionTemplate sqlSession, Club club) {
-		return sqlSession.selectList("clubMapper.selectMyDibsSocialList", club);
+	public ArrayList<Club> selectMyDibsSocialList(SqlSessionTemplate sqlSession, Club club) {
+		return (ArrayList)sqlSession.selectList("clubMapper.selectMyDibsSocialList", club);
+	}
+
+	public ArrayList<Request> selectListRequestNotF(SqlSessionTemplate sqlSession, int cno) {
+		return (ArrayList)sqlSession.selectList("clubMapper.selectListRequestNotF", cno);
+	}
+
+	public int deleteClub(SqlSessionTemplate sqlSession, int cno) {
+		return sqlSession.update("clubMapper.deleteClub", cno);
+	}
+
+	public List<Club> selectMyDibsChallengeList(SqlSessionTemplate sqlSession, Club club) {
+		return (ArrayList)sqlSession.selectList("clubMapper.selectMyDibsChallengeList", club);
 	}
 }

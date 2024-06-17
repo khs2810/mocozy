@@ -308,12 +308,6 @@ public class MemberController {
 		return "myPage/myProfile";
 	}
 
-//		찜한 챌린지
-	@RequestMapping("dibsChallenge.me")
-	public String dibsChallengeView() {
-		return "myPage/dibsChallenge";
-	}
-
 	
 	//찜 ajax 확인
 	@ResponseBody
