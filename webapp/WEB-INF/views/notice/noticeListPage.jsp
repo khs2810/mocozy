@@ -18,6 +18,7 @@
 </head>
 <body>
 	<%@ include file="../common/header.jsp"%>
+    <%@ include file="../common/apiAirSide.jsp"%>
     <div id="wrapper_notice">
         <div id="notice_header">
         	<br><br>
@@ -82,4 +83,6 @@
         </div>
     </div>
 </body>
+
+
 </html>

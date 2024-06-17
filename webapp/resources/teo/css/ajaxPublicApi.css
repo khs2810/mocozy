@@ -1,0 +1,21 @@
+#map_info {
+    margin: 0 auto;
+    width: 533px;
+}
+
+#air_info_place td{
+    width: 250px;
+    height: 45px;
+    border-bottom: 1px solid black;
+    text-align: center;
+    font-weight: 800;
+}
+
+#tmp_grade {
+    display: flex;
+    justify-content: end;
+}
+
+#image_map_map area{
+    cursor: pointer;
+}

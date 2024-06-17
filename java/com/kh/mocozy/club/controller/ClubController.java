@@ -367,31 +367,6 @@ public class ClubController {
 			model.addAttribute("errorMsg", "모임 삭제 실패2");
 			return "common/errorPage";
 		}
-		
-//		if (rlist.size() > 0) {
-//			isTrue = false;
-//			for (Request r : rlist) {
-//				//리퀘스트의 페이먼트 정보 가져오기
-//				Payment p = pointService.selectPayment(r.getPaymentNo());
-//				//페이먼트  취소 (status C)처리
-//				int result1 = pointService.cancelPayment(p);
-//				if (result1 > 0) {
-//					//취소한 페이먼트 포인트 유저한테 돌려주기
-//					int result2 = pointService.returnPoint(p);
-//					if (result2 > 0) {
-//						isTrue = true;
-//					}
-//				} else {
-//					model.addAttribute("errorMsg", "모임 삭제 실패1_1");
-//					return "common/errorPage";
-//				}
-//			}
-//			if (!isTrue) {
-//				model.addAttribute("errorMsg", "모임 삭제 실패1_2");
-//				return "common/errorPage";
-//			}
-//		}
-		
 	}
 	
 }
