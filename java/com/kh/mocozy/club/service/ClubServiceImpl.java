@@ -17,6 +17,7 @@ import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.club.model.vo.ClubReview;
 import com.kh.mocozy.club.model.vo.Request;
 import com.kh.mocozy.common.model.vo.Attachment;
+import com.kh.mocozy.member.model.dao.MemberDao;
 import com.kh.mocozy.point.model.dao.PointDao;
 import com.kh.mocozy.point.model.vo.Payment;
 
@@ -29,7 +30,8 @@ public class ClubServiceImpl implements ClubService {
 	private SqlSessionTemplate sqlSession;
 	@Autowired
 	private PointDao pointDao;
-
+	@Autowired
+	private MemberDao memberDao;
 	
 	@Override
 	public int increaseCount(int cno) {
@@ -46,7 +48,8 @@ public class ClubServiceImpl implements ClubService {
 		return clubDao.listReview(sqlSession, cno);
 	}
 	
-	
+	@Transactional
+	@Override
 	public int insertClub(Club c, Attachment at) {
 		
 		int result1 = clubDao.insertClub(sqlSession, c);
@@ -83,10 +86,22 @@ public class ClubServiceImpl implements ClubService {
 	public int acceptRequest(int rqno) {
 		return clubDao.acceptRequest(sqlSession, rqno);
 	}
-
+	
+	@Transactional
 	@Override
-	public int insertRequest(Request r) {
-		return clubDao.insertRequest(sqlSession, r);
+	public String insertRequest(Request r) {
+		
+		String result = null;
+		
+		int r1 = clubDao.insertPayment(sqlSession, r);
+		int r2 = clubDao.insertRequest(sqlSession, r);
+		int r3 = memberDao.pointUpdateRq(sqlSession, r);
+		
+		if (r1 * r2 * r3 == 0) {
+			result = "모임 참가 신청 실패";
+		}
+		
+		return result;
 	}
 
 	public int denyRequest(int rqno) {
@@ -97,7 +112,8 @@ public class ClubServiceImpl implements ClubService {
 	public Attachment selectAttachment(int cno) {
 		return clubDao.selectAttachment(sqlSession, cno);
 	}
-
+	
+	@Transactional
 	@Override
 	public int updateClub(Club c, Attachment at) {
 		int result1 = clubDao.updateClub(sqlSession, c);

@@ -37,7 +37,7 @@ public interface ClubService {
 
 	int acceptRequest(int rqno);
 
-	int insertRequest(Request r);
+	String insertRequest(Request r);
 
 
 	int denyRequest(int rqno);
