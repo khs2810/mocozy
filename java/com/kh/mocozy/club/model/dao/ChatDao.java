@@ -21,7 +21,9 @@ public class ChatDao {
 	}
 
 	public int insertMessage(SqlSessionTemplate sqlSession, Message msg) {
-		return sqlSession.insert("chatMapper.insertMessage", msg);
+		int result = sqlSession.insert("chatMapper.insertMessage", msg);
+		System.out.println("dao : " + result);
+		return result;
 	}
 
 	public List<Message> selectMessageList(SqlSessionTemplate sqlSession, int chattingNo) {
@@ -30,5 +32,9 @@ public class ChatDao {
 
 	public int updateReadFlag(SqlSessionTemplate sqlSession, int chattingNo) {
 		return sqlSession.update("chatMapper.updateReadFlag", chattingNo);
+	}
+
+	public ChatRoom selectChatRoomByNo(SqlSessionTemplate sqlSession, int cno) {
+		return sqlSession.selectOne("chatMapper.selectChatRoomByNo", cno);
 	}
 }

@@ -43,7 +43,7 @@ $(document).ready(function() {
     $('.chatList').on('click', function() {
         // 클릭된 채팅 리스트의 정보 가져오기
         targetUserNo = $(this).find('.chatSimple').data("userno");
-        chattingNo = $(this).find('.chatSimple').data("chattingno")
+        chattingNo = $(this).find('.chatSimple').data("chattingno");
 
         // 채팅창 업데이트 함수 호출
         updateChatWindow(chattingNo);
