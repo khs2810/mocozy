@@ -18,11 +18,11 @@ $(document).ready(function() {
     }
 
     socket.onmessage = function(ev) {
-        // const receive = JSON.parse(ev.data);
+        const receive = JSON.parse(ev.data);
         // const msgContainer = $("#textArea");
 
         // msgContainer.innerHTML += (receive.nick + "(" + receive.time + ")<br>" + receive.msg + "<br>")
-        // console.log(receive)
+        console.log(receive)
         
         const message = JSON.parse(ev.data);
         addMessage(message.messageContent, message.senderNo, message.sendTime);

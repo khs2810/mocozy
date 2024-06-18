@@ -27,6 +27,7 @@ public class ChatServer extends TextWebSocketHandler {
 	
 	@Autowired
 	private MemberService memberService;
+	@Autowired
 	private ChatService chatService;
 	
 	private final Map<String, WebSocketSession> userSessions = new ConcurrentHashMap<>();
@@ -61,13 +62,14 @@ public class ChatServer extends TextWebSocketHandler {
 		msg.setTargetNo(targetNo);
 		System.out.println("msg : " + msg);
 		
-		int result = chatService.insertMessage(msg);
-		if (result > 0) {
-			System.out.println("result가 0보다 큼");
-			sendMessageUser(memberService.selectNicknameByUserNo(targetNo), msg);
-		} else {
-			System.out.println("DB에 메세지 생성 실패");
-		}
+//		int result = chatService.insertMessage(msg);
+//		if (result > 0) {
+//			System.out.println("result가 0보다 큼");
+//			sendMessageUser(memberService.selectNicknameByUserNo(targetNo), msg);
+//		} else {
+//			System.out.println("DB에 메세지 생성 실패");
+//		}
+		sendMessageUser(memberService.selectNicknameByUserNo(targetNo), msg);
 	}
 	
 	// 특정 사용자에게 메세지를 전송하는 메소드
