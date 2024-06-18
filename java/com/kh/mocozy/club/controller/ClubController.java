@@ -33,7 +33,6 @@ import com.kh.mocozy.club.service.ClubService;
 import com.kh.mocozy.common.model.vo.Attachment;
 import com.kh.mocozy.member.model.vo.Member;
 import com.kh.mocozy.member.service.MemberService;
-import com.kh.mocozy.point.model.vo.Payment;
 import com.kh.mocozy.point.service.PointService;
 
 @Controller
