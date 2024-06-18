@@ -90,8 +90,8 @@ document.addEventListener('DOMContentLoaded', function () {
         $.ajax({
             url: "idCheck.me",
             type: "POST",
-            contentType: 'application/json',
-            data: JSON.stringify({ userId: user_Id }),
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            data: { user_Id: user_Id },
             
             success: function(response) {
                 if (response == 'NNNNY') {

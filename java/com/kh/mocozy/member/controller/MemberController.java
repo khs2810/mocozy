@@ -124,9 +124,10 @@ public class MemberController {
 	// idCheck ajax요청을 받아줄 controller
 	@ResponseBody
 	@RequestMapping("idCheck.me")
-	public String idCheck(@RequestBody String checkId) {
+	public String idCheck(@RequestParam("user_Id") String checkId) {
+		System.out.println("checkId : "+checkId);
 		int result = memberService.idCheck(checkId);
-
+		System.out.println("중복된 아이디 갯수 : " + result);
 		if (result > 0) {// 이미존재한다면
 			return "NNNNN";
 		} else { // 존재하지않는다면
