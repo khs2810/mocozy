@@ -322,27 +322,42 @@ public class ClubController {
 		r.setPoint(pt);
 		Member m = (Member)session.getAttribute("loginUser");
 		
-		int result = clubService.insertPayment(r);
+		String result = clubService.insertRequest(r);
 		
-		if (result > 0) {
-			int result1 = clubService.insertRequest(r);
-			int result2 = memberService.pointUpdateRq(r);
+		if (result == null) {
+			Member loginUser = memberService.loginMember(m);
+			session.setAttribute("loginUser", loginUser);
 			
-			if (result1 * result2 > 0) {
-				
-				Member loginUser = memberService.loginMember(m);
-				session.setAttribute("loginUser", loginUser);
-				
-				session.setAttribute("alertMsg", "모임 참가 성공");
-				return "redirect:/";
-			} else {
-				model.addAttribute("errorMsg", "모임 참가 신청 실패");
-				return "common/errorPage";
-			}
+			session.setAttribute("alertMsg", "모임 참가 성공");
+			return "redirect:/";
 		} else {
-			model.addAttribute("errorMsg", "모임 참가 신청 실패");
+			model.addAttribute("errorMsg", result);
 			return "common/errorPage";
 		}
+		
+//		int result = clubService.insertPayment(r);
+//		
+//		if (result > 0) {
+//			int result1 = clubService.insertRequest(r);
+//			int result2 = memberService.pointUpdateRq(r);
+//			
+//			if (result1 * result2 > 0) {
+//				
+//				Member loginUser = memberService.loginMember(m);
+//				session.setAttribute("loginUser", loginUser);
+//				
+//				session.setAttribute("alertMsg", "모임 참가 성공");
+//				return "redirect:/";
+//			} else {
+//				model.addAttribute("errorMsg", "모임 참가 신청 실패");
+//				return "common/errorPage";
+//			}
+//		} else {
+//			model.addAttribute("errorMsg", "모임 참가 신청 실패");
+//			return "common/errorPage";
+//		}
+		
+		
 	}
 	
 	@RequestMapping("updateform.cl")
