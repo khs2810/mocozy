@@ -50,7 +50,7 @@
 		        CAST((SELECT MASTER_NO 
 		              FROM CHAT_ROOM R2 
 		              WHERE R2.CHAT_NO = R.CHAT_NO 
-		              AND R2.MASTER_NO = #{memberNo}
+		              AND R2.MASTER_NO = #{userNo}
 		              LIMIT 1) AS bigint), 
 		        R.TARGET_NO, 
 		        R.MASTER_NO) AS TARGET_NO,
@@ -58,7 +58,7 @@
 		        CAST((SELECT MASTER_NO 
 		              FROM CHAT_ROOM R2 
 		              WHERE R2.CHAT_NO = R.CHAT_NO 
-		              AND R2.MASTER_NO = #{memberNo}
+		              AND R2.MASTER_NO = #{userNo}
 		              LIMIT 1) AS text), 
 		        (SELECT NICKNAME 
 		         FROM MEMBER 
@@ -72,7 +72,7 @@
 		        CAST((SELECT MASTER_NO 
 		              FROM CHAT_ROOM R2 
 		              WHERE R2.CHAT_NO = R.CHAT_NO 
-		              AND R2.MASTER_NO = #{memberNo}
+		              AND R2.MASTER_NO = #{userNo}
 		              LIMIT 1) AS text), 
 		        (SELECT PROFILE_IMG 
 		         FROM MEMBER 
@@ -85,7 +85,7 @@
 		    (SELECT COUNT(*) 
 		     FROM MESSAGE M 
 		     WHERE M.CHATROOM_NO = R.CHAT_NO 
-		     AND SENDER_NO != #{memberNo}) AS NOT_READ_COUNT,
+		     AND SENDER_NO != #{userNo}) AS NOT_READ_COUNT,
 		    (SELECT MAX(MESSAGE_NO) 
 		     FROM MESSAGE M 
 		     WHERE R.CHAT_NO = M.CHATROOM_NO) AS MAX_MESSAGE_NO,
@@ -105,10 +105,22 @@
 	</select>
 	
 	<!-- 채팅 메시지 삽입 -->
-<!-- 	<insert id="insertMessage">
-		INSERT INTO MESSAGE (MESSAGE_NO, MESSAGE_CONTENT, READ_FL, SEND_TIME, SENDER_NO, CHATROOM_NO)
-		VALUES (NEXTVAL('SEQ_MESSAGE_NO'), #{messageContent}, DEFAULT, DEFAULT, #{senderNo}, #{chattingNo});
-    </insert> -->
+	<insert id="insertMessage">
+		INSERT INTO MESSAGE (MESSAGE_NO, 
+				 			MESSAGE_CONTENT, 
+				 			<!-- READ_FL,  -->
+				 			SEND_TIME, 
+				 			SENDER_NO, 
+				 			CHATROOM_NO,
+				 			TARGET_NO)
+		VALUES (NEXTVAL('SEQ_MNO'), 
+				#{messageContent}, 
+				<!-- DEFAULT,  -->
+				#{sendTime}, 
+				#{senderNo}, 
+				#{chatroomNo},
+				#{targetNo});
+    </insert>
    
     <!-- 채팅방 메시지 조회 -->
     <select id="selectMessageList" resultMap="messageResult">
@@ -124,6 +136,16 @@
 		LEFT JOIN MEMBER M ON M.USER_NO = S.SENDER_NO
 		WHERE CHATROOM_NO = #{chattingNo}
 		ORDER BY MESSAGE_NO;
+    </select>
+    
+    <select id="selectChatRoomByNo" resultMap="chatRoomResult">
+    	SELECT CHAT_NO,
+    		   CREATE_DATE,
+    		   CLUB_NO,
+    		   MASTER_NO,
+    		   TARGET_NO
+    	  FROM CHAT_ROOM
+    	 WHERE CHAT_NO = #{cno};
     </select>
     
 	<!-- 채팅 메시지 중 내가 보내지 않은 글을 읽음으로 표시 -->

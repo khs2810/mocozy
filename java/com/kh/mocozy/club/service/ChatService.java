@@ -3,6 +3,7 @@ package com.kh.mocozy.club.service;
 import java.util.List;
 import java.util.Map;
 
+import com.google.gson.JsonElement;
 import com.kh.mocozy.club.model.vo.ChatRoom;
 import com.kh.mocozy.club.model.vo.Message;
 
@@ -14,4 +15,6 @@ public interface ChatService {
 	int insertMessage(Message msg);
 
 	List<Message> selectMessageList(int chattingNo);
+
+	ChatRoom selectChatRoomByNo(int cno);
 }

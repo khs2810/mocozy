@@ -21,16 +21,20 @@ public class ChatDao {
 	}
 
 	public int insertMessage(SqlSessionTemplate sqlSession, Message msg) {
-		return sqlSession.insert("chatMapper.insertMessage", msg);
-	}
-
-	public List<Message> selectMessageList(SqlSessionTemplate sqlSession, int chattingNo) {
-		List<Message> result = sqlSession.selectList("chatMapper.selectMessageList", chattingNo);
+		int result = sqlSession.insert("chatMapper.insertMessage", msg);
 		System.out.println("dao : " + result);
 		return result;
 	}
 
+	public List<Message> selectMessageList(SqlSessionTemplate sqlSession, int chattingNo) {
+		return sqlSession.selectList("chatMapper.selectMessageList", chattingNo);
+	}
+
 	public int updateReadFlag(SqlSessionTemplate sqlSession, int chattingNo) {
 		return sqlSession.update("chatMapper.updateReadFlag", chattingNo);
+	}
+
+	public ChatRoom selectChatRoomByNo(SqlSessionTemplate sqlSession, int cno) {
+		return sqlSession.selectOne("chatMapper.selectChatRoomByNo", cno);
 	}
 }

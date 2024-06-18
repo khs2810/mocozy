@@ -7,6 +7,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.gson.JsonElement;
 import com.kh.mocozy.club.model.dao.ChatDao;
 import com.kh.mocozy.club.model.vo.ChatRoom;
 import com.kh.mocozy.club.model.vo.Message;
@@ -31,18 +32,22 @@ public class ChatServiceImpl implements ChatService {
 	
 	@Override
 	public int insertMessage(Message msg) {
-		msg.setMessageContent(msg.getMessageContent());
-		return chatDao.insertMessage(sqlSession, msg);
+		int result = chatDao.insertMessage(sqlSession, msg);
+		System.out.println("service : " + result);
+		return result;
 	} 
 
 	@Override
 	public List<Message> selectMessageList(int chattingNo) {
-		List<Message> messageList = chatDao.selectMessageList(sqlSession, chattingNo);
-		System.out.println("service : " + messageList);
+		return chatDao.selectMessageList(sqlSession, chattingNo);
 //		if(!messageList.isEmpty()) {
 //			int result = chatDao.updateReadFlag(sqlSession, paramMap);
 //		}
-		return messageList;
+	}
+
+	@Override
+	public ChatRoom selectChatRoomByNo(int cno) {
+		return chatDao.selectChatRoomByNo(sqlSession, cno);
 	}
 	
 }
