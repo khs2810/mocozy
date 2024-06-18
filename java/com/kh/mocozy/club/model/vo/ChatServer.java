@@ -15,6 +15,7 @@ import org.springframework.web.socket.handler.TextWebSocketHandler;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.kh.mocozy.club.service.ChatService;
 import com.kh.mocozy.member.model.vo.Member;
 import com.kh.mocozy.member.service.MemberService;
 
@@ -26,7 +27,7 @@ public class ChatServer extends TextWebSocketHandler {
 	
 	@Autowired
 	private MemberService memberService;
-//	private ChatService chatService;
+	private ChatService chatService;
 	
 	private final Map<String, WebSocketSession> userSessions = new ConcurrentHashMap<>();
 //	private Set<WebSocketSession> sessions = Collections.synchronizedSet(new HashSet<WebSocketSession>());
@@ -37,6 +38,8 @@ public class ChatServer extends TextWebSocketHandler {
 		Member loginUser = (Member)session.getAttributes().get("loginUser");
 		String nick = loginUser.getNickname();
 		log.info("{} 연결됨...", nick);
+		
+		userSessions.put(nick, session);
 	}
 	
 	// 클라이언트로부터 메세지를 받을 때 호출되는 메소드
@@ -45,23 +48,34 @@ public class ChatServer extends TextWebSocketHandler {
 		Member loginUser = (Member)session.getAttributes().get("loginUser");
 		String nick = loginUser.getNickname();
 		JsonObject obj = new JsonParser().parse(message.getPayload()).getAsJsonObject();
-		
+		log.info("message : {}", obj);
 		log.info("message : {}", obj.get("message").getAsString());
 		log.info("target : {}", obj.get("target").getAsString());
 		
 		Message msg = new Message();
 		msg.setMessageContent(obj.get("message").getAsString());
-		msg.setSenderNo(Integer.parseInt(obj.get("message").getAsString()));
+		msg.setSenderNo(loginUser.getUserNo());
+		msg.setNick(nick);
 		msg.setSendTime(new java.sql.Timestamp(new Date().getTime()));
+		int targetNo = Integer.parseInt(obj.get("target").getAsString());
+		msg.setTargetNo(targetNo);
 		System.out.println("msg : " + msg);
-		sendMessageUser(obj.get("target").getAsString(), msg);
+		
+		int result = chatService.insertMessage(msg);
+		if (result > 0) {
+			System.out.println("result가 0보다 큼");
+			sendMessageUser(memberService.selectNicknameByUserNo(targetNo), msg);
+		} else {
+			System.out.println("DB에 메세지 생성 실패");
+		}
 	}
 	
 	// 특정 사용자에게 메세지를 전송하는 메소드
 	private void sendMessageUser(String targetNick, Message msg) {
 		WebSocketSession targetSession = userSessions.get(targetNick);
-		WebSocketSession mySession = userSessions.get(msg.getSenderNo());
-		System.out.println("targetSEssion : " + targetSession);
+		WebSocketSession mySession = userSessions.get(msg.getNick());
+		System.out.println("userSessions : " + userSessions);
+		System.out.println("targetSession : " + targetSession);
 		System.out.println("mySession : " + mySession);
 		if (targetSession != null && targetSession.isOpen()) {
 			System.out.println("연결!");

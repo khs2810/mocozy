@@ -58,8 +58,6 @@ public class ChatController {
 	@ResponseBody
 	@GetMapping(value="/list.ch/selectMessage", produces="application/json; charset=UTF-8")
 	public List<Message> selectMessageList(@RequestParam("chattingNo") int chattingNo) {
-		List<Message> result = chatService.selectMessageList(chattingNo);
-		System.out.println("controller : " + result);
-		return result;
+		return chatService.selectMessageList(chattingNo);
 	}
 }

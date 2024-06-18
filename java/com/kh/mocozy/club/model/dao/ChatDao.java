@@ -25,9 +25,7 @@ public class ChatDao {
 	}
 
 	public List<Message> selectMessageList(SqlSessionTemplate sqlSession, int chattingNo) {
-		List<Message> result = sqlSession.selectList("chatMapper.selectMessageList", chattingNo);
-		System.out.println("dao : " + result);
-		return result;
+		return sqlSession.selectList("chatMapper.selectMessageList", chattingNo);
 	}
 
 	public int updateReadFlag(SqlSessionTemplate sqlSession, int chattingNo) {
