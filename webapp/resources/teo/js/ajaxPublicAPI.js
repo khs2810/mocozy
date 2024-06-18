@@ -60,7 +60,7 @@ function drawAirInfo(items, place) {
     for(let i of items) {
     str += `<tr>
             <td>${i.dataTime}</td>
-            <td>${i.khaiValue}</td>
+            <td style="color: ${getColorByGrade(i.khaiGrade)}">${i.khaiValue}</td>
             <td style="color: ${getColorByGrade(i.so2Grade)}">${i.so2Value} ppm</td>
             <td style="color: ${getColorByGrade(i.coGrade)}">${i.coValue} ppm</td>
             <td style="color: ${getColorByGrade(i.o3Grade)}">${i.o3Value} ppm</td>
