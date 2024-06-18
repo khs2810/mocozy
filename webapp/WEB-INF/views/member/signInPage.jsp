@@ -23,7 +23,7 @@
 </head>
 <body class="SignIn-Page">
         <div class="content">
-            <img src="${pageContext.request.contextPath}/resources/koo/upfile/loginPage_imp/logo.png" id="logo" alt="">
+            <img src="${pageContext.request.contextPath}/resources/koo/upfile/loginPage_img/logo.png" id="logo" alt="">
                 <h1>
                     회원 가입하고<br>
                     다양한 모임에서 활동해보세요!
