@@ -18,6 +18,7 @@
 
 <%@ include file="../common/header.jsp"%>
 <%@ include file="../mainPage/banner.jsp"%>
+<%@ include file="../common/apiAirSide.jsp"%>
 <body>
 	<div class="main">
 		<%@ include file="../mainPage/cateButton.jsp"%>
