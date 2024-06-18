@@ -31,18 +31,15 @@ public class ChatServiceImpl implements ChatService {
 	
 	@Override
 	public int insertMessage(Message msg) {
-		msg.setMessageContent(msg.getMessageContent());
 		return chatDao.insertMessage(sqlSession, msg);
 	} 
 
 	@Override
 	public List<Message> selectMessageList(int chattingNo) {
-		List<Message> messageList = chatDao.selectMessageList(sqlSession, chattingNo);
-		System.out.println("service : " + messageList);
+		return chatDao.selectMessageList(sqlSession, chattingNo);
 //		if(!messageList.isEmpty()) {
 //			int result = chatDao.updateReadFlag(sqlSession, paramMap);
 //		}
-		return messageList;
 	}
 	
 }

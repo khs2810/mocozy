@@ -32,7 +32,8 @@ $(document).ready(function() {
         const msgData = {
             message: $("#textArea").val(),
             target: targetUserNo,
-            chatNo: chattingNo
+            chatNo: chattingNo,
+            userNo: loginUserNum
         }
         console.log(msgData);
         socket.send(JSON.stringify(msgData));
