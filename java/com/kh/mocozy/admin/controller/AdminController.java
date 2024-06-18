@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.kh.mocozy.admin.service.AdminClubService;
 import com.kh.mocozy.admin.service.AdminNoticeService;
+import com.kh.mocozy.admin.service.AdminService;
 import com.kh.mocozy.admin.service.AdminUserlistService;
 import com.kh.mocozy.board.model.vo.Notice;
 import com.kh.mocozy.club.model.vo.Club;
@@ -28,6 +29,9 @@ import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 @Controller
 public class AdminController {
 	
+	@Autowired
+	private AdminService adService;
+	 
     @Autowired
     private AdminClubService acService;
     
@@ -44,7 +48,7 @@ public class AdminController {
     private MemberService memberService;
     
 	@RequestMapping("admin.ad")
-	public String showAdmin(@RequestParam(value="cpage", defaultValue="1") int currentPage, String sortType, Model model) throws java.text.ParseException {  
+	public String showAdmin(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) throws java.text.ParseException {  
 		//페이지네이션
 		int NoticeAllList = anService.getNoticeCount(); 
 		int clubAllList = acService.getClublist(); 
@@ -54,9 +58,9 @@ public class AdminController {
 		PageInfo mi = Pagination.getPageInfo(memberAllList, currentPage, 5, 5);
 		PageInfo ni = Pagination.getPageInfo(NoticeAllList, currentPage, 5, 5);
 		
-		ArrayList<Member> mlist = auService.MemberAll(mi, sortType);
-		ArrayList<Notice> nlist = anService.getNoticeAll(ni, sortType);
-	    ArrayList<Club> clist = acService.selectClublist(ci, sortType);
+		ArrayList<Member> mlist = adService.adminMember(mi);
+		ArrayList<Notice> nlist = adService.adminNotice(ni);
+	    ArrayList<Club> clist = adService.adminClub(ci);
 	    
 	    for (Club c : clist){
             ArrayList<Member> memberList = acService.MemberList(c.getClubNo());

@@ -132,7 +132,7 @@
 															<div class="card" style="width: 290px; float: left;">
 																<div class="card-head">
 																	<header>
-																		<a href="_blank">noticeTitle ${noticeTitle}</a>
+																		<a href="javascript:void(0);">noticeTitle ${noticeTitle}</a>
 																		<span class="badge style-gray">이벤트</span>
 																	</header>
 																	<div class="tools">

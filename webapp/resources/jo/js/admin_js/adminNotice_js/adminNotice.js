@@ -91,7 +91,7 @@ function renderNoticelist(nlist) {
     let startBtnStyle = '';
 
     //noticeType 따라 버튼을 보여주거나 숨김
-    if (notice.noticeType === '이벤트' && notice.bannerPath != null){
+    if (notice.noticeType === '이벤트' && notice.bannerPath != null && notice.banner === 'N'){
       startBtnStyle = 'style="display: block;"';
     } else {
       startBtnStyle = 'style="display: none;"';
@@ -122,7 +122,7 @@ function renderNoticelist(nlist) {
 																	</div>
 																</td>
 
-																<td class="group" style="text-decoration: underline;">${notice.noticeType}</td>
+																<td class="group">${notice.noticeType}</td>
 
 																<td class="state on-click"><a
 																	data-toggle="dropdown"> 

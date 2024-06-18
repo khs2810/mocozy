@@ -34,18 +34,18 @@ function drawClublist(list){
                     </div>
                     <div class="participant">`;
             if(club.profileImg && club.profileImg.length > 0){
-                        str += `<img class="people" src="${pageContext.request.contextPath}${club.profileImg[0]}" />`;
+                        str += `<img class="people" src="${club.profileImg[0]}" />`;
                     }
                         str += `<div class="profileimglist">`;
             if(club.profileImg && club.profileImg.length >= 5){
                     for(let profileImg of club.profileImg){
-                        str += `<img class="cardImg" src="${pageContext.request.contextPath}${profileImg}" />`;
+                        str += `<img class="cardImg" src="${profileImg}" />`;
                     }
                 }
 
             if(club.profileImg && club.profileImg.length > 1 && club.profileImg.length < 5){
                     for(let profileImg of club.profileImg){
-                        str += `<img class="cardImg" src="${pageContext.request.contextPath}${profileImg}" />`;
+                        str += `<img class="cardImg" src="${profileImg}" />`;
                     }  
                 }
 

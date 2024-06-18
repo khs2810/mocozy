@@ -219,7 +219,7 @@
 																	</div>
 																</td>
 
-																<td class="group" style="text-decoration: underline;">${notice.noticeType}</td>
+																<td class="group">${notice.noticeType}</td>
 
 																<td class="state on-click"><a
 																	data-toggle="dropdown"> <span

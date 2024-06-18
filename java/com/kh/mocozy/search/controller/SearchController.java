@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.google.gson.Gson;
+import com.kh.mocozy.admin.service.AdminNoticeService;
+import com.kh.mocozy.board.model.vo.Notice;
 import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.common.model.vo.PageInfo;
 import com.kh.mocozy.common.template.Pagination;
@@ -26,7 +28,10 @@ public class SearchController {
 
 	@Autowired
 	private SearchService sService;
-
+	
+    @Autowired
+    private AdminNoticeService anService;
+    
 	@GetMapping("searchForm.sc")
 	public String searchForm(@RequestParam("keyword") String keyword, @RequestParam("rpage") int currentPage, Model model) {
 
@@ -57,11 +62,21 @@ public class SearchController {
 	            e.printStackTrace();
 	        }
 		 }
-
+		
+	    //이벤트 가져오기
+	    ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
+	    // 각 Notice 객체에서 noticeNo 가져오기
+	    for (Notice notice : getnoticeBanner) {
+	        int noticeNo = notice.getNoticeNo();
+	        String bannerPath = notice.getBannerPath();
+	    }
+	    
 		model.addAttribute("clist", clist);
 		model.addAttribute("re", re);
 		model.addAttribute("keyword", keyword);
-
+		
+		model.addAttribute("getnoticeBanner", getnoticeBanner);
+		
 		if (clubCount == 0) { //검색결과 없음
 			return "search/searchError";
 		} else { //검색결과있음
@@ -101,11 +116,20 @@ public class SearchController {
 	            e.printStackTrace();
 	        }
 		 }
-
+		
+	    //이벤트 가져오기
+	    ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
+	    // 각 Notice 객체에서 noticeNo 가져오기
+	    for (Notice notice : getnoticeBanner) {
+	        int noticeNo = notice.getNoticeNo();
+	        String bannerPath = notice.getBannerPath();
+	    }
+	    
 		model.addAttribute("clist", clist);
 		model.addAttribute("re", re);
 		model.addAttribute("keyword", keyword);
-
+		model.addAttribute("getnoticeBanner", getnoticeBanner);
+		
 		return new Gson().toJson(clist);
 	}
 	
@@ -131,11 +155,20 @@ public class SearchController {
 			}
 			c.setProfileImg(imgs);
 		}
-
+		
+	    //이벤트 가져오기
+	    ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
+	    // 각 Notice 객체에서 noticeNo 가져오기
+	    for (Notice notice : getnoticeBanner) {
+	        int noticeNo = notice.getNoticeNo();
+	        String bannerPath = notice.getBannerPath();
+	    }
+	    
 		model.addAttribute("clist", clist);
 		model.addAttribute("re", re);
 		model.addAttribute("keyword", keyword);
-
+		model.addAttribute("getnoticeBanner", getnoticeBanner);
+		
 		if (clubCount == 0) { //검색결과 없음
 			return "search/searchError";
 		} else { //검색결과있음
@@ -165,7 +198,7 @@ public class SearchController {
 			}
 			c.setProfileImg(imgs);    
 		}
-
+		
 		model.addAttribute("clist", clist);
 		model.addAttribute("re", re);
 		model.addAttribute("keyword", keyword);
@@ -195,11 +228,20 @@ public class SearchController {
 			}
 			c.setProfileImg(imgs);    
 		}
-
+		
+	    //이벤트 가져오기
+	    ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
+	    // 각 Notice 객체에서 noticeNo 가져오기
+	    for (Notice notice : getnoticeBanner) {
+	        int noticeNo = notice.getNoticeNo();
+	        String bannerPath = notice.getBannerPath();
+	    }
+	    
 		model.addAttribute("clist", clist);
 		model.addAttribute("re", re);
 		model.addAttribute("keyword", keyword);
-
+		model.addAttribute("getnoticeBanner", getnoticeBanner);
+		
 		if (clubCount == 0) { //검색결과 없음
 			return "search/searchError";
 		} else { //검색결과있음
@@ -229,7 +271,7 @@ public class SearchController {
 			}
 			c.setProfileImg(imgs);    
 		}
-
+		
 		model.addAttribute("clist", clist);
 		model.addAttribute("re", re);
 		model.addAttribute("keyword", keyword);

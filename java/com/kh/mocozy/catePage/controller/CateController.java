@@ -302,9 +302,18 @@ public class CateController {
 	        }
 		 }
 	    
+	    //이벤트 가져오기
+	    ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
+	    // 각 Notice 객체에서 noticeNo 가져오기
+	    for (Notice notice : getnoticeBanner) {
+	        int noticeNo = notice.getNoticeNo();
+	        String bannerPath = notice.getBannerPath();
+	    }
+	    
 	    model.addAttribute("key", key);
 		model.addAttribute("catelist", catelist);
-	    
+		model.addAttribute("getnoticeBanner", getnoticeBanner);
+		
 		if (cateAllList == 0) {
 			return "common/errorPage";
 		} else {
@@ -396,9 +405,18 @@ public class CateController {
 	        }
 		 }
 	    
+	    //이벤트 가져오기
+	    ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
+	    // 각 Notice 객체에서 noticeNo 가져오기
+	    for (Notice notice : getnoticeBanner) {
+	        int noticeNo = notice.getNoticeNo();
+	        String bannerPath = notice.getBannerPath();
+	    }
+	    
 	    model.addAttribute("key", key);
 		model.addAttribute("catelist", catelist);
-	    
+		model.addAttribute("getnoticeBanner", getnoticeBanner);
+		
 		if (cateAllList == 0) {
 			return "common/errorPage";
 		} else {
@@ -490,8 +508,17 @@ public class CateController {
 	        }
 		 }
 	    
+	    //이벤트 가져오기
+	    ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
+	    // 각 Notice 객체에서 noticeNo 가져오기
+	    for (Notice notice : getnoticeBanner) {
+	        int noticeNo = notice.getNoticeNo();
+	        String bannerPath = notice.getBannerPath();
+	    }
+	    
 	    model.addAttribute("key", key);
 		model.addAttribute("catelist", catelist);
+		model.addAttribute("getnoticeBanner", getnoticeBanner);
 	    
 		if (cateAllList == 0) {
 			return "common/errorPage";
