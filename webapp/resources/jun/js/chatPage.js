@@ -25,7 +25,23 @@ $(document).ready(function() {
         console.log(receive)
         
         const message = JSON.parse(ev.data);
-        addMessage(message.messageContent, message.senderNo, message.sendTime);
+
+        // Date 객체로 변환
+        const sendTime = new Date(message.sendTime);
+
+        // 두 자리 숫자로 포맷팅하는 함수
+        const padZero = (num) => (num < 10 ? '0' : '') + num;
+
+        // 각 구성 요소 추출
+        const year = sendTime.getFullYear();
+        const month = padZero(sendTime.getMonth() + 1); // getMonth()는 0부터 시작하므로 1을 더해줌
+        const day = padZero(sendTime.getDate());
+        const hours = padZero(sendTime.getHours());
+        const minutes = padZero(sendTime.getMinutes());
+
+        // 원하는 형식으로 문자열 구성
+        const formattedDate = `${year}.${month}.${day} ${hours}:${minutes}`;
+        addMessage(message.messageContent, message.senderNo, formattedDate);
     }
 
     function sendMsg(chattingNo) {
@@ -58,10 +74,10 @@ $(document).ready(function() {
         sendMsg(chattingNo);
         const messageText = $('#textArea').val().trim();
         if (messageText !== '') {
-            const now = new Date();
-            const sendTime = `${now.getFullYear()}.${(now.getMonth() + 1).toString().padStart(2, '0')}.${now.getDate()}.${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
+            // const now = new Date();
+            // const sendTime = `${now.getFullYear()}.${(now.getMonth() + 1).toString().padStart(2, '0')}.${now.getDate()}.${now.getHours().toString().padStart(2, '0')}:${now.getMinutes().toString().padStart(2, '0')}`;
         
-            addMessage(messageText, loginUserNum, sendTime);
+            // addMessage(messageText, loginUserNum, sendTime);
             $('#textArea').val('');
         }
     });
