@@ -28,7 +28,7 @@
 				<div class="screenheader">
 					<h1 class="title">주간 베스트 TOP20👑</h1>
 					<div class="selectBox">
-						<a href="cateBest.ct">모두보기</a>
+						<a href="cateRecent.ct?key=${'챌린지'}">모두보기</a>
 					</div>
 				</div>
 				<div class="display">
@@ -112,7 +112,7 @@
 				<div class="screenheader">
 					<h1 class="title">다수가 본 최다 조회수 HOT 클래스 🔥</h1>
 					<div class="selectBox">
-						<a href="cateHot.ct">모두보기</a>
+						<a href="cateView.ct?key=${'챌린지'}">모두보기</a>
 					</div>
 				</div>
 

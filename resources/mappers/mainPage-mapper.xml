@@ -32,6 +32,7 @@
 		<result column="CAPACITY" property="capacity"/>
 		<result column="ONLINE" property="online"/>
 		<result column="QUESTION" property="question"/>
+		<result column="PICKCOUNT" property="pickCount"/>
 		<result column="THUMBNAIL_IMG" property="thumbnailImg"/>
 		<result column="CREATE_DATE" property="createDate"/>
 		<result column="MODIFY_DATE" property="modifyDate"/>
@@ -183,6 +184,25 @@
 		ORDER BY CLUB_NO DESC;
 	</select>
 	
+	<!--  소셜링 필터  -->
+	<select id="getSocialRank" resultMap="clubResult">
+	    SELECT *,
+	    (SELECT COUNT(*) FROM picked WHERE CLUB_NO = CLUB.CLUB_NO) AS PICKCOUNT
+		FROM club
+		WHERE club_type = '소셜링' 
+			AND public.CLUB.STATUS = 'Y'
+		ORDER BY PICKCOUNT DESC;
+	</select>
+	
+		<!--  소셜링 필터  -->
+	<select id="getSocialView" resultMap="clubResult">
+	    SELECT *
+		FROM club
+		WHERE club_type = '소셜링' 
+			AND public.CLUB.STATUS = 'Y'
+		ORDER BY COUNT DESC;
+	</select>
+	
 	<!-- 챌린지 필터 -->
 	<select id="getChallenge" resultMap="clubResult">
 	    SELECT *
@@ -192,6 +212,22 @@
 		ORDER BY CLUB_NO DESC;
 	</select>
 	
+	<select id="getChallRank" resultMap="clubResult">
+	    SELECT *,
+	    (SELECT COUNT(*) FROM picked WHERE CLUB_NO = CLUB.CLUB_NO) AS PICKCOUNT
+		FROM club
+		WHERE club_type = '챌린지'
+			AND public.CLUB.STATUS = 'Y'
+		ORDER BY PICKCOUNT DESC;
+	</select>
+	
+	<select id="getChallView" resultMap="clubResult">
+	    SELECT *
+		FROM club
+		WHERE club_type = '챌린지'
+			AND public.CLUB.STATUS = 'Y'
+		ORDER BY COUNT DESC;
+	</select>
 	<!-- 찜 개수 가져오기 -->
 	<select id="getPickedCount" resultType="int">
 		SELECT COUNT(*) 
