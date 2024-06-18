@@ -58,17 +58,28 @@ public class ChatServer extends TextWebSocketHandler {
 		
 		Message msg = new Message();
 		msg.setMessageContent(msgCon);
-		msg.setSenderNo(loginUser.getUserNo());
+		msg.setSenderNo(userNo);
 		msg.setNick(nick);
 		msg.setSendTime(new java.sql.Timestamp(new Date().getTime()));
+		msg.setChatroomNo(chatNo);
+		ChatRoom targetChat = chatService.selectChatRoomByNo(chatNo);
+		int masterNo = targetChat.getMasterNo();
 		
 		int targetNo;
-		if(loginUser.getUserNo() == target) {
-			ChatRoom targetChat = chatService.selectChatRoomByNo(chatNo);
-			System.out.println("targetChatNo : " + targetChat.getClubNo());
+		if(userNo != masterNo) {
+			System.out.println("userNo랑 masterNo가 다름");
+			System.out.println("targetNo : " + target);
+			System.out.println("senderNo : " + userNo);
+			int targetChatCno = targetChat.getClubNo();
+			System.out.println("targetChatNo : " + targetChatCno);
+			System.out.println("masterNo : " + masterNo);
 			targetNo = targetChat.getMasterNo();
 		} else {
-			targetNo = target;
+			targetNo = targetChat.getTargetNo();
+			System.out.println("userNo랑 masterNo가 같음");
+			System.out.println("targetNo : " + target);
+			System.out.println("senderNo : " + userNo);
+			System.out.println("masterNo : " + masterNo);
 		}
 		
 		msg.setTargetNo(targetNo);
