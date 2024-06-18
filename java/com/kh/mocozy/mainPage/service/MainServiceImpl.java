@@ -53,11 +53,11 @@ public class MainServiceImpl implements MainService {
     
     @Override
     public ArrayList<Club> getSocialRank(PageInfo ri) {
-        return mainDao.getSocialing(sqlSession, ri);
+        return mainDao.getSocialRank(sqlSession, ri);
     }
     @Override
     public ArrayList<Club> getSocialView(PageInfo fi) {
-        return mainDao.getSocialing(sqlSession, fi);
+        return mainDao.getSocialView(sqlSession, fi);
     }
     
     @Override
@@ -67,11 +67,11 @@ public class MainServiceImpl implements MainService {
     
     @Override
     public ArrayList<Club> getChallRank(PageInfo ri) {
-        return mainDao.getSocialing(sqlSession, ri);
+        return mainDao.getChallRank(sqlSession, ri);
     }
     @Override
     public ArrayList<Club> getChallView(PageInfo fi) {
-        return mainDao.getSocialing(sqlSession, fi);
+        return mainDao.getChallView(sqlSession, fi);
     }
     
     @Override
