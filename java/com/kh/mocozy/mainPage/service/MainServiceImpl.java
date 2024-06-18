@@ -47,15 +47,33 @@ public class MainServiceImpl implements MainService {
 	}
 
     @Override
-    public ArrayList<Club> getSocialing(PageInfo pi) {
-        return mainDao.getSocialing(sqlSession, pi);
+    public ArrayList<Club> getSocialing(PageInfo ci) {
+        return mainDao.getSocialing(sqlSession, ci);
     }
-
+    
     @Override
-    public ArrayList<Club> getChallenge(PageInfo pi) {
-        return mainDao.getChallenge(sqlSession, pi);
+    public ArrayList<Club> getSocialRank(PageInfo ri) {
+        return mainDao.getSocialing(sqlSession, ri);
     }
-
+    @Override
+    public ArrayList<Club> getSocialView(PageInfo fi) {
+        return mainDao.getSocialing(sqlSession, fi);
+    }
+    
+    @Override
+    public ArrayList<Club> getChallenge(PageInfo ci) {
+        return mainDao.getChallenge(sqlSession, ci);
+    }
+    
+    @Override
+    public ArrayList<Club> getChallRank(PageInfo ri) {
+        return mainDao.getSocialing(sqlSession, ri);
+    }
+    @Override
+    public ArrayList<Club> getChallView(PageInfo fi) {
+        return mainDao.getSocialing(sqlSession, fi);
+    }
+    
     @Override
     public int getReviewCount(int clubNo) {
         return mainDao.getReviewCount(sqlSession, clubNo);
