@@ -99,6 +99,54 @@
 	</select>
 	
 	<!-- 전체 -->
+	<select id="adminClub" resultMap="clubResult">
+		SELECT CLUB.CLUB_NO,
+			CLUB.USER_NO,
+			CLUB_TITLE,
+			CLUB_TYPE,
+			CLUB_CONTENT,
+			ADDRESS,
+			ADDRESS_DETAIL,
+			EVENT_DATE,
+			COST,
+			COST_INFO,
+			TOTAL_POINT,
+			CAPACITY,
+			ONLINE,
+			QUESTION,
+			THUMBNAIL_IMG,
+			CLUB.CREATE_DATE,
+			CLUB.MODIFY_DATE,
+			COUNT,
+			CLUB.STATUS,
+			NICKNAME,
+			category_name1,
+			category_name2,
+			NICKNAME,
+			category_name1,
+			category_name2
+		    FROM public.CLUB
+	    join MEMBER ON CLUB.USER_NO = MEMBER.USER_NO
+	    Order by CLUB.CLUB_NO DESC;
+	</select>
+	
+	<!-- 전체 -->
+	<select id="adminNotice" resultMap="noticeResult">
+		SELECT *
+		FROM NOTICE N
+		JOIN MEMBER USING (USER_NO)
+		Order by USER_NO DESC;
+	</select>
+	
+	<!-- 전체 -->
+	<select id="adminMember" resultMap="memberResult">
+		SELECT *
+		FROM MEMBER
+		WHERE ADMIN = 'N'
+		Order by USER_NO DESC;
+	</select>
+	
+	<!-- 전체 -->
 	<select id="selectClublist" resultMap="clubResult">
 		SELECT CLUB.CLUB_NO,
 			CLUB.USER_NO,

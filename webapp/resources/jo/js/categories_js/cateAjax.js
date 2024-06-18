@@ -5,6 +5,7 @@ let cpage = 2;
 //유저가 입력한 정보 (카테고리 키워드, 정렬)
 let key = urlParams.get('key');
 let order = urlParams.get('order');
+console.log(window.location.search);
 
 window.onscroll = function() {
     //페이지 사이즈 구하기
@@ -87,11 +88,15 @@ function cateAllAjax() {
 }
 
 function cateKeyAjax() {
+    let urlParams = new URLSearchParams(window.location.search);
+    let key = urlParams.get('key');
+    console.log("Key 값: " + key);
     $.ajax({
         url: "cateKeyAjax.ct",
         data: {cpage: cpage++, order: order, key: key},
         success: function(list) {
             console.log(list);
+            console.log(key);
 
         drawClublist(list);    
             // 서버에서 반환된 데이터를 사용하여 새로운 'contentcard'를 생성하고 페이지에 추가.      
@@ -104,6 +109,8 @@ function cateKeyAjax() {
 }
 
 function cateViewAjax() {
+    let urlParams = new URLSearchParams(window.location.search);
+    let key = urlParams.get('key');
     $.ajax({
         url: "cateViewAjax.ct",
         data: {cpage: cpage++, key: key},
@@ -121,6 +128,8 @@ function cateViewAjax() {
 }
 
 function catePickAjax() {
+    let urlParams = new URLSearchParams(window.location.search);
+    let key = urlParams.get('key');
     $.ajax({
         url: "catePickAjax.ct",
         data: {cpage: cpage++, key: key},
@@ -138,6 +147,8 @@ function catePickAjax() {
 }
 
 function cateRecentAjax() {
+    let urlParams = new URLSearchParams(window.location.search);
+    let key = urlParams.get('key');
     $.ajax({
         url: "cateRecentAjax.ct",
         data: {cpage: cpage++, key: key},

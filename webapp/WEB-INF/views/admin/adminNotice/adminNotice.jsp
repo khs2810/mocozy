@@ -217,7 +217,7 @@
 																	</div>
 																</td>
 
-																<td class="group" style="text-decoration: underline;">${notice.noticeType}</td>
+																<td class="group">${notice.noticeType}</td>
 
 																<td class="state on-click"><a
 																	data-toggle="dropdown"> <span
@@ -231,7 +231,7 @@
 																		<button class="btn btn-primary-btn" id="deleteBtn">종료</button>
 																	</div>
 																</td>
-															</tr>
+															</tr>s
 														</c:forEach>
 													</tbody>
 												</table>

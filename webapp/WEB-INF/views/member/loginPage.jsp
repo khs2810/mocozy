@@ -66,12 +66,12 @@
     </form>
 
     <script>
-    //     window.onload = function() {
-    //     const errorMsg = '<%= request.getAttribute("errorMsg") != null ? request.getAttribute("errorMsg") : "" %>';
-    //     if (errorMsg) {
-    //         alert(errorMsg);
-    //     }
-    // };
+        window.onload = function() {
+        const errorMsg = '<%= request.getAttribute("errorMsg") != null ? request.getAttribute("errorMsg") : "" %>';
+        if (errorMsg) {
+            alert(errorMsg);
+        }
+    };
 
     //네이버로그인설정
     function naverLogin(){
