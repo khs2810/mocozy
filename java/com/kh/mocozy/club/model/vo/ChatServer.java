@@ -27,6 +27,8 @@ public class ChatServer extends TextWebSocketHandler {
 	
 	@Autowired
 	private MemberService memberService;
+	
+	@Autowired
 	private ChatService chatService;
 	
 	private final Map<String, WebSocketSession> userSessions = new ConcurrentHashMap<>();
@@ -49,15 +51,26 @@ public class ChatServer extends TextWebSocketHandler {
 		String nick = loginUser.getNickname();
 		JsonObject obj = new JsonParser().parse(message.getPayload()).getAsJsonObject();
 		log.info("message : {}", obj);
-		log.info("message : {}", obj.get("message").getAsString());
-		log.info("target : {}", obj.get("target").getAsString());
+		String msgCon = obj.get("message").getAsString();
+		int target = obj.get("target").getAsInt();
+		int chatNo = obj.get("chatNo").getAsInt();
+		int userNo = obj.get("userNo").getAsInt();
 		
 		Message msg = new Message();
-		msg.setMessageContent(obj.get("message").getAsString());
+		msg.setMessageContent(msgCon);
 		msg.setSenderNo(loginUser.getUserNo());
 		msg.setNick(nick);
 		msg.setSendTime(new java.sql.Timestamp(new Date().getTime()));
-		int targetNo = Integer.parseInt(obj.get("target").getAsString());
+		
+		int targetNo;
+		if(loginUser.getUserNo() == target) {
+			ChatRoom targetChat = chatService.selectChatRoomByNo(chatNo);
+			System.out.println("targetChatNo : " + targetChat.getClubNo());
+			targetNo = targetChat.getMasterNo();
+		} else {
+			targetNo = target;
+		}
+		
 		msg.setTargetNo(targetNo);
 		System.out.println("msg : " + msg);
 		
@@ -68,6 +81,7 @@ public class ChatServer extends TextWebSocketHandler {
 		} else {
 			System.out.println("DB에 메세지 생성 실패");
 		}
+//		sendMessageUser(memberService.selectNicknameByUserNo(targetNo), msg);
 	}
 	
 	// 특정 사용자에게 메세지를 전송하는 메소드
