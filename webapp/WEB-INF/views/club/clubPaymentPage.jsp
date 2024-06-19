@@ -124,9 +124,9 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <form method="post" accept-charset="UTF-8" action="chargeInClub.pt" id="charge_form">
-                    <input type="hidden" name="userNo" value="${loginUser.userNo}">
+                    <!-- <input type="hidden" name="userNo" value="${loginUser.userNo}">
 					<input type="hidden" name="userId" value="${loginUser.userId}">
-					<input type="hidden" name="userPwd" value="${loginUser.userPwd}">
+					<input type="hidden" name="userPwd" value="${loginUser.userPwd}"> -->
 					<input type="hidden" name="cno" value="${c.clubNo}">
 					<input type="hidden" name="answer" value="${answer}">
 					<input type="hidden" name="dDay" value="${dDay}">

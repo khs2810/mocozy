@@ -139,28 +139,35 @@ public class MemberController {
 //	회원정보 수정
 	@RequestMapping("update.me")
 	public String updateMember(Member m, MultipartFile upfile, HttpSession session, Model model) {
-		Attachment at = new Attachment();
-		
-		if(!upfile.getOriginalFilename().equals("")) {
-			String changeName = saveFile(upfile, session);
-			
-			at.setOriginName(upfile.getOriginalFilename());
-			at.setChangeName("/resources/koo/upfile/profile_img/" + changeName);
-			at.setFilePath("/resources/koo/upfile/profile_img/");
-		}
-		
-		m.setProfileImg(at.getChangeName());
+		// 현재 로그인한 사용자의 정보를 가져옴
+	    Member currentMember = (Member) session.getAttribute("loginUser");
+	    String existingProfileImg = currentMember.getProfileImg();
 
-		int result = memberService.updateMember(m);
+	    // 첨부파일 객체 생성
+	    Attachment at = new Attachment();
 
-		if (result > 0) {
-			session.setAttribute("loginUser", memberService.loginMember(m));
-			session.setAttribute("alertMsg", "회원정보 수정 성공");
-			return "redirect:/myPage.me?uno=" + m.getUserNo();
-		} else {
-			model.addAttribute("errorMsg", "회원정보 수정 실패");
-			return "myPage/myProfile";
-		}
+	    // 파일이 업로드된 경우
+	    if (!upfile.getOriginalFilename().equals("")) {
+	        String changeName = saveFile(upfile, session);
+	        at.setOriginName(upfile.getOriginalFilename());
+	        at.setChangeName("resources/koo/upfile/profile_img/" + changeName);
+	        at.setFilePath("/resources/koo/upfile/profile_img/");
+	        m.setProfileImg(at.getChangeName());
+	    } else {
+	        // 파일이 업로드되지 않은 경우 기존 프로필 이미지 유지
+	        m.setProfileImg(existingProfileImg);
+	    }
+
+	    int result = memberService.updateMember(m);
+
+	    if (result > 0) {
+	        session.setAttribute("loginUser", memberService.loginMember(m));
+	        session.setAttribute("alertMsg", "회원정보 수정 성공");
+	        return "redirect:/myPage.me?uno=" + m.getUserNo();
+	    } else {
+	        model.addAttribute("errorMsg", "회원정보 수정 실패");
+	        return "myPage/myProfile";
+	    }
 
 	}
 

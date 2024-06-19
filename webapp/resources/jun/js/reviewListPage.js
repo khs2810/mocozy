@@ -1,34 +1,3 @@
-/*
-const writeBtns = document.querySelectorAll('.writeBtn');
-const detailBtns = document.querySelectorAll('.detailBtn');
-const reviewEnrollWindows = document.querySelectorAll('.reviewEnrollWindow');
-const reviewDetailWindows = document.querySelectorAll('.reviewDetailWindow');
-
-writeBtns.addEventListener('click', () => {
-    reviewEnrollWindows.forEach(writeBtn => {
-        writeBtn.classList.add('show');
-    });
-});
-reviewEnrollWindows.forEach(reviewEnrollWindow => {
-    const closeBtn = reviewEnrollWindow.querySelector('.closeBtn');
-    closeBtn.addEventListener('click', () => {
-        reviewEnrollWindow.classList.remove('show');
-    });
-});
-
-detailBtns.addEventListener('click', () => {
-    reviewDetailWindows.forEach(detailBtn => {
-        detailBtn.classList.add('show');
-    });
-});
-reviewDetailWindows.forEach(reviewDetailWindow => {
-    const closeBtn = reviewDetailWindow.querySelector('.closeBtn');
-    closeBtn.addEventListener('click', () => {
-        reviewDetailWindow.classList.remove('show');
-    });
-});
-*/
-
 $(document).ready(function(){
     // 메인 메뉴의 클릭 이벤트 처리
     $('#main_menu > li > a[href=""]').click(function(event){
@@ -50,6 +19,32 @@ $(document).ready(function(){
         var clubNo = button.data('cno');
         
         document.querySelector('input[name="clubNo"]').value = clubNo;
+    });
+
+    $('.detailBtn').on('click', function() {
+        let clubNo = $(this).data('cno');
+        let userNo = $(this).data('uno');
+
+        $.ajax({
+            url: 'getReview.cl',
+            method: 'GET',
+            data: { clubNo: clubNo, userNo: userNo },
+            success: function(data) {
+                let starsHtml = '';
+                for (let i = 5; i >= 1; i--) {
+                    if (i <= data.grade) {
+                        starsHtml += '<label class="star" style="color:#f90">&#9733;</label>';
+                    } else {
+                        starsHtml += '<label class="star" style="color:#f90">&#9734;</label>';
+                    }
+                }
+                $('#reviewDetailWindow .star-rated').html(starsHtml);
+                $('#reviewDetailWindow .review-write textarea').val(data.reviewContent);
+            },
+            error: function(err) {
+                console.error('리뷰 데이터를 불러오지 못했습니다.', err);
+            }
+        });
     });
 });
 

@@ -53,7 +53,7 @@
 			                            <button type="button" class="writeBtn" data-toggle="modal" data-target="#reviewEnrollWindow" data-cno="${c.clubNo}">리뷰 작성</button>
 	                        		</c:when>
 	                        		<c:when test="${c.isReview eq 1}">
-			                            <button type="button" class="detailBtn" data-toggle="modal" data-target="#reviewDetailWindow">리뷰 보기</button>
+			                            <button type="button" class="detailBtn" data-toggle="modal" data-target="#reviewDetailWindow" data-cno="${c.clubNo}" data-uno="${uno}">리뷰 보기</button>
 	                        		</c:when>
 	                        	</c:choose>
 	                        </div>
