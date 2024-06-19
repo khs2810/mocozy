@@ -75,19 +75,19 @@ function drawRequest(requestList, url, question) {
         str = `<div class="clubRequest-head">
                                     <div class="simpleInfo">
                                         <div class="simpleInfoLeft">
-                                            <img src="${url}/resources/jun/img/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
-                                            <b class="userId">떡꼬치소마왕</b>`;
+                                            <img src="/mocozy/resources/jun/img/프사.jpg" class="profileImg" data-toggle="modal" data-target="#profileModal" style="cursor: pointer;">
+                                            <b class="userId">` + request.nickname + `</b>`;
 
         if (request.status === 'W') {
-            str += `<img src="${url}/resources/jun/img/waiting.png" class="status_w">`
+            str += `<img src="/mocozy/resources/jun/img/waiting.png" class="status_w">`
         } else if (request.status === 'Y') {
-            str += `<img src="${url}/resources/jun/img/accepted.png" class="status_a">`
+            str += `<img src="/mocozy/resources/jun/img/accepted.png" class="status_a">`
         } else {
-            str += `<img src="${url}/resources/jun/img/denied.png" class="status_d">`
+            str += `<img src="/mocozy/resources/jun/img/denied.png" class="status_d">`
         }
         str +=  (`</div>
                         <div class="simpleInfoRight">
-                            <span class="writeTime">` + request.createDate + `</span>
+                            <span class="writeTime">` + formatDate(request.createDate) + `</span>
                             <button class="reduceBtn"><i class="fa-solid fa-chevron-down"></i></button>
                         </div>
                     </div>
@@ -113,6 +113,26 @@ function drawRequest(requestList, url, question) {
         clubRequest.innerHTML = str;
         parent.appendChild(clubRequest);
     }
+}
+
+function formatDate(dateStr) {
+    // Date 객체로 변환
+    const date = new Date(dateStr);
+
+    // 두 자리 숫자로 포맷팅하는 함수
+    const padZero = (num) => (num < 10 ? '0' : '') + num;
+
+    // 각 구성 요소 추출
+    const year = date.getFullYear();
+    const month = padZero(date.getMonth() + 1); // getMonth()는 0부터 시작하므로 1을 더해줌
+    const day = padZero(date.getDate());
+    const hours = padZero(date.getHours());
+    const minutes = padZero(date.getMinutes());
+
+    // 원하는 형식으로 문자열 구성
+    const formattedDate = `${year}.${month}.${day} ${hours}:${minutes}`;
+
+    return formattedDate;
 }
 
 document.addEventListener("DOMContentLoaded", function() {

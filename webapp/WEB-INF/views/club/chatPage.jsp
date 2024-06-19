@@ -43,7 +43,7 @@
         </div>
         <div class="chatPage">
             <h2 class="title">모꼬지 상담요원</h2>
-            <hr style="background: lightgray; height: 1px; border: 0;" >
+            <hr style="background: lightgray; height: 1px; border: 0; margin-bottom: 0px;" >
             <div class="chatDetail" id="chatDetail">
                 <!-- 여기에 메시지 추가됨 -->
             </div>
