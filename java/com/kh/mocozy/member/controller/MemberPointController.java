@@ -163,8 +163,9 @@ public class MemberPointController {
 	} 
 	
 	@RequestMapping("charge.pt")
-	public String chargePoint(Member m, Model model, String pg_token, HttpSession session) {
-		
+	public String chargePoint(Model model, int point, String pg_token, HttpSession session) {
+		Member m = (Member) session.getAttribute("loginUser");
+		m.setPoint(point);
 		Map<String, Object> map = new HashMap<>();
 		
 		if (pg_token != null) {
@@ -195,8 +196,10 @@ public class MemberPointController {
 	}
 	
 	@RequestMapping("withdraw.pt")
-	public String withdrawPoint(Member m, Model model, HttpSession session) {
+	public String withdrawPoint(Model model, int point, HttpSession session) {
 		
+		Member m = (Member) session.getAttribute("loginUser");
+		m.setPoint(point);
 		Member mv = memberService.loginMember(m);
 		
 		if (m.getPoint() > mv.getPoint()) {
@@ -210,6 +213,7 @@ public class MemberPointController {
 			
 			if (result1 * result2 > 0) {
 				session.setAttribute("loginUser", memberService.loginMember(m));
+				session.setAttribute("alertMsg", "포인트 출금 성공");
 				return "redirect:manage.po";
 			} else {
 				model.addAttribute("errorMsg", "포인트 출금 실패");
@@ -337,7 +341,9 @@ public class MemberPointController {
 	}
 	
 	@RequestMapping("chargeInClub.pt")
-	public String chargePointInClub(Member m, int cno, String dDay, String evDate, String answer, String pg_token, Model model, HttpSession session) {
+	public String chargePointInClub(int point, int cno, String dDay, String evDate, String answer, String pg_token, Model model, HttpSession session) {
+		Member m = (Member) session.getAttribute("loginUser");
+		m.setPoint(point);
 		int result1 = pointService.chargePoint(m);
 		Club c = clubService.selectClub(cno);
 		
