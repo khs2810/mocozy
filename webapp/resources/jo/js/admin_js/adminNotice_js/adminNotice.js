@@ -44,13 +44,13 @@
         cpage = 1;
 
       //sortType 값이 변경될 때마다 ajax요청을 보냄
-      const status = document.querySelector('#status').value;
+      const noticeType = document.querySelector('#noticeType').value;
               
       // 키워드가 있을 경우 adminClubSearchAjax 함수를 호출
       if (keyword) {
-        adminNoticeSearchAjax(keyword, sortType);
+        adminNoticeSearchAjax(keyword, sortType, noticeType);
       } else {
-        adminNoticeAjax();
+        adminNoticeAjax(noticeType);
       }
     }
 
@@ -161,7 +161,6 @@ function eventStatusAjax(nno, banner) {
 
 // AJAX 요청을 처리하는 함수
 function adminNoticeAjax(noticeType) {
-  console.log("sortType: ", sortType); 
   $.ajax({
       url: 'adminNoticeAjax.ad',
       //cpage와 sortType을 같이 보내줌

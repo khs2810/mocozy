@@ -54,9 +54,10 @@
 	
 	<!-- 아이디중복체크 -->
 	<select id="idCheck" parameterType="String" resultType="_int">
-		SELECT COUNT(*)
+		SELECT COUNT(*) as result
 		  FROM MEMBER
 		 WHERE USER_ID = #{checkId}
+		   AND status = 'Y'
 	</select>
 	
 	<!-- 회원가입 -->

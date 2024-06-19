@@ -37,7 +37,7 @@ public class MainController {
 	public String showMainPage(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) {
 	    int SocialList = mService.selectSocialList();
 
-	    PageInfo ci = Pagination.getPageInfo(SocialList, currentPage, 10, 8);
+	    PageInfo ci = Pagination.getPageInfo(SocialList, currentPage, 6, 6);
 	    PageInfo ri = Pagination.getPageInfo(SocialList, currentPage, 5, 5); 
 	    PageInfo fi = Pagination.getPageInfo(SocialList, currentPage, 5, 2);
 	    
@@ -75,7 +75,7 @@ public class MainController {
 	    });
 	    
 	  //소셜링 불러오기
-	    ArrayList<Club> rlist = mService.getSocialing(ri);
+	    ArrayList<Club> rlist = mService.getSocialRank(ri);
 	  //소셜링 안의 클럽 불러오기
 	    for (Club c : rlist){
 	    	//클럽 안의 멤버들
@@ -104,7 +104,7 @@ public class MainController {
 	    
 	    
 	  //소셜링 불러오기
-	    ArrayList<Club> flist = mService.getSocialing(fi);
+	    ArrayList<Club> flist = mService.getSocialView(fi);
 	  //소셜링 안의 클럽 불러오기
 	    for (Club c : flist){
 	    	//클럽 안의 멤버들
@@ -151,7 +151,7 @@ public class MainController {
 	public String showchallenge(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) {
 	    int SocialList = mService.selectSocialList();
 
-	    PageInfo ci = Pagination.getPageInfo(SocialList, currentPage, 10, 8);
+	    PageInfo ci = Pagination.getPageInfo(SocialList, currentPage, 6, 6);
 	    PageInfo ri = Pagination.getPageInfo(SocialList, currentPage, 5, 5); 
 	    PageInfo fi = Pagination.getPageInfo(SocialList, currentPage, 5, 2);
 	    
@@ -188,7 +188,7 @@ public class MainController {
 	    });
 	    
 	  //챌린지 불러오기
-	    ArrayList<Club> rlist = mService.getChallenge(ri);
+	    ArrayList<Club> rlist = mService.getChallRank(ri);
 	  //소셜링 안의 클럽 불러오기
 	    for (Club c : rlist){
 	    	//클럽 안의 멤버들
@@ -215,7 +215,7 @@ public class MainController {
 	    }
 	    
 	  //소셜링 불러오기
-	    ArrayList<Club> flist = mService.getChallenge(fi);
+	    ArrayList<Club> flist = mService.getChallView(fi);
 	  //소셜링 안의 클럽 불러오기
 	    for (Club c : flist){
 	    	//클럽 안의 멤버들

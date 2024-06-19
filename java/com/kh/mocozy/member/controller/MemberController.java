@@ -13,7 +13,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -124,9 +123,10 @@ public class MemberController {
 	// idCheck ajax요청을 받아줄 controller
 	@ResponseBody
 	@RequestMapping("idCheck.me")
-	public String idCheck(@RequestBody String checkId) {
+	public String idCheck(@RequestParam("user_Id") String checkId) {
+		System.out.println("checkId : "+checkId);
 		int result = memberService.idCheck(checkId);
-
+		System.out.println("중복된 아이디 갯수 : " + result);
 		if (result > 0) {// 이미존재한다면
 			return "NNNNN";
 		} else { // 존재하지않는다면
@@ -289,6 +289,18 @@ public class MemberController {
 
 		return "member/terms";
 	}
+	
+//	개인정보 약관동의 
+	@RequestMapping("privacy-policy")
+    public String showPrivacyPolicy() {
+        return "member/privacy policy";
+    }
+	
+//	서비스 약관동의 
+	@RequestMapping("serviceTerms")
+    public String serviceTerms() {
+        return "member/serviceTerms";
+    }
 
 	@RequestMapping("insert.me")
 	public String insertMember(Member m, HttpSession session, Model model) {
@@ -349,5 +361,7 @@ public class MemberController {
 				}
 			}
 		}
+		
+
 
 }

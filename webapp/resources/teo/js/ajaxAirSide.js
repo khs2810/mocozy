@@ -28,7 +28,7 @@ function drawAirSide(i){
     console.log(i)
     let str = `<tr>
                 <td>KHAI지수</td>
-                <td>${i.khaiValue}</td>
+                <td style="color: ${getColorByGrade(i.khaiGrade)}">${i.khaiValue}</td>
                </tr>
                <tr>
                 <td>아황산가스</td>

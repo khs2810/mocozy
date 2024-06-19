@@ -4,9 +4,11 @@ function checkId(idInput){
     if (idInput.value === '${m.userId}') {
         idReview.className = "none_pass";
         idReview.innerText = '이미 존재하는 아이디입니다.';
+        submitBtn.disabled = true;
     } else {
         idReview.className = "pass";
         idReview.innerText = '사용가능한 아이디입니다.';
+        submitBtn.disabled = false;
     }
 }
 //비밀번호 체크
@@ -90,23 +92,22 @@ document.addEventListener('DOMContentLoaded', function () {
         $.ajax({
             url: "idCheck.me",
             type: "POST",
-            contentType: 'application/json',
-            data: JSON.stringify({ userId: user_Id }),
+            contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
+            data: { user_Id: user_Id },
             
             success: function(response) {
-                if (response == 'NNNNY') {
-                    console.log(user_Id);
+                if (response === 'NNNNY') {
+                    console.log(response);
                     idReview.textContent = '';
                     submitBtn.disabled = false;
                 } else {
-                    callback(false);
                     idReview.textContent = '중복된 이메일 주소입니다.';
                     idReview.className = 'none_pass';
+                    submitBtn.disabled = ture;
                 }
             },
             error: function() {
                 alert("중복 아이디 확인 중에 오류가 발생했습니다.");
-                callback(false);
             }
         });
     }
