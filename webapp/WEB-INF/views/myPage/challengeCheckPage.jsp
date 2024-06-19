@@ -25,7 +25,7 @@
             <div class="main-content-head">
                 <div class="main-content-head-left">
                     <h2>챌린지 관리</h2>
-                    <p>발로 개발</p>
+                    <p>${clubTitle}</p>
                 </div>
                 <div class="main-content-head-right">
                 	<label for="challengeDate">조회날짜 : </label>

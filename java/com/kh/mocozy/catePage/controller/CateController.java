@@ -59,7 +59,7 @@ public class CateController {
 		    c.setProfileImg(imgs);    
 		    
 		    // createDate 형식 변경
-	        SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+	        SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.KOREAN);
 	        try {
 	            Date date = originalFormat.parse(c.getCreateDate().toString());
 	            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
@@ -124,16 +124,16 @@ public class CateController {
 		    c.setProfileImg(imgs);    
 			 
 		    // createDate 형식 변경
-	        SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-	        try {
-	            Date date = originalFormat.parse(c.getCreateDate().toString());
-	            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-	            c.setCreateDate(sqlDate);
-	        } catch (ParseException | java.text.ParseException e) {
-	            e.printStackTrace();
-	        }
-		 }
-	    
+//	        SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+		    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+	        	c.setDateFormat(dateFormat.format(c.getCreateDate()));
+//	            Date date = dateFormat.parse(c.getCreateDate().toString());
+//	            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+//	            c.setCreateDate(sqlDate);
+//	        } catch (ParseException | java.text.ParseException e) {
+//	            e.printStackTrace();
+//	        }
+		}
 		return new Gson().toJson(catelist);
 	}
 

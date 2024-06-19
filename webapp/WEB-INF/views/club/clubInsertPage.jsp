@@ -58,13 +58,16 @@
                             </td>
                             <td class="column2">
                                 &nbsp;<b>카테고리</b><br>
-                                <select name="categoryName1" id="category1" onchange="showSubcategories()">
+                                <select name="categoryName1" id="category1" onchange="showSubcategories()" required>
                                     <option value="" hidden>상위 카테고리 선택</option>
                                     <option value="문화생활">문화생활</option>
                                     <option value="미래발전">미래발전</option>
                                     <option value="스포츠">스포츠</option>
                                     <option value="취미">취미</option>
                                     <option value="연애">연애</option>
+                                </select>
+                                <select name="categoryName2" class="category2" id="category2_0" disabled>
+                                    <option value="" hidden>하위 카테고리 없음</option>
                                 </select>
                                 <select name="categoryName2" class="category2" id="category2_1" style="display: none;">
                                     <option value="" hidden>하위 카테고리 선택</option>
@@ -87,44 +90,45 @@
                                     <option value="취미">취미</option>
                                     <option value="파티, 게임">파티, 게임</option>
                                 </select>
-                                <select name="categoryName2" class="category2" id="category2_5" disabled>
-                                    <option value="" hidden>하위 카테고리 없음</option>
+                                <select name="categoryName2" class="category2" id="category2_5" style="display: none;">
+                                    <option value="" hidden>하위 카테고리 선택</option>
+                                    <option value="연애, 사랑">연애, 사랑</option>
                                 </select>
                             </td>
                         </tr>
                         <tr class="row2">
                             <td class="column1">
                                 &nbsp;<b>날짜 & 시간</b><br>
-                                <input type="datetime-local" name="eventDateStr" id="datetime">
+                                <input type="datetime-local" name="eventDateStr" id="datetime" required>
                                 <!-- <input type="date" name="eventDate" id="eventDate">
                                 <input type="time" name="eventTime" id="eventTime"> -->
                             </td>
                             <td class="column2">
                                 &nbsp;<b>참가비</b><br>
-                                <input type="number" name="cost" id="cost" placeholder="인당 참가비를 설정해주세요">
+                                <input type="number" name="cost" id="cost" placeholder="인당 참가비를 설정해주세요" required>
                             </td>
                         </tr>
                         <tr class="row3">
                             <td class="column1">
                                 &nbsp;<b>비용정보</b><br>
-                                <input type="text" name="costInfo" id="costInfo" placeholder="비용 정보를 입력해주세요">
+                                <input type="text" name="costInfo" id="costInfo" placeholder="비용 정보를 입력해주세요" required>
                             </td>
                             <td class="column2">
                                 &nbsp;<b>인원수</b><br>
-                                <input type="number" name="capacity" id="maxPeople" placeholder="파티원 수를 설정해주세요(파티장 제외)">
+                                <input type="number" name="capacity" id="maxPeople" placeholder="파티원 수를 설정해주세요(파티장 제외)" required>
                             </td>
                         </tr>
                         <tr class="row4">
                             <td colspan="2">
                                 &nbsp;<b>제목</b><br>
-                                <input type="text" name="clubTitle" id="title" placeholder="모임 글의 제목을 작성해주세요">
+                                <input type="text" name="clubTitle" id="title" placeholder="모임 글의 제목을 작성해주세요" required>
                             </td>
                         </tr>
                         <tr class="row5">
                             <td colspan="2">
                                 &nbsp;<b>게스트에게 하고 싶은 질문</b>
                                 <sub class="letter_count" id="question_letter_count">0/300</sub>
-                                <textarea name="question" id="question" maxlength="300" placeholder="가입 신청자에게 묻고 싶은 질문을 작성해주세요(300자)&#13;&#10;&#13;&#10;※ 전화번호, 카카오톡 아이디, 신청 폼 작성 요구 등 과도한 개인정보를 요구하는 경우, 가이드 위반으로 신고 대상자가 될 수 있습니다."></textarea>
+                                <textarea name="question" id="question" maxlength="300" placeholder="가입 신청자에게 묻고 싶은 질문을 작성해주세요(300자)&#13;&#10;&#13;&#10;※ 전화번호, 카카오톡 아이디, 신청 폼 작성 요구 등 과도한 개인정보를 요구하는 경우, 가이드 위반으로 신고 대상자가 될 수 있습니다." required></textarea>
                             </td>
                         </tr>
                     </table>
@@ -134,7 +138,7 @@
         <div id="detailInputBox">
             <h3 style="margin-left: 15px; margin-bottom: 0;">글 상세</h3>
             <hr>
-            <textarea id="summernote" name="clubContent"></textarea>
+            <textarea id="summernote" name="clubContent" required></textarea>
         </div>
         <div id="buttons">
             <button type="reset" id="resetBtn">초기화</button>

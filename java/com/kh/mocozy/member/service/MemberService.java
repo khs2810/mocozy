@@ -21,7 +21,7 @@ public interface MemberService {
 	//회원수정
 	int updateMember(Member m);
 	
-//	유저 프로필 사진
+//	유저 프로필 사진 추가
 	Attachment insertAttachment(int uno);
 	
 	//현재 비밀번호 확인

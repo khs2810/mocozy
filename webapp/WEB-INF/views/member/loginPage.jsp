@@ -37,12 +37,12 @@
             </div>
 
             <div class="flex justify-center gap-1 mt-6 text-sm text-taling-gray-700 ">
-                <div w-full text-center >
+                <!-- <div w-full text-center >
                     <a href="" class="text-taling-pink-400"> 아이디 찾기</a>
                 </div>
                 <div w-full text-center >
                     <a href="" class="text-taling-pink-400">비밀번호 찾기</a>
-                </div>
+                </div> -->
             </div>
             
             <br>

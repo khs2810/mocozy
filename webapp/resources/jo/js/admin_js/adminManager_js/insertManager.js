@@ -17,7 +17,6 @@ let keyword = new URLSearchParams(window.location.search).get('keyword');
 
 document.addEventListener('DOMContentLoaded', function() {
     let orderSelect = document.getElementById("sortBtn");
-    console.log(orderSelect.id);
     
     if(orderSelect) {
       //sortBtn의 value값을 가져와서 sortType에 저장
@@ -30,7 +29,6 @@ document.addEventListener('DOMContentLoaded', function() {
       //sortBtn의 값이 바뀔 때마다 sortType에 저장
       orderSelect.onchange = function(e) {  
       sortType = e.target.value;
-      console.log("sortType(onChange): ", sortType);
 
         // sortType 값이 변경될 때마다 기존의 데이터를 지우고 새로운 데이터로 대체
         document.querySelector("#prod-list-body").innerHTML = '';
@@ -138,14 +136,10 @@ function insertManagerAjax() {
       //cpage를 보내줌
       data : {cpage: cpage++, sortType: sortType},
       success: function(mlist){
-        console.log(mlist);
-
           // AJAX 요청이 성공하면 페이지를 그리는 함수를 호출
           renderinsertManagerlist(mlist);   
-          console.log("AJAX 요청 성공, 응답 데이터:", mlist);
       },
       error: function(){
-        console.log("ajax 실패");
         alert("요청이 실패했습니다");
       }
     });
@@ -153,7 +147,6 @@ function insertManagerAjax() {
 
   // AJAX 요청을 처리하는 함수
 function insertManagerSearchAjax(keyword, sortType) {
-  console.log("sortType: ", sortType); 
   $.ajax({
       url: 'insertManagerSearchAjax.ad',
       //cpage와 sortType을 같이 보내줌
@@ -173,7 +166,6 @@ function insertManagerSearchAjax(keyword, sortType) {
       }
     },
       error: function(){
-        console.log("ajax 실패");
         alert("요청이 실패했습니다");
       }
     });
@@ -182,9 +174,7 @@ function insertManagerSearchAjax(keyword, sortType) {
 //status 변경
 function ManagerstatusAjax(uno){
   //클럽 status 변경
-      console.log(1);
       if (confirm("정말로 권한을 부여 하시겠습니까?")) {
-          console.log("deleteBtn clicked"); // 버튼 클릭 확인
           $.ajax({
               type : "POST",
               url : "ManagerstatusAjax.ad",
@@ -199,9 +189,7 @@ function ManagerstatusAjax(uno){
                   alert("오류가 발생했습니다.");
               }
           });
-      } else {
-          console.log("confirm returned false"); // confirm 취소 확인
-      }
+        }
 };
 
 //status hidden으로 변경

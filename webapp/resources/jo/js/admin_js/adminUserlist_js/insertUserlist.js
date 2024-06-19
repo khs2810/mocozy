@@ -27,7 +27,6 @@
 
   document.addEventListener('DOMContentLoaded', function() {
     let orderSelect = document.getElementById("sortBtn");
-    console.log(orderSelect.id);
     
     if(orderSelect) {
       //sortBtn의 value값을 가져와서 sortType에 저장
@@ -41,7 +40,6 @@
       //sortBtn의 값이 바뀔 때마다 sortType에 저장
       orderSelect.onchange = function(e) {  
         sortType = e.target.value;
-        console.log("sortType(onChange): ", sortType);
 
         // sortType 값이 변경될 때마다 기존의 데이터를 지우고 새로운 데이터로 대체
         document.querySelector("#prod-list-body").innerHTML = '';
@@ -174,7 +172,6 @@ function refreshUserlist() {
 
 // AJAX 요청을 처리하는 함수
 function adminUserlistAjax(status) {
-  console.log("sortType: ", sortType); 
   $.ajax({
       url: 'adminUserlistAjax.ad',
       //cpage와 sortType을 같이 보내줌
@@ -186,7 +183,6 @@ function adminUserlistAjax(status) {
           console.log("AJAX 요청 성공, 응답 데이터:", mlist);
       },
       error: function(){
-        console.log("ajax 실패");
         alert("요청이 실패했습니다");
       }
     });
@@ -194,13 +190,11 @@ function adminUserlistAjax(status) {
 
 // AJAX 요청을 처리하는 함수
 function adminUserlistSearchAjax(keyword, sortType, status) {
-  console.log("sortType: ", sortType); 
   $.ajax({
       url: 'adminUserlistSearchAjax.ad',
       //cpage와 sortType을 같이 보내줌
       data : {cpage: 1, sortType: sortType, status: status, keyword: keyword},
       success: function(mlist){
-        console.log(mlist);
           // 페이지의 내용을 비움
           document.querySelector("#prod-list-body").innerHTML = '';
 
@@ -210,11 +204,9 @@ function adminUserlistSearchAjax(keyword, sortType, status) {
           } else {
             // AJAX 요청이 성공하면 페이지를 그리는 함수를 호출
           renderUserlist(mlist);   
-          console.log("AJAX 요청 성공, 응답 데이터:", mlist);
       }
     },
       error: function(){
-        console.log("ajax 실패");
         alert("요청이 실패했습니다");
       }
     });

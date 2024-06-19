@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.club.model.vo.ClubReview;
@@ -64,9 +65,19 @@ public class ClubReviewController {
 		
 		model.addAttribute("list", list);
 		model.addAttribute("rlist", rlist);
+		System.out.println(rlist);
 		model.addAttribute("uno", uno);
 		
 		return "myPage/reviewListPage";
+	}
+	
+	@RequestMapping("getReview.cl")
+	@ResponseBody
+	public ClubReview getReview(int clubNo, int userNo) throws Exception {
+		HashMap<String, Integer> map = new HashMap<>();
+		map.put("cno", clubNo);
+		map.put("uno", userNo);
+		return clubService.selectClubReview(map);
 	}
 	
 	@RequestMapping("insertReview.cl")

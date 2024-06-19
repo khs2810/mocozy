@@ -6,7 +6,6 @@ let keyword = new URLSearchParams(window.location.search).get('keyword');
 
 document.addEventListener('DOMContentLoaded', function () {
   let orderSelect = document.getElementById("sortBtn");
-  console.log(orderSelect.id);
 
   if (orderSelect) {
     //sortBtn의 value값을 가져와서 sortType에 저장
@@ -19,7 +18,6 @@ document.addEventListener('DOMContentLoaded', function () {
     //sortBtn의 값이 바뀔 때마다 sortType에 저장
     orderSelect.onchange = function (e) {
       sortType = e.target.value;
-      console.log("sortType(onChange): ", sortType);
 
       // sortType 값이 변경될 때마다 기존의 데이터를 지우고 새로운 데이터로 대체
       document.querySelector("#prod-list-body").innerHTML = '';
@@ -122,14 +120,11 @@ function adminManagerAjax() {
     //cpage와 sortType을 같이 보내줌
     data: { cpage: cpage++, sortType: sortType},
     success: function (mlist) {
-      console.log(mlist);
 
       // AJAX 요청이 성공하면 페이지를 그리는 함수를 호출
       renderManagerlist(mlist);
-      console.log("AJAX 요청 성공, 응답 데이터:", mlist);
     },
     error: function () {
-      console.log("ajax 실패");
       alert("요청이 실패했습니다");
     }
   });
@@ -137,13 +132,11 @@ function adminManagerAjax() {
 
 // AJAX 요청을 처리하는 함수
 function adminManagerSearchAjax(keyword, sortType) {
-  console.log("sortType: ", sortType); 
   $.ajax({
       url: 'adminManagerSearchAjax.ad',
       //cpage와 sortType을 같이 보내줌
       data : {cpage: 1, sortType: sortType, keyword: keyword},
       success: function(mlist){
-        console.log(mlist);
           // 페이지의 내용을 비움
           document.querySelector("#prod-list-body").innerHTML = '';
           
@@ -153,12 +146,10 @@ function adminManagerSearchAjax(keyword, sortType) {
           } else {
           // AJAX 요청이 성공하면 페이지를 그리는 함수를 호출
           renderManagerlist(mlist);   
-          console.log("AJAX 요청 성공, 응답 데이터:", mlist);
       }
     },
     
       error: function(){
-        console.log("ajax 실패");
         alert("요청이 실패했습니다");
       }
     });
