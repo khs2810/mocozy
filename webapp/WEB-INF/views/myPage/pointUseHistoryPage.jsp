@@ -123,7 +123,8 @@
                             </c:choose>
                             <div class="history-point">
                                 <span id="history-point-num"><fmt:formatNumber value="${p.point}" pattern="#,###"/></span>
-                                <span>pt</span>
+                                <span>pt ( </span>
+                                <span><fmt:formatNumber value="${p.point*0.9}" pattern="#,###"/>원)</span>
                             </div>
                         </div>
                         <span class="history-date">${p.createDate}</span>

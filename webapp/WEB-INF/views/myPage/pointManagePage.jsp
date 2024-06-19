@@ -45,7 +45,7 @@
 
             <div class="main-content-head">
                 <h2>최근 이용 내역</h2>
-                <p style="color: darkgray; margin-left: 10px;">(최근 한 달간)</p>
+                <p style="color: darkgray; margin: 25px 0 0 10px; ">(최근 한 달간)</p>
             </div>
             <hr style="background: lightgray; height: 1px; border: 0;" ><br>
             <div class="currentHistory">
@@ -73,9 +73,6 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <form type="POST" action="charge.pt" id="charge_form">
-                    <input type="hidden" name="userNo" value="${loginUser.userNo}">
-                    <input type="hidden" name="userId" value="${loginUser.userId}">
-                    <input type="hidden" name="userPwd" value="${loginUser.userPwd}">
                     <!-- Modal Header -->
                     <div class="modal-header">
                     <h4 class="modal-title">얼마나 충전할까요?</h4>
@@ -119,9 +116,6 @@
                 
                 <!-- Modal body -->
                 <form type="POST" action="withdraw.pt">
-                    <input type="hidden" name="userNo" value="${loginUser.userNo}">
-                    <input type="hidden" name="userId" value="${loginUser.userId}">
-                    <input type="hidden" name="userPwd" value="${loginUser.userPwd}">
                     <div class="modal-body">
                         <div class="body-row1">
                             <span>잔여 포인트</span>
