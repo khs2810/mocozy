@@ -219,6 +219,7 @@ public class ChallengeController {
  	    
  	    ArrayList<Member> clubMemberList = memberService.participatedMemberList(cno);
  	    Member clubLeader = memberService.selectClubLeader(cno);
+ 	    Club clubObj = clubService.selectClub(cno);
  	    
  	    ArrayList<Map<String, Object>> memberStatus = clubService.getMemberStatusForDate(cno, challengeDateTimestamp);
  	    
@@ -235,12 +236,15 @@ public class ChallengeController {
  	        challengeStatusMap.put(detailDate, dateStatusMap);
  	    }
  	    
+ 	    
+ 	    
  	    Map<Integer, String> tmp = challengeStatusMap.get(challengeDateTimestamp);
  	    
  	    model.addAttribute("cno", cno);
  	    model.addAttribute("createDate", createDate);
  	    model.addAttribute("clubMemberList", clubMemberList);
  	    model.addAttribute("clubLeader", clubLeader);
+ 	    model.addAttribute("clubTitle", clubObj.getClubTitle());
  	    model.addAttribute("challengeDate", challengeDate);
  	    model.addAttribute("memberStatus", memberStatus);
  	    model.addAttribute("challengeStatusMap", challengeStatusMap); // 날짜별 도전 상태 맵 추가
@@ -304,6 +308,7 @@ public class ChallengeController {
  	    
  	    ArrayList<Member> clubMemberList = memberService.participatedMemberList(cno);
  	    Member clubLeader = memberService.selectClubLeader(cno);
+ 	   Club clubObj = clubService.selectClub(cno);
  	    
  	    ArrayList<Map<String, Object>> memberStatus = clubService.getMemberStatusForDate(cno, challengeDateTimestamp);
  	    
@@ -326,6 +331,7 @@ public class ChallengeController {
  	    model.addAttribute("createDate", createDate);
  	    model.addAttribute("clubMemberList", clubMemberList);
  	    model.addAttribute("clubLeader", clubLeader);
+ 	    model.addAttribute("clubTitle", clubObj.getClubTitle());
  	    model.addAttribute("challengeDate", challengeDate);
  	    model.addAttribute("memberStatus", memberStatus);
  	    model.addAttribute("challengeStatusMap", challengeStatusMap);
