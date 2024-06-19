@@ -41,55 +41,11 @@ public class CateController {
 
 		//페이지네이션
 		int cateAllList = cService.getClublist(); 
-		//총 클럽수, 현재 페이지 번호, 한 페이지에 표시할 클럽 수, 페이지 번호 수 설정
-		PageInfo pi = Pagination.getPageInfo(cateAllList, currentPage, 4, 4);
-		
-		//클럽 리스트 불러오기
-	    ArrayList<Club> catelist = cService.selectcateAll(pi, order);
-		for (Club c : catelist){
-			//현재 클럽(c) 의 회원 목록 호출하여 memberList에 저장
-		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-		    //회원 목록의 프로필 이미지 url를 arraylist에 저장
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	//현재 회원의 프로필 이미지 url을 img리스트에 추가
-		    	imgs.add(m.getProfileImg());
-		    }
-		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
-		    c.setProfileImg(imgs);    
-		    
-		    // createDate 형식 변경
-	        SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.KOREAN);
-	        try {
-	            Date date = originalFormat.parse(c.getCreateDate().toString());
-	            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-	            c.setCreateDate(sqlDate);
-	        } catch (ParseException | java.text.ParseException e) {
-	            e.printStackTrace();
-	        }
-		 }
-	    
+
 	    //이벤트 가져오기
 	    ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
-	    // 각 Notice 객체에서 noticeNo 가져오기
-	    for (Notice notice : getnoticeBanner) {
-	        int noticeNo = notice.getNoticeNo();
-	        String bannerPath = notice.getBannerPath();
-	    }
-	    
-	    String orderby = "";
-	    if (order.equals("club_no")) {
-	    	orderby = "클럽번호";
-	    } else if(order.equals("pickCount"))  {
-	    	orderby = "찜수";
-	    } else if(order.equals("count")) {
-	    	orderby= "조회수";
-	    } 
-	    
-	    model.addAttribute("orderby", orderby);
-	    model.addAttribute("order", order);
-		model.addAttribute("catelist", catelist);
-	    
+    
+		model.addAttribute("cateAllList", cateAllList);
 		model.addAttribute("getnoticeBanner", getnoticeBanner);
 		
 		if (cateAllList == 0) {
@@ -107,7 +63,7 @@ public class CateController {
 		//페이지네이션
 		int cateAllList = cService.getClublist(); 
 		//총 클럽수, 현재 페이지 번호, 한 페이지에 표시할 클럽 수, 페이지 번호 수 설정
-		PageInfo pi = Pagination.getPageInfo(cateAllList, currentPage, 4, 4);
+		PageInfo pi = Pagination.getPageInfo(cateAllList, currentPage, 8, 8);
 		
 		//카테고리 조건 건 클럽 불러오기
 	    ArrayList<Club> catelist = cService.selectcateAll(pi, order);
@@ -123,16 +79,6 @@ public class CateController {
 		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
 		    c.setProfileImg(imgs);    
 			 
-		    // createDate 형식 변경
-//	        SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-		    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-	        	c.setDateFormat(dateFormat.format(c.getCreateDate()));
-//	            Date date = dateFormat.parse(c.getCreateDate().toString());
-//	            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-//	            c.setCreateDate(sqlDate);
-//	        } catch (ParseException | java.text.ParseException e) {
-//	            e.printStackTrace();
-//	        }
 		}
 		return new Gson().toJson(catelist);
 	}
@@ -145,46 +91,9 @@ public class CateController {
 	public String cateKey(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model, String key, String order) { 
 		//페이지네이션
 		int cateAllList = cService.getClublist(); 
-		//총 클럽수, 현재 페이지 번호, 한 페이지에 표시할 클럽 수, 페이지 번호 수 설정
-		PageInfo pi = Pagination.getPageInfo(cateAllList, currentPage, 4, 4);
-		
-	    //map으로 key=카테고리와 order=정렬 값 불러오기
-		Map<String, String> map = new HashMap<>();
-		map.put("key", key);
-		map.put("order", order);
-		
-		//클럽 리스트 불러오기
-		ArrayList<Club> catelist = cService.selectCateFilter(map, pi);
-		for (Club c : catelist){
-			//현재 클럽(c) 의 회원 목록 호출하여 memberList에 저장
-			ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-			//회원 목록의 프로필 이미지 url를 arraylist에 저장
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	//현재 회원의 프로필 이미지 url을 img리스트에 추가
-		    	imgs.add(m.getProfileImg());
-		    }
-		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
-		    c.setProfileImg(imgs);   
-		    
-		    // createDate 형식 변경
-	        SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-	        try {
-	            Date date = originalFormat.parse(c.getCreateDate().toString());
-	            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-	            c.setCreateDate(sqlDate);
-	        } catch (ParseException | java.text.ParseException e) {
-	            e.printStackTrace();
-	        }
-		 }
-	    
+
 	    //이벤트 가져오기
 	    ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
-	    // 각 Notice 객체에서 noticeNo 가져오기
-	    for (Notice notice : getnoticeBanner) {
-	        int noticeNo = notice.getNoticeNo();
-	        String bannerPath = notice.getBannerPath();
-	    }
 	    
 	    String cname = "";
 	    if (key.equals("문화, 예술") || key.equals("푸드, 드링크")) {
@@ -200,7 +109,7 @@ public class CateController {
 	   
 	    model.addAttribute("cname", cname);
 	    model.addAttribute("key", key);
-		model.addAttribute("catelist", catelist);
+		model.addAttribute("cateAllList", cateAllList);
 	    
 		model.addAttribute("getnoticeBanner", getnoticeBanner);
 		
@@ -218,7 +127,7 @@ public class CateController {
 		//페이지네이션
 		int cateAllList = cService.getClublist(); 
 		//총 클럽수, 현재 페이지 번호, 한 페이지에 표시할 클럽 수, 페이지 번호 수 설정
-		PageInfo pi = Pagination.getPageInfo(cateAllList, currentPage, 4, 4);
+		PageInfo pi = Pagination.getPageInfo(cateAllList, currentPage, 8, 8);
 		
 	    //map으로 key=카테고리와 order=정렬 값 불러오기
 		Map<String, String> map = new HashMap<>();
@@ -238,25 +147,10 @@ public class CateController {
 		    }
 		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
 		    c.setProfileImg(imgs);  
-		    
-		    // createDate 형식 변경
-	        SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-	        try {
-	            Date date = originalFormat.parse(c.getCreateDate().toString());
-	            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-	            c.setCreateDate(sqlDate);
-	        } catch (ParseException | java.text.ParseException e) {
-	            e.printStackTrace();
-	        }
-	        
-		 //한번더 형식 변경
-		Date date = c.getCreateDate();
-		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
-		String formattedDate = formatter.format(date);
-		
 		}
 		
 	    model.addAttribute("key", key);
+
 		model.addAttribute("catelist", catelist);
 		
 	    return new Gson().toJson(catelist);
@@ -267,51 +161,26 @@ public class CateController {
 	
 	//인기순별 페이지
 	@RequestMapping("catePick.ct")
-	public String catePick(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model, String key) { 
+	public String catePick(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model, String order) { 
+		
 		//페이지네이션
 		int cateAllList = cService.getClublist(); 
-		//총 클럽수, 현재 페이지 번호, 한 페이지에 표시할 클럽 수, 페이지 번호 수 설정
-		PageInfo pi = Pagination.getPageInfo(cateAllList, currentPage, 4, 4);
+
+		//이벤트 가져오기
+		ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
 		
-	    //map으로 key=카테고리와 order=정렬 값 불러오기
-		Map<String, String> map = new HashMap<>();
-		map.put("key", key);
-		
-		//클럽 리스트 불러오기
-		ArrayList<Club> catelist = cService.catePick(map, pi);
-		for (Club c : catelist){
-			//현재 클럽(c) 의 회원 목록 호출하여 memberList에 저장
-			ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-			//회원 목록의 프로필 이미지 url를 arraylist에 저장
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	//현재 회원의 프로필 이미지 url을 img리스트에 추가
-		    	imgs.add(m.getProfileImg());
-		    }
-		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
-		    c.setProfileImg(imgs);    
-		    
-		    // createDate 형식 변경
-	        SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-	        try {
-	            Date date = originalFormat.parse(c.getCreateDate().toString());
-	            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-	            c.setCreateDate(sqlDate);
-	        } catch (ParseException | java.text.ParseException e) {
-	            e.printStackTrace();
-	        }
-		 }
-	    
-	    //이벤트 가져오기
-	    ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
-	    // 각 Notice 객체에서 noticeNo 가져오기
-	    for (Notice notice : getnoticeBanner) {
-	        int noticeNo = notice.getNoticeNo();
-	        String bannerPath = notice.getBannerPath();
-	    }
-	    
-	    model.addAttribute("key", key);
-		model.addAttribute("catelist", catelist);
+	    String cname = "";
+	    if (order.equals("club_no")) {
+	    	cname = "최신순 모임";
+	    } else if(order.equals("pickCount")) {
+	    	cname = "인기순 모임";
+	    } else if(order.equals("count")){
+	    	cname= "조회순 모임";
+	    } 
+
+	    model.addAttribute("order", order);
+	    model.addAttribute("cname", cname);
+		model.addAttribute("cateAllList", cateAllList);
 		model.addAttribute("getnoticeBanner", getnoticeBanner);
 		
 		if (cateAllList == 0) {
@@ -324,68 +193,23 @@ public class CateController {
 	//인기순별 ajax
 	@ResponseBody
 	@RequestMapping(value="catePickAjax.ct", produces="application/json; charset=UTF-8")
-	public String catePickAjax(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model, String key) {      
+	public String catePickAjax(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model, String key, String order) {      
 		//페이지네이션
 		int cateAllList = cService.getClublist(); 
 		//총 클럽수, 현재 페이지 번호, 한 페이지에 표시할 클럽 수, 페이지 번호 수 설정
-		PageInfo pi = Pagination.getPageInfo(cateAllList, currentPage, 4, 4);
+		PageInfo pi = Pagination.getPageInfo(cateAllList, currentPage, 8, 8);
 		
 	    //map으로 key=카테고리와 order=정렬 값 불러오기
 		Map<String, String> map = new HashMap<>();
 		map.put("key", key);
-		
+		map.put("order", order);
 		//클럽 리스트 불러오기
-		ArrayList<Club> catelist = cService.catePick(map, pi);
+		ArrayList<Club> catelist = cService.selectCatePick(map, pi);
 		for (Club c : catelist){
+			
 			//현재 클럽(c) 의 회원 목록 호출하여 memberList에 저장
 		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
 		    //회원 목록의 프로필 이미지 url를 arraylist에 저장
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	//현재 회원의 프로필 이미지 url을 img리스트에 추가
-		    	imgs.add(m.getProfileImg());
-		    }
-		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
-		    c.setProfileImg(imgs); 
-		    
-		    // createDate 형식 변경
-	        SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-	        try {
-	            Date date = originalFormat.parse(c.getCreateDate().toString());
-	            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-	            c.setCreateDate(sqlDate);
-	        } catch (ParseException | java.text.ParseException e) {
-	            e.printStackTrace();
-	        }
-		 }
-		
-	    model.addAttribute("key", key);
-		model.addAttribute("catelist", catelist);
-		
-	    return new Gson().toJson(catelist);
-
-	}
-	
-	/* --------------------- */
-	
-	//최신별 페이지
-	@RequestMapping("cateRecent.ct")
-	public String cateRecent(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model, String key) { 
-		//페이지네이션
-		int cateAllList = cService.getClublist(); 
-		//총 클럽수, 현재 페이지 번호, 한 페이지에 표시할 클럽 수, 페이지 번호 수 설정
-		PageInfo pi = Pagination.getPageInfo(cateAllList, currentPage, 4, 4);
-		
-	    //map으로 key=카테고리와 order=정렬 값 불러오기
-		Map<String, String> map = new HashMap<>();
-		map.put("key", key);
-		
-		//클럽 리스트 불러오기
-		ArrayList<Club> catelist = cService.cateRecent(map, pi);
-		for (Club c : catelist){
-			//현재 클럽(c) 의 회원 목록 호출하여 memberList에 저장
-			ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-			//회원 목록의 프로필 이미지 url를 arraylist에 저장
 		    ArrayList<String> imgs = new ArrayList<String>();
 		    for (Member m : memberList) {
 		    	//현재 회원의 프로필 이미지 url을 img리스트에 추가
@@ -393,192 +217,14 @@ public class CateController {
 		    }
 		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
 		    c.setProfileImg(imgs);  
-		    
-		    // createDate 형식 변경
-	        SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-	        try {
-	            Date date = originalFormat.parse(c.getCreateDate().toString());
-	            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-	            c.setCreateDate(sqlDate);
-	        } catch (ParseException | java.text.ParseException e) {
-	            e.printStackTrace();
-	        }
-		 }
-	    
-	    //이벤트 가져오기
-	    ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
-	    // 각 Notice 객체에서 noticeNo 가져오기
-	    for (Notice notice : getnoticeBanner) {
-	        int noticeNo = notice.getNoticeNo();
-	        String bannerPath = notice.getBannerPath();
-	    }
-	    
-	    model.addAttribute("key", key);
-		model.addAttribute("catelist", catelist);
-		model.addAttribute("getnoticeBanner", getnoticeBanner);
-		
-		if (cateAllList == 0) {
-			return "common/errorPage";
-		} else {
-			return "categories/cateBest/cateRecent";
 		}
-    }
-	
-	//최신순별 ajax
-	@ResponseBody
-	@RequestMapping(value="cateRecentAjax.ct", produces="application/json; charset=UTF-8")
-	public String cateRecentAjax(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model, String key) {      
-		//페이지네이션
-		int cateAllList = cService.getClublist(); 
-		//총 클럽수, 현재 페이지 번호, 한 페이지에 표시할 클럽 수, 페이지 번호 수 설정
-		PageInfo pi = Pagination.getPageInfo(cateAllList, currentPage, 4, 4);
 		
-	    //map으로 key=카테고리와 order=정렬 값 불러오기
-		Map<String, String> map = new HashMap<>();
-		map.put("key", key);
-		
-		//클럽 리스트 불러오기
-		ArrayList<Club> catelist = cService.cateRecent(map, pi);
-		for (Club c : catelist){
-			//현재 클럽(c) 의 회원 목록 호출하여 memberList에 저장
-		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-		    //회원 목록의 프로필 이미지 url를 arraylist에 저장
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	//현재 회원의 프로필 이미지 url을 img리스트에 추가
-		    	imgs.add(m.getProfileImg());
-		    	
-			    // createDate 형식 변경
-		        SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-		        try {
-		            Date date = originalFormat.parse(c.getCreateDate().toString());
-		            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-		            c.setCreateDate(sqlDate);
-		        } catch (ParseException | java.text.ParseException e) {
-		            e.printStackTrace();
-		        }
-			 }
-		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
-		    c.setProfileImg(imgs);    
-		}
-	    
 	    model.addAttribute("key", key);
+
 		model.addAttribute("catelist", catelist);
 		
 	    return new Gson().toJson(catelist);
 
-	}
-	
-	/* --------------------- */
-	
-	//조회순별 페이지
-	@RequestMapping("cateView.ct")
-	public String cateView(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model, String key) { 
-		//페이지네이션
-		int cateAllList = cService.getClublist(); 
-		//총 클럽수, 현재 페이지 번호, 한 페이지에 표시할 클럽 수, 페이지 번호 수 설정
-		PageInfo pi = Pagination.getPageInfo(cateAllList, currentPage, 4, 4);
-		
-	    //map으로 key=카테고리와 order=정렬 값 불러오기
-		Map<String, String> map = new HashMap<>();
-		map.put("key", key);
-		
-		//클럽 리스트 불러오기
-		ArrayList<Club> catelist = cService.cateView(map, pi);
-		for (Club c : catelist){
-			//현재 클럽(c) 의 회원 목록 호출하여 memberList에 저장
-			ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-			//회원 목록의 프로필 이미지 url를 arraylist에 저장
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	//현재 회원의 프로필 이미지 url을 img리스트에 추가
-		    	imgs.add(m.getProfileImg());
-		    }
-		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
-		    c.setProfileImg(imgs);    
-		    
-		    // createDate 형식 변경
-	        SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-	        try {
-	            Date date = originalFormat.parse(c.getCreateDate().toString());
-	            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-	            c.setCreateDate(sqlDate);
-	        } catch (ParseException | java.text.ParseException e) {
-	            e.printStackTrace();
-	        }
-		 }
-	    
-	    //이벤트 가져오기
-	    ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
-	    // 각 Notice 객체에서 noticeNo 가져오기
-	    for (Notice notice : getnoticeBanner) {
-	        int noticeNo = notice.getNoticeNo();
-	        String bannerPath = notice.getBannerPath();
-	    }
-	    
-	    model.addAttribute("key", key);
-		model.addAttribute("catelist", catelist);
-		model.addAttribute("getnoticeBanner", getnoticeBanner);
-	    
-		if (cateAllList == 0) {
-			return "common/errorPage";
-		} else {
-			return "categories/cateBest/cateView";
-		}
     }
-	
-	//조회순별 ajax
-	@ResponseBody
-	@RequestMapping(value="cateViewAjax.ct", produces="application/json; charset=UTF-8")
-	public String cateViewAjax(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model, String key) {      
-		//페이지네이션
-		int cateAllList = cService.getClublist(); 
-		//총 클럽수, 현재 페이지 번호, 한 페이지에 표시할 클럽 수, 페이지 번호 수 설정
-		PageInfo pi = Pagination.getPageInfo(cateAllList, currentPage, 4, 4);
-		
-	    //map으로 key=카테고리와 order=정렬 값 불러오기
-		Map<String, String> map = new HashMap<>();
-		map.put("key", key);
-		
-		//클럽 리스트 불러오기
-		ArrayList<Club> catelist = cService.cateView(map, pi);
-		for (Club c : catelist){
-			//현재 클럽(c) 의 회원 목록 호출하여 memberList에 저장
-		    ArrayList<Member> memberList = cService.MemberList(c.getClubNo());
-		    //회원 목록의 프로필 이미지 url를 arraylist에 저장
-		    ArrayList<String> imgs = new ArrayList<String>();
-		    for (Member m : memberList) {
-		    	//현재 회원의 프로필 이미지 url을 img리스트에 추가
-		    	imgs.add(m.getProfileImg());
-		    }
-		    //img리스트에 있는 모든 프로필 이미지를 현재 클럽(c)에 넣기
-		    c.setProfileImg(imgs);   
-		    
-		 // createDate 형식 변경
-		    SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-		    SimpleDateFormat newFormat = new SimpleDateFormat("yyyy-MM-dd", Locale.KOREAN);
-		    try {
-		        Date date = null;
-				try {
-					date = originalFormat.parse(c.getCreateDate().toString());
-				} catch (java.text.ParseException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
-				}
-		        String formattedDate = newFormat.format(date);
-		        java.sql.Date sqlDate = java.sql.Date.valueOf(formattedDate);
-		        c.setCreateDate(sqlDate);
-		    } catch (ParseException e) {
-		        e.printStackTrace();
-		    }
-		 }
-	    
-	    model.addAttribute("key", key);
-		model.addAttribute("catelist", catelist);
-		
-	    return new Gson().toJson(catelist);
 
-	}
-	
-	/* --------------------- */
 }	

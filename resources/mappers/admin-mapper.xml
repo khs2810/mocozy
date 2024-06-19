@@ -562,7 +562,7 @@
 		SELECT *
 		FROM NOTICE N
 		JOIN MEMBER USING (USER_NO)
-		Order by USER_NO ${sortType};
+		Order by NOTICE_NO ${sortType};
 	</select>
 	
 	<select id="getNoticeSearchAll" resultMap="noticeResult">
@@ -571,7 +571,7 @@
 		JOIN MEMBER USING (USER_NO)
 		WHERE CAST(NOTICE_NO AS TEXT) LIKE '%' || #{keyword} || '%' 
 				OR NOTICE_TITLE LIKE '%' || #{keyword} || '%'
-		Order by USER_NO ${sortType};
+		Order by NOTICE_NO ${sortType};
 	</select>
 		
 	<!-- 이벤트 -->
@@ -609,7 +609,7 @@
 		WHERE NOTICE_TYPE = '공지'
 			AND (CAST(NOTICE_NO AS TEXT) LIKE '%' || #{keyword} || '%' 
 			OR NOTICE_TITLE LIKE '%' || #{keyword} || '%')
-		Order by USER_NO ${sortType};
+		Order by NOTICE_NO ${sortType};
 	</select>
 	
 	<!-- 배너 -->
@@ -618,7 +618,7 @@
 		FROM NOTICE N
 		JOIN MEMBER USING (USER_NO)
 		WHERE NOTICE_TYPE = '이벤트' AND BANNER = 'Y' AND BANNER_PATH IS NOT NULL
-		Order by USER_NO DESC;
+		Order by NOTICE_NO DESC;
 	</select>
 	
 	<update id="eventStatusAjax">

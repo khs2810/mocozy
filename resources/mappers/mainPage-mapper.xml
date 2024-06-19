@@ -131,10 +131,12 @@
 			   COUNT,
 			   NICKNAME,
 			   category_name1,
-			   category_name2
+			   category_name2,
+			  (SELECT COUNT(*) FROM picked WHERE CLUB_NO = CLUB.CLUB_NO) AS PICKCOUNT
 	FROM public.CLUB
 		join MEMBER USING (USER_NO)
-	WHERE public.CLUB.STATUS = 'Y';
+	WHERE public.CLUB.STATUS = 'Y'
+	ORDER BY PICKCOUNT DESC;
 	</select>
 	
 	<select id="selectFlist" resultMap="clubResult">
@@ -161,7 +163,8 @@
 			   category_name2
 	FROM public.CLUB
 		join MEMBER USING (USER_NO)
-	WHERE public.CLUB.STATUS = 'Y';
+	WHERE public.CLUB.STATUS = 'Y'
+	ORDER BY COUNT DESC;
 	</select>
 	
 	<select id="MemberList" resultMap="memberResult">

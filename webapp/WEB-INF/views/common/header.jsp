@@ -80,7 +80,7 @@
 									<ul class="headergrid">
 										<li class="categrid">
 											<h3 class="getName">
-												<a href="cateAll.ct">전체</a>
+												<a href="cateAll.ct?order=clubNo">전체</a>
 											</h3>
 											<div class="getTitle">
 												<%-- 빈칸 --%>
@@ -91,9 +91,9 @@
 											<h3 class="getName">인기</h3>
 											<div class="getTitle">
 												<div class="cateL">
-													<a href="cateRecent.ct?key=${'소셜링'}" class="cateT">따끈따끈 신규 모임</a> <a
-														href="catePick.ct?key=${'소셜링'}" class="cateT">HOT 클래스</a> <a
-														href="cateView.ct?key=${'소셜링'}" class="cateT">조회순 모임</a>
+													<a href="catePick.ct?key=${'소셜링'}&order=club_no" class="cateT">따끈따끈 신규 모임</a> <a
+														href="catePick.ct?key=${'소셜링'}&order=pickCount" class="cateT">HOT 클래스</a> <a
+														href="catePick.ct?key=${'소셜링'}&order=count" class="cateT">조회순 모임</a>
 												</div>
 											</div>
 										</li>
@@ -102,8 +102,8 @@
 											<h3 class="getName">문화생활</h3>
 											<div class="getTitle">
 												<div class="cateL">
-													<a href="cateKey.ct?key=${'문화, 예술'}&order=club_no" class="cateT">문화 · 예술</a> <a
-														href="cateKey.ct?key=${'푸드, 드링크'}&order=club_no" class="cateT">푸드 · 드링크</a>
+													<a href="cateKey.ct?key=${'문화, 예술'}&order=clubNo" class="cateT">문화 · 예술</a> <a
+														href="cateKey.ct?key=${'푸드, 드링크'}&order=clubNo" class="cateT">푸드 · 드링크</a>
 												</div>
 											</div>
 										</li>
@@ -112,9 +112,9 @@
 											<h3 class="getName">미래발전</h3>
 											<div class="getTitle">
 												<div class="cateL">
-													<a href="cateKey.ct?key=${'자기계발'}&order=club_no" class="cateT">자기계발</a> <a
-														href="cateKey.ct?key=${'재테크'}&order=club_no" class="cateT">재테크</a> <a
-														href="cateKey.ct?key=${'외국어'}&order=club_no" class="cateT">외국어</a>
+													<a href="cateKey.ct?key=${'자기계발'}&order=clubNo" class="cateT">자기계발</a> <a
+														href="cateKey.ct?key=${'재테크'}&order=clubNo" class="cateT">재테크</a> <a
+														href="cateKey.ct?key=${'외국어'}&order=clubNo" class="cateT">외국어</a>
 												</div>
 											</div>
 										</li>
@@ -123,8 +123,8 @@
 											<h3 class="getName">스포츠</h3>
 											<div class="getTitle">
 												<div class="cateL">
-													<a href="cateKey.ct?key=${'액티비티'}&order=club_no" class="cateT">액비티비</a> <a
-														href="cateKey.ct?key=${'여행, 동행'}&order=club_no" class="cateT">여행 · 동행</a>
+													<a href="cateKey.ct?key=${'액티비티'}&order=clubNo" class="cateT">액비티비</a> <a
+														href="cateKey.ct?key=${'여행, 동행'}&order=clubNo" class="cateT">여행 · 동행</a>
 												</div>
 											</div>
 										</li>
@@ -133,9 +133,9 @@
 											<h3 class="getName">취미</h3>
 											<div class="getTitle">
 												<div class="cateL">
-													<a href="cateKey.ct?key=${'취미'}&order=club_no" class="cateT">취미</a> <a
-														href="cateKey.ct?key=${'파티, 게임'}&order=club_no" class="cateT">파티 · 게임</a> <a
-														href="cateKey.ct?key=${'연애'}&order=club_no" class="cateT">연애 · 사랑</a>
+													<a href="cateKey.ct?key=${'취미'}&order=clubNo" class="cateT">취미</a> <a
+														href="cateKey.ct?key=${'파티, 게임'}&order=clubNo" class="cateT">파티 · 게임</a> <a
+														href="cateKey.ct?key=${'연애'}&order=clubNo" class="cateT">연애 · 사랑</a>
 												</div>
 											</div>
 										</li>
@@ -156,13 +156,13 @@
 
 						<div class="studio">
 							<div class="stu">
-								<a href="catePick.ct?key=${'소셜링'}">HOT 클래스 🔥</a>
+								<a href="catePick.ct?key=${'소셜링'}&order=pickCount">HOT 클래스 🔥</a>
 							</div>
 
 							<div class="studioBorder"></div>
 
 							<div class="stubutton">
-								<a href="cateRecent.ct?key=${'소셜링'}">신규모임</a>
+								<a href="catePick.ct?key=${'소셜링'}&order=club_no">신규모임</a>
 							</div>
 						</div>
 
@@ -183,6 +183,7 @@
 									<input type="hidden" name="rpage" value="1"> 
 									<input type="text" name="keyword" class="searchInput" id="search-box"
 										value="${keyword}" placeholder="원하는 모임을 검색해보세요.">
+									<input type="hidden" name="order" value="club_no"> 
 									<button type="submit" value="검색">
 										<svg class="searchIcon" xmlns="http://www.w3.org/2000/svg"
 											width="16" height="16" fill="currentColor" class="bi bi-search"
@@ -335,7 +336,7 @@
 									</a>
 
 									<!--  찜 목록 -->
-									<a class="Togglelink" id="Togglelink" href="_blank"> <svg
+									<a class="Togglelink" id="Togglelink" href="dibsSocial.me"> <svg
 											class="Toggleimg" xmlns="http://www.w3.org/2000/svg" width="16"
 											height="16" fill="currentColor"
 											class="bi bi-chat-right-heart-fill" viewBox="0 0 16 16">

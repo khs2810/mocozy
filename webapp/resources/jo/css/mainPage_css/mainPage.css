@@ -161,6 +161,47 @@ li {
   margin-right: 6px;
 }
 
+.main .contentcard .tagSocial{
+  background-color: #70C9A0;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 11px;
+  text-align: center;
+  padding: 4px 8px;
+  letter-spacing: -.2px;
+  border-radius: 10px;
+  margin-right: 6px;
+}
+
+.main .contentcard .tagChallenge{
+  background-color: #9BCFFF;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 600;
+  font-size: 1.5rem;
+  line-height: 11px;
+  text-align: center;
+  padding: 4px 8px;
+  letter-spacing: -.2px;
+  border-radius: 10px;
+  margin-right: 6px;
+}
+
+@media (max-width: 767px) {
+  .main .contentcard .tag {
+      font-size: 1rem;
+      line-height: 11px;
+      padding: 4px 8px;
+      border-radius: 10px;
+      margin-right: 6px;
+  }
+}
 .main .contentcard .tagone{
   background-color: #dddddd;
   color: #666060;
@@ -274,14 +315,6 @@ li {
 }
 
 @media (max-width: 767px) {
-  .main .contentcard .tag {
-      font-size: 1rem;
-      line-height: 11px;
-      padding: 4px 8px;
-      border-radius: 10px;
-      margin-right: 6px;
-  }
-
   .main .contentcard .infotitle {
       font-size: 1.5rem;
       line-height: 24px;

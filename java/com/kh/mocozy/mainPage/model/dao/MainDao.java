@@ -34,7 +34,7 @@ public class MainDao {
 		int offset = 2;
 		    
 		    RowBounds rowBounds = new RowBounds(offset, fi.getBoardLimit());
-		    return (ArrayList)sqlSession.selectList("mainPageMapper.selectRlist", null, rowBounds);
+		    return (ArrayList)sqlSession.selectList("mainPageMapper.selectFlist", null, rowBounds);
 	}
 
 	public ArrayList<Member> MemberList(SqlSessionTemplate sqlSession, int clubNo) {
@@ -50,14 +50,14 @@ public class MainDao {
     }
     
     public ArrayList<Club> getSocialRank(SqlSessionTemplate sqlSession, PageInfo ri) {
-    	int offset = 10;
+    	int offset = (ri.getCurrentPage() - 1) * ri.getBoardLimit();
 	    
 	    RowBounds rowBounds = new RowBounds(offset, ri.getBoardLimit());
 	    return (ArrayList)sqlSession.selectList("mainPageMapper.getSocialRank", null, rowBounds);
     }
     
     public ArrayList<Club> getSocialView(SqlSessionTemplate sqlSession, PageInfo fi) {
-    	int offset = 10;
+    	int offset = (fi.getCurrentPage() - 1) * fi.getBoardLimit();
 	    
 	    RowBounds rowBounds = new RowBounds(offset, fi.getBoardLimit());
 	    return (ArrayList)sqlSession.selectList("mainPageMapper.getSocialView", null, rowBounds);
@@ -71,14 +71,14 @@ public class MainDao {
     }
     
     public ArrayList<Club> getChallRank(SqlSessionTemplate sqlSession, PageInfo ri) {
-    	int offset = 10;
+    	int offset = (ri.getCurrentPage() - 1) * ri.getBoardLimit();
 	    
 	    RowBounds rowBounds = new RowBounds(offset, ri.getBoardLimit());
         return (ArrayList)sqlSession.selectList("mainPageMapper.getChallRank", null, rowBounds);
     }
     
     public ArrayList<Club> getChallView(SqlSessionTemplate sqlSession, PageInfo fi) {
-    	int offset = 10;
+    	int offset = (fi.getCurrentPage() - 1) * fi.getBoardLimit();
 	    
 	    RowBounds rowBounds = new RowBounds(offset, fi.getBoardLimit());
         return (ArrayList)sqlSession.selectList("mainPageMapper.getChallView", null, rowBounds);

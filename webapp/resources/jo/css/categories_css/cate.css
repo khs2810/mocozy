@@ -210,6 +210,16 @@ li {
   margin-right: 6px;
 }
 
+.catePage .contentcard .tag.clubType소셜링 {
+  background-color: #70C9A0;
+  color: #fff;
+}
+
+.catePage .contentcard .tag.clubType챌린지 {
+  background-color: #9BCFFF;
+  color: #fff;
+}
+
 .catePage .contentcard .tagone{
   background-color: #dddddd;
   color: #666060;
