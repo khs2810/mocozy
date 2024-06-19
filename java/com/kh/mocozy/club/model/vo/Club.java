@@ -49,7 +49,9 @@ public class Club {
 	public ArrayList<String> profileImg;
 	public int reviewCount;
 	public int PickCount;
+	public String dateFormat;
 }
+
 
 
 

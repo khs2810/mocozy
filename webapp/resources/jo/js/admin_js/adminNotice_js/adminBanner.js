@@ -79,10 +79,8 @@ function adminNoticeBannerAjax(noticeType) {
     success: function (nlist) {
       // AJAX 요청이 성공하면 페이지를 그리는 함수를 호출
       renderNoticelist(nlist);
-      console.log("AJAX 요청 성공, 응답 데이터:", nlist);
     },
     error: function () {
-      console.log("ajax 실패");
       alert("요청이 실패했습니다");
     }
   });

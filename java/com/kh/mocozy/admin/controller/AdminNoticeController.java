@@ -95,7 +95,6 @@ public class AdminNoticeController {
 		map.put("keyword", keyword);
 		map.put("sortType", sortType);
 		
-		System.out.println(noticeType);
 		ArrayList<Notice> nlist = new ArrayList<>();
         
     	if (noticeType.equals("D")) {
@@ -148,9 +147,6 @@ public class AdminNoticeController {
 		HashMap<String, Object> map = new HashMap<>();
         map.put("banner", banner);
         map.put("noticeNo", noticeNo);
-        
-        System.out.println("banner=" + banner);
-        System.out.println("noticeNo=" + noticeNo);
         
 		int result = anService.eventStatusAjax(map); 
 
@@ -269,6 +265,6 @@ public class AdminNoticeController {
 				model.addAttribute("errorMsg", "배너 설정  실패");
 				return "common/errorPage";
 	        }
-	        return "redirect:adminNoticeEvent.ad";
+	        return "redirect:adminNoticeBanner.ad";
 		}
 }
