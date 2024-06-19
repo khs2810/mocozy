@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -10,7 +12,7 @@
 </head>
 <body>
   <div>
-    <img src="./img/logo.png" alt="">
+    <img src="${pageContext.request.contextPath}/resources/koo/upfile/loginPage_img/logo.png" alt="">
   </div>
   <div class="detail-terms">
     <pre>
