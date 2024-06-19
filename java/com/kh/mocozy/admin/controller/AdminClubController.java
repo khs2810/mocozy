@@ -128,7 +128,7 @@ public class AdminClubController {
         	
         	if (status.equals("H")) {
         		session.setAttribute("alertMsg", "클럽 숨김처리 성공");
-        		return "redirect:adminClubHidden.ad";
+        		return "redirect:adminHidden.ad";
         	} else if (status.equals("Y")) {
         		session.setAttribute("alertMsg", "클럽 노출처리 성공");
         		return "redirect:adminProcess.ad";
