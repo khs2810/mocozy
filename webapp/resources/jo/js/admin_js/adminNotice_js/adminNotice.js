@@ -23,7 +23,6 @@
   
   document.addEventListener('DOMContentLoaded', function() {
     let orderSelect = document.getElementById("sortBtn");
-    console.log(orderSelect.id);
     
     if(orderSelect) {
       //sortBtn의 value값을 가져와서 sortType에 저장
@@ -37,7 +36,6 @@
       //sortBtn의 값이 바뀔 때마다 sortType에 저장
       orderSelect.onchange = function(e) {  
         sortType = e.target.value;
-        console.log("sortType(onChange): ", sortType);
 
         // sortType 값이 변경될 때마다 기존의 데이터를 지우고 새로운 데이터로 대체
         document.querySelector("#prod-list-body").innerHTML = '';
@@ -166,14 +164,11 @@ function adminNoticeAjax(noticeType) {
       //cpage와 sortType을 같이 보내줌
       data : {cpage: cpage++, sortType: sortType, noticeType: noticeType},
       success: function(nlist){
-        console.log(nlist);
 
           // AJAX 요청이 성공하면 페이지를 그리는 함수를 호출
           renderNoticelist(nlist);   
-          console.log("AJAX 요청 성공, 응답 데이터:", nlist);
       },
       error: function(){
-        console.log("ajax 실패");
         alert("요청이 실패했습니다");
       }
     });
@@ -181,13 +176,11 @@ function adminNoticeAjax(noticeType) {
 
     // AJAX 요청을 처리하는 함수
 function adminNoticeSearchAjax(keyword, sortType, noticeType) {
-  console.log("sortType: ", sortType); 
   $.ajax({
       url: 'adminNoticeSearchAjax.ad',
       //cpage와 sortType을 같이 보내줌
       data : {cpage: 1, sortType: sortType, noticeType: noticeType, keyword: keyword},
       success: function(nlist){
-        console.log(nlist);
           // 페이지의 내용을 비움
           document.querySelector("#prod-list-body").innerHTML = '';
 
@@ -195,13 +188,10 @@ function adminNoticeSearchAjax(keyword, sortType, noticeType) {
            if (nlist.length === 0) {
             alert("검색 결과가 없습니다");
           } else {
-          // AJAX 요청이 성공하면 페이지를 그리는 함수를 호출
-          renderNoticelist(nlist);   
-          console.log("AJAX 요청 성공, 응답 데이터:", nlist);
+          // AJAX 요청이 성공하면 페이지를 그리는 함수를 호출  
       }
     },
       error: function(){
-        console.log("ajax 실패");
         alert("요청이 실패했습니다");
       }
     });
