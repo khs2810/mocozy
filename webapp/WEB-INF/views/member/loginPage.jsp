@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mo-Cozy - Login</title>
     
+    <script src="${pageContext.request.contextPath}/resources/koo/js/login_js/Social_login.js"></script>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/loginPage_css/loginPage.css" />
 
 </head>
@@ -38,7 +39,7 @@
 
             <div class="flex justify-center gap-1 mt-6 text-sm text-taling-gray-700 ">
                 <!-- <div w-full text-center >
-                    <a href="" class="text-taling-pink-400"> 아이디 찾기</a>
+                    <a href="${pageContext.request.contextPath}/send" class="text-taling-pink-400"> 아이디 찾기</a>
                 </div>
                 <div w-full text-center >
                     <a href="" class="text-taling-pink-400">비밀번호 찾기</a>
