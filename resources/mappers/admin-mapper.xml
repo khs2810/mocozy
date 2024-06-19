@@ -135,7 +135,7 @@
 		SELECT *
 		FROM NOTICE N
 		JOIN MEMBER USING (USER_NO)
-		Order by USER_NO DESC;
+		Order by NOTICE_NO DESC;
 	</select>
 	
 	<!-- 전체 -->
@@ -580,7 +580,7 @@
 		FROM NOTICE N
 		JOIN MEMBER USING (USER_NO)
 		WHERE NOTICE_TYPE = '이벤트'
-		Order by USER_NO ${sortType};
+		Order by NOTICE_NO ${sortType};
 	</select>
 	
 	<select id="getNoticeSearchEvent" resultMap="noticeResult">
@@ -590,7 +590,7 @@
 		WHERE NOTICE_TYPE = '이벤트'
 			AND (CAST(NOTICE_NO AS TEXT) LIKE '%' || #{keyword} || '%' 
 			OR NOTICE_TITLE LIKE '%' || #{keyword} || '%')
-		Order by USER_NO ${sortType};
+		Order by NOTICE_NO ${sortType};
 	</select>
 	
 	<!-- 공지사항 -->
@@ -599,7 +599,7 @@
 		FROM NOTICE N
 		JOIN MEMBER USING (USER_NO)
 		WHERE NOTICE_TYPE = '공지'
-		Order by USER_NO ${sortType};
+		Order by NOTICE_NO ${sortType};
 	</select>
 	
 	<select id="getNoticeSearchBoard" resultMap="noticeResult">

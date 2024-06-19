@@ -25,10 +25,14 @@ public interface MainService {
 	ArrayList<Member> MemberList(int clubNo);
 	
 	//챌린지, 클럽
-	ArrayList<Club> getSocialing(PageInfo pi);
+	ArrayList<Club> getSocialing(PageInfo ci);
+	ArrayList<Club> getSocialRank(PageInfo ri);
+	ArrayList<Club> getSocialView(PageInfo fi);
 	
-	ArrayList<Club> getChallenge(PageInfo pi);
-
+	ArrayList<Club> getChallenge(PageInfo ci);
+	ArrayList<Club> getChallRank(PageInfo ri);
+	ArrayList<Club> getChallView(PageInfo fi);
+	
     int getReviewCount(int clubNo);
 
 	int getPickedCount(int clubNo);
