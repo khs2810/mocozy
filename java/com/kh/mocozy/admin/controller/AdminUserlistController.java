@@ -62,7 +62,6 @@ public class AdminUserlistController {
 			
 			//멤버 리스트 불러오기
 			ArrayList<Member> mlist = auService.insertManagerSearchList(map, mi);
-	    	System.out.println("mlist: " + mlist);
 			return new Gson().toJson(mlist);
 	    }	
 		
@@ -72,9 +71,6 @@ public class AdminUserlistController {
 	        HashMap<String, Object> map = new HashMap<>();
 	        map.put("admin", admin);
 	        map.put("userNo", userNo);
-	        
-	        System.out.println(admin);
-	        System.out.println(userNo);
 	        
 	        int result = auService.ManagerstatusAjax(map); 
 	        

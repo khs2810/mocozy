@@ -61,7 +61,6 @@ public class AdminNoticeServiceImpl implements AdminNoticeService{
 	//배너 리스트
 	@Override
 	public ArrayList<Notice> getNoticeBanner(PageInfo ni) {
-		System.out.println("service: " + ni);
 		return anDao.getNoticeBanner(sqlSession, ni);
 	}
 	

@@ -59,14 +59,11 @@ function searchFormAjax() {
         url: "searchFormAjax.sc",
         data: {rpage: rpage++, keyword: keyword},
         success: function(list) {
-            console.log(list);
 
         drawClublist(list);    
             // 서버에서 반환된 데이터를 사용하여 새로운 'contentcard'를 생성하고 페이지에 추가.
-            console.log("AJAX 요청 성공");
         },
         error: function() {
-            console.log("AJAX 요청 실패");
         }
     });
 }
@@ -76,14 +73,11 @@ function searchPickAjax() {
         url: "searchPickAjax.sc",
         data: {rpage: rpage++, keyword: keyword},
         success: function(list) {
-            console.log(list);
 
         drawClublist(list);    
             // 서버에서 반환된 데이터를 사용하여 새로운 'contentcard'를 생성하고 페이지에 추가.
-            console.log("AJAX 요청 성공");
         },
         error: function() {
-            console.log("AJAX 요청 실패");
         }
     });
 }
@@ -93,14 +87,11 @@ function searchViewAjax() {
         url: "searchViewAjax.sc",
         data: {rpage: rpage++, keyword: keyword},
         success: function(list) {
-            console.log(list);
 
         drawClublist(list);    
             // 서버에서 반환된 데이터를 사용하여 새로운 'contentcard'를 생성하고 페이지에 추가.
-            console.log("AJAX 요청 성공");
         },
         error: function() {
-            console.log("AJAX 요청 실패");
         }
     });
 }

@@ -65,14 +65,6 @@ public class MainController {
             e.printStackTrace();
         }
 	   }
-	
-	    // 클럽 리스트를 createDate가 최신인 순으로 정렬
-	    Collections.sort(clist, new Comparator<Club>() {
-	        @Override
-	        public int compare(Club c1, Club c2) {
-	            return c2.getCreateDate().compareTo(c1.getCreateDate());
-	        }
-	    });
 	    
 	  //소셜링 불러오기
 	    ArrayList<Club> rlist = mService.getSocialRank(ri);
