@@ -13,7 +13,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -290,6 +289,18 @@ public class MemberController {
 
 		return "member/terms";
 	}
+	
+//	개인정보 약관동의 
+	@RequestMapping("privacy-policy")
+    public String showPrivacyPolicy() {
+        return "member/privacy policy";
+    }
+	
+//	서비스 약관동의 
+	@RequestMapping("serviceTerms")
+    public String serviceTerms() {
+        return "member/serviceTerms";
+    }
 
 	@RequestMapping("insert.me")
 	public String insertMember(Member m, HttpSession session, Model model) {
@@ -350,5 +361,7 @@ public class MemberController {
 				}
 			}
 		}
+		
+
 
 }

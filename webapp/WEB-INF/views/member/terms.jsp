@@ -14,7 +14,9 @@
 <body class="Login_page">
     <form action="insert.me">
         <div class="Login-content">
+          <a href="${pageContext.request.contextPath}">
             <img src="${pageContext.request.contextPath}/resources/koo/upfile/loginPage_img/logo.png" id="logo" alt="">
+          </a>
                 <h1>
                     서비스 이용을 위해<br>
                     약관에 동의해주세요.
@@ -26,12 +28,12 @@
 
                 <div class="checked-content">
                     <span class="bi bi-square custom-checkbox checkbox" data-id="checkbox-2"> 서비스 이용약관 (필수)</span>
-                    <a href="./serviceTerms.html" target='_blank'>보기</a>
+                    <a href="serviceTerms" target="_blank">보기</a>
                 </div>
                 <br>
                 <div class="checked-content">
                     <span class="bi bi-square custom-checkbox checkbox" data-id="checkbox-3"> 개인정보처리방침 (필수)</span>
-                    <a href="./privacy policy.html" target='_blank'>보기</a>
+                    <a href="privacy-policy" target="_blank">보기</a>
                 </div>
                 <br>
                 <div>
