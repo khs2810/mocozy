@@ -204,6 +204,16 @@ li {
   margin-right: 6px;
 }
 
+.searchPage .contentcard .tag.clubType소셜링 {
+  background-color: #70C9A0;
+  color: #fff;
+}
+
+.searchPage .contentcard .tag.clubType챌린지 {
+  background-color: #9BCFFF;
+  color: #fff;
+}
+
 .searchPage .contentcard .tagone{
   background-color: #dddddd;
   color: #666060;

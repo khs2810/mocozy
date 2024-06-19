@@ -48,7 +48,7 @@
       if (keyword) {
         adminNoticeSearchAjax(keyword, sortType, noticeType);
       } else {
-        adminNoticeAjax(noticeType);
+        adminNoticeAjax(noticeType, sortType);
       }
     }
 
@@ -134,8 +134,7 @@ function renderNoticelist(nlist) {
 
                                 <td class="state on-click"><a
 																	data-toggle="dropdown"> 
-                                  <div style="text-align: left; width: 80px; overflow: hidden; text-overflow: ellipsis;
-                                    white-space: nowrap;">${notice.bannerPath}</div>
+                                  <div style="margin-left: 30px;">${notice.bannerPath ? 'Y' : 'N'}</div>
 																</a></td>
 
 																<td class="r-date text-12">${notice.modifyDate}</td>
@@ -176,6 +175,9 @@ function adminNoticeAjax(noticeType) {
 
     // AJAX 요청을 처리하는 함수
 function adminNoticeSearchAjax(keyword, sortType, noticeType) {
+  console.log("keyword", keyword);
+  console.log("sortType", sortType);
+  console.log("noticeType", noticeType);
   $.ajax({
       url: 'adminNoticeSearchAjax.ad',
       //cpage와 sortType을 같이 보내줌
@@ -189,6 +191,7 @@ function adminNoticeSearchAjax(keyword, sortType, noticeType) {
             alert("검색 결과가 없습니다");
           } else {
           // AJAX 요청이 성공하면 페이지를 그리는 함수를 호출  
+          renderNoticelist(nlist);
       }
     },
       error: function(){

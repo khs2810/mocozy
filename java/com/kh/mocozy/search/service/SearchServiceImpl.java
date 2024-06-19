@@ -22,26 +22,15 @@ public class SearchServiceImpl implements SearchService{
 	
 	
 	@Override
-	public ArrayList<Club> selectSearchList(HashMap<String, String> map, PageInfo re) {
-		return sDao.selectSearchList(sqlSession, map, re);
-	}
-	
-	@Override
-	public ArrayList<Club> selectSearchPick(HashMap<String, String> map, PageInfo re) {
-		return sDao.selectSearchPick(sqlSession, map, re);
-	}
-	
-	@Override
-	public ArrayList<Club> selectSearchView(HashMap<String, String> map, PageInfo re) {
-		return sDao.selectSearchView(sqlSession, map, re);
-	}
-	
-	//검색
-	@Override
-	public int searchForm(HashMap<String, String> map){
+	public int searchForm(HashMap<String, String> map) {
 		return sDao.searchForm(sqlSession, map);
 	}
-	
+
+	@Override
+	public ArrayList<Club> searchFormAjax(HashMap<String, String> map, PageInfo re) {
+		return sDao.searchFormAjax(sqlSession, map, re);
+	}
+
 	@Override
 	public ArrayList<Member> MemberList(int clubNo) {
 		ArrayList<Member> result = sDao.MemberList(sqlSession, clubNo);

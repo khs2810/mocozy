@@ -41,7 +41,7 @@
 
 									<div class="info">
 										<div class="subject">
-											<div class="tag">${club.clubType}</div>
+											<div class="tag tagChallenge">${club.clubType}</div>
 											<div class="tagone">${club.categoryName1}</div>
 											<div class="tagtwo">${club.categoryName2}</div>
 										</div>
@@ -60,30 +60,15 @@
 
 										<div class="participant">
 											<c:if test="${not empty club.profileImg}">
-												<img class="people"
-													src="${club.profileImg[0]}" />
+												<img class="people" src="${club.profileImg[0]}" />
 											</c:if>
-
+										
 											<div class="profileimglist">
-												<c:if test="${club.profileImg.size() >= 5}">
-													<c:forEach var="clubMember" items="${club.profileImg}"
-														begin="2" end="4">
-														<img class="cardImg"
-															src="${clubMember}" />
+												<c:if test="${club.profileImg.size() >= 2}">
+													<c:forEach var="clubMember" items="${club.profileImg}" begin="1" end="${club.profileImg.size() - 1}">
+														<img class="cardImg" src="${clubMember}" />
 													</c:forEach>
 												</c:if>
-												<c:choose>
-													<c:when test="${club.profileImg.size() eq 1}">
-													</c:when>
-													<c:when
-														test="${1 < club.profileImg.size() && club.profileImg.size() < 5}">
-														<c:forEach var="clubMember" items="${club.profileImg}"
-															begin="2" end="${club.profileImg.size() - 1}">
-															<img class="cardImg"
-																src="${clubMember}" />
-														</c:forEach>
-													</c:when>
-												</c:choose>
 											</div>
 
 											<div class="socialmember">
@@ -91,7 +76,7 @@
 													  <path d="M8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71z"/>
 													  <path d="M8 16A8 8 0 1 0 8 0a8 8 0 0 0 0 16m7-8A7 7 0 1 1 1 8a7 7 0 0 1 14 0"/>
 													</svg>
-												<div class="count">${club.createDate}</div>
+												<div class="count">${club.createDateStr}</div>
 											</div>
 										</div>
 									</div>
@@ -112,7 +97,7 @@
 				<div class="screenheader">
 					<h1 class="title">다수가 본 최다 조회수 HOT 클래스 🔥</h1>
 					<div class="selectBox">
-						<a href="cateView.ct?key=${'챌린지'}">모두보기</a>
+						<a href="cateView.ct?key=챌린지&order=club_no">모두보기</a>
 					</div>
 				</div>
 
@@ -125,7 +110,7 @@
 
 									<div class="info">
 										<div class="subject">
-											<div class="tag">${club.clubType}</div>
+											<div class="tag tagChallenge">${club.clubType}</div>
 											<div class="tagone">${club.categoryName1}</div>
 											<div class="tagtwo">${club.categoryName2}</div>
 										</div>
@@ -139,35 +124,20 @@
 											 <path
 													d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6" />
 										</svg>
-											${club.address} · ${club.eventDate}
+											${club.address} · ${club.eventDateStr}
 										</div>
 
 										<div class="participant">
 											<c:if test="${not empty club.profileImg}">
-												<img class="people"
-													src="${club.profileImg[0]}" />
+												<img class="people" src="${club.profileImg[0]}" />
 											</c:if>
-
+										
 											<div class="profileimglist">
-												<c:if test="${club.profileImg.size() >= 5}">
-													<c:forEach var="clubMember" items="${club.profileImg}"
-														begin="2" end="4">
-														<img class="cardImg"
-															src="${clubMember}" />
+												<c:if test="${club.profileImg.size() >= 2}">
+													<c:forEach var="clubMember" items="${club.profileImg}" begin="1" end="${club.profileImg.size() - 1}">
+														<img class="cardImg" src="${clubMember}" />
 													</c:forEach>
 												</c:if>
-												<c:choose>
-													<c:when test="${club.profileImg.size() eq 1}">
-													</c:when>
-													<c:when
-														test="${1 < club.profileImg.size() && club.profileImg.size() < 5}">
-														<c:forEach var="clubMember" items="${club.profileImg}"
-															begin="2" end="${club.profileImg.size() - 1}">
-															<img class="cardImg"
-																src="${clubMember}" />
-														</c:forEach>
-													</c:when>
-												</c:choose>
 											</div>
 
 											<div class="socialmember">

@@ -44,24 +44,10 @@ public class CateDao {
 			return (ArrayList)sqlSession.selectList("cateMapper.selectCateFilter", map, rowBounds);
 		}
 
-		public ArrayList<Club> catePick(SqlSessionTemplate sqlSession, Map<String, String> map, PageInfo pi) {
+		public ArrayList<Club> selectCatePick(SqlSessionTemplate sqlSession, Map<String, String> map, PageInfo pi) {
 			int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
 			
 			RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-			return (ArrayList)sqlSession.selectList("cateMapper.catePick", map, rowBounds);
-		}
-		
-		public ArrayList<Club> cateRecent(SqlSessionTemplate sqlSession, Map<String, String> map, PageInfo pi) {
-			int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
-			
-			RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-			return (ArrayList)sqlSession.selectList("cateMapper.cateRecent", map, rowBounds);
-		}
-		
-		public ArrayList<Club> cateView(SqlSessionTemplate sqlSession, Map<String, String> map, PageInfo pi) {
-			int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
-			
-			RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-			return (ArrayList)sqlSession.selectList("cateMapper.cateView", map, rowBounds);
+			return (ArrayList)sqlSession.selectList("cateMapper.selectCatePick", map, rowBounds);
 		}
 	}

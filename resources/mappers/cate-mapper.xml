@@ -160,7 +160,7 @@
 	    Order by ${order} DESC;
 	</select>
 	
-	<select id="catePick" resultMap="clubResult">
+	<select id="selectCatePick" resultMap="clubResult">
 			   SELECT CLUB_NO,
 		       USER_NO,
 		       CLUB_TITLE,
@@ -186,64 +186,6 @@
 		FROM public.CLUB
 		JOIN MEMBER USING (USER_NO)
 		WHERE public.CLUB.STATUS = 'Y' AND club_type = #{key}
-		ORDER BY pickCount DESC;
-	</select>
-	
-		<select id="cateRecent" resultMap="clubResult">
-			   SELECT CLUB_NO,
-		       USER_NO,
-		       CLUB_TITLE,
-		       CLUB_TYPE,
-		       CLUB_CONTENT,
-		       ADDRESS,
-		       ADDRESS_DETAIL,
-		       EVENT_DATE, 
-		       COST,
-		       COST_INFO, 
-		       TOTAL_POINT, 
-		       CAPACITY, 
-		       ONLINE,
-		       QUESTION,
-		       THUMBNAIL_IMG,
-		       CREATE_DATE,
-		       CLUB.MODIFY_DATE,
-		       COUNT,
-		       NICKNAME,
-		       category_name1,
-		       category_name2,
-		       (SELECT COUNT(*) FROM picked WHERE CLUB_NO = CLUB.CLUB_NO) AS pickCount
-		FROM public.CLUB
-		JOIN MEMBER USING (USER_NO)
-		WHERE public.CLUB.STATUS = 'Y' AND club_type = #{key}
-		ORDER BY club_no DESC;
-	</select>
-	
-		<select id="cateView" resultMap="clubResult">
-			   SELECT CLUB_NO,
-		       USER_NO,
-		       CLUB_TITLE,
-		       CLUB_TYPE,
-		       CLUB_CONTENT,
-		       ADDRESS,
-		       ADDRESS_DETAIL,
-		       EVENT_DATE, 
-		       COST,
-		       COST_INFO, 
-		       TOTAL_POINT, 
-		       CAPACITY, 
-		       ONLINE,
-		       QUESTION,
-		       THUMBNAIL_IMG,
-		       CREATE_DATE,
-		       CLUB.MODIFY_DATE,
-		       COUNT,
-		       NICKNAME,
-		       category_name1,
-		       category_name2,
-		       (SELECT COUNT(*) FROM picked WHERE CLUB_NO = CLUB.CLUB_NO) AS pickCount
-		FROM public.CLUB
-		JOIN MEMBER USING (USER_NO)
-		WHERE public.CLUB.STATUS = 'Y' AND club_type = #{key}
-		ORDER BY count DESC;
+		ORDER BY ${order} DESC;
 	</select>
 </mapper>

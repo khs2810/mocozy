@@ -325,9 +325,9 @@
 												<ul class="list list-preview">
 													<c:if test="${not empty nlist}">
 														<li class="tile"><a
-															class="tile-content contents-item" href="detail.no?nno=${notice.noticeNo}">
+															class="tile-content contents-item" href="detail.no?nno=${nlist[0].noticeNo}">
 																<div class="tile-text">
-																	<div>
+																	<div style="width: 60%;">
 																		<strong>${nlist[0].noticeTitle}</strong> <span
 																			class="tile-content">${nlist[0].noticeContent}</span>
 																	</div>

@@ -52,7 +52,7 @@
 
 									<div class="info">
 										<div class="subject">
-											<div class="tag">${club.clubType}</div>
+											<div class="tag "${club.clubType eq '소셜링' ? 'clubType소셜링' : 'clubType챌린지'}">${club.clubType}</div>
 											<div class="tagone">${club.categoryName1}</div>
 											<div class="tagtwo">${club.categoryName2}</div>
 										</div>

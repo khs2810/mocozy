@@ -6,6 +6,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -37,248 +39,50 @@ public class SearchController {
 
 		HashMap<String, String> map = new HashMap<>();
 		map.put("keyword", keyword);
-
-		//키워드로 검색한 클럽 수 + 키워드에 맞는 클럽 호출
-		int clubCount = sService.searchForm(map);
-
-		PageInfo re = Pagination.getPageInfo(clubCount, currentPage, 4, 4);
-		ArrayList<Club> clist = sService.selectSearchList(map, re);
-
-		for (Club c : clist){
-			ArrayList<Member> memberList = sService.MemberList(c.getClubNo());
-			ArrayList<String> imgs = new ArrayList<String>();
-			for (Member m : memberList) {
-				imgs.add(m.getProfileImg());
-			}
-			c.setProfileImg(imgs);    
-		    
-		    // createDate 형식 변경
-	        SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-	        try {
-	            Date date = originalFormat.parse(c.getCreateDate().toString());
-	            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-	            c.setCreateDate(sqlDate);
-	        } catch (ParseException | java.text.ParseException e) {
-	            e.printStackTrace();
-	        }
-		 }
 		
+		int clubCount = sService.searchForm(map);
 	    //이벤트 가져오기
 	    ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
-	    // 각 Notice 객체에서 noticeNo 가져오기
-	    for (Notice notice : getnoticeBanner) {
-	        int noticeNo = notice.getNoticeNo();
-	        String bannerPath = notice.getBannerPath();
-	    }
 	    
-		model.addAttribute("clist", clist);
-		model.addAttribute("re", re);
 		model.addAttribute("keyword", keyword);
-		
+		model.addAttribute("clubCount", clubCount);
 		model.addAttribute("getnoticeBanner", getnoticeBanner);
-		
-		if (clubCount == 0) { //검색결과 없음
-			return "search/searchError";
-		} else { //검색결과있음
-			return "search/searchMain";
-		}
+		return "search/searchMain";
 	}
 
 	//검색
 	@ResponseBody
 	@GetMapping(value="searchFormAjax.sc", produces="application/json; charset=UTF-8")
-	public String searchFormAjax(@RequestParam("keyword") String keyword, @RequestParam("rpage") int currentPage, Model model) {
+	public String searchFormAjax(@RequestParam("keyword") String keyword, @RequestParam("rpage") int currentPage, String order, Model model, HttpSession session) {
 
-		HashMap<String, String> map = new HashMap<>();
-		map.put("keyword", keyword);
-
-		//키워드로 검색한 클럽 수 + 키워드에 맞는 클럽 호출
-		int clubCount = sService.searchForm(map);
-
-		PageInfo re = Pagination.getPageInfo(clubCount, currentPage, 4, 4);
-		ArrayList<Club> clist = sService.selectSearchList(map, re);
-
-		for (Club c : clist){
-			ArrayList<Member> memberList = sService.MemberList(c.getClubNo());
-			ArrayList<String> imgs = new ArrayList<String>();
-			for (Member m : memberList) {
-				imgs.add(m.getProfileImg());
-			}
-			c.setProfileImg(imgs);    
-		    
-		    // createDate 형식 변경
-	        SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
-	        try {
-	            Date date = originalFormat.parse(c.getCreateDate().toString());
-	            java.sql.Date sqlDate = new java.sql.Date(date.getTime());
-	            c.setCreateDate(sqlDate);
-	        } catch (ParseException | java.text.ParseException e) {
-	            e.printStackTrace();
+	    HashMap<String, String> map = new HashMap<>();
+	    map.put("keyword", keyword);
+	    map.put("order", order);
+	    
+	    // 키워드로 검색한 클럽 수 + 키워드에 맞는 클럽 호출
+	    int clubCount = sService.searchForm(map);
+	    PageInfo re = Pagination.getPageInfo(clubCount, currentPage, 8, 8);
+	    
+	    if (clubCount > 0) {
+	        ArrayList<Club> clist = sService.searchFormAjax(map, re);
+	        for (Club c : clist) {
+	            ArrayList<Member> memberList = sService.MemberList(c.getClubNo());
+	            ArrayList<String> imgs = new ArrayList<>();
+	            for (Member m : memberList) {
+	                imgs.add(m.getProfileImg());
+	            }
+	            c.setProfileImg(imgs);
 	        }
-		 }
-		
-	    //이벤트 가져오기
-	    ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
-	    // 각 Notice 객체에서 noticeNo 가져오기
-	    for (Notice notice : getnoticeBanner) {
-	        int noticeNo = notice.getNoticeNo();
-	        String bannerPath = notice.getBannerPath();
+	        return new Gson().toJson(clist); // 검색된 클럽 수를 JSON으로 반환
+	    } else if (clubCount == 0) {
+	        session.setAttribute("alertMsg", "검색 결과가 없습니다");
+	    } else {
+	        model.addAttribute("errorMsg", "검색 실패");
+	        return "common/errorPage"; // 그 외의 경우 에러 페이지를 반환
 	    }
-	    
-		model.addAttribute("clist", clist);
-		model.addAttribute("re", re);
-		model.addAttribute("keyword", keyword);
-		model.addAttribute("getnoticeBanner", getnoticeBanner);
-		
-		return new Gson().toJson(clist);
+	    return new Gson().toJson(clubCount); // 검색된 클럽 수를 JSON으로 반환
 	}
-	
-	/* --------------------- */
-
-	//찜순
-	@GetMapping("searchPick.sc")
-	public String searchFormPick(@RequestParam("keyword") String keyword, @RequestParam("rpage") int currentPage, Model model) {
-		HashMap<String, String> map = new HashMap<>();
-		map.put("keyword", keyword);
-
-		//키워드로 검색한 클럽 수 + 키워드에 맞는 클럽 호출
-		int clubCount = sService.searchForm(map);
-
-		PageInfo re = Pagination.getPageInfo(clubCount, currentPage, 4, 4);
-		ArrayList<Club> clist = sService.selectSearchPick(map, re);
-
-		for (Club c : clist){
-			ArrayList<Member> memberList = sService.MemberList(c.getClubNo());
-			ArrayList<String> imgs = new ArrayList<String>();
-			for (Member m : memberList) {
-				imgs.add(m.getProfileImg());
-			}
-			c.setProfileImg(imgs);
-		}
-		
-	    //이벤트 가져오기
-	    ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
-	    // 각 Notice 객체에서 noticeNo 가져오기
-	    for (Notice notice : getnoticeBanner) {
-	        int noticeNo = notice.getNoticeNo();
-	        String bannerPath = notice.getBannerPath();
-	    }
-	    
-		model.addAttribute("clist", clist);
-		model.addAttribute("re", re);
-		model.addAttribute("keyword", keyword);
-		model.addAttribute("getnoticeBanner", getnoticeBanner);
-		
-		if (clubCount == 0) { //검색결과 없음
-			return "search/searchError";
-		} else { //검색결과있음
-			return "search/searchPick";
-		}
-	}
-
-	//찜순Ajax
-	@ResponseBody
-	@GetMapping(value="searchPickAjax.sc", produces="application/json; charset=UTF-8")
-	public String searchPickAjax(@RequestParam("keyword") String keyword, @RequestParam("rpage") int currentPage, Model model) {
-
-		HashMap<String, String> map = new HashMap<>();
-		map.put("keyword", keyword);
-
-		//키워드로 검색한 클럽 수 + 키워드에 맞는 클럽 호출
-		int clubCount = sService.searchForm(map);
-
-		PageInfo re = Pagination.getPageInfo(clubCount, currentPage, 4, 4);
-		ArrayList<Club> clist = sService.selectSearchPick(map, re);
-
-		for (Club c : clist){
-			ArrayList<Member> memberList = sService.MemberList(c.getClubNo());
-			ArrayList<String> imgs = new ArrayList<String>();
-			for (Member m : memberList) {
-				imgs.add(m.getProfileImg());
-			}
-			c.setProfileImg(imgs);    
-		}
-		
-		model.addAttribute("clist", clist);
-		model.addAttribute("re", re);
-		model.addAttribute("keyword", keyword);
-
-		return new Gson().toJson(clist);
-	}
-
-	/* --------------------- */
-
-	//조회순
-	@GetMapping("searchView.sc")
-	public String searchView(@RequestParam("keyword") String keyword, @RequestParam("rpage") int currentPage, Model model) {
-		HashMap<String, String> map = new HashMap<>();
-		map.put("keyword", keyword);
-
-		//키워드로 검색한 클럽 수 + 키워드에 맞는 클럽 호출
-		int clubCount = sService.searchForm(map);
-
-		PageInfo re = Pagination.getPageInfo(clubCount, currentPage, 4, 4);
-		ArrayList<Club> clist = sService.selectSearchView(map, re);
-
-		for (Club c : clist){
-			ArrayList<Member> memberList = sService.MemberList(c.getClubNo());
-			ArrayList<String> imgs = new ArrayList<String>();
-			for (Member m : memberList) {
-				imgs.add(m.getProfileImg());
-			}
-			c.setProfileImg(imgs);    
-		}
-		
-	    //이벤트 가져오기
-	    ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
-	    // 각 Notice 객체에서 noticeNo 가져오기
-	    for (Notice notice : getnoticeBanner) {
-	        int noticeNo = notice.getNoticeNo();
-	        String bannerPath = notice.getBannerPath();
-	    }
-	    
-		model.addAttribute("clist", clist);
-		model.addAttribute("re", re);
-		model.addAttribute("keyword", keyword);
-		model.addAttribute("getnoticeBanner", getnoticeBanner);
-		
-		if (clubCount == 0) { //검색결과 없음
-			return "search/searchError";
-		} else { //검색결과있음
-			return "search/searchView";
-		}
-	}
-
-	//조회순Ajax
-	@ResponseBody
-	@GetMapping(value="searchViewAjax.sc", produces="application/json; charset=UTF-8")
-	public String searchViewAjax(@RequestParam("keyword") String keyword, @RequestParam("rpage") int currentPage, Model model) {
-
-		HashMap<String, String> map = new HashMap<>();
-		map.put("keyword", keyword);
-
-		//키워드로 검색한 클럽 수 + 키워드에 맞는 클럽 호출
-		int clubCount = sService.searchForm(map);
-
-		PageInfo re = Pagination.getPageInfo(clubCount, currentPage, 4, 4);
-		ArrayList<Club> clist = sService.selectSearchView(map, re);
-
-		for (Club c : clist){
-			ArrayList<Member> memberList = sService.MemberList(c.getClubNo());
-			ArrayList<String> imgs = new ArrayList<String>();
-			for (Member m : memberList) {
-				imgs.add(m.getProfileImg());
-			}
-			c.setProfileImg(imgs);    
-		}
-		
-		model.addAttribute("clist", clist);
-		model.addAttribute("re", re);
-		model.addAttribute("keyword", keyword);
-
-		return new Gson().toJson(clist);
-	}
-}	
+}
 
 
 

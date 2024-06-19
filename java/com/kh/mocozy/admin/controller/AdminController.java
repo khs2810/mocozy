@@ -81,10 +81,19 @@ public class AdminController {
             }
         }
         
+	    //이벤트 가져오기
+	    ArrayList<Notice> getNlist = anService.getNoticeAllList();
+	    // 각 Notice 객체에서 noticeNo 가져오기
+	    for (Notice notice : getNlist) {
+	        int noticeNo = notice.getNoticeNo();
+	    }
+	    
 		model.addAttribute("nlist", nlist);
 		model.addAttribute("mlist", mlist);
 		model.addAttribute("clist", clist);
-
+		
+	    model.addAttribute("getNlist", getNlist);
+	    
 	    return "admin/admin";
     }
 	
