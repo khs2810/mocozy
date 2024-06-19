@@ -25,7 +25,7 @@
                     <span> 님</span>
                 </div>
                 <div class="m-manner">
-                    <img src="${pageContext.request.contextPath}/resources/koo/upfile/myPage_img/로고-떡떡떡.png" class="m-logo-area">
+                    <img id="mocozy-logo" src="${pageContext.request.contextPath}/resources/koo/upfile/myPage_img/로고-떡떡떡.png" class="m-logo-area">
                     <div class="m-manner-area">
                         <span>매너 점수</span>
                         <div class="m-manner-score-area">
