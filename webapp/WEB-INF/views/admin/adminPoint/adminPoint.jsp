@@ -134,7 +134,7 @@
 												<input type="hidden" name="adminNo" value="${loginUser.userNo}">
 												<label class="col-sm-2 control-label">포인트액</label>
 												<div class="col-sm-8">
-													<div class="input-group" style="line-height: 2;">
+													<div class="input-group" style="line-height: 2; display: flex;">
 														<div class="input-group-content width-3" style="padding-right: 15px;">
 															<select class="form-control static dirty" name="pointType">
 																<option value="plus">지급</option>
