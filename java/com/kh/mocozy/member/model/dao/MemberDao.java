@@ -18,6 +18,11 @@ public class MemberDao {
 		return sqlSession.selectOne("memberMapper.loginMember", m);
 	}
 	
+	//nickName 중복체크
+	public int nickNameCheck(SqlSessionTemplate sqlSession, String checkNickName) {
+		return sqlSession.selectOne("memberMapper.nickNameCheck", checkNickName);
+	}
+	
 	//id 중복체크
 	public int idCheck(SqlSessionTemplate sqlSession, String checkId) {
 		return sqlSession.selectOne("memberMapper.idCheck", checkId);
@@ -101,6 +106,5 @@ public class MemberDao {
     public Member findUserByEmail(SqlSessionTemplate sqlSession, String email) {
         return sqlSession.selectOne("memberMapper.findUserByEmail", email);
 	}
-	
-	
+
 }

@@ -120,6 +120,21 @@ public class MemberController {
 		return "member/signInPage";
 	}
 
+// nickName ajax요청을 받아줄 controller
+	@ResponseBody
+	@RequestMapping("nickCheck.me")
+	public String nickNameCheck(@RequestParam("nickName") String checkNickName) {
+		System.out.println("checkNickName : " + checkNickName);
+		int result = memberService.nickNameCheck(checkNickName);
+		System.out.println("중복된 닉네임 갯수 : " + result);
+		if (result > 0) {// 이미존재한다면
+			return "NNNNN";
+		} else { // 존재하지않는다면
+			return "NNNNY";
+		}
+
+	}
+	
 	// idCheck ajax요청을 받아줄 controller
 	@ResponseBody
 	@RequestMapping("idCheck.me")
