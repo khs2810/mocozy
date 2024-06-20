@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+	<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 	<!DOCTYPE html>
 	<html lang="ko">
 	
@@ -97,7 +98,7 @@
 											<a href="javascript:void(0);" style="display: block;" id="selectDateRangeType">
 												<select>
 													<span class="caret"></span>
-													<option>주별 통계</option>
+													<option>전체 통계</option>
 													<option>월별 통계</option>
 													<option>시간별 통계</option>
 													<option>제품별 통계</option>
@@ -137,7 +138,6 @@
 								</div>
 							</div>
 	
-	
 							<div class="row">
 								<div class="col-md-12">
 									<div class="card">
@@ -146,7 +146,96 @@
 											<div class="table-responsive">
 												<div class="li-table">
 													<ul class="subject">
-														<!-- 여기 데이터는 입맛대로 수정하세요-->
+														<li class="date">충전 내역</li>
+														<li class="nick"></li>
+														<li class="data"></li>
+														<li class="order">충전 건수</li>
+														<li class="stz text-right">총 충전 포인트</li>
+														<li class="balance text-right">총 충전 금액</li>
+													</ul>
+														<ul class="subject ">
+															<li class="date"></li>
+															<li class="nick"></li>
+															<li class="data"></li>
+															<li class="order">${sumPoint.count}</li>
+															<li class="stz text-right"><fmt:formatNumber value="${sumPoint.sumPoint}" pattern="#,###"/>pt</li>
+															<li class="balance text-right"><fmt:formatNumber value="${sumPoint.sumPoint}" pattern="#,###"/>원</li>
+														</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-12">
+									<div class="card">
+	
+										<div class="card-body no-padding">
+											<div class="table-responsive">
+												<div class="li-table">
+													<ul class="subject">
+														<li class="date">사용 내역</li>
+														<li class="nick"></li>
+														<li class="data"></li>
+														<li class="order">사용 건수</li>
+														<li class="stz text-right">총 사용 포인트</li>
+														<li class="balance text-right">총 사용 금액</li>
+													</ul>
+														<ul class="subject ">
+															<li class="date"></li>
+															<li class="nick"></li>
+															<li class="data"></li>
+															<li class="order">${sumPoint.count}</li>
+															<li class="stz text-right"><fmt:formatNumber value="${sumPoint.sumPoint}" pattern="#,###"/>pt</li>
+															<li class="balance text-right"></li>
+														</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-12">
+									<div class="card">
+	
+										<div class="card-body no-padding">
+											<div class="table-responsive">
+												<div class="li-table">
+													<ul class="subject">
+														<li class="date">출금 내역</li>
+														<li class="nick"></li>
+														<li class="data"></li>
+														<li class="order">출금 건수</li>
+														<li class="stz text-right">총 출금 포인트</li>
+														<li class="balance text-right">총 출금 금액</li>
+													</ul>
+														<ul class="subject ">
+															<li class="date"></li>
+															<li class="nick"></li>
+															<li class="data"></li>
+															<li class="order">${sumPoint.count}</li>
+															<li class="stz text-right"><fmt:formatNumber value="${sumPoint.sumPoint}" pattern="#,###"/>pt</li>
+															<li class="balance text-right"><fmt:formatNumber value="${sumPoint.sumPoint}" pattern="#,###"/>원</li>
+														</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="row">
+								<div class="col-md-12">
+									<div class="card">
+	
+										<div class="card-body no-padding">
+											<div class="table-responsive">
+												<div class="li-table">
+													<ul class="subject">
 														<li class="date">날짜</li>
 														<li class="nick">구매건수</li>
 														<li class="data">구매금액</li>
@@ -162,13 +251,13 @@
 															<li class="stz text-right">30,0000,0000</li>
 															<li class="balance text-right">400,0000,0000</li>
 														</ul>
-
-												</div><!--end.li-table-->
+												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
+							
 						</form>
 					</div>
 				</section>

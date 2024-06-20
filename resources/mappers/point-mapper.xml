@@ -26,6 +26,11 @@
 		<result column="STATUS" property="status"/>
 	</resultMap>
 	
+	<resultMap type="SumPointDTO" id="sumPointDTOResult">
+		<result column="count" property="count"/>
+		<result column="sumPoint" property="sumPoint"/>
+	</resultMap>
+	
 	<insert id="insertPayment">
 		INSERT INTO
 				PAYMENT (
@@ -237,4 +242,9 @@
 		where payment_no = #{paymentNo}
 	</update>
 	
+	<select id="sumAllChargePoint" resultMap="sumPointDTOResult">
+		select count(*) as count, sum(point) as sumPoint
+		from point
+		where status = #{stauts}
+	</select>
 </mapper>

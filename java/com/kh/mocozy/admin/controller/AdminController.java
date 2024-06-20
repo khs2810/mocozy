@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.mocozy.admin.model.dto.SumPointDTO;
 import com.kh.mocozy.admin.service.AdminClubService;
 import com.kh.mocozy.admin.service.AdminNoticeService;
 import com.kh.mocozy.admin.service.AdminService;
@@ -155,28 +156,16 @@ public class AdminController {
 	// 채팅방 번호에 해당하는 메시지 목록 조회
 	@ResponseBody
 	@GetMapping(value="/privateChat.ad/selectMessage", produces="application/json; charset=UTF-8")
-	public List<Message> selectMessageList(@RequestParam("chno") int chno) {
+	public List<Message> selectMessageList(@RequestParam("chno") int chno, Model model) {
 		return chatService.selectMessageList(chno);
 	}
 	
 	@RequestMapping("analysis.ad")
 		public String analysisPoint(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, Model model) {
-		int pointListCount = pointService.selectPointAdminListCount();
 		
-		PageInfo pi = Pagination.getPageInfo(pointListCount, currentPage, 10, 5);
+		SumPointDTO sumPoint = pointService.sumAllChargePoint("D");
 		
-		ArrayList<Point> plist = pointService.selectListPointAdmin(pi);
-		ArrayList<PointDTO> list = new ArrayList<>();
-		
-		for(Point p : plist) {
-			PointDTO pd = new PointDTO(p);
-			pd.setUserNickname(memberService.selectNicknameByUserNo(p.getUserNo()));
-			pd.setAdminNickname(memberService.selectNicknameByUserNo(p.getAdminNo()));
-			list.add(pd);
-		}
-		
-		model.addAttribute("pi", pi);
-		model.addAttribute("list", list);
+		model.addAttribute("sumPoint", sumPoint);
 		
 	    return "admin/adminPoint/adminPointAnalysis";
 	}

@@ -7,6 +7,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
+import com.kh.mocozy.admin.model.dto.SumPointDTO;
 import com.kh.mocozy.common.model.vo.PageInfo;
 import com.kh.mocozy.member.model.vo.Member;
 import com.kh.mocozy.point.model.vo.Payment;
@@ -88,6 +89,10 @@ public class PointDao {
 
 	public int cancelPayment(SqlSessionTemplate sqlSession, Payment p) {
 		return sqlSession.update("pointMapper.cancelPayment", p);
+	}
+
+	public SumPointDTO sumAllChargePoint(SqlSessionTemplate sqlSession, String status) {
+		return sqlSession.selectOne("pointMapper.sumAllChargePoint", status);
 	}
 
 }
