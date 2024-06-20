@@ -17,16 +17,18 @@
     <div id="contentBox">
         <div class="chatLists">
             <h2 class="title">내 채팅함</h2>
-            <p class="chatCategory">1:1 상담</p>
-            <div class="chatList">
-                <div class="profile">
-                    <img src="${pageContext.request.contextPath}/resources/jun/img/타노스.png" class="profileImg">
-                </div>
-                <div class="chatSimple chatWithAdmin" data-userNo="1" data-chattingNo="0">
-                    <div class="chatTitle">모꼬지 상담요원</div>
-                    <div class="chatContent">안녕하세요</div>
-                </div>
-            </div>
+            <c:if test="${adminChatNo > -1}">
+	            <p class="chatCategory">1:1 상담</p>
+	            <div class="chatList">
+	                <div class="profile">
+	                    <img src="${pageContext.request.contextPath}/resources/jun/img/타노스.png" class="profileImg">
+	                </div>
+	                <div class="chatSimple chatWithAdmin" data-userNo="1" data-chattingNo="${adminChatNo}">
+	                    <div class="chatTitle">모꼬지 상담요원</div>
+	                    <div class="chatContent">안녕하세요</div>
+	                </div>
+	            </div>
+            </c:if>
             <p class="chatCategory">모임 채팅</p>
             
            	<c:forEach var="c" items="${roomList}">

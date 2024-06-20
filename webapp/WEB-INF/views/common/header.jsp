@@ -360,7 +360,7 @@
 									</a>
 
 									<!--  1:1 채팅 -->
-									<a class="Togglelink" id="Togglelink" href="_blank"> <svg
+									<a class="Togglelink" id="Togglelink" href="adminChat.ad"> <svg
 											class="Toggleimg" xmlns="http://www.w3.org/2000/svg" width="16"
 											height="16" fill="currentColor" class="bi bi-chat-dots"
 											viewBox="0 0 16 16">
