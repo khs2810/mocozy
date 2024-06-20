@@ -48,7 +48,7 @@ public class LoginController {
 	         apiURL += "&code=" + navercode;
 	         apiURL += "&state=" + naverState;
 
-			
+	         System.out.println(3);
 			URL url = new URL(apiURL);
 			HttpURLConnection con = (HttpURLConnection)url.openConnection();
 			con.setRequestMethod("GET");
