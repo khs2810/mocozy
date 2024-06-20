@@ -9,6 +9,9 @@ function checkId(idInput){
         idReview.className = "pass";
         idReview.innerText = '사용가능한 아이디입니다.';
         submitBtn.disabled = false;
+    }
+};
+
 // 닉네임 체크
 document.addEventListener('DOMContentLoaded', function () {
     const nickNameInput = document.getElementById('nickName');
@@ -172,7 +175,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function validateForm() {
     const userIdValid = document.getElementById('id_review').className === 'pass';
-    const userNickValid = document.getElementById('nickReview').className === 'pass';
+    const userNickValid = document.getElementById('nick_Review').className === 'pass';
     const passwordValid = checkPass();
     
     if (userIdValid && passwordValid && userNickValid) {
@@ -181,4 +184,4 @@ function validateForm() {
         alert('폼을 올바르게 작성해 주세요.');
         return false;
     }
-}
+};
