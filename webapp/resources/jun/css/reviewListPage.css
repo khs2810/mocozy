@@ -123,7 +123,7 @@ nav{
     width: 100%;
 }
 
-ul {
+.mypage-navi > ul {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -134,12 +134,12 @@ ul {
     overflow: auto;
 }
 
-li {
+.mypage-navi > li {
     list-style: none;
     line-height: 34px;
 }
 
-ul li a {
+.mypage-navi > ul li a {
 display: block;
 color: #000;
 text-decoration: none;
@@ -147,12 +147,12 @@ align-content: center;
 justify-content: space-between;
 }
 
-ul li a.active {
+.mypage-navi > ul li a.active {
 background-color: #555;
 color: white;
 }
 
-ul li a:hover:not(.active) {
+.mypage-navi > ul li a:hover:not(.active) {
 background-color: #7a7a7a;
 color: white;
 }

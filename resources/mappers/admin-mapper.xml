@@ -69,7 +69,29 @@
 		<result column="STATUS" property="status" />
 		<result column="ADMIN" property="admin" />
 	</resultMap>
-
+	
+	<resultMap type="ChatRoom" id="chatRoomResult">
+		<result column="CHAT_NO" property="chatNo"/>
+		<result column="CREATE_DATE" property="createDate"/>
+		<result column="CLUB_NO" property="clubNo"/>
+		<result column="MASTER_NO" property="masterNo"/>
+		<result column="LAST_MESSAGE" property="lastMessage"/>
+		<result column="TARGET_NO" property="targetNo"/>
+		<result column="TARGET_NICKNAME" property="targetNickname"/>
+		<result column="TARGET_PROFILE" property="targetProfile"/>
+		<result column="NOT_READ_COUNT" property="notReadCount"/>
+		<result column="ROOM_TITLE" property="roomTitle"/>
+	</resultMap>
+	
+	<resultMap type="Message" id="messageResult">
+		<result column="MESSAGE_NO" property="messageNo"/>
+		<result column="MESSAGE_CONTENT" property="messageContent"/>
+		<result column="SEND_TIME" property="sendTime"/>
+		<result column="SENDER_NO" property="senderNo"/>
+		<result column="CHATROOM_NO" property="chatroomNo"/>
+		<result column="TARGET_NO" property="targetNo"/>
+	</resultMap>
+	
 <!-- psql에서 user_no like 절을 쓰려면 
 	user_no는 bigint 형태기 때문에
 	cast를 사용하여 문자열로 변환해야한다 -->
@@ -625,5 +647,12 @@
     UPDATE NOTICE
 	    SET Banner = #{banner}
 	    WHERE NOTICE.notice_no = #{noticeNo};
+	</update>
+	
+	<!-- 채팅 -->
+	<update id="chatStatus">
+	    UPDATE CHAT_ROOM
+	    SET status = #{status}
+	    WHERE chat_no = #{chatNo};
 	</update>
 </mapper>

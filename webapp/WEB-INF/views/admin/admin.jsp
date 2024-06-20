@@ -1528,18 +1528,26 @@
 										class="ma-item col-md-6 col-sm-6 col-xs-12 answers-list shopping-qna no-padding-left">
 										<div class="card flex-card">
 											<div class="card-head">
-												<header> 신규 문의</header>
-												<a href="_blank" class="dashboard-card-anchor">더보기</a>
+												<header> 신규 채팅</header>
+												<a href="adminChat.ad" class="dashboard-card-anchor">더보기</a>
 											</div>
 											<div class="card-body border-top no-data-card-body">
 												<ul class=" list list-preview">
-													<li class="tile">
-														<div class="no-data-container">
-															<img src="_blank">
-															<!-- 프로필 이미지-->
-															<p>1:1 채팅 문의가 없어요</p>
-														</div>
-													</li>
+													<c:if test="${not empty adminChatList}">
+														<li class="tile"><a
+															class="tile-content contents-item" href="privateChat.ad?chno=${adminChatList[0].chatNo}">
+																<div class="tile-text">
+																	<div style="width: 60%;">
+																		<strong>${adminChatList[0].roomTitle}</strong>
+																		<span class="tile-content">"${adminChatList[0].targetNickname}" 님과의 최근 채팅 문의입니다.</span>
+																	</div>
+																	<small class="text-12"> <span>${adminChatList[0].chatNo}</span>
+																		<span class="opacity-50 text-gray-bright margin-x-8">|</span>
+																		<span>${adminChatList[0].createDate}</span>
+																	</small>
+																</div>
+														</a></li>
+													</c:if>
 												</ul>
 											</div>
 										</div>
