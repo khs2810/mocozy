@@ -61,7 +61,7 @@
 					</c:forEach>
 				
 					<div class="plusdiv">
-					<a class="pluslink" href="catePick.ct?key=${'소셜링'}&count=pickCount">
+					<a class="pluslink" href="catePick.ct?key=${'소셜링'}&order=pickCount">
 						<button class="plusbutton">
 							인기 클럽 더보기 
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-chevron-right" viewBox="0 0 16 16">

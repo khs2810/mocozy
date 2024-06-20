@@ -128,4 +128,26 @@ public class AdminController {
 		
 	    return "admin/adminPoint/adminPoint";
     }
+	
+	@RequestMapping("analysis.ad")
+		public String analysisPoint(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, Model model) {
+		int pointListCount = pointService.selectPointAdminListCount();
+		
+		PageInfo pi = Pagination.getPageInfo(pointListCount, currentPage, 10, 5);
+		
+		ArrayList<Point> plist = pointService.selectListPointAdmin(pi);
+		ArrayList<PointDTO> list = new ArrayList<>();
+		
+		for(Point p : plist) {
+			PointDTO pd = new PointDTO(p);
+			pd.setUserNickname(memberService.selectNicknameByUserNo(p.getUserNo()));
+			pd.setAdminNickname(memberService.selectNicknameByUserNo(p.getAdminNo()));
+			list.add(pd);
+		}
+		
+		model.addAttribute("pi", pi);
+		model.addAttribute("list", list);
+		
+	    return "admin/adminPoint/adminPointAnalysis";
+	}
 }

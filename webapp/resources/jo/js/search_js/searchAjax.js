@@ -121,6 +121,7 @@ $(document).ready(function () {
 
     if (order === 'club_no') {
         $('#cateRecent').addClass('highlight');
+        console.log('club_no','highlight')
     } else if (order === 'pickCount') {
         $('#cateDibs').addClass('highlight');
     } else if (order === 'count') {
