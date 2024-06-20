@@ -37,7 +37,6 @@
 		<!-- -->
 		
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jo/css/admin_css/adminCommon_css/adminStyle.css">
-		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jo/css/admin_css/adminPoint_css/adminPoint.css">
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/jo/css/admin_css/adminPoint_css/adminPointAnalysis.css">
 	
 		<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/teo/css/noticePage.css">
