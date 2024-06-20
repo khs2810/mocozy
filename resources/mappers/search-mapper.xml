@@ -96,7 +96,7 @@
 				AND (CLUB_TITLE LIKE '%' || #{keyword} || '%' 
 				OR category_name1 LIKE '%' || #{keyword} || '%' 
 				OR category_name2 LIKE '%' || #{keyword} || '%')
-				ORDER BY ${order};
+				ORDER BY ${order} DESC;
 	</select>
 
 	<select id="MemberList" resultMap="memberResult"> 
