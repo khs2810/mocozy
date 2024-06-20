@@ -3,20 +3,28 @@ package com.kh.mocozy.admin.controller;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.Locale;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.mocozy.admin.service.AdminClubService;
 import com.kh.mocozy.admin.service.AdminNoticeService;
 import com.kh.mocozy.admin.service.AdminService;
 import com.kh.mocozy.admin.service.AdminUserlistService;
 import com.kh.mocozy.board.model.vo.Notice;
+import com.kh.mocozy.club.model.vo.ChatRoom;
 import com.kh.mocozy.club.model.vo.Club;
+import com.kh.mocozy.club.model.vo.Message;
+import com.kh.mocozy.club.service.ChatService;
 import com.kh.mocozy.common.model.vo.PageInfo;
 import com.kh.mocozy.common.template.Pagination;
 import com.kh.mocozy.member.model.vo.Member;
@@ -46,6 +54,9 @@ public class AdminController {
     
     @Autowired
     private MemberService memberService;
+    
+    @Autowired
+    private ChatService chatService;
     
 	@RequestMapping("admin.ad")
 	public String showAdmin(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) throws java.text.ParseException {  
@@ -89,12 +100,24 @@ public class AdminController {
     }
 	
 	@RequestMapping("adminChat.ad")
-	public String showAdminChat(Model model) {    
+	public String showAdminChat(Model model, HttpSession session) {
+		int adminUno = ((Member)session.getAttribute("loginUser")).getUserNo();
+		ArrayList<ChatRoom> adminChatList = chatService.selectAdminChatList(adminUno);
+		
+		model.addAttribute("adminChatList", adminChatList);
+		
 	    return "admin/adminChat/adminChat";
     }
 	
 	@RequestMapping("privateChat.ad")
-	public String showPrivateChat(Model model) {    
+	public String showPrivateChat(int chno, Model model, HttpSession session) {
+		int loginUserNo = ((Member)session.getAttribute("loginUser")).getUserNo();
+		ChatRoom cr = chatService.selectChatRoomByNo(chno);
+		
+		model.addAttribute("chno", chno);
+		model.addAttribute("targetNo", cr.getTargetNo());
+		model.addAttribute("loginUserNo", loginUserNo);
+		
 	    return "admin/adminChat/privateChat";
     }
 	
@@ -119,4 +142,11 @@ public class AdminController {
 		
 	    return "admin/adminPoint/adminPoint";
     }
+	
+	// 채팅방 번호에 해당하는 메시지 목록 조회
+	@ResponseBody
+	@GetMapping(value="/privateChat.ad/selectMessage", produces="application/json; charset=UTF-8")
+	public List<Message> selectMessageList(@RequestParam("chno") int chno) {
+		return chatService.selectMessageList(chno);
+	}
 }

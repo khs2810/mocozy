@@ -19,17 +19,20 @@
         <hr style="background: lightgray; height: 1px; border: 0;" >
         <br><br>
         <div class="clubList">
-        	<div class="titlePart">
-                <span class="title">${c.clubTitle}</span>
+			<div class="titlePart">
+				<span class="title">${c.clubTitle}</span>
                 <c:choose>
-                	<c:when test="${memberCnt eq c.capacity}">
-                		<div class="done">모집완료(${memberCnt}/${c.capacity})</div>
+					<c:when test="${memberCnt eq c.capacity}">
+						<div class="done">모집완료(${memberCnt}/${c.capacity})</div>
                 	</c:when>
                 	<c:when test="${memberCnt ne c.capacity}">
-                		<div class="ing">모집중(${memberCnt}/${c.capacity})</div>
+						<div class="ing">모집중(${memberCnt}/${c.capacity})</div>
                 	</c:when>
                 </c:choose>
             </div>
+			<input type="hidden" id="memberCnt" value="${memberCnt}">
+			<input type="hidden" id="capacity" value="${c.capacity}">
+			<input type="hidden" id="clubTitle" value="${c.clubTitle}">
             <div class="clubRequestList" id="clubRequestList">
             	<c:forEach var="r" items="${requestList}">
 	                <div class="clubRequest">
