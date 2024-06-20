@@ -93,6 +93,7 @@
 		FROM CHAT_ROOM R
 		LEFT JOIN CLUB C ON C.CLUB_NO = R.CLUB_NO
 		WHERE R.MASTER_NO = #{userNo} OR R.TARGET_NO = #{userNo}
+		  AND R.MASTER_NO != 1
 		ORDER BY MAX_MESSAGE_NO DESC NULLS LAST;
 	</select>
 	
@@ -146,6 +147,17 @@
     		   TARGET_NO
     	  FROM CHAT_ROOM
     	 WHERE CHAT_NO = #{cno};
+    </select>
+    
+    <select id="selectAdminChatList" resultMap="chatRoomResult">
+    	SELECT CHAT_NO,
+    		   CREATE_DATE,
+    		   TARGET_NO,
+    		   TARGET_NICKNAME,
+    		   TARGET_PROFILE,
+    		   ROOM_TITLE
+    	  FROM CHAT_ROOM
+    	 WHERE MASTER_NO = #{adminUno};
     </select>
     
 	<!-- 채팅 메시지 중 내가 보내지 않은 글을 읽음으로 표시 -->

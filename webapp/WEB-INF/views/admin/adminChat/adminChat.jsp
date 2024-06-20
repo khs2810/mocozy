@@ -135,74 +135,42 @@
 															<li class="date">문의일</li>
 															<li class="action"></li>
 														</ul>
-
-														<ul class="-tbody holder content">
-															<li class="check">
-																<div class="checkbox checkbox-styled no-margin">
-																	<label> <input type="checkbox"> <span></span>
-																	</label>
-																</div>
-															</li>
-
-															<li class="lang-icon"><img src="_blank"
-																style="width: 20px"></li>
-
-															<li class="title"><span
-																class="-icon-notice-p20240521492f0349dfaec"
-																style="display: none"> <svg
-																		style="border: 1px solid black; height: 16px; width: 16px;">
-																		<!-- 아이콘 --></svg>
-															</span> <a href="_blank" class="post-link"> <span
-																	class="-post-subject-p20240521492f0349dfaec">테스트</span>
-																	<span class="badge -hide-badge-p20240521492f0349dfaec"
-																	style="margin-left: 5px; display: none">숨김</span>
-															</a></li>
-															<li class="author"><a href="_blank"
-																class="text-primary">두더지</a></li>
-															<li class="date">2024-05-21</li>
-															<li class="action">
-																<div class="dropdown">
-																	<button class="btn btn-primary-button">
-																		<a href="privateChat.ad">이동</a>
-																	</button>
-																	<button class="btn btn-flat" id="deleteBtn">삭제</button>
-																</div>
-															</li>
-														</ul>
-
-														<ul class="-tbody holder content">
-															<li class="check">
-																<div class="checkbox checkbox-styled no-margin">
-																	<label> <input type="checkbox"> <span></span>
-																	</label>
-																</div>
-															</li>
-
-															<li class="lang-icon"><img src="_blank"
-																style="width: 20px"></li>
-
-															<li class="title"><span
-																class="-icon-notice-p20240521492f0349dfaec"
-																style="display: none"> <svg
-																		style="border: 1px solid black; height: 16px; width: 16px;">
-																		<!-- 아이콘 --></svg>
-															</span> <a href="_blank" class="post-link"> <span
-																	class="-post-subject-p20240521492f0349dfaec">테스트</span>
-																	<span class="badge -hide-badge-p20240521492f0349dfaec"
-																	style="margin-left: 5px; display: none">숨김</span>
-															</a></li>
-															<li class="author"><a href="publicChat.ad"
-																class="text-primary">크리스탈</a></li>
-															<li class="date">2024-05-21</li>
-															<li class="action">
-																<div class="dropdown">
-																	<button class="btn btn-primary-button">
-																		<a href="publicChat.ad">이동</a>
-																	</button>
-																	<button class="btn btn-flat" id="deleteBtn">삭제</button>
-																</div>
-															</li>
-														</ul>
+														
+														<c:forEach var="c" items="${adminChatList}">
+															<ul class="-tbody holder content">
+																<li class="check">
+																	<div class="checkbox checkbox-styled no-margin">
+																		<label> <input type="checkbox"> <span></span>
+																		</label>
+																	</div>
+																</li>
+	
+																<li class="lang-icon"><img src="_blank"
+																	style="width: 20px"></li>
+	
+																<li class="title"><span
+																	class="-icon-notice-p20240521492f0349dfaec"
+																	style="display: none"> <svg
+																			style="border: 1px solid black; height: 16px; width: 16px;">
+																			<!-- 아이콘 --></svg>
+																</span> <a href="_blank" class="post-link"> <span
+																		class="-post-subject-p20240521492f0349dfaec">${c.roomTitle}</span>
+																		<span class="badge -hide-badge-p20240521492f0349dfaec"
+																		style="margin-left: 5px; display: none">숨김</span>
+																</a></li>
+																<li class="author"><a href="_blank"
+																	class="text-primary">${c.targetNickname}</a></li>
+																<li class="date">${c.createDate}</li>
+																<li class="action">
+																	<div class="dropdown">
+																		<button class="btn btn-primary-button">
+																			<a href="privateChat.ad?chno=${c.chatNo}">이동</a>
+																		</button>
+																		<button class="btn btn-flat" id="deleteBtn">삭제</button>
+																	</div>
+																</li>
+															</ul>
+														</c:forEach>
 													</div>
 													<!--end.li-table-->
 													<nav class="text-center"></nav>

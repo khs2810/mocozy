@@ -1,8 +1,19 @@
 $(document).ready(function() {
-    let targetUserNo = null;
-    let chattingNo = null;
-    const loginUserNum = parseInt(loginUserNo, 10); // string에서 number로 형변환
+    let targetUserNo = $('#targetNo').val();
+    const chno = $('#chno').val();
+
+    console.log(chno);
+    const loginUserNum = parseInt($('#loginUserNo').val(), 10); // string에서 number로 형변환
     const socket = new WebSocket("ws://localhost:8890/mocozy/server");
+    
+    // function getQueryParameter(name) {
+    //     // 현재 URL에서 쿼리 스트링 부분만 추출
+    //     var urlParams = new URLSearchParams(window.location.search);
+    //     // 특정 파라미터 값을 반환
+    //     return urlParams.get(name);
+    // }
+
+    updateChatWindow(chno);
 
     socket.onopen = function() {
         console.log("웹소켓 연결 성공...");
@@ -44,34 +55,34 @@ $(document).ready(function() {
         addMessage(message.messageContent, message.senderNo, formattedDate);
     }
 
-    function sendMsg(chattingNo) {
+    function sendMsg(chno) {
         const msgData = {
             message: $("#textArea").val(),
             target: targetUserNo,
-            chatNo: chattingNo,
+            chatNo: chno,
             userNo: loginUserNum
         }
         console.log(msgData);
         socket.send(JSON.stringify(msgData));
     }
 
-    // 채팅 리스트 클릭 이벤트 처리
-    $('.chatList').on('click', function() {
-        // 클릭된 채팅 리스트의 정보 가져오기
-        targetUserNo = $(this).find('.chatSimple').data("userno");
-        chattingNo = $(this).find('.chatSimple').data("chattingno");
+    // // 채팅 리스트 클릭 이벤트 처리
+    // $('.chatList').on('click', function() {
+    //     // 클릭된 채팅 리스트의 정보 가져오기
+    //     targetUserNo = $(this).find('.chatSimple').data("userno");
+    //     chno = $(this).find('.chatSimple').data("chattingno");
 
-        // 채팅창 업데이트 함수 호출
-        updateChatWindow(chattingNo);
+    //     // 채팅창 업데이트 함수 호출
+    //     updateChatWindow(chno);
 
-        // 다른 채팅 리스트의 활성화 클래스 제거
-        $('.chatList').removeClass('active');
-        // 현재 클릭된 채팅 리스트에 활성화 클래스 추가
-        $(this).addClass('active');
-    });
+    //     // 다른 채팅 리스트의 활성화 클래스 제거
+    //     $('.chatList').removeClass('active');
+    //     // 현재 클릭된 채팅 리스트에 활성화 클래스 추가
+    //     $(this).addClass('active');
+    // });
 
     $('#submitBtn').on('click', function() {
-        sendMsg(chattingNo);
+        sendMsg(chno);
         const messageText = $('#textArea').val().trim();
         if (messageText !== '') {
             // const now = new Date();
@@ -79,7 +90,6 @@ $(document).ready(function() {
         
             // addMessage(messageText, loginUserNum, sendTime);
             $('#textArea').val('');
-            updateChatWindow(chattingNo);
         }
     });
 
@@ -119,17 +129,17 @@ $(document).ready(function() {
         $('#chatDetail').scrollTop($('#chatDetail')[0].scrollHeight);
     }
     
-    function updateChatWindow(chattingNo) {
+    function updateChatWindow(chno) {
         // 채팅창 업데이트 로직
         if (!targetUserNo) {
             return;
         }
-        console.log("chattingNo :", chattingNo);
+        console.log("chno :", chno);
 
         $.ajax({
-            url: 'list.ch/selectMessage',
+            url: 'privateChat.ad/selectMessage',
             method: 'GET',
-            data: { chattingNo: chattingNo },
+            data: { chno: chno },
             success: function(response) {
                 $('#chatDetail').empty(); // 기존 채팅 내용 비우기
                 

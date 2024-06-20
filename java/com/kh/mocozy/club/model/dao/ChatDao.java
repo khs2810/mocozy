@@ -1,5 +1,6 @@
 package com.kh.mocozy.club.model.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -36,5 +37,9 @@ public class ChatDao {
 
 	public ChatRoom selectChatRoomByNo(SqlSessionTemplate sqlSession, int cno) {
 		return sqlSession.selectOne("chatMapper.selectChatRoomByNo", cno);
+	}
+
+	public ArrayList<ChatRoom> selectAdminChatList(SqlSessionTemplate sqlSession, int adminUno) {
+		return (ArrayList)sqlSession.selectList("chatMapper.selectAdminChatList", adminUno);
 	}
 }

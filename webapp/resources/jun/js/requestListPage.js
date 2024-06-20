@@ -1,5 +1,4 @@
 $(document).ready(function() {
-
     $("#contentBox").on('click', '.reduceBtn', function(){
         const $p = $(this).parent().parent().parent().next();
 
@@ -33,6 +32,7 @@ $(document).ready(function() {
             success: function(res){
                 alert('참가 신청 수락됨!');
                 drawRequest(res, url, question);
+                addCount();
             },
             error: function(res){
                 alert('모임 인원 초과');
@@ -62,14 +62,31 @@ $(document).ready(function() {
     })
 });
 
+function addCount() {
+    $('.titlePart').empty();
+    
+    const memberCnt = parseInt($('#memberCnt').val(), 10) + 1;
+    const capacity = parseInt($('#capacity').val(), 10);
+    const clubTitle = $('#clubTitle').val();
+
+    $('#memberCnt').val(memberCnt);
+    let str = `<span class="title">` + clubTitle + `</span>`;
+
+    if (memberCnt === capacity) {
+        str += (`<div class="done">모집완료(` + memberCnt + `/` + capacity + `)</div>`);
+    } else {
+        str += (`<div class="ing">모집중(` + memberCnt + `/` + capacity + `)</div>`);
+    }
+
+    $('.titlePart').html(str);
+}
+
 function drawRequest(requestList, url, question) {
     $('.clubRequestList').empty();
     const parent = document.getElementById('clubRequestList');
 
     for (let request of requestList) {
         const clubRequest = document.createElement('div');
-        console.log(request);
-        console.log(url);
         clubRequest.id = "clubRequest";
         let str = "";
         str = `<div class="clubRequest-head">

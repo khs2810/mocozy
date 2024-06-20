@@ -1,5 +1,6 @@
 package com.kh.mocozy.club.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -17,4 +18,6 @@ public interface ChatService {
 	List<Message> selectMessageList(int chattingNo);
 
 	ChatRoom selectChatRoomByNo(int cno);
+
+	ArrayList<ChatRoom> selectAdminChatList(int adminUno);
 }
