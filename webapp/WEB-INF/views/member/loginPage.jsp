@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mo-Cozy - Login</title>
     
+    <!-- <script src="${pageContext.request.contextPath}/resources/koo/js/login_js/Social_login.js"></script> -->
     <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/koo/css/loginPage_css/loginPage.css" />
 
 </head>
@@ -38,7 +39,7 @@
 
             <div class="flex justify-center gap-1 mt-6 text-sm text-taling-gray-700 ">
                 <!-- <div w-full text-center >
-                    <a href="" class="text-taling-pink-400"> 아이디 찾기</a>
+                    <a href="${pageContext.request.contextPath}/send" class="text-taling-pink-400"> 아이디 찾기</a>
                 </div>
                 <div w-full text-center >
                     <a href="" class="text-taling-pink-400">비밀번호 찾기</a>
@@ -51,7 +52,7 @@
                 <a href="signInPage.me" class="text-taling-pink-400">회원가입</a>
             </div>
             
-            <div class="line">또는</div>
+            <!-- <div class="line">또는</div>
 
             <div class="select-login">
                 <img src="${pageContext.request.contextPath}/resources/koo/upfile/loginPage_img/kakao_login_large_narrow.png" alt="">
@@ -60,33 +61,11 @@
 
             <div class="select-login">
                 <img src="${pageContext.request.contextPath}/resources/koo/upfile/loginPage_img/btnG_완성형.png" onclick="naverLogin()" alt="">
-            </div>
+            </div> -->
         </div>
 
     </form>
 
-    <script>
-        window.onload = function() {
-        const errorMsg = '<%= request.getAttribute("errorMsg") != null ? request.getAttribute("errorMsg") : "" %>';
-        if (errorMsg) {
-            alert(errorMsg);
-        }
-    };
-
-    //네이버로그인설정
-    function naverLogin(){
-        console.log(1);
-        const clientId = "bkMzl1hFtQzbR1kFgkTh";
-        console.log(clientId);
-        //리다이렉트 URI를 utf-8로 인코딩해서 저장
-        const redirectURI = encodeURIComponent("http://localhost:8890/mocozy/naver-login");
-
-        const state = Math.random().toString(36).substring(2);
-        
-        //로그인 api url
-        window.open('https://nid.naver.com/oauth2.0/authorize?response_type=code&'
-            + 'client_id=' + clientId + "&redirect_uri=" + redirectURI + '&state=' + state)
-    }
-    </script>
+   
 </body>
 </html>

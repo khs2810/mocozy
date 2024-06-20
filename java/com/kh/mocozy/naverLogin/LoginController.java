@@ -27,28 +27,28 @@ import com.kh.mocozy.member.service.MemberService;
 public class LoginController {
 	@Autowired
 	private MemberService memberService;
+
 	
 //	네이버 로그인 페이지
 	@RequestMapping("/naver-login")
-	public String naverLoginCallback(Member m, HttpServletRequest request,HttpSession session) {
-		System.out.println(1);
-		Member loginUser = memberService.loginMember(m);
-		
-		String clientId = "bkMzl1hFtQzbR1kFgkTh";
-		String clientSecret = "rEGDkQ90pT";
-		String code = request.getParameter("code");
-		String state = request.getParameter("state");
+	   public String naverLoginCallback(HttpServletRequest request, HttpSession session) {
+		  String naverClientId = "bkMzl1hFtQzbR1kFgkTh";
+		  String naverClientSecret = "rEGDkQ90pT";
+	      String navercode = request.getParameter("code");
+	      String naverState = request.getParameter("state");
+
 		
 		System.out.println(2);
 		try {
 			String redirectURI = URLEncoder.encode("http://localhost:8890/mocozy/naver-login", "UTF-8");
 			String apiURL = "https://nid.naver.com/oauth2.0/token?grant_type=authorization_code";
-			apiURL += "&client_id=" + clientId;
-			apiURL += "&client_secret=" + clientSecret;
-			apiURL += "&redirect_uri=" + redirectURI;
-			apiURL += "&code=" + code;
-			apiURL += "&state=" + state;
-			
+			apiURL += "&client_id=" + naverClientId;
+	         apiURL += "&client_secret=" + naverClientSecret;
+	         apiURL += "&redirect_uri=" + redirectURI;
+	         apiURL += "&code=" + navercode;
+	         apiURL += "&state=" + naverState;
+
+	         System.out.println(3);
 			URL url = new URL(apiURL);
 			HttpURLConnection con = (HttpURLConnection)url.openConnection();
 			con.setRequestMethod("GET");
@@ -91,12 +91,25 @@ public class LoginController {
 				JsonObject memberInfo = JsonParser.parseString(responseBody).getAsJsonObject();
 				JsonObject resObj = memberInfo.getAsJsonObject("response");
 				
-				System.out.println(resObj);
-				//받아온 email과 데이터베이스의 email을 비교하여 가입유무 확인 후
-				//가입되어있다면 로그인, 아니라면 회원가입창으로 정보를 가지고 이동
-				session.setAttribute("loginUser", loginUser);
-				
-			}
+				 //받아온 email과 데이터베이스의 email을 비교하여 가입유무 확인 후
+	            //가입되어있다면 로그인, 아니라면 회원가입창으로 정보를 가지고 이동
+	            
+	             String email = resObj.get("email").getAsString();
+
+	                // 이메일로 사용자 검색
+	                Member user = memberService.findUserByEmail(email);
+	                if (user != null) {
+	                    // 사용자가 존재하면 로그인 처리
+	                    session.setAttribute("loginUser", user);
+	                    return "redirect:/";
+	                } else {
+	                    // 사용자가 존재하지 않으면 회원가입 페이지로 이동
+	                    //session.setAttribute("naverUser", resObj);
+	                    return "redirect:/signInPage.me";
+	                }
+	            
+	         }
+
 			
 		} catch (Exception e) {
 			e.printStackTrace();

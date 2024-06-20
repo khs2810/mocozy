@@ -60,6 +60,9 @@ public interface MemberService {
 
 	String selectNicknameByUserNo(int userNo);
 
+	//소셜 로그인, 회원가입
+	Member findUserByEmail(String email);
+
 	
 
 	
