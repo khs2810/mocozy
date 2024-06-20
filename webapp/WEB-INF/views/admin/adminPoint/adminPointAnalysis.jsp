@@ -65,7 +65,7 @@
 									<span class="location-text">
 										<a href="adminPoint.ad">포인트</a>
 									</span>
-									<span style="margin-left: 200px;"> <a href="analysis.ad">통계</a></span>
+									<span style="margin-left: 200px;"><a href="analysis.ad">통계</a></span>
 								</div>
 							</li>
 						</ul>
@@ -94,94 +94,12 @@
 									<div class="card-head">
 										<header>포인트 지급/차감</header>
 									</div>
-									<div class="card-body">
-										<form id="shop-member-point" class="form-horizontal form-validate" action="point.ad" method="POST">
-											
-											<div class="form-group">
-												<label class="col-sm-2 control-label">조정 대상</label>
-												<div class="col-sm-8">
-													<!-- <div class="input-group-content width-3"
-														style="padding-right: 15px;width: 115px;">
-														<select class="form-control static dirty" id="target-type" name="target-type">
-															<option value="member">회원</option>
-															<option value="group">관리자</option>
-														</select>
-														<div class="form-control-line"></div>
-													</div> -->
-
-													<div id="target-member-wrap" class="input-group-content width-6">
-														<input type="text" name="userId" class="form-control" placeholder="회원 아이디 또는 이메일 입력" required>
-														<div class="form-control-line"></div>
-													</div>
-
-													<!-- <div id="target-group-wrap" class="input-group-content width-6" style="display: none;">
-														<select class="form-control static dirty" id="group-list" name="group-list">
-															<option value="no-group">그룹이 존재하지 않습니다.</option>
-															<option value="no-member">그룹 내에 포함되어있는 회원이 존재하지 않습니다.</option>
-														</select>
-														<div class="form-control-line"></div>
-													</div> -->
-												</div>
-											</div>
-
-											<div class="form-group">
-												<input type="hidden" name="adminNo" value="${loginUser.userNo}">
-												<label class="col-sm-2 control-label">포인트액</label>
-												<div class="col-sm-8">
-													<div class="input-group" style="line-height: 2;">
-														<div class="input-group-content width-3" style="padding-right: 15px;">
-															<select class="form-control static dirty" name="pointType">
-																<option value="plus">지급</option>
-																<option value="minus">회수</option>
-															</select>
-															<div class="form-control-line"></div>
-														</div>
-
-														<div class="input-group-content width-3" style="padding-right: 15px;">
-															<input type="text" class="form-control -point" placeholder="금액" name="point" required>
-															<div class="form-control-line"></div>
-														</div>
-
-														<div class="input-group-content width-6">
-															<input type="text" class="form-control" placeholder="사유 / 내용 입력" name="pointInfo" required>
-															<div class="form-control-line"></div>
-														</div>
-														<button class="btn margin-left-lg btn-primary-button" type="submit">확인</button>
-														<div class="input-group-content" style="text-align: right; top: -10px;"></div>
-													</div>
-												</div>
-											</div>
-										</form>
-									</div>
 								</div>
 							</div>
 						</div>
 
 						<div class="row">
 							<div class="col-md-12">
-								<!-- <div class="card">
-									<div class="card-body no-padding">
-										<form class="prod-search" id="point-search-form">
-											<div class="twitter-wrap">
-												<span class="twitter-typeahead" style="position: relative; display: inline-block;">
-													<input type="text" class="-search form-control typeahead tt-input" placeholder="내용 검색"
-														style="position: relative; vertical-align: top; background-color: transparent; padding-left: 0; border: none;">
-												</span>
-											</div>
-
-											<div class="serach-wrap big-search">
-												<div class="dd-filter-serach">
-													<label class="icon-set">
-														<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
-															<path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001q.044.06.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1 1 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
-														  </svg>
-													</label>
-												</div>
-											</div>
-										</form>
-									</div>
-								</div> -->
-
 								<div class="card">
 									<div class="card-head">
 										<header>포인트 처리내역</header>
