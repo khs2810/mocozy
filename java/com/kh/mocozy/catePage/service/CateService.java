@@ -22,10 +22,5 @@ public interface CateService {
 	
 	ArrayList<Club> selectCateFilter(Map<String, String> map, PageInfo pi);
 
-	ArrayList<Club> catePick(Map<String, String> map, PageInfo pi);
-	
-	ArrayList<Club> cateRecent(Map<String, String> map, PageInfo pi);
-	
-	ArrayList<Club> cateView(Map<String, String> map, PageInfo pi);
-
+	ArrayList<Club> selectCatePick(Map<String, String> map, PageInfo pi);
 }

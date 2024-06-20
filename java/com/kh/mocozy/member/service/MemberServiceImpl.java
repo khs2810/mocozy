@@ -134,5 +134,10 @@ public class MemberServiceImpl implements MemberService {
 	public String selectNicknameByUserNo(int userNo) {
 		return memberDao.selectNicknameByUserNo(sqlSession, userNo);
 	}
+
+	@Override
+	public Member findUserByEmail(String email) {
+		return memberDao.findUserByEmail(sqlSession,email);
+	}
 	
 }

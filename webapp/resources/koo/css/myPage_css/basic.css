@@ -65,8 +65,7 @@ button:active{
 .profile-img {
     width: 91px;
     height: 91px;
-    
-    /* object-fit: cover; */
+    object-fit: cover;
 }
 .profile-box1{
     box-shadow: 2px 2px 2px black;

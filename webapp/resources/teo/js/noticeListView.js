@@ -16,6 +16,16 @@ $(document).ready(function(){
             }
         });
     })
+
+    const searchButton = document.getElementById("notice_search_btn");
+    const searchInput = document.getElementById("search_keyword");
+
+    searchInput.addEventListener("keyup", function(event) {
+        if (event.keyCode === 13) {
+        event.preventDefault();
+        searchButton.click();
+        }
+    });
 })
 
 function ajaxSearchNotice(data, callback){

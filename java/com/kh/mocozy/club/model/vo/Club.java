@@ -41,7 +41,6 @@ public class Club {
 	private String nickname;
 	private String categoryName1;
 	private String categoryName2;
-	private String eventDateStr;
 	private Member memberlist;
 	private int isReview;
 	private int memberCnt;
@@ -49,7 +48,8 @@ public class Club {
 	public ArrayList<String> profileImg;
 	public int reviewCount;
 	public int PickCount;
-	public String dateFormat;
+	private String eventDateStr;
+	public String createDateStr;
 }
 
 

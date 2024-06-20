@@ -96,6 +96,11 @@ public class MemberDao {
 	public String selectNicknameByUserNo(SqlSessionTemplate sqlSession, int userNo) {
 		return sqlSession.selectOne("selectNicknameByUserNo", userNo);
 	}
+
+	// 간편로그인 이메일 유무 확인 (네이버, 카카오, 구글)
+    public Member findUserByEmail(SqlSessionTemplate sqlSession, String email) {
+        return sqlSession.selectOne("memberMapper.findUserByEmail", email);
+	}
 	
 	
 }

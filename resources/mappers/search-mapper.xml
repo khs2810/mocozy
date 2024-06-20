@@ -61,42 +61,13 @@
 	<select id="searchForm" resultType="_int"> 
 		SELECT COUNT(*) 
 		FROM public.CLUB 
-		WHERE public.CLUB.STATUS = 'Y';
+		WHERE public.CLUB.STATUS = 'Y'
+		AND (CLUB_TITLE LIKE '%' || #{keyword} || '%' 
+		OR category_name1 LIKE '%' || #{keyword} || '%' 
+		OR category_name2 LIKE '%' || #{keyword} || '%');
 	</select>
 
-	<select id="selectSearchList" resultMap="clubResult"> 
-	SELECT CLUB_NO,
-				USER_NO, 
-				CLUB_TITLE, 
-				CLUB_TYPE, 
-				CLUB_CONTENT, 
-				ADDRESS, 
-				ADDRESS_DETAIL,
-				EVENT_DATE, 
-				COST, 
-				COST_INFO, 
-				TOTAL_POINT, 
-				CAPACITY, 
-				ONLINE, 
-				QUESTION,
-				THUMBNAIL_IMG, 
-				CREATE_DATE,
-				CLUB.MODIFY_DATE, 
-				COUNT, 
-				NICKNAME,
-				category_name1, 
-				category_name2 
-				FROM public.CLUB 
-				join MEMBER USING (USER_NO) 
-				WHERE public.CLUB.STATUS = 'Y' 
-				AND (CLUB_TITLE LIKE '%' || #{keyword} || '%' 
-				OR category_name1 LIKE '%' || #{keyword} || '%' 
-				OR category_name2 LIKE '%' || #{keyword} || '%')
-				ORDER BY CLUB_NO;
-	</select>
-
-
-	<select id="selectSearchPick" resultMap="clubResult"> 
+	<select id="searchFormAjax" resultMap="clubResult"> 
 	SELECT CLUB_NO,
 				USER_NO, 
 				CLUB_TITLE, 
@@ -118,47 +89,16 @@
 				NICKNAME,
 				category_name1, 
 				category_name2,
-				(SELECT COUNT(*) FROM picked WHERE CLUB_NO = CLUB.CLUB_NO) AS pickCount
+				(SELECT COUNT(*) FROM picked WHERE CLUB_NO = CLUB.CLUB_NO) AS pickCount 
 				FROM public.CLUB 
 				join MEMBER USING (USER_NO) 
 				WHERE public.CLUB.STATUS = 'Y' 
 				AND (CLUB_TITLE LIKE '%' || #{keyword} || '%' 
 				OR category_name1 LIKE '%' || #{keyword} || '%' 
 				OR category_name2 LIKE '%' || #{keyword} || '%')
-				ORDER BY pickCount;
+				ORDER BY ${order};
 	</select>
-	
-	<select id="selectSearchView" resultMap="clubResult"> 
-	SELECT CLUB_NO,
-				USER_NO, 
-				CLUB_TITLE, 
-				CLUB_TYPE, 
-				CLUB_CONTENT, 
-				ADDRESS, 
-				ADDRESS_DETAIL,
-				EVENT_DATE, 
-				COST, 
-				COST_INFO, 
-				TOTAL_POINT, 
-				CAPACITY, 
-				ONLINE, 
-				QUESTION,
-				THUMBNAIL_IMG, 
-				CREATE_DATE,
-				CLUB.MODIFY_DATE, 
-				COUNT, 
-				NICKNAME,
-				category_name1, 
-				category_name2 
-				FROM public.CLUB 
-				join MEMBER USING (USER_NO) 
-				WHERE public.CLUB.STATUS = 'Y' 
-				AND (CLUB_TITLE LIKE '%' || #{keyword} || '%' 
-				OR category_name1 LIKE '%' || #{keyword} || '%' 
-				OR category_name2 LIKE '%' || #{keyword} || '%')
-				ORDER BY count;
-	</select>
-	
+
 	<select id="MemberList" resultMap="memberResult"> 
 	SELECT USER_NO, 
 		NICKNAME,

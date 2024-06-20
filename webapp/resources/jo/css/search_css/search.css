@@ -20,6 +20,11 @@ li {
   }
 }
 
+.highlight {
+  color: red;
+  font-weight: bold;
+}
+
 .searchPage .catelistTitle{
   display: flex;
   font-size: 1.5rem;
@@ -89,8 +94,6 @@ li {
 
 .searchPage .rightlistContent > span {
   line-height: 1.25rem;
-	color: rgb(255 0 69);
-  font-weight: 700;
 }
 
 .searchPage .screen {
@@ -202,6 +205,16 @@ li {
   letter-spacing: -.2px;
   border-radius: 10px;
   margin-right: 6px;
+}
+
+.searchPage .contentcard .tag.clubType소셜링 {
+  background-color: #70C9A0;
+  color: #fff;
+}
+
+.searchPage .contentcard .tag.clubType챌린지 {
+  background-color: #9BCFFF;
+  color: #fff;
 }
 
 .searchPage .contentcard .tagone{

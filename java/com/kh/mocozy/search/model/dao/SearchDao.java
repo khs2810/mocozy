@@ -22,28 +22,11 @@ public class SearchDao {
 		return sqlSession.selectOne("searchMapper.searchForm", map);
 	}
 
-	public ArrayList<Club> selectSearchList(SqlSessionTemplate sqlSession, HashMap<String, String> map,
-			PageInfo pi) {
-		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
-
-		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("searchMapper.selectSearchList", map, rowBounds);
-	}
-	
-	public ArrayList<Club> selectSearchPick(SqlSessionTemplate sqlSession, HashMap<String, String> map,
-			PageInfo pi) {
-		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
+	public ArrayList<Club> searchFormAjax(SqlSessionTemplate sqlSession, HashMap<String, String> map, PageInfo re) {
+		int offset = (re.getCurrentPage() - 1) * re.getBoardLimit();
 		
-		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("searchMapper.selectSearchPick", map, rowBounds);
-	}
-	
-	public ArrayList<Club> selectSearchView(SqlSessionTemplate sqlSession, HashMap<String, String> map,
-			PageInfo pi) {
-		int offset = (pi.getCurrentPage() - 1) * pi.getBoardLimit();
-		
-		RowBounds rowBounds = new RowBounds(offset, pi.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("searchMapper.selectSearchView", map, rowBounds);
+		RowBounds rowBounds = new RowBounds(offset, re.getBoardLimit());
+		return (ArrayList)sqlSession.selectList("searchMapper.searchFormAjax", map, rowBounds);
 	}
 }
 

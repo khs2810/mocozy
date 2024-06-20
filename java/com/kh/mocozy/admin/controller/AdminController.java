@@ -92,10 +92,19 @@ public class AdminController {
             }
         }
         
+	    //이벤트 가져오기
+	    ArrayList<Notice> getNlist = anService.getNoticeAllList();
+	    // 각 Notice 객체에서 noticeNo 가져오기
+	    for (Notice notice : getNlist) {
+	        int noticeNo = notice.getNoticeNo();
+	    }
+	    
 		model.addAttribute("nlist", nlist);
 		model.addAttribute("mlist", mlist);
 		model.addAttribute("clist", clist);
-
+		
+	    model.addAttribute("getNlist", getNlist);
+	    
 	    return "admin/admin";
     }
 	
@@ -148,5 +157,27 @@ public class AdminController {
 	@GetMapping(value="/privateChat.ad/selectMessage", produces="application/json; charset=UTF-8")
 	public List<Message> selectMessageList(@RequestParam("chno") int chno) {
 		return chatService.selectMessageList(chno);
+	}
+	
+	@RequestMapping("analysis.ad")
+		public String analysisPoint(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, Model model) {
+		int pointListCount = pointService.selectPointAdminListCount();
+		
+		PageInfo pi = Pagination.getPageInfo(pointListCount, currentPage, 10, 5);
+		
+		ArrayList<Point> plist = pointService.selectListPointAdmin(pi);
+		ArrayList<PointDTO> list = new ArrayList<>();
+		
+		for(Point p : plist) {
+			PointDTO pd = new PointDTO(p);
+			pd.setUserNickname(memberService.selectNicknameByUserNo(p.getUserNo()));
+			pd.setAdminNickname(memberService.selectNicknameByUserNo(p.getAdminNo()));
+			list.add(pd);
+		}
+		
+		model.addAttribute("pi", pi);
+		model.addAttribute("list", list);
+		
+	    return "admin/adminPoint/adminPointAnalysis";
 	}
 }

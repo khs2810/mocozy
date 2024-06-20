@@ -10,13 +10,9 @@ import com.kh.mocozy.member.model.vo.Member;
 @Service
 public interface SearchService {
 
-	ArrayList<Club> selectSearchList(HashMap<String, String> map, PageInfo re);
-	
-	ArrayList<Club> selectSearchView(HashMap<String, String> map, PageInfo re);
-	
-	ArrayList<Club> selectSearchPick(HashMap<String, String> map, PageInfo re);
 	
 	int searchForm(HashMap<String, String> map);
+	ArrayList<Club> searchFormAjax(HashMap<String, String> map, PageInfo re);
 
 	ArrayList<Member> MemberList(int clubNo);
 	

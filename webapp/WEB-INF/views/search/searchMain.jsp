@@ -35,13 +35,13 @@
 					<div class="rightlistTitle">
 						<div class="rightlistContent">
 							<span id="cateRecent">
-								<a href="searchForm.sc?rpage=1&keyword=${keyword}">최신순</a>
+								<a href="searchForm.sc?rpage=1&keyword=${keyword}&order=club_no">최신순</a>
 							</span>
 							<p id="cateDibs">
-								<a href="searchPick.sc?rpage=1&keyword=${keyword}">인기순</a>
+								<a href="searchForm.sc?rpage=1&keyword=${keyword}&order=pickCount">인기순</a>
 							</p>
 							<p id="cateViews">
-								<a href="searchView.sc?rpage=1&keyword=${keyword}">조회순</a>
+								<a href="searchForm.sc?rpage=1&keyword=${keyword}&order=count">조회순</a>
 							</p>
 						</div>
 					</div>

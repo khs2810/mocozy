@@ -45,19 +45,9 @@ public class CateServiceImpl implements CateService{
 	public ArrayList<Club> selectCateFilter(Map<String, String> map, PageInfo pi) {
 		return cDao.selectCateFilter(sqlSession, map, pi);
 	}
-	
+
 	@Override
-	public ArrayList<Club> catePick(Map<String, String> map, PageInfo pi) {
-		return cDao.catePick(sqlSession, map, pi);
-	}
-	
-	@Override
-	public ArrayList<Club> cateRecent(Map<String, String> map, PageInfo pi) {
-		return cDao.cateRecent(sqlSession, map, pi);
-	}
-	
-	@Override
-	public ArrayList<Club> cateView(Map<String, String> map, PageInfo pi) {
-		return cDao.cateView(sqlSession, map, pi);
+	public ArrayList<Club> selectCatePick(Map<String, String> map, PageInfo pi) {
+		return cDao.selectCatePick(sqlSession, map, pi);
 	}
 }
