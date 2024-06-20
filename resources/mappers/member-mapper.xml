@@ -206,4 +206,11 @@
 		FROM MEMBER
 		WHERE USER_NO = #{userNo}
 	</select>
+	
+	<!-- 간편로그인 이메일 중복 확인 (네이버, 카카오, 구글) -->
+   <select id="findUserByEmail" parameterType="string" resultMap="memberResult">
+       SELECT * 
+       FROM MEMBER 
+       WHERE USER_ID = #{userId}
+   </select>
 </mapper>

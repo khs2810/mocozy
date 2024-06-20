@@ -1,5 +1,6 @@
 package com.kh.mocozy.club.service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -48,6 +49,11 @@ public class ChatServiceImpl implements ChatService {
 	@Override
 	public ChatRoom selectChatRoomByNo(int cno) {
 		return chatDao.selectChatRoomByNo(sqlSession, cno);
+	}
+
+	@Override
+	public ArrayList<ChatRoom> selectAdminChatList(int adminUno) {
+		return chatDao.selectAdminChatList(sqlSession, adminUno);
 	}
 	
 }

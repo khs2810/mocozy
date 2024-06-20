@@ -151,6 +151,7 @@
     border-radius: 100%;
     width: 4.5rem;
     height: 4.5rem;
+    object-fit: cover;
 }
 
 .header .alarm {

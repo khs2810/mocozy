@@ -65,7 +65,6 @@
 									<span class="location-text">
 										<a href="adminPoint.ad">포인트</a>
 									</span>
-									<span style="margin-left: 200px;"> <a href="analysis.ad">통계</a></span>
 								</div>
 							</li>
 						</ul>
@@ -74,7 +73,14 @@
 					<div class="headerbar-right">
 						<ul class="header-nav header-nav-options">
 							<li class="hidden-xs">
-								<a class="clay-button black exit-btn" style="margin-right: 50px;" href="admin.ad">뒤로가기</a>
+								<ul class="header-nav header-nav-options">
+									<li class="hidden-xs" style="margin-right: 10px !important">
+										<a class="clay-button black exit-btn" href="admin.ad">뒤로가기</a>
+									</li>
+									<li class="hidden-xs" style="margin-right: 40px !important">
+										<a class="clay-button btn-primary-button" href="analysis.ad">통계</a>
+									</li>
+								</ul>
 							</li>
 						</ul><!--end .header-nav-options -->
 					</div><!--끝 #header-navbar-collapse -->

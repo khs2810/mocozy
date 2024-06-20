@@ -14,7 +14,7 @@
 	</resultMap>
 	
 	<select id="myPageClub" parameterType="MyPageClub" resultMap="myPageClubResult">
-		SELECT c.club_no, c.club_title, c.thumbnail_img
+		SELECT DISTINCT c.club_no, c.club_title, c.thumbnail_img, c.event_date
 		  FROM club AS c
 		 inner join request AS r on c.club_no = r.club_no
 		 WHERE c.user_no = #{userNo}
@@ -24,7 +24,7 @@
 	</select> 
 	
 	<select id="myPageClubPicked" parameterType="MyPageClub" resultMap="myPageClubResult">
-		SELECT c.club_no, c.club_title, c.thumbnail_img
+		SELECT DISTINCT c.club_no, c.club_title, c.thumbnail_img, p.picked_no
 		  FROM club AS c
 		 inner join picked AS p on c.club_no = p.club_no
 		 WHERE p.user_no = #{userNo}
