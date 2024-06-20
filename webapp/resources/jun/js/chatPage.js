@@ -79,7 +79,7 @@ $(document).ready(function() {
         
             // addMessage(messageText, loginUserNum, sendTime);
             $('#textArea').val('');
-            updateChatWindow(chattingNo);
+            // updateChatWindow(chattingNo);
         }
     });
 

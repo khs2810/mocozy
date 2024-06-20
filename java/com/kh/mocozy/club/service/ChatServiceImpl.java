@@ -55,5 +55,10 @@ public class ChatServiceImpl implements ChatService {
 	public ArrayList<ChatRoom> selectAdminChatList(int adminUno) {
 		return chatDao.selectAdminChatList(sqlSession, adminUno);
 	}
+
+	@Override
+	public ChatRoom selectAdminChat(int userNo) {
+		return chatDao.selectAdminChat(sqlSession, userNo);
+	}
 	
 }
