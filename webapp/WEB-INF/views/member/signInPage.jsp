@@ -34,7 +34,9 @@
             <div class="enrollForm">
                 <h4>* 닉네임</h4>
                 <div class="content-box">
-                    <input type="text" name="nickname" placeholder="닉네임">
+                    <input type="text" id="nickName" name="nickName" onkeyup="checkNickName()" placeholder="닉네임" required><br>
+                    <span id="nick_Review"></span>
+                    <div id="checkNickResult" style="font-size:0.7em; display:none;"></div>
                 </div>
                 
                 <br>
@@ -42,7 +44,7 @@
                 <div class="content-box">
                     <input type="text" class="form-control" id="userId" onkeyup="checkId(this)" placeholder="example@kakao.com" name="userId" required><br>
                     <span id="id_review"></span>
-                    <div id="checkResult" style="font-size:0.7em; display:none;"></div>
+                    <div id="checkIdResult" style="font-size:0.7em; display:none;"></div>
                 </div>
                 
                 <br>

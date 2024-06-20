@@ -39,7 +39,13 @@ public class MemberServiceImpl implements MemberService {
 		
 		return memberDao.pwdCheck(sqlSession, userId);
 	}
-
+	
+//	닉네임체크
+	@Override
+	public int nickNameCheck(String checkNickName) {
+		return memberDao.nickNameCheck(sqlSession, checkNickName);
+	}
+	
 //	아이디체크
 	@Override
 	public int idCheck(String checkId) {
