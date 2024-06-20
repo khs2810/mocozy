@@ -1676,3 +1676,71 @@ textarea.form-control {
     align-items: center;
     width: 80px;
 }
+
+@media (min-width: 769px) {
+    .custom-width-5 {
+        width: 200px;
+    }
+}
+
+@media (min-width: 769px) {
+    .custom-width-11 {
+        width: 450px;
+    }
+}
+
+@media (max-width: 768px) {
+    .card {
+        margin-bottom: 16px;
+    }
+}
+
+.dropdown-menu {
+    border: none;
+    margin: 0;
+    -webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.30);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.30);
+    border-radius: 8px;
+    padding: 0;
+    max-height: 50vh;
+    overflow-y: auto;
+}
+
+.dropdown-menu > li > a {
+    padding: 8px 12px;
+    margin: 0 8px;
+    border-radius: 8px;
+    font-size: 13px;
+}
+
+.dropdown-menu > li:first-child > a, 
+.dropdown-menu .select_group > li:first-child > a {
+    margin-top: 8px;
+}
+
+#dateRangeRangeWrap {
+    position: absolute;
+    right: 14px;
+    top: calc(50% - 14px);
+}
+
+@media (max-width: 768px) {
+    #dateRangeRangeWrap {
+        position: relative;
+        right: auto;
+    }
+}
+
+.width-3, .size-3 {
+    width: 120px;
+}
+
+.form-control-datepicker {
+    position: relative;
+    display: inline-block;
+}
+
+.form-control-datepicker .form-control {
+    padding-right: 25px;
+    width: 130px;
+}

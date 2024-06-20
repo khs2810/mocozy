@@ -65,7 +65,6 @@
 									<span class="location-text">
 										<a href="adminPoint.ad">포인트</a>
 									</span>
-									<span style="margin-left: 200px;"> <a href="analysis.ad">통계</a></span>
 								</div>
 							</li>
 						</ul>
@@ -74,7 +73,14 @@
 					<div class="headerbar-right">
 						<ul class="header-nav header-nav-options">
 							<li class="hidden-xs">
-								<a class="clay-button black exit-btn" style="margin-right: 50px;" href="admin.ad">뒤로가기</a>
+								<ul class="header-nav header-nav-options">
+									<li class="hidden-xs" style="margin-right: 10px !important">
+										<a class="clay-button black exit-btn" href="admin.ad">뒤로가기</a>
+									</li>
+									<li class="hidden-xs" style="margin-right: 40px !important">
+										<a class="clay-button btn-primary-button" href="analysis.ad">통계</a>
+									</li>
+								</ul>
 							</li>
 						</ul><!--end .header-nav-options -->
 					</div><!--끝 #header-navbar-collapse -->
@@ -128,7 +134,7 @@
 												<input type="hidden" name="adminNo" value="${loginUser.userNo}">
 												<label class="col-sm-2 control-label">포인트액</label>
 												<div class="col-sm-8">
-													<div class="input-group" style="line-height: 2;">
+													<div class="input-group" style="line-height: 2; display: flex;">
 														<div class="input-group-content width-3" style="padding-right: 15px;">
 															<select class="form-control static dirty" name="pointType">
 																<option value="plus">지급</option>

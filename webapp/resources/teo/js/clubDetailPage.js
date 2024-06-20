@@ -109,12 +109,19 @@ function modalMap(address) {
             // 정상적으로 검색이 완료됐으면 
             if (status === kakao.maps.services.Status.OK) {
                 var coords = new kakao.maps.LatLng(result[0].y, result[0].x);
+                //중심값 안맞는거 해결
+                var y = parseFloat(result[0].y);  // y 값을 숫자로 변환
+                var coords2 = new kakao.maps.LatLng(y+0.0021, result[0].x-0.0043);
                 // 결과값으로 받은 위치를 마커로 표시합니다
                 var marker = new kakao.maps.Marker({
                     map: map,
                     position: coords
                 });
-                map.setCenter(coords);
+                map.setCenter(coords2);
+                kakao.maps.event.addListener(marker, 'click', function() {
+                    const link = 'https://map.kakao.com/link/map/' + address + ',' + result[0].y + ',' + result[0].x;
+                    window.open(link);     
+                });
             } 
         })
     setTimeout(function(){ map.relayout(); }, 100);  
