@@ -66,16 +66,31 @@ document.addEventListener('DOMContentLoaded', function () {
 function checkPass() {
     const userPwd = document.getElementById('userPwd').value;
     const checkPwd = document.getElementById('checkPwd').value;
-    const pwdReview = document.getElementById('pwd_review');
+    const checkPassReview = document.getElementById('checkPass_review');
 
-    if (userPwd === checkPwd) {
-        pwdReview.textContent = '비밀번호가 일치합니다.';
-        pwdReview.className = 'pass';
-        return true;
+    if (validateUserPwd(userPwd)) {
+        pwd_review.textContent = '유효한 비밀번호 입니다.';
+        pwd_review.className = 'pass';
+
+        if (userPwd === checkPwd) {
+            checkPassReview.textContent = '비밀번호가 일치합니다.';
+            checkPassReview.className = 'pass';
+            return true;
+        } else {
+            checkPassReview.textContent = '비밀번호가 일치하지 않습니다.';
+            checkPassReview.className = 'none_pass';
+            return false;
+        }
     } else {
-        pwdReview.textContent = '비밀번호가 일치하지 않습니다.';
-        pwdReview.className = 'none_pass';
-        return false;
+        pwd_review.textContent = '유효하지 않은 비밀번호 입니다.';
+        pwd_review.className = 'none_pass';
+        submitBtn.disabled = true;
+    }
+
+    function validateUserPwd(userPwd) {
+        // 최소 8자리 이상, 영문자와 숫자를 모두 포함
+        const re = /^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+        return re.test(String(userPwd));
     }
     
 }
@@ -83,7 +98,7 @@ function checkPass() {
 //유효성 검사
 function validate(){
     let idReview = document.getElementById('id_review');
-    let pwdReview = document.getElementById('pwd_review');
+    let checkPassReview = document.getElementById('checkPass_review');
     let nickReview = document.getElementById('nick_review');
 
     if (idReview.classList.contains('none_pass')){
@@ -92,7 +107,7 @@ function validate(){
         idInput.focus();
         return false;
 
-    } else if(pwdReview.classList.contains('none_pass')){
+    } else if(checkPassReview.classList.contains('none_pass')){
         alert("비밀번호가 일치하지 않습니다");
         let userPwd = document.getElementById('userPwd');
         userPwd.focus();

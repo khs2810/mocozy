@@ -50,14 +50,16 @@
                 <br>
                 <h4>* 비밀번호</h4>
                 <div class="content-box">
-                    <input type="password" class="form-control" id="userPwd" placeholder="숫자와 영문을 포함하여 8자리 이상" name="userPwd" required><br>
+                    <input type="password" class="form-control" id="userPwd" onkeyup="validateUserPwd()" placeholder="숫자와 영문을 포함하여 8자리 이상" name="userPwd" required><br>
+                    <span id="pwd_review"></span>
+                    <div id="checkIdResult" style="font-size:0.7em; display:none;"></div>
                 </div>
                 
                 <br>
                 <h4>* 비밀번호 확인</h4>
                 <div class="content-box">
                     <input type="password" class="form-control" id="checkPwd" onblur="checkPass()" placeholder="비밀번호" required><br>
-                    <span id="pwd_review"></span><br>
+                    <span id="checkPass_review"></span><br>
                 </div>
                 
                 <br>
