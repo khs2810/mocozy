@@ -20,4 +20,6 @@ public interface ChatService {
 	ChatRoom selectChatRoomByNo(int cno);
 
 	ArrayList<ChatRoom> selectAdminChatList(int adminUno);
+
+	ChatRoom selectAdminChat(int userNo);
 }

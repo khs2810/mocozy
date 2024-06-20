@@ -33,10 +33,18 @@ public class ChatController {
 	
 	@RequestMapping("list.ch")
 	public String selectChat(@SessionAttribute("loginUser") Member loginUser, Model model) {
-		
 		// 현재 개설되어 있는 채팅방 목록 불러오기
 		List<ChatRoom> roomList = chatService.selectRoomList(loginUser.getUserNo());
+		ChatRoom adminChat = chatService.selectAdminChat(loginUser.getUserNo());
+		int adminChatNo;
+		if (adminChat == null) {
+			adminChatNo = -1;
+		} else {
+			adminChatNo = adminChat.getChatNo();
+		}
+		
 		model.addAttribute("roomList", roomList);
+		model.addAttribute("adminChatNo", adminChatNo);
 		
 		return "club/chatPage";
 	}
