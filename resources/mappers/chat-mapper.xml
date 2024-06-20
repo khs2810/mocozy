@@ -160,6 +160,18 @@
     	 WHERE MASTER_NO = #{adminUno};
     </select>
     
+    <select id="selectAdminChat" resultMap="chatRoomResult">
+    	SELECT CHAT_NO,
+    		   CREATE_DATE,
+    		   TARGET_NO,
+    		   TARGET_NICKNAME,
+    		   TARGET_PROFILE,
+    		   ROOM_TITLE
+    	  FROM CHAT_ROOM
+    	 WHERE TARGET_NO = #{userNo}
+    	   AND MASTER_NO = 1;
+    </select>
+    
 	<!-- 채팅 메시지 중 내가 보내지 않은 글을 읽음으로 표시 -->
 <!-- 	<update id="updateReadFlag">
 		UPDATE MESSAGE 

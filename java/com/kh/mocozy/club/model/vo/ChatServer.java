@@ -67,19 +67,10 @@ public class ChatServer extends TextWebSocketHandler {
 		
 		int targetNo;
 		if(userNo != masterNo) {
-			System.out.println("userNo랑 masterNo가 다름");
-			System.out.println("targetNo : " + target);
-			System.out.println("senderNo : " + userNo);
 			int targetChatCno = targetChat.getClubNo();
-			System.out.println("targetChatNo : " + targetChatCno);
-			System.out.println("masterNo : " + masterNo);
 			targetNo = targetChat.getMasterNo();
 		} else {
 			targetNo = targetChat.getTargetNo();
-			System.out.println("userNo랑 masterNo가 같음");
-			System.out.println("targetNo : " + target);
-			System.out.println("senderNo : " + userNo);
-			System.out.println("masterNo : " + masterNo);
 		}
 		
 		msg.setTargetNo(targetNo);
@@ -99,16 +90,18 @@ public class ChatServer extends TextWebSocketHandler {
 	private void sendMessageUser(String targetNick, Message msg) {
 		WebSocketSession targetSession = userSessions.get(targetNick);
 		WebSocketSession mySession = userSessions.get(msg.getNick());
-		System.out.println("userSessions : " + userSessions);
-		System.out.println("targetSession : " + targetSession);
-		System.out.println("mySession : " + mySession);
+		String str = new Gson().toJson(msg);
+		TextMessage tmsg = new TextMessage(str);
+		
+		try {
+			mySession.sendMessage(tmsg);
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
 		if (targetSession != null && targetSession.isOpen()) {
 			System.out.println("연결!");
-			String str = new Gson().toJson(msg);
-			TextMessage tmsg = new TextMessage(str);
-			
 			try {
-				mySession.sendMessage(tmsg);
 				targetSession.sendMessage(tmsg);
 			} catch(IOException e) {
 				e.printStackTrace();

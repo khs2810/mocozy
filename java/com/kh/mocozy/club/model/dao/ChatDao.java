@@ -42,4 +42,8 @@ public class ChatDao {
 	public ArrayList<ChatRoom> selectAdminChatList(SqlSessionTemplate sqlSession, int adminUno) {
 		return (ArrayList)sqlSession.selectList("chatMapper.selectAdminChatList", adminUno);
 	}
+
+	public ChatRoom selectAdminChat(SqlSessionTemplate sqlSession, int userNo) {
+		return sqlSession.selectOne("chatMapper.selectAdminChat", userNo);
+	}
 }
