@@ -1,3 +1,14 @@
+// 아이디 체크
+function checkId(idInput){
+    let idReview = document.getElementById('id_review');
+    if (idInput.value === '${m.userId}') {
+        idReview.className = "none_pass";
+        idReview.innerText = '이미 존재하는 아이디입니다.';
+        submitBtn.disabled = true;
+    } else {
+        idReview.className = "pass";
+        idReview.innerText = '사용가능한 아이디입니다.';
+        submitBtn.disabled = false;
 // 닉네임 체크
 document.addEventListener('DOMContentLoaded', function () {
     const nickNameInput = document.getElementById('nickName');
