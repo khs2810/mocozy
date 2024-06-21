@@ -98,7 +98,8 @@
 			                </div>
 		                    <div class="btn">
 		                        <button class="btn-style btn-color1" onclick="location.href='http://localhost:8890/mocozy/updateform.cl?cno=${d.clubNo}'">재탕</button>
-		                        <button class="btn-style btn-color2" onclick="location.href='http://localhost:8890/mocozy/cancleFinishChallenge.me?cno=${d.clubNo}'">종료취소</button>
+		                        <%-- <button class="btn-style btn-color2" onclick="location.href='http://localhost:8890/mocozy/cancleFinishChallenge.me?cno=${d.clubNo}'">종료취소</button> --%>
+		                        <button class="btn-style btn-color3" onclick="redirectToChallengeCheck('${d.clubNo}')">관리</button>
 		                    </div>
 		                </div>
 		            </div>
