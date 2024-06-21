@@ -114,18 +114,7 @@ public class AdminController {
 			return "admin/admin";
 		}
 		
-		model.addAttribute("pi", pi);
-		model.addAttribute("list", list);
-		
-	    return "admin/adminPoint/adminPoint";
     }
-	
-	// 채팅방 번호에 해당하는 메시지 목록 조회
-	@ResponseBody
-	@GetMapping(value="/privateChat.ad/selectMessage", produces="application/json; charset=UTF-8")
-	public List<Message> selectMessageList(@RequestParam("chno") int chno, Model model) {
-		return chatService.selectMessageList(chno);
-	}
 
 	@RequestMapping("adminPoint.ad")
 	public String showAdminPoint(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, Model model, HttpSession session) { 
@@ -156,7 +145,7 @@ public class AdminController {
 	}
 
 	@RequestMapping("analysis.ad")
-		public String analysisPoint(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, Model model) {
+	public String analysisPoint(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, Model model) {
 		
 		SumPointDTO sumPoint = pointService.sumAllChargePoint("D");
 		SumPointDTO sumPointW = pointService.sumAllChargePoint("W");
@@ -167,25 +156,6 @@ public class AdminController {
 		model.addAttribute("sumPayment", sumPayment);
 		
 	    return "admin/adminPoint/adminPointAnalysis";
-		}
-	public String analysisPoint(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, Model model) {
-		int pointListCount = pointService.selectPointAdminListCount();
-
-		PageInfo pi = Pagination.getPageInfo(pointListCount, currentPage, 10, 5);
-
-		ArrayList<Point> plist = pointService.selectListPointAdmin(pi);
-		ArrayList<PointDTO> list = new ArrayList<>();
-
-		for(Point p : plist) {
-			PointDTO pd = new PointDTO(p);
-			pd.setUserNickname(memberService.selectNicknameByUserNo(p.getUserNo()));
-			pd.setAdminNickname(memberService.selectNicknameByUserNo(p.getAdminNo()));
-			list.add(pd);
-		}
-
-		model.addAttribute("pi", pi);
-		model.addAttribute("list", list);
-
-		return "admin/adminPoint/adminPointAnalysis";
 	}
+
 }
