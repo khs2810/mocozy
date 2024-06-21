@@ -66,7 +66,10 @@ function drawPointChargeHistory(data) {
                     <div class="history-list-main">\n`
             if (p.status === 'D') {
                 str += `<span class="history-detail">포인트 충전</span>\n`
-            } else {
+            } else if (p.status === 'R') {
+                str += `<span class="history-detail">포인트 환불</span>\n`
+            }
+            else {
                 str += `<span class="history-detail">챌린지 상금</span>\n`
             }
             str += `<div class="history-point">\n
