@@ -434,7 +434,7 @@
 	  ORDER BY CREATE_DATE DESC;
 	</select>
 	
-	<select id="selectGoChallengeList">
+	<select id="selectGoChallengeList" resultMap="clubResult">
 		SELECT C.CLUB_NO,
 			   C.USER_NO,
 			   C.CLUB_TITLE,
@@ -456,7 +456,7 @@
 	  ORDER BY EVENT_DATE DESC;
 	</select>
 	
-	<select id="selectGoChallengeListDone">
+	<select id="selectGoChallengeListDone" resultMap="clubResult">
 		SELECT C.CLUB_NO,
 			   C.USER_NO,
 			   C.CLUB_TITLE,

@@ -207,7 +207,7 @@ public class ClubDao {
 	}
 
 	public ArrayList<Club> selectGoChallengeList(SqlSessionTemplate sqlSession, int uno) {
-		return (ArrayList)sqlSession.selectList("clubMapper.selectGoChallengeList, uno");
+		return (ArrayList)sqlSession.selectList("clubMapper.selectGoChallengeList", uno);
 	}
 
 	public ArrayList<Club> selectGoChallengeListDone(SqlSessionTemplate sqlSession, int uno) {
