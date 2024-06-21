@@ -121,5 +121,10 @@ public class PointServiceImpl implements PointService {
 	public SumPointDTO sumAllChargePoint(String status) {
 		return pointDao.sumAllChargePoint(sqlSession, status);
 	}
+
+	@Override
+	public SumPointDTO sumAllPaymentPoint() {
+		return pointDao.sumAllPaymentPoint(sqlSession);
+	}
 	
 }

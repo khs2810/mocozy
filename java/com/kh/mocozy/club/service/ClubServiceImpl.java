@@ -18,6 +18,7 @@ import com.kh.mocozy.club.model.vo.ClubReview;
 import com.kh.mocozy.club.model.vo.Request;
 import com.kh.mocozy.common.model.vo.Attachment;
 import com.kh.mocozy.member.model.dao.MemberDao;
+import com.kh.mocozy.member.model.vo.Member;
 import com.kh.mocozy.point.model.dao.PointDao;
 import com.kh.mocozy.point.model.vo.Payment;
 
@@ -200,12 +201,22 @@ public class ClubServiceImpl implements ClubService {
 	public int cancleFinishChallenge(int cno) {
 		return clubDao.cancleFinishChallenge(sqlSession, cno);
 	}
-
+	
+	@Transactional
 	@Override
 	public int quitClub(HashMap<String, Integer> map) {
-		return clubDao.quitClub(sqlSession, map);
+		
+		int result = clubDao.quitClub(sqlSession, map);
+		int point = clubDao.getPointWithCno(sqlSession, map.get("cno"));
+		Member m = new Member();
+		m.setUserNo(map.get("uno"));
+		m.setPoint(point);
+		int result2 = pointDao.refundPoint(sqlSession, m);
+		int result3 = memberDao.refundPoint(sqlSession, m);
+		
+		return result * result2 * result3;
 	}
-
+	
 	@Override
 	public int insertMemberChallengeStatus(HashMap<String, String> map) {
 		return clubDao.insertMemberChallengeStatus(sqlSession, map);

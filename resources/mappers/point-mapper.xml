@@ -247,4 +247,27 @@
 		from point
 		where status = #{stauts}
 	</select>
+	
+	<select id="sumAllPaymentPoint" resultMap="sumPointDTOResult">
+		select count(*) as count, sum(point) as sumPoint
+		from payment
+		where status = 'Y'
+	</select>
+	
+	<insert id="refundPoint">
+		INSERT INTO
+			POINT (
+					 point_no,
+					 user_no,
+					 point,
+					 status
+					 )
+			VALUES (
+					NEXTVAL('SEQ_PNO'),
+					#{userNo},
+					#{point},
+					'R'
+					)
+	</insert>
+	
 </mapper>

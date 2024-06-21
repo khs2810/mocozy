@@ -164,8 +164,12 @@ public class AdminController {
 		public String analysisPoint(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, Model model) {
 		
 		SumPointDTO sumPoint = pointService.sumAllChargePoint("D");
+		SumPointDTO sumPointW = pointService.sumAllChargePoint("W");
+		SumPointDTO sumPayment = pointService.sumAllPaymentPoint();
 		
 		model.addAttribute("sumPoint", sumPoint);
+		model.addAttribute("sumPointW", sumPointW);
+		model.addAttribute("sumPayment", sumPayment);
 		
 	    return "admin/adminPoint/adminPointAnalysis";
 	}

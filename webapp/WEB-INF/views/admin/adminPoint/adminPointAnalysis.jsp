@@ -187,8 +187,8 @@
 															<li class="date"></li>
 															<li class="nick"></li>
 															<li class="data"></li>
-															<li class="order">${sumPoint.count}</li>
-															<li class="stz text-right"><fmt:formatNumber value="${sumPoint.sumPoint}" pattern="#,###"/>pt</li>
+															<li class="order">${sumPayment.count}</li>
+															<li class="stz text-right"><fmt:formatNumber value="${sumPayment.sumPoint}" pattern="#,###"/>pt</li>
 															<li class="balance text-right"></li>
 														</ul>
 												</div>
@@ -217,9 +217,9 @@
 															<li class="date"></li>
 															<li class="nick"></li>
 															<li class="data"></li>
-															<li class="order">${sumPoint.count}</li>
-															<li class="stz text-right"><fmt:formatNumber value="${sumPoint.sumPoint}" pattern="#,###"/>pt</li>
-															<li class="balance text-right"><fmt:formatNumber value="${sumPoint.sumPoint}" pattern="#,###"/>원</li>
+															<li class="order">${sumPointW.count}</li>
+															<li class="stz text-right"><fmt:formatNumber value="${sumPointW.sumPoint}" pattern="#,###"/>pt</li>
+															<li class="balance text-right"><fmt:formatNumber value="${sumPointW.sumPoint * 0.9}" pattern="#,###"/>원</li>
 														</ul>
 												</div>
 											</div>
@@ -229,6 +229,36 @@
 							</div>
 
 							<div class="row">
+								<div class="col-md-12">
+									<div class="card">
+	
+										<div class="card-body no-padding">
+											<div class="table-responsive">
+												<div class="li-table">
+													<ul class="subject">
+														<li class="date">총 수익</li>
+														<li class="nick"></li>
+														<li class="data"></li>
+														<li class="order"></li>
+														<li class="stz text-right">비사용 포인트</li>
+														<li class="balance text-right">순 수익</li>
+													</ul>
+														<ul class="subject ">
+															<li class="date"></li>
+															<li class="nick"></li>
+															<li class="data"></li>
+															<li class="order"></li>
+															<li class="stz text-right"><fmt:formatNumber value="${sumPoint.sumPoint - (sumPayment.sumPoint * 0.9)}" pattern="#,###"/>pt</li>
+															<li class="balance text-right"><fmt:formatNumber value="${sumPoint.sumPoint - (sumPointW.sumPoint * 0.9)}" pattern="#,###"/>원</li>
+														</ul>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- <div class="row">
 								<div class="col-md-12">
 									<div class="card">
 	
@@ -256,7 +286,7 @@
 										</div>
 									</div>
 								</div>
-							</div>
+							</div> -->
 							
 						</form>
 					</div>

@@ -511,4 +511,10 @@
 		set status = 'N'
 		where club_no = #{cno}
 	</update>
+	
+	<select id="getPointWithCno" resultType="_int">
+		select cost
+		from club
+		where club_no = #{cno}
+	</select>
 </mapper>

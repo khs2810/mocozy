@@ -213,4 +213,11 @@
        FROM MEMBER 
        WHERE USER_ID = #{userId}
    </select>
+   
+   <update id="refundPointM"> 
+  		UPDATE MEMBER
+		   SET point = point + #{point}
+		 WHERE USER_NO = #{userNo}
+   </update>
+   
 </mapper>

@@ -50,4 +50,6 @@ public interface PointService {
 
 	SumPointDTO sumAllChargePoint(String status);
 
+	SumPointDTO sumAllPaymentPoint();
+
 }

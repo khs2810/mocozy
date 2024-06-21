@@ -12,6 +12,6 @@ import lombok.ToString;
 @Setter
 @ToString
 public class SumPointDTO {
-	private int count; // 결제 고유 번호
+	private int count;
     private int sumPoint;
 }

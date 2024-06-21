@@ -189,4 +189,8 @@ public class ClubDao {
 	public List<Club> selectMyDibsChallengeList(SqlSessionTemplate sqlSession, Club club) {
 		return (ArrayList)sqlSession.selectList("clubMapper.selectMyDibsChallengeList", club);
 	}
+
+	public int getPointWithCno(SqlSessionTemplate sqlSession, int cno) {
+		return sqlSession.selectOne("clubMapper.getPointWithCno", cno);
+	}
 }

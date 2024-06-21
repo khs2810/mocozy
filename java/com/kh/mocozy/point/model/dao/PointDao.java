@@ -95,4 +95,13 @@ public class PointDao {
 		return sqlSession.selectOne("pointMapper.sumAllChargePoint", status);
 	}
 
+	public SumPointDTO sumAllPaymentPoint(SqlSessionTemplate sqlSession) {
+		return sqlSession.selectOne("pointMapper.sumAllPaymentPoint");
+	}
+
+	public int refundPoint(SqlSessionTemplate sqlSession, Member m) {
+		// TODO Auto-generated method stub
+		return sqlSession.insert("pointMapper.refundPoint", m);
+	}
+
 }

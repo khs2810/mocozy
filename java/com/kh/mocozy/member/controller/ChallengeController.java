@@ -179,9 +179,11 @@ public class ChallengeController {
     	int result = clubService.quitClub(map);
     	
     	if (result > 0) {
-    		return "myPage/myChallenge";
+    		session.setAttribute("alertMsg", "모임 탈퇴 성공");
+    		session.setAttribute("loginUser", memberService.loginMember(m));
+    		return "redirect:goChallenge.me";
     	} else {
-    		model.addAttribute("errorMsg", "챌린지 탈퇴 실패");
+    		model.addAttribute("errorMsg", "소셜링 탈퇴 실패");
 			return "common/errorPage";
     	}
     }
