@@ -27,8 +27,12 @@ public class AdminManagerController {
 
 	//전체
 	@RequestMapping("adminManager.ad")
-	public String showAdminManager(@RequestParam(value="cpage", defaultValue="1") int cpage, String sortType, Model model) {  
-
+	public String showAdminManager(@RequestParam(value="cpage", defaultValue="1") int cpage, String sortType, Model model, HttpSession session) {  
+		  // 세션 만료 확인
+		  Member loginUser = (Member)session.getAttribute("loginUser");
+		  if (loginUser == null) {
+			  return "redirect:/"; // 메인 페이지로 리다이렉트
+		  } else {
 		//카테고리별로 사이즈 구하기
 		ArrayList<Member> getmlist = amService.MemberAllList();
 		int manageCount = getmlist.size();
@@ -37,6 +41,7 @@ public class AdminManagerController {
 		model.addAttribute("manageCount", manageCount);
 
 		return "admin/adminManager/adminManager";
+		 }
 	}		
 
 	//전체Ajax

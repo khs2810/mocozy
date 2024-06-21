@@ -34,7 +34,9 @@
             <div class="enrollForm">
                 <h4>* 닉네임</h4>
                 <div class="content-box">
-                    <input type="text" name="nickname" placeholder="닉네임">
+                    <input type="text" id="nickName" name="nickName" onkeyup="checkNickName()" placeholder="닉네임" required><br>
+                    <span id="nick_Review"></span>
+                    <div id="checkNickResult" style="font-size:0.7em; display:none;"></div>
                 </div>
                 
                 <br>
@@ -42,20 +44,22 @@
                 <div class="content-box">
                     <input type="text" class="form-control" id="userId" onkeyup="checkId(this)" placeholder="example@kakao.com" name="userId" required><br>
                     <span id="id_review"></span>
-                    <div id="checkResult" style="font-size:0.7em; display:none;"></div>
+                    <div id="checkIdResult" style="font-size:0.7em; display:none;"></div>
                 </div>
                 
                 <br>
                 <h4>* 비밀번호</h4>
                 <div class="content-box">
-                    <input type="password" class="form-control" id="userPwd" placeholder="숫자와 영문을 포함하여 8자리 이상" name="userPwd" required><br>
+                    <input type="password" class="form-control" id="userPwd" onkeyup="validateUserPwd()" placeholder="숫자와 영문을 포함하여 8자리 이상" name="userPwd" required><br>
+                    <span id="pwd_review"></span>
+                    <div id="checkIdResult" style="font-size:0.7em; display:none;"></div>
                 </div>
                 
                 <br>
                 <h4>* 비밀번호 확인</h4>
                 <div class="content-box">
                     <input type="password" class="form-control" id="checkPwd" onblur="checkPass()" placeholder="비밀번호" required><br>
-                    <span id="pwd_review"></span><br>
+                    <span id="checkPass_review"></span><br>
                 </div>
                 
                 <br>
