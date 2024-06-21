@@ -85,7 +85,7 @@
 		       CREATE_DATE,
 		       STATUS
 		FROM POINT
-		WHERE (STATUS = 'D' OR STATUS = 'C')
+		WHERE (STATUS = 'D' OR STATUS = 'C' OR STATUS = 'R')
 		  AND DATE_TRUNC('month', CREATE_DATE) = DATE_TRUNC('month', TO_DATE(#{strMonth}, 'YYYY-MM'))
 		  AND USER_NO = #{userNo}
 		ORDER BY POINT_NO DESC;
@@ -102,7 +102,7 @@
 	<select id="totalChargePoint" resultType="_int">
 		SELECT COALESCE(SUM(point), 0)
 		FROM POINT
-		WHERE (STATUS = 'D' OR STATUS = 'C')
+		WHERE (STATUS = 'D' OR STATUS = 'C' OR STATUS = 'R')
 		AND USER_NO = #{userNo}
 	</select>
 	
