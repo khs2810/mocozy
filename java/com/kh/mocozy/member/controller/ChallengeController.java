@@ -143,8 +143,8 @@ public class ChallengeController {
 		Member m = (Member)session.getAttribute("loginUser");
 		int uno = m.getUserNo();
 		
-		ArrayList<Club> clist = clubService.selectMyChallengeList(uno);
-		ArrayList<Club> dlist = clubService.selectMyChallengeListDone(uno);
+		ArrayList<Club> clist = clubService.selectGoChallengeList(uno);
+		ArrayList<Club> dlist = clubService.selectGoChallengeListDone(uno);
 		
 		for (int i = 0; i < clist.size(); i++) {
             ArrayList<Member> memberList = memberService.participatedMemberList(clist.get(i).getClubNo());

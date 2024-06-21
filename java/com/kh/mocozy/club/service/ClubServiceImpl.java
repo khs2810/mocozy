@@ -284,4 +284,14 @@ public class ClubServiceImpl implements ClubService {
 	public List<Club> selectMyDibsChallengeList(Club club) {
 		return clubDao.selectMyDibsChallengeList(sqlSession, club);
 	}
+
+	@Override
+	public ArrayList<Club> selectGoChallengeList(int uno) {
+		return clubDao.selectGoChallengeList(sqlSession, uno);
+	}
+
+	@Override
+	public ArrayList<Club> selectGoChallengeListDone(int uno) {
+		return clubDao.selectGoChallengeListDone(sqlSession, uno);
+	}
 }

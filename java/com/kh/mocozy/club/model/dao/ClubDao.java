@@ -205,4 +205,12 @@ public class ClubDao {
 	public int addTotalPoint(SqlSessionTemplate sqlSession, int cno) {
 		return sqlSession.update("clubMapper.addTotalPoint", cno);
 	}
+
+	public ArrayList<Club> selectGoChallengeList(SqlSessionTemplate sqlSession, int uno) {
+		return (ArrayList)sqlSession.selectList("clubMapper.selectGoChallengeList, uno");
+	}
+
+	public ArrayList<Club> selectGoChallengeListDone(SqlSessionTemplate sqlSession, int uno) {
+		return (ArrayList)sqlSession.selectList("clubMapper.selectGoChallengeListDone", uno);
+	}
 }
