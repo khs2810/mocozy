@@ -51,7 +51,7 @@ public class SearchController {
 		map.put("order", order);
 		int clubCount = sService.searchForm(map);
 		PageInfo re = Pagination.getPageInfo(clubCount, currentPage, 8, 8);
-		if (clubCount > 0) {
+
 			ArrayList<Club> clist = sService.searchFormAjax(map, re);
 			for (Club c : clist) {
 				ArrayList<Member> memberList = sService.MemberList(c.getClubNo());
@@ -62,15 +62,8 @@ public class SearchController {
 				c.setProfileImg(imgs);
 			}
 			return new Gson().toJson(clist);
-		} else if (clubCount == 0) {
-			session.setAttribute("alertMsg", "검색 결과가 없습니다");
-		} else {
-			model.addAttribute("errorMsg", "검색 실패");
-			return "common/errorPage";
 		}
-		return new Gson().toJson(clubCount);
 	}
-}
 
 
 
