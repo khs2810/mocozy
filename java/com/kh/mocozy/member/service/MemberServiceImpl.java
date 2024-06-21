@@ -36,7 +36,6 @@ public class MemberServiceImpl implements MemberService {
 //	비밀번호 체크
 	@Override
 	public String pwdCheck(String userId) {
-		
 		return memberDao.pwdCheck(sqlSession, userId);
 	}
 	
