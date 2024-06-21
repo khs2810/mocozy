@@ -52,4 +52,18 @@
 		   AND DETAIL_DATE = #{detailDate}
 		   AND DAILY_STATUS = #{dailyStatus}
 	</select>
+	
+	<update id="finishClubChallenge">
+		UPDATE CHALLENGE
+		   SET STATUS = 'E'
+		 WHERE CLUB_NO = #{cno}
+		   AND STATUS = 'Y'
+	</update>
+	
+	<update id="cancleFinishClubChallenge">
+		UPDATE CHALLENGE
+		   SET STATUS = 'Y'
+		 WHERE CLUB_NO = #{cno}
+		   AND STATUS = 'E'
+	</update>
 </mapper>

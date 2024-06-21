@@ -511,4 +511,10 @@
 		set status = 'N'
 		where club_no = #{cno}
 	</update>
+	
+	<update id="addTotalPoint">
+		UPDATE CLUB
+		   SET TOTAL_POINT = TOTAL_POINT + COST
+		 WHERE CLUB_NO = #{cno}
+	</update>
 </mapper>

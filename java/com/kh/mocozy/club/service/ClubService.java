@@ -35,7 +35,7 @@ public interface ClubService {
 
 	ArrayList<Request> requestList(int cno);
 
-	int acceptRequest(int rqno);
+	int acceptRequest(int rqno, int cno);
 
 	String insertRequest(Request r);
 
