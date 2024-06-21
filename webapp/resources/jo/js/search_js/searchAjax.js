@@ -102,20 +102,23 @@ function drawClublist(clist){
     document.querySelector(".display").innerHTML += str;
 }
 
+let isFirstLoad = true;
+
 function searchFormAjax(keyword, order) {
     $.ajax({
         url: "searchFormAjax.sc",
         data: {rpage: rpage++, keyword: keyword, order: order},
-        success: function(clist) {
-           // clist의 길이가 0이면 검색 결과가 없다는 알림을 표시
-          if (clist.length === 0) {
-            alert("검색 결과가 없습니다");
-          } else {
-          // AJAX 요청이 성공하면 페이지를 그리는 함수를 호출
-            drawClublist(clist);
+        success: function(response) {
+            if (response.length > 0) {
+                drawClublist(response);
+                console.log("AJAX 요청 성공, 응답 데이터:", response);
+            } else if (response.length === 0 && isFirstLoad) {
+                alert("검색 결과가 없습니다");
             }
+            isFirstLoad = false;
         },
         error: function() {
+            alert("AJAX 요청 실패");
         }
     });
 }
