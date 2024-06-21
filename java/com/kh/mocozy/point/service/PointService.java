@@ -3,6 +3,7 @@ package com.kh.mocozy.point.service;
 import java.util.ArrayList;
 import java.util.Map;
 
+import com.kh.mocozy.admin.model.dto.SumPointDTO;
 import com.kh.mocozy.club.model.vo.Request;
 import com.kh.mocozy.common.model.vo.PageInfo;
 import com.kh.mocozy.member.model.vo.Member;
@@ -46,5 +47,9 @@ public interface PointService {
 	int returnPoint(Payment p);
 
 	int cancelPayment(Payment p);
+
+	SumPointDTO sumAllChargePoint(String status);
+
+	SumPointDTO sumAllPaymentPoint();
 
 }

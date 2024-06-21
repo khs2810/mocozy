@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.mocozy.admin.model.dto.SumPointDTO;
 import com.kh.mocozy.admin.service.AdminClubService;
 import com.kh.mocozy.admin.service.AdminNoticeService;
 import com.kh.mocozy.admin.service.AdminService;
@@ -112,6 +113,18 @@ public class AdminController {
 
 			return "admin/admin";
 		}
+		
+		model.addAttribute("pi", pi);
+		model.addAttribute("list", list);
+		
+	    return "admin/adminPoint/adminPoint";
+    }
+	
+	// 채팅방 번호에 해당하는 메시지 목록 조회
+	@ResponseBody
+	@GetMapping(value="/privateChat.ad/selectMessage", produces="application/json; charset=UTF-8")
+	public List<Message> selectMessageList(@RequestParam("chno") int chno, Model model) {
+		return chatService.selectMessageList(chno);
 	}
 
 	@RequestMapping("adminPoint.ad")
@@ -143,6 +156,18 @@ public class AdminController {
 	}
 
 	@RequestMapping("analysis.ad")
+		public String analysisPoint(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, Model model) {
+		
+		SumPointDTO sumPoint = pointService.sumAllChargePoint("D");
+		SumPointDTO sumPointW = pointService.sumAllChargePoint("W");
+		SumPointDTO sumPayment = pointService.sumAllPaymentPoint();
+		
+		model.addAttribute("sumPoint", sumPoint);
+		model.addAttribute("sumPointW", sumPointW);
+		model.addAttribute("sumPayment", sumPayment);
+		
+	    return "admin/adminPoint/adminPointAnalysis";
+		}
 	public String analysisPoint(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, Model model) {
 		int pointListCount = pointService.selectPointAdminListCount();
 

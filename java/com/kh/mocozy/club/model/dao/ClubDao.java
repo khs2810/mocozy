@@ -190,6 +190,10 @@ public class ClubDao {
 		return (ArrayList)sqlSession.selectList("clubMapper.selectMyDibsChallengeList", club);
 	}
 
+	public int getPointWithCno(SqlSessionTemplate sqlSession, int cno) {
+		return sqlSession.selectOne("clubMapper.getPointWithCno", cno);
+	}
+	
 	public int finishClubChallenge(SqlSessionTemplate sqlSession, int cno) {
 		return sqlSession.update("challengeMapper.finishClubChallenge", cno);
 	}
