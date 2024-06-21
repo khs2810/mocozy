@@ -5,7 +5,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const checkboxEssential = document.querySelector('.checkbox-essential');
     const checkboxOptional = document.querySelector('[data-id="checkbox-optional"]');
     
-    // 전체 동의 클릭시
+    // 1. 전체 동의 박스 클릭시
     checkboxAll.addEventListener('click', function() {
         // 체크박스 반복하는 기능
         checkboxes.forEach(function(checkbox) {
@@ -17,17 +17,20 @@ document.addEventListener('DOMContentLoaded', function() {
                 checkbox.classList.add('bi-check-square-fill');
 
                 // 체크 검정박스 상태라면
-            } else {
+            } else if(){
+                
+                else {
                 // 체크 검정 박스 삭제
                 checkbox.classList.remove('bi-check-square-fill');
                 // 빈 박스 추가
                 checkbox.classList.add('bi-square');
-            }
+            }}
         });
     });
-// 모든 체크박스 요소에 대해 반복
+
+    // 2. 개별 체크박스 요소 클릭시 반복되는 기능
     checkboxes.forEach(function(checkbox) {
-         // 각 체크박스에 클릭 이벤트 리스너 추가
+         // 각 체크박스 클릭시 이벤트 리스너 추가
         checkbox.addEventListener('click', function() {
            // 클릭된 체크박스가 '전체동의' 체크박스인지 확인
             if (checkbox === checkboxAll) {
@@ -48,23 +51,47 @@ document.addEventListener('DOMContentLoaded', function() {
                         cb.classList.add('bi-square');
                     }
                 });
+                
+            // 'checkboxAll'이 아닌 다른 체크박스가 클릭된 경우
             } else {
+                // 만약 빈박스라면?
                 if (checkbox.classList.contains('bi-square')) {
+                    // 빈박스 클래스 제거
                     checkbox.classList.remove('bi-square');
+                    // 체크 검정박스 추가
                     checkbox.classList.add('bi-check-square-fill');
+                    
+                // 빈박스 아니고 현재 체크박스가 체크 검정박스 클래스의 경우
                 } else {
+                    // 체크 검정박스 제거
                     checkbox.classList.remove('bi-check-square-fill');
+                    // 빈 박스 추가
                     checkbox.classList.add('bi-square');
                 }
             }
-            const allChecked = Array.from(checkboxes).every(cb => cb.classList.contains('bi-check-square-fill'));
-            if (allChecked) {
-                checkboxAll.classList.remove('bi-square');
-                checkboxAll.classList.add('bi-check-square-fill');
-            } else {
-                checkboxAll.classList.remove('bi-check-square-fill');
-                checkboxAll.classList.add('bi-square');
-            }
+
+                // 모든 체크박스들이 체크 검정박스 클래스를 가지고 있는지 확인 (모두 체크된 상태인지 확인)
+                const allChecked = Array.from(checkboxes).every(cb => cb.classList.contains('bi-check-square-fill'));
+                // 필수 체크가 체크 검정박스 클래스를 가지고 있는지 확인.
+                const essentialChecked = Array.from(checkboxEssential).every(cb => cb.classList.contains('bi-check-square-fill'));
+
+                // 모든 체크박스가 체크된 상태라면
+                if (allChecked) {
+                    // 'checkbox'의 'bi-square' 클래스를 제거하고
+                    checkbox.classList.remove('bi-square');
+                    // 'bi-check-square-fill' 클래스를 추가하여 '전체동의' 체크박스를 체크된 상태로 변경
+                    checkbox.classList.add('bi-check-square-fill');
+
+                    // 모든 체크박스가 체크된 상태가 아니라면
+                } else {
+                    // 'checkboxAll'의 'bi-check-square-fill' 클래스를 제거하고
+                    checkboxAll.classList.remove('bi-check-square-fill');
+                    // 'bi-square' 클래스를 추가하여 '전체동의' 체크박스를 체크 해제된 상태로 변경
+                    checkboxAll.classList.add('bi-square');
+
+                    
+                }
+
         });
     });
 
