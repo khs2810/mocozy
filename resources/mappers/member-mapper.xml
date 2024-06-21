@@ -74,7 +74,7 @@
 		user_no,
 		   USER_ID,
 		   USER_PWD,
-			nickname
+		   NICKNAME
 		)
 		VALUES(
 			NEXTVAL('SEQ_UNO'),

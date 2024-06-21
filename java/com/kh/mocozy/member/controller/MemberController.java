@@ -124,9 +124,8 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping("nickCheck.me")
 	public String nickNameCheck(@RequestParam("nickName") String checkNickName) {
-		System.out.println("checkNickName : " + checkNickName);
 		int result = memberService.nickNameCheck(checkNickName);
-		System.out.println("중복된 닉네임 갯수 : " + result);
+		
 		if (result > 0) {// 이미존재한다면
 			return "NNNNN";
 		} else { // 존재하지않는다면
@@ -139,9 +138,8 @@ public class MemberController {
 	@ResponseBody
 	@RequestMapping("idCheck.me")
 	public String idCheck(@RequestParam("user_Id") String checkId) {
-		System.out.println("checkId : "+checkId);
 		int result = memberService.idCheck(checkId);
-		System.out.println("중복된 아이디 갯수 : " + result);
+
 		if (result > 0) {// 이미존재한다면
 			return "NNNNN";
 		} else { // 존재하지않는다면
@@ -363,27 +361,24 @@ public class MemberController {
 	} 
 	
 	//찜 ajax 업데이트
-		@ResponseBody
-		@RequestMapping(value ="updatePicked.cl", produces="application/json; charset-UTF-8")
-		public String ajaxUpdatePicked(Picked p, HttpSession session) {
-			Picked pd = memberService.ajaxSelectPicked(p);
-			if (pd == null) { //picked 생성
-				int result = memberService.ajaxInsertPicked(p);
-				if (result > 0) {
-					return new Gson().toJson("YYY");
-				} else {
-					return new Gson().toJson("NNN");
-				}
-			} else { //picked 제거
-				int result = memberService.ajaxDeletePicked(p);
-				if (result > 0) {
-					return new Gson().toJson("NNN");
-				} else {
-					return new Gson().toJson("YYY");
-				}
+	@ResponseBody
+	@RequestMapping(value ="updatePicked.cl", produces="application/json; charset-UTF-8")
+	public String ajaxUpdatePicked(Picked p, HttpSession session) {
+		Picked pd = memberService.ajaxSelectPicked(p);
+		if (pd == null) { //picked 생성
+			int result = memberService.ajaxInsertPicked(p);
+			if (result > 0) {
+				return new Gson().toJson("YYY");
+			} else {
+				return new Gson().toJson("NNN");
+			}
+		} else { //picked 제거
+			int result = memberService.ajaxDeletePicked(p);
+			if (result > 0) {
+				return new Gson().toJson("NNN");
+			} else {
+				return new Gson().toJson("YYY");
 			}
 		}
-		
-
-
+	}
 }

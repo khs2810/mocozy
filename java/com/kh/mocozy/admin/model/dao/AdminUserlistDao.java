@@ -103,11 +103,11 @@ public class AdminUserlistDao {
 	}
 	
 	//insertManager 검색
-	public ArrayList<Member> MemberSearchList(SqlSessionTemplate sqlSession, HashMap<String, String> map, PageInfo mi) {
+	public ArrayList<Member> insertManagerSearchList(SqlSessionTemplate sqlSession, HashMap<String, String> map, PageInfo mi) {
 		int offset = (mi.getCurrentPage() - 1) * mi.getBoardLimit();
 
 		RowBounds rowBounds = new RowBounds(offset, mi.getBoardLimit());
-		return (ArrayList)sqlSession.selectList("adminMapper.MemberSearchList", map, rowBounds);
+		return (ArrayList)sqlSession.selectList("adminMapper.insertManagerSearchList", map, rowBounds);
 	}
 
 	//숨김 검색

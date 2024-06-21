@@ -567,5 +567,10 @@
 		   SET TOTAL_POINT = TOTAL_POINT + COST
 		 WHERE CLUB_NO = #{cno}
 	</update>
-
+	
+	<select id="selectChallengeTotalPoint">
+		SELECT TOTAL_POINT
+		  FROM CLUB
+		 WHERE CLUB_NO = #{cno}
+	</select>
 </mapper>
