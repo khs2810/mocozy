@@ -1,105 +1,95 @@
 package com.kh.mocozy.admin.controller;
 
-import java.math.BigDecimal;
-import java.text.NumberFormat;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.Locale;
-
-import javax.servlet.http.HttpSession;
-
-import org.apache.tomcat.util.json.JSONParser;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import org.springframework.web.client.RestTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.kh.mocozy.admin.service.AdminClubService;
 import com.kh.mocozy.admin.service.AdminNoticeService;
 import com.kh.mocozy.admin.service.AdminService;
 import com.kh.mocozy.admin.service.AdminUserlistService;
-import com.kh.mocozy.board.model.vo.Notice;
-import com.kh.mocozy.club.model.vo.ChatRoom;
-import com.kh.mocozy.club.model.vo.Club;
-import com.kh.mocozy.club.model.vo.Message;
 import com.kh.mocozy.club.service.ChatService;
-import com.kh.mocozy.common.model.vo.PageInfo;
-import com.kh.mocozy.common.template.Pagination;
-import com.kh.mocozy.member.model.vo.Member;
 import com.kh.mocozy.member.service.MemberService;
-import com.kh.mocozy.point.model.vo.Point;
-import com.kh.mocozy.point.model.vo.PointDTO;
 import com.kh.mocozy.point.service.PointService;
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 @Controller
 public class AdminExchangeController {
-	
+	private static final float USD_RATE = 0.00081f;
+	private static final float JPY_RATE = 0.095f;
+	private static final float CNY_RATE = 0.0051f;
+	private static final float GBP_RATE = 0.00062f;
+	private static final float EUR_RATE = 0.00074f;
+
 	@Autowired
 	private AdminService adService;
-	 
-    @Autowired
-    private AdminClubService acService;
-    
-    @Autowired
-    private AdminUserlistService auService;
-    
-    @Autowired
-    private AdminNoticeService anService;
-    
-    @Autowired
-    private PointService pointService;
-    
-    @Autowired
-    private MemberService memberService;
-    
-    @Autowired
-    private ChatService chatService;
-    
 
-@RequestMapping("adminExchange.ad")
-public BigDecimal getExchangeRate() {
-    String authKey = "<발급받은 인증키>";
-    String searchDate = new SimpleDateFormat("yyyyMMdd").format(new Date());
-    String dataType = "AP01";
-    BigDecimal exchangeRate = null;
+	@Autowired
+	private AdminClubService acService;
 
-    try {
-        // Request URL
-        String url = "https://www.koreaexim.go.kr/site/program/financial/exchangeJSON?authkey=" + authKey + "&searchdate=" + searchDate + "&data=" + dataType;
+	@Autowired
+	private AdminUserlistService auService;
+
+	@Autowired
+	private AdminNoticeService anService;
+
+	@Autowired
+	private PointService pointService;
+
+	@Autowired
+	private MemberService memberService;
+
+	@Autowired
+	private ChatService chatService;
+
+	@GetMapping("/calc")
+    public ModelAndView calculate(@RequestParam(required = false) String command,
+                                  @RequestParam(required = false) String won,
+                                  @RequestParam(required = false) String operator) {
+        ModelAndView mav = new ModelAndView();
+
+        if (command != null && command.equals("calculate") && won != null && operator != null) {
+            float rate = getExchangeRate(operator);
+            if (rate != -1) { // Check for valid rate
+                String result = calculate(Float.parseFloat(won), rate);
+                mav.addObject("result", result);
+                mav.setViewName("result");
+            } else {
+                mav.addObject("error", "Invalid operator");
+                mav.setViewName("error");
+            }
+        } else {
+            mav.setViewName("calc");
+        }
+
+        return mav;
+    }
+
+
+	private static String calculate(float won, float rate) {
+        return String.format("%.6f", won / rate);
+    }
+
+    private float getExchangeRate(String currency) {
+        String apiKey = "w1Y81VEGFsQI61nPkmINZPc5hppLz1im"; // Replace with your API key
+        String apiUrl = "https://www.koreaexim.go.kr/ir/HPHKIR020M01?apino=2&viewtype=C&searchselect=&searchword="; // Replace with your API URL
 
         RestTemplate restTemplate = new RestTemplate();
-        String response = restTemplate.getForObject(url, String.class);
+        String response = restTemplate.getForObject(apiUrl, String.class);
 
         JSONParser parser = new JSONParser();
-        JSONArray exchangeRateInfoList = (JSONArray) parser.parse(response);
-
-        // KRW -> USD에 대한 환율 정보 조회
-        for (Object o : exchangeRateInfoList) {
-            JSONObject exchangeRateInfo = (JSONObject) o;
-            if (exchangeRateInfo.get("cur_unit").equals("USD")) {
-
-                // 쉼표가 포함되어 String 형태로 들어오는 데이터를 Double로 파싱하기 위한 부분
-                NumberFormat format = NumberFormat.getInstance(Locale.getDefault());
-                exchangeRate = new BigDecimal(format.parse(exchangeRateInfo.get("deal_bas_r").toString()).doubleValue());
-            }
+        JSONObject jsonObject = null;
+        try {
+            jsonObject = (JSONObject) parser.parse(response);
+        } catch (ParseException e) {
+            e.printStackTrace();
         }
-    } catch (ParseException | java.text.ParseException e) {
-        throw new RuntimeException(e);
-    }
 
-    if (exchangeRate == null) {
-        exchangeRate = getExchangeRate();
+        return ((Number) jsonObject.get(currency.toUpperCase())).floatValue();
     }
-
-    return exchangeRate;
-}
 }
