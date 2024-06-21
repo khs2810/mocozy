@@ -82,9 +82,13 @@ public class ClubServiceImpl implements ClubService {
 		return clubDao.selectRequestList(sqlSession, cno);
 	}
 
+	@Transactional
 	@Override
-	public int acceptRequest(int rqno) {
-		return clubDao.acceptRequest(sqlSession, rqno);
+	public int acceptRequest(int rqno, int cno) {
+		int result1 = clubDao.acceptRequest(sqlSession, rqno);
+		int result2 = clubDao.addTotalPoint(sqlSession, cno);
+		
+		return result1 * result2;
 	}
 	
 	@Transactional
@@ -191,14 +195,21 @@ public class ClubServiceImpl implements ClubService {
 		return clubDao.selectMyChallengeListDone(sqlSession, uno);
 	}
 
+	@Transactional
 	@Override
 	public int finishChallenge(int cno) {
-		return clubDao.finishChallenge(sqlSession, cno);
+		int result1 = clubDao.finishChallenge(sqlSession, cno);
+		int result2 = clubDao.finishClubChallenge(sqlSession, cno);
+		int result3 = clubDao.calculatePayment(sqlSession, cno);
+		return result1 * result2 * result3;
 	}
 
+	@Transactional
 	@Override
 	public int cancleFinishChallenge(int cno) {
-		return clubDao.cancleFinishChallenge(sqlSession, cno);
+		int result1 = clubDao.cancleFinishChallenge(sqlSession, cno);
+		int result2 = clubDao.cancleFinishClubChallenge(sqlSession, cno);
+		return result1 * result2;
 	}
 
 	@Override
@@ -272,5 +283,15 @@ public class ClubServiceImpl implements ClubService {
 	@Override
 	public List<Club> selectMyDibsChallengeList(Club club) {
 		return clubDao.selectMyDibsChallengeList(sqlSession, club);
+	}
+
+	@Override
+	public ArrayList<Club> selectGoChallengeList(int uno) {
+		return clubDao.selectGoChallengeList(sqlSession, uno);
+	}
+
+	@Override
+	public ArrayList<Club> selectGoChallengeListDone(int uno) {
+		return clubDao.selectGoChallengeListDone(sqlSession, uno);
 	}
 }

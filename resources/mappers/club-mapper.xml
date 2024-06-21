@@ -434,6 +434,50 @@
 	  ORDER BY CREATE_DATE DESC;
 	</select>
 	
+	<select id="selectGoChallengeList" resultMap="clubResult">
+		SELECT C.CLUB_NO,
+			   C.USER_NO,
+			   C.CLUB_TITLE,
+			   C.CLUB_TYPE,
+			   C.EVENT_DATE,
+			   C.CAPACITY,
+			   C.THUMBNAIL_IMG,
+			   C.CREATE_DATE,
+			   C.category_name1,
+			   C.category_name2
+		  FROM CLUB C
+	 LEFT JOIN REQUEST R USING(CLUB_NO)
+	 LEFT JOIN MEMBER M ON C.USER_NO = M.USER_NO
+		 WHERE R.STATUS = 'Y'
+		   AND C.STATUS = 'Y'
+		   AND M.USER_NO = C.USER_NO
+		   AND R.USER_NO = #{uno}
+		   AND C.CLUB_TYPE = '챌린지'
+	  ORDER BY EVENT_DATE DESC;
+	</select>
+	
+	<select id="selectGoChallengeListDone" resultMap="clubResult">
+		SELECT C.CLUB_NO,
+			   C.USER_NO,
+			   C.CLUB_TITLE,
+			   C.CLUB_TYPE,
+			   C.EVENT_DATE,
+			   C.CAPACITY,
+			   C.THUMBNAIL_IMG,
+			   C.CREATE_DATE,
+			   C.category_name1,
+			   C.category_name2
+		  FROM CLUB C
+	 LEFT JOIN REQUEST R USING(CLUB_NO)
+	 LEFT JOIN MEMBER M ON C.USER_NO = M.USER_NO
+		 WHERE R.STATUS = 'F'
+		   AND C.STATUS = 'E'
+		   AND M.USER_NO = C.USER_NO
+		   AND R.USER_NO = #{uno}
+		   AND C.CLUB_TYPE = '챌린지'
+	  ORDER BY EVENT_DATE DESC;
+	</select>
+	
 	<update id="finishChallenge">
 		UPDATE CLUB
 		   SET STATUS = 'E'
@@ -510,5 +554,11 @@
 		update club
 		set status = 'N'
 		where club_no = #{cno}
+	</update>
+	
+	<update id="addTotalPoint">
+		UPDATE CLUB
+		   SET TOTAL_POINT = TOTAL_POINT + COST
+		 WHERE CLUB_NO = #{cno}
 	</update>
 </mapper>

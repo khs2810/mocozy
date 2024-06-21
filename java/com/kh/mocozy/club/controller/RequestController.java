@@ -92,11 +92,14 @@ public class RequestController {
 		int capacity = c.getCapacity();
 		
 		if (memberCnt < capacity) {
-			int result = clubService.acceptRequest(rqno);
-			
-			ArrayList<Request> rList = clubService.requestList(cno);
-			
-			return new Gson().toJson(rList);
+			int result = clubService.acceptRequest(rqno, cno);
+			if (result > 0) {
+				ArrayList<Request> rList = clubService.requestList(cno);
+				return new Gson().toJson(rList);
+			} else {
+				session.setAttribute("alertMsg", "수락 실패");
+				return "redirect:list.re";
+			}
 		} else {
 			session.setAttribute("alertMsg", "모임 인원 초과");
 			return "redirect:list.re";
@@ -105,11 +108,14 @@ public class RequestController {
 	
 	@ResponseBody
 	@RequestMapping(value = "deny.re", produces="application/json; charset-UTF-8")
-	public String ajaxDenyRequest(@RequestParam int rqno, int cno) {
+	public String ajaxDenyRequest(@RequestParam int rqno, int cno, HttpSession session) {
 		int result = clubService.denyRequest(rqno);
-		
-		ArrayList<Request> rList = clubService.requestList(cno);
-		
-		return new Gson().toJson(rList);
+		if (result > 0) {
+			ArrayList<Request> rList = clubService.requestList(cno);
+			return new Gson().toJson(rList);
+		} else {
+			session.setAttribute("alertMsg", "거절 실패");
+			return "redirect:list.re";
+		}
 	}
 }

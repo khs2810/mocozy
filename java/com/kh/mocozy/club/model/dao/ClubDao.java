@@ -189,4 +189,28 @@ public class ClubDao {
 	public List<Club> selectMyDibsChallengeList(SqlSessionTemplate sqlSession, Club club) {
 		return (ArrayList)sqlSession.selectList("clubMapper.selectMyDibsChallengeList", club);
 	}
+
+	public int finishClubChallenge(SqlSessionTemplate sqlSession, int cno) {
+		return sqlSession.update("challengeMapper.finishClubChallenge", cno);
+	}
+
+	public int cancleFinishClubChallenge(SqlSessionTemplate sqlSession, int cno) {
+		return sqlSession.update("challengeMapper.cancleFinishClubChallenge", cno);
+	}
+
+	public int calculatePayment(SqlSessionTemplate sqlSession, int cno) {
+		return sqlSession.update("pointMapper.calculatePayment", cno);
+	}
+
+	public int addTotalPoint(SqlSessionTemplate sqlSession, int cno) {
+		return sqlSession.update("clubMapper.addTotalPoint", cno);
+	}
+
+	public ArrayList<Club> selectGoChallengeList(SqlSessionTemplate sqlSession, int uno) {
+		return (ArrayList)sqlSession.selectList("clubMapper.selectGoChallengeList", uno);
+	}
+
+	public ArrayList<Club> selectGoChallengeListDone(SqlSessionTemplate sqlSession, int uno) {
+		return (ArrayList)sqlSession.selectList("clubMapper.selectGoChallengeListDone", uno);
+	}
 }
