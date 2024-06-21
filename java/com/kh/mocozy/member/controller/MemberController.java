@@ -361,27 +361,24 @@ public class MemberController {
 	} 
 	
 	//찜 ajax 업데이트
-		@ResponseBody
-		@RequestMapping(value ="updatePicked.cl", produces="application/json; charset-UTF-8")
-		public String ajaxUpdatePicked(Picked p, HttpSession session) {
-			Picked pd = memberService.ajaxSelectPicked(p);
-			if (pd == null) { //picked 생성
-				int result = memberService.ajaxInsertPicked(p);
-				if (result > 0) {
-					return new Gson().toJson("YYY");
-				} else {
-					return new Gson().toJson("NNN");
-				}
-			} else { //picked 제거
-				int result = memberService.ajaxDeletePicked(p);
-				if (result > 0) {
-					return new Gson().toJson("NNN");
-				} else {
-					return new Gson().toJson("YYY");
-				}
+	@ResponseBody
+	@RequestMapping(value ="updatePicked.cl", produces="application/json; charset-UTF-8")
+	public String ajaxUpdatePicked(Picked p, HttpSession session) {
+		Picked pd = memberService.ajaxSelectPicked(p);
+		if (pd == null) { //picked 생성
+			int result = memberService.ajaxInsertPicked(p);
+			if (result > 0) {
+				return new Gson().toJson("YYY");
+			} else {
+				return new Gson().toJson("NNN");
+			}
+		} else { //picked 제거
+			int result = memberService.ajaxDeletePicked(p);
+			if (result > 0) {
+				return new Gson().toJson("NNN");
+			} else {
+				return new Gson().toJson("YYY");
 			}
 		}
-		
-
-
+	}
 }
