@@ -52,6 +52,14 @@
 				and status = 'Y'
 	</select>
 	
+	<!-- 닉네임중복체크 -->
+	<select id="nickNameCheck" parameterType="String" resultType="_int">
+		SELECT COUNT(*) as result
+		  FROM MEMBER
+		 WHERE NICKNAME = #{nickname}
+		   AND status = 'Y'
+	</select>
+	
 	<!-- 아이디중복체크 -->
 	<select id="idCheck" parameterType="String" resultType="_int">
 		SELECT COUNT(*) as result

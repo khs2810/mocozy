@@ -19,6 +19,13 @@ section {
     min-height: 100%;
 }
 
+.tile-content{
+	height: 80px;
+	overflow: hidden;
+	text-overflow: ellipse;	
+	display: flex;
+}
+
 @media (min-width: 992px) {
     .menubar-pin #base {
         padding-left: 224px;

@@ -12,6 +12,9 @@ public interface MemberService {
 	//로그인서비스
 	Member loginMember(Member m);
 	
+	//nickName check를 위한 서비스
+	int nickNameCheck(String checkNickName);
+	
 	//id check를 위한 서비스
 	int idCheck(String checkId);
 	
@@ -64,7 +67,4 @@ public interface MemberService {
 	Member findUserByEmail(String email);
 
 	
-
-	
-
 }

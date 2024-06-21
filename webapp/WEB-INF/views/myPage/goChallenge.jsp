@@ -96,6 +96,9 @@
 		                    <div class="done">
 			                	<p>모임종료</p>
 			                </div>
+			                <div class="btn">
+			                	<button class="btn-style btn-color3" onclick="redirectToChallengeCheck('${d.clubNo}')">관리</button>
+		                    </div>
 		                </div>
 		            </div>
 	            </c:forEach>

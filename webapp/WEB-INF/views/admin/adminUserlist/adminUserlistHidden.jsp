@@ -45,7 +45,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/jo/css/admin_css/adminClub_css/adminClub.css">
 <script
-	src="${pageContext.request.contextPath}/resources/jo/js/admin_js/adminUserlist_js/insertUserlist.js"></script>>	
+	src="${pageContext.request.contextPath}/resources/jo/js/admin_js/adminUserlist_js/insertUserlist.js"></script>
 </head>
 
 <%@ include file="../sideBar.jsp"%>

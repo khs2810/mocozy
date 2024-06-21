@@ -15,6 +15,7 @@
 		<result column="TARGET_PROFILE" property="targetProfile"/>
 		<result column="NOT_READ_COUNT" property="notReadCount"/>
 		<result column="ROOM_TITLE" property="roomTitle"/>
+		<result column="STATUS" property="status"/>
 	</resultMap>
 	
 	<resultMap type="Message" id="messageResult">
@@ -157,7 +158,7 @@
     		   TARGET_PROFILE,
     		   ROOM_TITLE
     	  FROM CHAT_ROOM
-    	 WHERE MASTER_NO = #{adminUno};
+    	 WHERE MASTER_NO = #{adminUno} AND STATUS = 'Y';
     </select>
     
     <select id="selectAdminChat" resultMap="chatRoomResult">

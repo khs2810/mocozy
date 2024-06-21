@@ -35,7 +35,7 @@ public interface ClubService {
 
 	ArrayList<Request> requestList(int cno);
 
-	int acceptRequest(int rqno);
+	int acceptRequest(int rqno, int cno);
 
 	String insertRequest(Request r);
 
@@ -97,4 +97,8 @@ public interface ClubService {
 
 //	내가 찜한 챌린지 리스트
 	List<Club> selectMyDibsChallengeList(Club club);
+
+	ArrayList<Club> selectGoChallengeList(int uno);
+
+	ArrayList<Club> selectGoChallengeListDone(int uno);
 }
