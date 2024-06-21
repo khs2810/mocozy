@@ -242,6 +242,22 @@
 		where payment_no = #{paymentNo}
 	</update>
 	
+	<insert id="calculateReward">
+		INSERT INTO
+			POINT (
+					point_no,
+					user_no,
+					point,
+					status
+					)
+			VALUES (
+					NEXTVAL('SEQ_PNO'),
+					#{uno},
+					#{reward},
+					'C'
+					)
+	</insert>
+
 	<select id="sumAllChargePoint" resultMap="sumPointDTOResult">
 		select count(*) as count, sum(point) as sumPoint
 		from point
@@ -269,5 +285,4 @@
 					'R'
 					)
 	</insert>
-	
 </mapper>
