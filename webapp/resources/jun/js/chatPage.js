@@ -60,9 +60,10 @@ $(document).ready(function() {
         // 클릭된 채팅 리스트의 정보 가져오기
         targetUserNo = $(this).find('.chatSimple').data("userno");
         chattingNo = $(this).find('.chatSimple').data("chattingno");
+        let chatTitle = $(this).find('.chatSimple').data("chatTitle");
 
         // 채팅창 업데이트 함수 호출
-        updateChatWindow(chattingNo);
+        updateChatWindow(chattingNo, chatTitle);
 
         // 다른 채팅 리스트의 활성화 클래스 제거
         $('.chatList').removeClass('active');
@@ -119,12 +120,15 @@ $(document).ready(function() {
         $('#chatDetail').scrollTop($('#chatDetail')[0].scrollHeight);
     }
     
-    function updateChatWindow(chattingNo) {
+    function updateChatWindow(chattingNo, chatTitle) {
         // 채팅창 업데이트 로직
         if (!targetUserNo) {
             return;
         }
         console.log("chattingNo :", chattingNo);
+        // $('.chatTitle').val(chatTitle);
+        console.log(chatTitle);
+        document.getElementsByClassName('chatTitle').innerHTML = chatTitle;
 
         $.ajax({
             url: 'list.ch/selectMessage',

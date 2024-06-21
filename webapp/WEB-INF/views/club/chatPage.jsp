@@ -23,8 +23,8 @@
 	                <div class="profile">
 	                    <img src="${pageContext.request.contextPath}/resources/jun/img/타노스.png" class="profileImg">
 	                </div>
-	                <div class="chatSimple chatWithAdmin" data-userNo="1" data-chattingNo="${adminChatNo}">
-	                    <div class="chatTitle">모꼬지 상담요원</div>
+	                <div class="chatSimple chatWithAdmin" data-userNo="1" data-chattingNo="${adminChatNo}" data-roomTitle="모꼬지 상담요원">
+	                    <div class="chatTitle">채팅방 이름</div>
 	                    <div class="chatContent">안녕하세요</div>
 	                </div>
 	            </div>
@@ -36,7 +36,7 @@
            			<div class="profile">
            				<img src="${pageContext.request.contextPath}/resources/jun/img/프사.jpg" class="profileImg">
            			</div>
-           			<div class="chatSimple" data-userNo="${c.targetNo}" data-chattingNo="${c.chatNo}">
+           			<div class="chatSimple" data-userNo="${c.targetNo}" data-chattingNo="${c.chatNo}" data-roomTitle="${c.roomTitle}">
            				<div class="chatTitle">${c.roomTitle}</div>
            				<div class="chatContent">${c.lastMessage}</div>
            			</div>
