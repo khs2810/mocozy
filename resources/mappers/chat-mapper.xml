@@ -180,4 +180,22 @@
 		WHERE CHATROOM_NO = #{chattingNo}
 		  AND SENDER_NO != #{userNo};
 	</update> -->
+	
+	<insert id="insertAdminChat">
+		INSERT INTO
+			CHAT_ROOM (
+						CHAT_NO,
+						MASTER_NO,
+						TARGET_NO,
+						TARGET_NICKNAME,
+						TARGET_PROFILE
+						)
+			VALUES (
+					NEXTVAL('SEQ_CHRNO'),
+					#{masterNo},
+					#{targetNo},
+					#{targetNickname},
+					#{targetProfile}
+					)
+	</insert>
 </mapper>

@@ -46,4 +46,8 @@ public class ChatDao {
 	public ChatRoom selectAdminChat(SqlSessionTemplate sqlSession, int userNo) {
 		return sqlSession.selectOne("chatMapper.selectAdminChat", userNo);
 	}
+
+	public int insertAdminChat(SqlSessionTemplate sqlSession, ChatRoom adminChat) {
+		return sqlSession.insert("chatMapper.insertAdminChat", adminChat);
+	}
 }
