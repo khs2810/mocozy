@@ -107,7 +107,13 @@ function searchFormAjax(keyword, order) {
         url: "searchFormAjax.sc",
         data: {rpage: rpage++, keyword: keyword, order: order},
         success: function(clist) {
+           // clist의 길이가 0이면 검색 결과가 없다는 알림을 표시
+          if (clist.length === 0) {
+            alert("검색 결과가 없습니다");
+          } else {
+          // AJAX 요청이 성공하면 페이지를 그리는 함수를 호출
             drawClublist(clist);
+            }
         },
         error: function() {
         }

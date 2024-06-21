@@ -1,11 +1,8 @@
 package com.kh.mocozy.admin.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
@@ -18,23 +15,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.kh.mocozy.admin.service.AdminChatService;
-import com.kh.mocozy.admin.service.AdminClubService;
-import com.kh.mocozy.admin.service.AdminNoticeService;
-import com.kh.mocozy.admin.service.AdminService;
-import com.kh.mocozy.admin.service.AdminUserlistService;
-import com.kh.mocozy.board.model.vo.Notice;
 import com.kh.mocozy.club.model.vo.ChatRoom;
-import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.club.model.vo.Message;
 import com.kh.mocozy.club.service.ChatService;
-import com.kh.mocozy.common.model.vo.PageInfo;
-import com.kh.mocozy.common.template.Pagination;
 import com.kh.mocozy.member.model.vo.Member;
-import com.kh.mocozy.member.service.MemberService;
-import com.kh.mocozy.point.model.vo.Point;
-import com.kh.mocozy.point.model.vo.PointDTO;
-import com.kh.mocozy.point.service.PointService;
-import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 @Controller
 public class AdminChatController {
@@ -73,15 +57,15 @@ public class AdminChatController {
 		int result = achService.chatStatus(map);
 
 		HashMap<String, Object> response = new HashMap<>();
-	    if (result > 0) {
-	        session.setAttribute("alertMsg", "채팅 삭제 성공");
-	        response.put("redirect", "admin.ad");
-	    } else {
-	        model.addAttribute("errorMsg", "채팅 삭제 실패");
-	        response.put("redirect", "common/errorPage");
-	    }
+		if (result > 0) {
+			session.setAttribute("alertMsg", "채팅 삭제 성공");
+			response.put("redirect", "admin.ad");
+		} else {
+			model.addAttribute("errorMsg", "채팅 삭제 실패");
+			response.put("redirect", "common/errorPage");
+		}
 
-	    return response;
+		return response;
 	}
 
 	@RequestMapping("privateChat.ad")

@@ -1,5 +1,11 @@
 package com.kh.mocozy.admin.controller;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -10,6 +16,7 @@ import java.util.Locale;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -115,6 +122,44 @@ public class AdminController {
 		}
 		
     }
+
+	@Value("${moneyData.api.key}")
+	private String authKey;
+	
+	@ResponseBody
+	@RequestMapping(value = "adminExchange.ad", produces = "application/json; charset-UTF-8")
+	public String adminExchange(String place) throws IOException {
+		
+		String url = "https://www.koreaexim.go.kr/site/program/financial/exchangeJSON";
+		
+		url += "?authKey=" + authKey;
+		url += "&data=AP01";
+		
+		//1. 요청하고자하는 url을 전달하면서 java.net.URL 객체 생성
+		URL requestURL = new URL(url);
+		
+		//2. 만들어진 URL객체를 가지고 HttpURLConnection객체 생성
+		HttpURLConnection urlConnection = (HttpURLConnection)requestURL.openConnection();
+		
+		//3. 요청에 필요한 Header설정하기
+		urlConnection.setRequestMethod("POST");
+		
+		//4. 해당 api 서버로 요청 보낸후 입력데이터 읽어오기
+		BufferedReader br = new BufferedReader(new InputStreamReader(urlConnection.getInputStream()));
+		
+		String responseText = "";
+		String line;
+		while((line = br.readLine()) != null) {
+			responseText += line;
+		}
+		System.out.println(responseText);
+		//사용 후 닫기
+		br.close();
+		urlConnection.disconnect();
+		
+		return responseText;
+	}
+
 
 	@RequestMapping("adminPoint.ad")
 	public String showAdminPoint(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, Model model, HttpSession session) { 
