@@ -5,7 +5,10 @@ import java.util.ArrayList;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.kh.mocozy.club.model.dao.ChatDao;
+import com.kh.mocozy.club.model.vo.ChatRoom;
 import com.kh.mocozy.club.model.vo.Request;
 import com.kh.mocozy.common.model.vo.Attachment;
 import com.kh.mocozy.member.model.dao.MemberDao;
@@ -20,6 +23,9 @@ public class MemberServiceImpl implements MemberService {
 	
 	@Autowired
 	private MemberDao memberDao;
+	
+	@Autowired
+	private ChatDao chatDao;
 	
 	@Override
 	public Member loginMember(Member m) {
@@ -36,7 +42,6 @@ public class MemberServiceImpl implements MemberService {
 //	비밀번호 체크
 	@Override
 	public String pwdCheck(String userId) {
-		
 		return memberDao.pwdCheck(sqlSession, userId);
 	}
 	
@@ -53,9 +58,20 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 //	회원가입
+	@Transactional
 	@Override
 	public int insertMember(Member m) {
-		return memberDao.insertMember(sqlSession, m);
+		int result1 = memberDao.insertMember(sqlSession, m);
+
+		ChatRoom adminChat = new ChatRoom();
+		adminChat.setMasterNo(1);
+		adminChat.setTargetNo(m.getUserNo());
+		adminChat.setTargetNickname(m.getNickname());
+		adminChat.setTargetProfile(m.getProfileImg());
+		
+		int result2 = chatDao.insertAdminChat(sqlSession, adminChat);
+		
+		return result1 * result2;
 	}
 
 //	회원정보 수정

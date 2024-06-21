@@ -34,7 +34,7 @@
             <div class="enrollForm">
                 <h4>* 닉네임</h4>
                 <div class="content-box">
-                    <input type="text" id="nickName" name="nickName" onkeyup="checkNickName()" placeholder="닉네임" required><br>
+                    <input type="text" id="nickName" name="nickname" onkeyup="checkNickName()" placeholder="닉네임" required><br>
                     <span id="nick_Review"></span>
                     <div id="checkNickResult" style="font-size:0.7em; display:none;"></div>
                 </div>
