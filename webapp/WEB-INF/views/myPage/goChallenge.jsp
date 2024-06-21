@@ -20,6 +20,7 @@
     <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/myChallenge.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/teo/js/mySocial.js"></script>
 
 </head>
 <body>
@@ -72,7 +73,7 @@
 			                </c:choose>
 			                <div class="btn">
 			                	<button class="btn-style btn-color3" onclick="redirectToChallengeCheck('${c.clubNo}')">관리</button>
-		                        <button class="btn-style btn-color2" onclick="location.href='http://localhost:8890/mocozy/quitSocial.me?cno=${c.clubNo}'">탈퇴</button>
+		                        <button class="btn-style btn-color2" onclick="confirmDeleteRequsetC(${c.clubNo})">탈퇴</button>
 		                    </div>
 		                </div>
 		            </div>

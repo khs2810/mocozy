@@ -103,7 +103,7 @@ public class AdminUserlistServiceImpl implements AdminUserlistService{
 	//insertManager 검색
 	@Override
 	public ArrayList<Member> insertManagerSearchList(HashMap<String, String> map, PageInfo mi) {
-		return auDao.MemberSearchList(sqlSession, map, mi);
+		return auDao.insertManagerSearchList(sqlSession, map, mi);
 	}
 
 	//숨김 검색

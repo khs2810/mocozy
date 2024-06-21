@@ -49,7 +49,8 @@ public class Club {
 	public int reviewCount;
 	public int PickCount;
 	private String eventDateStr;
-	public String createDateStr;
+	private String createDateStr;
+	private long dDay;
 }
 
 

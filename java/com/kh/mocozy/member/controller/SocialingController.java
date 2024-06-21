@@ -2,10 +2,13 @@ package com.kh.mocozy.member.controller;
 
 import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.time.Period;
 import java.time.format.DateTimeFormatter;
+import java.time.format.TextStyle;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpSession;
 
@@ -148,8 +151,27 @@ public class SocialingController {
 
             // LocalDateTime을 Timestamp로 변환하여 저장
             clist.get(i).setEventDate(Timestamp.valueOf(dateTime));
+            
+    	    // 날짜 형식 변환을 위한 포매터
+    	    DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("M월 d일");
+    	    String formattedDate = dateTime.format(dateFormatter);
+	        // 요일 가져오기 (짧은 형식)
+	        String dayOfWeek = dateTime.getDayOfWeek().getDisplayName(TextStyle.SHORT, Locale.KOREAN);
+	        // 시간 형식 변환을 위한 포매터
+	        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("a h:mm").withLocale(Locale.KOREAN);
+	        String formattedTime = dateTime.format(timeFormatter);
+	        // 최종 형식 조합
+	        String eventDateDetailInfo = String.format("%s(%s) %s", formattedDate, dayOfWeek, formattedTime);
+	        
+	        // 현재 날짜와 시간 가져오기
+	        LocalDateTime currentDateTime = LocalDateTime.now();
+	        
+            // D-Day 계산
+	        Period period = Period.between(currentDateTime.toLocalDate(), dateTime.toLocalDate());
+	        long daysBetween = period.getDays();
+	        
+	        clist.get(i).setDDay(daysBetween);
         }
-
         model.addAttribute("clist", clist);
         model.addAttribute("dlist", dlist);
 
@@ -169,7 +191,9 @@ public class SocialingController {
     	int result = clubService.quitClub(map);
     	
     	if (result > 0) {
-    		return "myPage/mySocial";
+    		session.setAttribute("alertMsg", "모임 탈퇴 성공");
+    		session.setAttribute("loginUser", memberService.loginMember(m));
+    		return "redirect:goSocial.me";
     	} else {
     		model.addAttribute("errorMsg", "소셜링 탈퇴 실패");
 			return "common/errorPage";

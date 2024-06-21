@@ -233,12 +233,22 @@ public class ClubServiceImpl implements ClubService {
 		int result2 = clubDao.cancleFinishClubChallenge(sqlSession, cno);
 		return result1 * result2;
 	}
-
+	
+	@Transactional
 	@Override
 	public int quitClub(HashMap<String, Integer> map) {
-		return clubDao.quitClub(sqlSession, map);
+		
+		int result = clubDao.quitClub(sqlSession, map);
+		int point = clubDao.getPointWithCno(sqlSession, map.get("cno"));
+		Member m = new Member();
+		m.setUserNo(map.get("uno"));
+		m.setPoint(point);
+		int result2 = pointDao.refundPoint(sqlSession, m);
+		int result3 = memberDao.refundPoint(sqlSession, m);
+		
+		return result * result2 * result3;
 	}
-
+	
 	@Override
 	public int insertMemberChallengeStatus(HashMap<String, String> map) {
 		return clubDao.insertMemberChallengeStatus(sqlSession, map);
