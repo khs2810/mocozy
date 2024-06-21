@@ -18,6 +18,7 @@ import com.kh.mocozy.club.model.vo.ClubReview;
 import com.kh.mocozy.club.model.vo.Request;
 import com.kh.mocozy.common.model.vo.Attachment;
 import com.kh.mocozy.member.model.dao.MemberDao;
+import com.kh.mocozy.member.model.vo.Member;
 import com.kh.mocozy.point.model.dao.PointDao;
 import com.kh.mocozy.point.model.vo.Payment;
 
@@ -197,11 +198,32 @@ public class ClubServiceImpl implements ClubService {
 
 	@Transactional
 	@Override
-	public int finishChallenge(int cno) {
+	public int finishChallenge(int cno, int uno) {
+		ArrayList<Integer> successedUserList = clubDao.selectSuccessedUserList(sqlSession, cno);	// 챌린지 성공한 사람들의 userNo
+		int successedUserCnt = successedUserList.size();	// 챌린지 성공한 사람들 수
+		int challengeTotalPoint = clubDao.selectChallengeTotalPoint(sqlSession, cno);	// 챌린지 총 상금
+		int challengeRewardPoint = challengeTotalPoint / successedUserCnt;	// 인당 챌린지 상금
+		HashMap<String, Integer> map = new HashMap<>();
+		map.put("uno", uno);
+		map.put("reward", challengeRewardPoint);
+		
+		int result4 = 1;
+		for(int successedUser : successedUserList) {
+			Member m = new Member();
+			
+			m.setUserNo(successedUser);
+			m.setPoint(challengeRewardPoint);
+			
+			int result = memberDao.chargePoint(sqlSession, m);
+			if (result == 0) {
+				result4 = 0;
+			}
+		}
+		
 		int result1 = clubDao.finishChallenge(sqlSession, cno);
 		int result2 = clubDao.finishClubChallenge(sqlSession, cno);
-		int result3 = clubDao.calculatePayment(sqlSession, cno);
-		return result1 * result2 * result3;
+		int result3 = clubDao.calculateReward(sqlSession, map);
+		return result1 * result2 * result3 * result4;
 	}
 
 	@Transactional
@@ -211,12 +233,22 @@ public class ClubServiceImpl implements ClubService {
 		int result2 = clubDao.cancleFinishClubChallenge(sqlSession, cno);
 		return result1 * result2;
 	}
-
+	
+	@Transactional
 	@Override
 	public int quitClub(HashMap<String, Integer> map) {
-		return clubDao.quitClub(sqlSession, map);
+		
+		int result = clubDao.quitClub(sqlSession, map);
+		int point = clubDao.getPointWithCno(sqlSession, map.get("cno"));
+		Member m = new Member();
+		m.setUserNo(map.get("uno"));
+		m.setPoint(point);
+		int result2 = pointDao.refundPoint(sqlSession, m);
+		int result3 = memberDao.refundPoint(sqlSession, m);
+		
+		return result * result2 * result3;
 	}
-
+	
 	@Override
 	public int insertMemberChallengeStatus(HashMap<String, String> map) {
 		return clubDao.insertMemberChallengeStatus(sqlSession, map);

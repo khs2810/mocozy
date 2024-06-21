@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.kh.mocozy.admin.model.dto.SumPointDTO;
 import com.kh.mocozy.admin.service.AdminClubService;
 import com.kh.mocozy.admin.service.AdminNoticeService;
 import com.kh.mocozy.admin.service.AdminService;
@@ -112,7 +113,8 @@ public class AdminController {
 
 			return "admin/admin";
 		}
-	}
+		
+    }
 
 	@RequestMapping("adminPoint.ad")
 	public String showAdminPoint(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, Model model, HttpSession session) { 
@@ -144,23 +146,16 @@ public class AdminController {
 
 	@RequestMapping("analysis.ad")
 	public String analysisPoint(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, Model model) {
-		int pointListCount = pointService.selectPointAdminListCount();
-
-		PageInfo pi = Pagination.getPageInfo(pointListCount, currentPage, 10, 5);
-
-		ArrayList<Point> plist = pointService.selectListPointAdmin(pi);
-		ArrayList<PointDTO> list = new ArrayList<>();
-
-		for(Point p : plist) {
-			PointDTO pd = new PointDTO(p);
-			pd.setUserNickname(memberService.selectNicknameByUserNo(p.getUserNo()));
-			pd.setAdminNickname(memberService.selectNicknameByUserNo(p.getAdminNo()));
-			list.add(pd);
-		}
-
-		model.addAttribute("pi", pi);
-		model.addAttribute("list", list);
-
-		return "admin/adminPoint/adminPointAnalysis";
+		
+		SumPointDTO sumPoint = pointService.sumAllChargePoint("D");
+		SumPointDTO sumPointW = pointService.sumAllChargePoint("W");
+		SumPointDTO sumPayment = pointService.sumAllPaymentPoint();
+		
+		model.addAttribute("sumPoint", sumPoint);
+		model.addAttribute("sumPointW", sumPointW);
+		model.addAttribute("sumPayment", sumPayment);
+		
+	    return "admin/adminPoint/adminPointAnalysis";
 	}
+
 }

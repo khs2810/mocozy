@@ -32,184 +32,124 @@ public class MainController {
 	@Autowired
 	private AdminNoticeService anService;
 
+	// 메인 페이지 수정
 	@RequestMapping("/")
-	public String showMainPage(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) throws java.text.ParseException {
-	    int SocialList = mService.selectSocialList();
+	public String showMainPage(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, Model model) throws java.text.ParseException {
+	    int socialList = mService.selectSocialList();
 
-	    PageInfo ci = Pagination.getPageInfo(SocialList, currentPage, 6, 6);
-	    PageInfo ri = Pagination.getPageInfo(SocialList, currentPage, 5, 5); 
-	    PageInfo fi = Pagination.getPageInfo(SocialList, currentPage, 5, 2);
+	    PageInfo ci = Pagination.getPageInfo(socialList, currentPage, 6, 6);
+	    PageInfo ri = Pagination.getPageInfo(socialList, currentPage, 5, 5);
+	    PageInfo fi = Pagination.getPageInfo(socialList, currentPage, 5, 2);
+
+	    // 챌린지 데이터 가져오기
+	    ArrayList<Club> clist = mService.getChallenge(ci);
+	    ArrayList<Club> rlist = mService.getChallRank(ri);
+	    ArrayList<Club> flist = mService.getChallView(fi);
+
+	    // 날짜 가져오기 (데이터 중 하나에서 가져오도록)
+	    Date eventDate = clist.isEmpty() ? new Date() : clist.get(0).getEventDate();
+	    Date createDate = clist.isEmpty() ? new Date() : clist.get(0).getCreateDate();
 	    
-	    // 날짜 포맷을 이용하여 날짜 문자열을 Date 객체로 변환
-	    SimpleDateFormat eventDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
-	    Date eventDate = eventDateFormat.parse("2024-06-30 22:40:00.0");
-
 	    SimpleDateFormat newEventDateFormat = new SimpleDateFormat("yyyy년 M월 d일 a h시 m분", Locale.KOREA);
-	    String newEventDateStr = newEventDateFormat.format(eventDate);
 
+	    // 날짜 포맷 설정
 	    SimpleDateFormat newCreateDateFormat = new SimpleDateFormat("M월 d, yyyy", Locale.KOREA);
-	    String newCreateDateStr = "6월 19, 2024"; // 예시로 직접 지정한 날짜 문자열
 
-	    // SimpleDateFormat을 사용하여 날짜 문자열을 Date 객체로 변환
-	    Date createDate = newCreateDateFormat.parse(newCreateDateStr);
-	    
-	    
-	    //소셜링 불러오기
-	    ArrayList<Club> clist = mService.getSocialing(ci);
-	    //소셜링 안의 클럽 불러오기
-	    for (Club c : clist){
-	    	//클럽 안의 멤버들
-	        ArrayList<Member> memberList = mService.MemberList(c.getClubNo());
-	        //멤버 이미지
-	        ArrayList<String> imgs = new ArrayList<String>();
-	        for (Member m : memberList) {
-	            imgs.add(m.getProfileImg());
-	        }
-	        c.setProfileImg(imgs); 
-	        c.setCreateDateStr(newCreateDateStr);
-	        c.setEventDateStr(newEventDateStr);
-	    }
-	   
-	
-	  //소셜링 불러오기
-	    ArrayList<Club> rlist = mService.getSocialRank(ri);
-	    for (Club c : rlist){
-    	//클럽 안의 멤버들
-	        ArrayList<Member> memberList = mService.MemberList(c.getClubNo());
-	      //멤버 이미지
-	        ArrayList<String> imgs = new ArrayList<String>();
-	        for (Member m : memberList) {
-	            imgs.add(m.getProfileImg());
-	        }
-	        c.setProfileImg(imgs);   
-	        c.setPickCount(mService.getPickedCount(c.getClubNo()));
-	    }
-	    
-	    
+	    // 데이터 처리
+	    processClubData(clist, newEventDateFormat, newCreateDateFormat);
+	    processClubData(rlist, newEventDateFormat, newCreateDateFormat);
+	    processClubData(flist, newEventDateFormat, newCreateDateFormat);
+
 	    // 리뷰 top5
 	    if (rlist.size() > 5) {
-	        rlist = new ArrayList<Club>(rlist.subList(0, 5));
+	        rlist = new ArrayList<>(rlist.subList(0, 5));
 	    }
-	    
-	    
-	  //소셜링 불러오기
-	    ArrayList<Club> flist = mService.getSocialView(fi);
-	  //소셜링 안의 클럽 불러오기
-	    for (Club c : flist){
-	    	//클럽 안의 멤버들
-	        ArrayList<Member> memberList = mService.MemberList(c.getClubNo());
-	      //멤버 이미지
-	        ArrayList<String> imgs = new ArrayList<String>();
-	        for (Member m : memberList) {
-	            imgs.add(m.getProfileImg());
-	        }
-	        c.setProfileImg(imgs); 
-	        c.setEventDateStr(newEventDateStr);
-	    }
-	       
-	    //이벤트 가져오기
-	    ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
-	
-	    model.addAttribute("ci", ci);
-	    model.addAttribute("ri", ri); 
-	    model.addAttribute("fi", fi);
 
+	    // 이벤트 배너 가져오기
+	    ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
+
+	    model.addAttribute("ci", ci);
+	    model.addAttribute("ri", ri);
+	    model.addAttribute("fi", fi);
 	    model.addAttribute("clist", clist);
-	    model.addAttribute("rlist", rlist); 
+	    model.addAttribute("rlist", rlist);
 	    model.addAttribute("flist", flist);
-	    
 	    model.addAttribute("getnoticeBanner", getnoticeBanner);
-	    
+
 	    return "mainPage/mainPage";
 	}
 
-
+	// 챌린지 페이지 수정
 	@RequestMapping("challenge.ma")
-	public String showchallenge(@RequestParam(value="cpage", defaultValue="1") int currentPage, Model model) throws java.text.ParseException {
-	    int SocialList = mService.selectSocialList();
+	public String showchallenge(@RequestParam(value = "cpage", defaultValue = "1") int currentPage, Model model) throws java.text.ParseException {
+	    int socialList = mService.selectSocialList();
 
-	    PageInfo ci = Pagination.getPageInfo(SocialList, currentPage, 6, 6);
-	    PageInfo ri = Pagination.getPageInfo(SocialList, currentPage, 5, 5); 
-	    PageInfo fi = Pagination.getPageInfo(SocialList, currentPage, 5, 2);
-	    
-	    // 날짜 포맷을 이용하여 날짜 문자열을 Date 객체로 변환
-	    SimpleDateFormat eventDateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.S");
-	    Date eventDate = eventDateFormat.parse("2024-06-30 22:40:00.0");
+	    PageInfo ci = Pagination.getPageInfo(socialList, currentPage, 6, 6);
+	    PageInfo ri = Pagination.getPageInfo(socialList, currentPage, 5, 5);
+	    PageInfo fi = Pagination.getPageInfo(socialList, currentPage, 5, 2);
 
-	    SimpleDateFormat newEventDateFormat = new SimpleDateFormat("yyyy년 M월 d일 a h시 m분", Locale.KOREA);
-	    String newEventDateStr = newEventDateFormat.format(eventDate);
-
-	    SimpleDateFormat newCreateDateFormat = new SimpleDateFormat("M월 d, yyyy", Locale.KOREA);
-	    String newCreateDateStr = "6월 19, 2024"; // 예시로 직접 지정한 날짜 문자열
-
-	    // SimpleDateFormat을 사용하여 날짜 문자열을 Date 객체로 변환
-	    Date createDate = newCreateDateFormat.parse(newCreateDateStr);
-	    
-	    //챌린지 불러오기
+	    // 챌린지 데이터 가져오기
 	    ArrayList<Club> clist = mService.getChallenge(ci);
-	    //소셜링 안의 클럽 불러오기
-	    for (Club c : clist){
-	    	//클럽 안의 멤버들
-	        ArrayList<Member> memberList = mService.MemberList(c.getClubNo());
-	        //멤버 이미지
-	        ArrayList<String> imgs = new ArrayList<String>();
-	        for (Member m : memberList) {
-	            imgs.add(m.getProfileImg());
-	        }
-	        c.setProfileImg(imgs);  
-	        c.setCreateDateStr(newCreateDateStr);
-	        c.setEventDateStr(newEventDateStr);
-	     
-		 }
-	    
-	  //챌린지 불러오기
 	    ArrayList<Club> rlist = mService.getChallRank(ri);
-	  //소셜링 안의 클럽 불러오기
-	    for (Club c : rlist){
-	    	//클럽 안의 멤버들
-	        ArrayList<Member> memberList = mService.MemberList(c.getClubNo());
-	      //멤버 이미지
-	        ArrayList<String> imgs = new ArrayList<String>();
-	        for (Member m : memberList) {
-	            imgs.add(m.getProfileImg());
-	        }
-	        c.setProfileImg(imgs);   
-	    }
-	     
+	    ArrayList<Club> flist = mService.getChallView(fi);
+
+	    // 날짜 가져오기 (예시: 챌린지 데이터 중 하나에서 가져오도록 수정)
+	    Date eventDate = clist.isEmpty() ? new Date() : clist.get(0).getEventDate();
+	    Date createDate = clist.isEmpty() ? new Date() : clist.get(0).getCreateDate();
+	    
+	    SimpleDateFormat newEventDateFormat = new SimpleDateFormat("yyyy년 M월 d일 a h시 m분", Locale.KOREA);
+
+	    // 날짜 포맷 설정
+	    SimpleDateFormat newCreateDateFormat = new SimpleDateFormat("M월 d, yyyy", Locale.KOREA);
+
+	    // 데이터 처리
+	    processClubData(clist, newEventDateFormat, newCreateDateFormat);
+	    processClubData(rlist, newEventDateFormat, newCreateDateFormat);
+	    processClubData(flist, newEventDateFormat, newCreateDateFormat);
+
 	    // 리뷰 top5
 	    if (rlist.size() > 5) {
-	        rlist = new ArrayList<Club>(rlist.subList(0, 5));
+	        rlist = new ArrayList<>(rlist.subList(0, 5));
 	    }
-	    
-	  //소셜링 불러오기
-	    ArrayList<Club> flist = mService.getChallView(fi);
-	  //소셜링 안의 클럽 불러오기
-	    for (Club c : flist){ 
-	    	//클럽 안의 멤버들
-	        ArrayList<Member> memberList = mService.MemberList(c.getClubNo());
-	      //멤버 이미지
-	        ArrayList<String> imgs = new ArrayList<String>();
-	        for (Member m : memberList) {
-	            imgs.add(m.getProfileImg());
-	        }
-	        c.setProfileImg(imgs); 
-	        c.setPickCount(mService.getPickedCount(c.getClubNo()));
-	        c.setEventDateStr(newEventDateStr);
-	    }
-	    
-	    //이벤트 가져오기
-	    ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
-	    
-	    model.addAttribute("ci", ci);
-	    model.addAttribute("ri", ri); 
-	    model.addAttribute("fi", fi);
 
+	    // 이벤트 배너 가져오기
+	    ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
+
+	    model.addAttribute("ci", ci);
+	    model.addAttribute("ri", ri);
+	    model.addAttribute("fi", fi);
 	    model.addAttribute("clist", clist);
-	    model.addAttribute("rlist", rlist); 
+	    model.addAttribute("rlist", rlist);
 	    model.addAttribute("flist", flist);
-	    
 	    model.addAttribute("getnoticeBanner", getnoticeBanner);
 
 	    return "mainPage/challenge";
+	}
+
+
+
+
+	private void processClubData(ArrayList<Club> clubList, SimpleDateFormat newEventDateFormat, SimpleDateFormat newCreateDateFormat) {
+	    for (Club c : clubList) {
+	        // 클럽의 createDate를 가져와서 포맷팅
+	        Date createDate = c.getCreateDate();
+	        String formattedCreateDate = newCreateDateFormat.format(createDate);
+
+	        // 클럽의 eventDate를 가져와서 포맷팅
+	        Date eventDate = c.getEventDate();
+	        String formattedEventDate = newEventDateFormat.format(eventDate);
+
+	        // 멤버들의 이미지 리스트 설정
+	        ArrayList<Member> memberList = mService.MemberList(c.getClubNo());
+	        ArrayList<String> imgs = new ArrayList<>();
+	        for (Member m : memberList) {
+	            imgs.add(m.getProfileImg());
+	        }
+	        c.setProfileImg(imgs);
+
+	        // 날짜 설정
+	        c.setCreateDateStr(formattedCreateDate);
+	        c.setEventDateStr(formattedEventDate);
+	    }
 	}
 }

@@ -556,9 +556,21 @@
 		where club_no = #{cno}
 	</update>
 	
+	<select id="getPointWithCno" resultType="_int">
+		select cost
+		from club
+		where club_no = #{cno}
+	</select>
+
 	<update id="addTotalPoint">
 		UPDATE CLUB
 		   SET TOTAL_POINT = TOTAL_POINT + COST
 		 WHERE CLUB_NO = #{cno}
 	</update>
+	
+	<select id="selectChallengeTotalPoint">
+		SELECT TOTAL_POINT
+		  FROM CLUB
+		 WHERE CLUB_NO = #{cno}
+	</select>
 </mapper>

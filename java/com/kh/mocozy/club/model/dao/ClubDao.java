@@ -190,6 +190,10 @@ public class ClubDao {
 		return (ArrayList)sqlSession.selectList("clubMapper.selectMyDibsChallengeList", club);
 	}
 
+	public int getPointWithCno(SqlSessionTemplate sqlSession, int cno) {
+		return sqlSession.selectOne("clubMapper.getPointWithCno", cno);
+	}
+	
 	public int finishClubChallenge(SqlSessionTemplate sqlSession, int cno) {
 		return sqlSession.update("challengeMapper.finishClubChallenge", cno);
 	}
@@ -198,8 +202,8 @@ public class ClubDao {
 		return sqlSession.update("challengeMapper.cancleFinishClubChallenge", cno);
 	}
 
-	public int calculatePayment(SqlSessionTemplate sqlSession, int cno) {
-		return sqlSession.update("pointMapper.calculatePayment", cno);
+	public int calculateReward(SqlSessionTemplate sqlSession, HashMap<String, Integer> map) {
+		return sqlSession.update("pointMapper.calculateReward", map);
 	}
 
 	public int addTotalPoint(SqlSessionTemplate sqlSession, int cno) {
@@ -212,5 +216,13 @@ public class ClubDao {
 
 	public ArrayList<Club> selectGoChallengeListDone(SqlSessionTemplate sqlSession, int uno) {
 		return (ArrayList)sqlSession.selectList("clubMapper.selectGoChallengeListDone", uno);
+	}
+
+	public ArrayList<Integer> selectSuccessedUserList(SqlSessionTemplate sqlSession, int cno) {
+		return (ArrayList)sqlSession.selectList("challengeMapper.selectSuccessedUserList", cno);
+	}
+
+	public int selectChallengeTotalPoint(SqlSessionTemplate sqlSession, int cno) {
+		return sqlSession.selectOne("clubMapper.selectChallengeTotalPoint", cno);
 	}
 }

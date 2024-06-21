@@ -68,12 +68,11 @@ public class ChallengeController {
 	// 챌린지 종료
 	@RequestMapping("finishChallenge.me")
 	public String finishChallenge(HttpSession session, int cno, Model model) {
-		int result = clubService.finishChallenge(cno);
+		Member m = (Member)session.getAttribute("loginUser");
+		int uno = m.getUserNo();
+		int result = clubService.finishChallenge(cno, uno);
 		
 		if (result > 0) {
-			Member m = (Member)session.getAttribute("loginUser");
-			int uno = m.getUserNo();
-			
 			ArrayList<Club> clist = clubService.selectMyChallengeList(uno);
 			ArrayList<Club> dlist = clubService.selectMyChallengeListDone(uno);
 			
@@ -104,12 +103,11 @@ public class ChallengeController {
 	// 챌린지 종료취소
 	@RequestMapping("cancleFinishChallenge.me")
 	public String cancleFinishChallenge(HttpSession session, int cno, Model model) {
+		Member m = (Member)session.getAttribute("loginUser");
+		int uno = m.getUserNo();
 		int result = clubService.cancleFinishChallenge(cno);
 		
 		if (result > 0) {
-			Member m = (Member)session.getAttribute("loginUser");
-			int uno = m.getUserNo();
-			
 			ArrayList<Club> clist = clubService.selectMyChallengeList(uno);
 			ArrayList<Club> dlist = clubService.selectMyChallengeListDone(uno);
 			
@@ -179,9 +177,11 @@ public class ChallengeController {
     	int result = clubService.quitClub(map);
     	
     	if (result > 0) {
-    		return "myPage/myChallenge";
+    		session.setAttribute("alertMsg", "모임 탈퇴 성공");
+    		session.setAttribute("loginUser", memberService.loginMember(m));
+    		return "redirect:goChallenge.me";
     	} else {
-    		model.addAttribute("errorMsg", "챌린지 탈퇴 실패");
+    		model.addAttribute("errorMsg", "소셜링 탈퇴 실패");
 			return "common/errorPage";
     	}
     }

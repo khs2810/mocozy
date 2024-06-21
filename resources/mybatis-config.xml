@@ -27,6 +27,7 @@
  		<typeAlias type="com.kh.mocozy.myPage.model.vo.Charge" alias="Charge"/>
  		<typeAlias type="com.kh.mocozy.club.model.vo.ChatRoom" alias="ChatRoom"/>
  		<typeAlias type="com.kh.mocozy.club.model.vo.Message" alias="Message"/>
+ 		<typeAlias type="com.kh.mocozy.admin.model.dto.SumPointDTO" alias="SumPointDTO"/>
  	</typeAliases>
  	
  	<!-- 

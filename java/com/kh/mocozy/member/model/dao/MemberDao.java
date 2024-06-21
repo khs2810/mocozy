@@ -107,4 +107,9 @@ public class MemberDao {
         return sqlSession.selectOne("memberMapper.findUserByEmail", email);
 	}
 
+	public int refundPoint(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.update("memberMapper.refundPointM", m);
+	}
+	
+	
 }

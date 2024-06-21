@@ -20,6 +20,7 @@
     <script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/MyPage.js"></script>
     <script src="${pageContext.request.contextPath}/resources/koo/js/myPage_js/mySocial.js"></script>
+	<script src="${pageContext.request.contextPath}/resources/teo/js/mySocial.js"></script>
 
 </head>
 <body>
@@ -71,7 +72,7 @@
 			                	</c:when>
 			                </c:choose>
 		                    <div class="btn">
-		                        <button class="btn-style btn-color2" onclick="location.href='http://localhost:8890/mocozy/quitSocial.me?cno=${c.clubNo}'">탈퇴</button>
+		                        <button class="btn-style btn-color2" onclick="confirmDeleteRequset(${c.clubNo})">탈퇴</button>
 		                    </div>
 		                </div>
 		            </div>

@@ -66,4 +66,18 @@
 		 WHERE CLUB_NO = #{cno}
 		   AND STATUS = 'E'
 	</update>
+	
+	<select id="selectSuccessedUserList" resultMap="challengeResult">
+		SELECT DISTINCT USER_NO
+		  FROM CHALLENGE c1
+		 WHERE CLUB_NO = #{cno}
+		   AND DAILY_STATUS = 'Y'
+		   AND NOT EXISTS (
+		   	 SELECT 1
+		   	   FROM CHALLENGE c2
+		   	  WHERE c2.USER_NO = c1.USER_NO
+		   	    AND c2.CLUB_NO = #{cno}
+		   	    AND c2.DAILY_STATUS = 'N'
+		   )
+	</select>
 </mapper>

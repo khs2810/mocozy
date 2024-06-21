@@ -72,7 +72,7 @@ public interface ClubService {
 
 	ArrayList<Club> selectMyChallengeListDone(int uno);
 
-	int finishChallenge(int cno);
+	int finishChallenge(int cno, int uno);
 
 	int cancleFinishChallenge(int cno);
 
