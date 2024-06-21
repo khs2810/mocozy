@@ -36,9 +36,27 @@
     font-weight: 800;
 }
 
-.checked span{
-    padding-right: 100px;
+.custom-checkbox {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
 }
+.custom-checkbox input[type="checkbox"] {
+    display: none;
+}
+.custom-checkbox .bi {
+    font-size: 1.5rem;
+    margin-right: 10px;
+}
+.custom-checkbox input[type="checkbox"]:checked + .bi {
+    content: '\f14a'; /* bi-check-square-fill icon */
+}
+.custom-checkbox input[type="checkbox"]:not(:checked) + .bi {
+    content: '\f096'; /* bi-square icon */
+}
+/* .checked span{
+    padding-right: 100px;
+} */
 
 .checked-content{
     position: relative;
