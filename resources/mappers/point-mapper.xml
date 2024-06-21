@@ -237,4 +237,19 @@
 		where payment_no = #{paymentNo}
 	</update>
 	
+	<insert id="calculateReward">
+		INSERT INTO
+			POINT (
+					point_no,
+					user_no,
+					point,
+					status
+					)
+			VALUES (
+					NEXTVAL('SEQ_PNO'),
+					#{uno},
+					#{reward},
+					'C'
+					)
+	</insert>
 </mapper>
