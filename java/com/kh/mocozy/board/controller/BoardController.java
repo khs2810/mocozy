@@ -279,6 +279,8 @@ public class BoardController {
 			n.setReplys(boardService.replyListCount(n.getNoticeNo()));
 		}
 		
+		list = dateFormatForNotice(list);
+		
 		Map<String, Object> data = new HashMap<>();
 		data.put("pi", pi);
 		data.put("list", list);
@@ -319,6 +321,17 @@ public class BoardController {
 		}
 		
 		return rlist;
+	}
+	
+private ArrayList<Notice> dateFormatForNotice(ArrayList<Notice> list) {
+		
+		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        
+		for (Notice n : list) {
+			n.setDateFormat(dateFormat.format(n.getModifyDate()));
+		}
+		
+		return list;
 	}
 	
 	//실제 넘어온 파일의 이름을 변경해서 서버에 저장하는 메소드

@@ -156,8 +156,6 @@
 						</div>
 						<div id="modal_pay_img">
                             <img onclick="submitCharge('kakao')" src="${pageContext.request.contextPath}/resources/teo/img/kakao_small.png" alt="">
-                            <div style="width: 30px;"></div>
-                            <img width="97px" onclick="submitCharge('naver')" src="${pageContext.request.contextPath}/resources/teo/img/badge_npay.svg" alt="">
                         </div>
                     </div>
                 </form>

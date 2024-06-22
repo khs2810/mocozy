@@ -291,18 +291,27 @@ public class ClubServiceImpl implements ClubService {
 	@Override
 	public int deleteClub(ArrayList<Request> rlist, int cno) {
 		
+		
 		if (!rlist.isEmpty()) {
 			int result1 = 0;
 			int result2 = 0;
+			int result3 = 0;
 			
 			for (Request r : rlist) {
 				result1 = 0;
 				result2 = 0;
+				result3 = 0;
+				
 				//리퀘스트의 페이먼트 정보 가져오기
 				Payment p = pointDao.selectPayment(sqlSession, r.getPaymentNo());
 				//페이먼트  취소 (status C)처리
 				result1 = pointDao.cancelPayment(sqlSession, p);
 				result2 = pointDao.returnPoint(sqlSession, p);
+				//포인트 테이블에 정보 입력
+				Member m = new Member();
+				m.setUserNo(p.getUserNo());
+				m.setPoint(p.getPoint());
+				result3 = pointDao.refundPoint(sqlSession, m);
 				
 				if (result1 * result2 == 0) {
 					break;
