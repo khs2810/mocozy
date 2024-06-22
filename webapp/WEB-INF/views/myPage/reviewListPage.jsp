@@ -28,7 +28,6 @@
             </div>
             <hr style="background: lightgray; height: 1px; border: 0;">
             <div class="reviewList">
-            
             	<c:forEach var="c" items="${list}">
             		<div class="review">
 	                    <div class="leftPart">
@@ -67,7 +66,7 @@
     <!-- The Modal -->
     <c:forEach var="r" items="${rlist}">
     	<c:choose>
-    		<c:when test="${r eq null}">
+    		<c:when test="${empty r}">
 			    <div class="modal" id="reviewEnrollWindow">
 			        <div class="modal-dialog">
 			            <div class="modal-content" style="border: 4px solid black; border-bottom-right-radius: 30px;">

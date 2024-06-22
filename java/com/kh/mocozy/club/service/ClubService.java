@@ -27,7 +27,7 @@ public interface ClubService {
 	// 클럽 추가
 	int insertClub(Club c, Attachment at);
 
-	int insertChMember(Club c);
+	int insertChMember(Challenge ch);
 
 	ArrayList<Club> listClub(int uno);
 
@@ -46,9 +46,9 @@ public interface ClubService {
 	
 	int updateClub(Club c, Attachment at);
 
-	int selectCountReview(int cno);
+	int selectCountReview(int cno, int uno);
 
-	int insertClubReview(ClubReview r);
+	int insertClubReview(ClubReview r, Club c);
 
 	ClubReview selectClubReview(HashMap<String, Integer> map) throws Exception;
 

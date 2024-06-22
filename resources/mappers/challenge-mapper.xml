@@ -15,7 +15,7 @@
 	</resultMap>
 	
 	<insert id="insertChallenge">
-		INSERT INTO challenge (
+		INSERT INTO CHALLENGE (
 								challenge_no,
 								user_no,
 								club_no,
