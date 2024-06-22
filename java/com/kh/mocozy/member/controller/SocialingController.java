@@ -38,6 +38,7 @@ public class SocialingController {
 		int uno = m.getUserNo();
 		
         ArrayList<Club> clist = clubService.selectMySocialList(uno);
+        ArrayList<Club> dlist = clubService.selectMySocialListDone(uno);
 
         for (int i = 0; i < clist.size(); i++) {
             ArrayList<Member> memberList = memberService.participatedMemberList(clist.get(i).getClubNo());
@@ -54,6 +55,7 @@ public class SocialingController {
         }
 
         model.addAttribute("clist", clist);
+        model.addAttribute("dlist", dlist);
 
         return "myPage/mySocial";
     }
@@ -62,7 +64,6 @@ public class SocialingController {
 	@RequestMapping("finishSocial.me")
     public String finishSocial(HttpSession session, int cno, Model model) {
     	int result = clubService.finishSocial(cno);
-
     	if (result > 0) {
     		Member m = (Member)session.getAttribute("loginUser");
     		int uno = m.getUserNo();
