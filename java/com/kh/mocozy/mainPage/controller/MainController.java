@@ -41,10 +41,10 @@ public class MainController {
 	    PageInfo ri = Pagination.getPageInfo(socialList, currentPage, 5, 5);
 	    PageInfo fi = Pagination.getPageInfo(socialList, currentPage, 5, 2);
 
-	    // 챌린지 데이터 가져오기
-	    ArrayList<Club> clist = mService.getChallenge(ci);
-	    ArrayList<Club> rlist = mService.getChallRank(ri);
-	    ArrayList<Club> flist = mService.getChallView(fi);
+	    //소셜링 데이터 가져오기
+	    ArrayList<Club> clist = mService.getSocialing(ci);
+	    ArrayList<Club> rlist = mService.getSocialRank(ri);
+	    ArrayList<Club> flist = mService.getSocialView(fi);
 	    
 	    SimpleDateFormat newEventDateFormat = new SimpleDateFormat("yyyy년 M월 d일 a h시 m분", Locale.KOREA);
 

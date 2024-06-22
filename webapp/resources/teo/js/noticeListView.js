@@ -49,7 +49,7 @@ function drawNoticeList(data) {
                + `<td class="notice_title" ><p onclick="location.href = 'detail.no?nno=${n.noticeNo}'">[${n.noticeType}] ${n.noticeTitle} (${n.replys})</p></td>`
                + `<td>${n.count}</td>`
                + `<td>${n.nickname}</td>`
-               + `<td>${n.modifyDate}</td>`
+               + `<td>${n.dateFormat}</td>`
                + `</tr>`;
     }
     document.querySelector('#notice_list_table>tbody').innerHTML = str;
