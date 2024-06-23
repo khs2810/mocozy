@@ -322,7 +322,7 @@ public class ClubController {
 			Member loginUser = memberService.loginMember(m);
 			session.setAttribute("loginUser", loginUser);
 			
-			session.setAttribute("alertMsg", "모임 참가 성공");
+			session.setAttribute("alertMsg", "모임 참가 신청 성공");
 			return "redirect:/";
 		} else {
 			model.addAttribute("errorMsg", result);
