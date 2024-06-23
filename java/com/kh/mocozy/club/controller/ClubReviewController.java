@@ -67,10 +67,6 @@ public class ClubReviewController {
 		model.addAttribute("rlist", rlist);
 		model.addAttribute("uno", uno);
 		
-		System.out.println("list : " + list);
-		System.out.println("rlist : " + rlist);
-		System.out.println("uno : " + uno);
-		
 		return "myPage/reviewListPage";
 	}
 	
