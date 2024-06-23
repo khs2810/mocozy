@@ -25,7 +25,6 @@ function aJaxApiCall(place, callback) {
 }
 
 function getAirInfo(data) {
-
     place = data.target;
     aJaxApiCall(place, function(res){
         drawAirInfo(res, place)
