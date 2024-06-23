@@ -24,7 +24,10 @@ function deleteMember() {
 
     if (userPwd === "") {
         alert("비밀번호를 입력해주세요.");
-        return;
+        return false;
+    } else {
+        alert("회원탈퇴가 성공적으로 이루어졌습니다.");
+        return true;
     }
 
 }

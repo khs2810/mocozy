@@ -35,6 +35,10 @@
                 <div class="content-title">
                     <h5>내 최근 모임</h5>
                 </div>
+
+                <c:if test="${empty list}">
+                    <p>내역 없음</p>
+                </c:if>
                 <c:forEach var="myPageClub" items="${list}">
                     <div class="club-content">
                         <div class="club-img" onclick="location.href='http://localhost:8890/mocozy/detail.cl?cno=${myPageClub.clubNo}';">
@@ -55,6 +59,9 @@
                     <div class="content-title">
                         <h5>찜</h5>
                     </div>
+                    <c:if test="${empty list}">
+                        <p>내역 없음</p>
+                    </c:if>
                     <c:forEach var="myPageClub" items="${plist}">
                         <div class="club-content">
                             <div class="club-img" onclick="location.href='http://localhost:8890/mocozy/detail.cl?cno=${myPageClub.clubNo}';">
