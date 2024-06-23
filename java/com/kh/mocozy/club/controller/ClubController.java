@@ -26,6 +26,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.google.gson.Gson;
+import com.kh.mocozy.club.model.vo.Challenge;
 import com.kh.mocozy.club.model.vo.Club;
 import com.kh.mocozy.club.model.vo.ClubReview;
 import com.kh.mocozy.club.model.vo.Request;
@@ -144,6 +145,7 @@ public class ClubController {
 	
 	@RequestMapping("insert.cl")
 	public String insertClub(Club c, MultipartFile upfile, HttpSession session, Model model) {
+		Member m = (Member)session.getAttribute("loginUser");
 		Attachment at = new Attachment();
 		String eventT = c.getEventDateStr();
 		
@@ -168,9 +170,6 @@ public class ClubController {
 		
 		int result = clubService.insertClub(c, at);
 		if (result > 0) {
-			if (c.getClubType().equals("챌린지")) {
-				clubService.insertChMember(c);
-			}
 			session.setAttribute("alertMsg", "모임 등록 성공");
 			return "redirect:detail.cl?cno=" + result;
 		} else {
@@ -194,18 +193,15 @@ public class ClubController {
         String formattedDateTime = dateTime.format(outputFormatter);
 
         c.setEventDate(convertStringToTimestamp(formattedDateTime));
-        
         if (c.getStatus().equals("E")) {
-        	int result1 = clubService.cancleFinishSocial(c.getClubNo());
-        	int result2 = clubService.clubRequestReset(c.getClubNo());
-        	
-        	if (result1 > 0) {
-        		session.setAttribute("alertMsg", "모임 수정 성공");
-        		return "redirect:detail.cl?cno=" + c.getClubNo();
-        	} else {
-        		model.addAttribute("errorMsg", "게시글 수정 실패1");
-        		return "common/errorPage";
+        	if (c.getClubType().equals("소셜링")) {
+        		int result = clubService.cancleFinishSocial(c.getClubNo());
+        	} else if (c.getClubType().equals("챌린지")) {
+        		int result = clubService.cancleFinishChallenge(c.getClubNo());
         	}
+        	clubService.clubRequestReset(c.getClubNo());
+        	session.setAttribute("alertMsg", "모임 수정 성공");
+        	return "redirect:detail.cl?cno=" + c.getClubNo();
         } else {        	
         	int result = clubService.updateClub(c, at);
         	
@@ -213,7 +209,7 @@ public class ClubController {
         		session.setAttribute("alertMsg", "모임 수정 성공");
         		return "redirect:detail.cl?cno=" + c.getClubNo();
         	} else {
-        		model.addAttribute("errorMsg", "게시글 수정 실패2");
+        		model.addAttribute("errorMsg", "게시글 수정 실패");
         		return "common/errorPage";
         	}
         }
@@ -224,8 +220,6 @@ public class ClubController {
 	@PostMapping("upload")
 	@ResponseBody
 	public String upload(List<MultipartFile> fileList, HttpSession session) {
-		System.out.println(fileList);
-		
 		List<String> changeNameList = new ArrayList<String>();
 		
 		for(MultipartFile f : fileList) {

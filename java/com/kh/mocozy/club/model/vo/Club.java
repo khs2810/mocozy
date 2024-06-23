@@ -51,6 +51,7 @@ public class Club {
 	private String eventDateStr;
 	private String createDateStr;
 	private long dDay;
+	private int totalMoney;
 }
 
 

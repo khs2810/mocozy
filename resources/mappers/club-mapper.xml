@@ -27,6 +27,7 @@
 		<result column="COUNT" property="count"/>
 		<result column="CATEGORY_NAME1" property="categoryName1"/>
 		<result column="CATEGORY_NAME2" property="categoryName2"/>
+		<result column="TOTAL_MONEY" property="totalMoney"/>
 	</resultMap>
 	<resultMap type="ClubReview" id="clubReviewResult">
 		<result column="CLUB_REVIEW_NO" property="clubReviewNo"/>
@@ -165,7 +166,7 @@
 		  FROM CLUB C
 	 LEFT JOIN REQUEST R USING(CLUB_NO)
 	 LEFT JOIN MEMBER M ON C.USER_NO = M.USER_NO
-		 WHERE R.STATUS = 'Y'
+		 WHERE R.STATUS = 'F'
 		   AND C.STATUS = 'E'
 		   AND M.USER_NO = C.USER_NO
 		   AND R.USER_NO = #{uno}
@@ -236,7 +237,7 @@
 					)
 	</insert>
 	
-	<select id="selectCountReview" resultType="_int">
+	<select id="selectCountReview" parameterType="HashMap" resultType="_int">
 		SELECT COUNT(*)
 		FROM (
 				SELECT R.CLUB_REVIEW_NO,
@@ -249,7 +250,8 @@
 				  FROM CLUB_REVIEW R
 		    INNER JOIN MEMBER M ON M.USER_NO = R.USER_NO
 		    INNER JOIN REQUEST Q ON M.USER_NO = Q.USER_NO
-		     	 WHERE R.CLUB_NO = #{cno}
+		     	 WHERE R.CLUB_NO = #{cno, jdbcType=BIGINT}
+		     	   AND R.USER_NO = #{uno, jdbcType=BIGINT}
 		)
 	</select>
 	
@@ -564,13 +566,30 @@
 
 	<update id="addTotalPoint">
 		UPDATE CLUB
-		   SET TOTAL_POINT = TOTAL_POINT + COST
+		   SET TOTAL_MONEY = COALESCE(TOTAL_MONEY, 0) + COST
 		 WHERE CLUB_NO = #{cno}
 	</update>
 	
-	<select id="selectChallengeTotalPoint">
-		SELECT TOTAL_POINT
+	<select id="selectChallengeTotalPoint" resultType="int">
+		SELECT TOTAL_MONEY
 		  FROM CLUB
 		 WHERE CLUB_NO = #{cno}
 	</select>
+	
+	<select id="selectClubReviewList" resultMap="clubReviewResult">
+		SELECT CLUB_REVIEW_NO,
+			   REVIEW_CONTENT,
+			   GRADE,
+			   STATUS,
+			   CLUB_NO,
+			   USER_NO
+		  FROM CLUB_REVIEW
+		 WHERE CLUB_NO = #{cno}
+	</select>
+	
+	<update id="updateClubTotalPoint" parameterType="HashMap">
+		UPDATE CLUB
+		   SET TOTAL_POINT = #{score, jdbcType=BIGINT}
+		 WHERE CLUB_NO = #{cno, jdbcType=BIGINT}
+	</update>
 </mapper>

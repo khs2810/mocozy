@@ -64,8 +64,8 @@ public class ClubServiceImpl implements ClubService {
 	}
 
 	@Override
-	public int insertChMember(Club c) {
-		return clubDao.insertChMember(sqlSession, c);
+	public int insertChMember(Challenge ch) {
+		return clubDao.insertChMember(sqlSession, ch);
 	}
 
 	@Override
@@ -132,13 +132,32 @@ public class ClubServiceImpl implements ClubService {
 	}
 
 	@Override
-	public int selectCountReview(int cno) {
-		return clubDao.selectCountReview(sqlSession, cno);
+	public int selectCountReview(int cno, int uno) {
+		HashMap<String, Integer> map = new HashMap<>();
+		map.put("cno", cno);
+		map.put("uno", uno);
+		
+		return clubDao.selectCountReview(sqlSession, map);
 	}
 
+	@Transactional
 	@Override
-	public int insertClubReview(ClubReview r) {
-		return clubDao.insertReviewList(sqlSession, r);
+	public int insertClubReview(ClubReview r, Club c) {
+		ArrayList<ClubReview> rList = clubDao.selectClubReviewList(sqlSession, r.getClubNo());
+		int totalPoint = c.getTotalPoint();	// 해당 모임의 리뷰 점수 합계
+		int reviewCnt = rList.size();	// 해당 모임의 리뷰 갯수
+		int reviewScore = r.getGrade();	// 작성한 리뷰 점수
+		
+		int result1 = clubDao.insertReviewList(sqlSession, r);
+		
+		int score = ((totalPoint) * reviewCnt + reviewScore) / (reviewCnt + 1);
+		
+		HashMap<String, Integer> map = new HashMap<>();
+		map.put("cno", c.getClubNo());
+		map.put("score", score);
+		
+		int result2 = clubDao.updateClubTotalPoint(sqlSession, map);
+		return result1 * result2;
 	}
 
 	@Override
@@ -202,12 +221,15 @@ public class ClubServiceImpl implements ClubService {
 		ArrayList<Integer> successedUserList = clubDao.selectSuccessedUserList(sqlSession, cno);	// 챌린지 성공한 사람들의 userNo
 		int successedUserCnt = successedUserList.size();	// 챌린지 성공한 사람들 수
 		int challengeTotalPoint = clubDao.selectChallengeTotalPoint(sqlSession, cno);	// 챌린지 총 상금
-		int challengeRewardPoint = challengeTotalPoint / successedUserCnt;	// 인당 챌린지 상금
+		int challengeRewardPoint = 0;	// 인당 챌린지 상금(아무도 성공 못했을 때)
+		if (successedUserCnt > 0) {
+			challengeRewardPoint = challengeTotalPoint / successedUserCnt;	// 인당 챌린지 상금(성공한 멤버가 있을 때)
+		}
 		HashMap<String, Integer> map = new HashMap<>();
 		map.put("uno", uno);
 		map.put("reward", challengeRewardPoint);
 		
-		int result4 = 1;
+		int result3 = 1;
 		for(int successedUser : successedUserList) {
 			Member m = new Member();
 			
@@ -216,22 +238,26 @@ public class ClubServiceImpl implements ClubService {
 			
 			int result = memberDao.chargePoint(sqlSession, m);
 			if (result == 0) {
-				result4 = 0;
+				result3 = 0;
 			}
 		}
 		
 		int result1 = clubDao.finishChallenge(sqlSession, cno);
-		int result2 = clubDao.finishClubChallenge(sqlSession, cno);
-		int result3 = clubDao.calculateReward(sqlSession, map);
-		return result1 * result2 * result3 * result4;
+		if (result1 > 0) {
+			clubDao.finishClubChallenge(sqlSession, cno);
+		}
+		int result2 = clubDao.calculateReward(sqlSession, map);
+		return result1 * result2 * result3;
 	}
 
 	@Transactional
 	@Override
 	public int cancleFinishChallenge(int cno) {
-		int result1 = clubDao.cancleFinishChallenge(sqlSession, cno);
-		int result2 = clubDao.cancleFinishClubChallenge(sqlSession, cno);
-		return result1 * result2;
+		int result = clubDao.cancleFinishChallenge(sqlSession, cno);
+		if (result > 0) {
+			clubDao.cancleFinishClubChallenge(sqlSession, cno);
+		}
+		return result;
 	}
 	
 	@Transactional

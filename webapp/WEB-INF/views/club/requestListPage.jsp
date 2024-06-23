@@ -48,7 +48,7 @@
 	                                	<c:when test="${r.status eq 'Y'}">
 			                                <img src="${pageContext.request.contextPath}/resources/jun/img/accepted.png" class="status_a">
 	                                	</c:when>
-	                                	<c:when test="${r.status eq 'N'}">
+	                                	<c:when test="${(r.status eq 'N') or (r.status eq 'Q') or (r.status eq 'F')}">
 			                                <img src="${pageContext.request.contextPath}/resources/jun/img/denied.png" class="status_d">
 	                                	</c:when>
 	                                </c:choose>
@@ -76,6 +76,12 @@
 	                            		</c:when>
 	                            		<c:when test="${r.status eq 'N'}">
 			                                <button type="button" class="deniedBtn">거절됨</button>
+	                            		</c:when>
+	                            		<c:when test="${r.status eq 'Q'}">
+	                            			<button type="button" class="deniedBtn">탈퇴함</button>
+	                            		</c:when>
+	                            		<c:when test="${r.status eq 'F'}">
+	                            			<button type="button" class="deniedBtn">종료됨</button>
 	                            		</c:when>
 	                            	</c:choose>
 	                            </div>
