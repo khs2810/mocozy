@@ -27,23 +27,26 @@
                     <input type="checkbox" id="checkboxAll" />
                     <i class="bi bi-square"></i> 전체동의
                 </div>
+                <hr>
                 <div class="custom-checkbox">
-                    <input type="checkbox" id="checkboxTerms" />
-                    <i class="bi bi-square"></i> 서비스 이용약관 (필수)
-                    <a href="serviceTerms" target="_blank">보기</a>
+                    <input type="checkbox" class="chk" id="checkboxTerms" />
+                        <i class="bi bi-square"></i> 서비스 이용약관 (필수)
+                    <div class="space"></div>
+                    <a href="serviceTerms" style="width: 40px;" target="_blank">보기</a>
                 </div>
                 <div class="custom-checkbox">
-                    <input type="checkbox" id="checkboxPrivacy" />
-                    <i class="bi bi-square"></i> 개인정보처리방침 (필수)
-                    <a href="privacy-policy" target="_blank">보기</a>
+                    <input type="checkbox" class="chk" id="checkboxPrivacy" />
+                        <i class="bi bi-square"></i> 개인정보처리방침 (필수)
+                    <div class="space"></div>
+                    <a href="privacy-policy" style="width: 40px;" target="_blank">보기</a>
                 </div>
                 <div class="custom-checkbox">
-                    <input type="checkbox" class ="chk" id="checkboxAge" />
-                    <i class="bi bi-square"></i> 만 14세 이상 확인 (필수)
+                    <input type="checkbox" class="chk" class ="chk" id="checkboxAge" />
+                        <i class="bi bi-square"></i> 만 14세 이상 확인 (필수)
                 </div>
                 <div class="custom-checkbox">
-                    <input type="checkbox" id="checkboxEvents" />
-                    <i class="bi bi-square"></i> 이벤트 정보 수신 동의 (선택)
+                    <input type="checkbox" class="chk" id="checkboxEvents" />
+                        <i class="bi bi-square"></i> 이벤트 정보 수신 동의 (선택)
                 </div>
                 <!-- <span class="bi bi-square custom-checkbox checkbox" data-id="checkbox-all"> 전체동의</span>
                 
