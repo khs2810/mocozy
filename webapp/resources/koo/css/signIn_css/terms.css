@@ -54,6 +54,10 @@
 .custom-checkbox input[type="checkbox"]:not(:checked) + .bi {
     content: '\f096'; /* bi-square icon */
 }
+
+.space{
+    flex: 1;
+}
 /* .checked span{
     padding-right: 100px;
 } */
