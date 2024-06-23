@@ -15,7 +15,7 @@
 
     <!-- 라이브러리 -->
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-    <script src="${pageContext.request.contextPath}/resources/teo/js/noticeListView.js"></script>
+    <!-- <script src="${pageContext.request.contextPath}/resources/teo/js/noticeListView.js"></script> -->
     <script src="${pageContext.request.contextPath}/resources/teo/js/ajaxPublicAPI.js"></script>
 </head>
 <body>
