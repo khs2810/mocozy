@@ -120,6 +120,69 @@ public class AdminClubController {
 		return new Gson().toJson(clist);
 	}
 
+	//검색 Ajax 
+    @ResponseBody
+    @RequestMapping(value="adminClubSearchAjax.ad", produces="application/json; charset=UTF-8")
+	public String adminClubSearchAjax(@RequestParam("keyword") String keyword, @RequestParam("cpage") int currentPage, String sortType, String status, Model model) throws java.text.ParseException {  
+        
+    	HashMap<String, String> map = new HashMap<>();
+		map.put("keyword", keyword);
+		map.put("sortType", sortType);
+		
+    	ArrayList<Club> clist = new ArrayList<>();
+        System.out.println("keyword: " + keyword);
+        System.out.println("sortType: " + sortType);
+    	
+    	if (status.equals("D")) {
+        	//페이지네이션
+        	int clubAllList = acService.getClubSearchlist(map);
+        	PageInfo ci = Pagination.getPageInfo(clubAllList, currentPage, 10, 10);
+        	
+        	//클럽 리스트 불러오기
+        	clist = acService.selectSearchClublist(map, ci);
+        } else if (status.equals("Y")) {
+        	//페이지네이션
+            int clubAllList = acService.getClubSearchlist(map); 
+            PageInfo ci = Pagination.getPageInfo(clubAllList, currentPage, 10, 10);
+            
+            //클럽 리스트 불러오기
+            clist = acService.selectClubSearchProcess(map, ci);
+        	
+        } else {
+        	//페이지네이션
+            int clubAllList = acService.getClubSearchlist(map);
+            PageInfo ci = Pagination.getPageInfo(clubAllList, currentPage, 10, 10);
+            
+            //클럽 리스트 불러오기
+            clist = acService.selectClubSearchEnd(map, ci);
+        }
+    		  
+        for (Club c : clist){
+            ArrayList<Member> memberList = acService.MemberList(c.getClubNo());
+            ArrayList<String> imgs = new ArrayList<String>();
+            for (Member m : memberList) {
+                imgs.add(m.getProfileImg());
+            }
+            c.setProfileImg(imgs);
+
+            // modifyDate 형식 변경
+            SimpleDateFormat originalFormat = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy", Locale.ENGLISH);
+            try {
+                Date date = originalFormat.parse(c.getModifyDate().toString());
+                java.sql.Date sqlDate = new java.sql.Date(date.getTime());
+                c.setModifyDate(sqlDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        
+        if (keyword == null) { //검색결과 없음
+        	return new Gson().toJson("검색 결과가 없습니다.");
+        } else {
+        	return new Gson().toJson(clist);
+    }
+ }
+
 	//status 변경
 	@RequestMapping("clubChangeStatus.ad")
 	public String clubChangeStatus(String status, int clubNo, Model model, HttpSession session) {

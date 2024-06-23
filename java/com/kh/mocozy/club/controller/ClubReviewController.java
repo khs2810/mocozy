@@ -52,7 +52,7 @@ public class ClubReviewController {
 			int cno = club.getClubNo();
 
 			// review가 있으면 1반환, 없으면 0반환
-			int isReview = clubService.selectCountReview(cno) ==  0 ? 0 : 1;
+			int isReview = clubService.selectCountReview(cno, uno) ==  0 ? 0 : 1;
 			club.setIsReview(isReview);
 			
 			HashMap<String, Integer> map = new HashMap<>();
@@ -65,7 +65,6 @@ public class ClubReviewController {
 		
 		model.addAttribute("list", list);
 		model.addAttribute("rlist", rlist);
-		System.out.println(rlist);
 		model.addAttribute("uno", uno);
 		
 		return "myPage/reviewListPage";
@@ -82,11 +81,10 @@ public class ClubReviewController {
 	
 	@RequestMapping("insertReview.cl")
 	public String insertClubReview(ClubReview r, HttpSession session, Model model) {
-		System.out.println(r);
-		int result = clubService.insertClubReview(r);
+		Club c = clubService.selectClub(r.getClubNo());
+		int result = clubService.insertClubReview(r, c);
 		if (result > 0) {
 			session.setAttribute("alertMsg", "리뷰 작성 성공");
-			System.out.println(result);
 			return "redirect:reviewList.cl";
 		} else {
 			model.addAttribute("errorMsg", "리뷰 작성 실패");

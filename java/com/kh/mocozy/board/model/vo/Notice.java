@@ -27,4 +27,5 @@ public class Notice {
 	private String banner;
 	private String bannerPath;
 	private int replys;
+	private String dateFormat;
 }

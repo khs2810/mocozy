@@ -44,8 +44,8 @@ public class ClubDao {
 		return sqlSession.insert("attachmentMapper.insertAttachment", at);
 	}
 
-	public int insertChMember(SqlSessionTemplate sqlSession, Club c) {
-		return sqlSession.insert("challengeMapper.insertChMember", c);
+	public int insertChMember(SqlSessionTemplate sqlSession, Challenge ch) {
+		return sqlSession.insert("challengeMapper.insertChallenge", ch);
 	}
 
 	public ArrayList<Club> listClub(SqlSessionTemplate sqlSession, int uno) {
@@ -84,8 +84,8 @@ public class ClubDao {
 		return sqlSession.update("attachmentMapper.updateAttachment", at);
 	}
 
-	public int selectCountReview(SqlSessionTemplate sqlSession, int cno) {
-		return sqlSession.selectOne("clubMapper.selectCountReview", cno);
+	public int selectCountReview(SqlSessionTemplate sqlSession, HashMap<String, Integer> map) {
+		return sqlSession.selectOne("clubMapper.selectCountReview", map);
 	}
 
 	public int insertReviewList(SqlSessionTemplate sqlSession, ClubReview r) {
@@ -109,9 +109,11 @@ public class ClubDao {
 	}
 
 	public int finishSocial(SqlSessionTemplate sqlSession, int cno) {
-		int result1 = sqlSession.update("clubMapper.finishSocial", cno);
-		int result2 = sqlSession.update("clubMapper.finishRequest", cno);
-		return result1 * result2;
+		int result = sqlSession.update("clubMapper.finishSocial", cno);
+		if (result > 0) {
+			sqlSession.update("clubMapper.finishRequest", cno);
+		}
+		return result;
 	}
 
 	public int cancleFinishSocial(SqlSessionTemplate sqlSession, int cno) {
@@ -139,9 +141,11 @@ public class ClubDao {
 	}
 
 	public int finishChallenge(SqlSessionTemplate sqlSession, int cno) {
-		int result1 = sqlSession.update("clubMapper.finishChallenge", cno);
-		int result2 = sqlSession.update("clubMapper.finishRequest",cno);
-		return result1 * result2;
+		int result = sqlSession.update("clubMapper.finishChallenge", cno);
+		if (result > 0) {
+			sqlSession.update("clubMapper.finishRequest",cno);
+		}
+		return result;
 	}
 
 	public int cancleFinishChallenge(SqlSessionTemplate sqlSession, int cno) {
@@ -224,5 +228,13 @@ public class ClubDao {
 
 	public int selectChallengeTotalPoint(SqlSessionTemplate sqlSession, int cno) {
 		return sqlSession.selectOne("clubMapper.selectChallengeTotalPoint", cno);
+	}
+
+	public ArrayList<ClubReview> selectClubReviewList(SqlSessionTemplate sqlSession, int cno) {
+		return (ArrayList)sqlSession.selectList("clubMapper.selectClubReviewList", cno);
+	}
+
+	public int updateClubTotalPoint(SqlSessionTemplate sqlSession, HashMap<String, Integer> map) {
+		return sqlSession.update("clubMapper.updateClubTotalPoint", map);
 	}
 }

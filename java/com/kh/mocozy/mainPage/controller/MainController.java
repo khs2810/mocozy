@@ -41,14 +41,10 @@ public class MainController {
 	    PageInfo ri = Pagination.getPageInfo(socialList, currentPage, 5, 5);
 	    PageInfo fi = Pagination.getPageInfo(socialList, currentPage, 5, 2);
 
-	    // 챌린지 데이터 가져오기
-	    ArrayList<Club> clist = mService.getChallenge(ci);
-	    ArrayList<Club> rlist = mService.getChallRank(ri);
-	    ArrayList<Club> flist = mService.getChallView(fi);
-
-	    // 날짜 가져오기 (데이터 중 하나에서 가져오도록)
-	    Date eventDate = clist.isEmpty() ? new Date() : clist.get(0).getEventDate();
-	    Date createDate = clist.isEmpty() ? new Date() : clist.get(0).getCreateDate();
+	    //소셜링 데이터 가져오기
+	    ArrayList<Club> clist = mService.getSocialing(ci);
+	    ArrayList<Club> rlist = mService.getSocialRank(ri);
+	    ArrayList<Club> flist = mService.getSocialView(fi);
 	    
 	    SimpleDateFormat newEventDateFormat = new SimpleDateFormat("yyyy년 M월 d일 a h시 m분", Locale.KOREA);
 
@@ -59,11 +55,6 @@ public class MainController {
 	    processClubData(clist, newEventDateFormat, newCreateDateFormat);
 	    processClubData(rlist, newEventDateFormat, newCreateDateFormat);
 	    processClubData(flist, newEventDateFormat, newCreateDateFormat);
-
-	    // 리뷰 top5
-	    if (rlist.size() > 5) {
-	        rlist = new ArrayList<>(rlist.subList(0, 5));
-	    }
 
 	    // 이벤트 배너 가져오기
 	    ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
@@ -92,10 +83,6 @@ public class MainController {
 	    ArrayList<Club> clist = mService.getChallenge(ci);
 	    ArrayList<Club> rlist = mService.getChallRank(ri);
 	    ArrayList<Club> flist = mService.getChallView(fi);
-
-	    // 날짜 가져오기 (예시: 챌린지 데이터 중 하나에서 가져오도록 수정)
-	    Date eventDate = clist.isEmpty() ? new Date() : clist.get(0).getEventDate();
-	    Date createDate = clist.isEmpty() ? new Date() : clist.get(0).getCreateDate();
 	    
 	    SimpleDateFormat newEventDateFormat = new SimpleDateFormat("yyyy년 M월 d일 a h시 m분", Locale.KOREA);
 
@@ -106,11 +93,6 @@ public class MainController {
 	    processClubData(clist, newEventDateFormat, newCreateDateFormat);
 	    processClubData(rlist, newEventDateFormat, newCreateDateFormat);
 	    processClubData(flist, newEventDateFormat, newCreateDateFormat);
-
-	    // 리뷰 top5
-	    if (rlist.size() > 5) {
-	        rlist = new ArrayList<>(rlist.subList(0, 5));
-	    }
 
 	    // 이벤트 배너 가져오기
 	    ArrayList<Notice> getnoticeBanner = anService.getNoticeBannerList();
@@ -125,9 +107,6 @@ public class MainController {
 
 	    return "mainPage/challenge";
 	}
-
-
-
 
 	private void processClubData(ArrayList<Club> clubList, SimpleDateFormat newEventDateFormat, SimpleDateFormat newCreateDateFormat) {
 	    for (Club c : clubList) {

@@ -60,6 +60,9 @@
                                 <c:when test="${p.status eq 'D'}">
                                     <span class="history-detail">포인트 충전</span>
                                 </c:when>
+                                <c:when test="${p.status eq 'R'}">
+                                    <span class="history-detail">포인트 환불</span>
+                                </c:when>
                                 <c:otherwise>
                                     <span class="history-detail">챌린지 상금</span>
                                 </c:otherwise>

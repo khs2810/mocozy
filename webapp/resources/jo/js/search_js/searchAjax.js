@@ -102,14 +102,23 @@ function drawClublist(clist){
     document.querySelector(".display").innerHTML += str;
 }
 
+let isFirstLoad = true;
+
 function searchFormAjax(keyword, order) {
     $.ajax({
         url: "searchFormAjax.sc",
         data: {rpage: rpage++, keyword: keyword, order: order},
-        success: function(clist) {
-            drawClublist(clist);
+        success: function(response) {
+            if (response.length > 0) {
+                drawClublist(response);
+                console.log("AJAX 요청 성공, 응답 데이터:", response);
+            } else if (response.length === 0 && isFirstLoad) {
+                alert("검색 결과가 없습니다");
+            }
+            isFirstLoad = false;
         },
         error: function() {
+            alert("AJAX 요청 실패");
         }
     });
 }

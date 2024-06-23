@@ -188,14 +188,16 @@
 						MASTER_NO,
 						TARGET_NO,
 						TARGET_NICKNAME,
-						TARGET_PROFILE
+						TARGET_PROFILE,
+						ROOT_TITLE
 						)
 			VALUES (
 					NEXTVAL('SEQ_CHRNO'),
 					#{masterNo},
 					#{targetNo},
 					#{targetNickname},
-					#{targetProfile}
+					#{targetProfile},
+					모꼬지 상담
 					)
 	</insert>
 </mapper>
