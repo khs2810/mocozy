@@ -3,43 +3,57 @@ document.addEventListener('DOMContentLoaded', function() {
     // 체크박스 
     document.querySelector('#checkboxAll');
 
-    checkboxAll.addEventListener('click', function(){
+    // 'checkboxAll'이라는 아이디를 가진 체크박스 요소를 선택
+    const checkboxAll = document.querySelector('#checkboxAll');
 
+        // 'checkboxAll' 체크박스에 클릭 이벤트 리스너를 추가
+        checkboxAll.addEventListener('click', function() {
+            // 'checkboxAll' 체크박스의 체크 여부를 isChecked 변수에 저장
             const isChecked = checkboxAll.checked;
 
-            if(isChecked){
+            // 만약 'checkboxAll'이 체크된 상태라면
+            if (isChecked) {
+                // '.chk' 클래스를 가진 모든 체크박스 요소들을 선택
                 const checkboxes = document.querySelectorAll('.chk');
-
-                for(const checkbox of checkboxes){
+                // 각 체크박스를 반복하면서
+                for (const checkbox of checkboxes) {
+                    // 체크 상태로 변경
                     checkbox.checked = true;
                 }
-            }
-
-            else{
+            } else { // 'checkboxAll'이 체크 해제된 상태라면
+                // '.chk' 클래스를 가진 모든 체크박스 요소들을 선택
                 const checkboxes = document.querySelectorAll('.chk');
-                for(const checkbox of checkboxes){
+                // 각 체크박스를 반복하면서
+                for (const checkbox of checkboxes) {
+                    // 체크 해제 상태로 변경
                     checkbox.checked = false;
                 }
             }
-        })
-        ////////////////////////////////////////////////////////////
-        const checkboxes = document.querySelectorAll('.chk');
-        for(const checkbox of checkboxes){
-        checkbox.addEventListener('click',function(){
-            
-            const totalCnt = checkboxes.length;
-        
-            const checkedCnt = document.querySelectorAll('.chk:checked').length;
-            
-            if(totalCnt == checkedCnt){
-            document.querySelector('#checkboxAll').checked = true;
-            }
-            else{
-            document.querySelector('#checkboxAll').checked = false;
-            }
-            
         });
-        
+
+        ////////////////////////////////////////////////////////////
+
+        // '.chk' 클래스를 가진 모든 체크박스 요소들을 선택
+        const checkboxes = document.querySelectorAll('.chk');
+
+        // 각 체크박스에 대해 클릭 이벤트 리스너를 추가
+        for (const checkbox of checkboxes) {
+            checkbox.addEventListener('click', function() {
+                // 총 체크박스 개수를 totalCnt 변수에 저장
+                const totalCnt = checkboxes.length;
+
+                // 체크된 체크박스 개수를 checkedCnt 변수에 저장
+                const checkedCnt = document.querySelectorAll('.chk:checked').length;
+
+                // 모든 체크박스가 체크된 상태라면
+                if (totalCnt == checkedCnt) {
+                    // 'checkboxAll' 체크박스를 체크 상태로 변경
+                    document.querySelector('#checkboxAll').checked = true;
+                } else { // 하나라도 체크되지 않은 체크박스가 있다면
+                    // 'checkboxAll' 체크박스를 체크 해제 상태로 변경
+                    document.querySelector('#checkboxAll').checked = false;
+                }
+            });
         }
 
     // // 체크박스 변경 기능
