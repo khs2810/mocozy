@@ -11,6 +11,13 @@ function counter(){
 };
 counter();
 
+function withdraw(){
+    var drawcheck = document.querySelector('input[name="checked"]:checked')
+    if(drawcheck == 0) {
+        alert('동의에 체크해주세요.')
+        return false;
+    }
+}
 
 function deleteMember() {
     const userPwd = document.getElementById('userPwd').value;
