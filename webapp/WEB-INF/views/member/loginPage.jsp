@@ -38,12 +38,12 @@
             </div>
 
             <div class="flex justify-center gap-1 mt-6 text-sm text-taling-gray-700 ">
-                <!-- <div w-full text-center >
+                <div w-full text-center >
                     <a href="${pageContext.request.contextPath}/send" class="text-taling-pink-400"> 아이디 찾기</a>
                 </div>
                 <div w-full text-center >
                     <a href="" class="text-taling-pink-400">비밀번호 찾기</a>
-                </div> -->
+                </div>
             </div>
             
             <br>
@@ -52,7 +52,7 @@
                 <a href="signInPage.me" class="text-taling-pink-400">회원가입</a>
             </div>
             
-            <!-- <div class="line">또는</div>
+            <div class="line">또는</div>
 
             <div class="select-login">
                 <img src="${pageContext.request.contextPath}/resources/koo/upfile/loginPage_img/kakao_login_large_narrow.png" alt="">
@@ -61,7 +61,7 @@
 
             <div class="select-login">
                 <img src="${pageContext.request.contextPath}/resources/koo/upfile/loginPage_img/btnG_완성형.png" onclick="naverLogin()" alt="">
-            </div> -->
+            </div>
         </div>
 
     </form>
