@@ -74,7 +74,7 @@
 	            <textarea id="summernote" name="noticeContent" required>${n.noticeContent}</textarea>
 	        </div>
 	        <div class="notice_enroll_btns">
-	            <button type="type" class="background_color_brown font_weight_bold" onclick="history.back()">이 전</button>
+	            <button type="button" class="background_color_brown font_weight_bold" onclick="location.href = 'detail.no?nno=${n.noticeNo}'">이 전</button>
 	            <button type="submit" class="background_color_green font_weight_bold">등 록</button>
 	        </div>
         </form>

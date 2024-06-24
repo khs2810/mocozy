@@ -2,6 +2,8 @@ package com.kh.mocozy.member.service;
 
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpSession;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -62,12 +64,13 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public int insertMember(Member m) {
 		int result1 = memberDao.insertMember(sqlSession, m);
-
+		Member mv = memberDao.loginMember(sqlSession, m);
+		
 		ChatRoom adminChat = new ChatRoom();
 		adminChat.setMasterNo(1);
-		adminChat.setTargetNo(m.getUserNo());
-		adminChat.setTargetNickname(m.getNickname());
-		adminChat.setTargetProfile(m.getProfileImg());
+		adminChat.setTargetNo(mv.getUserNo());
+		adminChat.setTargetNickname(mv.getNickname());
+		adminChat.setTargetProfile(mv.getProfileImg());
 		
 		int result2 = chatDao.insertAdminChat(sqlSession, adminChat);
 		
