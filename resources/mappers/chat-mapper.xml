@@ -189,7 +189,7 @@
 						TARGET_NO,
 						TARGET_NICKNAME,
 						TARGET_PROFILE,
-						ROOT_TITLE
+						ROOM_TITLE
 						)
 			VALUES (
 					NEXTVAL('SEQ_CHRNO'),
@@ -197,7 +197,7 @@
 					#{targetNo},
 					#{targetNickname},
 					#{targetProfile},
-					모꼬지 상담
+					'모꼬지 상담'
 					)
 	</insert>
 </mapper>
