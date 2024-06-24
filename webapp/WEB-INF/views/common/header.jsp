@@ -80,7 +80,7 @@
 									<ul class="headergrid">
 										<li class="categrid">
 											<h3 class="getName">
-												<a href="cateAll.ct?order=clubNo">전체</a>
+												<a href="cateAll.ct?order=club_no">전체</a>
 											</h3>
 											<div class="getTitle">
 												<%-- 빈칸 --%>
@@ -102,8 +102,8 @@
 											<h3 class="getName">문화생활</h3>
 											<div class="getTitle">
 												<div class="cateL">
-													<a href="cateKey.ct?key=${'문화, 예술'}&order=clubNo" class="cateT">문화 · 예술</a> <a
-														href="cateKey.ct?key=${'푸드, 드링크'}&order=clubNo" class="cateT">푸드 · 드링크</a>
+													<a href="cateKey.ct?key=${'문화, 예술'}&order=club_no" class="cateT">문화 · 예술</a> <a
+														href="cateKey.ct?key=${'푸드, 드링크'}&order=club_no" class="cateT">푸드 · 드링크</a>
 												</div>
 											</div>
 										</li>
@@ -112,9 +112,9 @@
 											<h3 class="getName">미래발전</h3>
 											<div class="getTitle">
 												<div class="cateL">
-													<a href="cateKey.ct?key=${'자기계발'}&order=clubNo" class="cateT">자기계발</a> <a
-														href="cateKey.ct?key=${'재테크'}&order=clubNo" class="cateT">재테크</a> <a
-														href="cateKey.ct?key=${'외국어'}&order=clubNo" class="cateT">외국어</a>
+													<a href="cateKey.ct?key=${'자기계발'}&order=club_no" class="cateT">자기계발</a> <a
+														href="cateKey.ct?key=${'재테크'}&order=club_no" class="cateT">재테크</a> <a
+														href="cateKey.ct?key=${'외국어'}&order=club_no" class="cateT">외국어</a>
 												</div>
 											</div>
 										</li>
@@ -123,8 +123,8 @@
 											<h3 class="getName">스포츠</h3>
 											<div class="getTitle">
 												<div class="cateL">
-													<a href="cateKey.ct?key=${'액티비티'}&order=clubNo" class="cateT">액비티비</a> <a
-														href="cateKey.ct?key=${'여행, 동행'}&order=clubNo" class="cateT">여행 · 동행</a>
+													<a href="cateKey.ct?key=${'액티비티'}&order=club_no" class="cateT">액비티비</a> <a
+														href="cateKey.ct?key=${'여행, 동행'}&order=club_no" class="cateT">여행 · 동행</a>
 												</div>
 											</div>
 										</li>
@@ -133,9 +133,9 @@
 											<h3 class="getName">취미</h3>
 											<div class="getTitle">
 												<div class="cateL">
-													<a href="cateKey.ct?key=${'취미'}&order=clubNo" class="cateT">취미</a> <a
-														href="cateKey.ct?key=${'파티, 게임'}&order=clubNo" class="cateT">파티 · 게임</a> <a
-														href="cateKey.ct?key=${'연애'}&order=clubNo" class="cateT">연애 · 사랑</a>
+													<a href="cateKey.ct?key=${'취미'}&order=club_no" class="cateT">취미</a> <a
+														href="cateKey.ct?key=${'파티, 게임'}&order=club_no" class="cateT">파티 · 게임</a> <a
+														href="cateKey.ct?key=${'연애'}&order=club_no" class="cateT">연애 · 사랑</a>
 												</div>
 											</div>
 										</li>

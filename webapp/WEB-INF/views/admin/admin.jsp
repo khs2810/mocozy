@@ -233,10 +233,10 @@
 
 																				<td class="no text-12">${user.userNo}</td>
 
-																				<td class="image"><a href="javascript:void(0);"> <img
+																				<td class="image"><img
 																						src="${user.profileImg}"
 																						width="49" height="49" class="item-thumb">
-																				</a></td>
+																				</td>
 
 																				<td class="title" style="width: 100px;">
 																					<div>
