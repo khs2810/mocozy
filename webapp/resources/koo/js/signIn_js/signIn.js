@@ -197,6 +197,7 @@ function validateForm() {
         return true;
     } else {
         alert('폼을 올바르게 작성해 주세요.');
-        return false;
+    return false;
     }
 };
+
