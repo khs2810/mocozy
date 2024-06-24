@@ -315,6 +315,10 @@ public class ClubController {
 	public String insertRequest(Request r, int pt, Model model, HttpSession session) {
 		r.setPoint(pt);
 		Member m = (Member)session.getAttribute("loginUser");
+		if (m == null) {
+			model.addAttribute("errorMsg", "로그인 후 이용 가능한 기능입니다.");
+			return "common/errorPage";
+		}
 		
 		String result = clubService.insertRequest(r);
 		
@@ -322,7 +326,7 @@ public class ClubController {
 			Member loginUser = memberService.loginMember(m);
 			session.setAttribute("loginUser", loginUser);
 			
-			session.setAttribute("alertMsg", "모임 참가 성공");
+			session.setAttribute("alertMsg", "모임 참가 신청 성공");
 			return "redirect:/";
 		} else {
 			model.addAttribute("errorMsg", result);
