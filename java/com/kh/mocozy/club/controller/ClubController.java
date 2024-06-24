@@ -315,6 +315,10 @@ public class ClubController {
 	public String insertRequest(Request r, int pt, Model model, HttpSession session) {
 		r.setPoint(pt);
 		Member m = (Member)session.getAttribute("loginUser");
+		if (m == null) {
+			model.addAttribute("errorMsg", "로그인 후 이용 가능한 기능입니다.");
+			return "common/errorPage";
+		}
 		
 		String result = clubService.insertRequest(r);
 		
