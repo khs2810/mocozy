@@ -570,8 +570,8 @@
 		 WHERE CLUB_NO = #{cno}
 	</update>
 	
-	<select id="selectChallengeTotalPoint" resultType="int">
-		SELECT TOTAL_MONEY
+	<select id="selectChallengeTotalPoint" resultType="_int">
+		SELECT COALESCE(TOTAL_MONEY, 0) AS TOTAL_MONEY
 		  FROM CLUB
 		 WHERE CLUB_NO = #{cno}
 	</select>
