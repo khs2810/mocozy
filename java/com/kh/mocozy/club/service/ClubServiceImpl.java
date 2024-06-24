@@ -218,7 +218,7 @@ public class ClubServiceImpl implements ClubService {
 	@Transactional
 	@Override
 	public int finishChallenge(int cno, int uno) {
-		ArrayList<Integer> successedUserList = clubDao.selectSuccessedUserList(sqlSession, cno);	// 챌린지 성공한 사람들의 userNo
+		ArrayList<Challenge> successedUserList = clubDao.selectSuccessedUserList(sqlSession, cno);	// 챌린지 성공한 사람들의 userNo
 		int successedUserCnt = successedUserList.size();	// 챌린지 성공한 사람들 수
 		int challengeTotalPoint = clubDao.selectChallengeTotalPoint(sqlSession, cno);	// 챌린지 총 상금
 		int challengeRewardPoint = 0;	// 인당 챌린지 상금(아무도 성공 못했을 때)
@@ -230,10 +230,10 @@ public class ClubServiceImpl implements ClubService {
 		map.put("reward", challengeRewardPoint);
 		
 		int result3 = 1;
-		for(int successedUser : successedUserList) {
+		for(Challenge successedUser : successedUserList) {
 			Member m = new Member();
 			
-			m.setUserNo(successedUser);
+			m.setUserNo(successedUser.getUserNo());
 			m.setPoint(challengeRewardPoint);
 			
 			int result = memberDao.chargePoint(sqlSession, m);
@@ -247,6 +247,7 @@ public class ClubServiceImpl implements ClubService {
 			clubDao.finishClubChallenge(sqlSession, cno);
 		}
 		int result2 = clubDao.calculateReward(sqlSession, map);
+		
 		return result1 * result2 * result3;
 	}
 
